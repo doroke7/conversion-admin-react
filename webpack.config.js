@@ -1,7 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const UglifyJsPlugin  = require('uglifyjs-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -69,5 +69,12 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     })
-  ]
+  ],
+  // externals: {
+  //   'react':'react',
+  //   'react-dom':"react-dom",
+  //   'react-router':'react-dom',
+  //   'moment':'moment',
+  //   "antd":"antd"
+  // }
 }
