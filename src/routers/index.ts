@@ -3,7 +3,7 @@ import {
   Chatroom,
   Login,
   User,
-} from './../Pages/';
+} from '@/Pages/';
 
 const aRoutes = [{
   path: '/login',

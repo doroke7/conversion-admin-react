@@ -5,7 +5,7 @@ import {
   Chatroom,
   Login,
   User,
-} from './../../Pages/';
+} from '@/Pages/';
 
 const Router: React.FC = () => {
   return (

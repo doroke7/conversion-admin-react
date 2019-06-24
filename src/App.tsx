@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Router,
   Header
-} from "./Commons/";
+} from "@/Commons/";
 
 const App: React.FC = () => {
   return (
