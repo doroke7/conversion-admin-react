@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.[hash].js'
+    filename: 'bundle.[hash:8].js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -66,7 +66,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].css',
+      filename: 'bundle.[contenthash:8].css',
       chunkFilename: '[id].css',
     })
   ],
