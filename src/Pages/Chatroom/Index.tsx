@@ -5,7 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
-import Information from './Information/Index';
+import Detail from './Detail/Index';
 
 function NestedGrid() {
 
@@ -18,7 +18,7 @@ function NestedGrid() {
         <Channel/>
       </Grid>
       <Grid item xs={2}>
-        <Information/>
+        <Detail/>
       </Grid>
     </Grid>
   );
