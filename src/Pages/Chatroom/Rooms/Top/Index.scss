@@ -1,0 +1,16 @@
+.top {
+  background: rgb(58, 99, 170);
+  height: 5vmin;
+  font-size: 2vmin;
+  border: 1px solid rgb(31, 54, 94);
+
+  span::before {
+    content: "";
+    height:100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  span {
+    vertical-align: middle;
+  }
+}
