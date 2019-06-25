@@ -7,25 +7,7 @@ import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
 import Information from './Information/Index';
 
-const useStyles: any = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      height: 140,
-      width: 100,
-    },
-    control: {
-      padding: theme.spacing(2),
-    },
-  }),
-);
-
-
-
 function NestedGrid() {
-  const classes = useStyles();
 
   return (
     <Grid container justify="center" className="chatroom">
