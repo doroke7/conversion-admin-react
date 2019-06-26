@@ -75,6 +75,12 @@ module.exports = {
       chunkFilename: '[id].css',
     })
   ],
+
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 2000000,
+    maxAssetSize: 2000000,
+  }
   // externals: {
   //   'react':'react',
   //   'react-dom':"react-dom",
