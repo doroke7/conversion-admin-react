@@ -2,7 +2,8 @@
   background: rgb(58, 99, 170);
   height: 5vmin;
   font-size: 2vmin;
-  border: 1px solid rgb(47, 80, 138);
+  border: 1px solid #2358b5;
+  border-right: 0px solid #2358b5;
   span::before {
     content: "";
     height:100%;
