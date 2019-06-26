@@ -36,7 +36,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'awesome-typescript-loader' // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
       },
       { 
         enforce: "pre",
