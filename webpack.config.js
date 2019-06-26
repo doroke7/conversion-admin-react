@@ -17,6 +17,8 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.[hash:8].js'
   },
+  target: 'web',
+  // target: 'node', webpack 支持 backend 打包
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
