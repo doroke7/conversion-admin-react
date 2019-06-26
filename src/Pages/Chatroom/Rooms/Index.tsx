@@ -1,6 +1,6 @@
 import React from 'react';
 import './Index.scss';
-import Top from './Top';
+import Top from './Top/Index';
 
 const Rooms: React.FC = () => {
   return (

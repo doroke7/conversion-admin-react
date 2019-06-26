@@ -21,7 +21,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     host: '0.0.0.0',
-    port: 3001,
+    port: 3011,
     inline: true,
     hot: true,
     watchOptions: {
@@ -36,7 +36,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
+        loader: 'ts-loader'
       },
       { 
         enforce: "pre",
