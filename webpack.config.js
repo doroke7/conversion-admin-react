@@ -46,7 +46,7 @@ module.exports = {
         loader: "source-map-loader"
       },
       {
-        test: /\.scss$/,
+        test: [/\.scss$/, /\.css$/],
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
