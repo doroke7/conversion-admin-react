@@ -6,16 +6,9 @@ import Top from './Top/Index';
 import Detail from './Detail/Index';
 
 import Row from 'antd/es/row';
-import 'antd/es/row/style/css';
-
 import Col from 'antd/es/col';
-import 'antd/es/col/style/css';
-
-
 
 // import Message from './Message/Index';
-
-
 const Channel: React.FC = () => {
   return (
     <div className="channel">

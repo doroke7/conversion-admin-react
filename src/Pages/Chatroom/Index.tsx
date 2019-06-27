@@ -1,14 +1,12 @@
 import React from 'react';
-import './Index.scss';
 
 import Row from 'antd/es/row';
-import 'antd/es/row/style/css';
-
 import Col from 'antd/es/col';
-import 'antd/es/col/style/css';
 
 import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
+
+import './Index.scss';
 
 function Chatroom() {
 
