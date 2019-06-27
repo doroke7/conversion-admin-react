@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin  = require('uglifyjs-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var AutoDllPlugin = require('autodll-webpack-plugin')
 
 module.exports = {
   entry: './src/index.tsx',
@@ -73,7 +74,16 @@ module.exports = {
       // both options are optional
       filename: 'bundle.[contenthash:8].css',
       chunkFilename: '[id].css',
-    })
+    }),
+    new AutoDllPlugin({
+      filename: '[name].dll.js',
+      entry: {
+        vendor: [
+          'react',
+          'react-dom'
+        ]
+      }
+    }),
   ],
 
   performance: {
