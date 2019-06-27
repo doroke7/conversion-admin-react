@@ -10,7 +10,7 @@ import 'antd/es/drawer/style/css';
 import './Index.scss';
 
 
-class Top extends React.Component<> {
+class Top extends React.Component {
   public constructor(props: any) {
     super(props);
   }

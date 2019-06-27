@@ -78,8 +78,8 @@ module.exports = {
 
   performance: {
     hints: 'warning',
-    maxEntrypointSize: 2000000,
-    maxAssetSize: 2000000,
+    maxEntrypointSize: 4000000,
+    maxAssetSize: 4000000,
   }
   // externals: {
   //   'react':'react',
