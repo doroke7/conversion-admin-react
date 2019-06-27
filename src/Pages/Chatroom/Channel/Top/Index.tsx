@@ -49,8 +49,8 @@ class Top extends React.Component<Props> {
       <div className="top text-center color-white position-relative">
         <span className="position-absolute left"><FontAwesomeIcon icon={faChevronLeft} /></span>
         <span>聊天室</span>
-        <span className="position-absolute gear"><FontAwesomeIcon icon={faCog} /></span>
-        <span onClick={this.props.toggleDrawer(true)} className="position-absolute info"><FontAwesomeIcon icon={faList} /></span>
+        <span  onClick={this.showModal.bind(this)} className="position-absolute gear"><FontAwesomeIcon icon={faCog} /></span>
+        <span className="position-absolute info"><FontAwesomeIcon icon={faList} /></span>
         <Modal
           title="Basic Modal"
           visible={this.state.visible}
