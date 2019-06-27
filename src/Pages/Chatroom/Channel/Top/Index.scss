@@ -1,8 +1,18 @@
 .top {
   background: rgb(58, 99, 170);
   height: 5vmin;
-  font-size: 2vmin;
-  border: 1px solid rgb(47, 80, 138);
+  font-size: 3vmin;
+  border: 1px solid #0d46a9;
+  border-right: 0px solid #0d46a9;
+  .left {
+    left: 1vmin;
+  }
+  .gear {
+    right: 5vmin;
+  }
+  .info {
+    right: 1vmin;
+  }
   span::before {
     content: "";
     height:100%;
