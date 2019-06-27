@@ -1,39 +1,39 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faList, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import Modal from 'antd/es/modal'; // 加载 JS
-import 'antd/es/modal/style/css'; // 加载 CSS
+import Modal from 'antd/es/modal';
+import 'antd/es/modal/style/css';
+
+import Drawer from 'antd/es/drawer';
+import 'antd/es/drawer/style/css';
 
 import './Index.scss';
 
-type Props = {
-  toggleDrawer: any
-};
 
-class Top extends React.Component<Props> {
+class Top extends React.Component<> {
   public constructor(props: any) {
     super(props);
   }
 
-  public state = { visible: false };
+  public state = { modal: false };
 
   public showModal = () => {
     this.setState({
-      visible: true,
+      modal: true,
     });
   };
 
   public handleOk = (e: any) => {
     console.log(e);
     this.setState({
-      visible: true,
+      modal: true,
     });
   };
 
   public handleCancel = (e: any) => {
     console.log(e);
     this.setState({
-      visible: false,
+      modal: false,
     });
   };
 
@@ -49,11 +49,11 @@ class Top extends React.Component<Props> {
       <div className="top text-center color-white position-relative">
         <span className="position-absolute left"><FontAwesomeIcon icon={faChevronLeft} /></span>
         <span>聊天室</span>
-        <span  onClick={this.showModal.bind(this)} className="position-absolute gear"><FontAwesomeIcon icon={faCog} /></span>
+        <span onClick={this.showModal} className="position-absolute gear"><FontAwesomeIcon icon={faCog} /></span>
         <span className="position-absolute info"><FontAwesomeIcon icon={faList} /></span>
         <Modal
           title="Basic Modal"
-          visible={this.state.visible}
+          visible={this.state.modal}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
