@@ -8,7 +8,6 @@ import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 
-
 // import Message from './Message/Index';
 
 

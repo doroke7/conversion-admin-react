@@ -1,8 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faList, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import Modal from 'antd/es/Modal'; // 加载 JS
-import 'antd/es/date-picker/style/css'; // 加载 CSS
+import Modal from 'antd/es/modal'; // 加载 JS
+import 'antd/es/modal/style/css'; // 加载 CSS
 
 import './Index.scss';
 
