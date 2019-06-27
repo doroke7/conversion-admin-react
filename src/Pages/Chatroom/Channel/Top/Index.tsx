@@ -6,17 +6,17 @@ import Icon from '@material-ui/core/Icon';
 import './Index.scss';
 
 class Top extends React.Component {
-  constructor(props: any) {
+  public constructor(props: any) {
     super(props);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
   }
 
-  render() {
+  public render() {
     return (
       <div className="top text-center color-white position-relative">
         <span className="position-absolute left"><FontAwesomeIcon icon={faChevronLeft} /></span>
