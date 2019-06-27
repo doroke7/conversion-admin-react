@@ -1,23 +1,20 @@
 import React from 'react';
 
 import Icon from 'antd/es/icon';
-import 'antd/es/icon/style/css';
-
 import Modal from 'antd/es/modal';
-import 'antd/es/modal/style/css';
-
 import Drawer from 'antd/es/drawer';
-import 'antd/es/drawer/style/css';
 
 import './Index.scss';
-
 
 class Top extends React.Component {
   public constructor(props: any) {
     super(props);
   }
 
-  public state = { modal: false };
+  public state = {
+    modal: false,
+    drawer: false,
+  };
 
   public showModal = () => {
     this.setState({
@@ -39,6 +36,18 @@ class Top extends React.Component {
     });
   };
 
+  showDrawer = () => {
+    this.setState({
+      drawer: true,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      drawer: false,
+    });
+  };
+
 
   public componentDidMount() {
   }
@@ -52,7 +61,7 @@ class Top extends React.Component {
         <span className="position-absolute left"><Icon type="left" /></span>
         <span>聊天室</span>
         <span onClick={this.showModal} className="position-absolute gear"><Icon type="setting" /></span>
-        <span className="position-absolute info"><Icon type="unordered-list" /></span>
+        <span onClick={this.showDrawer} className="position-absolute info"><Icon type="unordered-list" /></span>
         <Modal
           title="Basic Modal"
           visible={this.state.modal}
@@ -63,6 +72,17 @@ class Top extends React.Component {
           <p>Some contents...</p>
           <p>Some contents...</p>
         </Modal>
+        <Drawer
+          title="Basic Drawer"
+          placement="right"
+          closable={false}
+          onClose={this.onClose}
+          visible={this.state.drawer}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Drawer>
       </div>
     );
   }
