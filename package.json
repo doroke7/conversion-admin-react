@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json "
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
@@ -30,6 +31,7 @@
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
     "uglifyjs-webpack-plugin": "^2.1.3",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },
   "devDependencies": {
