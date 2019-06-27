@@ -7,14 +7,17 @@
   .left {
     left: 1.5vmin;
     top:calc(50% - 1.25vmin);
+    cursor: pointer;
   }
   .gear {
     right: 5.5vmin;
     top:calc(50% - 1.25vmin);
+    cursor: pointer;
   }
   .info {
     right: 1.5vmin;
     top:calc(50% - 1.25vmin);
+    cursor: pointer;
   }
   span::before {
     content: "";
