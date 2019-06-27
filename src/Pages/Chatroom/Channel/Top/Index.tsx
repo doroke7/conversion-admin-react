@@ -3,19 +3,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faList, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import Icon from '@material-ui/core/Icon';
 
-
 import './Index.scss';
 
+class Top extends React.Component {
+  constructor(props: any) {
+    super(props);
+  }
 
-const Top: React.FC = () => {
-  return (
-    <div className="top text-center color-white position-relative">
-      <FontAwesomeIcon className="align-middle position-absolute left" icon={faChevronLeft} />
-      <span>聊天室</span>
-      <FontAwesomeIcon className="align-middle position-absolute gear" icon={faCog} />
-      <FontAwesomeIcon className="align-middle position-absolute info" icon={faList} />
-    </div>
-  );
+  componentDidMount() {
+  }
+
+  componentDidUpdate() {
+  }
+
+  render() {
+    return (
+      <div className="top text-center color-white position-relative">
+        <span className="position-absolute left"><FontAwesomeIcon icon={faChevronLeft} /></span>
+        <span>聊天室</span>
+        <span className="position-absolute gear"><FontAwesomeIcon icon={faCog} /></span>
+        <span className="position-absolute info"><FontAwesomeIcon icon={faList} /></span>
+      </div>
+    );
+  }
 }
 
 export default Top;
