@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import Icon from 'antd/es/icon';
 import Modal from 'antd/es/modal';
@@ -58,7 +59,7 @@ class Top extends React.Component {
   public render() {
     return (
       <div className="top text-center color-white position-relative">
-        <span className="position-absolute left"><Icon type="left" /></span>
+        <Link to={{ pathname: '/login'}}><span className="position-absolute left"><Icon type="left" /></span></Link>
         <span>聊天室</span>
         <span onClick={this.showModal} className="position-absolute gear"><Icon type="setting" /></span>
         <span onClick={this.showDrawer} className="position-absolute info"><Icon type="unordered-list" /></span>
