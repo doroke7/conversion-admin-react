@@ -4,9 +4,6 @@ import './Index.scss';
 import ControlPannel from './ControlPannel/Index';
 import Top from './Top/Index';
 import Detail from './Detail/Index';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
-
 
 import Row from 'antd/es/row';
 import 'antd/es/row/style/css';
@@ -28,9 +25,7 @@ const Channel: React.FC = () => {
           <ControlPannel/>
         </Col>
         <Col xs={0} sm={0} md={4} lg={4} xl={4}>
-          <Hidden only={["xs", "sm"]}>
-            <Detail />
-          </Hidden>
+          <Detail />
         </Col>
       </Row>
     </div>

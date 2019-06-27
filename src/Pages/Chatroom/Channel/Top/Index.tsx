@@ -1,6 +1,8 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog, faList, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
+import Icon from 'antd/es/icon';
+import 'antd/es/icon/style/css';
+
 import Modal from 'antd/es/modal';
 import 'antd/es/modal/style/css';
 
@@ -47,10 +49,10 @@ class Top extends React.Component {
   public render() {
     return (
       <div className="top text-center color-white position-relative">
-        <span className="position-absolute left"><FontAwesomeIcon icon={faChevronLeft} /></span>
+        <span className="position-absolute left"><Icon type="left" /></span>
         <span>聊天室</span>
-        <span onClick={this.showModal} className="position-absolute gear"><FontAwesomeIcon icon={faCog} /></span>
-        <span className="position-absolute info"><FontAwesomeIcon icon={faList} /></span>
+        <span onClick={this.showModal} className="position-absolute gear"><Icon type="setting" /></span>
+        <span className="position-absolute info"><Icon type="unordered-list" /></span>
         <Modal
           title="Basic Modal"
           visible={this.state.modal}
