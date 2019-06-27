@@ -1,20 +1,20 @@
 .top {
   background: rgb(58, 99, 170);
   height: 5vmin;
-  font-size: 3vmin;
+  font-size: 2.5vmin;
   border: 1px solid #0d46a9;
   border-right: 0px solid #0d46a9;
   .left {
-    left: 2vmin;
-    top:calc(50% - 1.5vmin);
+    left: 1.5vmin;
+    top:calc(50% - 1.25vmin);
   }
   .gear {
-    right: 6vmin;
-    top:calc(50% - 1.5vmin);
+    right: 5.5vmin;
+    top:calc(50% - 1.25vmin);
   }
   .info {
-    right: 2vmin;
-    top:calc(50% - 1.5vmin);
+    right: 1.5vmin;
+    top:calc(50% - 1.25vmin);
   }
   span::before {
     content: "";
