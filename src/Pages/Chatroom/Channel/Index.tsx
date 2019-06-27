@@ -36,8 +36,7 @@ const Channel: React.FC = () => {
 
   return (
     <div className="channel">
-      <Top/>
-      <div onClick={toggleDrawer(true)}>TOP2</div>
+      <Top toggleDrawer={toggleDrawer.bind(this)}/>
       <Grid container justify="center">
         <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
           <ControlPannel/>
