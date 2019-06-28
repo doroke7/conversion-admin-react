@@ -19,7 +19,7 @@ class ControlPannel extends React.Component<IProps>  {
   public render(){
     return (
       <div className={"control-pannel" + (this.props.className ? " " + this.props.className : "")}>
-        <span className="d-inline-block">
+        <span className="d-inline-block text-center p-1">
           <div>
             <i className="iconfont icon-game game"></i>
           </div>
@@ -27,10 +27,10 @@ class ControlPannel extends React.Component<IProps>  {
             游戏
           </div>
         </span>
-        <span className="d-inline-block textarea-wrapper">
+        <span className="d-inline-block textarea-wrapper pt-1 pb-1">
           <TextArea rows={2} />
         </span>
-        <span className="d-inline-block">
+        <span className="d-inline-block text-center p-1">
           <div>
             <i className="iconfont icon-telegram send"></i>
           </div>
@@ -38,7 +38,7 @@ class ControlPannel extends React.Component<IProps>  {
             发送
           </div>
         </span>
-        <span className="d-inline-block">
+        <span className="d-inline-block text-center p-1">
           <div>
             <i className="iconfont icon-plus plus"></i>
           </div>
