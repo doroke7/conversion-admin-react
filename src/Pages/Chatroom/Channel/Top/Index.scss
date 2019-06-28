@@ -8,15 +8,19 @@
     top:calc(50% - 1.5vmin);
     cursor: pointer;
   }
-  .gear {
+  .setting {
     right: 5.5vmin;
     top:calc(50% - 1.5vmin);
     cursor: pointer;
   }
-  .info {
+  .list {
     right: 1.5vmin;
     top:calc(50% - 1.5vmin);
     cursor: pointer;
+  }
+
+  .iconfont.icon-left, .iconfont.icon-setting, .iconfont.icon-list {
+    font-size: 3vmin;
   }
   span::before {
     content: "";
