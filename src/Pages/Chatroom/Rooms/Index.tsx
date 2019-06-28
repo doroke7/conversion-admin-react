@@ -4,11 +4,12 @@ import Top from './Top/Index';
 import Room from './Room/Index';
 
 const Rooms: React.FC = () => {
+  
   return (
     <div className="rooms">
       <Top />
       <div className="pseudo-rooms">
-        {[...Array(23)].map((iNumber, iIndex) => <Room/>)}
+      {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((iNumber, iIndex) => <Room/>)}
       </div>
     </div>
   );
