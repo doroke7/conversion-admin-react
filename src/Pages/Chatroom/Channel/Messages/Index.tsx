@@ -2,12 +2,12 @@ import React from 'react';
 import './Index.scss';
 
 
-const Chatroom: React.FC = () => {
+const Messages: React.FC = () => {
   return (
-    <div className="chatroom">
+    <div className="messages">
       CHATROOM
     </div>
   );
 }
 
-export default Chatroom;
+export default Messages;

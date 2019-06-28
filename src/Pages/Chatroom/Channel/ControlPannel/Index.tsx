@@ -10,7 +10,7 @@ interface IProps {
   // className?: string | null;
 }
 
-class Chatroom extends React.Component<IProps>  {
+class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
     this.props = props;
@@ -18,7 +18,7 @@ class Chatroom extends React.Component<IProps>  {
   props :any;
   public render(){
     return (
-      <div className="chatroom">
+      <div className={"control-pannel" + (this.props.className ? " " + this.props.className : "")}>
         <span className="d-inline-block">
           <div>
             <i className="iconfont icon-game game"></i>
@@ -27,7 +27,7 @@ class Chatroom extends React.Component<IProps>  {
             游戏
           </div>
         </span>
-        <span className="d-inline-block textarea">
+        <span className="d-inline-block textarea-wrapper">
           <TextArea rows={2} />
         </span>
         <span className="d-inline-block">
@@ -51,4 +51,4 @@ class Chatroom extends React.Component<IProps>  {
   }
 }
 
-export default Chatroom;
+export default ControlPannel;
