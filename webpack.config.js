@@ -10,6 +10,7 @@ const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.tsx',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -42,12 +43,16 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader' // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
+        use: [
+          'awesome-typescript-loader'
+        ] // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
       },
       { 
         enforce: "pre",
         test: /\.js$/,
-        loader: "source-map-loader"
+        use: [
+          "source-map-loader"
+        ]
       },
       {
         test: [/\.scss$/, /\.css$/],
@@ -93,7 +98,7 @@ module.exports = {
     hints: 'warning',
     maxEntrypointSize: 4000000,
     maxAssetSize: 4000000,
-  }
+  },
   // externals: {
   //   'react':'react',
   //   'react-dom':"react-dom",
@@ -101,4 +106,5 @@ module.exports = {
   //   'moment':'moment',
   //   "antd":"antd"
   // }
+  
 }
