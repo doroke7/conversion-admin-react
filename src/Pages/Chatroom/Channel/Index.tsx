@@ -15,10 +15,10 @@ const Channel: React.FC = () => {
     <div className="channel">
       <Top />
       <Row className="position-relative">
-        <Col xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Col xs={24} sm={24} md={12} lg={16} xl={16}>
           <ControlPannel className="position-absolute"/>
         </Col>
-        <Col xs={0} sm={0} md={4} lg={4} xl={4}>
+        <Col xs={0} sm={0} md={12} lg={8} xl={8}>
           <Detail />
         </Col>
       </Row>

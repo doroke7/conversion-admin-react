@@ -1,5 +1,9 @@
 .chatroom {
+  border-top: 1px solid rgba(41,53,62,.18);
   .game, .send, .plus {
     font-size: 4vmin;
+  }
+  .textarea {
+    width: calc( 100% - 12.2vmin);
   }
 }
