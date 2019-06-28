@@ -75,7 +75,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      minify:{ //压缩HTML文件
+        removeComments:true,    //移除HTML中的注释
+        collapseWhitespace:true    //删除空白符与换行符
+      } 
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -98,6 +102,29 @@ module.exports = {
     hints: 'warning',
     maxEntrypointSize: 4000000,
     maxAssetSize: 4000000,
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: 4,
+        uglifyOptions: {
+          warnings: false,
+          parse: {},
+          compress: {     //压缩代码
+            dead_code: true,    //移除没被引用的代码
+            loops: true //当do、while 、 for循环的判断条件可以确定是，对其进行优化
+          },
+          mangle: true, // Note `mangle.properties` is `false` by default.
+          output: {
+            comments: false,
+          },
+          toplevel: false,
+          nameCache: null,
+          ie8: false,
+          keep_fnames: false,
+        },
+      }),
+    ],
   },
   // externals: {
   //   'react':'react',
