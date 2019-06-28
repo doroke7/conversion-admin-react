@@ -1,13 +1,20 @@
 import React from 'react';
 import './Index.scss';
 
-
-const Room: React.FC = () => {
-  return (
-    <div className="room">
-    
-    </div>
-  );
+interface IProps {
+  // className?: string | null;
+  name?: string | null
 }
+
+class Room extends React.Component<IProps> {
+  public render() {
+    return (
+      <div className="room">
+      
+      </div>
+    );
+  }
+}
+
 
 export default Room;
