@@ -72,6 +72,7 @@ class Top extends React.Component {
         </span>
         <Modal
           title="Basic Modal"
+          mask={false}
           visible={this.state.modal}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
