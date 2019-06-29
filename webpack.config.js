@@ -33,6 +33,11 @@ module.exports = (env, argvs) =>{
       inline: true,
       hot: true,
       historyApiFallback: true,
+      allowedHosts: [
+        'fea.chatroom.ques98.cn',
+        // '127.0.0.1',
+        // 'localhost'
+      ],
       watchOptions: {
         ignored: ['node_modules', ],
         aggregateTimeout: 300,

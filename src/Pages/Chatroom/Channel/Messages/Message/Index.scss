@@ -15,12 +15,15 @@
     margin: 0;
   }
   .content {
-    margin-top: 0.4vmin;
+    margin-top: 0.7vmin;
     color: #fff;
     text-shadow: 0 0 1px #35406d;
     border-radius: 0.5vmin;
     padding: 0.3vmin 0.6vmin;
     line-height: 1.2;
+    .text, .image {
+      max-width: 50vmin;
+    }
   }
 
   &.admin .content {
@@ -28,6 +31,7 @@
   }
 
   .triangle {
+    margin-top: 3vmin;
     width: 0;
     height: 0;
     border-style: solid;
@@ -48,6 +52,7 @@
   }
 
   .avator {
+    margin-top: 0.3vmin;
     margin-left: 0.7vmin;
     height: 4.34vmin;
     width: 4.34vmin;
