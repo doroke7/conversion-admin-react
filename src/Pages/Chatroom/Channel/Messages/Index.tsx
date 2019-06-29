@@ -1,11 +1,12 @@
 import React from 'react';
 import './Index.scss';
 
+import Message from './Message';
 
 const Messages: React.FC = () => {
   return (
-    <div className="messages">
-      CHATROOM
+    <div className="messages p-1">
+      <Message/>
     </div>
   );
 }
