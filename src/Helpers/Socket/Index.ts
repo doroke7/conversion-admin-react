@@ -21,7 +21,7 @@ const oChatroomSocket = oIo(sChatroomUrl);
 
 class SocketHelper {
   public static authentication = oAuthenticationSocket;
-  public static chatroomSocket = oChatroomSocket;
+  public static chatroom = oChatroomSocket;
 };
 
 export default SocketHelper;
