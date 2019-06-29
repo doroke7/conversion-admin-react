@@ -14,6 +14,10 @@ import {
   authentication as authenticationSocket
 } from '@/sockets';
 
+import {
+  Authentication as AuthenticationHelper
+} from '@/Helpers';
+
 class Login extends React.Component {
 
   public constructor(...props: any) {
@@ -30,7 +34,7 @@ class Login extends React.Component {
     authenticationSocket.on("AUTHENTICATION LOGIN", this.logined);
   }
 
-  state: any;
+  public state: any;
 
   public logined(oBody: any) {
     if (!oBody.result || -1 === oBody.result|| '-1' === oBody.result) {
@@ -39,6 +43,8 @@ class Login extends React.Component {
         content: '密码错误',
       });
     }
+    let sJwt = oBody.jwt;
+    AuthenticationHelper.setJwt(sJwt);
   }
 
   public login() {

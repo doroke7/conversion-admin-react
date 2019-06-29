@@ -101,8 +101,8 @@ module.exports = (env, argvs) =>{
   
     performance: {
       hints: 'warning',
-      maxEntrypointSize: 4000000,
-      maxAssetSize: 4000000,
+      maxEntrypointSize: argvs.mode === 'production' ? 2000000 : 6000000,
+      maxAssetSize: argvs.mode === 'production' ? 2000000 : 6000000,
     },
     optimization: {
       minimizer: [
