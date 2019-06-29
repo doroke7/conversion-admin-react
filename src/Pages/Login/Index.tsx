@@ -16,12 +16,12 @@ const Login: React.FC = () => {
         </Col>
         <Col xs={24} sm={24} md={16} lg={10} xl={8}>
           <Top />
-          <div className="middle">
-            <div className="username-wrapper p-1 mt-1 mb-1 ml-2 mr-2">
+          <div className="middle pt-1 pb-1">
+            <div className="username-wrapper p-1 ml-2 mr-2">
               <i className="iconfont icon-user d-inline"></i>
               <Input className="d-inline" placeholder="请输入账号" size="large"/>
             </div>
-            <div className="password-wrapper p-1 mt-1 mb-1 ml-2 mr-2">
+            <div className="password-wrapper p-1 ml-2 mr-2">
               <i className="iconfont icon-password d-inline"></i>
               <Input className="d-inline" placeholder="请输入密码" type="password" size="large"/>
             </div>

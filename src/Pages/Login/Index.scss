@@ -1,9 +1,9 @@
 .login {
 
   .middle {
-    // background: rgb(252, 252, 252);
-    background: rgb(200, 200, 200);
-
+    background: rgb(252, 252, 252);
+    // background: rgb(200, 200, 200);
+    height: calc(100vh - 3vmin);
     .icon-user, .icon-password {
       font-size: 3vmin;
       color: rgb(47, 98, 175);;
@@ -15,6 +15,12 @@
         border: none;
       }
       border-bottom: 1px solid #dcdcdc;
+    }
+    .ant-divider-horizontal {
+      height: 5px;
+    }
+    .ant-divider {
+      background: rgba(141, 189, 232, 0.15);
     }
   }
 
