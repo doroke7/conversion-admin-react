@@ -1,7 +1,7 @@
 import React from 'react';
 import './Index.scss';
 
-import Message from './Message';
+import Message from './Message/Index';
 
 const Messages: React.FC = () => {
   return (
