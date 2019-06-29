@@ -4,6 +4,7 @@ import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 import Input from 'antd/es/input';
 import Divider from 'antd/es/divider';
+import Button from 'antd/es/button';
 
 import Top from './Top/Index';
 import './Index.scss';
@@ -26,6 +27,12 @@ const Login: React.FC = () => {
               <Input className="d-inline" placeholder="请输入密码" type="password" size="large"/>
             </div>
             <Divider/>
+            <div className="button-wrapper ml-2 mr-2">
+              <Button type="primary" shape="round" size="large" block>
+                登入
+              </Button>
+            </div>
+
           </div>
 
         </Col>
