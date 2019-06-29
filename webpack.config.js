@@ -29,7 +29,7 @@ module.exports = (env, argvs) =>{
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
       host: '0.0.0.0',
-      port: 3002,
+      port: 3001,
       inline: true,
       hot: true,
       historyApiFallback: true,
