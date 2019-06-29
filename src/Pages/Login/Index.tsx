@@ -5,6 +5,7 @@ import Col from 'antd/es/col';
 import Input from 'antd/es/input';
 import Divider from 'antd/es/divider';
 import Button from 'antd/es/button';
+import Modal from 'antd/es/modal';
 
 import Top from './Top/Index';
 import './Index.scss';
@@ -31,8 +32,13 @@ class Login extends React.Component {
 
   state: any;
 
-  public logined() {
-    console.log('logined...');
+  public logined(oBody: any) {
+    if (!oBody.result || -1 === oBody.result|| '-1' === oBody.result) {
+      Modal.error({
+        title: '登入失败',
+        content: '密码错误',
+      });
+    }
   }
 
   public login() {
@@ -40,7 +46,6 @@ class Login extends React.Component {
       name: this.state.name,
       password: this.state.password
     };
-    debugger;
     authenticationSocket.emit("AUTHENTICATION LOGIN", oBody);
   }
 
