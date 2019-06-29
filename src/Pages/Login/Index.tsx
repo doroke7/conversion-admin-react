@@ -46,6 +46,23 @@ class Login extends React.Component {
       name: this.state.name,
       password: this.state.password
     };
+
+    if (!oBody.name ) {
+      Modal.info({
+        title: '提示',
+        content: '请输入用户名',
+      });
+      return;
+    }
+
+    if (!oBody.password) {
+      Modal.info({
+        title: '提示',
+        content: '请输入密码',
+      });
+      return;
+    }
+
     authenticationSocket.emit("AUTHENTICATION LOGIN", oBody);
   }
 
