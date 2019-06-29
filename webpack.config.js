@@ -31,6 +31,7 @@ module.exports = {
     port: 3001,
     inline: true,
     hot: true,
+    historyApiFallback: true,
     watchOptions: {
       ignored: ['node_modules', ],
       aggregateTimeout: 300,
