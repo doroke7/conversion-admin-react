@@ -11,11 +11,8 @@ import Top from './Top/Index';
 import './Index.scss';
 
 import {
-  authentication as authenticationSocket
-} from '@/sockets';
-
-import {
-  Authentication as AuthenticationHelper
+  Authentication as AuthenticationHelper,
+  Socket as SocketHelper,
 } from '@/Helpers';
 
 class Login extends React.Component {
@@ -31,7 +28,7 @@ class Login extends React.Component {
       name: '',
       password: '',
     };
-    authenticationSocket.on("AUTHENTICATION LOGIN", this.logined);
+    SocketHelper.authentication.on("AUTHENTICATION LOGIN", this.logined);
   }
 
   public state: any;
@@ -69,7 +66,7 @@ class Login extends React.Component {
       return;
     }
 
-    authenticationSocket.emit("AUTHENTICATION LOGIN", oBody);
+    SocketHelper.authentication.emit("AUTHENTICATION LOGIN", oBody);
   }
 
   public setName (oEvent: any){
