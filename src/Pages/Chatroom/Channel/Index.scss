@@ -2,4 +2,7 @@
   .room-wrapper, .detail-wrapper {
     height: calc(100vh - 5vmin);
   }
+  .room-wrapper{
+    border-right: 1px solid #efefef;
+  }
 }

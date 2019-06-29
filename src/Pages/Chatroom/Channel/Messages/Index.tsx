@@ -5,7 +5,7 @@ import Message from './Message/Index';
 
 const Messages: React.FC = () => {
   return (
-    <div className="messages p-1">
+    <div className="messages p-2 overflow-auto">
       <Message/>
     </div>
   );
