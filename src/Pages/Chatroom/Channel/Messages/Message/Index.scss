@@ -21,9 +21,10 @@
     border-radius: 0.5vmin;
     padding: 0.6vmin 1vmin;
     line-height: 1.2;
-    .text, .image {
-      max-width: 40vmin;
-    }
+  }
+
+  .time-name-conten-wrapper {
+    width: calc( 100% - 12vmin);
   }
 
   &.admin .content {

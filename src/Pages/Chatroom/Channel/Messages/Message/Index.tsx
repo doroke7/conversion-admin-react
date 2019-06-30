@@ -1,17 +1,29 @@
 import React from 'react';
+import {
+  Authentication as AuthenticationHelper
+} from '@/Helpers';
+
 import './Index.scss';
 
+interface IProps {
+  role?: any;
+  icon?: any;
+  time?: any;
+  name?: any;
+  userId?: any;
+}
 
-const Message: React.FC = () => {
-  let role = 'admin';
+let sUserId = AuthenticationHelper.getUserId(); 
+
+const Message: React.FC<IProps> = (oProps: IProps) => {
+  let _sUserId = oProps.userId;
   let position = 'right';
-  let icon = 'http://dev.socket.chatroom.ques98.cn/storage/user/admin.png';
   return (
-    <div className={"message" + " " + "text-right " + position + " " + role}>
-      <span className="d-inline-block align-top">
-        <div className="text-right">
-          <span className="time">20:10:43</span>
-          <span className="name">管理员</span>
+    <div className={"message" + " " + "text-right " + position + " " + oProps.role}>
+      <span className="time-name-conten-wrapper d-inline-block align-top">
+        <div className="text-right time-name">
+          <span className="time">{oProps.time}</span>
+          <span className="name">{oProps.name}</span>
         </div>
         <div className={"content text-left"}>
           <div className="image">
@@ -28,7 +40,7 @@ const Message: React.FC = () => {
       </span>
       <span className="d-inline-block align-top">
         <div className="avator">
-          <img src={icon} />
+          <img src={oProps.icon} />
         </div>
       </span>
     </div>
