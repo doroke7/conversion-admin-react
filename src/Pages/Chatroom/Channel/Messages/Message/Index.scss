@@ -1,5 +1,8 @@
 .message {
-
+  margin-bottom: 2vmin;
+  &:last-child {
+    margin-bottom: 0vmin;
+  }
   .time {
     background: rgba(70,70,70,.12);
     color: #a0a0a0;
@@ -19,12 +22,12 @@
     color: #fff;
     text-shadow: 0 0 1px #35406d;
     border-radius: 0.5vmin;
-    padding: 0.6vmin 1vmin;
+    padding: 0.8vmin 1vmin;
     line-height: 1.2;
   }
 
   .time-name-conten-wrapper {
-    width: calc( 100% - 12vmin);
+    max-width: calc( 100% - 12vmin);
   }
 
   &.admin .content {

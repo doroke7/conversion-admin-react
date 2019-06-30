@@ -1,4 +1,7 @@
 .pseudo-rooms {
-    border-right: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  height: calc(100vh - 10vmin);
+  @media (min-width: 576px){
     height: calc(100vh - 5vmin);
+  }
 }

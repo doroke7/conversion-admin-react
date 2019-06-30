@@ -10,6 +10,8 @@ interface IProps {
   icon?: any;
   time?: any;
   name?: any;
+  src?: any;
+  text?: any;
   userId?: any;
 }
 
@@ -27,10 +29,10 @@ const Message: React.FC<IProps> = (oProps: IProps) => {
         </div>
         <div className={"content text-left"}>
           <div className="image">
-            
+            {oProps.src ? (<img src={oProps.src}/>) : null}
           </div>
           <div className="text">
-            I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!I LOVE U!
+            {oProps.text}
           </div>
         </div>
       </span>

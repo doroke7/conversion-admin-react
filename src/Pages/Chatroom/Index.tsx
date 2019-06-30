@@ -11,7 +11,7 @@ import './Index.scss';
 function Chatroom() {
 
   return (
-    <Row >
+    <Row className="chatroom">
       <Col xs={0} sm={8} md={8} lg={6} xl={6}>
         <Rooms/>
       </Col>
