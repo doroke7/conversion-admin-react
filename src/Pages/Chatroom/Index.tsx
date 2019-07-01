@@ -1,6 +1,7 @@
 import React from 'react';
 import { Motion, spring, presets } from 'react-motion'
 
+import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 
@@ -9,12 +10,25 @@ import Channel from './Channel/Index';
 
 import './Index.scss';
 
-function Chatroom() {
+class Chatroom extends React.Component {
 
-  return (
-    <Motion defaultStyle={{opacity: 0}}  style={{ opacity: spring(1, {stiffness: 300, damping: 40}) }}>
-      {(oStyles: any) => (
-        <Row className="chatroom" style={ oStyles }>
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      });
+    }, 800);
+
+  }
+
+  public state = {
+    loading: true,
+  };
+
+  public render() {
+    return (
+      <Spin tip="进入聊天室..." spinning={this.state.loading} delay={0}>
+        <Row className="chatroom">
           <Col xs={0} sm={8} md={8} lg={6} xl={6}>
             <Rooms/>
           </Col>
@@ -22,10 +36,9 @@ function Chatroom() {
             <Channel/>
           </Col>
         </Row>
-        )}
-    </Motion>
-
-  );
+      </Spin>
+    );
+  }
 }
 
 export default Chatroom;
