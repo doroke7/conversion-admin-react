@@ -9,7 +9,7 @@ const Rooms: React.FC = () => {
     <div className="rooms">
       <Top />
       <div className="pseudo-rooms overflow-auto">
-      {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((iNumber, iIndex) => <Room/>)}
+        {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((iNumber, iIndex) => <Room/>)}
       </div>
     </div>
   );

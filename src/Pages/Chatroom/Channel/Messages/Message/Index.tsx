@@ -4,6 +4,7 @@ import {
 } from '@/Helpers';
 
 import './Index.scss';
+import { any } from 'prop-types';
 
 interface IProps {
   role?: any;
@@ -13,6 +14,7 @@ interface IProps {
   src?: any;
   text?: any;
   userId?: any;
+  key?: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
@@ -20,6 +22,7 @@ let sUserId = AuthenticationHelper.getUserId();
 const Message: React.FC<IProps> = (oProps: IProps) => {
   let _sUserId = oProps.userId;
   let position = 'right';
+
   return (
     <div className={"message" + " " + "text-right " + position + " " + oProps.role}>
       <span className="time-name-conten-wrapper d-inline-block align-top">
