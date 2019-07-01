@@ -1,10 +1,11 @@
 import React from 'react';
+import Spin from 'antd/es/spin';
+
 import {
   Authentication as AuthenticationHelper
 } from '@/Helpers';
 
 import './Index.scss';
-import { any } from 'prop-types';
 
 interface IProps {
   role?: any;
@@ -25,6 +26,19 @@ const Message: React.FC<IProps> = (oProps: IProps) => {
 
   return (
     <div className={"message" + " " + "text-right " + position + " " + oProps.role}>
+      <span className="d-inline-block align-top">
+        <Spin indicator={
+          <div className="lds-ring">
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+          </div>} />
+      </span>
       <span className="time-name-conten-wrapper d-inline-block align-top">
         <div className="text-right time-name">
           <span className="time">{oProps.time}</span>
