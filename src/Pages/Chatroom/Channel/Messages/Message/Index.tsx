@@ -25,10 +25,10 @@ const Message: React.FC<IProps> = (oProps: IProps) => {
   let position = 'right';
 
   return (
-    <div className={"message" + " " + "text-right " + position + " " + oProps.role}>
-      <span className="d-inline-block align-top">
+    <div className={"message" + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + oProps.role}>
+      <span className="loading-wrapper d-inline-block align-bottom">
         <Spin indicator={
-          <div className="lds-ring">
+          <div className="loading">
             <div>
             </div>
             <div>

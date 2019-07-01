@@ -1,3 +1,9 @@
 .messages {
   height: calc(100vh - 12.5vmin);
 }
+
+@-moz-document url-prefix() {
+  .messages {  
+    height: calc(100vh - 13.3vmin);
+  }
+}

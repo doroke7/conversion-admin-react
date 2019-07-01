@@ -29,3 +29,8 @@ a:active {
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
 	background-color: #BBB;
 }
+
+* {
+  scrollbar-color: #BBB #F5F5F5;
+  scrollbar-width: thin;
+}
