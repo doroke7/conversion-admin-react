@@ -7,3 +7,8 @@
     height: calc(100vh - 13.3vmin);
   }
 }
+@supports (-ms-ime-align:auto) {
+  .messages {  
+    height: calc(100vh - 13.3vmin);
+  }
+}
