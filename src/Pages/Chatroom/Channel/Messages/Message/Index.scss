@@ -29,6 +29,17 @@
 
   &.admin .content {
     background: -webkit-gradient(linear,left top,right top,from(#ff7300),to(#e7c11a)); 
+    background: linear-gradient(90deg,#ff7300,#e7c11a);
+  }
+
+  &.member .content {
+    background: linear-gradient(90deg,#199ed8,#02e7e7);
+    background: -webkit-gradient(linear,left top,right top,from(#199ed8),to(#02e7e7)); 
+  }
+
+  &.system .content {
+    background: -webkit-gradient(linear,left top,right top,from(#ab47bc),to(#5169de));
+    background: linear-gradient(90deg,#ab47bc,#5169de);
   }
 
   .triangle {
@@ -38,17 +49,45 @@
     border-style: solid;
   }
 
-  &.right {
+  &.right.admin {
     .triangle {
       border-width: 1vmin 1vmin 0 0;
       border-color: #e7c11a transparent transparent transparent;
     }
   }
 
-  &.left {
+  &.left.admin {
     .triangle {
       border-width: 0 1vmin 1vmin 0;
       border-color: transparent #ff7300 transparent transparent;
+    }
+  }
+
+  &.right.member {
+    .triangle {
+      border-width: 1vmin 1vmin 0 0;
+      border-color: #02e7e7 transparent transparent transparent;
+    }
+  }
+
+  &.left.member {
+    .triangle {
+      border-width: 0 1vmin 1vmin 0;
+      border-color: transparent #199ed8 transparent transparent;
+    }
+  }
+
+  &.right.system {
+    .triangle {
+      border-width: 1vmin 1vmin 0 0;
+      border-color: #5169de transparent transparent transparent;
+    }
+  }
+
+  &.left.system {
+    .triangle {
+      border-width: 0 1vmin 1vmin 0;
+      border-color: transparent #ab47bc transparent transparent;
     }
   }
 
