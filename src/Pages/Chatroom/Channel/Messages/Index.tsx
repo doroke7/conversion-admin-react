@@ -16,7 +16,7 @@ class Messages extends React.Component {
   public render() {
     return (
       <div className="messages p-2 overflow-auto" ref={this.ref}>
-        {[1,1,1,1].map((iNumber, iIndex) => (
+        {[1,1,1,1,2,2,2].map((iNumber, iIndex) => (
         <Message
           role="admin"
           icon="http://dev.socket.chatroom.ques98.cn/storage/user/admin.png" 
