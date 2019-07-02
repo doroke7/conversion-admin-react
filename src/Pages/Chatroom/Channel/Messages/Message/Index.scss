@@ -49,6 +49,18 @@
     border-style: solid;
   }
 
+  &.right {
+    .triangle {
+      margin-right: 0.8vmin;
+    }
+  }
+
+  &.left {
+    .triangle {
+      margin-left: 0.8vmin;
+    }
+  }
+
   &.right.admin {
     .triangle {
       border-width: 1vmin 1vmin 0 0;
@@ -93,7 +105,6 @@
 
   .avator {
     margin-top: 0.3vmin;
-    margin-left: 0.7vmin;
     height: 4.34vmin;
     width: 4.34vmin;
     img {

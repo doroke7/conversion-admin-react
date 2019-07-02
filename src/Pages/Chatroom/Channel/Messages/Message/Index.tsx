@@ -32,7 +32,7 @@ const Message: React.FC<IProps> = (oProps: IProps) => {
   oProps.src = (!oProps.src || 0 === oProps.src.indexOf("http") ? oProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oProps.src)
 
   return (
-    <div className={"message d-flex flex-row justify-content-end" + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + oProps.role.toLowerCase()}>
+    <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + oProps.role.toLowerCase()}>
       <span className="loading-wrapper d-inline-block align-bottom">
         <Spin indicator={
           <div className="loading">
