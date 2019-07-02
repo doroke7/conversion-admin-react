@@ -118,15 +118,15 @@
   .loading {
     display: inline-block;
     position: relative;
-    width: 3vmin;
-    height: 3vmin;
+    width: 2.5vmin;
+    height: 2.5vmin;
   }
   .loading div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 3vmin;
-    height: 3vmin;
+    width: 2.5vmin;
+    height: 2.5vmin;
     border: 3px solid rgb(216, 216, 216);
     border-radius: 50%;
     animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
