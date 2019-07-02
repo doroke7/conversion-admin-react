@@ -1,14 +1,14 @@
 .messages {
-  height: calc(100vh - 14.6vmin);
+  height: calc(100vh - 12.4vmin);
 }
 
 @-moz-document url-prefix() {
   .messages {  
-    height: calc(100vh - 15.5vmin);
+    height: calc(100vh - 13.4vmin);
   }
 }
 @supports (-ms-ime-align:auto) {
   .messages {  
-    height: calc(100vh - 15.5vmin);
+    height: calc(100vh - 13.4vmin);
   }
 }

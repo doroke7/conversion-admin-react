@@ -8,6 +8,10 @@
     font-size: 3.5vmin;
   }
   .textarea-wrapper {
-    width: calc( 100% - 18vmin);
+    width: calc( 100% - 16.5vmin);
   }
+  .game-wrapper, .send-wrapper, .plus-wrapper {
+    line-height: 1;
+  }
+
 }
