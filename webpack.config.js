@@ -70,11 +70,17 @@ module.exports = (env, argvs) =>{
                 // by default it uses publicPath in webpackOptions.output
                 publicPath: '../',
                 hmr: argvs.mode === 'development',
+                sourceMap: true
               },
             },
-            // "style-loader", // 将 JS 字符串生成为 style 节点, 舍弃 使用 css js 分离
-            "css-loader", // 将 CSS 转化成 CommonJS 模块
-            "sass-loader" // 将 Sass 编译成 CSS，默认使用 Node Sass
+            {
+              loader: "css-loader",
+              options: { sourceMap: true }
+            },
+            {
+              loader: "sass-loader",
+              options: { sourceMap: true }
+            },
           ]
         }
       ]
@@ -131,6 +137,27 @@ module.exports = (env, argvs) =>{
           },
         }),
       ],
+      splitChunks: {
+        chunks: 'async', 
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
+      }
     },
     // externals: {
     //   'react':'react',
