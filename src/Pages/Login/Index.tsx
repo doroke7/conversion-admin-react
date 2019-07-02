@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
 
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
@@ -15,7 +16,11 @@ import {
   Socket as SocketHelper,
 } from '@/Helpers';
 
-class Login extends React.Component {
+interface IProps {
+  history: any;
+}
+
+class Login extends React.Component<IProps> {
 
   public constructor(...props: any) {
     super(props);
@@ -42,6 +47,7 @@ class Login extends React.Component {
     }
     let sJwt = oBody.jwt;
     AuthenticationHelper.setJwt(sJwt);
+    this.props.history.push("/chatroom");
   }
 
   public login() {
@@ -114,4 +120,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
