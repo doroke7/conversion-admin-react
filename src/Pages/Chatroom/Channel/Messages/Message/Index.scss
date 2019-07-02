@@ -6,13 +6,13 @@
     border-radius: 1vmin;
     font-size: 1vmin;
     padding: 0vmin 1vmin;
+    margin: 0 0.3vmin 0 0.3vmin;
   }
 
   .name {
     font-size: 1vmin;
     color: #4f77ab;
     font-weight: 400;
-    margin: 0 0 0 0.3vmin;
   }
   .content {
     margin-top: 0.7vmin;
@@ -116,7 +116,7 @@
 
   &.right {
     .loading-wrapper {
-      margin-top: 3.2vmin;
+      margin-top: 3vmin;
       margin-right: 1vmin;
     }
   }
@@ -124,7 +124,7 @@
   &.left {
     .loading-wrapper {
       margin-left: 1vmin;
-      margin-top: 3.2vmin;
+      margin-top: 3vmin;
     }
   }
 
