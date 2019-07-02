@@ -1,29 +1,51 @@
 import React from 'react';
-import './Index.scss';
+import store from '@/store';
+import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 
 import Message from './Message/Index';
+import './Index.scss';
+
+STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
+
+
 
 class Messages extends React.Component {
   public constructor(oProps: any) {
     super(oProps);
+
   }
 
-  public ref: any;
+  public componentWillMount() {
+    store.subscribe(() => {
+      let oState = store.getState();
+      let aRoomMessages = oState.roomMessages;
+      let _oState = {
+        roomMessages: aRoomMessages
+      };
+      this.setState(_oState);
+    });
+
+  }
+  
+  public state: any = {
+    roomMessages: []
+  };
 
   public componentDidMount() {
 
   }
   public render() {
+
     return (
-      <div className="messages p-2 overflow-auto" ref={this.ref}>
-        {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((iNumber, iIndex) => (
+      <div className="messages p-2 overflow-auto">
+        {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
         <Message
-          role="admin"
-          icon="http://dev.socket.chatroom.ques98.cn/storage/user/admin.png" 
-          src="data:image/png;base64,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"
-          text="HIHIHIHIHIHIH"
-          time="20:10:43" 
-          name="管理者"/>))}
+          role={oMessage.user.role}
+          icon={oMessage.user.url}
+          src={oMessage.src}
+          text={oMessage.text}
+          time={oMessage.addedTime}
+          name={oMessage.user.nickname}/>))}
       </div>
     );
   }

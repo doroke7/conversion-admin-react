@@ -1,5 +1,4 @@
 const oRoomMessage = (iState: any = [], oAction: any) => {
-  debugger;
   let aMessages = oAction.payload;
   switch (oAction.type) {
     case 'SHOW_ROOM_MESSAGE':

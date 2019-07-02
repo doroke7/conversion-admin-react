@@ -26,11 +26,13 @@ class Chatroom extends React.Component {
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
-    store.subscribe(() =>
-      console.log(store.getState())
-    );
 
   }
+
+  public state: any = {
+    roomMessages: [],
+    loading: true,
+  };
 
   public componentDidMount(){
     setTimeout(() => {
@@ -61,17 +63,11 @@ class Chatroom extends React.Component {
   public onShowMessage(oBody: any){
     let aMessages = oBody.data.messages;
     store.dispatch(roomMessage.show(aMessages))
-    debugger;
   }
 
   public onMessage(oBody: any){
 
   }
-
-
-  public state = {
-    loading: true,
-  };
 
   public render() {
     return (

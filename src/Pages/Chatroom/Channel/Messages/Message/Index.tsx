@@ -5,6 +5,11 @@ import {
   Authentication as AuthenticationHelper
 } from '@/Helpers';
 
+import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
+
+STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
+
+
 import './Index.scss';
 
 interface IProps {
@@ -23,9 +28,11 @@ let sUserId = AuthenticationHelper.getUserId();
 const Message: React.FC<IProps> = (oProps: IProps) => {
   let _sUserId = oProps.userId;
   let position = 'right';
+  oProps.icon = (oProps.icon && 0 === oProps.icon.indexOf("http") ? oProps.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oProps.icon)
+  oProps.src = (!oProps.src || 0 === oProps.src.indexOf("http") ? oProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oProps.src)
 
   return (
-    <div className={"message" + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + oProps.role}>
+    <div className={"message" + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + oProps.role.toLowerCase()}>
       <span className="loading-wrapper d-inline-block align-bottom">
         <Spin indicator={
           <div className="loading">
