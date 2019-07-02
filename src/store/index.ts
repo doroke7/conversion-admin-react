@@ -1,10 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-import {member} from '@/reducers/';
+import {
+  member,
+  counter,
+} from '@/reducers/';
 
 const oReducer = combineReducers({
-  members: member
+  members: member,
+  count: counter,
 });
 
 const oStore = createStore(

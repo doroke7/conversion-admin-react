@@ -9,13 +9,13 @@ import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 
-import store from '@/store';
-import { Counter } from '@/Actions/Index';
-
 import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
 
 import './Index.scss';
+
+import store from '@/store';
+import { Counter } from '@/Actions/Index';
 
 class Chatroom extends React.Component {
 
@@ -26,7 +26,10 @@ class Chatroom extends React.Component {
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
-    store.subscribe(() => {});
+    store.subscribe(() =>
+      console.log(store.getState())
+    );
+    store.dispatch(Counter.increase()) // {count: 1}
 
   }
 
@@ -37,9 +40,9 @@ class Chatroom extends React.Component {
       });
     }, 800);
 
-    // setInterval(() => {
-    //   store.dispatch(Counter.increase())
-    // }, 1000);
+    setInterval(() => {
+      store.dispatch(Counter.increase())
+    }, 1000);
 
   }
 
