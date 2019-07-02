@@ -9,6 +9,9 @@ import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 
+import store from '@/store';
+import { Counter } from '@/Actions/Index';
+
 import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
 
@@ -23,6 +26,8 @@ class Chatroom extends React.Component {
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
+    store.subscribe(() => {});
+
   }
 
   public componentDidMount(){
@@ -31,6 +36,10 @@ class Chatroom extends React.Component {
         loading: false,
       });
     }, 800);
+
+    // setInterval(() => {
+    //   store.dispatch(Counter.increase())
+    // }, 1000);
 
   }
 
@@ -65,6 +74,7 @@ class Chatroom extends React.Component {
       <Spin tip="进入聊天室..." spinning={this.state.loading} delay={0}>
         <Row className="chatroom">
           <Col xs={0} sm={8} md={8} lg={6} xl={6}>
+            {/* {store.getState()} */}
             <Rooms/>
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
