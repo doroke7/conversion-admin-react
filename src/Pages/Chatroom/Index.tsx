@@ -29,7 +29,6 @@ class Chatroom extends React.Component {
     store.subscribe(() =>
       console.log(store.getState())
     );
-    store.dispatch(Counter.increase()) // {count: 1}
 
   }
 
