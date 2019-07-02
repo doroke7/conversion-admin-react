@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var AutoDllPlugin = require('autodll-webpack-plugin')
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = (env, argvs) =>{
   return {
@@ -136,6 +137,20 @@ module.exports = (env, argvs) =>{
             keep_fnames: false,
           },
         }),
+        new OptimizeCSSAssetsPlugin({
+          assetNameRegExp: /\.css$/g,
+          cssProcessor: require('cssnano'),
+          // cssProcessorOptions: cssnanoOptions,
+          cssProcessorPluginOptions: {
+            preset: ['default', {
+              discardComments: {
+                removeAll: true,
+              },
+              normalizeUnicode: false
+            }]
+          },
+          canPrint: true
+        })
       ],
       splitChunks: {
         chunks: 'async', 
