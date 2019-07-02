@@ -23,11 +23,21 @@
     display: none !important;
   }
 }
-
+.flex-row {
+  flex-direction: row;
+}
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
 
 .d-flex {
   display: flex;
 }
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
 .flex-column {
   flex-direction: column;
 }
