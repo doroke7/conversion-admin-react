@@ -47,7 +47,7 @@ const Message: React.FC<IProps> = (oProps: IProps) => {
           </div>} />
       </span>
       <span className="time-name-conten-wrapper d-inline-block align-top">
-        <div className="text-right time-name">
+        <div className={"time-name " + (position === 'right' ? 'text-right' : 'text-left')}>
           <span className="time">{oProps.time}</span>
           <span className="name">{oProps.name}</span>
         </div>
