@@ -59,6 +59,8 @@ class Chatroom extends React.Component {
   }
 
   public onShowMessage(oBody: any){
+    let aMessages = oBody.data.messages;
+    store.dispatch(roomMessage.show(aMessages))
     debugger;
   }
 
