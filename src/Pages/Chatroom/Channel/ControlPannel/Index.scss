@@ -1,12 +1,11 @@
 .control-pannel {
-  padding: 0.5 vmin;
   bottom: 0;
   left: 0;
   right: 0;
   color: #2f62af;
   border-top: 1px solid rgba(41,53,62,.18);
   .game, .send, .plus {
-    font-size: 4vmin;
+    font-size: 3.5vmin;
   }
   .textarea-wrapper {
     width: calc( 100% - 18vmin);

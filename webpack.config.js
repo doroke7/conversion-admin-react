@@ -10,6 +10,10 @@ const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
+/**
+ * Webpack 4.*.* 不需要在 plugin 或 loader 指定 source-map
+ */
+
 module.exports = (env, argvs) =>{
   return {
     mode: 'production',
@@ -45,7 +49,7 @@ module.exports = (env, argvs) =>{
         poll: 1500,
       },
     },
-    devtool: argvs.mode === 'production' ? 'none' : "eval-source-map",
+    devtool: argvs.mode === 'production' ? 'none' : "source-map",
     module: {
       rules: [
         {
@@ -71,16 +75,24 @@ module.exports = (env, argvs) =>{
                 // by default it uses publicPath in webpackOptions.output
                 publicPath: '../',
                 hmr: argvs.mode === 'development',
-                sourceMap: true
               },
             },
             {
               loader: "css-loader",
-              options: { sourceMap: true }
             },
+            // {
+            //   loader: 'postcss-loader',
+            //   options: {
+            //     plugins: [
+            //       require('postcss-import')(),
+            //       require('autoprefixer')({
+            //         browsers: ['last 30 versions', "> 2%", "Firefox >= 10", "ie 6-11"]
+            //       })
+            //     ]
+            //   }
+            // },
             {
               loader: "sass-loader",
-              options: { sourceMap: true }
             },
           ]
         }
