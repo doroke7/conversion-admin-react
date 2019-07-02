@@ -27,7 +27,7 @@ let sUserId = AuthenticationHelper.getUserId();
 
 const Message: React.FC<IProps> = (oProps: IProps) => {
   let _sUserId = oProps.userId;
-  let position = 'right';
+  let position = _sUserId === sUserId ? 'right' : 'left';
   oProps.icon = (oProps.icon && 0 === oProps.icon.indexOf("http") ? oProps.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oProps.icon)
   oProps.src = (!oProps.src || 0 === oProps.src.indexOf("http") ? oProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oProps.src)
 
@@ -66,7 +66,7 @@ const Message: React.FC<IProps> = (oProps: IProps) => {
       </span>
       <span className="d-inline-block align-top">
         <div className="avator">
-          <img src={oProps.icon} />
+          <img src={oProps.icon} data-user-id={_sUserId}/>
         </div>
       </span>
     </div>

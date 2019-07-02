@@ -45,7 +45,10 @@ class Messages extends React.Component {
           src={oMessage.src}
           text={oMessage.text}
           time={oMessage.addedTime}
-          name={oMessage.user.nickname}/>))}
+          name={oMessage.user.nickname}
+          userId={oMessage.user._id}
+
+          />))}
       </div>
     );
   }
