@@ -1,6 +1,9 @@
 let oRoom: any = {
-  type: 'SHOW_ROOM',
-  payload: [],
+  show: (aRooms: any) => {
+    return {
+      type: 'SHOW_ROOM'
+    };
+  }
 };
 
 export default oRoom;

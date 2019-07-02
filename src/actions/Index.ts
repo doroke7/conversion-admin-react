@@ -1,5 +1,5 @@
-import Counter from './Counter/Index';
+import roomMessage from './roomMessage/';
 
 export {
-  Counter,
+  roomMessage,
 };

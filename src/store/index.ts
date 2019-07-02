@@ -3,10 +3,12 @@ import thunkMiddleware from 'redux-thunk';
 
 import {
   counter,
+  roomMessage,
 } from '@/reducers/';
 
 const oReducer = combineReducers({
   count: counter,
+  roomMessages: roomMessage
 });
 
 const oStore = createStore(

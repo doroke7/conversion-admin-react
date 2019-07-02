@@ -15,7 +15,7 @@ import Channel from './Channel/Index';
 import './Index.scss';
 
 import store from '@/store';
-import { Counter } from '@/Actions/Index';
+import { roomMessage } from '@/Actions/Index';
 
 class Chatroom extends React.Component {
 
@@ -39,9 +39,9 @@ class Chatroom extends React.Component {
       });
     }, 800);
 
-    setInterval(() => {
-      store.dispatch(Counter.increase())
-    }, 1000);
+    // setInterval(() => {
+    //   store.dispatch(Counter.increase())
+    // }, 1000);
 
   }
 
@@ -59,7 +59,7 @@ class Chatroom extends React.Component {
   }
 
   public onShowMessage(oBody: any){
-
+    debugger;
   }
 
   public onMessage(oBody: any){
