@@ -10,6 +10,10 @@ import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 
+import {
+  Page as PageHOC
+} from '@/HOCs/';
+
 import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
 
@@ -20,14 +24,17 @@ import { roomMessage } from '@/Actions/Index';
 
 const ENTER_KEY_CODE = 13;
 
+
 class Chatroom extends React.Component {
+
 
   public constructor(...oProps: any){
     super(oProps);
     this.ref = React.createRef();
+    this.onEnterRoom = this.onEnterRoom.bind(this);
     this.onShowMessage = this.onShowMessage.bind(this);
-    this.onSendMessage = this.onSendMessage.bind(this);
     this.setText = this.setText.bind(this);
+    this.onSendMessage = this.onSendMessage.bind(this);
 
     this.state = {
       text: ''
@@ -48,6 +55,7 @@ class Chatroom extends React.Component {
 
   public state: any = {
     roomMessages: [],
+    roomId: '',
     loading: true,
     text: '',
   };
@@ -66,6 +74,9 @@ class Chatroom extends React.Component {
     let _oBody = {
       roomId: sRoomId,
     };
+    this.setState({
+      roomId: sRoomId
+    });
     SocketHelper.chatroom.emit("SHOW MESSAGE", _oBody);
   }
 
@@ -87,7 +98,6 @@ class Chatroom extends React.Component {
   }
 
   public setText(oEvent: any) {
-    debugger;
     this.setState({
       text: oEvent.target.value
     });
@@ -102,7 +112,24 @@ class Chatroom extends React.Component {
       return;
     }
 
-    oEvent.target.value = oEvent.target.value.replace(/[\r\n]/g,""); //去掉回车换行
+    let oMessage = {
+      roomId: this.state.roomId,
+      user: {
+        '_id': AuthenticationHelper.getUserId(),
+        'nickname': AuthenticationHelper.getUserNickname(),
+        'role': AuthenticationHelper.getUserRole(),
+        'level': AuthenticationHelper.getUserLevel(),
+        'url': AuthenticationHelper.getUserUrl(),
+      },
+      text: this.state.text,
+      addedTime: new Date(),
+      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now()
+    };
+
+    let sText = oMessage.text;
+    if (!('' === sText || null === sText || undefined === sText)) {
+      SocketHelper.chatroom.emit("MESSAGE", oMessage);
+    }
 
     this.setState({
       text: ''
@@ -141,4 +168,4 @@ class Chatroom extends React.Component {
   }
 }
 
-export default Chatroom;
+export default PageHOC(Chatroom);
