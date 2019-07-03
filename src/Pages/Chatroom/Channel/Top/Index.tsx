@@ -7,7 +7,11 @@ import Divider from 'antd/es/divider';
 
 import './Index.scss';
 
-class Top extends React.Component {
+interface IProps {
+  onLogout: any,
+}
+
+class Top extends React.Component<IProps> {
   public constructor(props: any) {
     super(props);
   }
@@ -37,18 +41,17 @@ class Top extends React.Component {
     });
   };
 
-  showDrawer = () => {
+  public showDrawer = () => {
     this.setState({
       drawer: true,
     });
   };
 
-  onClose = () => {
+  public onClose = () => {
     this.setState({
       drawer: false,
     });
   };
-
 
   public componentDidMount() {
   }
@@ -87,7 +90,7 @@ class Top extends React.Component {
           onClose={this.onClose}
           visible={this.state.drawer}
         >
-          <span className="logout-wrapper">
+          <span className="logout-wrapper" onClick={this.props.onLogout}>
             <i className="iconfont icon-logout"></i><span className="ml-1">登出</span>
           </span>
           <Divider/>

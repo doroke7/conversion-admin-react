@@ -14,6 +14,7 @@ interface IProps {
   // className?: string | null;
   onSendMessage: any,
   onKeyDown: any,
+  onLogout: any,
   setText: any,
   text: string
 }
@@ -23,7 +24,7 @@ class Channel extends React.Component<IProps> {
   public render () {
     return (
       <div className="channel">
-        <Top />
+        <Top onLogout={this.props.onLogout}/>
         <Row>
           <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
             <Messages />

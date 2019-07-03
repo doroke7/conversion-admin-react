@@ -36,7 +36,7 @@ class Chatroom extends React.Component {
     this.onShowMessage = this.onShowMessage.bind(this);
     this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
-
+    this.onLogout = this.onLogout.bind(this);
     this.state = {
       text: ''
     };
@@ -136,6 +136,10 @@ class Chatroom extends React.Component {
       text: ''
     });
   }
+
+  public onLogout() {
+    AuthenticationHelper.removeJwt();
+  }
   
   public componentDidMount(){
     // setInterval(() => {
@@ -161,6 +165,7 @@ class Chatroom extends React.Component {
               setText={this.setText} 
               onSendMessage={this.onSendMessage}
               onKeyDown={this.onKeyDown}
+              onLogout={this.onLogout}
               />
           </Col>
         </Row>
