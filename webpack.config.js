@@ -116,8 +116,12 @@ module.exports = (env, argvs) =>{
         filename: '[name].dll.js',
         entry: {
           vendor: [
+            'socket.io-client',
+            'jwt-decode',
+            // 'antd',
             'react',
-            'react-dom'
+            'react-dom',
+            'react-router-dom',
           ]
         }
       }),
