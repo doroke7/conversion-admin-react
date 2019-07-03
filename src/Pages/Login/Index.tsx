@@ -8,6 +8,10 @@ import Divider from 'antd/es/divider';
 import Button from 'antd/es/button';
 import Modal from 'antd/es/modal';
 
+import {
+  Page as PageHOC
+} from '@/HOCs/';
+
 import Top from './Top/Index';
 import './Index.scss';
 
@@ -48,6 +52,7 @@ class Login extends React.Component<IProps> {
     let sJwt = oBody.jwt;
     AuthenticationHelper.setJwt(sJwt);
     this.props.history.push("/chatroom");
+
   }
 
   public login() {
@@ -120,4 +125,4 @@ class Login extends React.Component<IProps> {
   }
 }
 
-export default withRouter(Login);
+export default withRouter(PageHOC(Login));

@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
 
 import { Motion, spring, presets } from 'react-motion'
 import {
@@ -168,4 +169,4 @@ class Chatroom extends React.Component {
   }
 }
 
-export default PageHOC(Chatroom);
+export default withRouter(PageHOC(Chatroom));
