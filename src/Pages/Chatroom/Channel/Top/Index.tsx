@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Modal from 'antd/es/modal';
 import Drawer from 'antd/es/drawer';
+import Divider from 'antd/es/divider';
 
 import './Index.scss';
 
@@ -71,26 +72,25 @@ class Top extends React.Component {
         <i className="iconfont icon-list"></i>
         </span>
         <Modal
-          title="Basic Modal"
           mask={false}
           visible={this.state.modal}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <p>头像</p>
+          <p>昵称</p>
+          <p>等级</p>
         </Modal>
         <Drawer
-          title="Basic Drawer"
           placement="right"
           closable={false}
           onClose={this.onClose}
           visible={this.state.drawer}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <span className="logout-wrapper">
+            <i className="iconfont icon-logout"></i><span className="ml-1">登出</span>
+          </span>
+          <Divider/>
         </Drawer>
       </div>
     );

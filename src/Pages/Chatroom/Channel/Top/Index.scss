@@ -28,6 +28,7 @@
   .iconfont.icon-left, .iconfont.icon-setting, .iconfont.icon-list {
     font-size: 3vmin;
   }
+
   span::before {
     content: "";
     height:100%;
@@ -37,4 +38,13 @@
   span {
     vertical-align: middle;
   }
+}
+
+.iconfont.icon-logout {
+  font-size: 2vmin;
+}
+
+
+.logout-wrapper {
+  font-size: 2vmin;
 }
