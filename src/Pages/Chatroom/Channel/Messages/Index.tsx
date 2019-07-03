@@ -45,7 +45,6 @@ class Messages extends React.Component {
   public componentDidUpdate() {
     let sScrollTop = window.localStorage.getItem('message:scroll-top');
     let iScrollTop = parseInt(sScrollTop);
-    debugger;
     this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
   }
   public render() {
