@@ -10,7 +10,12 @@ import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 import Messages from './Messages/Index';
 
-class Channel extends React.Component {
+interface IProps {
+  // className?: string | null;
+  onSendMessage: any
+}
+
+class Channel extends React.Component<IProps> {
 
   public render () {
     return (
@@ -19,7 +24,7 @@ class Channel extends React.Component {
         <Row>
           <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
             <Messages />
-            <ControlPannel className="position-absolute"/>
+            <ControlPannel className="position-absolute" onSendMessage={this.props.onSendMessage}/>
           </Col>
           <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
             <Detail />

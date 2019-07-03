@@ -8,12 +8,24 @@ import './Index.scss';
 
 interface IProps {
   // className?: string | null;
+  onSendMessage: any
 }
 
 class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
-    this.props = props;
+    this.setText = this.setText.bind(this);
+    this.state = {
+      text: ''
+    };
+  }
+
+  public state: any;
+
+  public setText (oEvent: any) {
+    this.setState({
+      text: oEvent.target.value
+    });
   }
   props :any;
   public render(){
@@ -28,7 +40,7 @@ class ControlPannel extends React.Component<IProps>  {
           </div>
         </span>
         <span className="d-inline-block textarea-wrapper">
-          <TextArea rows={2} />
+          <TextArea rows={2} value={this.state.text} onChange={this.setText} onPressEnter={this.props.onSendMessage}/>
         </span>
         <span className="send-wrapper d-inline-block text-center pl-1 pr-1">
           <div>

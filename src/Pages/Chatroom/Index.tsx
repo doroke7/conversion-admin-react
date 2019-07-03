@@ -24,6 +24,7 @@ class Chatroom extends React.Component {
     super(oProps);
     this.ref = React.createRef();
     this.onShowMessage = this.onShowMessage.bind(this);
+    this.onSendMessage = this.onSendMessage.bind(this);
   }
 
   public componentWillMount() {
@@ -69,6 +70,10 @@ class Chatroom extends React.Component {
 
   }
 
+  public onSendMessage(s: any) {
+    console.log('onSendMessage...');
+  }
+
   
   public componentDidMount(){
     // setInterval(() => {
@@ -89,7 +94,7 @@ class Chatroom extends React.Component {
             <Rooms/>
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
-            <Channel/>
+            <Channel onSendMessage={this.onSendMessage}/>
           </Col>
         </Row>
       </Spin>
