@@ -36,6 +36,7 @@ class Messages extends React.Component {
       this.setState(_oState);
     });
 
+    
   }
   
   public state: any = {
