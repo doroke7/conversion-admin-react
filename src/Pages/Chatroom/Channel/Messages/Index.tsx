@@ -23,7 +23,7 @@ class Messages extends React.Component {
   public handleScroll(oEvent: any) {
     let oDom = oEvent.target;
     let iScrollTop = oDom.scrollTop;
-    window.localStorage.setItem('message:scroll-top', iScrollTop);
+    window.localStorage.setItem('messages:scroll-top', iScrollTop);
   }
 
   public componentWillMount() {
@@ -43,7 +43,7 @@ class Messages extends React.Component {
   };
 
   public componentDidUpdate() {
-    let sScrollTop = window.localStorage.getItem('message:scroll-top');
+    let sScrollTop = window.localStorage.getItem('messages:scroll-top');
     let iScrollTop = parseInt(sScrollTop);
     this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
   }
