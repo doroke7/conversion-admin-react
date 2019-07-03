@@ -14,8 +14,10 @@ STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 class Messages extends React.Component {
   public constructor(oProps: any) {
     super(oProps);
-
+    this.ref = React.createRef();
   }
+
+  public ref: any;
 
   public componentWillMount() {
     store.subscribe(() => {
@@ -34,13 +36,13 @@ class Messages extends React.Component {
   };
 
   public componentDidUpdate() {
-    let oDom: any = findDOMNode(this);
+    let oDom = this.ref.current;
     oDom.scrollTop = oDom.scrollHeight;
   }
   public render() {
 
     return (
-      <div className="messages p-2 overflow-auto">
+      <div ref={this.ref} className="messages p-2 overflow-auto">
         {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
         <Message
           role={oMessage.user.role}
