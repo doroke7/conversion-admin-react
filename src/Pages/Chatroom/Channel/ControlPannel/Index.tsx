@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { AnchorHTMLAttributes } from 'react';
 
 import Input from 'antd/es/input';
 
@@ -8,25 +8,16 @@ import './Index.scss';
 
 interface IProps {
   // className?: string | null;
-  onSendMessage: any
+  onSendMessage: any,
+  setText: any,
+  text: any
 }
 
 class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
-    this.setText = this.setText.bind(this);
-    this.state = {
-      text: ''
-    };
   }
 
-  public state: any;
-
-  public setText (oEvent: any) {
-    this.setState({
-      text: oEvent.target.value
-    });
-  }
   props :any;
   public render(){
     return (
@@ -40,7 +31,7 @@ class ControlPannel extends React.Component<IProps>  {
           </div>
         </span>
         <span className="d-inline-block textarea-wrapper">
-          <TextArea rows={2} value={this.state.text} onChange={this.setText} onPressEnter={this.props.onSendMessage}/>
+          <TextArea rows={2} value={this.props.text} onChange={this.props.setText} onKeyUp={this.props.onSendMessage}/>
         </span>
         <span className="send-wrapper d-inline-block text-center pl-1 pr-1">
           <div>

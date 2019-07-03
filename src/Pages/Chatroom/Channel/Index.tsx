@@ -12,7 +12,9 @@ import Messages from './Messages/Index';
 
 interface IProps {
   // className?: string | null;
-  onSendMessage: any
+  onSendMessage: any,
+  setText: any,
+  text: string
 }
 
 class Channel extends React.Component<IProps> {
@@ -24,7 +26,7 @@ class Channel extends React.Component<IProps> {
         <Row>
           <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
             <Messages />
-            <ControlPannel className="position-absolute" onSendMessage={this.props.onSendMessage}/>
+            <ControlPannel className="position-absolute" text={this.props.text} setText={this.props.setText} onSendMessage={this.props.onSendMessage}/>
           </Col>
           <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
             <Detail />

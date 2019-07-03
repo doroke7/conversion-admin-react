@@ -18,6 +18,8 @@ import './Index.scss';
 import store from '@/store';
 import { roomMessage } from '@/Actions/Index';
 
+const ENTER_KEY_CODE = 13;
+
 class Chatroom extends React.Component {
 
   public constructor(...oProps: any){
@@ -25,6 +27,10 @@ class Chatroom extends React.Component {
     this.ref = React.createRef();
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
+    this.setText = this.setText.bind(this);
+    this.state = {
+      text: ''
+    };
   }
 
   public componentWillMount() {
@@ -42,10 +48,18 @@ class Chatroom extends React.Component {
   public state: any = {
     roomMessages: [],
     loading: true,
+    text: '',
   };
 
 
   public roomId: any;
+
+  public setText (oEvent: any) {
+    this.setState({
+      text: oEvent.target.value
+    });
+  }
+
   public onEnterRoom(oBody: any){
     let oData = oBody["data"];
     let aRooms = oData["rooms"];
@@ -70,7 +84,14 @@ class Chatroom extends React.Component {
 
   }
 
-  public onSendMessage(s: any) {
+  public onSendMessage(oEvent: any) {
+    if (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) {
+      return;
+    }
+
+    this.setState({
+      text: ''
+    });
     console.log('onSendMessage...');
   }
 
@@ -94,7 +115,7 @@ class Chatroom extends React.Component {
             <Rooms/>
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
-            <Channel onSendMessage={this.onSendMessage}/>
+            <Channel text={this.state.text} setText={this.setText} onSendMessage={this.onSendMessage}/>
           </Col>
         </Row>
       </Spin>
