@@ -18,7 +18,7 @@ class ControlPannel extends React.Component<IProps>  {
     super(props);
   }
 
-  props :any;
+  public props :any;
   public render(){
     return (
       <div className={"control-pannel pb-1 pt-1" + (this.props.className ? " " + this.props.className : "")}>
