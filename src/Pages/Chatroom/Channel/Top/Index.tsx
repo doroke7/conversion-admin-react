@@ -81,7 +81,7 @@ class Top extends React.Component {
           <p>昵称</p>
           <p>等级</p>
         </Modal>
-        <Drawer
+        <Drawer className="top"
           placement="right"
           closable={false}
           onClose={this.onClose}
