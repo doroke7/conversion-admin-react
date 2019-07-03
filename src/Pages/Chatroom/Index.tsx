@@ -28,6 +28,7 @@ class Chatroom extends React.Component {
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
     this.setText = this.setText.bind(this);
+
     this.state = {
       text: ''
     };
@@ -54,11 +55,7 @@ class Chatroom extends React.Component {
 
   public roomId: any;
 
-  public setText (oEvent: any) {
-    this.setState({
-      text: oEvent.target.value
-    });
-  }
+
 
   public onEnterRoom(oBody: any){
     let oData = oBody["data"];
@@ -84,17 +81,27 @@ class Chatroom extends React.Component {
 
   }
 
+  public setText(oEvent: any) {
+    debugger;
+
+    this.setState({
+      text: oEvent.target.value
+    });
+  }
+
   public onSendMessage(oEvent: any) {
-    if (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) {
+    if (oEvent.type === 'keyup' && (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) ) {
+      return;
+    }
+
+    if (oEvent.type === 'click' && this.state.text === '') {
       return;
     }
 
     this.setState({
       text: ''
     });
-    console.log('onSendMessage...');
   }
-
   
   public componentDidMount(){
     // setInterval(() => {

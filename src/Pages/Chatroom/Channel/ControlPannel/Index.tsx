@@ -33,7 +33,7 @@ class ControlPannel extends React.Component<IProps>  {
         <span className="d-inline-block textarea-wrapper">
           <TextArea rows={2} value={this.props.text} onChange={this.props.setText} onKeyUp={this.props.onSendMessage}/>
         </span>
-        <span className="send-wrapper d-inline-block text-center pl-1 pr-1">
+        <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.props.onSendMessage}>
           <div>
             <i className="iconfont icon-telegram send"></i>
           </div>
