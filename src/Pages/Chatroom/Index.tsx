@@ -80,10 +80,14 @@ class Chatroom extends React.Component {
   public onMessage(oBody: any){
 
   }
+  public onKeyDown(oEvent: any) {
+    if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
+      oEvent.preventDefault();
+    }
+  }
 
   public setText(oEvent: any) {
     debugger;
-
     this.setState({
       text: oEvent.target.value
     });
@@ -97,6 +101,8 @@ class Chatroom extends React.Component {
     if (oEvent.type === 'click' && this.state.text === '') {
       return;
     }
+
+    oEvent.target.value = oEvent.target.value.replace(/[\r\n]/g,""); //去掉回车换行
 
     this.setState({
       text: ''
@@ -122,7 +128,12 @@ class Chatroom extends React.Component {
             <Rooms/>
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
-            <Channel text={this.state.text} setText={this.setText} onSendMessage={this.onSendMessage}/>
+            <Channel 
+              text={this.state.text} 
+              setText={this.setText} 
+              onSendMessage={this.onSendMessage}
+              onKeyDown={this.onKeyDown}
+              />
           </Col>
         </Row>
       </Spin>
