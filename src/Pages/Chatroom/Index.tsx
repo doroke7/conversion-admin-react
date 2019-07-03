@@ -35,12 +35,6 @@ class Chatroom extends React.Component {
   };
 
   public componentDidMount(){
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-      });
-    }, 800);
-
     // setInterval(() => {
     //   store.dispatch(Counter.increase())
     // }, 1000);
@@ -62,6 +56,10 @@ class Chatroom extends React.Component {
 
   public onShowMessage(oBody: any){
     let aMessages = oBody.data.messages;
+    debugger;
+    this.setState({
+      loading: false,
+    });
     store.dispatch(roomMessage.show(aMessages))
   }
 
@@ -74,7 +72,6 @@ class Chatroom extends React.Component {
       <Spin tip="进入聊天室..." spinning={this.state.loading} delay={0}>
         <Row className="chatroom">
           <Col xs={0} sm={8} md={8} lg={6} xl={6}>
-            {/* {store.getState()} */}
             <Rooms/>
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>

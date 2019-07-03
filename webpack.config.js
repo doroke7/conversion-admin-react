@@ -118,7 +118,7 @@ module.exports = (env, argvs) =>{
           vendor: [
             'socket.io-client',
             'jwt-decode',
-            // 'antd',
+            (argvs.mode === 'development' ? 'antd' : ''),
             'react',
             'react-dom',
             'react-router-dom',
