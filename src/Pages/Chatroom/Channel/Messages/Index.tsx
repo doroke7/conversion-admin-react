@@ -1,4 +1,6 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
+
 import store from '@/store';
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 
@@ -31,8 +33,9 @@ class Messages extends React.Component {
     roomMessages: []
   };
 
-  public componentDidMount() {
-
+  public componentDidUpdate() {
+    let oDom: any = findDOMNode(this);
+    oDom.scrollTop = oDom.scrollHeight;
   }
   public render() {
 

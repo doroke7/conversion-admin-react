@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Motion, spring, presets } from 'react-motion'
 import {
   Authentication as AuthenticationHelper,
@@ -19,6 +20,12 @@ import { roomMessage } from '@/Actions/Index';
 
 class Chatroom extends React.Component {
 
+  public constructor(...oProps: any){
+    super(oProps);
+    this.ref = React.createRef();
+    this.onShowMessage = this.onShowMessage.bind(this);
+  }
+
   public componentWillMount() {
     SocketHelper.chatroom.emit("ENTER ROOM", void 0);
     SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
@@ -29,17 +36,13 @@ class Chatroom extends React.Component {
 
   }
 
+  public ref: any;
+
   public state: any = {
     roomMessages: [],
     loading: true,
   };
 
-  public componentDidMount(){
-    // setInterval(() => {
-    //   store.dispatch(Counter.increase())
-    // }, 1000);
-
-  }
 
   public roomId: any;
   public onEnterRoom(oBody: any){
@@ -56,20 +59,31 @@ class Chatroom extends React.Component {
 
   public onShowMessage(oBody: any){
     let aMessages = oBody.data.messages;
-    debugger;
+    store.dispatch(roomMessage.show(aMessages))
     this.setState({
       loading: false,
     });
-    store.dispatch(roomMessage.show(aMessages))
   }
 
   public onMessage(oBody: any){
 
   }
 
+  
+  public componentDidMount(){
+    // setInterval(() => {
+    //   store.dispatch(Counter.increase())
+    // }, 1000);
+
+  }
+
+  public componentDidUpdate(){
+
+  }
+
   public render() {
     return (
-      <Spin tip="进入聊天室..." spinning={this.state.loading} delay={0}>
+      <Spin ref={this.ref} tip="进入聊天室..." spinning={this.state.loading} delay={0}>
         <Row className="chatroom">
           <Col xs={0} sm={8} md={8} lg={6} xl={6}>
             <Rooms/>
