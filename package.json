@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production --compress",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json "
   },
   "dependencies": {
