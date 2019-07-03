@@ -42,12 +42,14 @@
 }
 
 .top {
-  .iconfont.icon-logout {
-    font-size: 2vmin;
-  }
+
   
   
   .logout-wrapper {
     font-size: 2vmin;
+    cursor: pointer;
+    .iconfont.icon-logout {
+      font-size: 2vmin;
+    }
   }
 }
