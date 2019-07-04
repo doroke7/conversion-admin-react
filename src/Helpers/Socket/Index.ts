@@ -1,4 +1,7 @@
 import oIo from "socket.io-client";
+import {
+  Authentication as AuthenticationHelper,
+} from '@/Helpers/';
 import { SOCKET } from "@/CONFIGS/";
 
 let sAuthenticationUrl =
@@ -10,14 +13,17 @@ let sAuthenticationUrl =
 
 const oAuthenticationSocket = oIo(sAuthenticationUrl);
 
-let sChatroomUrl =
-  SOCKET.HOST +
-  (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
-    ? ":" + SOCKET.PORT
-    : "") +
-  "/chatroom";
-
-const oChatroomSocket = oIo(sChatroomUrl);
+let sJwt = AuthenticationHelper.getJwt();
+let sChatroomUrl = SOCKET.HOST + 
+                  (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
+                   ? ":" + SOCKET.PORT : "") +
+                   "/chatroom";
+let oOption = {
+  query: {
+    jwt: sJwt
+  }
+};
+const oChatroomSocket = oIo(sChatroomUrl, oOption);
 
 class SocketHelper {
   public static authentication = oAuthenticationSocket;

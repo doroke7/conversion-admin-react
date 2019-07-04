@@ -33,6 +33,7 @@ class App extends React.Component {
           jwt: sJwt
         }
       };
+      debugger;
       let oChatroomSocket = oIo(sChatroomUrl, oOption);
       this.chatroom = oChatroomSocket;
     };
