@@ -26,6 +26,8 @@ let oOption = {
 const oChatroomSocket = oIo(sChatroomUrl, oOption);
 
 class SocketHelper {
+  public constructor () {
+  }
   public static authentication = oAuthenticationSocket;
   public static chatroom = oChatroomSocket;
 };
