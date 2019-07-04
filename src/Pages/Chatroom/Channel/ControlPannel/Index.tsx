@@ -49,12 +49,12 @@ class ControlPannel extends React.Component<IProps>  {
             发送
           </div>
         </span>
-        <span className="plus-wrapper d-inline-block text-center pl-1 pr-1">
+        <span className="image-wrapper d-inline-block text-center pl-1 pr-1">
           <div>
-            <i className="iconfont icon-plus plus"></i>
+            <i className="iconfont icon-image image"></i>
           </div>
           <div>
-            更多
+            档案
           </div>
         </span>
       </div>
