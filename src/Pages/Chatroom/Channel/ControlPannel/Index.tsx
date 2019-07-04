@@ -17,25 +17,27 @@ interface IProps {
 class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
+    this.onFileChange = this.onFileChange.bind(this);
   }
 
   public props :any;
 
-  public handleImgUpload(oEvent: any) {
+  public onFileChange(oEvent: any) {
     let __this = this;
     let oFile = oEvent.target.files[0];
     let sRegular = /\.(jpe?g|png|gif)$/i;
-    if (!sRegular.test(oFile.name)) {
 
+    if (!sRegular.test(oFile.name)) {
+      return;
     }
 
     let oFileReader = new FileReader();
     oFileReader.addEventListener("load",
-      function(_oEvent: any) {
+      (_oEvent: any) => {
         let oImage = new Image();
         oImage.title = oFile.name;
         oImage.src = _oEvent.target.result;
-        __this.previewImg(oImage);
+        this.previewImg(oImage);
       },
       false
     );
@@ -78,14 +80,13 @@ class ControlPannel extends React.Component<IProps>  {
           </div>
         </span>
         <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-          <input type="file" className="file position-absolute" />
+          <input type="file" className="file position-absolute" onChange={this.onFileChange}/>
           <div>
             <i className="iconfont icon-image image"></i>
           </div>
           <div>
             档案
           </div>
-          
         </span>
       </div>
     );
