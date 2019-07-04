@@ -12,7 +12,7 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
     case 'DID_SEND_ROOM_MESSAGE':
       let oMessage = _aMessages.pop();
       if (!oMessage.virtualId) {
-        __aMessages =  [...aMessages, ..._aMessages];
+        __aMessages =  [...aMessages, ...[oMessage]];
         return __aMessages;
       }
       let iIndex = aMessages.length - 1;
