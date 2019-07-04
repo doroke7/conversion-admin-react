@@ -1,20 +1,27 @@
-const oRoomMessage = (mState: any = [], oAction: any) => {
-  let aMessages = oAction.payload;
-  let _aMessages = [];
+const oRoomMessage = (aMessages: any = [], oAction: any) => {
+  let _aMessages = oAction.payload;
+  let __aMessages = [];
   switch (oAction.type) {
     case 'SHOW_ROOM_MESSAGE':
-      _aMessages = [...mState, ...aMessages];
-      return _aMessages;
+      __aMessages = [...aMessages, ..._aMessages];
+      return __aMessages;
     case 'WILL_SEND_ROOM_MESSAGE':
-      _aMessages = [...mState, ...aMessages];
-      return _aMessages;
+      __aMessages = [...aMessages, ..._aMessages];
+      return __aMessages;
 
     case 'DID_SEND_ROOM_MESSAGE':
-      _aMessages = [...mState, ...aMessages];
       debugger;
-      return _aMessages;
+      let oMessage = _aMessages.pop();
+      let iIndex = aMessages.length - 1;
+      for(iIndex; iIndex >= 0 ; iIndex--) {
+        let _oMessage = aMessages[iIndex];
+        if (_oMessage.virtualId === oMessage.virtualId) {
+          aMessages[iIndex].loading = false;
+        }
+      }
+      return aMessages;
     default:
-      return mState;
+      return aMessages;
   }
 };
 

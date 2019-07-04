@@ -47,7 +47,7 @@ class Messages extends React.Component {
 
   }
 
-  public componentDidUpdate(oPreviousProps: any, oPreviousState: any, oSnapshot: any) {
+  public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
     
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
       let sScrollTop = window.localStorage.getItem('messages:scroll-top');
