@@ -22,8 +22,8 @@ class Messages extends React.Component {
 
   public onScroll(oEvent: any) {
     let oDom = oEvent.target;
-    let iScrollTop = oDom.scrollTop;
-    window.localStorage.setItem('messages:scroll-top', iScrollTop);
+    let iScrollTopRatio = (oDom.scrollTop / oDom.scrollHeight).toString();
+    window.localStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
   }
 
   public componentWillMount() {
@@ -44,15 +44,19 @@ class Messages extends React.Component {
   };
 
   public componentDidMount() {
+    console.log('componentDidMount');
+  }
 
+  public componentWillUpdate() {
+    console.log('componentWillUpdate');
   }
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
-    
+
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      let sScrollTop = window.localStorage.getItem('messages:scroll-top');
-      let iScrollTop = parseInt(sScrollTop);
-      this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
+      let sScrollTopRatio = window.localStorage.getItem('messages:scroll-top-ratio');
+      let iScrollTopRatio = Number(sScrollTopRatio);
+      this.ref.current.scrollTop = 'number'=== typeof (iScrollTopRatio) ? iScrollTopRatio * this.ref.current.scrollHeight : this.ref.current.scrollHeight;
       return;
     }
 
@@ -61,7 +65,7 @@ class Messages extends React.Component {
       return;
     }
 
-
+    console.log('componentDidUpdate');
   }
 
   public render() {
