@@ -5,7 +5,7 @@ import './Index.scss';
 const Top: React.FC = () => {
   return (
     <div className="top text-center color-white">
-      <span>房间</span>
+      <span className="title">房间</span>
     </div>
   );
 }

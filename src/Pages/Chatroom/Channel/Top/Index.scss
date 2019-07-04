@@ -1,5 +1,9 @@
 .chatroom .channel .top {
   /* sm ~ */
+  
+  .title {
+    cursor: default;
+  }
   height: 10vmin;
   font-size: 5vmin;
   @media (min-width: 576px){
@@ -38,6 +42,7 @@
   span {
     vertical-align: middle;
   }
+
 
 }
 

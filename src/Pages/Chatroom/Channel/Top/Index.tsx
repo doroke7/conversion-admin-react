@@ -67,7 +67,7 @@ class Top extends React.Component<IProps> {
             <i className="iconfont icon-left"></i>
           </span>
         </Link>
-        <span>聊天室</span>
+        <span className="title">聊天室</span>
         <span onClick={this.showModal} className="position-absolute setting">
           <i className="iconfont icon-setting"></i>
         </span>

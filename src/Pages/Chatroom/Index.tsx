@@ -33,7 +33,7 @@ moment.locale(MOMENT.LOCALE);
 
 const ENTER_KEY_CODE = 13;
 
-class Chatroom extends React.Component {
+class Chatroom extends React.Component<any> {
 
   public constructor(...oProps: any){
     super(oProps);
@@ -164,7 +164,7 @@ class Chatroom extends React.Component {
   public render() {
     return (
       <Spin ref={this.ref} tip="进入聊天室..." spinning={this.state.loading} delay={0}>
-        <Row className="chatroom">
+        <Row className="chatroom" onFocus={this.props.onFocus} onMouseMove={this.props.onMouseMove}>
           <Col xs={0} sm={8} md={8} lg={6} xl={6}>
             <Rooms/>
           </Col>

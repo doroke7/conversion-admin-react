@@ -23,16 +23,11 @@ let Page = (PageComponent: any) => class extends React.Component<IProps> {
   }
 
   public onFocus() {
-    debugger;
-
     this.checkAuthentication();
-
   }
 
   public onMouseMove() {
-    debugger;
     this.checkAuthentication();
-
   } 
 
   public checkAuthentication() {
