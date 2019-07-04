@@ -64,8 +64,6 @@ class Chatroom extends React.Component {
 
   public roomId: any;
 
-
-
   public onEnterRoom(oBody: any){
     let oData = oBody["data"];
     let aRooms = oData["rooms"];
