@@ -1,5 +1,5 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import moment from 'moment';
 
 import store from '@/store';
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
@@ -9,7 +9,7 @@ import './Index.scss';
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 
-
+moment.locale(MOMENT.LOCALE);
 
 class Messages extends React.Component {
   public constructor(oProps: any) {
@@ -74,7 +74,7 @@ class Messages extends React.Component {
           icon={oMessage.user.url}
           src={oMessage.src}
           text={oMessage.text}
-          time={oMessage.addedTime}
+          time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
           name={oMessage.user.nickname}
           userId={oMessage.user._id}
           messageId={oMessage._id}

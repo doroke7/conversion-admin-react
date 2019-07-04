@@ -75,6 +75,7 @@ class Chatroom extends React.Component {
     let oData = oBody["data"];
     let aRooms = oData["rooms"];
     let oRoom = aRooms.pop();
+    debugger;
     let sRoomId = oRoom._id;
     this.roomId = sRoomId;
     let _oBody = {
