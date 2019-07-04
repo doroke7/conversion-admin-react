@@ -21,6 +21,34 @@ class ControlPannel extends React.Component<IProps>  {
 
   public props :any;
 
+  public handleImgUpload(oEvent: any) {
+    let __this = this;
+    let oFile = oEvent.target.files[0];
+    let sRegular = /\.(jpe?g|png|gif)$/i;
+    if (!sRegular.test(oFile.name)) {
+
+    }
+
+    let oFileReader = new FileReader();
+    oFileReader.addEventListener("load",
+      function(_oEvent: any) {
+        let oImage = new Image();
+        oImage.title = oFile.name;
+        oImage.src = _oEvent.target.result;
+        __this.previewImg(oImage);
+      },
+      false
+    );
+    oFileReader.readAsDataURL(oFile);
+  }
+  public previewImg(oImage: any) {
+    // let self:any = this;
+    // self.isShowImgPreview = true;
+    // self.$refs.previewEl.innerHTML = "";
+    // self.uploadingImg = oImage;
+    // self.$refs.previewEl.appendChild(oImage);
+  }
+
   public render(){
     return (
       <div className={"control-pannel pb-1 pt-1" + (this.props.className ? " " + this.props.className : "")}>
@@ -49,13 +77,15 @@ class ControlPannel extends React.Component<IProps>  {
             发送
           </div>
         </span>
-        <span className="image-wrapper d-inline-block text-center pl-1 pr-1">
+        <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+          <input type="file" className="file position-absolute" />
           <div>
             <i className="iconfont icon-image image"></i>
           </div>
           <div>
             档案
           </div>
+          
         </span>
       </div>
     );
