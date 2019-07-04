@@ -15,7 +15,7 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
       let iIndex = aMessages.length - 1;
       for(iIndex; iIndex >= 0 ; iIndex--) {
         let _oMessage = aMessages[iIndex];
-        if (_oMessage.virtualId === oMessage.virtualId) {
+        if (_oMessage.virtualId && oMessage.virtualId && _oMessage.virtualId === oMessage.virtualId) {
           aMessages[iIndex].loading = false;
         }
       }

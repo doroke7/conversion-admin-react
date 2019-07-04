@@ -95,8 +95,8 @@ class Chatroom extends React.Component {
   }
 
   public onMessage(oMessage: any){
-    // let aMessages = [oMessage];
-    // store.dispatch(roomMessage.didSend(aMessages));
+    let aMessages = [oMessage];
+    store.dispatch(roomMessage.didSend(aMessages));
   }
   public onKeyDown(oEvent: any) {
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
