@@ -55,6 +55,7 @@ class Messages extends React.Component {
 
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
       let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
+      debugger;
       let iScrollTopRatio = Number(sScrollTopRatio);
       this.ref.current.scrollTop = 'number'=== typeof (iScrollTopRatio) ? iScrollTopRatio * this.ref.current.scrollHeight : this.ref.current.scrollHeight;
       return;
