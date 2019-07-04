@@ -34,6 +34,7 @@ class Chatroom extends React.Component {
     this.ref = React.createRef();
     this.onEnterRoom = this.onEnterRoom.bind(this);
     this.onShowMessage = this.onShowMessage.bind(this);
+    this.onMessage = this.onMessage.bind(this);
     this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
@@ -81,14 +82,15 @@ class Chatroom extends React.Component {
 
   public onShowMessage(oBody: any){
     let aMessages = oBody.data.messages;
-    store.dispatch(roomMessage.show(aMessages))
+    store.dispatch(roomMessage.show(aMessages));
     this.setState({
       loading: false,
     });
   }
 
-  public onMessage(oBody: any){
-
+  public onMessage(oMessage: any){
+    let aMessages = [oMessage];
+    store.dispatch(roomMessage.add(aMessages));
   }
   public onKeyDown(oEvent: any) {
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
