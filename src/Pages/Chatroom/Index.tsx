@@ -1,15 +1,20 @@
 import React from 'react';
-import {withRouter} from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
 import { Motion, spring, presets } from 'react-motion'
+import moment from 'moment';
+
 import {
   Authentication as AuthenticationHelper,
   Socket as SocketHelper,
 } from '@/Helpers';
 
+import store from '@/store';
+import { roomMessage } from '@/Actions/Index';
+
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
+
 
 import {
   Page as PageHOC
@@ -20,14 +25,15 @@ import Channel from './Channel/Index';
 
 import './Index.scss';
 
-import store from '@/store';
-import { roomMessage } from '@/Actions/Index';
+import {
+  MOMENT,
+} from '@/CONFIGS/';
+
+moment.locale(MOMENT.LOCALE);
 
 const ENTER_KEY_CODE = 13;
 
-
 class Chatroom extends React.Component {
-
 
   public constructor(...oProps: any){
     super(oProps);
@@ -89,8 +95,8 @@ class Chatroom extends React.Component {
   }
 
   public onMessage(oMessage: any){
-    let aMessages = [oMessage];
-    store.dispatch(roomMessage.add(aMessages));
+    // let aMessages = [oMessage];
+    // store.dispatch(roomMessage.add(aMessages));
   }
   public onKeyDown(oEvent: any) {
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
@@ -123,12 +129,14 @@ class Chatroom extends React.Component {
         'url': AuthenticationHelper.getUserUrl(),
       },
       text: this.state.text,
-      addedTime: new Date(),
+      addedTime: moment(new Date()).format(MOMENT.FORMAT),
       virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now()
     };
 
     let sText = oMessage.text;
     if (!('' === sText || null === sText || undefined === sText)) {
+      let aMessages = [oMessage];
+      store.dispatch(roomMessage.add(aMessages));
       SocketHelper.chatroom.emit("MESSAGE", oMessage);
     }
 

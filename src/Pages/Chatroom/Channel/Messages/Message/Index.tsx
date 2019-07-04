@@ -22,6 +22,7 @@ interface IProps {
   userId?: any;
   key?: any;
   messageId?: any;
+  loading?: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
@@ -43,7 +44,7 @@ class Message extends React.Component<IProps> {
   
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
-        <span className="loading-wrapper d-inline-block align-bottom">
+        <span className={"loading-wrapper d-inline-block align-bottom " + (this.props.loading ? "" : "d-none")}>
           <Spin indicator={
             <div className="loading">
               <div>
