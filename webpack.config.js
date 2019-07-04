@@ -119,6 +119,7 @@ module.exports = (env, argvs) =>{
             let aItems = [
               'socket.io-client',
               'jwt-decode',
+              'moment',
               'react',
               'react-dom',
               'react-router-dom',
