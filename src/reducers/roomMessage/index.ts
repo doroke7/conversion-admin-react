@@ -10,8 +10,11 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
       return __aMessages;
 
     case 'DID_SEND_ROOM_MESSAGE':
-      debugger;
       let oMessage = _aMessages.pop();
+      if (!oMessage.virtualId) {
+        __aMessages =  [...aMessages, ..._aMessages];
+        return __aMessages;
+      }
       let iIndex = aMessages.length - 1;
       for(iIndex; iIndex >= 0 ; iIndex--) {
         let _oMessage = aMessages[iIndex];
