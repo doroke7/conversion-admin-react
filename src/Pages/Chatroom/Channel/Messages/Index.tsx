@@ -44,15 +44,24 @@ class Messages extends React.Component {
   };
 
   public componentDidMount() {
-    let sScrollTop = window.localStorage.getItem('messages:scroll-top');
-    let iScrollTop = parseInt(sScrollTop);
-    this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
+
   }
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any, oSnapshot: any) {
+    
+    if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
+      let sScrollTop = window.localStorage.getItem('messages:scroll-top');
+      let iScrollTop = parseInt(sScrollTop);
+      this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
+      return;
+    }
+
     if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
       this.ref.current.scrollTop = this.ref.current.scrollHeight;
+      return;
     }
+
+
   }
 
   public render() {
