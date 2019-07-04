@@ -22,7 +22,8 @@ class Messages extends React.Component {
 
   public onScroll(oEvent: any) {
     let oDom = oEvent.target;
-    let iScrollTopRatio = (oDom.scrollTop / oDom.scrollHeight).toString();
+    debugger;
+    let iScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
     window.sessionStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
   }
 
