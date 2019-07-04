@@ -62,14 +62,14 @@ class Message extends React.Component<IProps> {
             <span className="time">{this.props.time}</span>
             <span className="name">{this.props.name}</span>
           </div>
-          <div className={"content text-left"}>
+          <span className={"content text-left d-inline-block"}>
             <div className="image">
               {sSrc ? (<img src={sSrc}/>) : null}
             </div>
             <div className="text">
               {this.props.text}
             </div>
-          </div>
+          </span>
         </span>
         <span className="d-inline-block align-top">
           <div className="triangle">

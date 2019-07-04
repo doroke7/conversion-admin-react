@@ -15,6 +15,8 @@
     font-weight: 400;
   }
   .content {
+    max-width: 50vmin;
+    word-wrap: break-word;
     margin-top: 0.7vmin;
     color: #fff;
     text-shadow: 0 0 1px #35406d;
