@@ -48,8 +48,6 @@
 
 .top {
 
-  
-  
   .logout-wrapper {
     font-size: 2vmin;
     cursor: pointer;
@@ -57,4 +55,13 @@
       font-size: 2vmin;
     }
   }
+}
+
+.wrapper-modal {
+  // .ant-modal {
+  //   width: 100% !important;
+  //   .ant-modal-content {
+  //     height: calc(100vh - 2.5vmin);
+  //   }
+  // }
 }

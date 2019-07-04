@@ -86,16 +86,6 @@ class Top extends React.Component<IProps> {
           <p>头像</p>
           <p>昵称</p>
           <p>等级</p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-
         </Modal>
         <Drawer className="top"
           placement="right"
