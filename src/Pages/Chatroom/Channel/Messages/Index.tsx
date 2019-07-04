@@ -49,9 +49,12 @@ class Messages extends React.Component {
     this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
   }
 
-  public componentDidUpdate() {
-    this.ref.current.scrollTop = this.ref.current.scrollHeight;
+  public componentDidUpdate(oPreviousProps: any, oPreviousState: any, oSnapshot: any) {
+    if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
+      this.ref.current.scrollTop = this.ref.current.scrollHeight;
+    }
   }
+
   public render() {
 
     return (
