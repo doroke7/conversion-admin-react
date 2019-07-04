@@ -17,6 +17,7 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
         let _oMessage = aMessages[iIndex];
         if (_oMessage.virtualId && oMessage.virtualId && _oMessage.virtualId === oMessage.virtualId) {
           aMessages[iIndex].loading = false;
+          break;
         }
       }
       return aMessages;
