@@ -12,9 +12,12 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
     case 'DID_SEND_ROOM_MESSAGE':
       let oMessage = _aMessages.pop();
       if (!oMessage.virtualId) {
+        oMessage.loading = false;
         __aMessages =  [...aMessages, ...[oMessage]];
         return __aMessages;
       }
+
+      // 有 virtualId 表示 此 消息 是来自 自己的
       let iIndex = aMessages.length - 1;
       for(iIndex; iIndex >= 0 ; iIndex--) {
         let _oMessage = aMessages[iIndex];
