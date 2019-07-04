@@ -14,15 +14,8 @@ let Page = (PageComponent: any) => class extends React.Component<IProps> {
     this.onFocus = this.onFocus.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.checkAuthentication = this.checkAuthentication.bind(this);
-
     window.onstorage = (oEvent: any) => {
-
-      // if (oEvent.newValue) {
-      //   this.props.history.push("/chatroom");
-      //   return;
-      // }
-
-      if (null === oEvent.key || '' === oEvent.newValue || null === oEvent.newValue && '/login' !== this.props.location.pathname) {
+      if ((null === oEvent.key || '' === oEvent.newValue || null === oEvent.newValue) && '/login' !== this.props.location.pathname) {
         this.props.history.push("/login");
         return;
       }
@@ -30,11 +23,14 @@ let Page = (PageComponent: any) => class extends React.Component<IProps> {
   }
 
   public onFocus() {
+    debugger;
+
     this.checkAuthentication();
 
   }
 
   public onMouseMove() {
+    debugger;
     this.checkAuthentication();
 
   } 
