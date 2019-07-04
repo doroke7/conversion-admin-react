@@ -5,6 +5,9 @@ import Modal from 'antd/es/modal';
 import Drawer from 'antd/es/drawer';
 import Divider from 'antd/es/divider';
 
+import Setting from './Setting/Index';
+import List from './List/Index';
+
 import './Index.scss';
 
 interface IProps {
@@ -83,18 +86,7 @@ class Top extends React.Component<IProps> {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <p>头像</p>
-          <p>昵称</p>
-          <p>等级</p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
+          <Setting/>
 
         </Modal>
         <Drawer className="top"
@@ -103,9 +95,7 @@ class Top extends React.Component<IProps> {
           onClose={this.onClose}
           visible={this.state.drawer}
         >
-          <span className="logout-wrapper" onClick={this.props.onLogout}>
-            <i className="iconfont icon-logout"></i><span className="ml-1">登出</span>
-          </span>
+          <List onLogout={this.props.onLogout}/>
           <Divider/>
         </Drawer>
       </div>

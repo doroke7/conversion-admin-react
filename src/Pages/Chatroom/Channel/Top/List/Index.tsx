@@ -16,42 +16,6 @@ class Top extends React.Component<IProps> {
     super(props);
   }
 
-  public state = {
-    modal: false,
-    drawer: false,
-  };
-
-  public showModal = () => {
-    this.setState({
-      modal: true,
-    });
-  };
-
-  public handleOk = (e: any) => {
-    console.log(e);
-    this.setState({
-      modal: true,
-    });
-  };
-
-  public handleCancel = (e: any) => {
-    console.log(e);
-    this.setState({
-      modal: false,
-    });
-  };
-
-  public showDrawer = () => {
-    this.setState({
-      drawer: true,
-    });
-  };
-
-  public onClose = () => {
-    this.setState({
-      drawer: false,
-    });
-  };
 
   public componentDidMount() {
   }
@@ -61,44 +25,9 @@ class Top extends React.Component<IProps> {
 
   public render() {
     return (
-      <div className="top text-center color-white position-relative">
-        <Link to={{ pathname: '/login'}}>
-          <span className="position-absolute left">
-            <i className="iconfont icon-left"></i>
-          </span>
-        </Link>
-        <span className="title">聊天室</span>
-        <span onClick={this.showModal} className="position-absolute setting">
-          <i className="iconfont icon-setting"></i>
-        </span>
-        <span onClick={this.showDrawer} className="position-absolute list">
-        <i className="iconfont icon-list"></i>
-        </span>
-        <Modal
-          mask={true}
-          wrapClassName="wrapper-modal"
-          // centered={true}
-          footer={null}
-          visible={this.state.modal}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <p>头像</p>
-          <p>昵称</p>
-          <p>等级</p>
-        </Modal>
-        <Drawer className="top"
-          placement="right"
-          closable={false}
-          onClose={this.onClose}
-          visible={this.state.drawer}
-        >
-          <span className="logout-wrapper" onClick={this.props.onLogout}>
-            <i className="iconfont icon-logout"></i><span className="ml-1">登出</span>
-          </span>
-          <Divider/>
-        </Drawer>
-      </div>
+      <span className="logout-wrapper" onClick={this.props.onLogout}>
+      <i className="iconfont icon-logout"></i><span className="ml-1">登出</span>
+      </span>
     );
   }
 }
