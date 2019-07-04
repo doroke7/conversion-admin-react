@@ -28,6 +28,13 @@ let sUserId = AuthenticationHelper.getUserId();
 
 class Message extends React.Component<IProps> {
 
+  public shouldComponentUpdate(oNextProps: any, oNextState: any){
+    if (oNextProps.messageId === this.props.messageId) {
+      return false;
+    }
+    return true;
+  }
+
   public render() {
     let _sUserId = this.props.userId;
     let position = _sUserId === sUserId ? 'right' : 'left';
