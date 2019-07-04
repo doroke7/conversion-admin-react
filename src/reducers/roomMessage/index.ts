@@ -5,8 +5,13 @@ const oRoomMessage = (mState: any = [], oAction: any) => {
     case 'SHOW_ROOM_MESSAGE':
       _aMessages = [...mState, ...aMessages];
       return _aMessages;
-    case 'ADD_ROOM_MESSAGE':
+    case 'WILL_SEND_ROOM_MESSAGE':
       _aMessages = [...mState, ...aMessages];
+      return _aMessages;
+
+    case 'DID_SEND_ROOM_MESSAGE':
+      _aMessages = [...mState, ...aMessages];
+      debugger;
       return _aMessages;
     default:
       return mState;

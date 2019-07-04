@@ -95,8 +95,8 @@ class Chatroom extends React.Component {
   }
 
   public onMessage(oMessage: any){
-    // let aMessages = [oMessage];
-    // store.dispatch(roomMessage.add(aMessages));
+    let aMessages = [oMessage];
+    store.dispatch(roomMessage.didSend(aMessages));
   }
   public onKeyDown(oEvent: any) {
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
@@ -130,13 +130,14 @@ class Chatroom extends React.Component {
       },
       text: this.state.text,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
-      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now()
+      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
+      loading: true,
     };
 
     let sText = oMessage.text;
     if (!('' === sText || null === sText || undefined === sText)) {
       let aMessages = [oMessage];
-      store.dispatch(roomMessage.add(aMessages));
+      store.dispatch(roomMessage.willSend(aMessages));
       SocketHelper.chatroom.emit("MESSAGE", oMessage);
     }
 

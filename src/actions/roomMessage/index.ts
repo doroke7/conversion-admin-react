@@ -6,9 +6,16 @@ let oRoomMessage: any = {
     };
   },
 
-  add: (aMessages: any) => {
+  willSend: (aMessages: any) => {
     return {
-      type: 'ADD_ROOM_MESSAGE',
+      type: 'WILL_SEND_ROOM_MESSAGE',
+      payload: aMessages
+    };
+  },
+
+  didSend: (aMessages: any) => {
+    return {
+      type: 'DID_SEND_ROOM_MESSAGE',
       payload: aMessages
     };
   },
