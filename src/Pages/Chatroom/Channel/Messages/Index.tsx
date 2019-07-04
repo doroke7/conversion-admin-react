@@ -23,7 +23,7 @@ class Messages extends React.Component {
   public onScroll(oEvent: any) {
     let oDom = oEvent.target;
     let iScrollTopRatio = (oDom.scrollTop / oDom.scrollHeight).toString();
-    window.localStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
+    window.sessionStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
   }
 
   public componentWillMount() {
@@ -54,7 +54,7 @@ class Messages extends React.Component {
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
 
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      let sScrollTopRatio = window.localStorage.getItem('messages:scroll-top-ratio');
+      let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
       let iScrollTopRatio = Number(sScrollTopRatio);
       this.ref.current.scrollTop = 'number'=== typeof (iScrollTopRatio) ? iScrollTopRatio * this.ref.current.scrollHeight : this.ref.current.scrollHeight;
       return;
