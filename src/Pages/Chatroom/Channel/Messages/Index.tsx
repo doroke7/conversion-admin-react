@@ -43,10 +43,14 @@ class Messages extends React.Component {
     roomMessages: []
   };
 
-  public componentDidUpdate() {
+  public componentDidMount() {
     let sScrollTop = window.localStorage.getItem('messages:scroll-top');
     let iScrollTop = parseInt(sScrollTop);
     this.ref.current.scrollTop = 'number'=== typeof (iScrollTop) ? iScrollTop : this.ref.current.scrollHeight;
+  }
+
+  public componentDidUpdate() {
+    this.ref.current.scrollTop = this.ref.current.scrollHeight;
   }
   public render() {
 
