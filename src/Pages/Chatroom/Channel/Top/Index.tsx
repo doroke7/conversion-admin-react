@@ -75,10 +75,12 @@ class Top extends React.Component<IProps> {
         <i className="iconfont icon-list"></i>
         </span>
         <Modal
-          mask={false}
+          mask={true}
+          centered={true}
+          footer={null}
           visible={this.state.modal}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
+          // onOk={this.handleOk}
+          // onCancel={this.handleCancel}
         >
           <p>头像</p>
           <p>昵称</p>
