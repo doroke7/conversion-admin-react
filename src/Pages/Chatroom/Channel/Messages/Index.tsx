@@ -78,6 +78,7 @@ class Messages extends React.Component {
           name={oMessage.user.nickname}
           userId={oMessage.user._id}
           messageId={oMessage._id}
+          loading={oMessage.loading}
           />))}
       </div>
     );
