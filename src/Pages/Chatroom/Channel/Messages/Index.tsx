@@ -15,12 +15,12 @@ class Messages extends React.Component {
   public constructor(oProps: any) {
     super(oProps);
     this.ref = React.createRef();
-    this.handleScroll = this.handleScroll.bind(this);
+    this.onScroll = this.onScroll.bind(this);
   }
 
   public ref: any;
 
-  public handleScroll(oEvent: any) {
+  public onScroll(oEvent: any) {
     let oDom = oEvent.target;
     let iScrollTop = oDom.scrollTop;
     window.localStorage.setItem('messages:scroll-top', iScrollTop);
@@ -67,7 +67,7 @@ class Messages extends React.Component {
   public render() {
 
     return (
-      <div ref={this.ref} className="messages p-2 overflow-auto" onScroll={this.handleScroll}>
+      <div ref={this.ref} className="messages p-2 overflow-auto" onScroll={this.onScroll}>
         {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
         <Message
           role={oMessage.user.role}
