@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Socket = React.createContext({
-  background: 'red',
-  color: 'white'
+  chatroom: null,
+  authentication: null
 });
 
 export default Socket;
