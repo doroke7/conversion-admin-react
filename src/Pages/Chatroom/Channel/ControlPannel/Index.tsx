@@ -132,6 +132,8 @@ class ControlPannel extends React.Component<IProps>  {
           visible={this.state.modal}
           closable={false}
           onCancel={this.onCancel}
+          centered={true}
+
         >
           <div className="preview-image-wrapper">
             <img className="preview-image" src={this.state.src} />
