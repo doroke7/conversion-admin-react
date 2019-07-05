@@ -4,14 +4,14 @@ import {
 } from '@/Helpers/';
 import { SOCKET } from "@/CONFIGS/";
 
-let sAuthenticationUrl =
+let sLoginUrl =
   SOCKET.HOST +
   (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
     ? ":" + SOCKET.PORT
     : "") +
-  "/authentication";
+  "/login";
 
-const oAuthenticationSocket = oIo(sAuthenticationUrl);
+const oLoginSocket = oIo(sLoginUrl);
 
 let sJwt = AuthenticationHelper.getJwt();
 let sChatroomUrl = SOCKET.HOST + 
@@ -28,7 +28,7 @@ const oChatroomSocket = oIo(sChatroomUrl, oOption);
 class SocketHelper {
   public constructor () {
   }
-  public static authentication = oAuthenticationSocket;
+  public static login = oLoginSocket;
   public static chatroom = oChatroomSocket;
 };
 
