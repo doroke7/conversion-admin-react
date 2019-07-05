@@ -126,20 +126,14 @@ module.exports = (env, argvs) =>{
       new AutoDllPlugin({
         filename: '[name].dll.js',
         entry: {
-          vendor: (() => {
-            let aItems = [
-              'socket.io-client',
-              'jwt-decode',
-              'moment',
-              'react',
-              'react-dom',
-              'react-router-dom',
-            ];
-            if (argvs.mode !== 'production') {
-              aItems = [...aItems, 'antd/es'];
-            }
-            return aItems;
-          })()
+          vendor: [
+            'socket.io-client',
+            'jwt-decode',
+            'moment',
+            'react',
+            'react-dom',
+            'react-router-dom',
+          ]
         }
       }),
     ],

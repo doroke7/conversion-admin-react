@@ -7,7 +7,7 @@ const { TextArea } = Input;
 
 import './Index.scss';
 
-import emptyImage from '@/images/empty-image.png';
+// import emptyImage from '@/images/empty-image.png';
 
 interface IProps {
   // className?: string | null;
@@ -107,7 +107,7 @@ class ControlPannel extends React.Component<IProps>  {
           visible={this.state.modal}
           closable={false}
         >
-          <img src={emptyImage} />
+          <img src={""} />
         </Modal>
       </div>
     );
