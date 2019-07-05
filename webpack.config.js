@@ -132,6 +132,7 @@ module.exports = (env, argvs) =>{
         entry: {
           vendor: [
             'socket.io-client',
+            'socket.io-file-client',
             'jwt-decode',
             'moment',
             'react',

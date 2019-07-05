@@ -1,6 +1,9 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { Motion, spring, presets } from 'react-motion'
+// @ts-ignore
+import SocketIOFileClient from "socket.io-file-client";
+
 import moment from 'moment';
 
 import {
@@ -47,20 +50,23 @@ class Chatroom extends React.Component<any> {
     this.state = {
       text: ''
     };
-  }
 
-  public componentWillMount() {
     SocketHelper.chatroom.emit("ENTER ROOM", void 0);
     SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
     SocketHelper.chatroom.on("SHOW MESSAGE", this.onShowMessage);
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
+    this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
+  }
+
+  public componentWillMount() {
 
   }
 
   public ref: any;
 
+  public socketIOFileClient: any;
   public state: any = {
     roomMessages: [],
     roomId: '',

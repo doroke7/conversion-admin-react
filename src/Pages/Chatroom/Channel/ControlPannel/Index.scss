@@ -28,4 +28,16 @@
     cursor: pointer
   }
 
+  .preview-image-wrapper {
+    background: #EEEEEE;
+  }
+  .preview-image {
+    display: block;
+    max-width: 100%;
+    max-height: 60vmin;
+    width: auto;
+    height: auto;
+    margin: auto;
+    background: #FFFFFF;
+  }
 }

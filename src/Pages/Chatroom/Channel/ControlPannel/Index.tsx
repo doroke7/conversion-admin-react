@@ -30,16 +30,20 @@ class ControlPannel extends React.Component<IProps>  {
   public state: any ={
     modal: false,
     src: emptyImage,
+    file: null,
   }
 
   public onFileChange(oEvent: any) {
-    let __this = this;
     let oFile = oEvent.target.files[0];
     let sRegular = /\.(jpe?g|png|gif)$/i;
 
     if (!sRegular.test(oFile.name)) {
       return;
     }
+
+    this.setState({
+      file: oFile,
+    });
 
     this.showImageModal();
 
@@ -57,8 +61,13 @@ class ControlPannel extends React.Component<IProps>  {
     );
     oFileReader.readAsDataURL(oFile);
   }
+
+  public onLoad(oEvent: any) {
+
+  }
   public onOK(oEvent: any) {
-    // let uploadIds = this.socketIOFileClient.upload(fileEl);
+    let oFile = this.state.file;
+    oFile.reset();
     // this.moreFlag = false;
     // let oFile: any =  $("#files")[0];
     // oFile.reset();
@@ -119,12 +128,14 @@ class ControlPannel extends React.Component<IProps>  {
             档案
           </div>
         </span>
-        <Modal
+        <Modal wrapClassName="control-pannel"
           visible={this.state.modal}
           closable={false}
           onCancel={this.onCancel}
         >
-          <img className="img-fluid" src={this.state.src} />
+          <div className="preview-image-wrapper">
+            <img className="preview-image" src={this.state.src} />
+          </div>
         </Modal>
       </div>
     );
