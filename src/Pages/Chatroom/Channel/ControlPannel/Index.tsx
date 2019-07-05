@@ -37,7 +37,7 @@ class ControlPannel extends React.Component<IProps>  {
         let oImage = new Image();
         oImage.title = oFile.name;
         oImage.src = _oEvent.target.result;
-        this.previewImg(oImage);
+        console.log(oImage);
       },
       false
     );
@@ -49,6 +49,10 @@ class ControlPannel extends React.Component<IProps>  {
     // self.$refs.previewEl.innerHTML = "";
     // self.uploadingImg = oImage;
     // self.$refs.previewEl.appendChild(oImage);
+  }
+
+  public showImageModal(){
+    
   }
 
   public render(){
