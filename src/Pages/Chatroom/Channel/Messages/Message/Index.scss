@@ -58,7 +58,7 @@
   }
 
   .triangle {
-    margin-top: 8.2vmin;
+    margin-top: 8.6vmin;
     @media (min-width: 576px){
       margin-top: 3.6vmin;
     }
@@ -87,7 +87,7 @@
 
   &.right.admin {
     .triangle {
-      border-width: 3vmin 3vmin 0 0;
+      border-width: 2.5vmin 2.5vmin 0 0;
 
       @media (min-width: 576px){
         border-width: 1vmin 1vmin 0 0;
@@ -99,7 +99,7 @@
 
   &.left.admin {
     .triangle {
-      border-width: 0 3vmin 3vmin 0;
+      border-width: 0 2.5vmin 2.5vmin 0;
       @media (min-width: 576px){
         border-width: 0 1vmin 1vmin 0;
       }
