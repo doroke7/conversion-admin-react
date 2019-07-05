@@ -58,7 +58,10 @@
   }
 
   .triangle {
-    margin-top: 3.6vmin;
+    margin-top: 8.2vmin;
+    @media (min-width: 576px){
+      margin-top: 3.6vmin;
+    }
     width: 0;
     height: 0;
     border-style: solid;
@@ -66,13 +69,19 @@
 
   &.right {
     .triangle {
-      margin-right: 0.8vmin;
+      margin-right: 2.8vmin;
+      @media (min-width: 576px){
+        margin-right: 0.8vmin;
+      }
     }
   }
 
   &.left {
     .triangle {
-      margin-left: 0.8vmin;
+      margin-left: 2.8vmin;
+      @media (min-width: 576px){
+        margin-left: 0.8vmin;
+      }
     }
   }
 
