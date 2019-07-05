@@ -15,22 +15,36 @@
   border-left: 1px solid #0d46a9;
   .left {
     left: 1.5vmin;
-    top:calc(50% - 2.25vmin);
+    top: calc(50% - 4vmin);
+    @media (min-width: 576px){
+      top: calc(50% - 2.25vmin);
+    }
     cursor: pointer;
   }
   .setting {
-    right: 5.5vmin;
-    top:calc(50% - 2.25vmin);
+    right: 9.5vmin;
+    top: calc(50% - 4vmin);
+    @media (min-width: 576px){
+      top: calc(50% - 2.25vmin);
+      right: 5.5vmin;
+    }    
     cursor: pointer;
   }
   .list {
     right: 1.5vmin;
-    top:calc(50% - 2.25vmin);
+    top: calc(50% - 4vmin);
+
+    @media (min-width: 576px){
+      top: calc(50% - 2.25vmin);
+    }    
     cursor: pointer;
   }
 
   .iconfont.icon-left, .iconfont.icon-setting, .iconfont.icon-list {
-    font-size: 3vmin;
+    font-size: 6vmin;
+    @media (min-width: 576px){
+      font-size: 3vmin;
+    }
   }
 
   span::before {
