@@ -7,7 +7,7 @@ const { TextArea } = Input;
 
 import './Index.scss';
 
-import emptyImage from '@/images/empty-image.png';
+import emptyImage from '@/images/empty-image.gif';
 
 interface IProps {
   // className?: string | null;
@@ -22,6 +22,8 @@ class ControlPannel extends React.Component<IProps>  {
     super(props);
     this.showImageModal = this.showImageModal.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+
   }
 
   public props :any;
@@ -50,19 +52,29 @@ class ControlPannel extends React.Component<IProps>  {
         this.setState({
           src: _oEvent.target.result,
         });
-        console.log(oImage);
       },
       false
     );
     oFileReader.readAsDataURL(oFile);
   }
-  public previewImg(oImage: any) {
-    // let self:any = this;
-    // self.isShowImgPreview = true;
-    // self.$refs.previewEl.innerHTML = "";
-    // self.uploadingImg = oImage;
-    // self.$refs.previewEl.appendChild(oImage);
+  public onOK(oEvent: any) {
+    // let uploadIds = this.socketIOFileClient.upload(fileEl);
+    // this.moreFlag = false;
+    // let oFile: any =  $("#files")[0];
+    // oFile.reset();
   }
+
+  public onCancel() {
+    this.setState({
+      modal: false,
+    });
+
+    setTimeout(() => {
+      this.setState({
+        src: emptyImage,
+      });
+    }, 200);
+  };
 
   public showImageModal(){
     this.setState({
@@ -110,6 +122,7 @@ class ControlPannel extends React.Component<IProps>  {
         <Modal
           visible={this.state.modal}
           closable={false}
+          onCancel={this.onCancel}
         >
           <img className="img-fluid" src={this.state.src} />
         </Modal>
