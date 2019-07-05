@@ -7,7 +7,7 @@ const { TextArea } = Input;
 
 import './Index.scss';
 
-// import emptyImage from '@/images/empty-image.png';
+import emptyImage from '@/images/empty-image.png';
 
 interface IProps {
   // className?: string | null;
@@ -27,6 +27,7 @@ class ControlPannel extends React.Component<IProps>  {
   public props :any;
   public state: any ={
     modal: false,
+    src: emptyImage,
   }
 
   public onFileChange(oEvent: any) {
@@ -46,6 +47,9 @@ class ControlPannel extends React.Component<IProps>  {
         let oImage = new Image();
         oImage.title = oFile.name;
         oImage.src = _oEvent.target.result;
+        this.setState({
+          src: _oEvent.target.result,
+        });
         console.log(oImage);
       },
       false
@@ -107,7 +111,7 @@ class ControlPannel extends React.Component<IProps>  {
           visible={this.state.modal}
           closable={false}
         >
-          <img src={""} />
+          <img className="img-fluid" src={this.state.src} />
         </Modal>
       </div>
     );

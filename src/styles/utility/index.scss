@@ -86,6 +86,10 @@
   align-content:flex-end;
 }
 
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
 
 .w-1_3 {
   width: cacl( 100% / 3 );
