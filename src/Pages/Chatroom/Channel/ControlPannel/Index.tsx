@@ -1,10 +1,13 @@
 import React, { AnchorHTMLAttributes } from 'react';
 
 import Input from 'antd/es/input';
+import Modal from 'antd/es/modal';
 
 const { TextArea } = Input;
 
 import './Index.scss';
+
+import emptyImage from '@/images/empty-image.png';
 
 interface IProps {
   // className?: string | null;
@@ -17,10 +20,14 @@ interface IProps {
 class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
+    this.showImageModal = this.showImageModal.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
   }
 
   public props :any;
+  public state: any ={
+    modal: false,
+  }
 
   public onFileChange(oEvent: any) {
     let __this = this;
@@ -30,6 +37,8 @@ class ControlPannel extends React.Component<IProps>  {
     if (!sRegular.test(oFile.name)) {
       return;
     }
+
+    this.showImageModal();
 
     let oFileReader = new FileReader();
     oFileReader.addEventListener("load",
@@ -52,7 +61,9 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public showImageModal(){
-    
+    this.setState({
+      modal: true,
+    });
   }
 
   public render(){
@@ -92,6 +103,12 @@ class ControlPannel extends React.Component<IProps>  {
             档案
           </div>
         </span>
+        <Modal
+          visible={this.state.modal}
+          closable={false}
+        >
+          <img src={emptyImage} />
+        </Modal>
       </div>
     );
   }
