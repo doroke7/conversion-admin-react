@@ -37,7 +37,7 @@ class Login extends React.Component<IProps> {
       name: '',
       password: '',
     };
-    SocketHelper.login.on("AUTHENTICATION LOGIN", this.logined);
+    SocketHelper.login.on("LOGIN", this.logined);
   }
 
   public state: any;
@@ -77,7 +77,7 @@ class Login extends React.Component<IProps> {
       return;
     }
 
-    SocketHelper.login.emit("AUTHENTICATION LOGIN", oBody);
+    SocketHelper.login.emit("LOGIN", oBody);
   }
 
   public setName (oEvent: any){
