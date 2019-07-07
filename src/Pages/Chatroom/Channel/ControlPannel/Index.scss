@@ -5,14 +5,24 @@
   color: #2f62af;
   border-top: 1px solid rgba(41,53,62,.18);
   .game, .send, .image {
-    font-size: 3.5vmin;
+    font-size: 9vmin;
+    @media (min-width: 576px){
+      font-size: 3.5vmin;
+    }
   }
   .textarea-wrapper {
-    width: calc( 100% - 16.5vmin);
+    width: calc( 100% - 33vmin);
+    textarea{
+      height: 13vmin;
+    }
   }
   .game-wrapper, .send-wrapper, .image-wrapper  {
     line-height: 1;
     cursor: pointer;
+    font-size: 3.5vmin;
+    @media (min-width: 576px){
+      font-size: 1.75vmin;
+    }
   }
 
   input.file {

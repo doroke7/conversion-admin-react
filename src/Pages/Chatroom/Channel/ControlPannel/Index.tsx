@@ -103,7 +103,8 @@ class ControlPannel extends React.Component<IProps>  {
           </div>
         </span>
         <span className="d-inline-block textarea-wrapper">
-          <TextArea 
+          <TextArea
+            className={"texarea"}
             rows={2} 
             value={this.props.text} 
             onChange={this.props.setText} 
