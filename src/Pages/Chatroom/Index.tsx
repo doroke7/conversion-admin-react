@@ -17,6 +17,7 @@ import { roomMessage } from '@/Actions/Index';
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
+import Message from 'antd/es/message';
 
 
 import {
@@ -30,6 +31,7 @@ import './Index.scss';
 
 import {
   MOMENT,
+  MESSAGES,
 } from '@/CONFIGS/';
 
 moment.locale(MOMENT.LOCALE);
@@ -100,8 +102,14 @@ class Chatroom extends React.Component<any> {
     });
   }
 
-  public onMessage(oMessage: any){
-    let aMessages = [oMessage];
+  public onMessage(oBody: any){
+    debugger;
+    if (-1 === oBody.result && -0.01 === oBody.code) {
+      let sMessage = MESSAGES['IT_IS_UNKNOWN_ERROR'];
+      Message.warning(sMessage);
+      return;
+    }
+    let aMessages = [oBody];
     store.dispatch(roomMessage.didSend(aMessages));
   }
   public onKeyDown(oEvent: any) {
@@ -119,7 +127,7 @@ class Chatroom extends React.Component<any> {
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
 
-    if (!('' === sText || null === sText || undefined === sText)) {
+    if ('' === sText || null === sText || undefined === sText) {
       return;
     }
 
