@@ -65,7 +65,7 @@ class Top extends React.Component<IProps> {
   public render() {
     return (
       <div className="top text-center color-white position-relative">
-        <Link to={{ pathname: '/login'}}>
+        <Link to={{ pathname: '/login'}} className="sm-d-none md-d-none lg-d-none xl-d-none">
           <span className="position-absolute left">
             <i className="iconfont icon-left"></i>
           </span>
