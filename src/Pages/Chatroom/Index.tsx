@@ -105,7 +105,6 @@ class Chatroom extends React.Component<any> {
 
   public onShowWord(oBody: any) {
     let aWords = oBody.data.words;
-    debugger;
     store.dispatch(word.show(aWords));
     SocketHelper.chatroom.emit("ENTER ROOM", void 0);
   }

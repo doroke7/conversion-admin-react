@@ -1,6 +1,6 @@
 const oRoomMessage = (aMessages: any = [], oAction: any) => {
   let _aMessages = oAction.payload;
-  let __aMessages = [];
+  let __aMessages = aMessages;
   switch (oAction.type) {
     case 'SHOW_ROOM_MESSAGE':
       __aMessages = [...aMessages, ..._aMessages];
@@ -28,7 +28,7 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
       }
       return aMessages;
     default:
-      return aMessages;
+      return __aMessages;
   }
 };
 
