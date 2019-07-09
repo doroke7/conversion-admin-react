@@ -39,20 +39,20 @@ class Messages extends React.Component {
     store.subscribe(() => {
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
+      let aWords = oState.words;
       let _oState = {
-        roomMessages: aRoomMessages
+        roomMessages: aRoomMessages,
+        words: aWords
       };
       this.setState(_oState);
     });
 
-    
   }
   
   public state: any = {
-    roomMessages: []
+    roomMessages: [],
+    words: []
   };
-
-  
 
   public componentDidMount() {
     window.addEventListener('resize', this.onResize)
@@ -63,7 +63,6 @@ class Messages extends React.Component {
   }
 
   public componentWillUpdate() {
-    console.log('componentWillUpdate');
   }
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
@@ -80,7 +79,6 @@ class Messages extends React.Component {
       return;
     }
 
-    console.log('componentDidUpdate');
   }
 
   public render() {

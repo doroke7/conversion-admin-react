@@ -13,7 +13,10 @@ import {
 } from '@/Helpers';
 
 import store from '@/store';
-import { roomMessage } from '@/Actions/Index';
+import {
+  roomMessage,
+  word,
+} from '@/Actions/Index';
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
@@ -65,6 +68,7 @@ class Chatroom extends React.Component<any> {
 
     SocketHelper.chatroom.on("LOGIN VIA ACCESS TOKEN",this.onLoginViaAccessToken);
     SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
+    SocketHelper.chatroom.on("SHOW WORD", this.onShowWord);
     SocketHelper.chatroom.on("SHOW MESSAGE", this.onShowMessage);
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
@@ -97,6 +101,13 @@ class Chatroom extends React.Component<any> {
     }
 
     
+  }
+
+  public onShowWord(oBody: any) {
+    let aWords = oBody.data.words;
+    debugger;
+    store.dispatch(word.show(aWords));
+    SocketHelper.chatroom.emit("ENTER ROOM", void 0);
   }
 
   public componentWillMount() {
