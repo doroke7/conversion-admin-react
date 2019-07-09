@@ -134,7 +134,8 @@ class ControlPannel extends React.Component<IProps>  {
           closable={false}
           onCancel={this.onCancel}
           centered={true}
-
+          cancelText="取消"
+          okText="送出"
         >
           <div className="preview-image-wrapper">
             <img className="preview-image" src={this.state.src} />
