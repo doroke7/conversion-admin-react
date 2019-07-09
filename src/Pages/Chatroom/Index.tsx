@@ -185,6 +185,12 @@ class Chatroom extends React.Component<any> {
       return;
     }
 
+    if (!AuthenticationHelper.getUserId()) {
+      let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
+      Message.warning(sMessage);
+      return;
+    }
+
     let oMessage = {
       roomId: this.state.roomId,
       user: {
@@ -202,7 +208,6 @@ class Chatroom extends React.Component<any> {
 
     if (!('' === sText || null === sText || undefined === sText)) {
       let aMessages = [oMessage];
-      debugger;
       store.dispatch(roomMessage.willSend(aMessages));
       SocketHelper.chatroom.emit("MESSAGE", oMessage);
     }
