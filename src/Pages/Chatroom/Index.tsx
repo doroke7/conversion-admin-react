@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Motion, spring, presets } from 'react-motion'
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
+import oIo from "socket.io-client";
 
 import moment from 'moment';
 
@@ -32,6 +33,7 @@ import './Index.scss';
 import {
   MOMENT,
   MESSAGES,
+  SOCKET,
 } from '@/CONFIGS/';
 
 moment.locale(MOMENT.LOCALE);
@@ -52,14 +54,49 @@ class Chatroom extends React.Component<any> {
     this.state = {
       text: ''
     };
+    let sJwt = AuthenticationHelper.getJwt();
+    
+    let sAccessToken = AuthenticationHelper.getAccessToken();
 
-    SocketHelper.chatroom.emit("ENTER ROOM", void 0);
+    if (sAccessToken && !sJwt) {
+      SocketHelper.chatroom.emit("LOGIN VIA ACCESS TOKEN", void 0);
+    }
+    SocketHelper.chatroom.emit("SHOW WORD", void 0);
+
+    SocketHelper.chatroom.on("LOGIN VIA ACCESS TOKEN",this.onLoginViaAccessToken);
     SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
     SocketHelper.chatroom.on("SHOW MESSAGE", this.onShowMessage);
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
     this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
+  }
+
+  public onLoginViaAccessToken(oBody: any) {
+    if (1 === oBody.result && oBody.jwt) {
+      AuthenticationHelper.setJwt(oBody.jwt);
+      let sJwt = AuthenticationHelper.getJwt();
+    
+      let sChatroomUrl =
+        SOCKET.HOST +
+        (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
+          ? ":" + SOCKET.PORT
+          : "") +
+        "/chatroom";
+
+      let oOption = {
+        query: {
+          jwt: sJwt,
+          forceNew: true,
+        }
+      };
+      
+      let oChatroomSocket = oIo(sChatroomUrl, oOption);
+      SocketHelper.chatroom = oChatroomSocket;
+      SocketHelper.chatroom.emit("ENTER ROOM", void 0);
+    }
+
+    
   }
 
   public componentWillMount() {
@@ -103,7 +140,6 @@ class Chatroom extends React.Component<any> {
   }
 
   public onMessage(oBody: any){
-    debugger;
     if (-1 === oBody.result && -0.01 === oBody.code) {
       let sMessage = MESSAGES['IT_IS_UNKNOWN_ERROR'];
       Message.warning(sMessage);

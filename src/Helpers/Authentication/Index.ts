@@ -97,6 +97,20 @@ class AuthenticationHelper {
   public static setJwt(sJwt: string): void {
     window.localStorage.setItem("jwt", sJwt);
   }
+
+  public static getAccessToken() {
+    let sAccessToken = "";
+
+    try {
+      let sLoginState = window.localStorage.getItem("loginState") || "";
+      let oLoginState = JSON.parse(sLoginState);
+      sAccessToken = oLoginState['accessToken'];
+      return sAccessToken;
+    } catch(sException) {
+      return sAccessToken;
+    }
+
+  }
 }
 
 export default AuthenticationHelper;

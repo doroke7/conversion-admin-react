@@ -14,12 +14,6 @@ let Page = (PageComponent: any) => class extends React.Component<IProps> {
     this.onFocus = this.onFocus.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.checkAuthentication = this.checkAuthentication.bind(this);
-    window.onstorage = (oEvent: any) => {
-      if ((null === oEvent.key || '' === oEvent.newValue || null === oEvent.newValue) && '/login' !== this.props.location.pathname) {
-        this.props.history.push("/login");
-        return;
-      }
-    };
   }
 
   public onFocus() {
@@ -31,11 +25,7 @@ let Page = (PageComponent: any) => class extends React.Component<IProps> {
   } 
 
   public checkAuthentication() {
-    let sUserId = AuthenticationHelper.getUserId();
-    if (!sUserId && '/login' !== this.props.location.pathname) {
-      this.props.history.push("/login");
-      return;
-    }
+
   }
 
   public componentWillMount(){
@@ -45,7 +35,7 @@ let Page = (PageComponent: any) => class extends React.Component<IProps> {
   public componentDidMount() {
   }
   public render() {
-    return <PageComponent history={this.props.history} onFocus={this.onFocus} onMouseMove={this.onMouseMove}/>;
+    return <PageComponent history={this.props.history}/>;
   }
 };
 
