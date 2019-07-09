@@ -117,6 +117,12 @@ class Chatroom extends React.Component<any> {
   }
 
   public onSendMessage(oEvent: any) {
+    let sText = this.state.text;
+
+    if (!('' === sText || null === sText || undefined === sText)) {
+      return;
+    }
+
     if (oEvent.type === 'keyup' && (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) ) {
       return;
     }
@@ -140,9 +146,9 @@ class Chatroom extends React.Component<any> {
       loading: true,
     };
 
-    let sText = oMessage.text;
     if (!('' === sText || null === sText || undefined === sText)) {
       let aMessages = [oMessage];
+      debugger;
       store.dispatch(roomMessage.willSend(aMessages));
       SocketHelper.chatroom.emit("MESSAGE", oMessage);
     }
