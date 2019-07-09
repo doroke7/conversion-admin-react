@@ -7,18 +7,18 @@
   .game, .send, .image {
     font-size: 9vmin;
     @media (min-width: 576px){
-      font-size: 5.5vmin;
+      font-size: 4.5vmin;
     }
   }
   .textarea-wrapper {
     width: calc( 100% - 33vmin);
     @media (min-width: 576px){
-      width: calc( 100% - 22.5vmin);
+      width: calc( 100% - 19.5vmin);
     }
     textarea{
       height: 13vmin;
       @media (min-width: 576px){
-        height: 8.1vmin;
+        height: 6.5vmin;
       }
     }
   }
@@ -27,7 +27,7 @@
     cursor: pointer;
     font-size: 3.5vmin;
     @media (min-width: 576px){
-      font-size: 2.35vmin;
+      font-size: 1.95vmin;
     }
   }
 

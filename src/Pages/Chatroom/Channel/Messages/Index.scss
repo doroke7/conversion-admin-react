@@ -1,6 +1,11 @@
 .messages {
-  height: calc(100vh - 12.4vmin);
+  height: calc(100vh - 25.2vmin);
+  @media (min-width: 576px){
+    height: calc(100vh - 13.8vmin);
+  }
 }
+
+
 
 @-moz-document url-prefix() {
   .messages {  
