@@ -172,7 +172,6 @@ class Chatroom extends React.Component<any> {
 
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
-
     if ('' === sText || null === sText || undefined === sText) {
       return;
     }
@@ -180,41 +179,47 @@ class Chatroom extends React.Component<any> {
     if (oEvent.type === 'keyup' && (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) ) {
       return;
     }
-
     if (oEvent.type === 'click' && this.state.text === '') {
       return;
     }
 
-    if (!AuthenticationHelper.getUserId()) {
-      let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
-      Message.warning(sMessage);
-      return;
+    try {
+
+      if (!AuthenticationHelper.getUserId()) {
+        let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
+        Message.warning(sMessage);
+        return;
+      }
+  
+      let oMessage = {
+        roomId: this.state.roomId,
+        user: {
+          '_id': AuthenticationHelper.getUserId(),
+          'nickname': AuthenticationHelper.getUserNickname(),
+          'role': AuthenticationHelper.getUserRole(),
+          'level': AuthenticationHelper.getUserLevel(),
+          'url': AuthenticationHelper.getUserUrl(),
+        },
+        text: this.state.text,
+        addedTime: moment(new Date()).format(MOMENT.FORMAT),
+        virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
+        loading: true,
+      };
+  
+      if (!('' === sText || null === sText || undefined === sText)) {
+        let aMessages = [oMessage];
+        store.dispatch(roomMessage.willSend(aMessages));
+        SocketHelper.chatroom.emit("MESSAGE", oMessage);
+      }
+  
+
+    } catch (sException) {
+
+    } finally {
+      this.setState({
+        text: ''
+      });
     }
-
-    let oMessage = {
-      roomId: this.state.roomId,
-      user: {
-        '_id': AuthenticationHelper.getUserId(),
-        'nickname': AuthenticationHelper.getUserNickname(),
-        'role': AuthenticationHelper.getUserRole(),
-        'level': AuthenticationHelper.getUserLevel(),
-        'url': AuthenticationHelper.getUserUrl(),
-      },
-      text: this.state.text,
-      addedTime: moment(new Date()).format(MOMENT.FORMAT),
-      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
-      loading: true,
-    };
-
-    if (!('' === sText || null === sText || undefined === sText)) {
-      let aMessages = [oMessage];
-      store.dispatch(roomMessage.willSend(aMessages));
-      SocketHelper.chatroom.emit("MESSAGE", oMessage);
-    }
-
-    this.setState({
-      text: ''
-    });
   }
 
   public onLogout() {
