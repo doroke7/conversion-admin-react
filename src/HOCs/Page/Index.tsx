@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {
-  Authentication as AuthenticationHelper,
+  AuthenticationHelper,
 } from '@/Helpers';
 interface IProps {
   history: any;

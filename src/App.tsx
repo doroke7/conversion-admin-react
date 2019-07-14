@@ -7,7 +7,7 @@ import {
 } from "@/Commons/";
 
 import {
-  Socket as SocketHelper,
+  SocketHelper,
 } from '@/Helpers/';
 
 import { SOCKET } from "@/CONFIGS/";

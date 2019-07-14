@@ -1,6 +1,6 @@
 import oIo from "socket.io-client";
 import {
-  Authentication as AuthenticationHelper,
+  AuthenticationHelper,
 } from '@/Helpers/';
 import { SOCKET } from "@/CONFIGS/";
 

@@ -16,8 +16,8 @@ import Top from './Top/Index';
 import './Index.scss';
 
 import {
-  Authentication as AuthenticationHelper,
-  Socket as SocketHelper,
+  AuthenticationHelper,
+  SocketHelper,
 } from '@/Helpers';
 
 interface IProps {
@@ -77,6 +77,7 @@ class Login extends React.Component<IProps> {
       return;
     }
 
+    
     SocketHelper.login.emit("LOGIN", oBody);
   }
 

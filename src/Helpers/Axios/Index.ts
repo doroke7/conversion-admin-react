@@ -44,7 +44,7 @@ class AxiosHelper {
    * @param {object | Array<object>} request The request of HTTP body
    * @param {boolean} isRecursive 使用同步模式 (递归模式), 也就是一个 AJAX 等待回应后才发下一个请求
    */
-  public get(oRequest: any | any[], bRecursive: boolean = false): any {
+  public static get(oRequest: any | any[], bRecursive: boolean = false): any {
     bRecursive = !!bRecursive;
     let oParams;
     if (oRequest instanceof Array) {
@@ -102,7 +102,7 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public post(oRequest: any | any[], bRecursive: boolean = false): any {
+  public static post(oRequest: any | any[], bRecursive: boolean = false): any {
     bRecursive = !!bRecursive;
     let oParams: any;
     let sParams: string;
@@ -173,7 +173,7 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public put(url: string, params: object | object[], isPolling: boolean = false) {
+  public static put(url: string, params: object | object[], isPolling: boolean = false) {
 
   }
 
@@ -182,7 +182,7 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public delete(url: string, params: object | object[], isPolling: boolean = false) {
+  public static delete(url: string, params: object | object[], isPolling: boolean = false) {
 
   }
 }

@@ -8,8 +8,8 @@ import oIo from "socket.io-client";
 import moment from 'moment';
 
 import {
-  Authentication as AuthenticationHelper,
-  Socket as SocketHelper,
+  AuthenticationHelper,
+  SocketHelper,
 } from '@/Helpers';
 
 import store from '@/store';

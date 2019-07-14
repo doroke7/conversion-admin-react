@@ -2,7 +2,7 @@ import React from 'react';
 import Spin from 'antd/es/spin';
 
 import {
-  Authentication as AuthenticationHelper
+  AuthenticationHelper
 } from '@/Helpers';
 
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";

@@ -1,9 +1,9 @@
-import Axios from './Axios/Index';
-import Authentication from './Authentication/Index';
-import Socket from './Socket/Index';
+import AxiosHelper from './Axios/Index';
+import AuthenticationHelper from './Authentication/Index';
+import SocketHelper from './Socket/Index';
 
 export {
-  Axios,
-  Authentication,
-  Socket,
+  AxiosHelper,
+  AuthenticationHelper,
+  SocketHelper,
 }
