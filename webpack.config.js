@@ -134,6 +134,7 @@ module.exports = (env, argvs) =>{
             'socket.io-client',
             'socket.io-file-client',
             'jwt-decode',
+            'axios',
             'moment',
             'react',
             'react-dom',

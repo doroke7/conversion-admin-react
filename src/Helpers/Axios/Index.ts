@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "qs";
 
 import {
   HTTP
@@ -120,8 +119,6 @@ class AxiosHelper {
           oParams = aRequests[i].params;
           oOptions = aRequests[i].options;
 
-          sParams = qs.stringify(oParams);
-
           // _reqInit.cache = 'no-cache';
           // _reqInit.mode = 'cors';
           // _reqInit.credentials = 'include';
@@ -136,17 +133,16 @@ class AxiosHelper {
         return pNextPromise(0);
       }
 
-      return Promise.all(aRequests.map((_oRequest) => {
+      return Promise.all(aRequests.map((_oRequest: any) => {
         let _sUrl: string = _oRequest.url || sHost + _oRequest.path;
         oParams = _oRequest.params;
-        sParams = qs.stringify(oParams);
         oOptions = _oRequest.options;
 
-        return axios.post(_sUrl, oParams, oOptions).then((oAxiosResponse) => {
+        return axios.post(_sUrl, oParams, oOptions).then((oAxiosResponse: any) => {
           // 舍弃 Axios 打包的 response 格式
           let oResponse = oAxiosResponse.data;
           return oResponse;
-        }).catch((oAxiosError) => {
+        }).catch((oAxiosError: any) => {
           let oResponse = oAxiosError.response.data;
           return Promise.reject(oResponse);
         });
@@ -155,15 +151,14 @@ class AxiosHelper {
 
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
-    sParams = qs.stringify(oParams);
     oOptions = oRequest.options;
 
     // params.headers = oHeaders;
-    return axios.post(sUrl, oParams, oOptions).then((oAxiosResponse) => {
+    return axios.post(sUrl, oParams, oOptions).then((oAxiosResponse: any) => {
       // 舍弃 Axios 打包的 response 格式
       let oResponse: any = oAxiosResponse.data;
       return oResponse;
-    }).catch((oAxiosError) => {
+    }).catch((oAxiosError: any) => {
       if (oAxiosError.response && oAxiosError.response.data) {
         let oResponse = oAxiosError.response.data;
         return Promise.reject(oResponse);
