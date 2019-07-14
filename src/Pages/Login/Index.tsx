@@ -18,7 +18,12 @@ import './Index.scss';
 import {
   AuthenticationHelper,
   SocketHelper,
+  AxiosHelper,
 } from '@/Helpers';
+
+import {
+  MODALS
+} from '@/CONFIGS';
 
 interface IProps {
   history: any;
@@ -29,7 +34,6 @@ class Login extends React.Component<IProps> {
   public constructor(...props: any) {
     super(props);
     this.login = this.login.bind(this);
-    this.logined = this.logined.bind(this);
     this.setName = this.setName.bind(this);
     this.setPassword = this.setPassword.bind(this);
 
@@ -37,48 +41,53 @@ class Login extends React.Component<IProps> {
       name: '',
       password: '',
     };
-    SocketHelper.login.on("LOGIN", this.logined);
   }
 
   public state: any;
 
-  public logined(oBody: any) {
-    if (!oBody.result || -1 === oBody.result|| '-1' === oBody.result) {
-      Modal.error({
-        title: '登入失败',
-        content: '密码错误',
-      });
-    }
-    let sJwt = oBody.jwt;
-    AuthenticationHelper.setJwt(sJwt);
-    this.props.history.push("/chatroom");
+  // public logined(oBody: any) {
+  //   if (!oBody.result || -1 === oBody.result|| '-1' === oBody.result) {
+  //     Modal.error({
+  //       title: '登入失败',
+  //       content: '密码错误',
+  //     });
+  //   }
+  //   let sJwt = oBody.jwt;
+  //   AuthenticationHelper.setJwt(sJwt);
+  //   this.props.history.push("/chatroom");
 
-  }
+  // }
 
-  public login() {
-    let oBody = {
-      name: this.state.name,
-      password: this.state.password
-    };
+  public async login() {
+    try {
+      let oBody = {
+        name: this.state.name,
+        password: this.state.password
+      };
+  
+      if (!oBody.name ) {
+        throw new Error('THE_USER_NAME_IS_EMPTY');
+      }
+  
+      if (!oBody.password) {
 
-    if (!oBody.name ) {
-      Modal.info({
-        title: '提示',
-        content: '请输入用户名',
-      });
-      return;
-    }
-
-    if (!oBody.password) {
+        throw new Error('THE_USER_PASSWORD_IS_EMPTY');
+      }
+  
+      let oResponse = await AxiosHelper.post({
+        path: '/service/authentication/authentication/login',
+        params: oBody
+      })
+    } catch (oException) {
+      let sMessage = oException.message;
+      debugger;
       Modal.info({
         title: '提示',
         content: '请输入密码',
       });
-      return;
     }
 
     
-    SocketHelper.login.emit("LOGIN", oBody);
   }
 
   public setName (oEvent: any){
