@@ -12,6 +12,8 @@ import {
   Page as PageHOC
 } from '@/HOCs/';
 
+import store from '@/store';
+
 import Top from './Top/Index';
 import './Index.scss';
 
@@ -20,6 +22,10 @@ import {
   SocketHelper,
   AxiosHelper,
 } from '@/Helpers';
+
+import {
+  jwtAction
+} from '@/actions';
 
 import {
   MODALS
@@ -74,10 +80,7 @@ class Login extends React.Component<IProps> {
         throw new Error('THE_USER_PASSWORD_IS_EMPTY');
       }
   
-      let oResponse = await AxiosHelper.post({
-        path: '/service/authentication/authentication/login',
-        params: oBody
-      })
+      store.dispatch(jwtAction.login(oBody));
     } catch (oException) {
       let sMessage = oException.message;
       debugger;

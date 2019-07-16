@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import reduxThunk from 'redux-thunk';
 
 import {
+  jwt,
   counter,
   roomMessage,
   word,
 } from '@/reducers/';
 
 const oReducer = combineReducers({
+  jwt: jwt,
   count: counter,
   roomMessages: roomMessage,
   words: word,
@@ -15,9 +17,9 @@ const oReducer = combineReducers({
 
 const oStore = createStore(
   oReducer,
-  // applyMiddleware(
-  //   thunkMiddleware
-  // )
+  applyMiddleware(
+    reduxThunk
+  )
 );
 
 export default oStore;

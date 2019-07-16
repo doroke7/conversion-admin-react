@@ -55,7 +55,7 @@ module.exports = (env, argvs) =>{
         {
           test: /\.tsx?$/,
           use: [
-            'awesome-typescript-loader'
+            'ts-loader', // 'ts-loader'
           ] // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
         },
         { 
