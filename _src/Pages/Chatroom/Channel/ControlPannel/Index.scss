@@ -1,0 +1,60 @@
+.control-pannel {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #2f62af;
+  border-top: 1px solid rgba(41,53,62,.18);
+  .game, .send, .image {
+    font-size: 9vmin;
+    @media (min-width: 576px){
+      font-size: 4.5vmin;
+    }
+  }
+  .textarea-wrapper {
+    width: calc( 100% - 33vmin);
+    @media (min-width: 576px){
+      width: calc( 100% - 19.6vmin);
+    }
+    textarea{
+      height: 13vmin;
+      font-size: 2vmin;
+      @media (min-width: 576px){
+        height: 6.5vmin;
+      }
+    }
+  }
+  .game-wrapper, .send-wrapper, .image-wrapper  {
+    line-height: 1;
+    cursor: pointer;
+    font-size: 3.5vmin;
+    @media (min-width: 576px){
+      font-size: 1.95vmin;
+    }
+  }
+
+  input.file {
+    position: absolute;
+    top: 0;
+    // left: 0;
+    right: 0;
+    //bottom: 0;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    filter: alpha(opacity=0);
+    cursor: pointer
+  }
+
+  .preview-image-wrapper {
+    background: #EEEEEE;
+  }
+  .preview-image {
+    display: block;
+    max-width: 100%;
+    max-height: 60vmin;
+    width: auto;
+    height: auto;
+    margin: auto;
+    background: #FFFFFF;
+  }
+}
