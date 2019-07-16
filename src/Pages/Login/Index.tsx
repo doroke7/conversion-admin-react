@@ -17,19 +17,19 @@ import store from '@/store';
 import Top from './Top/Index';
 import './Index.scss';
 
-import {
-  AuthenticationHelper,
-  SocketHelper,
-  AxiosHelper,
-} from '@/Helpers';
+// import {
+//   AuthenticationHelper,
+//   SocketHelper,
+//   AxiosHelper,
+// } from '@/Helpers';
 
 import {
   jwtAction
-} from '@/actions';
+} from '@/actions/';
 
 import {
   MODALS
-} from '@/CONFIGS';
+} from '@/CONFIGS/';
 
 interface IProps {
   history: any;

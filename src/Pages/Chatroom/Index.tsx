@@ -10,7 +10,7 @@ import moment from 'moment';
 import {
   AuthenticationHelper,
   SocketHelper,
-} from '@/Helpers';
+} from '@/Helpers/';
 
 import store from '@/store';
 import {
@@ -28,8 +28,8 @@ import {
   Page as PageHOC
 } from '@/HOCs/';
 
-import Rooms from './Rooms/Index';
-import Channel from './Channel/Index';
+import Rooms from './Rooms/';
+import Channel from './Channel/';
 
 import './Index.scss';
 
