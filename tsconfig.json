@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "sourceMap": true,
-    "strict": true,                           /* Enable all strict type-checking options. */
+    // "strict": true,                           /* Enable all strict type-checking options. */
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es6",
