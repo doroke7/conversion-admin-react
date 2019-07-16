@@ -40,7 +40,7 @@ let oJwt: any = {
       let sJwt = AuthenticationHelper.getJwt();
       let oOptions = {
         headers: {
-          jwt: sJwt
+          'jwt': sJwt  // 一定要 引号
         }
       };
 
@@ -50,6 +50,9 @@ let oJwt: any = {
           params: oBody,
           options: oOptions
         });
+        if (-1 === oResponse.jwt.result || !oResponse.jwt) {
+          return;
+        }
         sJwt = oResponse.jwt;
         AuthenticationHelper.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));

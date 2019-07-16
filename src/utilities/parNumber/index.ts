@@ -4,7 +4,6 @@
 // const LAGRE: string = '大';
 let cParNumber = (aNumbers: number[], aPreviousNumberss: number[], iPreviousNumber: number) => {
  
-  // debugger;
  // return aNumbers;
 };
 
