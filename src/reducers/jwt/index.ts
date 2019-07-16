@@ -1,10 +1,10 @@
-const oJwt = (aWords: any = [], oAction: any) => {
-  let sJWt = oAction.payload;
+const oJwt = (sJwt: string ='', oAction: any) => {
+  sJwt = oAction.payload;
   switch (oAction.type) {
     case 'LOGIN_AUTHENTICATION':
-      return sJWt;
+      return sJwt;
     default:
-      return sJWt;
+      return sJwt;
   }
 };
 
