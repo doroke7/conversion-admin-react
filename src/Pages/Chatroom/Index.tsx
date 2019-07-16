@@ -131,13 +131,17 @@ class Chatroom extends React.Component<any> {
   }
 
   public onMessage(oBody: any){
-    if (-1 === oBody.result && -0.01 === oBody.code) {
-      let sMessage = MESSAGES['IT_IS_UNKNOWN_ERROR'];
-      Message.warning(sMessage);
-      return;
+    try {
+      if (-1 === oBody.result && -1.05 === oBody.code) {
+        throw new Error('THE_GUEST_CAN_NOT_SEND_MESSAGE');
+      }
+      let aMessages = [oBody];
+      store.dispatch(roomMessage.didSend(aMessages));
+    } catch (oExeption) {
+      let sMessage = oExeption.message;
+      Message.warning(MESSAGES[sMessage]);
+
     }
-    let aMessages = [oBody];
-    store.dispatch(roomMessage.didSend(aMessages));
   }
   public onKeyDown(oEvent: any) {
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {

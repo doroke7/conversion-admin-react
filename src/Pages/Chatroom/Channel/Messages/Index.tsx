@@ -82,7 +82,7 @@ class Messages extends React.Component {
   }
 
   public render() {
-
+    console.log(this.state.roomMessages);
     return (
       <div ref={this.ref} className="messages p-2 overflow-auto" onScroll={this.onScroll}>
         {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
