@@ -5,7 +5,7 @@ import {
 
 let cLogin:any = (sJwt: any) => {
   return {
-    type: 'LOGIN_AUTHENTICATION',
+    type: 'JWT_LOGIN',
     payload: sJwt
   };
 };
@@ -27,6 +27,9 @@ let oJwt: any = {
       AuthenticationHelper.setJwt(sJwt);
       cDispatch(cLogin(sJwt));
     }
+  },
+  refresh: () => {
+    
   }
 };
 

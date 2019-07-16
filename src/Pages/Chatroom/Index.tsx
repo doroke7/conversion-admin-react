@@ -41,6 +41,8 @@ import {
 
 moment.locale(MOMENT.LOCALE);
 
+let sChatroomUrl = SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT) ? ":" + SOCKET.PORT : "") + "/chatroom";
+
 const ENTER_KEY_CODE = 13;
 
 class Chatroom extends React.Component<any> {
@@ -81,12 +83,6 @@ class Chatroom extends React.Component<any> {
       AuthenticationHelper.setJwt(oBody.jwt);
       let sJwt = AuthenticationHelper.getJwt();
     
-      let sChatroomUrl =
-        SOCKET.HOST +
-        (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
-          ? ":" + SOCKET.PORT
-          : "") +
-        "/chatroom";
 
       let oOption = {
         query: {
