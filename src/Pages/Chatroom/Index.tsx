@@ -70,7 +70,6 @@ class Chatroom extends React.Component<any> {
 
     SocketHelper.chatroom.on("LOGIN VIA ACCESS TOKEN",this.onLoginViaAccessToken);
     SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
-    SocketHelper.chatroom.on("SHOW WORD", this.onShowWord);
     SocketHelper.chatroom.on("SHOW MESSAGE", this.onShowMessage);
     SocketHelper.chatroom.on("connect", () => {});
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
