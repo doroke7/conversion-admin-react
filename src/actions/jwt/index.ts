@@ -25,16 +25,3 @@ let oJwt: any = {
 };
 
 export default oJwt;
-
-/***
- *
- * addTaskAsync(task){
-  return (dispatch) => {
-    setTimeout(() => {
-      // 一秒後dispatch addTask()
-      dispatch(addTask(task));
-    }, 1000);
-  };
-}
- */
-

@@ -1,4 +1,4 @@
-const oJwt = (sJwt: string ='', oAction: any) => {
+const oJwt = (sJwt: string = '', oAction: any) => {
   sJwt = oAction.payload;
   switch (oAction.type) {
     case 'LOGIN_AUTHENTICATION':
