@@ -68,8 +68,9 @@ class Login extends React.Component<IProps> {
       }
   
       store.dispatch(jwtAction.login(oBody));
-      this.props.history.push('/chatroom');
+      // this.props.history.push('/chatroom');
     } catch (oException) {
+      debugger;
       let sMessage = oException.message;
       let MODAL = MODALS[sMessage] || MODALS['IT_IS_UNKNOWN_ERROR'];
       Modal.info({

@@ -44,32 +44,34 @@ class AxiosHelper {
    * @param {object | Array<object>} request The request of HTTP body
    * @param {boolean} isRecursive 使用同步模式 (递归模式), 也就是一个 AJAX 等待回应后才发下一个请求
    */
-  public static get(oRequest: any | any[], bRecursive: boolean = false): any {
+  public static async get(oRequest: any | any[], bRecursive: boolean = false): any {
     bRecursive = !!bRecursive;
     let oParams;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
       if (bRecursive) {
-        let pNextPromise = (i: number): any => {
-          if (i >= aRequests.length) {
-            return Promise.resolve(aResponses);
-          }
-          let _sUrl: string = aRequests[i].url || sHost + aRequests[i].path;
-          oParams = aRequests[i].params;
-          // _reqInit.cache = 'no-cache';
-          // _reqInit.mode = 'cors';
-          // _reqInit.credentials = 'include';
+        aRequests.forEach(async (oRequest) => {
+          let _sUrl: string = oRequest.url || sHost + oRequest.path;
+          oParams = oRequest.params;
+          let oAxiosReponse = await axios.get(_sUrl, oParams);
+          let oReponse = oAxiosReponse.data;
+          aResponses.push(oReponse);
+        });
 
-          return axios.get(_sUrl, oParams).then((oAxiosReponse) => {
-            // 舍弃 Axios 打包的 response 格式
-            let oReponse = oAxiosReponse.data;
-            aResponses.push(oReponse);
-            return pNextPromise(i + 1);
-          });
-        };
-        return pNextPromise(0);
+        return aResponses;
       }
+
+      return Promise.all(
+        aRequests.map(async (oRequest) => {
+          let _sUrl: string = oRequest.url || sHost + oRequest.path;
+          let oParams = oRequest.params;
+          let oAxiosReponse = await axios.get(_sUrl, oParams);
+          let oReponse = oAxiosReponse.data;
+          return oReponse;
+        })
+      );
+
 
       return Promise.all(aRequests.map((_oRequest) => {
         let _sUrl: string = _oRequest.url || sHost + _oRequest.path;
@@ -164,7 +166,7 @@ class AxiosHelper {
         return Promise.reject(oResponse);
       }
 
-      return Promise.reject(new Error(""));
+      return Promise.reject(new Error("aaa"));
     });
   }
 
