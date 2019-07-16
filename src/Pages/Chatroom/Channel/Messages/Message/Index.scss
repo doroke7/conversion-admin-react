@@ -173,8 +173,12 @@
 
   &.right {
     .loading-wrapper {
-      margin-top: 3vmin;
+      margin-top: 7.2vmin;
       margin-right: 1vmin;
+      @media (min-width: 576px){
+        margin-top: 3vmin;
+        margin-right: 1vmin;
+      }
     }
   }
 
@@ -188,19 +192,27 @@
   .loading {
     display: inline-block;
     position: relative;
-    width: 2.5vmin;
-    height: 2.5vmin;
+    width: 7vmin;
+    height: 7vmin;
+    @media (min-width: 576px){
+      width: 2.5vmin;
+      height: 2.5vmin;
+    }
   }
   .loading div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 2.5vmin;
-    height: 2.5vmin;
+    width: 7vmin;
+    height: 7vmin;
     border: 3px solid rgb(216, 216, 216);
     border-radius: 50%;
     animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: rgb(216, 216, 216) transparent transparent transparent;
+    @media (min-width: 576px){
+      width: 2.5vmin;
+      height: 2.5vmin;
+    }
   }
   .loading div:nth-child(1) {
     animation-delay: -0.45s;
