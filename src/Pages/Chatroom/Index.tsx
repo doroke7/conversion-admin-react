@@ -60,16 +60,11 @@ class Chatroom extends React.Component<any> {
     this.state = {
       text: ''
     };
-    let sJwt = AuthenticationHelper.getJwt();
     
-    let sAccessToken = AuthenticationHelper.getAccessToken();
+    let oChatroomSocket = oIo(sChatroomUrl);
+    SocketHelper.chatroom = oChatroomSocket;
 
-    if (sAccessToken && !sJwt) {
-      SocketHelper.chatroom.emit("LOGIN VIA ACCESS TOKEN", void 0);
-    }
-    SocketHelper.chatroom.emit("SHOW WORD", void 0);
 
-    SocketHelper.chatroom.on("LOGIN VIA ACCESS TOKEN",this.onLoginViaAccessToken);
     SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
     SocketHelper.chatroom.on("SHOW MESSAGE", this.onShowMessage);
     SocketHelper.chatroom.on("connect", () => {});
@@ -77,7 +72,13 @@ class Chatroom extends React.Component<any> {
     SocketHelper.chatroom.on("disconnet", () => {});
     this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
 
+  }
+
+  public async componentWillMount() {
+    await store.dispatch(jwtAction.accessTokenToJwt());
     store.dispatch(jwtAction.refresh());
+
+    SocketHelper.chatroom.emit("ENTER ROOM", void 0);
   }
 
   public onLoginViaAccessToken(oBody: any) {
@@ -86,30 +87,12 @@ class Chatroom extends React.Component<any> {
       let sJwt = AuthenticationHelper.getJwt();
     
 
-      let oOption = {
-        query: {
-          jwt: sJwt,
-          forceNew: true,
-        }
-      };
-      
-      let oChatroomSocket = oIo(sChatroomUrl, oOption);
-      SocketHelper.chatroom = oChatroomSocket;
-      SocketHelper.chatroom.emit("ENTER ROOM", void 0);
+
     }
 
     
   }
 
-  public onShowWord(oBody: any) {
-    let aWords = oBody.data.words;
-    store.dispatch(word.show(aWords));
-    SocketHelper.chatroom.emit("ENTER ROOM", void 0);
-  }
-
-  public componentWillMount() {
-
-  }
 
   public ref: any;
 

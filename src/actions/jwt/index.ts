@@ -59,6 +59,32 @@ let oJwt: any = {
       }, 10 * 1000); 
 
     }
+  },
+  accessTokenToJwt(oBody: any) {
+    return async (cDispatch: any) => {
+      let sJwt = AuthenticationHelper.getJwt();
+      let sAccessToken = AuthenticationHelper.getAccessToken();
+
+      let oOptions = {
+        headers: {
+          'jwt': sJwt,  // 一定要 引号
+          'accessToken': sAccessToken
+        }
+      };
+
+      let oResponse = await AxiosHelper.post({
+        path: '/service/authentication/authentication/access-token-to-jwt',
+        params: oBody,
+        options: oOptions
+      });
+      if (-1 === oResponse.result || !oResponse.jwt) {
+        return;
+      }
+      sJwt = oResponse.jwt;
+      AuthenticationHelper.setJwt(sJwt);
+      cDispatch(cRefresh(sJwt));
+
+    }
   }
 };
 
