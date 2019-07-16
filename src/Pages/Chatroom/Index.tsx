@@ -16,6 +16,7 @@ import store from '@/store';
 import {
   roomMessage,
   word,
+  jwtAction,
 } from '@/actions/';
 
 import Spin from 'antd/es/spin';
@@ -75,6 +76,8 @@ class Chatroom extends React.Component<any> {
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
     this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
+
+    store.dispatch(jwtAction.refresh());
   }
 
   public onLoginViaAccessToken(oBody: any) {

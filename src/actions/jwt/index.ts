@@ -3,9 +3,16 @@ import {
   AuthenticationHelper,
 } from '@/Helpers/';
 
-let cLogin:any = (sJwt: any) => {
+let cLogin: any = (sJwt: any) => {
   return {
     type: 'JWT_LOGIN',
+    payload: sJwt
+  };
+};
+
+let cRefresh: any = (sJwt: any) => {
+  return {
+    type: 'JWT_REFRESH',
     payload: sJwt
   };
 };
@@ -28,8 +35,27 @@ let oJwt: any = {
       cDispatch(cLogin(sJwt));
     }
   },
-  refresh: () => {
-    
+  refresh: (oBody: any, oOption: any) => {
+    return async (cDispatch: any) => {
+      let sJwt = AuthenticationHelper.getJwt();
+      let oOptions = {
+        headers: {
+          jwt: sJwt
+        }
+      };
+
+      setInterval(async () => {
+        let oResponse = await AxiosHelper.post({
+          path: '/service/authentication/authentication/refresh',
+          params: oBody,
+          options: oOptions
+        });
+        sJwt = oResponse.jwt;
+        AuthenticationHelper.setJwt(sJwt);
+        cDispatch(cRefresh(sJwt));
+      }, 10 * 1000); 
+
+    }
   }
 };
 
