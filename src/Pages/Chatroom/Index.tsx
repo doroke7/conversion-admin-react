@@ -16,7 +16,7 @@ import store from '@/store';
 import {
   roomMessage,
   word,
-} from '@/Actions/Index';
+} from '@/actions/Index';
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';

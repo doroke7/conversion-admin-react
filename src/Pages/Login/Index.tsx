@@ -25,7 +25,7 @@ import {
 
 import {
   jwtAction
-} from '@/actions';
+} from '@/actions/index';
 
 import {
   MODALS
