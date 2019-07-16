@@ -2,11 +2,13 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "sourceMap": true,
+    "strict": true,                           /* Enable all strict type-checking options. */
     "noImplicitAny": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "jsx": "react",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
