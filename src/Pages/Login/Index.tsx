@@ -51,19 +51,6 @@ class Login extends React.Component<IProps> {
 
   public state: any;
 
-  // public logined(oBody: any) {
-  //   if (!oBody.result || -1 === oBody.result|| '-1' === oBody.result) {
-  //     Modal.error({
-  //       title: '登入失败',
-  //       content: '密码错误',
-  //     });
-  //   }
-  //   let sJwt = oBody.jwt;
-  //   AuthenticationHelper.setJwt(sJwt);
-  //   this.props.history.push("/chatroom");
-
-  // }
-
   public async login() {
     try {
       let oBody = {
@@ -81,12 +68,13 @@ class Login extends React.Component<IProps> {
       }
   
       store.dispatch(jwtAction.login(oBody));
+      this.props.history.push('/chatroom');
     } catch (oException) {
       let sMessage = oException.message;
-      debugger;
+      let MODAL = MODALS[sMessage] || MODALS['IT_IS_UNKNOWN_ERROR'];
       Modal.info({
-        title: '提示',
-        content: '请输入密码',
+        title: MODAL.TITLE,
+        content: MODAL.CONTENT,
       });
     }
 

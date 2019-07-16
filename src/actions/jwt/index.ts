@@ -1,5 +1,6 @@
 import {
-  AxiosHelper
+  AxiosHelper,
+  AuthenticationHelper,
 } from '@/Helpers/';
 
 let cLogin:any = (sJwt: any) => {
@@ -16,9 +17,14 @@ let oJwt: any = {
       let oResponse = await AxiosHelper.post({
         path: '/service/authentication/authentication/login',
         params: oBody
-      })
+      });
+
+      if (-1 === oResponse.result || !oResponse.jwt) {
+        throw new Error('IT_FAILS_TO_LOGIN');
+      }
 
       let sJwt = oResponse.jwt;
+      AuthenticationHelper.setJwt(sJwt);
       cDispatch(cLogin(sJwt));
     }
   }
