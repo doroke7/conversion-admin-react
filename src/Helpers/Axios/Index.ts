@@ -51,18 +51,21 @@ class AxiosHelper {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
       if (bRecursive) {
-        aRequests.forEach(async (oRequest) => {
+        let iIndex;
+        let iLength = aRequests.length;
+        for(iIndex = 0; iIndex < iLength; iLength++) {
+          let oRequest = aRequests[iIndex];
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
           let oAxiosReponse = await axios.get(_sUrl, oParams);
           let oReponse = oAxiosReponse.data;
           aResponses.push(oReponse);
-        });
+        }
 
         return aResponses;
       }
 
-      return Promise.all(
+      aResponses = await Promise.all(
         aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           let oParams = oRequest.params;
@@ -72,19 +75,16 @@ class AxiosHelper {
         })
       );
 
+      return aResponses;
+
     }
 
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
     // params.headers = oHeaders;
-    return axios.get(sUrl, oParams).then((oAxiosResponse) => {
-      // 舍弃 Axios 打包的 response 格式
-      let oResponse = oAxiosResponse.data;
-      return oResponse;
-    }).catch((oAxiosError) => {
-      let oResponse = oAxiosError.response.data;
-      return Promise.reject(oResponse);
-    });
+    let oAxiosResponse = await axios.get(sUrl, oParams);
+    let oResponse = oAxiosResponse.data;
+    return oResponse;
   }
 
   /**
@@ -92,70 +92,52 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static post(oRequest: any | any[], bRecursive: boolean = false): any {
+  public static async post(oRequest: any | any[], bRecursive: boolean = false): any {
     bRecursive = !!bRecursive;
-    let oParams: any;
-    let sParams: string;
-    let oOptions: any;
+    let oParams;
+    let oOptions;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
       if (bRecursive) {
-        let pNextPromise = (i: number): any => {
-          if (i >= aRequests.length) {
-            return Promise.resolve(aResponses);
-          }
-          let _sUrl: string = aRequests[i].url || sHost + aRequests[i].path;
-          oParams = aRequests[i].params;
-          oOptions = aRequests[i].options;
+        let iIndex;
+        let iLength = aRequests.length;
+        for(iIndex = 0; iIndex < iLength; iLength++) {
+          let oRequest = aRequests[iIndex];
+          let _sUrl: string = oRequest.url || sHost + oRequest.path;
+          oParams = oRequest.params;
+          oOptions = oRequest.options;
 
-          // _reqInit.cache = 'no-cache';
-          // _reqInit.mode = 'cors';
-          // _reqInit.credentials = 'include';
+          let oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
+          let oReponse = oAxiosReponse.data;
+          aResponses.push(oReponse);
+        }
 
-          return axios.post(_sUrl, oParams, oOptions).then((oAxiosReponse) => {
-            // 舍弃 Axios 打包的 response 格式
-            let oReponse = oAxiosReponse.data;
-            aResponses.push(oReponse);
-            return pNextPromise(i + 1);
-          });
-        };
-        return pNextPromise(0);
+        return aResponses;
       }
+      
+      aResponses = await Promise.all(
+        aRequests.map(async (oRequest) => {
+          let _sUrl: string = oRequest.url || sHost + oRequest.path;
+          let oParams = oRequest.params;
+          oOptions = oRequest.options;
+          let oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
+          let oReponse = oAxiosReponse.data;
+          return oReponse;
+        })
+      );
 
-      return Promise.all(aRequests.map((_oRequest: any) => {
-        let _sUrl: string = _oRequest.url || sHost + _oRequest.path;
-        oParams = _oRequest.params;
-        oOptions = _oRequest.options;
+      return aResponses;
 
-        return axios.post(_sUrl, oParams, oOptions).then((oAxiosResponse: any) => {
-          // 舍弃 Axios 打包的 response 格式
-          let oResponse = oAxiosResponse.data;
-          return oResponse;
-        }).catch((oAxiosError: any) => {
-          let oResponse = oAxiosError.response.data;
-          return Promise.reject(oResponse);
-        });
-      }));
     }
 
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
     oOptions = oRequest.options;
-
     // params.headers = oHeaders;
-    return axios.post(sUrl, oParams, oOptions).then((oAxiosResponse: any) => {
-      // 舍弃 Axios 打包的 response 格式
-      let oResponse: any = oAxiosResponse.data;
-      return oResponse;
-    }).catch((oAxiosError: any) => {
-      if (oAxiosError.response && oAxiosError.response.data) {
-        let oResponse = oAxiosError.response.data;
-        return Promise.reject(oResponse);
-      }
-
-      return Promise.reject(new Error("aaa"));
-    });
+    let oAxiosResponse = await axios.post(sUrl, oParams, oOptions);
+    let oResponse = oAxiosResponse.data;
+    return oResponse;
   }
 
   /**
