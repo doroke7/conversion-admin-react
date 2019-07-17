@@ -42,15 +42,15 @@ axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 class AxiosHelper {
   /** 可以批次发送 AJAX 请求的 方法
    * @param {object | Array<object>} request The request of HTTP body
-   * @param {boolean} isRecursive 使用同步模式 (递归模式), 也就是一个 AJAX 等待回应后才发下一个请求
+   * @param {boolean} concurrent 使用同步模式 (递归模式), 也就是一个 AJAX 等待回应后才发下一个请求
    */
-  public static async get(oRequest: any | any[], bRecursive: boolean = false): any {
-    bRecursive = !!bRecursive;
+  public static async get(oRequest: any | any[], bConcurrent: boolean = false): Promise<any> {
+    bConcurrent = !!bConcurrent;
     let oParams;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
-      if (bRecursive) {
+      if (!bConcurrent) {
         let iIndex;
         let iLength = aRequests.length;
         for(iIndex = 0; iIndex < iLength; iLength++) {
@@ -90,16 +90,16 @@ class AxiosHelper {
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
-   * @param {boolean} isPolling Use polling (recursive) to send the request
+   * @param {boolean} concurrent Use polling (recursive) to send the request
    */
-  public static async post(oRequest: any | any[], bRecursive: boolean = false): any {
-    bRecursive = !!bRecursive;
+  public static async post(oRequest: any | any[], bConcurrent: boolean = false): Promise<any> {
+    bConcurrent = !!bConcurrent;
     let oParams;
     let oOptions;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
-      if (bRecursive) {
+      if (!bConcurrent) {
         let iIndex;
         let iLength = aRequests.length;
         for(iIndex = 0; iIndex < iLength; iLength++) {
@@ -143,9 +143,9 @@ class AxiosHelper {
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
-   * @param {boolean} isPolling Use polling (recursive) to send the request
+   * @param {boolean} bConcurrent Use polling (recursive) to send the request
    */
-  public static put(url: string, params: object | object[], isPolling: boolean = false) {
+  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {
 
   }
 
@@ -154,7 +154,7 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static delete(url: string, params: object | object[], isPolling: boolean = false) {
+  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {
 
   }
 }
