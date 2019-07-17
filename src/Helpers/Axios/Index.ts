@@ -72,23 +72,11 @@ class AxiosHelper {
         })
       );
 
-
-      return Promise.all(aRequests.map((_oRequest) => {
-        let _sUrl: string = _oRequest.url || sHost + _oRequest.path;
-        let oParams = _oRequest.params;
-
-        return axios.get(_sUrl, oParams).then((oAxiosReponse) => {
-          // 舍弃 Axios 打包的 response 格式
-          let oReponse = oAxiosReponse.data;
-          return oReponse;
-        });
-      }));
     }
 
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
     // params.headers = oHeaders;
-    let oOptions = {};
     return axios.get(sUrl, oParams).then((oAxiosResponse) => {
       // 舍弃 Axios 打包的 response 格式
       let oResponse = oAxiosResponse.data;
