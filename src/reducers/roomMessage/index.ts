@@ -12,29 +12,70 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
     case 'DID_SEND_ROOM_MESSAGE':
       let iIndex;
       let oMessage = _aMessages.pop();
-      debugger;
-
       if (!oMessage.virtualId) {
         oMessage.loading = false;
-        iIndex = aMessages.length - 1;
-        for(iIndex; iIndex >= 0 ; iIndex--) {
-          let _oMessage = aMessages[iIndex];
-
+        if(0 === aMessages.length) {
+          __aMessages.push(oMessage);
         }
-        __aMessages =  [...aMessages, ...[oMessage]];
+
+        if(0 < aMessages.length && new Date(oMessage.addedTime).getTime() >= new Date(aMessages[aMessages.length - 1].addedTime).getTime()) {
+          __aMessages.push(oMessage);
+        }
+
+
+        if (0 < aMessages.length && new Date(oMessage.addedTime).getTime() < new Date(aMessages[aMessages.length - 1].addedTime).getTime()) {
+          iIndex = aMessages.length - 1;
+          for(iIndex; iIndex >= 0 ; iIndex--) {
+            let _oMessage = aMessages[iIndex];
+            debugger;
+  
+            if (new Date(oMessage.addedTime).getTime() > new Date(_oMessage.addedTime).getTime()) {
+              __aMessages.splice(iIndex + 1, 0, oMessage);
+              break;
+            }
+            if (0 === iIndex) {
+              __aMessages.splice(0, 0, oMessage);
+
+            }
+          }
+  
+        }
+
+        if (iIndex <= 0) {
+          __aMessages.push(oMessage);
+        }
+        
         return __aMessages;
       }
-
-      // 有 virtualId 表示 此 消息 是来自 自己的
-      iIndex = aMessages.length - 1;
-      for(iIndex; iIndex >= 0 ; iIndex--) {
-        let _oMessage = aMessages[iIndex];
-        if (_oMessage.virtualId && oMessage.virtualId && _oMessage.virtualId === oMessage.virtualId) {
-          aMessages[iIndex].loading = false;
-          break;
+    
+      if (oMessage.virtualId) {
+        oMessage.loading = false;
+        if(0 === aMessages.length) {
+          // __aMessages.push(oMessage);
         }
+
+        if (0 < aMessages.length) {
+          iIndex = aMessages.length - 1;
+          for(iIndex; iIndex >= 0 ; iIndex--) {
+            let _oMessage = aMessages[iIndex];
+  
+            if (_oMessage.virtualId && oMessage.virtualId && _oMessage.virtualId === oMessage.virtualId) {
+              aMessages[iIndex].loading = false;
+              break;
+            }
+
+            if (new Date(oMessage.addedTime).getTime() < new Date(_oMessage.addedTime).getTime()) {
+              break;
+            }
+
+          }
+  
+        }
+        __aMessages = aMessages;
       }
-      return aMessages;
+
+
+      return __aMessages;
     default:
       return __aMessages;
   }
