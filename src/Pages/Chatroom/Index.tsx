@@ -29,8 +29,8 @@ import {
   Page as PageHOC
 } from '@/HOCs/';
 
-import Rooms from './Rooms/';
-import Channel from './Channel/';
+import Rooms from './Rooms/Index';
+import Channel from './Channel/Index';
 
 import './Index.scss';
 
