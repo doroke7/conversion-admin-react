@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { Motion, spring, presets } from 'react-motion'
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
+import SocketIOFileUpload from 'socketio-file-upload';
+
 import oIo from "socket.io-client";
 
 import moment from 'moment';
@@ -39,6 +41,7 @@ import {
   MESSAGES,
   SOCKET,
 } from '@/CONFIGS/';
+
 
 moment.locale(MOMENT.LOCALE);
 
