@@ -84,7 +84,7 @@ class Messages extends React.Component {
   public render() {
     console.log(this.state.roomMessages);
     return (
-      <div ref={this.ref} className="messages p-2 overflow-auto" onScroll={this.onScroll}>
+      <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
         {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
         <Message
           role={oMessage.user.role}
