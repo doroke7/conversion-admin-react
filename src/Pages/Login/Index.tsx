@@ -67,8 +67,9 @@ class Login extends React.Component<IProps> {
         throw new Error('THE_USER_PASSWORD_IS_EMPTY');
       }
   
-      store.dispatch(jwtAction.login(oBody));
-      // this.props.history.push('/chatroom');
+      let oState = await store.dispatch(jwtAction.login(oBody));
+      debugger;
+      this.props.history.push('/chatroom');
     } catch (oException) {
       debugger;
       let sMessage = oException.message;

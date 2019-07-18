@@ -135,7 +135,12 @@ class Chatroom extends React.Component<any> {
       if (-1 === oBody.result && -1.05 === oBody.code) {
         throw new Error('THE_GUEST_CAN_NOT_SEND_MESSAGE');
       }
-      let aMessages = [oBody];
+
+      if (-1 === oBody.result || !oBody.data || !oBody.data.messages) {
+        throw new Error('THE_USER_CAN_NOT_SEND_MESSAGE');
+      }
+      
+      let aMessages = oBody.data.messages;
       store.dispatch(roomMessage.didSend(aMessages));
     } catch (oExeption) {
       let sMessage = oExeption.message;
@@ -176,7 +181,7 @@ class Chatroom extends React.Component<any> {
         return;
       }
   
-      let oMessage = {
+      let oMessage: any = {
         roomId: this.state.roomId,
         user: {
           '_id': AuthenticationHelper.getUserId(),
@@ -194,6 +199,12 @@ class Chatroom extends React.Component<any> {
       if (!('' === sText || null === sText || undefined === sText)) {
         let aMessages = [oMessage];
         store.dispatch(roomMessage.willSend(aMessages));
+        let sJwt = AuthenticationHelper.getJwt();
+        let sAccessToken = AuthenticationHelper.getAccessToken();
+
+        oMessage['jwt'] = sJwt;
+        oMessage['accessToken'] = sAccessToken;
+
         SocketHelper.chatroom.emit("MESSAGE", oMessage);
       }
   
