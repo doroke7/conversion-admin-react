@@ -18,7 +18,7 @@ interface IProps {
   setText: any,
   text: string,
   fileRef: any,
-  onOKControlPannel: any,
+  onOKControlPannelModal: any,
 }
 
 class Channel extends React.Component<IProps> {
@@ -37,7 +37,7 @@ class Channel extends React.Component<IProps> {
               onSendMessage={this.props.onSendMessage} 
               onKeyDown={this.props.onKeyDown}
               fileRef={this.props.fileRef}
-              onOKControlPannel={this.props.onOKControlPannel}/>
+              onOKControlPannelModal={this.props.onOKControlPannelModal}/>
           </Col>
           <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
             <Detail />

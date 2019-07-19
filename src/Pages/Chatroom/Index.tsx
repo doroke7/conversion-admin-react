@@ -262,7 +262,7 @@ class Chatroom extends React.Component<any> {
               onSendMessage={this.onSendMessage}
               onKeyDown={this.onKeyDown}
               onLogout={this.onLogout}
-              onOKControlPannel={this.onOKControlPannel}
+              onOKControlPannelModal={this.onOKControlPannelModal}
               />
           </Col>
         </Row>
