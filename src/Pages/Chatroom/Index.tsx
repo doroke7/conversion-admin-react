@@ -60,6 +60,7 @@ class Chatroom extends React.Component<any> {
     this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
+    this.onOKControlPannel = this.onOKControlPannel.bind(this);
     this.state = {
       text: ''
     };
@@ -74,7 +75,7 @@ class Chatroom extends React.Component<any> {
     SocketHelper.chatroom.on("MESSAGE", this.onMessage);
     SocketHelper.chatroom.on("disconnet", () => {});
     this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
-
+    let oSocketIOFileUpload = new SocketIOFileUpload(SocketHelper.chatroom);
   }
 
   public async componentWillMount() {
@@ -96,6 +97,7 @@ class Chatroom extends React.Component<any> {
 
 
   public ref: any;
+  public fileRef: any = React.createRef();
 
   public socketIOFileClient: any;
   public state: any = {
@@ -107,6 +109,10 @@ class Chatroom extends React.Component<any> {
 
 
   public roomId: any;
+
+  public get submitRef() {
+    return ;
+  }
 
   public onEnterRoom(oBody: any){
     let oData = oBody["data"];
@@ -222,6 +228,13 @@ class Chatroom extends React.Component<any> {
   public onLogout() {
     AuthenticationHelper.removeJwt();
   }
+
+  public onOKControlPannel() {
+    console.log(this.fileRef);
+    // let oFile = this.state.file;
+    // oFile.reset();
+
+  }
   
   public componentDidMount(){
     // setInterval(() => {
@@ -243,11 +256,13 @@ class Chatroom extends React.Component<any> {
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
             <Channel 
+              fileRef={this.fileRef}
               text={this.state.text} 
               setText={this.setText} 
               onSendMessage={this.onSendMessage}
               onKeyDown={this.onKeyDown}
               onLogout={this.onLogout}
+              onOKControlPannel={this.onOKControlPannel}
               />
           </Col>
         </Row>

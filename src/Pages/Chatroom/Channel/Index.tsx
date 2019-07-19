@@ -16,7 +16,9 @@ interface IProps {
   onKeyDown: any,
   onLogout: any,
   setText: any,
-  text: string
+  text: string,
+  fileRef: any,
+  onOKControlPannel: any,
 }
 
 class Channel extends React.Component<IProps> {
@@ -33,7 +35,9 @@ class Channel extends React.Component<IProps> {
               text={this.props.text} 
               setText={this.props.setText} 
               onSendMessage={this.props.onSendMessage} 
-              onKeyDown={this.props.onKeyDown}/>
+              onKeyDown={this.props.onKeyDown}
+              fileRef={this.props.fileRef}
+              onOKControlPannel={this.props.onOKControlPannel}/>
           </Col>
           <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
             <Detail />

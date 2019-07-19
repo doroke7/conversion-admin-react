@@ -14,12 +14,15 @@ interface IProps {
   onSendMessage: any,
   onKeyDown: any,
   setText: any,
-  text: any
+  text: any,
+  onOKControlPannel: any,
 }
 
 class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
+    this.fileRef = React.createRef();
+
     this.showImageModal = this.showImageModal.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.onCancel = this.onCancel.bind(this);
@@ -27,6 +30,7 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public props :any;
+  public fileRef: any;
   public state: any ={
     modal: false,
     src: emptyImage,
@@ -121,7 +125,11 @@ class ControlPannel extends React.Component<IProps>  {
           </div>
         </span>
         <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-          <input type="file" className="file position-absolute" onChange={this.onFileChange}/>
+          <input
+            type="file" 
+            className="file position-absolute"
+            ref={this.props.fileRef}
+            onChange={this.onFileChange}/>
           <div>
             <i className="iconfont icon-image image"></i>
           </div>
@@ -135,6 +143,7 @@ class ControlPannel extends React.Component<IProps>  {
           onCancel={this.onCancel}
           centered={true}
           cancelText="取消"
+          onOk={this.props.onOKControlPannel}
           okText="送出"
         >
           <div className="preview-image-wrapper">
