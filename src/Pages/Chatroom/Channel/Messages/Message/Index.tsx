@@ -1,4 +1,6 @@
 import React from 'react';
+import htmlReactParser from 'html-react-parser';
+
 import Spin from 'antd/es/spin';
 
 import {
@@ -67,7 +69,7 @@ class Message extends React.Component<IProps> {
               {sSrc ? (<img src={sSrc}/>) : null}
             </div>
             <div className="text">
-              {this.props.text}
+              {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}
             </div>
           </span>
         </span>
