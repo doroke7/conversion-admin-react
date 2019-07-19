@@ -78,7 +78,9 @@ class Chatroom extends React.Component<any> {
     this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
     let oSocketIOFileUpload = new SocketIOFileUpload(SocketHelper.chatroom);
 
+    this.socketIOFileClient.on("start", this.onStart);
     this.socketIOFileClient.on("stream", this.onStream);
+    this.socketIOFileClient.on("complete", this.onComplete);
   }
 
   public async componentWillMount() {
@@ -88,8 +90,18 @@ class Chatroom extends React.Component<any> {
     SocketHelper.chatroom.emit("ENTER ROOM", void 0);
   }
 
+  public onStart(oFileInfo: any) {
+    console.log('start: ' , oFileInfo);
+
+  }
+
   public onStream(oFileInfo: any) {
     console.log('rate: ' + (oFileInfo.sent / oFileInfo.size) * 100 + '%');
+
+  }
+
+  public onComplete(oFileInfo: any) {
+    console.log('complete: ' , oFileInfo);
 
   }
 
