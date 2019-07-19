@@ -60,7 +60,8 @@ class Chatroom extends React.Component<any> {
     this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    this.onOKControlPannel = this.onOKControlPannel.bind(this);
+    this.onOKControlPannelModal = this.onOKControlPannelModal.bind(this);
+    this.onStream = this.onStream.bind(this);
     this.state = {
       text: ''
     };
@@ -76,6 +77,8 @@ class Chatroom extends React.Component<any> {
     SocketHelper.chatroom.on("disconnet", () => {});
     this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
     let oSocketIOFileUpload = new SocketIOFileUpload(SocketHelper.chatroom);
+
+    this.socketIOFileClient.on("stream", this.onStream);
   }
 
   public async componentWillMount() {
@@ -83,6 +86,11 @@ class Chatroom extends React.Component<any> {
     store.dispatch(jwtAction.refresh());
 
     SocketHelper.chatroom.emit("ENTER ROOM", void 0);
+  }
+
+  public onStream(oFileInfo: any) {
+    console.log('rate: ' + (oFileInfo.sent / oFileInfo.size) * 100 + '%');
+
   }
 
   public onLoginViaAccessToken(oBody: any) {
@@ -230,7 +238,11 @@ class Chatroom extends React.Component<any> {
   }
 
   public onOKControlPannelModal() {
-    console.log(this.fileRef);
+    let oFile = this.fileRef.current;
+    this.socketIOFileClient.upload(oFile, {
+      data: { }
+    });
+
     // let oFile = this.state.file;
     // oFile.reset();
 
