@@ -40,6 +40,7 @@
     "sass-loader": "^7.1.0",
     "socket.io-client": "^2.2.0",
     "socket.io-file-client": "^2.0.2",
+    "socketio-file-upload": "^0.7.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "thread-loader": "^2.1.2",

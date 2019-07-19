@@ -27,9 +27,8 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
           iIndex = aMessages.length - 1;
           for(iIndex; iIndex >= 0 ; iIndex--) {
             let _oMessage = aMessages[iIndex];
-            debugger;
   
-            if (new Date(oMessage.addedTime).getTime() > new Date(_oMessage.addedTime).getTime()) {
+            if (new Date(oMessage.addedTime).getTime() > new Date(_oMessage.addedTime).getTime() && !_oMessage.loading) {
               __aMessages.splice(iIndex + 1, 0, oMessage);
               break;
             }

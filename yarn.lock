@@ -6805,6 +6805,11 @@ socket.io-parser@~3.3.0:
     debug "~3.1.0"
     isarray "2.0.1"
 
+socketio-file-upload@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/socketio-file-upload/-/socketio-file-upload-0.7.0.tgz#aec62bb20051cbc6019792ff4dcc3907101eb466"
+  integrity sha512-eKL6LAPiDH9xIsn2eP0ZDzw/EUsnDiZxuDN6TpyPcsaS42Q5wt5VmeN6CGcPsMx57UMQ6jxjIljoBTnCVsG8Qw==
+
 sockjs-client@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/sockjs-client/-/sockjs-client-1.3.0.tgz#12fc9d6cb663da5739d3dc5fb6e8687da95cb177"

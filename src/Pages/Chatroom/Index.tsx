@@ -89,8 +89,6 @@ class Chatroom extends React.Component<any> {
       AuthenticationHelper.setJwt(oBody.jwt);
       let sJwt = AuthenticationHelper.getJwt();
     
-
-
     }
 
     
