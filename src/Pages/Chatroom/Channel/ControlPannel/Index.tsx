@@ -15,7 +15,7 @@ interface IProps {
   onKeyDown: any,
   setText: any,
   text: any,
-  onOKControlPannel: any,
+  onOKControlPannelModal: any,
 }
 
 class ControlPannel extends React.Component<IProps>  {
@@ -143,7 +143,7 @@ class ControlPannel extends React.Component<IProps>  {
           onCancel={this.onCancel}
           centered={true}
           cancelText="取消"
-          onOk={this.props.onOKControlPannel}
+          onOk={this.props.onOKControlPannelModal}
           okText="送出"
         >
           <div className="preview-image-wrapper">

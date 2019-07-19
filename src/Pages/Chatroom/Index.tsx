@@ -229,7 +229,7 @@ class Chatroom extends React.Component<any> {
     AuthenticationHelper.removeJwt();
   }
 
-  public onOKControlPannel() {
+  public onOKControlPannelModal() {
     console.log(this.fileRef);
     // let oFile = this.state.file;
     // oFile.reset();
