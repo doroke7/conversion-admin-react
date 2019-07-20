@@ -203,6 +203,7 @@ class Chatroom extends React.Component<any> {
             <Channel 
               fileRef={this.fileRef}
               onLogout={this.onLogout}
+              roomId={this.state.roomId}
               onOKControlPannelModal={this.onOKControlPannelModal}
               />
           </Col>

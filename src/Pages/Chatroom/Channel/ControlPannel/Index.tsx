@@ -34,10 +34,7 @@ const { TextArea } = Input;
 
 interface IProps {
   // className?: string | null;
-  onSendMessage: any,
-  onKeyDown: any,
-  setText: any,
-  text: any,
+  roomId: any,
   onOKControlPannelModal: any,
 }
 
@@ -137,7 +134,7 @@ class ControlPannel extends React.Component<IProps>  {
 
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
-    
+
     if ('' === sText || null === sText || undefined === sText) {
       return;
     }
@@ -158,7 +155,7 @@ class ControlPannel extends React.Component<IProps>  {
       }
   
       let oMessage: any = {
-        roomId: this.state.roomId,
+        roomId: this.props.roomId,
         user: {
           '_id': AuthenticationHelper.getUserId(),
           'nickname': AuthenticationHelper.getUserNickname(),
@@ -181,6 +178,7 @@ class ControlPannel extends React.Component<IProps>  {
         oMessage['jwt'] = sJwt;
         oMessage['accessToken'] = sAccessToken;
 
+        debugger;
         this.chatroomSocket.emit("MESSAGE", oMessage);
       }
   
@@ -259,15 +257,18 @@ class ControlPannel extends React.Component<IProps>  {
   }
 }
 
-const SocketWrapper = (...oProps: any) => (
-  <Socket.Consumer>
-    {(oContext) => (
-      <ControlPannel
-        context={oContext}>
-        {...oProps}             
-      </ControlPannel>
-    )}
-  </Socket.Consumer>
-);
 
+function SocketWrapper(oProps: any) {
+  return (
+    <Socket.Consumer>
+      {(oContext) => (
+        <ControlPannel
+          context={oContext}
+          {...oProps}
+          >            
+        </ControlPannel>
+      )}
+    </Socket.Consumer>
+  )
+}
 export default SocketWrapper;
