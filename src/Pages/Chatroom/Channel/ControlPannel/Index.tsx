@@ -54,6 +54,7 @@ class ControlPannel extends React.Component<IProps>  {
   public props :any;
   public fileRef: any;
   public chatroomSocket: any;
+  public chatroomFileSocket: any;
   public state: any = {
     modal: false,
     src: emptyImage,
@@ -178,12 +179,11 @@ class ControlPannel extends React.Component<IProps>  {
         oMessage['jwt'] = sJwt;
         oMessage['accessToken'] = sAccessToken;
 
-        debugger;
         this.chatroomSocket.emit("MESSAGE", oMessage);
       }
   
 
-    } catch (sException) {
+    } catch (oException) {
 
     } finally {
       this.setState({
@@ -192,9 +192,20 @@ class ControlPannel extends React.Component<IProps>  {
     }
   }
 
+  public onOK() {
+    let oFile = this.fileRef.current;
+    this.chatroomFileSocket.upload(oFile, {
+      data: { }
+    });
+
+    // let oFile = this.state.file;
+    // oFile.reset();
+
+  }
+
   public componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
-
+    this.chatroomFileSocket = this.context.chatroomFileSocket;
   }
 
   public render(){
@@ -245,7 +256,7 @@ class ControlPannel extends React.Component<IProps>  {
           onCancel={this.onCancel}
           centered={true}
           cancelText="取消"
-          onOk={this.props.onOKControlPannelModal}
+          onOk={this.onOK}
           okText="送出"
         >
           <div className="preview-image-wrapper">
@@ -258,7 +269,7 @@ class ControlPannel extends React.Component<IProps>  {
 }
 
 
-function SocketWrapper(oProps: any) {
+function ControlPannelWrapper(oProps: any) {
   return (
     <Socket.Consumer>
       {(oContext) => (
@@ -271,4 +282,4 @@ function SocketWrapper(oProps: any) {
     </Socket.Consumer>
   )
 }
-export default SocketWrapper;
+export default ControlPannelWrapper;

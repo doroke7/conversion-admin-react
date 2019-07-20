@@ -15,7 +15,6 @@ interface IProps {
   onLogout: any,
   fileRef: any,
   roomId: any,
-  onOKControlPannelModal: any,
 }
 
 class Channel extends React.Component<IProps> {
@@ -30,8 +29,9 @@ class Channel extends React.Component<IProps> {
             <ControlPannel 
               className="position-absolute" 
               fileRef={this.props.fileRef}
-              roomId={this.props.roomId}
-              onOKControlPannelModal={this.props.onOKControlPannelModal}/>
+              roomId={this.props.roomId}>
+              
+            </ControlPannel>
           </Col>
           <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
             <Detail />

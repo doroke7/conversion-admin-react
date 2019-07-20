@@ -51,7 +51,6 @@ class Chatroom extends React.Component<any> {
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    this.onOKControlPannelModal = this.onOKControlPannelModal.bind(this);
     this.onStream = this.onStream.bind(this);
 
   }
@@ -169,17 +168,6 @@ class Chatroom extends React.Component<any> {
   public onLogout() {
     AuthenticationHelper.removeJwt();
   }
-
-  public onOKControlPannelModal() {
-    let oFile = this.fileRef.current;
-    this.chatroomFileSocket.upload(oFile, {
-      data: { }
-    });
-
-    // let oFile = this.state.file;
-    // oFile.reset();
-
-  }
   
   public componentDidMount(){
     // setInterval(() => {
@@ -204,7 +192,6 @@ class Chatroom extends React.Component<any> {
               fileRef={this.fileRef}
               onLogout={this.onLogout}
               roomId={this.state.roomId}
-              onOKControlPannelModal={this.onOKControlPannelModal}
               />
           </Col>
         </Row>
