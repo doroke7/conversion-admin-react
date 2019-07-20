@@ -4,6 +4,8 @@ import htmlReactParser from 'html-react-parser';
 import Spin from 'antd/es/spin';
 import Progress from 'antd/es/progress';
 
+import store from '@/store';
+
 import {
   AuthenticationHelper
 } from '@/Helpers';
@@ -26,11 +28,33 @@ interface IProps {
   key?: any;
   messageId?: any;
   loading?: any;
+  uploaderId?: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
 
 class Message extends React.Component<IProps> {
+
+  public state: any = {
+    uploaders: {}
+  };
+
+  public componentWillMount() {
+    store.subscribe(() => {
+      let oState = store.getState();
+      let oUploaders = oState.uploaders;
+
+      if (oUploaders[this.props.uploaderId]) {
+        let _oState = {
+          uploaders: {
+            [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+          },
+        };
+        console.log(_oState);
+        this.setState(_oState);
+      }
+    });
+  }
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
     if (oNextProps.messageId === this.props.messageId && oNextProps.loading === this.props.loading) {
@@ -44,7 +68,8 @@ class Message extends React.Component<IProps> {
     let position = _sUserId === sUserId ? 'right' : 'left';
     let sIcon = (this.props.icon && 0 === this.props.icon.indexOf("http") ? this.props.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.icon)
     let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
-  
+    let sUploaderId = this.props.uploaderId;
+
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || sSrc ? "d-none" : "" )}>
@@ -68,7 +93,7 @@ class Message extends React.Component<IProps> {
           <span className={"content text-left d-inline-block"}>
             <div className="image">
               {sSrc ? (<img src={sSrc}/>) : null}
-              <Progress type="dashboard" percent={75} />
+              {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? <Progress type="dashboard" percent={56} /> : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}

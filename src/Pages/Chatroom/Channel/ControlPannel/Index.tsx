@@ -217,8 +217,9 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public onStart(oFileInfo: any) {
-    console.log('onStart uploading', oFileInfo);
-
+    let oUploaders = {
+      [oFileInfo.uploadId]: oFileInfo
+    };
     let oMessage: any = {
       roomId: this.props.roomId,
       user: {
@@ -229,6 +230,7 @@ class ControlPannel extends React.Component<IProps>  {
         'url': AuthenticationHelper.getUserUrl(),
       },
       text: this.state.text,
+      uploaderId: oFileInfo.uploadId,
       src: this.state.src,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
       virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
@@ -237,6 +239,7 @@ class ControlPannel extends React.Component<IProps>  {
 
     let aMessages = [oMessage];
     store.dispatch(roomMessage.willSend(aMessages));
+    store.dispatch(uploaderAction.willSend(oUploaders));
     let sJwt = AuthenticationHelper.getJwt();
     let sAccessToken = AuthenticationHelper.getAccessToken();
     oMessage['jwt'] = sJwt;
@@ -246,27 +249,28 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public onStream(oFileInfo: any) {
-    console.log('onStream uploading', oFileInfo);
+    let oUploaders = {
+      [oFileInfo.uploadId]: oFileInfo
+    };
+    store.dispatch(uploaderAction.isSending(oUploaders));
 
   }
 
   public onComplete(oFileInfo: any) {
-    console.log('onComplete uploading', oFileInfo);
 
   }
 
   public onError(oError: any) {
-    console.log('onComplete uploading', oError);
 
   }
 
   public onAbort(oFileInfo: any){
-    console.log('onComplete uploading', oFileInfo);
 
   }
 
 
   public componentWillMount() {
+
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
     this.chatroomUploaderSocket = this.props.context.chatroomUploader;

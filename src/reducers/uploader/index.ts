@@ -1,10 +1,14 @@
 const oUploaderActioneducer = (oUploaders: any = {}, oAction: any) => {
   let _oUploaders = oAction.payload;
-  oUploaders = { ...oUploaders, ..._oUploaders}
   switch (oAction.type) {
-    case 'WILL_SEND_FILE':
+    case 'WILL_SEND':
+      oUploaders = { ...oUploaders, ..._oUploaders}
       return oUploaders;
-    case 'DID_SEND_FILE':
+    case 'IS_SENDING':
+      debugger;
+      oUploaders = { ...oUploaders, ..._oUploaders}
+      return oUploaders;    
+    case 'DID_SEND':
       return oUploaders;
     default:
       return oUploaders;
