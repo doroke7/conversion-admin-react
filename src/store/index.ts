@@ -2,17 +2,17 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 import {
-  jwt,
-  counter,
-  roomMessage,
-  word,
+  jwtReducer,
+  uploaderReducer,
+  roomMessageReducer,
+  wordReducer,
 } from '@/reducers/';
 
 const oReducer = combineReducers({
-  jwt: jwt,
-  count: counter,
-  roomMessages: roomMessage,
-  words: word,
+  jwt: jwtReducer,
+  uploaders: uploaderReducer,
+  roomMessages: roomMessageReducer,
+  words: wordReducer,
 });
 
 const oStore = createStore(

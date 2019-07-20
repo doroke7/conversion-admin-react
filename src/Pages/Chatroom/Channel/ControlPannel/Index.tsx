@@ -17,6 +17,7 @@ import {
 
 import {
   roomMessage,
+  uploaderAction,
 } from '@/actions/';
 
 import './Index.scss';
@@ -238,7 +239,6 @@ class ControlPannel extends React.Component<IProps>  {
     store.dispatch(roomMessage.willSend(aMessages));
     let sJwt = AuthenticationHelper.getJwt();
     let sAccessToken = AuthenticationHelper.getAccessToken();
-
     oMessage['jwt'] = sJwt;
     oMessage['accessToken'] = sAccessToken;
 

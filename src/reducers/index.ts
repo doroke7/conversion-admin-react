@@ -1,11 +1,12 @@
-import jwt from './jwt/index';
-import counter from './counter/index';
-import roomMessage from './roomMessage/index';
-import word from './word/index';
+import jwtReducer from './jwt/index';
+import uploaderReducer from './uploader/index';
+
+import roomMessageReducer from './roomMessage/index';
+import wordReducer from './word/index';
 
 export {
-  jwt,
-  counter,
-  roomMessage,
-  word,
+  jwtReducer,
+  uploaderReducer,
+  roomMessageReducer,
+  wordReducer,
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import htmlReactParser from 'html-react-parser';
 
 import Spin from 'antd/es/spin';
+import Progress from 'antd/es/progress';
 
 import {
   AuthenticationHelper
@@ -67,6 +68,7 @@ class Message extends React.Component<IProps> {
           <span className={"content text-left d-inline-block"}>
             <div className="image">
               {sSrc ? (<img src={sSrc}/>) : null}
+              <Progress type="dashboard" percent={75} />
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}
