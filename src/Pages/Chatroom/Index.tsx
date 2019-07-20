@@ -34,7 +34,6 @@ import './Index.scss';
 import {
   MOMENT,
   MESSAGES,
-  SOCKET,
 } from '@/CONFIGS/';
 
 
@@ -51,8 +50,6 @@ class Chatroom extends React.Component<any> {
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    this.onStream = this.onStream.bind(this);
-
   }
 
   public static contextType = Socket;
@@ -67,11 +64,6 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on("MESSAGE", this.onMessage);
     this.chatroomSocket.on("disconnet", () => {});
     // this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
-    let oSocketIOFileUpload = new SocketIOFileUpload(this.chatroomSocket);
-
-    this.chatroomFileSocket.on("start", this.onStart);
-    this.chatroomFileSocket.on("stream", this.onStream);
-    this.chatroomFileSocket.on("complete", this.onComplete);
 
     await store.dispatch(jwtAction.accessTokenToJwt());
     store.dispatch(jwtAction.refresh());
@@ -79,20 +71,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.emit("ENTER ROOM", void 0);
   }
 
-  public onStart(oFileInfo: any) {
-    console.log('start: ' , oFileInfo);
 
-  }
-
-  public onStream(oFileInfo: any) {
-    console.log('rate: ' + (oFileInfo.sent / oFileInfo.size) * 100 + '%');
-
-  }
-
-  public onComplete(oFileInfo: any) {
-    console.log('complete: ' , oFileInfo);
-
-  }
 
   public ref: any;
   public fileRef: any = React.createRef();

@@ -42,11 +42,11 @@ class Message extends React.Component<IProps> {
     let _sUserId = this.props.userId;
     let position = _sUserId === sUserId ? 'right' : 'left';
     let sIcon = (this.props.icon && 0 === this.props.icon.indexOf("http") ? this.props.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.icon)
-    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
+    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
   
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
-        <span className={"loading-wrapper d-inline-block align-bottom " + (this.props.loading ? "" : "d-none")}>
+        <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || sSrc ? "d-none" : "" )}>
           <Spin indicator={
             <div className="loading">
               <div>

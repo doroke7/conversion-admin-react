@@ -50,6 +50,13 @@ class ControlPannel extends React.Component<IProps>  {
     this.onOK = this.onOK.bind(this);
     this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
+
+    this.onStart = this.onStart.bind(this);
+    this.onStream = this.onStream.bind(this);
+    this.onComplete = this.onComplete.bind(this);
+    this.onError = this.onError.bind(this);
+    this.onAbort = this.onAbort.bind(this);
+
   }
 
   public static contextType = Socket;
@@ -123,7 +130,6 @@ class ControlPannel extends React.Component<IProps>  {
   public onOK() {
     let oFile = this.ref.current;
 
-    oFile.value = null;
     this.setState({
       modal: false
     });
@@ -134,36 +140,8 @@ class ControlPannel extends React.Component<IProps>  {
       });
     }, 200);
 
-    // this.chatroomFileSocket.upload(oFile, {
-    //   data: { }
-    // });
-
-    debugger;
-    this.chatroomUploaderSocket.submitFiles(oFile);
-
-
-    this.chatroomUploaderSocket.addEventListener('choose', (a: any) => {
-      console.log('choose', a);
-    });
-
-    this.chatroomUploaderSocket.addEventListener('start', (a: any) => {
-      console.log('start', a);
-    });
-
-    this.chatroomUploaderSocket.addEventListener('progress', (a: any) => {
-      console.log('progress', a);
-    });
-
-    this.chatroomUploaderSocket.addEventListener('load', (a: any) => {
-      console.log('load', a);
-    });
-
-    this.chatroomUploaderSocket.addEventListener('complate', (a: any) => {
-      console.log('complate', a);
-    });
-    // let oFile = this.state.file;
-    // oFile.reset();
-
+    this.chatroomFileSocket.upload(oFile);
+    oFile.value = null;
   }
 
   public showImageModal(){
@@ -237,6 +215,55 @@ class ControlPannel extends React.Component<IProps>  {
     }
   }
 
+  public onStart(oFileInfo: any) {
+    console.log('onStart uploading', oFileInfo);
+
+    let oMessage: any = {
+      roomId: this.props.roomId,
+      user: {
+        '_id': AuthenticationHelper.getUserId(),
+        'nickname': AuthenticationHelper.getUserNickname(),
+        'role': AuthenticationHelper.getUserRole(),
+        'level': AuthenticationHelper.getUserLevel(),
+        'url': AuthenticationHelper.getUserUrl(),
+      },
+      text: this.state.text,
+      src: this.state.src,
+      addedTime: moment(new Date()).format(MOMENT.FORMAT),
+      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
+      loading: true,
+    };
+
+    let aMessages = [oMessage];
+    store.dispatch(roomMessage.willSend(aMessages));
+    let sJwt = AuthenticationHelper.getJwt();
+    let sAccessToken = AuthenticationHelper.getAccessToken();
+
+    oMessage['jwt'] = sJwt;
+    oMessage['accessToken'] = sAccessToken;
+
+    // this.chatroomSocket.emit("MESSAGE", oMessage);
+  }
+
+  public onStream(oFileInfo: any) {
+    console.log('onStream uploading', oFileInfo);
+
+  }
+
+  public onComplete(oFileInfo: any) {
+    console.log('onComplete uploading', oFileInfo);
+
+  }
+
+  public onError(oError: any) {
+    console.log('onComplete uploading', oError);
+
+  }
+
+  public onAbort(oFileInfo: any){
+    console.log('onComplete uploading', oFileInfo);
+
+  }
 
 
   public componentWillMount() {
@@ -244,6 +271,13 @@ class ControlPannel extends React.Component<IProps>  {
     this.chatroomFileSocket = this.props.context.chatroomFile;
     this.chatroomUploaderSocket = this.props.context.chatroomUploader;
 
+    this.chatroomFileSocket.on('start', this.onStart);
+    this.chatroomFileSocket.on('stream', this.onStream);
+    this.chatroomFileSocket.on('complete', this.onComplete);
+    this.chatroomFileSocket.on('error', this.onError);
+    this.chatroomFileSocket.on('abort', this.onAbort);
+
+    
   }
 
   public render(){
