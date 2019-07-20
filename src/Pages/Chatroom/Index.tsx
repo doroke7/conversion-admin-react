@@ -189,7 +189,6 @@ class Chatroom extends React.Component<any> {
           </Col>
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
             <Channel 
-              fileRef={this.fileRef}
               onLogout={this.onLogout}
               roomId={this.state.roomId}
               />

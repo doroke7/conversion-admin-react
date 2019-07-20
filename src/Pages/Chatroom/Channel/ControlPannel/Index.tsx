@@ -42,10 +42,12 @@ class ControlPannel extends React.Component<IProps>  {
   constructor(props: any) {
     super(props);
     this.fileRef = React.createRef();
+    this.ref = React.createRef();
 
     this.showImageModal = this.showImageModal.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.onCancel = this.onCancel.bind(this);
+    this.onOK = this.onOK.bind(this);
     this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
   }
@@ -53,6 +55,7 @@ class ControlPannel extends React.Component<IProps>  {
   public static contextType = Socket;
   public props :any;
   public fileRef: any;
+  public ref: any;
   public chatroomSocket: any;
   public chatroomFileSocket: any;
   public state: any = {
@@ -101,18 +104,13 @@ class ControlPannel extends React.Component<IProps>  {
     });
   }
 
-  public onOK(oEvent: any) {
-    let oFile = this.state.file;
-    oFile.reset();
-    // this.moreFlag = false;
-    // let oFile: any =  $("#files")[0];
-    // oFile.reset();
-  }
-
   public onCancel() {
+    let oFile = this.ref.current;
+
     this.setState({
       modal: false,
     });
+    oFile.value = null;
 
     setTimeout(() => {
       this.setState({
@@ -120,6 +118,29 @@ class ControlPannel extends React.Component<IProps>  {
       });
     }, 200);
   };
+
+  public onOK() {
+    let oFile = this.ref.current;
+
+    oFile.value = null;
+    this.setState({
+      modal: false
+    });
+
+    setTimeout(() => {
+      this.setState({
+        src: emptyImage,
+      });
+    }, 200);
+
+    this.chatroomFileSocket.upload(oFile, {
+      data: { }
+    });
+
+    // let oFile = this.state.file;
+    // oFile.reset();
+
+  }
 
   public showImageModal(){
     this.setState({
@@ -192,16 +213,7 @@ class ControlPannel extends React.Component<IProps>  {
     }
   }
 
-  public onOK() {
-    let oFile = this.fileRef.current;
-    this.chatroomFileSocket.upload(oFile, {
-      data: { }
-    });
 
-    // let oFile = this.state.file;
-    // oFile.reset();
-
-  }
 
   public componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
@@ -241,7 +253,7 @@ class ControlPannel extends React.Component<IProps>  {
           <input
             type="file" 
             className="file position-absolute"
-            ref={this.props.fileRef}
+            ref={this.ref}
             onChange={this.onFileChange}/>
           <div>
             <i className="iconfont icon-image image"></i>

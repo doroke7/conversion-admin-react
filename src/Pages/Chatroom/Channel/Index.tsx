@@ -13,7 +13,6 @@ import Messages from './Messages/Index';
 interface IProps {
   // className?: string | null;
   onLogout: any,
-  fileRef: any,
   roomId: any,
 }
 
@@ -28,7 +27,6 @@ class Channel extends React.Component<IProps> {
             <Messages />
             <ControlPannel 
               className="position-absolute" 
-              fileRef={this.props.fileRef}
               roomId={this.props.roomId}>
               
             </ControlPannel>
