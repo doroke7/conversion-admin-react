@@ -11,6 +11,7 @@ import {
 import './Index.scss';
 
 import emptyImage from '@/images/empty-image.gif';
+const ENTER_KEY_CODE = 13;
 
 interface IProps {
   // className?: string | null;
@@ -97,6 +98,12 @@ class ControlPannel extends React.Component<IProps>  {
     this.setState({
       modal: true,
     });
+  }
+
+  public onKeyDown(oEvent: any) {
+    if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
+      oEvent.preventDefault();
+    }
   }
 
   public componentDidMount() {

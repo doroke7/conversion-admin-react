@@ -72,7 +72,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on("connect", () => {});
     this.chatroomSocket.on("MESSAGE", this.onMessage);
     this.chatroomSocket.on("disconnet", () => {});
-    this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
+    // this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
     let oSocketIOFileUpload = new SocketIOFileUpload(this.chatroomSocket);
 
     this.chatroomFileSocket.on("start", this.onStart);
@@ -170,11 +170,7 @@ class Chatroom extends React.Component<any> {
 
     }
   }
-  public onKeyDown(oEvent: any) {
-    if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
-      oEvent.preventDefault();
-    }
-  }
+
 
   public setText(oEvent: any) {
     this.setState({
@@ -280,7 +276,6 @@ class Chatroom extends React.Component<any> {
               text={this.state.text} 
               setText={this.setText} 
               onSendMessage={this.onSendMessage}
-              onKeyDown={this.onKeyDown}
               onLogout={this.onLogout}
               onOKControlPannelModal={this.onOKControlPannelModal}
               />

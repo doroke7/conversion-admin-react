@@ -13,7 +13,6 @@ import Messages from './Messages/Index';
 interface IProps {
   // className?: string | null;
   onSendMessage: any,
-  onKeyDown: any,
   onLogout: any,
   setText: any,
   text: string,
@@ -35,7 +34,6 @@ class Channel extends React.Component<IProps> {
               text={this.props.text} 
               setText={this.props.setText} 
               onSendMessage={this.props.onSendMessage} 
-              onKeyDown={this.props.onKeyDown}
               fileRef={this.props.fileRef}
               onOKControlPannelModal={this.props.onOKControlPannelModal}/>
           </Col>
