@@ -32,6 +32,7 @@ class ControlPannel extends React.Component<IProps>  {
 
   }
 
+  public static contextType = Socket;
   public props :any;
   public fileRef: any;
   public state: any ={
@@ -98,70 +99,79 @@ class ControlPannel extends React.Component<IProps>  {
     });
   }
 
+  public componentDidMount() {
+    console.log(103,this.props.context);
+  }
+
   public render(){
     return (
-      <Socket.Consumer>
-        {
-          (oContext) => (
-          <div className={"control-pannel pb-1 pt-1" + (this.props.className ? " " + this.props.className : "")}>
-            <span className="game-wrapper d-inline-block text-center pl-1 pr-1">
-              <div>
-                <i className="iconfont icon-game game"></i>
-              </div>
-              <div>
-                游戏
-              </div>
-            </span>
-            <span className="d-inline-block textarea-wrapper">
-              <TextArea
-                className={"texarea"}
-                rows={2} 
-                value={this.props.text} 
-                onChange={this.props.setText} 
-                onKeyUp={this.props.onSendMessage}
-                onKeyDown={this.props.onKeyDown}
-                />
-            </span>
-            <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.props.onSendMessage}>
-              <div>
-                <i className="iconfont icon-telegram send"></i>
-              </div>
-              <div>
-                发送
-              </div>
-            </span>
-            <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-              <input
-                type="file" 
-                className="file position-absolute"
-                ref={this.props.fileRef}
-                onChange={this.onFileChange}/>
-              <div>
-                <i className="iconfont icon-image image"></i>
-              </div>
-              <div>
-                档案
-              </div>
-            </span>
-            <Modal wrapClassName="control-pannel"
-              visible={this.state.modal}
-              closable={false}
-              onCancel={this.onCancel}
-              centered={true}
-              cancelText="取消"
-              onOk={this.props.onOKControlPannelModal}
-              okText="送出"
-            >
-              <div className="preview-image-wrapper">
-                <img className="preview-image" src={this.state.src} />
-              </div>
-            </Modal>
+      <div className={"control-pannel pb-1 pt-1" + (this.props.className ? " " + this.props.className : "")}>
+        <span className="game-wrapper d-inline-block text-center pl-1 pr-1">
+          <div>
+            <i className="iconfont icon-game game"></i>
           </div>
-          )
-        }
-      </Socket.Consumer>
+          <div>
+            游戏
+          </div>
+        </span>
+        <span className="d-inline-block textarea-wrapper">
+          <TextArea
+            className={"texarea"}
+            rows={2} 
+            value={this.props.text} 
+            onChange={this.props.setText} 
+            onKeyUp={this.props.onSendMessage}
+            onKeyDown={this.props.onKeyDown}
+            />
+        </span>
+        <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.props.onSendMessage}>
+          <div>
+            <i className="iconfont icon-telegram send"></i>
+          </div>
+          <div>
+            发送
+          </div>
+        </span>
+        <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+          <input
+            type="file" 
+            className="file position-absolute"
+            ref={this.props.fileRef}
+            onChange={this.onFileChange}/>
+          <div>
+            <i className="iconfont icon-image image"></i>
+          </div>
+          <div>
+            档案
+          </div>
+        </span>
+        <Modal wrapClassName="control-pannel"
+          visible={this.state.modal}
+          closable={false}
+          onCancel={this.onCancel}
+          centered={true}
+          cancelText="取消"
+          onOk={this.props.onOKControlPannelModal}
+          okText="送出"
+        >
+          <div className="preview-image-wrapper">
+            <img className="preview-image" src={this.state.src} />
+          </div>
+        </Modal>
+      </div>
     );
   }
 }
 
-export default ControlPannel;
+const Wrapper = (...oProps: any) => (
+  <Socket.Consumer>
+    {(oContext) => (
+      <ControlPannel
+        context={oContext}>
+        {...oProps}             
+      </ControlPannel>
+    )}
+  </Socket.Consumer>
+);
+
+export default Wrapper;

@@ -4,14 +4,15 @@ import { Motion, spring, presets } from 'react-motion'
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
 import SocketIOFileUpload from 'socketio-file-upload';
-
 import oIo from "socket.io-client";
-
 import moment from 'moment';
 
 import {
+  Socket
+} from '@/Commons';
+
+import {
   AuthenticationHelper,
-  SocketHelper,
 } from '@/Helpers/';
 
 import store from '@/store';
@@ -26,11 +27,6 @@ import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 import Message from 'antd/es/message';
 
-
-import {
-  Page as PageHOC
-} from '@/HOCs/';
-
 import Rooms from './Rooms/Index';
 import Channel from './Channel/Index';
 
@@ -44,8 +40,6 @@ import {
 
 
 moment.locale(MOMENT.LOCALE);
-
-let sChatroomUrl = SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT) ? ":" + SOCKET.PORT : "") + "/chatroom";
 
 const ENTER_KEY_CODE = 13;
 
@@ -65,29 +59,30 @@ class Chatroom extends React.Component<any> {
     this.state = {
       text: ''
     };
-    
-    let oChatroomSocket = oIo(sChatroomUrl);
-    SocketHelper.chatroom = oChatroomSocket;
+  }
 
+  public static contextType = Socket;
 
-    SocketHelper.chatroom.on("ENTER ROOM", this.onEnterRoom);
-    SocketHelper.chatroom.on("SHOW MESSAGE", this.onShowMessage);
-    SocketHelper.chatroom.on("connect", () => {});
-    SocketHelper.chatroom.on("MESSAGE", this.onMessage);
-    SocketHelper.chatroom.on("disconnet", () => {});
-    this.socketIOFileClient = new SocketIOFileClient(SocketHelper.chatroom);
-    let oSocketIOFileUpload = new SocketIOFileUpload(SocketHelper.chatroom);
+  public async componentWillMount() {
+    this.chatroomSocket = this.props.context.chatroom;
+    this.chatroomSocket
+
+    this.chatroomSocket.on("ENTER ROOM", this.onEnterRoom);
+    this.chatroomSocket.on("SHOW MESSAGE", this.onShowMessage);
+    this.chatroomSocket.on("connect", () => {});
+    this.chatroomSocket.on("MESSAGE", this.onMessage);
+    this.chatroomSocket.on("disconnet", () => {});
+    this.socketIOFileClient = new SocketIOFileClient(this.chatroomSocket);
+    let oSocketIOFileUpload = new SocketIOFileUpload(this.chatroomSocket);
 
     this.socketIOFileClient.on("start", this.onStart);
     this.socketIOFileClient.on("stream", this.onStream);
     this.socketIOFileClient.on("complete", this.onComplete);
-  }
 
-  public async componentWillMount() {
     await store.dispatch(jwtAction.accessTokenToJwt());
     store.dispatch(jwtAction.refresh());
 
-    SocketHelper.chatroom.emit("ENTER ROOM", void 0);
+    this.chatroomSocket.emit("ENTER ROOM", void 0);
   }
 
   public onStart(oFileInfo: any) {
@@ -110,15 +105,14 @@ class Chatroom extends React.Component<any> {
       AuthenticationHelper.setJwt(oBody.jwt);
       let sJwt = AuthenticationHelper.getJwt();
     
-    }
-
-    
+    }    
   }
 
 
   public ref: any;
   public fileRef: any = React.createRef();
-
+  public props :any;
+  public chatroomSocket: any;
   public socketIOFileClient: any;
   public state: any = {
     roomMessages: [],
@@ -146,7 +140,7 @@ class Chatroom extends React.Component<any> {
     this.setState({
       roomId: sRoomId
     });
-    SocketHelper.chatroom.emit("SHOW MESSAGE", _oBody);
+    this.chatroomSocket.emit("SHOW MESSAGE", _oBody);
   }
 
   public onShowMessage(oBody: any){
@@ -232,7 +226,7 @@ class Chatroom extends React.Component<any> {
         oMessage['jwt'] = sJwt;
         oMessage['accessToken'] = sAccessToken;
 
-        SocketHelper.chatroom.emit("MESSAGE", oMessage);
+        this.chatroomSocket.emit("MESSAGE", oMessage);
       }
   
 
@@ -264,6 +258,7 @@ class Chatroom extends React.Component<any> {
     // setInterval(() => {
     //   store.dispatch(Counter.increase())
     // }, 1000);
+    console.log(267,this.props.context);
 
   }
 
@@ -295,4 +290,15 @@ class Chatroom extends React.Component<any> {
   }
 }
 
-export default withRouter(PageHOC(Chatroom));
+const Wrapper = (...oProps: any) => (
+  <Socket.Consumer>
+    {(oContext) => (
+      <Chatroom
+        context={oContext}>
+        {...oProps}             
+      </Chatroom>
+    )}
+  </Socket.Consumer>
+);
+
+export default withRouter(Wrapper);
