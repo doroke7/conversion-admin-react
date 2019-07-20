@@ -51,14 +51,11 @@ class Chatroom extends React.Component<any> {
     this.onEnterRoom = this.onEnterRoom.bind(this);
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onMessage = this.onMessage.bind(this);
-    this.setText = this.setText.bind(this);
     this.onSendMessage = this.onSendMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.onOKControlPannelModal = this.onOKControlPannelModal.bind(this);
     this.onStream = this.onStream.bind(this);
-    this.state = {
-      text: ''
-    };
+
   }
 
   public static contextType = Socket;
@@ -171,13 +168,6 @@ class Chatroom extends React.Component<any> {
     }
   }
 
-
-  public setText(oEvent: any) {
-    this.setState({
-      text: oEvent.target.value
-    });
-  }
-
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
     if ('' === sText || null === sText || undefined === sText) {
@@ -273,8 +263,6 @@ class Chatroom extends React.Component<any> {
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
             <Channel 
               fileRef={this.fileRef}
-              text={this.state.text} 
-              setText={this.setText} 
               onSendMessage={this.onSendMessage}
               onLogout={this.onLogout}
               onOKControlPannelModal={this.onOKControlPannelModal}

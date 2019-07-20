@@ -14,8 +14,6 @@ interface IProps {
   // className?: string | null;
   onSendMessage: any,
   onLogout: any,
-  setText: any,
-  text: string,
   fileRef: any,
   onOKControlPannelModal: any,
 }
@@ -31,8 +29,6 @@ class Channel extends React.Component<IProps> {
             <Messages />
             <ControlPannel 
               className="position-absolute" 
-              text={this.props.text} 
-              setText={this.props.setText} 
               onSendMessage={this.props.onSendMessage} 
               fileRef={this.props.fileRef}
               onOKControlPannelModal={this.props.onOKControlPannelModal}/>

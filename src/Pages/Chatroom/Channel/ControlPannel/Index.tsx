@@ -30,7 +30,7 @@ class ControlPannel extends React.Component<IProps>  {
     this.showImageModal = this.showImageModal.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
     this.onCancel = this.onCancel.bind(this);
-
+    this.setText = this.setText.bind(this);
   }
 
   public static contextType = Socket;
@@ -74,6 +74,13 @@ class ControlPannel extends React.Component<IProps>  {
   public onLoad(oEvent: any) {
 
   }
+
+  public setText(oEvent: any) {
+    this.setState({
+      text: oEvent.target.value
+    });
+  }
+
   public onOK(oEvent: any) {
     let oFile = this.state.file;
     oFile.reset();
@@ -101,13 +108,13 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public onKeyDown(oEvent: any) {
+    debugger;
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
       oEvent.preventDefault();
     }
   }
 
   public componentDidMount() {
-    console.log(103,this.props.context);
   }
 
   public render(){
@@ -125,8 +132,8 @@ class ControlPannel extends React.Component<IProps>  {
           <TextArea
             className={"texarea"}
             rows={2} 
-            value={this.props.text} 
-            onChange={this.props.setText} 
+            value={this.state.text} 
+            onChange={this.setText} 
             onKeyUp={this.props.onSendMessage}
             onKeyDown={this.props.onKeyDown}
             />
@@ -170,7 +177,7 @@ class ControlPannel extends React.Component<IProps>  {
   }
 }
 
-const Wrapper = (...oProps: any) => (
+const SocketWrapper = (...oProps: any) => (
   <Socket.Consumer>
     {(oContext) => (
       <ControlPannel
@@ -181,4 +188,4 @@ const Wrapper = (...oProps: any) => (
   </Socket.Consumer>
 );
 
-export default Wrapper;
+export default SocketWrapper;
