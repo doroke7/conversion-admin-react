@@ -58,6 +58,7 @@ class ControlPannel extends React.Component<IProps>  {
   public ref: any;
   public chatroomSocket: any;
   public chatroomFileSocket: any;
+  public chatroomUploaderSocket: any;
   public state: any = {
     modal: false,
     src: emptyImage,
@@ -133,10 +134,33 @@ class ControlPannel extends React.Component<IProps>  {
       });
     }, 200);
 
-    this.chatroomFileSocket.upload(oFile, {
-      data: { }
+    // this.chatroomFileSocket.upload(oFile, {
+    //   data: { }
+    // });
+
+    debugger;
+    this.chatroomUploaderSocket.submitFiles(oFile);
+
+
+    this.chatroomUploaderSocket.addEventListener('choose', (a: any) => {
+      console.log('choose', a);
     });
 
+    this.chatroomUploaderSocket.addEventListener('start', (a: any) => {
+      console.log('start', a);
+    });
+
+    this.chatroomUploaderSocket.addEventListener('progress', (a: any) => {
+      console.log('progress', a);
+    });
+
+    this.chatroomUploaderSocket.addEventListener('load', (a: any) => {
+      console.log('load', a);
+    });
+
+    this.chatroomUploaderSocket.addEventListener('complate', (a: any) => {
+      console.log('complate', a);
+    });
     // let oFile = this.state.file;
     // oFile.reset();
 
@@ -217,7 +241,9 @@ class ControlPannel extends React.Component<IProps>  {
 
   public componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
-    this.chatroomFileSocket = this.context.chatroomFileSocket;
+    this.chatroomFileSocket = this.props.context.chatroomFile;
+    this.chatroomUploaderSocket = this.props.context.chatroomUploader;
+
   }
 
   public render(){

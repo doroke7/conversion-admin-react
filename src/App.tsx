@@ -32,21 +32,29 @@ let sChatroomUrl = SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !==
 
 let oChatroomSocket = oIo(sChatroomUrl);
 let oSocketIOFileClient = new SocketIOFileClient(oChatroomSocket);
+let oSocketIOFileUpload = new SocketIOFileUpload(oChatroomSocket);
+
 class App extends React.Component {
 
   public constructor(...oProps: any) {
     super(oProps);
     this.chatroom = oChatroomSocket;
     this.chatroomFile = oSocketIOFileClient;
+    this.chatroomUploader = oSocketIOFileUpload;
   }
   
   public chatroom: any;
   public chatroomFile: any;
+  public chatroomUploader: any;
   public login: any;
 
   public render(){
     return (
-      <Socket.Provider value={{chatroom: this.chatroom, chatroomFile: this.chatroomFile}}>
+      <Socket.Provider value={{
+        chatroom: this.chatroom, 
+        chatroomFile: this.chatroomFile, 
+        chatroomUploader: this.chatroomUploader
+      }}>
         <Header>
         </Header>
         <Router>

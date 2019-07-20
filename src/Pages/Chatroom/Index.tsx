@@ -94,15 +94,6 @@ class Chatroom extends React.Component<any> {
 
   }
 
-  public onLoginViaAccessToken(oBody: any) {
-    if (1 === oBody.result && oBody.jwt) {
-      AuthenticationHelper.setJwt(oBody.jwt);
-      let sJwt = AuthenticationHelper.getJwt();
-    
-    }    
-  }
-
-
   public ref: any;
   public fileRef: any = React.createRef();
   public props :any;
@@ -118,10 +109,6 @@ class Chatroom extends React.Component<any> {
 
 
   public roomId: any;
-
-  public get submitRef() {
-    return ;
-  }
 
   public onEnterRoom(oBody: any){
     let oData = oBody["data"];
