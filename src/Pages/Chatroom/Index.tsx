@@ -65,19 +65,19 @@ class Chatroom extends React.Component<any> {
 
   public async componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
-    this.chatroomSocket
+    this.chatroomFileSocket = this.props.context.chatroomFile;
 
     this.chatroomSocket.on("ENTER ROOM", this.onEnterRoom);
     this.chatroomSocket.on("SHOW MESSAGE", this.onShowMessage);
     this.chatroomSocket.on("connect", () => {});
     this.chatroomSocket.on("MESSAGE", this.onMessage);
     this.chatroomSocket.on("disconnet", () => {});
-    this.socketIOFileClient = new SocketIOFileClient(this.chatroomSocket);
+    this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
     let oSocketIOFileUpload = new SocketIOFileUpload(this.chatroomSocket);
 
-    this.socketIOFileClient.on("start", this.onStart);
-    this.socketIOFileClient.on("stream", this.onStream);
-    this.socketIOFileClient.on("complete", this.onComplete);
+    this.chatroomFileSocket.on("start", this.onStart);
+    this.chatroomFileSocket.on("stream", this.onStream);
+    this.chatroomFileSocket.on("complete", this.onComplete);
 
     await store.dispatch(jwtAction.accessTokenToJwt());
     store.dispatch(jwtAction.refresh());
@@ -113,7 +113,8 @@ class Chatroom extends React.Component<any> {
   public fileRef: any = React.createRef();
   public props :any;
   public chatroomSocket: any;
-  public socketIOFileClient: any;
+  public chatroomFileSocket: any;
+  
   public state: any = {
     roomMessages: [],
     roomId: '',
@@ -245,7 +246,7 @@ class Chatroom extends React.Component<any> {
 
   public onOKControlPannelModal() {
     let oFile = this.fileRef.current;
-    this.socketIOFileClient.upload(oFile, {
+    this.chatroomFileSocket.upload(oFile, {
       data: { }
     });
 
