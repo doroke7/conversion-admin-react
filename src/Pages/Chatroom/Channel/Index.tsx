@@ -12,7 +12,6 @@ import Messages from './Messages/Index';
 
 interface IProps {
   // className?: string | null;
-  onSendMessage: any,
   onLogout: any,
   fileRef: any,
   onOKControlPannelModal: any,
@@ -29,7 +28,6 @@ class Channel extends React.Component<IProps> {
             <Messages />
             <ControlPannel 
               className="position-absolute" 
-              onSendMessage={this.props.onSendMessage} 
               fileRef={this.props.fileRef}
               onOKControlPannelModal={this.props.onOKControlPannelModal}/>
           </Col>

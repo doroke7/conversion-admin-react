@@ -1,17 +1,36 @@
 import React from 'react';
+import moment from 'moment';
 
 import Input from 'antd/es/input';
 import Modal from 'antd/es/modal';
+import Message from 'antd/es/message';
 
-const { TextArea } = Input;
+import store from '@/store';
 
 import {
   Socket
 } from '@/Commons';
+
+import {
+  AuthenticationHelper,
+} from '@/Helpers/';
+
+import {
+  roomMessage,
+} from '@/actions/';
+
 import './Index.scss';
+
+import {
+  MOMENT,
+  MESSAGES,
+  SOCKET,
+} from '@/CONFIGS/';
 
 import emptyImage from '@/images/empty-image.gif';
 const ENTER_KEY_CODE = 13;
+const { TextArea } = Input;
+
 
 interface IProps {
   // className?: string | null;
@@ -31,15 +50,18 @@ class ControlPannel extends React.Component<IProps>  {
     this.onFileChange = this.onFileChange.bind(this);
     this.onCancel = this.onCancel.bind(this);
     this.setText = this.setText.bind(this);
+    this.onSendMessage = this.onSendMessage.bind(this);
   }
 
   public static contextType = Socket;
   public props :any;
   public fileRef: any;
-  public state: any ={
+  public chatroomSocket: any;
+  public state: any = {
     modal: false,
     src: emptyImage,
     file: null,
+    text: '',
   }
 
   public onFileChange(oEvent: any) {
@@ -108,13 +130,73 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public onKeyDown(oEvent: any) {
-    debugger;
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
       oEvent.preventDefault();
     }
   }
 
-  public componentDidMount() {
+  public onSendMessage(oEvent: any) {
+    let sText = this.state.text;
+    
+    if ('' === sText || null === sText || undefined === sText) {
+      return;
+    }
+
+    if (oEvent.type === 'keyup' && (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) ) {
+      return;
+    }
+    if (oEvent.type === 'click' && this.state.text === '') {
+      return;
+    }
+
+    try {
+
+      if (!AuthenticationHelper.getUserId()) {
+        let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
+        Message.warning(sMessage);
+        return;
+      }
+  
+      let oMessage: any = {
+        roomId: this.state.roomId,
+        user: {
+          '_id': AuthenticationHelper.getUserId(),
+          'nickname': AuthenticationHelper.getUserNickname(),
+          'role': AuthenticationHelper.getUserRole(),
+          'level': AuthenticationHelper.getUserLevel(),
+          'url': AuthenticationHelper.getUserUrl(),
+        },
+        text: this.state.text,
+        addedTime: moment(new Date()).format(MOMENT.FORMAT),
+        virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
+        loading: true,
+      };
+  
+      if (!('' === sText || null === sText || undefined === sText)) {
+        let aMessages = [oMessage];
+        store.dispatch(roomMessage.willSend(aMessages));
+        let sJwt = AuthenticationHelper.getJwt();
+        let sAccessToken = AuthenticationHelper.getAccessToken();
+
+        oMessage['jwt'] = sJwt;
+        oMessage['accessToken'] = sAccessToken;
+
+        this.chatroomSocket.emit("MESSAGE", oMessage);
+      }
+  
+
+    } catch (sException) {
+
+    } finally {
+      this.setState({
+        text: ''
+      });
+    }
+  }
+
+  public componentWillMount() {
+    this.chatroomSocket = this.props.context.chatroom;
+
   }
 
   public render(){
@@ -134,11 +216,11 @@ class ControlPannel extends React.Component<IProps>  {
             rows={2} 
             value={this.state.text} 
             onChange={this.setText} 
-            onKeyUp={this.props.onSendMessage}
-            onKeyDown={this.props.onKeyDown}
+            onKeyUp={this.onSendMessage}
+            onKeyDown={this.onKeyDown}
             />
         </span>
-        <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.props.onSendMessage}>
+        <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.onSendMessage}>
           <div>
             <i className="iconfont icon-telegram send"></i>
           </div>

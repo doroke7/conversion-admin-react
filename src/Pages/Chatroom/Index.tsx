@@ -4,7 +4,6 @@ import { Motion, spring, presets } from 'react-motion'
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
 import SocketIOFileUpload from 'socketio-file-upload';
-import oIo from "socket.io-client";
 import moment from 'moment';
 
 import {
@@ -51,7 +50,6 @@ class Chatroom extends React.Component<any> {
     this.onEnterRoom = this.onEnterRoom.bind(this);
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onMessage = this.onMessage.bind(this);
-    this.onSendMessage = this.onSendMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.onOKControlPannelModal = this.onOKControlPannelModal.bind(this);
     this.onStream = this.onStream.bind(this);
@@ -168,64 +166,6 @@ class Chatroom extends React.Component<any> {
     }
   }
 
-  public onSendMessage(oEvent: any) {
-    let sText = this.state.text;
-    if ('' === sText || null === sText || undefined === sText) {
-      return;
-    }
-
-    if (oEvent.type === 'keyup' && (ENTER_KEY_CODE !== oEvent.keyCode || oEvent.shiftKey) ) {
-      return;
-    }
-    if (oEvent.type === 'click' && this.state.text === '') {
-      return;
-    }
-
-    try {
-
-      if (!AuthenticationHelper.getUserId()) {
-        let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
-        Message.warning(sMessage);
-        return;
-      }
-  
-      let oMessage: any = {
-        roomId: this.state.roomId,
-        user: {
-          '_id': AuthenticationHelper.getUserId(),
-          'nickname': AuthenticationHelper.getUserNickname(),
-          'role': AuthenticationHelper.getUserRole(),
-          'level': AuthenticationHelper.getUserLevel(),
-          'url': AuthenticationHelper.getUserUrl(),
-        },
-        text: this.state.text,
-        addedTime: moment(new Date()).format(MOMENT.FORMAT),
-        virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
-        loading: true,
-      };
-  
-      if (!('' === sText || null === sText || undefined === sText)) {
-        let aMessages = [oMessage];
-        store.dispatch(roomMessage.willSend(aMessages));
-        let sJwt = AuthenticationHelper.getJwt();
-        let sAccessToken = AuthenticationHelper.getAccessToken();
-
-        oMessage['jwt'] = sJwt;
-        oMessage['accessToken'] = sAccessToken;
-
-        this.chatroomSocket.emit("MESSAGE", oMessage);
-      }
-  
-
-    } catch (sException) {
-
-    } finally {
-      this.setState({
-        text: ''
-      });
-    }
-  }
-
   public onLogout() {
     AuthenticationHelper.removeJwt();
   }
@@ -245,7 +185,6 @@ class Chatroom extends React.Component<any> {
     // setInterval(() => {
     //   store.dispatch(Counter.increase())
     // }, 1000);
-    console.log(267,this.props.context);
 
   }
 
@@ -263,7 +202,6 @@ class Chatroom extends React.Component<any> {
           <Col xs={24} sm={16} md={16} lg={18} xl={18}>
             <Channel 
               fileRef={this.fileRef}
-              onSendMessage={this.onSendMessage}
               onLogout={this.onLogout}
               onOKControlPannelModal={this.onOKControlPannelModal}
               />
