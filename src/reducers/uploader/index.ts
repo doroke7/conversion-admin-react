@@ -5,7 +5,6 @@ const oUploaderActioneducer = (oUploaders: any = {}, oAction: any) => {
       oUploaders = { ...oUploaders, ..._oUploaders}
       return oUploaders;
     case 'IS_SENDING':
-      debugger;
       oUploaders = { ...oUploaders, ..._oUploaders}
       return oUploaders;    
     case 'DID_SEND':

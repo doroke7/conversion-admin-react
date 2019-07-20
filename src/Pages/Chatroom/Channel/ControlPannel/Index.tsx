@@ -252,6 +252,7 @@ class ControlPannel extends React.Component<IProps>  {
     let oUploaders = {
       [oFileInfo.uploadId]: oFileInfo
     };
+    console.log(oFileInfo);
     store.dispatch(uploaderAction.isSending(oUploaders));
 
   }
