@@ -36,8 +36,18 @@
       padding: 0.8vmin 1vmin;
 
     }
+    .image {
+      background: #000000;
+    }
+    .opacity {
+      filter: opacity(0.4);
+    }
     img {
       max-width: 100%;
+    }
+    .progress {
+      left: calc(50% - 60px);
+      top: calc(50% - 60px);
     }
   }
 
@@ -235,5 +245,19 @@
       transform: rotate(360deg);
     }
   }
-  
+
+  .ant-progress-status-success .ant-progress-circle-path {
+    stroke: #dedede;
+  }
+  .ant-progress-circle.ant-progress-status-success .ant-progress-text {
+    color: #dedede;
+  }
+
+  .ant-progress-circle-path {
+    stroke: #dedede;
+  }
+
+  .ant-progress-circle .ant-progress-text {
+    color: #dedede;
+  }
 }

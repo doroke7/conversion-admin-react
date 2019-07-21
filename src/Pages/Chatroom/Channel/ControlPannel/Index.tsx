@@ -258,7 +258,11 @@ class ControlPannel extends React.Component<IProps>  {
   }
 
   public onComplete(oFileInfo: any) {
-
+    let oUploaders = {
+      [oFileInfo.uploadId]: oFileInfo
+    };
+    console.log(oFileInfo);
+    store.dispatch(uploaderAction.didSend(oUploaders));
   }
 
   public onError(oError: any) {

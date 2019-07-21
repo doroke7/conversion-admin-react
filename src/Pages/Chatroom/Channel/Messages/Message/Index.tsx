@@ -39,6 +39,9 @@ class Message extends React.Component<IProps> {
     uploaders: {}
   };
 
+  public progress: number = 0;
+  public progressDispaly: boolean = true;
+
   public componentWillMount() {
     store.subscribe(() => {
       let oState = store.getState();
@@ -50,10 +53,17 @@ class Message extends React.Component<IProps> {
             [this.props.uploaderId]: oUploaders[this.props.uploaderId]
           },
         };
-        console.log(_oState);
         this.setState(_oState);
       }
     });
+  }
+
+  public componentWillUpdate(){
+    if (100 === this.progress) {
+      setTimeout(() => {
+        this.progressDispaly = false;
+      }, 50);
+    }
   }
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
@@ -74,9 +84,9 @@ class Message extends React.Component<IProps> {
     let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
     let sUploaderId = this.props.uploaderId;
     let iProgess = 0;
-    if (this.state && this.state.uploaders[sUploaderId] && 0 <= this.state.uploaders[sUploaderId].sent && 0 < this.state.uploaders[sUploaderId].size) {
-      let fProgess = (this.state.uploaders[sUploaderId].sent / this.state.uploaders[sUploaderId].size) * 100;
-      iProgess = Math.floor(fProgess);
+    if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
+      let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
+      this.progress = Math.floor(fProgress);
     }
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
@@ -99,10 +109,19 @@ class Message extends React.Component<IProps> {
             <span className="name">{this.props.name}</span>
           </div>
           <span className={"content text-left d-inline-block"}>
-            <div className="image">
-              {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? <Progress type="dashboard" percent={iProgess} /> : null}
+            <div className="image position-relative">
+              {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? 
+               <Progress 
+                className={"position-absolute progress " + (this.progressDispaly ? "" : "d-none")}
+                type="dashboard" 
+                percent={this.progress} 
+                strokeColor={{
+                '0%': '#dddddd',
+                '100%': '#111111',
+              }}/> : 
+               null}
 
-              {sSrc ? (<img src={sSrc}/>) : null}
+              {sSrc ? (<img src={sSrc} className={100 === this.progress ? "" : "opacity"}/>) : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}

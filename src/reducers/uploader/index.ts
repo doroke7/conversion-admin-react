@@ -8,6 +8,8 @@ const oUploaderActioneducer = (oUploaders: any = {}, oAction: any) => {
       oUploaders = { ...oUploaders, ..._oUploaders}
       return oUploaders;    
     case 'DID_SEND':
+      
+      oUploaders = { ...oUploaders, ..._oUploaders}
       return oUploaders;
     default:
       return oUploaders;
