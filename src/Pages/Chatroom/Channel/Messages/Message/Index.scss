@@ -44,6 +44,7 @@
     }
     img {
       max-width: 100%;
+      min-width: 15vmin;
     }
     .progress {
       left: calc(50% - 60px);

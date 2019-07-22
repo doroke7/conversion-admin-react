@@ -1,6 +1,7 @@
 const oRoomMessage = (aMessages: any = [], oAction: any) => {
   let _aMessages = oAction.payload;
   let __aMessages = aMessages;
+
   switch (oAction.type) {
     case 'SHOW_ROOM_MESSAGE':
       __aMessages = [...aMessages, ..._aMessages];
@@ -12,16 +13,20 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
     case 'DID_SEND_ROOM_MESSAGE':
       let iIndex;
       let oMessage = _aMessages.pop();
+
       if (!oMessage.virtualId) {
         oMessage.loading = false;
         if(0 === aMessages.length) {
           __aMessages.push(oMessage);
+          return __aMessages;
+
         }
 
         if(0 < aMessages.length && new Date(oMessage.addedTime).getTime() >= new Date(aMessages[aMessages.length - 1].addedTime).getTime()) {
           __aMessages.push(oMessage);
-        }
+          return __aMessages;
 
+        }
 
         if (0 < aMessages.length && new Date(oMessage.addedTime).getTime() < new Date(aMessages[aMessages.length - 1].addedTime).getTime()) {
           iIndex = aMessages.length - 1;
@@ -40,13 +45,9 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
   
         }
 
-        if (iIndex <= 0) {
-          __aMessages.push(oMessage);
-        }
-        
         return __aMessages;
       }
-    
+
       if (oMessage.virtualId) {
         oMessage.loading = false;
         if(0 === aMessages.length) {
