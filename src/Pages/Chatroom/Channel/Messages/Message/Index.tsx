@@ -42,25 +42,42 @@ class Message extends React.Component<IProps> {
   public constructor(...oProps: any) {
     super(oProps);
     this.onError = this.onError.bind(this);
+    this.onLoad = this.onLoad.bind(this);
+
   }
 
   public state: any = {
     uploaders: {},
     progressDispaly: true,
     src: '',
+    srcDisplay: false
   };
 
   public progress: number | void;
   public src: string;
+
+
+  public onLoad() {
+    this.props.scrollToBottom();
+    this.setState({
+      srcDisplay: true,
+    });
+
+  }
   public onError() {
     let sSrc = 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC;
-
     this.setState({
-      src: sSrc
+      src: sSrc,
+      srcDisplay: true,
     });
   }
 
   public componentWillMount() {
+    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
+
+    this.setState({
+      src: sSrc
+    });
     store.subscribe(() => {
       let oState = store.getState();
       let oUploaders = oState.uploaders;
@@ -101,7 +118,6 @@ class Message extends React.Component<IProps> {
     let _sUserId = this.props.userId;
     let position = _sUserId === sUserId ? 'right' : 'left';
     let sIcon = (this.props.icon && 0 === this.props.icon.indexOf("http") ? this.props.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.icon)
-    this.src = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
     let sUploaderId = this.props.uploaderId;
     let iProgess = 0;
     if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
@@ -151,11 +167,11 @@ class Message extends React.Component<IProps> {
               }}/> : 
                null}
 
-              {this.src ? (<img 
-                            onLoad={this.props.scrollToBottom}
+              {this.state.src ? (<img 
+                            onLoad={this.onLoad}
                             onError={this.onError}
-                            src={this.src}
-                            className={undefined === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
+                            src={this.state.src}
+                            className={(undefined === this.progress || !this.state.progressDispaly ? "" : "opacity ") + (false === this.state.srcDisplay ? "d-none" : "")}/>) : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}
