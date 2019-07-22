@@ -17,15 +17,17 @@ class Messages extends React.Component {
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
-
+    this.srollToBottom = this.srollToBottom.bind(this);
+    let _oState;
     store.subscribe(() => {
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
       let aWords = oState.words; // TODO
       let _oState = {
-        roomMessages: aRoomMessages,
+        roomMessages: [...aRoomMessages],
         words: aWords
       };
+      _oState = { ..._oState};
       this.setState(_oState);
     });
 
@@ -40,10 +42,14 @@ class Messages extends React.Component {
   }
 
   public onResize(oEvent: any) {
+    this.srollToBottom();
+  }
+
+  public srollToBottom() {
     let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
     let iScrollTopRatio = Number(sScrollTopRatio);
     this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
-  
+    console.log(52222222222222222222);
   }
 
   public componentWillMount() {
@@ -68,7 +74,6 @@ class Messages extends React.Component {
   }
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
-
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
       let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
       let iScrollTopRatio = Number(sScrollTopRatio);
@@ -98,6 +103,7 @@ class Messages extends React.Component {
           messageId={oMessage._id}
           uploaderId={oMessage.uploaderId}
           loading={oMessage.loading}
+          scrollToBottom={this.srollToBottom}
           />))}
       </div>
     );

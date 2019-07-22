@@ -25,6 +25,7 @@ interface IProps {
   src?: any;
   text?: any;
   userId?: any;
+  scrollToBottom: any;
   key?: any;
   messageId?: any;
   loading?: any;
@@ -133,7 +134,7 @@ class Message extends React.Component<IProps> {
               }}/> : 
                null}
 
-              {sSrc ? (<img src={sSrc} className={undefined === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
+              {sSrc ? (<img onLoad={this.props.scrollToBottom} src={sSrc} className={undefined === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}
