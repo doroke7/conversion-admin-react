@@ -16,6 +16,9 @@ STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 
 
 import './Index.scss';
+import { string } from 'prop-types';
+
+const ERROR_SRC = 'room/message/image-error.png';
 
 interface IProps {
   role?: any;
@@ -36,12 +39,26 @@ let sUserId = AuthenticationHelper.getUserId();
 
 class Message extends React.Component<IProps> {
 
+  public constructor(...oProps: any) {
+    super(oProps);
+    this.onError = this.onError.bind(this);
+  }
+
   public state: any = {
     uploaders: {},
-    progressDispaly: true
+    progressDispaly: true,
+    src: '',
   };
 
   public progress: number | void;
+  public src: string;
+  public onError() {
+    let sSrc = 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC;
+
+    this.setState({
+      src: sSrc
+    });
+  }
 
   public componentWillMount() {
     store.subscribe(() => {
@@ -84,7 +101,7 @@ class Message extends React.Component<IProps> {
     let _sUserId = this.props.userId;
     let position = _sUserId === sUserId ? 'right' : 'left';
     let sIcon = (this.props.icon && 0 === this.props.icon.indexOf("http") ? this.props.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.icon)
-    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
+    this.src = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
     let sUploaderId = this.props.uploaderId;
     let iProgess = 0;
     if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
@@ -103,7 +120,7 @@ class Message extends React.Component<IProps> {
 
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
-        <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || sSrc ? "d-none" : "" )}>
+        <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.src  ? "d-none" : "" )}>
           <Spin indicator={
             <div className="loading">
               <div>
@@ -134,7 +151,11 @@ class Message extends React.Component<IProps> {
               }}/> : 
                null}
 
-              {sSrc ? (<img onLoad={this.props.scrollToBottom} src={sSrc} className={undefined === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
+              {this.src ? (<img 
+                            onLoad={this.props.scrollToBottom}
+                            onError={this.onError}
+                            src={this.src}
+                            className={undefined === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}
