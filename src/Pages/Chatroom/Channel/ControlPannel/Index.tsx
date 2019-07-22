@@ -141,7 +141,29 @@ class ControlPannel extends React.Component<IProps>  {
       });
     }, 200);
 
-    this.chatroomFileSocket.upload(oFile);
+
+    let oMessage: any = {
+      roomId: this.props.roomId,
+      user: {
+        '_id': AuthenticationHelper.getUserId(),
+        'nickname': AuthenticationHelper.getUserNickname(),
+        'role': AuthenticationHelper.getUserRole(),
+        'level': AuthenticationHelper.getUserLevel(),
+        'url': AuthenticationHelper.getUserUrl(),
+      },
+      user_id: AuthenticationHelper.getUserId(),
+      text: this.state.text,
+      addedTime: moment(new Date()).format(MOMENT.FORMAT),
+      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
+      loading: true,
+    };
+
+    this.chatroomFileSocket.upload(oFile, {
+      data: {
+        ...oMessage,
+        jwt: AuthenticationHelper.getJwt()
+      }
+    });
     oFile.value = null;
   }
 

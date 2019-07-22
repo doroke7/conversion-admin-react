@@ -36,11 +36,11 @@ let sUserId = AuthenticationHelper.getUserId();
 class Message extends React.Component<IProps> {
 
   public state: any = {
-    uploaders: {}
+    uploaders: {},
+    progressDispaly: true
   };
 
   public progress: number = 0;
-  public progressDispaly: boolean = true;
 
   public componentWillMount() {
     store.subscribe(() => {
@@ -58,22 +58,21 @@ class Message extends React.Component<IProps> {
     });
   }
 
-  public componentWillUpdate(){
+  public componentDidUpdate(){
     if (100 === this.progress) {
-      setTimeout(() => {
-        this.progressDispaly = false;
-      }, 50);
+      this.state.progressDispaly = false;
+
     }
   }
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
 
     let sUploaderId = this.props.uploaderId;
-    if (oNextProps.messageId === this.props.messageId && 
-        oNextProps.loading === this.props.loading && 
-        !this.props.uploaderId ) {
-      return false;
-    }
+    // if (oNextProps.messageId === this.props.messageId && 
+    //     oNextProps.loading === this.props.loading && 
+    //     !this.props.uploaderId ) {
+    //   return false;
+    // }
     return true;
   }
 
@@ -112,7 +111,7 @@ class Message extends React.Component<IProps> {
             <div className="image position-relative">
               {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? 
                <Progress 
-                className={"position-absolute progress " + (this.progressDispaly ? "" : "d-none")}
+                className={"position-absolute progress " + (this.state.progressDispaly ? "" : "d-none")}
                 type="dashboard" 
                 percent={this.progress} 
                 strokeColor={{
