@@ -154,7 +154,6 @@ class ControlPannel extends React.Component<IProps>  {
       user_id: AuthenticationHelper.getUserId(),
       text: this.state.text,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
-      virtualId:  AuthenticationHelper.getUserId() + '-' + Date.now(),
       loading: true,
     };
 
@@ -274,7 +273,6 @@ class ControlPannel extends React.Component<IProps>  {
     let oUploaders = {
       [oFileInfo.uploadId]: oFileInfo
     };
-    console.log(oFileInfo);
     store.dispatch(uploaderAction.isSending(oUploaders));
 
   }
@@ -283,7 +281,6 @@ class ControlPannel extends React.Component<IProps>  {
     let oUploaders = {
       [oFileInfo.uploadId]: oFileInfo
     };
-    console.log(oFileInfo);
     store.dispatch(uploaderAction.didSend(oUploaders));
   }
 

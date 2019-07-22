@@ -58,12 +58,15 @@ class Message extends React.Component<IProps> {
     });
   }
 
-  public componentDidUpdate(){
-    if (100 === this.progress) {
-      this.state.progressDispaly = false;
-
-    }
+  public componentDidUpdate(a: any){
+    // if (100 === this.progress) {
+    //   let oState = {
+    //     progressDispaly: false
+    //   }
+    //   this.setState(oState);
+    // }
   }
+
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
 
@@ -88,7 +91,15 @@ class Message extends React.Component<IProps> {
       this.progress = Math.floor(fProgress);
     }
 
-    console.log(this.state.progressDispaly, this.progress);
+    if (100 === this.progress && this.state.progressDispaly) {
+      let oState = {
+        progressDispaly: false
+      }
+      setTimeout(async () => {
+        this.setState(oState);
+      }, 300)
+    }
+
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || sSrc ? "d-none" : "" )}>
@@ -122,7 +133,7 @@ class Message extends React.Component<IProps> {
               }}/> : 
                null}
 
-              {sSrc ? (<img src={sSrc} className={undefined === this.progress || 100 === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
+              {sSrc ? (<img src={sSrc} className={undefined === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}

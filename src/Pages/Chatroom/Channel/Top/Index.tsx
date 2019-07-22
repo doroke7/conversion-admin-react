@@ -31,14 +31,12 @@ class Top extends React.Component<IProps> {
   };
 
   public handleOk = (e: any) => {
-    console.log(e);
     this.setState({
       modal: true,
     });
   };
 
   public handleCancel = (e: any) => {
-    console.log(e);
     this.setState({
       modal: false,
     });

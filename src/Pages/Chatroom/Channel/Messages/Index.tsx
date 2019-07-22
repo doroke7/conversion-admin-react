@@ -18,6 +18,17 @@ class Messages extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
 
+    store.subscribe(() => {
+      let oState = store.getState();
+      let aRoomMessages = oState.roomMessages;
+      let aWords = oState.words; // TODO
+      let _oState = {
+        roomMessages: aRoomMessages,
+        words: aWords
+      };
+      this.setState(_oState);
+    });
+
   }
 
   public ref: any;
@@ -36,16 +47,7 @@ class Messages extends React.Component {
   }
 
   public componentWillMount() {
-    store.subscribe(() => {
-      let oState = store.getState();
-      let aRoomMessages = oState.roomMessages;
-      let aWords = oState.words; // TODO
-      let _oState = {
-        roomMessages: aRoomMessages,
-        words: aWords
-      };
-      this.setState(_oState);
-    });
+
 
   }
   
@@ -67,6 +69,7 @@ class Messages extends React.Component {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
 
+    debugger;
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
       let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
       let iScrollTopRatio = Number(sScrollTopRatio);
