@@ -40,7 +40,7 @@ class Message extends React.Component<IProps> {
     progressDispaly: true
   };
 
-  public progress: number = 0;
+  public progress: number | void;
 
   public componentWillMount() {
     store.subscribe(() => {
@@ -87,6 +87,8 @@ class Message extends React.Component<IProps> {
       let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
       this.progress = Math.floor(fProgress);
     }
+
+    console.log(this.state.progressDispaly, this.progress);
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || sSrc ? "d-none" : "" )}>
@@ -111,16 +113,16 @@ class Message extends React.Component<IProps> {
             <div className="image position-relative">
               {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? 
                <Progress 
-                className={"position-absolute progress " + (this.state.progressDispaly ? "" : "d-none")}
+                className={"position-absolute progress " + (!this.state.progressDispaly ? "d-none" : "")}
                 type="dashboard" 
-                percent={this.progress} 
+                percent={this.progress ? this.progress : 0} 
                 strokeColor={{
                 '0%': '#dddddd',
                 '100%': '#111111',
               }}/> : 
                null}
 
-              {sSrc ? (<img src={sSrc} className={100 === this.progress ? "" : "opacity"}/>) : null}
+              {sSrc ? (<img src={sSrc} className={undefined === this.progress || 100 === this.progress || !this.state.progressDispaly ? "" : "opacity"}/>) : null}
             </div>
             <div className="text">
               {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}

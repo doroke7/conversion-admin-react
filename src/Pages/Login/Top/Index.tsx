@@ -23,14 +23,12 @@ class Top extends React.Component {
   };
 
   public handleOk = (e: any) => {
-    console.log(e);
     this.setState({
       modal: true,
     });
   };
 
   public handleCancel = (e: any) => {
-    console.log(e);
     this.setState({
       modal: false,
     });
