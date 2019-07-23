@@ -136,7 +136,7 @@ class Message extends React.Component<IProps> {
 
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
-        <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.src  ? "d-none" : "" )}>
+        <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
           <Spin indicator={
             <div className="loading">
               <div>
