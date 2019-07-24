@@ -114,6 +114,7 @@ class Chatroom extends React.Component<any> {
 
   public onMessage(oBody: any){
     try {
+
       if (-1 === oBody.result && -1.05 === oBody.code) {
         throw new Error('THE_GUEST_CAN_NOT_SEND_MESSAGE');
       }
