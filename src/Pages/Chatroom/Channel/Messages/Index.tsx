@@ -17,7 +17,7 @@ class Messages extends React.Component {
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
-    this.srollToBottom = this.srollToBottom.bind(this);
+    this.scrollTopToBottom = this.scrollTopToBottom.bind(this);
     let _oState;
     store.subscribe(() => {
       let oState = store.getState();
@@ -42,14 +42,14 @@ class Messages extends React.Component {
   }
 
   public onResize(oEvent: any) {
-    this.srollToBottom();
+    this.scrollTopToBottom();
   }
 
-  public srollToBottom() {
+  public scrollTopToBottom() {
     let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
     let iScrollTopRatio = Number(sScrollTopRatio);
-    this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
-    console.log(52222222222222222222);
+    console.log(iScrollTopRatio, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
+    // this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
   public componentWillMount() {
@@ -75,14 +75,13 @@ class Messages extends React.Component {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
-      let iScrollTopRatio = Number(sScrollTopRatio);
-      this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+      this.scrollTopToBottom();
+
       return;
     }
 
     if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
-      this.ref.current.scrollTop = this.ref.current.scrollHeight;
+      this.scrollTopToBottom();
       return;
     }
 
@@ -103,7 +102,7 @@ class Messages extends React.Component {
           messageId={oMessage._id}
           uploaderId={oMessage.uploaderId}
           loading={oMessage.loading}
-          scrollToBottom={this.srollToBottom}
+          scrollTopToBottom={this.scrollTopToBottom}
           />))}
       </div>
     );

@@ -28,7 +28,7 @@ interface IProps {
   src?: any;
   text?: any;
   userId?: any;
-  scrollToBottom: any;
+  scrollTopToBottom: any;
   key?: any;
   messageId?: any;
   loading?: any;
@@ -58,7 +58,7 @@ class Message extends React.Component<IProps> {
 
 
   public onLoad() {
-    this.props.scrollToBottom();
+    this.props.scrollTopToBottom();
     this.setState({
       srcDisplay: true,
     });
