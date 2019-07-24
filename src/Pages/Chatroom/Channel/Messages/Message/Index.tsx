@@ -60,11 +60,12 @@ class Message extends React.Component<IProps> {
 
 
   public onLoad() {
+    debugger;
     this.props.scrollTopToPosition();
     this.setState({
       srcDisplay: true,
     });
-    this.props.setScrollHeight();
+    // this.props.setScrollHeight();
 
   }
   public onError() {

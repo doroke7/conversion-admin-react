@@ -69,6 +69,7 @@ class Messages extends React.Component {
     let iScrollTopRatio = Number(sScrollTopRatio);
     let iScrollHeight = Number(sScrollHeight);
     // <img src=... 还没读取完毕... 不改变 scrollTop
+    debugger;
     if(this.ref.current.scrollHeight >= iScrollHeight) {
       this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
     }
