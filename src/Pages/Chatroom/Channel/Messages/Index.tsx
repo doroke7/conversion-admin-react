@@ -41,6 +41,8 @@ class Messages extends React.Component {
     let oDom = oEvent.target;
     let iScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
     window.sessionStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
+    window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
+
     console.log(this.ref.current.scrollTop, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
 
   }
@@ -51,7 +53,15 @@ class Messages extends React.Component {
 
   public scrollTopToPosition() {
     let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
+    let sScrollHeight = window.sessionStorage.getItem('messages:scroll-height');
+
     let iScrollTopRatio = Number(sScrollTopRatio);
+    let iScrollHeight = Number(sScrollHeight);
+    // <img src=... 还没读取完毕... 不改变 scrollTop
+    if(this.ref.current.scrollHeight < iScrollHeight) {
+      return;
+    }
+
     this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
