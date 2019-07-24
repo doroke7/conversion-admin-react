@@ -17,7 +17,9 @@ class Messages extends React.Component {
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
+    this.scrollTopToPosition = this.scrollTopToPosition.bind(this);
     this.scrollTopToBottom = this.scrollTopToBottom.bind(this);
+
     let _oState;
     store.subscribe(() => {
       let oState = store.getState();
@@ -39,17 +41,22 @@ class Messages extends React.Component {
     let oDom = oEvent.target;
     let iScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
     window.sessionStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
+    console.log(this.ref.current.scrollTop, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
+
   }
 
   public onResize(oEvent: any) {
-    this.scrollTopToBottom();
+    this.scrollTopToPosition();
+  }
+
+  public scrollTopToPosition() {
+    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
+    let iScrollTopRatio = Number(sScrollTopRatio);
+    this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
   public scrollTopToBottom() {
-    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
-    let iScrollTopRatio = Number(sScrollTopRatio);
-    console.log(iScrollTopRatio, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
-    // this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+    this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
   public componentWillMount() {
@@ -63,11 +70,13 @@ class Messages extends React.Component {
   };
 
   public componentDidMount() {
-    window.addEventListener('resize', this.onResize)
+    window.addEventListener('resize', this.onResize);
+    console.log('77!!', this.ref.current.scrollTop, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
+
   }
 
   public componentDidUnmount() {
-    window.removeEventListener('resize', this.onResize)
+    window.removeEventListener('resize', this.onResize);
   }
 
   public componentWillUpdate() {
@@ -75,13 +84,13 @@ class Messages extends React.Component {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      this.scrollTopToBottom();
-
+      // this.scrollTopToPosition();
+      // debugger;
       return;
     }
 
     if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
-      this.scrollTopToBottom();
+      this.scrollTopToPosition();
       return;
     }
 
@@ -103,6 +112,7 @@ class Messages extends React.Component {
           uploaderId={oMessage.uploaderId}
           loading={oMessage.loading}
           scrollTopToBottom={this.scrollTopToBottom}
+          scrollTopToPosition={this.scrollTopToPosition}
           />))}
       </div>
     );
