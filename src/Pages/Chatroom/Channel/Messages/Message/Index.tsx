@@ -52,23 +52,23 @@ class Message extends React.Component<IProps> {
     uploaders: {},
     progressDispaly: true,
     src: '',
-    srcDisplay: false
+    srcDisplay: true
   };
 
   public progress: number | void;
   public src: string;
 
 
-  public onLoad() {
+  public onLoad(oEvent: any) {
     debugger;
     this.props.scrollTopToPosition();
-    this.setState({
-      srcDisplay: true,
-    });
+    // this.setState({
+    //   srcDisplay: true,
+    // });
     // this.props.setScrollHeight();
 
   }
-  public onError() {
+  public onError(oEvent: any) {
     let sSrc = 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC;
     this.setState({
       src: sSrc,
