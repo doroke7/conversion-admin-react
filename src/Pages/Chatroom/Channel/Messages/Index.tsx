@@ -17,6 +17,7 @@ class Messages extends React.Component {
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
+    this.setScrollTop = this.setScrollTop.bind(this);
     this.scrollTopToPosition = this.scrollTopToPosition.bind(this);
     this.scrollTopToBottom = this.scrollTopToBottom.bind(this);
 
@@ -38,12 +39,22 @@ class Messages extends React.Component {
   public ref: any;
 
   public onScroll(oEvent: any) {
-    let oDom = oEvent.target;
+    this.setScrollTop();
+  }
+
+  public setScrollTop() {
+    let oDom = this.ref.current;
+
     let iScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
     window.sessionStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
     window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
 
-    console.log(this.ref.current.scrollTop, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
+  }
+
+  public setScrollHeight() {
+    let oDom = this.ref.current;
+
+    window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
 
   }
 
@@ -58,15 +69,23 @@ class Messages extends React.Component {
     let iScrollTopRatio = Number(sScrollTopRatio);
     let iScrollHeight = Number(sScrollHeight);
     // <img src=... 还没读取完毕... 不改变 scrollTop
-    if(this.ref.current.scrollHeight < iScrollHeight) {
-      return;
+    if(this.ref.current.scrollHeight >= iScrollHeight) {
+      this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
     }
 
-    this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
   public scrollTopToBottom() {
-    this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
+    let sScrollHeight = window.sessionStorage.getItem('messages:scroll-height');
+
+    let iScrollTopRatio = Number(sScrollTopRatio);
+    let iScrollHeight = Number(sScrollHeight);
+
+    // 只有 scroll 最底下 时候, 接收到讯息才会自动到最下面
+    if (1 === iScrollTopRatio && this.ref.current.scrollHeight > iScrollHeight) {
+      this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+    }
   }
 
   public componentWillMount() {
@@ -81,7 +100,6 @@ class Messages extends React.Component {
 
   public componentDidMount() {
     window.addEventListener('resize', this.onResize);
-    console.log('77!!', this.ref.current.scrollTop, this.ref.current.scrollHeight, this.ref.current.offsetHeight);
 
   }
 
@@ -123,6 +141,7 @@ class Messages extends React.Component {
           loading={oMessage.loading}
           scrollTopToBottom={this.scrollTopToBottom}
           scrollTopToPosition={this.scrollTopToPosition}
+          setScrollHeight={this.setScrollHeight}
           />))}
       </div>
     );

@@ -30,6 +30,7 @@ interface IProps {
   userId?: any;
   scrollTopToBottom: any;
   scrollTopToPosition: any;
+  setScrollHeight: any;
   key?: any;
   messageId?: any;
   loading?: any;
@@ -63,6 +64,7 @@ class Message extends React.Component<IProps> {
     this.setState({
       srcDisplay: true,
     });
+    this.props.setScrollHeight();
 
   }
   public onError() {
