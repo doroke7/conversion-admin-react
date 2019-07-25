@@ -35,6 +35,7 @@ interface IProps {
   messageId?: any;
   loading?: any;
   uploaderId?: any;
+  user: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
