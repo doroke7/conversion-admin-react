@@ -37,6 +37,7 @@ interface IProps {
   messageId?: any;
   loading?: any;
   uploaderId?: any;
+  users: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
@@ -47,28 +48,7 @@ class Message extends React.Component<IProps> {
     super(oProps);
     this.onError = this.onError.bind(this);
     this.onLoad = this.onLoad.bind(this);
-    store.subscribe(() => {
-      debugger;
-      let oState = store.getState();
-      let oUploaders = oState.uploaders;
-      let oUsers = oState.users;
-      let _oState: any = {};
-      if (oUploaders[this.props.uploaderId]) {
-
-        _oState['uploaders'] = {
-          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-        }
-      }
-
-      if (oUsers[this.props.userId]) {
-        _oState['users'] = {
-          [this.props.userId]: oUsers[this.props.userId]
-        }
-      }
-      this.setState(Object.assign({}, _oState));
-    });
   }
-
   public state: any = {
     uploaders: {},
     users: {},
@@ -105,12 +85,14 @@ class Message extends React.Component<IProps> {
       src: sSrc
     });
 
-    
 
   }
 
+  // public componentWillReceiveProps(oNextProps: any) {
+
+  // }
+
   public componentDidUpdate(a: any){
-    const { store } = this.context;
     // if (100 === this.progress) {
     //   let oState = {
     //     progressDispaly: false
@@ -121,6 +103,7 @@ class Message extends React.Component<IProps> {
 
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
+    console.log(oNextProps.users);
     return true;
 
     let sUploaderId = this.props.uploaderId;
@@ -150,9 +133,6 @@ class Message extends React.Component<IProps> {
         this.setState(oState);
       }, 1)
     }
-    if (this.props.userId && this.state.users && this.state.users[this.props.userId]) {
-      debugger;
-    }
 
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
@@ -172,7 +152,7 @@ class Message extends React.Component<IProps> {
         <span className="time-name-conten-wrapper d-inline-block align-top">
           <div className={"time-name d-flex justify-content-end " + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
             <span className="time">{this.props.time}</span>
-            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ""}</span>
+            <span className="name">{this.props.userId && this.props.users && this.props.users[this.props.userId] ? this.props.users[this.props.userId].nickname : ""}</span>
           </div>
           <span className={"content text-left d-inline-block"}>
             <div className="image position-relative">
@@ -212,4 +192,18 @@ class Message extends React.Component<IProps> {
   }
 }
 
-export default Message;
+const mapStateToProps = (oState: any, oProps: any) => {
+  // state 是 redux 的 state , 不是 react 的 state
+  return {
+    users: {...oState.users}
+  };
+}
+
+const mapDispatchToProps = (dispatch: any, ownProps: any) => {
+  return {
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(Message);

@@ -110,13 +110,13 @@ class Chatroom extends React.Component<any> {
       loading: false,
     });
     let aMessages = oBody.data.messages;
-    store.dispatch(roomMessage.show(aMessages));
-    store.dispatch(userAction.showViaMessage(aMessages));
+    store.dispatch(roomMessage.show(aMessages))
+    store.dispatch(userAction.showViaMessage(aMessages))
 
 
   }
 
-  public onMessage(oBody: any){
+  public async onMessage(oBody: any){
     try {
 
       if (-1 === oBody.result && -1.05 === oBody.code) {
