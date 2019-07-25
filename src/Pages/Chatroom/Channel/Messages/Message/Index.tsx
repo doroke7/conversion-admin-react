@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import htmlReactParser from 'html-react-parser';
 
 import Spin from 'antd/es/spin';
@@ -45,7 +47,26 @@ class Message extends React.Component<IProps> {
     super(oProps);
     this.onError = this.onError.bind(this);
     this.onLoad = this.onLoad.bind(this);
+    store.subscribe(() => {
+      debugger;
+      let oState = store.getState();
+      let oUploaders = oState.uploaders;
+      let oUsers = oState.users;
+      let _oState: any = {};
+      if (oUploaders[this.props.uploaderId]) {
 
+        _oState['uploaders'] = {
+          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+        }
+      }
+
+      if (oUsers[this.props.userId]) {
+        _oState['users'] = {
+          [this.props.userId]: oUsers[this.props.userId]
+        }
+      }
+      this.setState(Object.assign({}, _oState));
+    });
   }
 
   public state: any = {
@@ -85,37 +106,11 @@ class Message extends React.Component<IProps> {
     });
 
     
-    store.subscribe(() => {
-      let oState = store.getState();
-      let oUploaders = oState.uploaders;
-      let oUsers = oState.users;
-      let _oState: any = {};
-      if (oUploaders[this.props.uploaderId]) {
 
-        _oState['uploaders'] = {
-          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-        }
-      }
-
-      if (oUsers[this.props.userId]) {
-        _oState['users'] = {
-          [this.props.userId]: oUsers[this.props.userId]
-        }
-      }
-      this.setState(Object.assign({}, _oState));
-    });
-
-    setInterval(() => {
-      let iTime = new Date().getTime();
-      console.log('time', iTime);
-      this.setState({
-        time: iTime
-      });
-
-    }, 1000);
   }
 
   public componentDidUpdate(a: any){
+    const { store } = this.context;
     // if (100 === this.progress) {
     //   let oState = {
     //     progressDispaly: false

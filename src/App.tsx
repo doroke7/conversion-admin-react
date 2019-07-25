@@ -1,18 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import oIo from "socket.io-client";
-
-
-
-
-
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
 import SocketIOFileUpload from 'socketio-file-upload';
 
-
-
-
-
+import store from '@/store';
 import {
   Router,
   Header,
@@ -49,17 +42,21 @@ class App extends React.Component {
   public login: any;
 
   public render(){
+    let oValue = {
+      chatroom: this.chatroom, 
+      chatroomFile: this.chatroomFile, 
+      chatroomUploader: this.chatroomUploader
+    };
+
     return (
-      <Socket.Provider value={{
-        chatroom: this.chatroom, 
-        chatroomFile: this.chatroomFile, 
-        chatroomUploader: this.chatroomUploader
-      }}>
-        <Header>
-        </Header>
-        <Router>
-        </Router>
-      </Socket.Provider>
+      <Provider store={store}>
+        <Socket.Provider value={oValue}>
+          <Header>
+          </Header>
+          <Router>
+          </Router>
+        </Socket.Provider>
+      </Provider>
     );
   }
 }
