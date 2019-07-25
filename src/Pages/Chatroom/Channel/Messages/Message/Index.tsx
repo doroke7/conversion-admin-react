@@ -83,6 +83,8 @@ class Message extends React.Component<IProps> {
     this.setState({
       src: sSrc
     });
+
+    
     store.subscribe(() => {
       let oState = store.getState();
       let oUploaders = oState.uploaders;

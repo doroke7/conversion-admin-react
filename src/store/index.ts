@@ -17,7 +17,7 @@ const oReducer = combineReducers({
   users: userReducer
 });
 
-const oStore = createStore(
+const oStore:any = createStore(
   oReducer,
   applyMiddleware(
     reduxThunk
