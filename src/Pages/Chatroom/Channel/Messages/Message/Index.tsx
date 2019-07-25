@@ -129,6 +129,7 @@ class Message extends React.Component<IProps> {
     let position = this.props.userId === sUserId ? 'right' : 'left';
     let sUrl = this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].url : '';
     sUrl = (sUrl && 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
+    let sRole = this.state.users && this.state.users[this.props.userId] ? (this.state.users[this.props.userId].role).toLowerCase() : '';
     let sUploaderId = this.props.uploaderId;
     if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
       let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
@@ -145,7 +146,7 @@ class Message extends React.Component<IProps> {
     }
 
     return (
-      <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
+      <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
           <Spin indicator={
             <div className="loading">
