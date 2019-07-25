@@ -1,21 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import oIo from "socket.io-client";
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
 import SocketIOFileUpload from 'socketio-file-upload';
 
-import store from '@/store';
 import {
   Router,
   Header,
   Socket,
 } from "@/Commons/";
-
-import {
-  SocketHelper,
-} from '@/Helpers/';
-
 
 import {
   SOCKET,
@@ -49,14 +42,12 @@ class App extends React.Component {
     };
 
     return (
-      <Provider store={store}>
-        <Socket.Provider value={oValue}>
-          <Header>
-          </Header>
-          <Router>
-          </Router>
-        </Socket.Provider>
-      </Provider>
+      <Socket.Provider value={oValue}>
+        <Header>
+        </Header>
+        <Router>
+        </Router>
+      </Socket.Provider>
     );
   }
 }
