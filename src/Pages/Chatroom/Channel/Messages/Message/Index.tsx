@@ -21,8 +21,6 @@ import { string } from 'prop-types';
 const ERROR_SRC = 'room/message/image-error.png';
 
 interface IProps {
-  role?: any;
-  icon?: any;
   time?: any;
   name?: any;
   src?: any;
