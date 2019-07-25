@@ -22,7 +22,6 @@ const ERROR_SRC = 'room/message/image-error.png';
 
 interface IProps {
   time?: any;
-  name?: any;
   src?: any;
   text?: any;
   userId?: any;
@@ -33,7 +32,6 @@ interface IProps {
   messageId?: any;
   loading?: any;
   uploaderId?: any;
-  user: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 

@@ -133,9 +133,7 @@ class Messages extends React.Component {
           src={oMessage.src}
           text={oMessage.text}
           time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
-          name={oMessage.user.nickname}
           userId={oMessage.user._id}
-          user={oMessage.user._id && this.state.users[oMessage.user._id] ? this.state.users[oMessage.user._id] : null}
           messageId={oMessage._id}
           uploaderId={oMessage.uploaderId}
           loading={oMessage.loading}
