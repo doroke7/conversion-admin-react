@@ -66,7 +66,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on("disconnet", () => {});
     // this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
 
-    await store.dispatch(jwtAction.accessTokenToJwt());
+    store.dispatch(jwtAction.accessTokenToJwt());
     store.dispatch(jwtAction.refresh());
 
     this.chatroomSocket.emit("ENTER ROOM", void 0);
