@@ -58,7 +58,7 @@ class Login extends React.Component<IProps> {
         password: this.state.password
       };
   
-      if (!oBody.name ) {
+      if (!oBody.name) {
         throw new Error('THE_USER_NAME_IS_EMPTY');
       }
   

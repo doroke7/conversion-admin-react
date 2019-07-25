@@ -362,6 +362,8 @@ class ControlPannel extends React.Component<IProps>  {
           <div className="preview-image-wrapper">
             <img className="preview-image" src={this.state.src} />
           </div>
+          <Input className="d-inline mt-2" placeholder="描述" size="large" value={this.state.text} onChange={this.setText} onPressEnter={this.onOK}/>
+
         </Modal>
       </div>
     );
