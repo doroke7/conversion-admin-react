@@ -126,11 +126,10 @@ class Message extends React.Component<IProps> {
   }
 
   public render() {
-    let _sUserId = this.props.userId;
-    let position = _sUserId === sUserId ? 'right' : 'left';
-    let sIcon = (this.props.icon && 0 === this.props.icon.indexOf("http") ? this.props.icon : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.icon)
+    let position = this.props.userId === sUserId ? 'right' : 'left';
+    let sUrl = this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].url : '';
+    sUrl = (sUrl && 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
     let sUploaderId = this.props.uploaderId;
-    let iProgess = 0;
     if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
       let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
       this.progress = Math.floor(fProgress);
@@ -143,9 +142,6 @@ class Message extends React.Component<IProps> {
       setTimeout(async () => {
         this.setState(oState);
       }, 1)
-    }
-    if (this.props.userId && this.state.users && this.state.users[this.props.userId]) {
-      debugger;
     }
 
     return (
@@ -198,7 +194,7 @@ class Message extends React.Component<IProps> {
         </span>
         <span className="d-inline-block align-top">
           <div className="avator">
-            <img src={sIcon} data-user-id={_sUserId}/>
+            <img src={sUrl} data-user-id={this.props.userId}/>
           </div>
         </span>
       </div>
