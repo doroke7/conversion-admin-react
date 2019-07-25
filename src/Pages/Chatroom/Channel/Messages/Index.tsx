@@ -23,13 +23,14 @@ class Messages extends React.Component {
 
     let _oState;
     store.subscribe(() => {
+      
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
       let aWords = oState.words; // TODO
       let oUsers = oState.users; // TODO
 
       let _oState = {
-        roomMessages: [...aRoomMessages],
+        roomMessages: aRoomMessages,
         words: aWords,
         users: oUsers
       };
