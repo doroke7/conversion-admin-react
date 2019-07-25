@@ -6,6 +6,7 @@ import {
   uploaderReducer,
   roomMessageReducer,
   wordReducer,
+  userReducer
 } from '@/reducers/';
 
 const oReducer = combineReducers({
@@ -13,6 +14,7 @@ const oReducer = combineReducers({
   uploaders: uploaderReducer,
   roomMessages: roomMessageReducer,
   words: wordReducer,
+  users: userReducer
 });
 
 const oStore = createStore(

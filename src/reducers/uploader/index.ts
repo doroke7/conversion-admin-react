@@ -1,4 +1,4 @@
-const oUploaderActioneducer = (oUploaders: any = {}, oAction: any) => {
+const oUploaderReducer = (oUploaders: any = {}, oAction: any) => {
   let _oUploaders = oAction.payload;
   switch (oAction.type) {
     case 'WILL_SEND':
@@ -16,4 +16,4 @@ const oUploaderActioneducer = (oUploaders: any = {}, oAction: any) => {
   }
 };
 
-export default oUploaderActioneducer;
+export default oUploaderReducer;

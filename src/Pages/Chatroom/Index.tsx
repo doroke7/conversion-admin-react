@@ -19,6 +19,7 @@ import {
   roomMessage,
   word,
   jwtAction,
+  userAction
 } from '@/actions/';
 
 import Spin from 'antd/es/spin';
@@ -105,11 +106,14 @@ class Chatroom extends React.Component<any> {
   }
 
   public onShowMessage(oBody: any){
-    let aMessages = oBody.data.messages;
-    store.dispatch(roomMessage.show(aMessages));
     this.setState({
       loading: false,
     });
+    let aMessages = oBody.data.messages;
+    store.dispatch(roomMessage.show(aMessages));
+    store.dispatch(userAction.showViaMessage(aMessages));
+
+
   }
 
   public onMessage(oBody: any){

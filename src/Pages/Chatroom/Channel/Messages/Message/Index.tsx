@@ -84,15 +84,22 @@ class Message extends React.Component<IProps> {
     store.subscribe(() => {
       let oState = store.getState();
       let oUploaders = oState.uploaders;
-
+      let oUsers = oState.users;
+      let _oState: any = {};
       if (oUploaders[this.props.uploaderId]) {
-        let _oState = {
-          uploaders: {
-            [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-          },
-        };
-        this.setState(_oState);
+
+        _oState['uploaders'] = {
+          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+        }
       }
+
+      if (oUsers[this.props.userId]) {
+        _oState['users'] = {
+          [this.props.userId]: oUsers[this.props.userId]
+        }
+      }
+      this.setState(_oState);
+
     });
   }
 
