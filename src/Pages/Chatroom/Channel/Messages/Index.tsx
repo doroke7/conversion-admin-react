@@ -26,11 +26,13 @@ class Messages extends React.Component {
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
       let aWords = oState.words; // TODO
+      let oUsers = oState.users; // TODO
+
       let _oState = {
         roomMessages: [...aRoomMessages],
-        words: aWords
+        words: aWords,
+        users: oUsers
       };
-      _oState = { ..._oState};
       this.setState(_oState);
     });
 
@@ -95,7 +97,8 @@ class Messages extends React.Component {
   
   public state: any = {
     roomMessages: [],
-    words: []
+    words: [],
+    users: {}
   };
 
   public componentDidMount() {
@@ -136,6 +139,7 @@ class Messages extends React.Component {
           time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
           name={oMessage.user.nickname}
           userId={oMessage.user._id}
+          user={oMessage.user._id && this.state.users[oMessage.user._id] ? this.state.users[oMessage.user._id] : null}
           messageId={oMessage._id}
           uploaderId={oMessage.uploaderId}
           loading={oMessage.loading}

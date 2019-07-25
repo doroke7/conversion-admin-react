@@ -38,6 +38,7 @@ interface IProps {
   loading?: any;
   uploaderId?: any;
   users: any;
+  user: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
@@ -152,7 +153,7 @@ class Message extends React.Component<IProps> {
         <span className="time-name-conten-wrapper d-inline-block align-top">
           <div className={"time-name d-flex justify-content-end " + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
             <span className="time">{this.props.time}</span>
-            <span className="name">{this.props.userId && this.props.users && this.props.users[this.props.userId] ? this.props.users[this.props.userId].nickname : ""}</span>
+            <span className="name">{this.props.user && this.props.user.nickname ? this.props.user.nickname : ""}</span>
           </div>
           <span className={"content text-left d-inline-block"}>
             <div className="image position-relative">
