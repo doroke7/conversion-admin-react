@@ -50,9 +50,11 @@ class Message extends React.Component<IProps> {
 
   public state: any = {
     uploaders: {},
+    users: {},
     progressDispaly: true,
     src: '',
-    srcDisplay: true
+    srcDisplay: true,
+    time: 0
   };
 
   public progress: number | void;
@@ -98,9 +100,17 @@ class Message extends React.Component<IProps> {
           [this.props.userId]: oUsers[this.props.userId]
         }
       }
-      this.setState(_oState);
-
+      this.setState(Object.assign({}, _oState));
     });
+
+    setInterval(() => {
+      let iTime = new Date().getTime();
+      console.log('time', iTime);
+      this.setState({
+        time: iTime
+      });
+
+    }, 1000);
   }
 
   public componentDidUpdate(a: any){
@@ -114,6 +124,7 @@ class Message extends React.Component<IProps> {
 
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
+    return true;
 
     let sUploaderId = this.props.uploaderId;
     // if (oNextProps.messageId === this.props.messageId && 
@@ -121,7 +132,6 @@ class Message extends React.Component<IProps> {
     //     !this.props.uploaderId ) {
     //   return false;
     // }
-    return true;
   }
 
   public render() {
@@ -141,7 +151,10 @@ class Message extends React.Component<IProps> {
       }
       setTimeout(async () => {
         this.setState(oState);
-      }, 300)
+      }, 1)
+    }
+    if (this.props.userId && this.state.users && this.state.users[this.props.userId]) {
+      debugger;
     }
 
     return (
@@ -162,7 +175,7 @@ class Message extends React.Component<IProps> {
         <span className="time-name-conten-wrapper d-inline-block align-top">
           <div className={"time-name d-flex justify-content-end " + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
             <span className="time">{this.props.time}</span>
-            <span className="name">{this.props.name}</span>
+            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ""}</span>
           </div>
           <span className={"content text-left d-inline-block"}>
             <div className="image position-relative">
