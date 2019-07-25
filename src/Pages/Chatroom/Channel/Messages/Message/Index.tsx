@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
 import htmlReactParser from 'html-react-parser';
 
 import Spin from 'antd/es/spin';
@@ -37,8 +35,6 @@ interface IProps {
   messageId?: any;
   loading?: any;
   uploaderId?: any;
-  users: any;
-  user: any;
 }
 
 let sUserId = AuthenticationHelper.getUserId(); 
@@ -49,14 +45,15 @@ class Message extends React.Component<IProps> {
     super(oProps);
     this.onError = this.onError.bind(this);
     this.onLoad = this.onLoad.bind(this);
+
   }
+
   public state: any = {
     uploaders: {},
     users: {},
     progressDispaly: true,
     src: '',
     srcDisplay: true,
-    time: 0
   };
 
   public progress: number | void;
@@ -85,13 +82,26 @@ class Message extends React.Component<IProps> {
     this.setState({
       src: sSrc
     });
+    store.subscribe(() => {
+      let oState = store.getState();
+      let oUploaders = oState.uploaders;
+      let oUsers = oState.users;
+      let _oState: any = {};
+      if (oUploaders[this.props.uploaderId]) {
 
+        _oState['uploaders'] = {
+          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+        }
+      }
 
+      if (oUsers[this.props.userId]) {
+        _oState['users'] = {
+          [this.props.userId]: oUsers[this.props.userId]
+        }
+      }
+      this.setState(_oState);
+    });
   }
-
-  // public componentWillReceiveProps(oNextProps: any) {
-
-  // }
 
   public componentDidUpdate(a: any){
     // if (100 === this.progress) {
@@ -104,7 +114,6 @@ class Message extends React.Component<IProps> {
 
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
-    console.log(oNextProps.users);
     return true;
 
     let sUploaderId = this.props.uploaderId;
@@ -134,6 +143,9 @@ class Message extends React.Component<IProps> {
         this.setState(oState);
       }, 1)
     }
+    if (this.props.userId && this.state.users && this.state.users[this.props.userId]) {
+      debugger;
+    }
 
     return (
       <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + this.props.role.toLowerCase()}>
@@ -153,7 +165,7 @@ class Message extends React.Component<IProps> {
         <span className="time-name-conten-wrapper d-inline-block align-top">
           <div className={"time-name d-flex justify-content-end " + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
             <span className="time">{this.props.time}</span>
-            <span className="name">{this.props.user && this.props.user.nickname ? this.props.user.nickname : ""}</span>
+            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ""}</span>
           </div>
           <span className={"content text-left d-inline-block"}>
             <div className="image position-relative">
@@ -193,18 +205,4 @@ class Message extends React.Component<IProps> {
   }
 }
 
-const mapStateToProps = (oState: any, oProps: any) => {
-  // state 是 redux 的 state , 不是 react 的 state
-  return {
-    users: {...oState.users}
-  };
-}
-
-const mapDispatchToProps = (dispatch: any, ownProps: any) => {
-  return {
-  };
-}
-
-export default connect(
-  mapStateToProps
-)(Message);
+export default Message;

@@ -67,7 +67,7 @@ class Chatroom extends React.Component<any> {
     // this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
 
     store.dispatch(jwtAction.accessTokenToJwt());
-    store.dispatch(jwtAction.refresh());
+    //store.dispatch(jwtAction.refresh());
 
     this.chatroomSocket.emit("ENTER ROOM", void 0);
   }
@@ -112,7 +112,6 @@ class Chatroom extends React.Component<any> {
     let aMessages = oBody.data.messages;
     store.dispatch(roomMessage.show(aMessages))
     store.dispatch(userAction.showViaMessage(aMessages))
-
 
   }
 

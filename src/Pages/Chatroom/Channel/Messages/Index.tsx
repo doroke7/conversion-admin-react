@@ -21,17 +21,14 @@ class Messages extends React.Component {
     this.scrollTopToPosition = this.scrollTopToPosition.bind(this);
     this.scrollTopToBottom = this.scrollTopToBottom.bind(this);
 
-    let _oState;
     store.subscribe(() => {
-      
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
-      let aWords = oState.words; // TODO
       let oUsers = oState.users; // TODO
+      debugger;
 
       let _oState = {
         roomMessages: aRoomMessages,
-        words: aWords,
         users: oUsers
       };
       this.setState(_oState);

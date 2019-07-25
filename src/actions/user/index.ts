@@ -8,6 +8,7 @@ let oUserAction: any = {
   },
 
   showViaMessage: (aMessages: any) => {
+    debugger;
     return {
       type: 'SHOW_USER_VIA_MESSAGE',
       payload: aMessages

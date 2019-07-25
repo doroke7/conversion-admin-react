@@ -10,11 +10,13 @@ const oUserReducer = (oUsers: any = {}, oAction: any) => {
       };
       return oUsers;
     case 'SHOW_USER_VIA_MESSAGE':
+        debugger;
         let aMessages = oAction.payload;
         _oUsers = aMessages.reduce((__oUsers: any, oMessage: any) => {
           let oUser = oMessage.user;
           let sUserId = oUser._id;
           __oUsers[sUserId] = oUser;
+          return __oUsers;
         }, oUsers);
 
         return oUsers;
