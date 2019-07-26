@@ -1,16 +1,15 @@
 const oUserReducer = (oUsers: any = {}, oAction: any) => {
-  let _oUsers;
+  let _oUsers = {};
   switch (oAction.type) {
     case 'SHOW_USER':
       _oUsers = oAction.payload;
 
-      oUsers = {
+      _oUsers = {
         ...oUsers, 
         ..._oUsers
       };
       return oUsers;
     case 'SHOW_USER_VIA_MESSAGE':
-        debugger;
         let aMessages = oAction.payload;
         _oUsers = aMessages.reduce((__oUsers: any, oMessage: any) => {
           let oUser = oMessage.user;
@@ -19,9 +18,9 @@ const oUserReducer = (oUsers: any = {}, oAction: any) => {
           return __oUsers;
         }, oUsers);
 
-        return oUsers;
+        return _oUsers;
     default:
-      return oUsers;
+      return _oUsers;
   }
 };
 

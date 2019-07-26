@@ -25,7 +25,6 @@ class Messages extends React.Component {
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
       let oUsers = oState.users; // TODO
-      debugger;
 
       let _oState = {
         roomMessages: aRoomMessages,
@@ -114,7 +113,6 @@ class Messages extends React.Component {
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
       // this.scrollTopToPosition();
-      // debugger;
       return;
     }
 
