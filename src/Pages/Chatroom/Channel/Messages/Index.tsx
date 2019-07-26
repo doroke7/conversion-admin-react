@@ -98,7 +98,7 @@ class Messages extends React.Component {
   }
 
   public scrollTopToBottomForce() {
-    debugger;
+    window.sessionStorage.setItem('messages:scroll-top-ratio', '1');
     this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
@@ -127,7 +127,7 @@ class Messages extends React.Component {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      // this.scrollTopToPosition();
+      this.scrollTopToPosition();
       return;
     }
 
