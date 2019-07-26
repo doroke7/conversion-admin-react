@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './Index.scss';
-
 import ControlPannel from './ControlPannel/Index';
 import Top from './Top/Index';
 import Detail from './Detail/Index';
@@ -9,6 +7,8 @@ import Detail from './Detail/Index';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 import Messages from './Messages/Index';
+
+import './Index.scss';
 
 interface IProps {
   // className?: string | null;

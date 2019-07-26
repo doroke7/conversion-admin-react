@@ -1,7 +1,14 @@
 import React from 'react';
 import moment from 'moment';
+import { EventEmitter } from "events";
 
 import store from '@/store';
+
+
+import {
+  EmitterHelper
+} from '@/Helpers/';
+
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 
 import Message from './Message/Index';
@@ -10,6 +17,7 @@ import './Index.scss';
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 
 moment.locale(MOMENT.LOCALE);
+let oEventEmitter = new EventEmitter();
 
 class Messages extends React.Component {
   public constructor(oProps: any) {
@@ -20,6 +28,7 @@ class Messages extends React.Component {
     this.setScrollTop = this.setScrollTop.bind(this);
     this.scrollTopToPosition = this.scrollTopToPosition.bind(this);
     this.scrollTopToBottom = this.scrollTopToBottom.bind(this);
+    this.scrollTopToBottomForce = this.scrollTopToBottomForce.bind(this);
 
     store.subscribe(() => {
       let oState = store.getState();
@@ -36,6 +45,7 @@ class Messages extends React.Component {
   }
 
   public ref: any;
+  public eventEmitter: any;
 
   public onScroll(oEvent: any) {
     this.setScrollTop();
@@ -87,6 +97,11 @@ class Messages extends React.Component {
     }
   }
 
+  public scrollTopToBottomForce() {
+    debugger;
+    this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+  }
+
   public componentWillMount() {
 
 
@@ -100,7 +115,7 @@ class Messages extends React.Component {
 
   public componentDidMount() {
     window.addEventListener('resize', this.onResize);
-
+    this.eventEmitter = EmitterHelper.on('messagesScrollToBottom', this.scrollTopToBottomForce);
   }
 
   public componentDidUnmount() {

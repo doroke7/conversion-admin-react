@@ -1,4 +1,5 @@
 import React from 'react';
+
 import htmlReactParser from 'html-react-parser';
 
 import Spin from 'antd/es/spin';
@@ -10,13 +11,12 @@ import {
   AuthenticationHelper
 } from '@/Helpers';
 
+import './Index.scss';
+
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 
-
-import './Index.scss';
-import { string } from 'prop-types';
 
 const ERROR_SRC = 'room/message/image-error.png';
 
@@ -33,6 +33,7 @@ interface IProps {
   loading?: any;
   uploaderId?: any;
 }
+
 
 let sUserId = AuthenticationHelper.getUserId(); 
 
@@ -53,6 +54,7 @@ class Message extends React.Component<IProps> {
     srcDisplay: true,
   };
 
+  public eventEmitter: any;
   public progress: number | void;
   public src: string;
 
@@ -73,7 +75,7 @@ class Message extends React.Component<IProps> {
     });
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
 
     this.setState({
@@ -119,6 +121,9 @@ class Message extends React.Component<IProps> {
     //     !this.props.uploaderId ) {
     //   return false;
     // }
+  }
+
+  public componentWillUnmount() {
   }
 
   public render() {

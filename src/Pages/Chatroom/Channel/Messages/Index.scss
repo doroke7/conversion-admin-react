@@ -1,7 +1,7 @@
 .messages {
   height: calc(100vh - 25.2vmin);
   @media (min-width: 576px){
-    height: calc(100vh - 13.8vmin);
+    height: calc(100vh - 13.7vmin);
   }
 }
 
@@ -9,7 +9,7 @@
 
 @-moz-document url-prefix() {
   .messages {  
-    height: calc(100vh - 13.4vmin);
+    height: calc(100vh - 13.9vmin);
   }
 }
 @supports (-ms-ime-align:auto) {

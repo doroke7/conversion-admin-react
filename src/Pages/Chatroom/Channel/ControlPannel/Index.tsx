@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { EventEmitter } from "events";
+
 import moment from 'moment';
 
 import Input from 'antd/es/input';
@@ -13,6 +16,7 @@ import {
 
 import {
   AuthenticationHelper,
+  EmitterHelper
 } from '@/Helpers/';
 
 import {
@@ -31,6 +35,7 @@ import {
 import emptyImage from '@/images/empty-image.gif';
 const ENTER_KEY_CODE = 13;
 const { TextArea } = Input;
+let oEventEmitter = new EventEmitter();
 
 
 interface IProps {
@@ -129,6 +134,8 @@ class ControlPannel extends React.Component<IProps>  {
   };
 
   public onOK() {
+    EmitterHelper.emit('messagesScrollToBottom', 1);
+
     let oFile = this.ref.current;
 
     this.setState({
@@ -164,6 +171,10 @@ class ControlPannel extends React.Component<IProps>  {
       }
     });
     oFile.value = null;
+    let oState = {
+      text: ''
+    };
+    this.setState(oState);
   }
 
   public showImageModal(){
@@ -234,6 +245,8 @@ class ControlPannel extends React.Component<IProps>  {
       this.setState({
         text: ''
       });
+      EmitterHelper.emit('messagesScrollToBottom', 1);
+
     }
   }
 
