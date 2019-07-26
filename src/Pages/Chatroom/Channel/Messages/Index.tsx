@@ -146,7 +146,7 @@ class Messages extends React.Component {
           src={oMessage.src}
           text={oMessage.text}
           time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
-          userId={oMessage.user._id}
+          userId={oMessage.user && oMessage.user._id ? oMessage.user._id: null}
           messageId={oMessage._id}
           uploaderId={oMessage.uploaderId}
           loading={oMessage.loading}

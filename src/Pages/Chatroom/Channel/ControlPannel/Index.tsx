@@ -215,10 +215,6 @@ class ControlPannel extends React.Component<IProps>  {
         roomId: this.props.roomId,
         user: {
           '_id': AuthenticationHelper.getUserId(),
-          'nickname': AuthenticationHelper.getUserNickname(),
-          'role': AuthenticationHelper.getUserRole(),
-          'level': AuthenticationHelper.getUserLevel(),
-          'url': AuthenticationHelper.getUserUrl(),
         },
         text: this.state.text,
         addedTime: moment(new Date()).format(MOMENT.FORMAT),

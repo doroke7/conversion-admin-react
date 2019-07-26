@@ -127,7 +127,7 @@ class Message extends React.Component<IProps> {
   }
 
   public render() {
-    let position = this.props.userId === sUserId ? 'right' : 'left';
+    let position = this.props.userId === sUserId || !this.props.userId ? 'right' : 'left';
     let sUrl = this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].url : '';
     sUrl = (sUrl && 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
     let sRole = this.state.users && this.state.users[this.props.userId] ? (this.state.users[this.props.userId].role).toLowerCase() : '';
