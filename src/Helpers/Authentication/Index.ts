@@ -15,39 +15,6 @@ class AuthenticationHelper {
     }
   }
 
-  public static getUserUrl(): string | null {
-    try {
-      let sJwt = window.localStorage.getItem("jwt") || "";
-      let oPayload: any = jwtDecode(sJwt);
-      let sUrl = oPayload.url;
-      return sUrl;
-    } catch (sException) {
-      return null;
-    }
-  }
-
-  public static getUserRole(): string | null {
-    try {
-      let sJwt = window.localStorage.getItem("jwt") || "";
-      let oPayload: any = jwtDecode(sJwt);
-      let sRole = oPayload.role;
-      return sRole;
-    } catch (sException) {
-      return null;
-    }
-  }
-
-  public static getUserNickname(): string | null {
-    try {
-      let sJwt = window.localStorage.getItem("jwt") || "";
-      let oPayload: any = jwtDecode(sJwt);
-      let sNickname = oPayload.nickname;
-      return sNickname;
-    } catch (sException) {
-      return null;
-    }
-  }
-
   public static getJwt(): string | null {
     let sJwt = window.localStorage.getItem("jwt") || '';
     return sJwt;
@@ -59,17 +26,6 @@ class AuthenticationHelper {
       let oPayload: any = jwtDecode(sJwt);
       let iExp = oPayload.exp;
       return iExp;
-    } catch (sException) {
-      return null;
-    }
-  }
-
-  public static getUserLevel(): number | null {
-    try {
-      let sJwt = window.localStorage.getItem("jwt") || "";
-      let oPayload: any = jwtDecode(sJwt);
-      let ilevel = oPayload.level;
-      return ilevel;
     } catch (sException) {
       return null;
     }
