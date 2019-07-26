@@ -128,6 +128,8 @@ class Chatroom extends React.Component<any> {
       
       let aMessages = oBody.data.messages;
       store.dispatch(roomMessage.didSend(aMessages));
+      store.dispatch(userAction.showViaMessage(aMessages))
+
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
