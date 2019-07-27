@@ -46,6 +46,17 @@ let oJwt: any = {
           'access-token': sAccessToken
         }
       };
+      let oResponse = await AxiosHelper.post({
+        path: '/service/authentication/authentication/refresh',
+        params: oBody,
+        options: oOptions
+      });
+      if (-1 === oResponse.jwt.result || !oResponse.jwt) {
+        return;
+      }
+      sJwt = oResponse.jwt;
+      AuthenticationHelper.setJwt(sJwt);
+      cDispatch(cRefresh(sJwt));
 
       setInterval(async () => {
         let oResponse = await AxiosHelper.post({
@@ -59,7 +70,7 @@ let oJwt: any = {
         sJwt = oResponse.jwt;
         AuthenticationHelper.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));
-      }, 15 * 60 * 1000); 
+      }, 1 * 60 * 1000); 
 
     }
   },
