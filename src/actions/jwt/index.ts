@@ -38,9 +38,12 @@ let oJwt: any = {
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
       let sJwt = AuthenticationHelper.getJwt();
+      let sAccessToken = AuthenticationHelper.getAccessToken();
+
       let oOptions = {
         headers: {
-          'jwt': sJwt  // 一定要 引号
+          'jwt': sJwt,  // 一定要 引号
+          'access-token': sAccessToken
         }
       };
 
@@ -56,7 +59,7 @@ let oJwt: any = {
         sJwt = oResponse.jwt;
         AuthenticationHelper.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));
-      }, 10 * 1000); 
+      }, 15 * 60 * 1000); 
 
     }
   },
