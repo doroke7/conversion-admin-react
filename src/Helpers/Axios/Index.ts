@@ -57,9 +57,17 @@ class AxiosHelper {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
-          let oAxiosReponse = await axios.get(_sUrl, oParams);
-          let oReponse = oAxiosReponse.data;
-          aResponses.push(oReponse);
+
+          let oAxiosResponse;
+          try {
+            oAxiosResponse = await axios.get(_sUrl, oParams);
+      
+          } catch(oExcepiton) {
+            oAxiosResponse = oExcepiton.response;
+          }
+          let oResponse = oAxiosResponse.data;
+
+          aResponses.push(oResponse);
         }
 
         return aResponses;
@@ -69,9 +77,17 @@ class AxiosHelper {
         aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           let oParams = oRequest.params;
-          let oAxiosReponse = await axios.get(_sUrl, oParams);
-          let oReponse = oAxiosReponse.data;
-          return oReponse;
+
+          let oAxiosResponse;
+          try {
+            oAxiosResponse = await axios.get(_sUrl, oParams);
+      
+          } catch(oExcepiton) {
+            oAxiosResponse = oExcepiton.response;
+          }
+          let oResponse = oAxiosResponse.data;
+
+          return oResponse;
         })
       );
 
@@ -82,8 +98,16 @@ class AxiosHelper {
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
     // params.headers = oHeaders;
-    let oAxiosResponse = await axios.get(sUrl, oParams);
+
+    let oAxiosResponse;
+    try {
+      oAxiosResponse = await axios.get(sUrl, oParams);
+
+    } catch(oExcepiton) {
+      oAxiosResponse = oExcepiton.response;
+    }
     let oResponse = oAxiosResponse.data;
+
     return oResponse;
   }
 
