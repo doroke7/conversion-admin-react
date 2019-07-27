@@ -64,7 +64,7 @@ let oJwt: any = {
     return async (cDispatch: any) => {
       let sJwt = AuthenticationHelper.getJwt();
       let sAccessToken = AuthenticationHelper.getAccessToken();
-
+      debugger;
       let oOptions = {
         headers: {
           'jwt': sJwt,  // 一定要 引号

@@ -107,10 +107,15 @@ class AxiosHelper {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
           oOptions = oRequest.options;
+          let oAxiosReponse;
+          try {
+            oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
 
-          let oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
-          let oReponse = oAxiosReponse.data;
-          aResponses.push(oReponse);
+          } catch(oExcepiton) {
+            oAxiosReponse = oExcepiton.response;
+          }
+          let oResponse = oAxiosReponse.data;
+          aResponses.push(oResponse);
         }
 
         return aResponses;
@@ -121,9 +126,16 @@ class AxiosHelper {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           let oParams = oRequest.params;
           oOptions = oRequest.options;
-          let oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
-          let oReponse = oAxiosReponse.data;
-          return oReponse;
+
+          let oAxiosReponse;
+          try {
+            oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
+
+          } catch(oExcepiton) {
+            oAxiosReponse = oExcepiton.response;
+          }
+          let oResponse = oAxiosReponse.data;
+          return oResponse;
         })
       );
 
@@ -135,7 +147,13 @@ class AxiosHelper {
     oParams = oRequest.params;
     oOptions = oRequest.options;
     // params.headers = oHeaders;
-    let oAxiosResponse = await axios.post(sUrl, oParams, oOptions);
+    let oAxiosResponse;
+    try {
+      oAxiosResponse = await axios.post(sUrl, oParams, oOptions);
+
+    } catch(oExcepiton) {
+      oAxiosResponse = oExcepiton.response;
+    }
     let oResponse = oAxiosResponse.data;
     return oResponse;
   }
