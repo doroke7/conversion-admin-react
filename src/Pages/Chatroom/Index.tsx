@@ -65,9 +65,15 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on("MESSAGE", this.onMessage);
     this.chatroomSocket.on("disconnet", () => {});
     // this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
+    try {
+      await store.dispatch(jwtAction.accessTokenToJwt());
+      await store.dispatch(jwtAction.refresh());
+    } catch (oExeption) {
+      let sMessage = oExeption.message;
+      Message.warning(MESSAGES[sMessage])
+    }
 
-    store.dispatch(jwtAction.accessTokenToJwt());
-    store.dispatch(jwtAction.refresh());
+
 
     this.chatroomSocket.emit("ENTER ROOM", void 0);
   }
@@ -127,8 +133,8 @@ class Chatroom extends React.Component<any> {
       }
       
       let aMessages = oBody.data.messages;
-      store.dispatch(roomMessage.didSend(aMessages));
-      store.dispatch(userAction.showViaMessage(aMessages))
+      await store.dispatch(roomMessage.didSend(aMessages));
+      await store.dispatch(userAction.showViaMessage(aMessages))
 
     } catch (oExeption) {
       let sMessage = oExeption.message;

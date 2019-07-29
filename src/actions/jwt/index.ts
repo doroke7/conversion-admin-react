@@ -53,7 +53,8 @@ let oJwt: any = {
           options: oOptions
         });
         if (-1 === oResponse.jwt.result || !oResponse.jwt) {
-          return;
+          throw new Error('IT_FAILS_TO_REFRESH_JWT');
+
         }
         sJwt = oResponse.jwt;
         AuthenticationHelper.setJwt(sJwt);
@@ -78,7 +79,7 @@ let oJwt: any = {
             options: oOptions
           });
           if (-1 === oResponse.jwt.result || !oResponse.jwt) {
-            return;
+            throw new Error('IT_FAILS_TO_REFRESH_JWT');
           }
           sJwt = oResponse.jwt;
           AuthenticationHelper.setJwt(sJwt);
@@ -107,7 +108,7 @@ let oJwt: any = {
           options: oOptions
         });
         if (-1 === oResponse.result || !oResponse.jwt) {
-          return;
+          throw new Error('IT_FAILS_TO_LOGIN_VIA_ACESS_TOKEN');
         }
         sJwt = oResponse.jwt;
         AuthenticationHelper.setJwt(sJwt);
