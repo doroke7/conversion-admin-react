@@ -44,6 +44,30 @@ class Message extends React.Component<IProps> {
     this.onError = this.onError.bind(this);
     this.onLoad = this.onLoad.bind(this);
 
+    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
+
+    this.setState({
+      src: sSrc
+    });
+    store.subscribe(() => {
+      let oState = store.getState();
+      let oUploaders = oState.uploaders;
+      let oUsers = oState.users;
+      let _oState: any = {};
+      if (oUploaders[this.props.uploaderId]) {
+
+        _oState['uploaders'] = {
+          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+        }
+      }
+
+      if (oUsers[this.props.userId]) {
+        _oState['users'] = {
+          [this.props.userId]: oUsers[this.props.userId]
+        }
+      }
+      this.setState(_oState);
+    });
   }
 
   public state: any = {
@@ -76,30 +100,7 @@ class Message extends React.Component<IProps> {
   }
 
   public componentDidMount() {
-    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
 
-    this.setState({
-      src: sSrc
-    });
-    store.subscribe(() => {
-      let oState = store.getState();
-      let oUploaders = oState.uploaders;
-      let oUsers = oState.users;
-      let _oState: any = {};
-      if (oUploaders[this.props.uploaderId]) {
-
-        _oState['uploaders'] = {
-          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-        }
-      }
-
-      if (oUsers[this.props.userId]) {
-        _oState['users'] = {
-          [this.props.userId]: oUsers[this.props.userId]
-        }
-      }
-      this.setState(_oState);
-    });
   }
 
   public componentDidUpdate(a: any){
@@ -147,7 +148,7 @@ class Message extends React.Component<IProps> {
     }
 
     return (
-      <div className={"message d-flex justify-content-end "+ (position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
+      <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
           <Spin indicator={
             <div className="loading">
