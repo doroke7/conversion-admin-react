@@ -44,30 +44,7 @@ class Message extends React.Component<IProps> {
     this.onError = this.onError.bind(this);
     this.onLoad = this.onLoad.bind(this);
 
-    let sSrc = (!this.props.src || 0 === this.props.src.indexOf("http") || 0 === this.props.src.indexOf("data:") ? this.props.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + this.props.src)
 
-    this.setState({
-      src: sSrc
-    });
-    store.subscribe(() => {
-      let oState = store.getState();
-      let oUploaders = oState.uploaders;
-      let oUsers = oState.users;
-      let _oState: any = {};
-      if (oUploaders[this.props.uploaderId]) {
-
-        _oState['uploaders'] = {
-          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-        }
-      }
-
-      if (oUsers[this.props.userId]) {
-        _oState['users'] = {
-          [this.props.userId]: oUsers[this.props.userId]
-        }
-      }
-      this.setState(_oState);
-    });
   }
 
   public state: any = {
@@ -101,6 +78,33 @@ class Message extends React.Component<IProps> {
 
   public componentDidMount() {
 
+
+    store.subscribe(() => {
+      let oState = store.getState();
+      let oUploaders = oState.uploaders;
+      let oUsers = oState.users;
+      let _oState: any = {};
+      if (oUploaders[this.props.uploaderId]) {
+
+        _oState['uploaders'] = {
+          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+        }
+      }
+
+      if (oUsers[this.props.userId]) {
+        _oState['users'] = {
+          [this.props.userId]: oUsers[this.props.userId]
+        }
+      }
+      this.setState(_oState);
+    });
+  }
+
+  public componentWillReceiveProps(oNextProps: any){
+    let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf("http") || 0 === oNextProps.src.indexOf("data:") ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
+    this.setState({
+      src: sSrc
+    });
   }
 
   public componentDidUpdate(a: any){
@@ -133,6 +137,7 @@ class Message extends React.Component<IProps> {
     sUrl = (sUrl && 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
     let sRole = this.state.users && this.state.users[this.props.userId] ? (this.state.users[this.props.userId].role).toLowerCase() : '';
     let sUploaderId = this.props.uploaderId;
+
     if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
       let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
       this.progress = Math.floor(fProgress);
@@ -147,6 +152,7 @@ class Message extends React.Component<IProps> {
       }, 1)
     }
 
+    debugger;
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
