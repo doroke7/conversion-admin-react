@@ -167,7 +167,6 @@ class ControlPannel extends React.Component<IProps>  {
         jwt: AuthenticationHelper.getJwt()
       }
     });
-    debugger;
     // this.chatroomFileSocket.abort(aIds[0]);
     oFile.value = null;
     let oState = {
