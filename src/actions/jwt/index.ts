@@ -46,19 +46,7 @@ let oJwt: any = {
           'access-token': sAccessToken
         }
       };
-      let oResponse = await AxiosHelper.post({
-        path: '/service/authentication/authentication/refresh',
-        params: oBody,
-        options: oOptions
-      });
-      if (-1 === oResponse.jwt.result || !oResponse.jwt) {
-        return;
-      }
-      sJwt = oResponse.jwt;
-      AuthenticationHelper.setJwt(sJwt);
-      cDispatch(cRefresh(sJwt));
-
-      setInterval(async () => {
+      if (sJwt) {
         let oResponse = await AxiosHelper.post({
           path: '/service/authentication/authentication/refresh',
           params: oBody,
@@ -70,6 +58,33 @@ let oJwt: any = {
         sJwt = oResponse.jwt;
         AuthenticationHelper.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));
+      }
+
+
+      setInterval(async () => {
+        let sJwt = AuthenticationHelper.getJwt();
+        let sAccessToken = AuthenticationHelper.getAccessToken();
+  
+        let oOptions = {
+          headers: {
+            'jwt': sJwt,  // 一定要 引号
+            'access-token': sAccessToken
+          }
+        };
+        if(sJwt) {
+          let oResponse = await AxiosHelper.post({
+            path: '/service/authentication/authentication/refresh',
+            params: oBody,
+            options: oOptions
+          });
+          if (-1 === oResponse.jwt.result || !oResponse.jwt) {
+            return;
+          }
+          sJwt = oResponse.jwt;
+          AuthenticationHelper.setJwt(sJwt);
+          cDispatch(cRefresh(sJwt));
+        }
+
       }, 1 * 60 * 1000); 
 
     }

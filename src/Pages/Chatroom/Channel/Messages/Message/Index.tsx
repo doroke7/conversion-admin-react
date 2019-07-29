@@ -44,7 +44,6 @@ class Message extends React.Component<IProps> {
     this.onError = this.onError.bind(this);
     this.onLoad = this.onLoad.bind(this);
 
-
   }
 
   public state: any = {
@@ -98,6 +97,8 @@ class Message extends React.Component<IProps> {
       }
       this.setState(_oState);
     });
+    this.props.scrollTopToBottom();
+
   }
 
   public componentWillReceiveProps(oNextProps: any){
@@ -123,6 +124,8 @@ class Message extends React.Component<IProps> {
     //   }
     //   this.setState(oState);
     // }
+    this.props.scrollTopToBottom();
+
   }
 
 
@@ -161,7 +164,6 @@ class Message extends React.Component<IProps> {
       }, 1)
     }
 
-    debugger;
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
