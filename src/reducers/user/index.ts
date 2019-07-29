@@ -17,7 +17,6 @@ const oUserReducer = (oUsers: any = {}, oAction: any) => {
           __oUsers[sUserId] = oUser;
           return __oUsers;
         }, oUsers);
-
         return oUsers;
     default:
       return oUsers;
