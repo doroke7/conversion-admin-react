@@ -164,7 +164,7 @@ class ControlPannel extends React.Component<IProps>  {
       uploadTo: 'roomMessage',
       data: {
         ...oMessage,
-        // jwt: AuthenticationHelper.getJwt()
+        jwt: AuthenticationHelper.getJwt()
       }
     });
     debugger;

@@ -69,7 +69,6 @@ class Message extends React.Component<IProps> {
   }
   public onError(oEvent: any) {
     let sSrc = 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC;
-    debugger;
     this.setState({
       src: sSrc,
       srcDisplay: true,
@@ -109,7 +108,7 @@ class Message extends React.Component<IProps> {
   public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
     let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf("http") || 0 === oNextProps.src.indexOf("data:") ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
 
-    if (sSrc !== oPrevState.src) {
+    if (sSrc !== oPrevState.src  && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC) {
       return {
         src: sSrc
       };
@@ -164,6 +163,7 @@ class Message extends React.Component<IProps> {
         this.setState(oState);
       }, 1)
     }
+    debugger;
 
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
@@ -191,11 +191,7 @@ class Message extends React.Component<IProps> {
                <Progress 
                 className={"position-absolute progress " + (!this.state.progressDispaly ? "d-none" : "")}
                 type="dashboard" 
-                percent={this.progress ? this.progress : 0} 
-                strokeColor={{
-                '0%': '#dddddd',
-                '100%': '#111111',
-              }}/> : 
+                percent={this.progress ? this.progress : 0} /> : 
                null}
 
               {this.state.src ? (<img 
