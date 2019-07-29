@@ -160,12 +160,15 @@ class ControlPannel extends React.Component<IProps>  {
       loading: true,
     };
 
-    this.chatroomFileSocket.upload(oFile, {
+    let aIds = this.chatroomFileSocket.upload(oFile, {
+      uploadTo: 'roomMessage',
       data: {
         ...oMessage,
         jwt: AuthenticationHelper.getJwt()
       }
     });
+    debugger;
+    this.chatroomFileSocket.abort(aIds[0]);
     oFile.value = null;
     let oState = {
       text: ''
