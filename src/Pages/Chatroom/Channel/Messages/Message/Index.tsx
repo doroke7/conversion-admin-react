@@ -101,10 +101,19 @@ class Message extends React.Component<IProps> {
   }
 
   public componentWillReceiveProps(oNextProps: any){
+
+  }
+
+  public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
     let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf("http") || 0 === oNextProps.src.indexOf("data:") ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
-    this.setState({
-      src: sSrc
-    });
+
+    if (sSrc !== oPrevState.src) {
+      return {
+        src: sSrc
+      };
+    }
+
+    return null;
   }
 
   public componentDidUpdate(a: any){
