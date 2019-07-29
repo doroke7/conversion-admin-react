@@ -50,6 +50,11 @@ class AuthenticationHelper {
     window.localStorage.removeItem("jwt");
   }
 
+  public static removeLoginState(): void {
+    window.localStorage.removeItem("loginState");
+  }
+
+
   public static setJwt(sJwt: string): void {
     window.localStorage.setItem("jwt", sJwt);
   }

@@ -164,11 +164,11 @@ class ControlPannel extends React.Component<IProps>  {
       uploadTo: 'roomMessage',
       data: {
         ...oMessage,
-        jwt: AuthenticationHelper.getJwt()
+        // jwt: AuthenticationHelper.getJwt()
       }
     });
     debugger;
-    this.chatroomFileSocket.abort(aIds[0]);
+    // this.chatroomFileSocket.abort(aIds[0]);
     oFile.value = null;
     let oState = {
       text: ''

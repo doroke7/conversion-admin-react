@@ -69,6 +69,7 @@ class Message extends React.Component<IProps> {
   }
   public onError(oEvent: any) {
     let sSrc = 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC;
+    debugger;
     this.setState({
       src: sSrc,
       srcDisplay: true,

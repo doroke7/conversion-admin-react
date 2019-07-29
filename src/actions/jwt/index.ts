@@ -32,6 +32,7 @@ let oJwt: any = {
 
       let sJwt = oResponse.jwt;
       AuthenticationHelper.setJwt(sJwt);
+      AuthenticationHelper.removeLoginState();
       cDispatch(cLogin(sJwt));
     }
   },
