@@ -100,18 +100,19 @@ let oJwt: any = {
         }
       };
 
-      let oResponse = await AxiosHelper.post({
-        path: '/service/authentication/authentication/access-token-to-jwt',
-        params: oBody,
-        options: oOptions
-      });
-      if (-1 === oResponse.result || !oResponse.jwt) {
-        return;
+      if (sAccessToken) {
+        let oResponse = await AxiosHelper.post({
+          path: '/service/authentication/authentication/access-token-to-jwt',
+          params: oBody,
+          options: oOptions
+        });
+        if (-1 === oResponse.result || !oResponse.jwt) {
+          return;
+        }
+        sJwt = oResponse.jwt;
+        AuthenticationHelper.setJwt(sJwt);
+        cDispatch(cRefresh(sJwt));
       }
-      sJwt = oResponse.jwt;
-      AuthenticationHelper.setJwt(sJwt);
-      cDispatch(cRefresh(sJwt));
-
     }
   }
 };
