@@ -64,13 +64,12 @@ let oJwt: any = {
         cDispatch(cRefresh(sJwt));
         AuthenticationHelper.setJwt(sJwt);
         let oPayLoad: any = jwtDecode(sJwt);
-        let iExp = oPayLoad.exp;
-        let iNow = new Date().getTime();
-        let iMicroSecond = iExp - iNow - 10 * 60 * 1000 <= 0 ? 0 : iExp - iNow - 10 * 60 * 1000;
-
+        let iExp = oPayLoad.exp; // second
+        let iNow = new Date().getTime() / 1000; // second
+        let iSecond = iExp - iNow - 10 * 60 <= 0 ? 0 : iExp - iNow - 10 * 60;
         setTimeout(async () => {
           await fNext();
-        }, iMicroSecond);
+        }, iSecond * 1000); // microsecond
       }
       fNext();
     }

@@ -8,6 +8,16 @@ import Divider from 'antd/es/divider';
 import Setting from './Setting/Index';
 import List from './List/Index';
 
+import store from '@/store';
+
+import {
+  userAction
+} from '@/actions/';
+
+import {
+  AuthenticationHelper,
+} from '@/Helpers/';
+
 import './Index.scss';
 
 interface IProps {
@@ -17,6 +27,13 @@ interface IProps {
 class Top extends React.Component<IProps> {
   public constructor(props: any) {
     super(props);
+    this.getUserAndshowModal = this.getUserAndshowModal.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.handleOk = this.handleOk.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.showDrawer = this.showDrawer.bind(this);
+    this.onClose = this.onClose.bind(this);
+
   }
 
   public state = {
@@ -24,31 +41,48 @@ class Top extends React.Component<IProps> {
     drawer: false,
   };
 
-  public showModal = () => {
+  public getUserAndshowModal(): void {
+
+
+    this.showModal();
+
+  }
+
+  public async getUser(): Promise<void> {
+    try {
+      let sUserId = AuthenticationHelper.getUserId();
+      store.dispatch(userAction.show(sUserId));
+    } catch (oException) {
+
+    }
+
+
+  }
+  public showModal (): void {
     this.setState({
       modal: true,
     });
   };
 
-  public handleOk = (e: any) => {
+  public handleOk(e: any): void {
     this.setState({
       modal: true,
     });
   };
 
-  public handleCancel = (e: any) => {
+  public handleCancel(e: any): void {
     this.setState({
       modal: false,
     });
   };
 
-  public showDrawer = () => {
+  public showDrawer(): void {
     this.setState({
       drawer: true,
     });
   };
 
-  public onClose = () => {
+  public onClose(): void {
     this.setState({
       drawer: false,
     });
@@ -69,7 +103,7 @@ class Top extends React.Component<IProps> {
           </span>
         </Link>
         <span className="title">聊天室</span>
-        <span onClick={this.showModal} className="position-absolute setting">
+        <span onClick={this.getUserAndshowModal} className="position-absolute setting">
           <i className="iconfont icon-setting"></i>
         </span>
         <span onClick={this.showDrawer} className="position-absolute list">
