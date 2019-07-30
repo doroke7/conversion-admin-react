@@ -12,6 +12,8 @@ import {
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 
 import Message from './Message/Index';
+import ScrollButton from './ScrollButton/Index';
+
 import './Index.scss';
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
@@ -46,7 +48,6 @@ class Messages extends React.Component {
 
   public ref: any;
   public eventEmitter: any;
-
   public onScroll(oEvent: any) {
     this.setScrollTop();
   }
@@ -54,10 +55,15 @@ class Messages extends React.Component {
   public setScrollTop() {
     let oDom = this.ref.current;
 
-    let iScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
-    window.sessionStorage.setItem('messages:scroll-top-ratio', iScrollTopRatio);
+    let sScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
+    window.sessionStorage.setItem('messages:scroll-top-ratio', sScrollTopRatio);
     window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
 
+    let iScrollTopRatio = Number(sScrollTopRatio);
+    let oState = {
+      scrollTopRatio: iScrollTopRatio
+    };
+    this.setState(oState);
   }
 
   public setScrollHeight() {
@@ -76,6 +82,10 @@ class Messages extends React.Component {
     let sScrollHeight = window.sessionStorage.getItem('messages:scroll-height');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
+    let oState = {
+      scrollTopRatio: iScrollTopRatio
+    };
+    this.setState(oState);
     let iScrollHeight = Number(sScrollHeight);
     // <img src=... 还没读取完毕... 不改变 scrollTop
     if(this.ref.current.scrollHeight >= iScrollHeight) {
@@ -110,7 +120,8 @@ class Messages extends React.Component {
   public state: any = {
     roomMessages: [],
     words: [],
-    users: {}
+    users: {},
+    scrollTopRatio: 0
   };
 
   public componentDidMount() {
@@ -139,22 +150,29 @@ class Messages extends React.Component {
   }
 
   public render() {
+    console.log(this.state.scrollTopRatio);
     return (
-      <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
-        {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
-        <Message
-          src={oMessage.src}
-          text={oMessage.text}
-          time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
-          userId={oMessage.user && oMessage.user._id ? oMessage.user._id: null}
-          messageId={oMessage._id}
-          uploaderId={oMessage.uploaderId}
-          loading={oMessage.loading}
-          scrollTopToBottom={this.scrollTopToBottom}
-          scrollTopToPosition={this.scrollTopToPosition}
-          setScrollHeight={this.setScrollHeight}
-          />))}
+      <div className="position-relative">
+        <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
+          {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
+          <Message
+            src={oMessage.src}
+            text={oMessage.text}
+            time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
+            userId={oMessage.user && oMessage.user._id ? oMessage.user._id: null}
+            messageId={oMessage._id}
+            uploaderId={oMessage.uploaderId}
+            loading={oMessage.loading}
+            scrollTopToBottom={this.scrollTopToBottom}
+            scrollTopToPosition={this.scrollTopToPosition}
+            setScrollHeight={this.setScrollHeight}
+            />))}
+        </div>
+        <ScrollButton
+          className={this.state.scrollTopRatio === 1 ? "d-none" : ""}
+          onClick={this.scrollTopToBottomForce}/>
       </div>
+
     );
   }
 }

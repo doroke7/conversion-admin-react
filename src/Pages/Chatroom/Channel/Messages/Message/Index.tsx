@@ -163,7 +163,6 @@ class Message extends React.Component<IProps> {
         this.setState(oState);
       }, 1)
     }
-    debugger;
 
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
