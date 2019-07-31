@@ -121,12 +121,20 @@ class Messages extends React.Component {
     roomMessages: [],
     words: [],
     users: {},
-    scrollTopRatio: 0
+    scrollTopRatio: 1
   };
 
   public componentDidMount() {
     window.addEventListener('resize', this.onResize);
     this.eventEmitter = EmitterHelper.on('messagesScrollToBottom', this.scrollTopToBottomForce);
+
+    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
+
+    let iScrollTopRatio = Number(sScrollTopRatio);
+    let oState = {
+      scrollTopRatio: iScrollTopRatio
+    };
+    this.setState(oState);
   }
 
   public componentDidUnmount() {
@@ -150,7 +158,6 @@ class Messages extends React.Component {
   }
 
   public render() {
-    console.log(this.state.scrollTopRatio);
     return (
       <div className="position-relative">
         <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
