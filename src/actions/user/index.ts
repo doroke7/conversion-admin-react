@@ -16,20 +16,19 @@ let oUserAction: any = {
 
   show: (sUserId: any) => {
     return async (cDispatch: any) => {
+      debugger;
       let sJwt = AuthenticationHelper.getJwt();
 
       let oBody = {
         user_id: sUserId
       };
-      let oOptions = {
-        headers: {
-          'jwt': sJwt,  // 一定要 引号
-        }
-      };
+
       let oResponse = await AxiosHelper.get({
         path: '/service/resource/user/show/' + sUserId,
         params: oBody,
-        options: oOptions
+        headers: {
+          'jwt': sJwt,  // 一定要 引号
+        }
       });
 
       if (-1 === oResponse.result) {

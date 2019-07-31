@@ -6,14 +6,19 @@ import {
 import './Index.scss';
 
 class Detail extends React.Component {
-  static contextType = Socket;
   public render(){
     return (
-      <Socket.Consumer>
-        {value => 
-        <div className="detail" data-a={value}>
-        </div>}
-      </Socket.Consumer>
+      <div className="detail">
+        <div className="info-wrapper">
+          <div className="iconfont icon-info info text-center">
+
+          </div>
+          <div className="description text-center">
+            聊天室基本信息
+          </div>
+        </div>
+
+      </div>
 
     );
   }

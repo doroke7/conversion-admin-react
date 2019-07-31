@@ -42,7 +42,7 @@ class Top extends React.Component<IProps> {
   };
 
   public getUserAndshowModal(): void {
-
+    this.getUser();
 
     this.showModal();
 

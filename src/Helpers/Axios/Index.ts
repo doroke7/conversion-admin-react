@@ -47,6 +47,7 @@ class AxiosHelper {
   public static async get(oRequest: any | any[], bConcurrent: boolean = false): Promise<any> {
     bConcurrent = !!bConcurrent;
     let oParams;
+    let oOptions;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
@@ -57,10 +58,17 @@ class AxiosHelper {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
+          let oHeaders = oRequest.headers;
+
+          oOptions = {
+            params: oParams,
+            data: oParams,
+            headers: oHeaders
+          }
 
           let oAxiosResponse;
           try {
-            oAxiosResponse = await axios.get(_sUrl, oParams);
+            oAxiosResponse = await axios.get(_sUrl, oOptions);
       
           } catch(oExcepiton) {
             oAxiosResponse = oExcepiton.response;
@@ -76,11 +84,18 @@ class AxiosHelper {
       aResponses = await Promise.all(
         aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
-          let oParams = oRequest.params;
+          oParams = oRequest.params;
+          let oHeaders = oRequest.headers;
+
+          oOptions = {
+            params: oParams,
+            data: oParams,
+            headers: oHeaders
+          }
 
           let oAxiosResponse;
           try {
-            oAxiosResponse = await axios.get(_sUrl, oParams);
+            oAxiosResponse = await axios.get(_sUrl, oOptions);
       
           } catch(oExcepiton) {
             oAxiosResponse = oExcepiton.response;
@@ -97,11 +112,18 @@ class AxiosHelper {
 
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
-    // params.headers = oHeaders;
+    oParams = oRequest.params;
+    let oHeaders = oRequest.headers;
+
+    oOptions = {
+      params: oParams,
+      data: oParams,
+      headers: oHeaders
+    }
 
     let oAxiosResponse;
     try {
-      oAxiosResponse = await axios.get(sUrl, oParams);
+      oAxiosResponse = await axios.get(sUrl, oOptions);
 
     } catch(oExcepiton) {
       oAxiosResponse = oExcepiton.response;
