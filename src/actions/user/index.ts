@@ -16,7 +16,6 @@ let oUserAction: any = {
 
   show: (sUserId: any) => {
     return async (cDispatch: any) => {
-      debugger;
       let sJwt = AuthenticationHelper.getJwt();
 
       let oBody = {
