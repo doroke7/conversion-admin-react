@@ -12,6 +12,7 @@ import {
 
 import Divider from 'antd/es/divider';
 import Avatar from 'antd/es/avatar';
+import Switch from 'antd/es/switch';
 
 import './Index.scss';
 
@@ -67,9 +68,9 @@ class Top extends React.Component<IProps> {
           <Divider/>
           <span>我的赞</span><span className="float-right">0</span>
           <Divider/>
-          <span>显示我的投注</span>
+          <span>显示我的投注</span><Switch className="float-right"/>
           <Divider/>
-          <span>蔽所有投注</span>
+          <span>蔽所有投注</span><Switch className="float-right"/>
           <Divider/>
       </div>
     );
