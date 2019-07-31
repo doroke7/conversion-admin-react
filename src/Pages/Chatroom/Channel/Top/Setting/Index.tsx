@@ -1,5 +1,17 @@
 import React from 'react';
+
+import store from '@/store';
+
+import {
+  AuthenticationHelper,
+} from '@/Helpers/';
+
+import {
+  STORAGE
+} from "@/CONFIGS/";
+
 import Divider from 'antd/es/divider';
+import Avatar from 'antd/es/avatar';
 
 import './Index.scss';
 
@@ -11,32 +23,53 @@ class Top extends React.Component<IProps> {
     super(props);
   }
 
+  public state: any = {
+    users: {}
+  };
 
 
   public componentDidMount() {
-  }
 
+
+    store.subscribe(() => {
+      let sUserId = AuthenticationHelper.getUserId();
+      let oState = store.getState();
+      let oUsers = oState.users;
+      let _oState: any = {};
+
+
+      if (oUsers[sUserId]) {
+        _oState['users'] = {
+          [sUserId]: oUsers[sUserId]
+        }
+      }
+      this.setState(_oState);
+    });
+
+  }
   public componentDidUpdate() {
   }
 
   public render() {
+    let sUserId = AuthenticationHelper.getUserId();
+    let sUrl = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].url : '';
+    sUrl = (sUrl && 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
+
     return (
       <div className="mt-3 mb-2">
-          <p>头像</p>
+          <span>头像</span><Avatar className="float-right" src={sUrl}/>
           <Divider/>
-          <p>昵称</p>
+          <span>昵称</span><span className="float-right">{sUserId && this.state.users[sUserId] ? this.state.users[sUserId].nickname : ''}</span>
           <Divider/>
-          <p>等级</p>
+          <span>我的等级</span><span className="float-right">{sUserId && this.state.users[sUserId] ? this.state.users[sUserId].level : ''}</span>
           <Divider/>
-          <p>我的关注</p>
+          <span>我的关注</span><span className="float-right">0</span>
           <Divider/>
-          <p>我的赞</p>
+          <span>我的赞</span><span className="float-right">0</span>
           <Divider/>
-          <p>我的等级</p>
+          <span>显示我的投注</span>
           <Divider/>
-          <p>显示我的投注</p>
-          <Divider/>
-          <p>蔽所有投注</p>
+          <span>蔽所有投注</span>
           <Divider/>
       </div>
     );
