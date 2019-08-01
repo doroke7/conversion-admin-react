@@ -3,8 +3,10 @@
 .setting {
 
   .user-admin {
-    background: url('~@/images/user-admin.gif') no-repeat;
+    background: url('~@/images/user-admin.gif') no-repeat  0 0;
     background-size: 102px 46px;
+    width: 102px;
+    height: 46px;
   }
 
   .user-guest {

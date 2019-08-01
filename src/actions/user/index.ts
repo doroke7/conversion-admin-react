@@ -4,10 +4,10 @@ import {
   AuthenticationHelper,
 } from '@/Helpers/';
 
-let cShow: any = (oUser: any, oResponse: any) => {
+let cShow: any = (aUsers: any, oResponse: any) => {
   return {
     type: 'SHOW_USER',
-    payload: oUser,
+    payload: aUsers,
     response: oResponse
   };
 };
@@ -30,11 +30,13 @@ let oUserAction: any = {
         }
       });
 
-      if (-1 === oResponse.result) {
-        throw new Error('IT_FAILS_TO_LOGIN');
+      if (-1 === oResponse.result && (!oResponse.data || !oResponse.data.users)) {
+        throw new Error('IT_FAILS_TO_SHOW_USER');
       }
 
-      cDispatch(cShow(sJwt, oResponse));
+      let aUsers = oResponse.data.users;
+
+      cDispatch(cShow(aUsers, oResponse));
     }
   },
 

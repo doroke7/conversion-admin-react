@@ -69,7 +69,6 @@ class Top extends React.Component<IProps> {
     let iLevel = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].level : 1;
     iLevel = iLevel && iLevel >= 0 && iLevel <= 6 ? iLevel : 1;
     let sRole = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].role.toLowerCase() : 'member';
-
     let sLevel = String(iLevel).padStart(2, '0');
     let sLevelClassName = 'user-' + sRole + (sRole === 'member' ? '-' + sLevel : '') ;
 
@@ -84,7 +83,7 @@ class Top extends React.Component<IProps> {
             </span>
           </span>
           <Divider/>
-          <span>我的等级</span><span className="float-right"><span className={sLevelClassName}></span></span>
+          <span>我的等级</span><span className="float-right"><span className={"d-inline-block " + sLevelClassName}></span></span>
           <Divider/>
           <span>我的关注</span><span className="float-right">0</span>
           <Divider/>
