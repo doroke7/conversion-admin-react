@@ -79,7 +79,7 @@ class Top extends React.Component<IProps> {
           <span>昵称</span>
           <span className="float-right">
             <span className="nicknam-wrapper" onClick={this.enableNickname}>
-              <Input className="d-inline" disabled={this.state.disabledNickname} value={sNickname}/>
+              <Input className="d-inline text-right" disabled={this.state.disabledNickname} value={sNickname}/>
             </span>
           </span>
           <Divider/>
