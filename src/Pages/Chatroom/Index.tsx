@@ -160,19 +160,22 @@ class Chatroom extends React.Component<any> {
 
   public render() {
     return (
-      <Spin ref={this.ref} tip="进入聊天室..." spinning={this.state.loading} delay={0}>
-        <Row className="chatroom" onFocus={this.props.onFocus} onMouseMove={this.props.onMouseMove}>
-          <Col xs={0} sm={8} md={8} lg={6} xl={6}>
-            <Rooms/>
-          </Col>
-          <Col xs={24} sm={16} md={16} lg={18} xl={18}>
-            <Channel 
-              onLogout={this.onLogout}
-              roomId={this.state.roomId}
-              />
-          </Col>
-        </Row>
-      </Spin>
+      <div className="chatroom">
+        <Spin ref={this.ref} tip="进入聊天室" spinning={this.state.loading} delay={0} >
+          <Row onFocus={this.props.onFocus} onMouseMove={this.props.onMouseMove}>
+            <Col xs={0} sm={8} md={8} lg={6} xl={6}>
+              <Rooms/>
+            </Col>
+            <Col xs={24} sm={16} md={16} lg={18} xl={18}>
+              <Channel 
+                onLogout={this.onLogout}
+                roomId={this.state.roomId}
+                />
+            </Col>
+          </Row>
+        </Spin>
+      </div>
+
     );
   }
 }
