@@ -49,6 +49,7 @@ class Chatroom extends React.Component<any> {
     this.ref = React.createRef();
     this.onEnterRoom = this.onEnterRoom.bind(this);
     this.onShowMessage = this.onShowMessage.bind(this);
+    this.onUser = this.onUser.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
   }
@@ -59,12 +60,12 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
 
-    this.chatroomSocket.on("ENTER ROOM", this.onEnterRoom);
-    this.chatroomSocket.on("SHOW MESSAGE", this.onShowMessage);
-    this.chatroomSocket.on("connect", () => {});
-    this.chatroomSocket.on("MESSAGE", this.onMessage);
-    this.chatroomSocket.on("disconnet", () => {});
-    // this.chatroomFileSocket = new SocketIOFileClient(this.chatroomSocket);
+    this.chatroomSocket.on('ENTER ROOM', this.onEnterRoom);
+    this.chatroomSocket.on('SHOW MESSAGE', this.onShowMessage);
+    this.chatroomSocket.on('USER', this.onUser);
+    this.chatroomSocket.on('connect', () => {});
+    this.chatroomSocket.on('MESSAGE', this.onMessage);
+    this.chatroomSocket.on('disconnet', () => {});
     try {
       await store.dispatch(jwtAction.accessTokenToJwt());
       await store.dispatch(jwtAction.refresh());
@@ -135,6 +136,23 @@ class Chatroom extends React.Component<any> {
       let aMessages = oBody.data.messages;
       await store.dispatch(roomMessage.didSend(aMessages));
       await store.dispatch(userAction.showViaMessage(aMessages))
+
+    } catch (oExeption) {
+      let sMessage = oExeption.message;
+      Message.warning(MESSAGES[sMessage]);
+
+    }
+  }
+
+  public async onUser(oBody: any){
+    try {
+
+      if (-1 === oBody.result || !oBody.data || !oBody.data.users) {
+        throw new Error('IT_FAILS_TO_EDIT_USER');
+      }
+      
+      let aUsers = oBody.data.users;
+      await store.dispatch(userAction.edit(aUsers))
 
     } catch (oExeption) {
       let sMessage = oExeption.message;

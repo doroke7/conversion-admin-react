@@ -45,6 +45,13 @@ let oUserAction: any = {
       type: 'SHOW_USER_VIA_MESSAGE',
       payload: aMessages
     };
+  },
+
+  edit: (aUsers: any) => {
+    return {
+      type: 'EDIT_USER',
+      payload: aUsers
+    };
   }
 };
 

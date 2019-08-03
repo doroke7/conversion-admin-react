@@ -13,7 +13,6 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
     case 'DID_SEND_ROOM_MESSAGE':
       let iIndex;
       let oMessage = _aMessages.pop();
-
       if (!oMessage.virtualId) {
         oMessage.loading = false;
         if(0 === aMessages.length) {
