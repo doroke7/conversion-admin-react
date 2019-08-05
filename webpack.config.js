@@ -19,7 +19,7 @@ module.exports = (env, argvs) =>{
     mode: 'production',
     entry: {
       service: './src/entries/service/Index.tsx',
-      // admin: './src/entries/admin/Index.tsx'
+      admin: './src/entries/admin/Index.tsx'
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
@@ -120,10 +120,11 @@ module.exports = (env, argvs) =>{
     },
     plugins: [
       new HtmlWebpackPlugin({
+        chunks: ['manifest', 'vendor', 'service'],
         template: './public/index.html',
-        minify:{ //压缩HTML文件
-          removeComments:true,    //移除HTML中的注释
-          collapseWhitespace:true    //删除空白符与换行符
+        minify: { //压缩HTML文件
+          removeComments: true,    //移除HTML中的注释
+          collapseWhitespace: true    //删除空白符与换行符
         } 
       }),
       new MiniCssExtractPlugin({
