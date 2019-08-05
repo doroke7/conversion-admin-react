@@ -1,15 +1,16 @@
 import React from 'react';
-import { Provider } from 'react-redux'
+import { BrowserRouter, Route } from "react-router-dom";
+
+import { renderRoutes } from 'react-router-config';
 
 import oIo from "socket.io-client";
 // @ts-ignore
 import SocketIOFileClient from "socket.io-file-client";
 import SocketIOFileUpload from 'socketio-file-upload';
 
-import store from '@/store';
+import aRoutes from '@/routers';
 
 import {
-  Router,
   Header,
   Socket,
 } from "@/Commons/";
@@ -49,8 +50,9 @@ class App extends React.Component {
         <Socket.Provider value={oValue}>
           <Header>
           </Header>
-          <Router>
-          </Router>
+          <BrowserRouter>
+            {renderRoutes(aRoutes)}
+          </BrowserRouter>
         </Socket.Provider>
 
     );
