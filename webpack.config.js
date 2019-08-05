@@ -121,7 +121,8 @@ module.exports = (env, argvs) =>{
     plugins: [
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
-        template: './public/index.html',
+        template: './public/service.html',
+        filename: 'index.html',
         minify: { //压缩HTML文件
           removeComments: true,    //移除HTML中的注释
           collapseWhitespace: true    //删除空白符与换行符
