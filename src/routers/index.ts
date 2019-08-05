@@ -1,21 +1,19 @@
 
 import {
-  Chatroom,
-  Login,
-  User,
+  service
 } from '@/Pages/';
 
 const aRoutes = [{
   path: '/login',
-  component: Login,
+  component: service.Login,
   exact: true
 }, {
   path: '/chatroom',
-  component: Chatroom,
+  component: service.Chatroom,
   exact: true
 }, {
   path: '/user',
-  component: User,
+  component: service.User,
   exact: true
 }];
 

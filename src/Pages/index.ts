@@ -1,9 +1,5 @@
-import Chatroom from './Chatroom/Index';
-import Login from './Login/Index';
-import User from './User/Index';
+import service from './service/';
 
 export {
-  Chatroom,
-  Login,
-  User
-}
+  service
+};
