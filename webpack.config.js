@@ -17,7 +17,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = (env, argvs) =>{
   return {
     mode: 'production',
-    entry: './src/entries/index.tsx',
+    entry: './src/entries/service.tsx',
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
       alias: {
@@ -26,12 +26,14 @@ module.exports = (env, argvs) =>{
     },
     output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'bundle.[hash:8].js'
+      filename: 'service.[hash:8].js',
+      publicPath: "/",
     },
     target: 'web',
     // target: 'node', webpack 支持 backend 打包
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
+      publicPath: "/",
       compress: true,
       host: '0.0.0.0',
       port: 3001,
@@ -124,7 +126,7 @@ module.exports = (env, argvs) =>{
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: 'bundle.[contenthash:8].css',
+        filename: 'service.[contenthash:8].css',
         chunkFilename: '[id].css',
       }),
       new AutoDllPlugin({
