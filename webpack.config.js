@@ -17,7 +17,10 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = (env, argvs) =>{
   return {
     mode: 'production',
-    entry: './src/entries/service.tsx',
+    entry: {
+      service: './src/entries/service/Index.tsx',
+      // admin: './src/entries/admin/Index.tsx'
+    },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
       alias: {
@@ -26,7 +29,7 @@ module.exports = (env, argvs) =>{
     },
     output: {
       path: path.join(__dirname, '/dist'),
-      filename: 'service.[hash:8].js',
+      filename: '[name].[hash:8].js',
       publicPath: "/",
     },
     target: 'web',
@@ -126,7 +129,7 @@ module.exports = (env, argvs) =>{
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: 'service.[contenthash:8].css',
+        filename: '[name].[contenthash:8].css',
         chunkFilename: '[id].css',
       }),
       new AutoDllPlugin({
