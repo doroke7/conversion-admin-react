@@ -5,20 +5,20 @@ import {
 
 const aRoutes = [
   {
-    path: '/',
+    path: '/service',
     component: service.Login,
     exact: true
   },
   {
-    path: '/login',
+    path: '/service/login',
     component: service.Login,
     exact: true
   }, {
-    path: '/chatroom',
+    path: '/service/chatroom',
     component: service.Chatroom,
     exact: true
   }, {
-    path: '/user',
+    path: '/service/user',
     component: service.User,
     exact: true
   }

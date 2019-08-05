@@ -28,8 +28,8 @@ module.exports = (env, argvs) =>{
       }
     },
     output: {
-      path: path.join(__dirname, '/dist'),
-      filename: '[name].[hash:8].js',
+      path: path.join(__dirname, '/dist'),  //webpack打包后，输出文件放到哪里去
+      filename: '[name]/bundle.[hash:8].js',
       publicPath: "/",
     },
     target: 'web',
@@ -42,7 +42,11 @@ module.exports = (env, argvs) =>{
       port: 3001,
       inline: true,
       hot: true,
-      historyApiFallback: true,
+      historyApiFallback: {
+        rewrites: [
+          { from: /^\/service\/.*/, to: '/service/index.html' },
+        ]
+      },
       allowedHosts: [
         'fea.chatroom.ques98.cn',
         // '127.0.0.1',
@@ -122,7 +126,16 @@ module.exports = (env, argvs) =>{
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',
-        filename: 'index.html',
+        filename: 'service/index.html',
+        minify: { //压缩HTML文件
+          removeComments: true,    //移除HTML中的注释
+          collapseWhitespace: true    //删除空白符与换行符
+        } 
+      }),
+      new HtmlWebpackPlugin({
+        chunks: ['manifest', 'vendor', 'admin'],
+        template: './public/admin.html',
+        filename: 'admin/index.html',
         minify: { //压缩HTML文件
           removeComments: true,    //移除HTML中的注释
           collapseWhitespace: true    //删除空白符与换行符
@@ -131,7 +144,7 @@ module.exports = (env, argvs) =>{
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: '[name].[contenthash:8].css',
+        filename: '[name]/bundle.[contenthash:8].css',
         chunkFilename: '[id].css',
       }),
       new AutoDllPlugin({
