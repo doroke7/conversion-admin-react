@@ -14,6 +14,7 @@ import Divider from 'antd/es/divider';
 import Avatar from 'antd/es/avatar';
 import Input from 'antd/es/input';
 import Switch from 'antd/es/switch';
+import Button from 'antd/es/button';
 
 import './Index.scss';
 
@@ -73,25 +74,46 @@ class Top extends React.Component<IProps> {
     let sLevelClassName = 'user-' + sRole + (sRole === 'member' ? '-' + sLevel : '') ;
 
     return (
-      <div className="setting mt-3 mb-2">
-          <span>头像</span><Avatar className="float-right" src={sUrl}/>
+      <div className="setting mt-4 mb-3">
+          <div className="list">
+            <div className="text-center">
+              <Avatar className="" size={100} src={sUrl}/>
+            </div>
+            <div className="text-center mt-1">
+            <Button type="primary" shape="round" icon="upload">
+              上传
+            </Button>
+            </div>
+          </div>
           <Divider/>
-          <span>昵称</span>
-          <span className="float-right">
-            <span className="nicknam-wrapper" onClick={this.enableNickname}>
-              <Input className="d-inline text-right" disabled={this.state.disabledNickname} value={sNickname}/>
+          <div className="list">
+            <span>昵称</span>
+            <span className="float-right">
+              <span className="nicknam-wrapper" onClick={this.enableNickname}>
+                <Input className="d-inline text-right" disabled={this.state.disabledNickname} value={sNickname}/>
+              </span>
             </span>
-          </span>
+          </div>
           <Divider/>
-          <span>我的等级</span><span className="float-right"><span className={"d-inline-block " + sLevelClassName}></span></span>
+          <div className="list">
+            <span>我的等级</span><span className="float-right"><span className={"d-inline-block " + sLevelClassName}></span></span>
+          </div>
           <Divider/>
-          <span>我的关注</span><span className="float-right">0</span>
+          <div className="list">
+            <span>我的关注</span><span className="float-right">0</span>
+          </div>
           <Divider/>
-          <span>我的赞</span><span className="float-right">0</span>
+          <div className="list">
+            <span>我的赞</span><span className="float-right">0</span>
+          </div>
           <Divider/>
-          <span>显示我的投注</span><Switch className="float-right" defaultChecked />
+          <div className="list">
+            <span>显示我的投注</span><Switch className="float-right" defaultChecked />
+          </div>
           <Divider/>
-          <span>蔽所有投注</span><Switch className="float-right" defaultChecked />
+          <div className="list">
+            <span>蔽所有投注</span><Switch className="float-right" defaultChecked />
+          </div>
           <Divider/>
       </div>
     );

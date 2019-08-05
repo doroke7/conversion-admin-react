@@ -17,7 +17,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = (env, argvs) =>{
   return {
     mode: 'production',
-    entry: './src/index.tsx',
+    entry: './src/entries/index.tsx',
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
       alias: {

@@ -1,7 +1,10 @@
 
 
 .setting {
-
+  .list {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
   .user-admin {
     background: url('~@/images/user-admin.gif') no-repeat  0 0;
     background-size: 102px 46px;
