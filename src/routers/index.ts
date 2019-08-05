@@ -1,7 +1,7 @@
 
 import {
   service
-} from '@/Pages/';
+} from '@/pages/';
 
 const aRoutes = [{
   path: '/login',

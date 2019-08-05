@@ -151,25 +151,6 @@ module.exports = (env, argvs) =>{
     },
     optimization: {
       minimizer: [
-        new UglifyJsPlugin({
-          parallel: 4,
-          uglifyOptions: {
-            warnings: false,
-            parse: {},
-            compress: {     //压缩代码
-              dead_code: true,    //移除没被引用的代码
-              loops: true //当do、while 、 for循环的判断条件可以确定是，对其进行优化
-            },
-            mangle: true, // Note `mangle.properties` is `false` by default.
-            output: {
-              comments: false,
-            },
-            toplevel: false,
-            nameCache: null,
-            ie8: false,
-            keep_fnames: false,
-          },
-        }),
         new OptimizeCSSAssetsPlugin({
           assetNameRegExp: /\.css$/g,
           cssProcessor: require('cssnano'),
