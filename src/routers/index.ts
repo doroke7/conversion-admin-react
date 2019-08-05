@@ -1,27 +1,8 @@
 
-import {
-  service
-} from '@/pages/';
+import aService from './service';
 
 const aRoutes = [
-  {
-    path: '/service',
-    component: service.Login,
-    exact: true
-  },
-  {
-    path: '/service/login',
-    component: service.Login,
-    exact: true
-  }, {
-    path: '/service/chatroom',
-    component: service.Chatroom,
-    exact: true
-  }, {
-    path: '/service/user',
-    component: service.User,
-    exact: true
-  }
+  ...aService
 ];
 
 export default aRoutes;
