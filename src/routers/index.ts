@@ -2,9 +2,9 @@
 import aService from './service';
 import aAdmin from './admin';
 
-const aRoutes = [
-  ...aService,
-  ...aAdmin
-];
+const oRoutes = {
+  service: aService,
+  admin: aAdmin
+};
 
-export default aRoutes;
+export default oRoutes;

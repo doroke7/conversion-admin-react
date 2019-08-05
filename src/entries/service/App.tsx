@@ -8,7 +8,7 @@ import oIo from "socket.io-client";
 import SocketIOFileClient from "socket.io-file-client";
 import SocketIOFileUpload from 'socketio-file-upload';
 
-import aRoutes from '@/routers';
+import oRoutes from '@/routers';
 
 import {
   Header,
@@ -51,7 +51,7 @@ class App extends React.Component {
           <Header>
           </Header>
           <BrowserRouter>
-            {renderRoutes(aRoutes)}
+            {renderRoutes(oRoutes.service)}
           </BrowserRouter>
         </Socket.Provider>
 

@@ -8,6 +8,8 @@
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json "
   },
   "dependencies": {
+    "@material-ui/core": "^4.3.1",
+    "@material-ui/icons": "^4.2.1",
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
     "@types/react-redux": "^7.1.1",
