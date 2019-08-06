@@ -1,27 +1,13 @@
 import React from 'react';
 
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
 import Grid from '@material-ui/core/Grid';
-// import Hidden from '@material-ui/core/Hidden';
 
 import Pannel from './Pannel/Index';
 
-const useStyles = makeStyles((theme: Theme): any =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }),
-);
+import style from './style';
 
 function Signin(): any {
-  const classes: any = useStyles(void 0);
+  const classes: any = style(void 0);
 
   return (
     <div className={classes.root}>

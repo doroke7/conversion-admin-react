@@ -1,9 +1,10 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme): any =>
+const style = makeStyles((theme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
+      margin: 10,
     },
     container: {
       display: 'flex',
@@ -13,4 +14,4 @@ const useStyles = makeStyles((theme: Theme): any =>
   }),
 );
 
-export default useStyles;
+export default style;
