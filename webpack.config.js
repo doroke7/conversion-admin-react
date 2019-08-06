@@ -2,41 +2,41 @@ const path = require('path');
 const os = require('os');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin  = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var AutoDllPlugin = require('autodll-webpack-plugin')
+var AutoDllPlugin = require('autodll-webpack-plugin');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 /**
  * Webpack 4.*.* 不需要在 plugin 或 loader 指定 source-map
  */
 
-module.exports = (env, argvs) =>{
+module.exports = (env, argvs) => {
   return {
     mode: 'production',
     entry: {
       service: './src/entries/service/Index.tsx',
-      admin: './src/entries/admin/Index.tsx'
+      admin: './src/entries/admin/Index.tsx',
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
       alias: {
-        '@': path.resolve(__dirname, './src/')
-      }
+        '@': path.resolve(__dirname, './src/'),
+      },
     },
     output: {
-      path: path.join(__dirname, '/dist'),  //webpack打包后，输出文件放到哪里去
+      path: path.join(__dirname, '/dist'), //webpack打包后，输出文件放到哪里去
       filename: '[name]/bundle.[hash:8].js',
-      publicPath: "/",
+      publicPath: '/',
     },
     target: 'web',
     // target: 'node', webpack 支持 backend 打包
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
-      publicPath: "/",
+      publicPath: '/',
       compress: true,
       host: '0.0.0.0',
       port: 3001,
@@ -44,9 +44,7 @@ module.exports = (env, argvs) =>{
       hot: true,
       progress: true,
       historyApiFallback: {
-        rewrites: [
-          { from: /^\/service\/.*/, to: '/service/index.html' },
-        ]
+        rewrites: [{ from: /^\/service\/.*/, to: '/service/index.html' }],
       },
       allowedHosts: [
         'fea.chatroom.ques98.cn',
@@ -54,26 +52,24 @@ module.exports = (env, argvs) =>{
         // 'localhost'
       ],
       watchOptions: {
-        ignored: ['node_modules', ],
+        ignored: ['node_modules'],
         aggregateTimeout: 300,
         poll: 1500,
       },
     },
-    devtool: argvs.mode === 'production' ? 'none' : "source-map",
+    devtool: argvs.mode === 'production' ? 'none' : 'source-map',
     module: {
       rules: [
         {
           test: /\.tsx?$/,
           use: [
             'ts-loader', // 'ts-loader'
-          ] // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
+          ], // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
         },
-        { 
-          enforce: "pre",
+        {
+          enforce: 'pre',
           test: /\.js$/,
-          use: [
-            "source-map-loader"
-          ]
+          use: ['source-map-loader'],
         },
         {
           test: [/\.scss$/, /\.css$/],
@@ -88,7 +84,7 @@ module.exports = (env, argvs) =>{
               },
             },
             {
-              loader: "css-loader",
+              loader: 'css-loader',
             },
             // {
             //   loader: 'postcss-loader',
@@ -102,9 +98,9 @@ module.exports = (env, argvs) =>{
             //   }
             // },
             {
-              loader: "sass-loader",
+              loader: 'sass-loader',
             },
-          ]
+          ],
         },
         {
           test: /\.(png|jpg|gif)$/,
@@ -112,35 +108,37 @@ module.exports = (env, argvs) =>{
             {
               loader: 'url-loader',
               options: {
-                limit: 1024,//限制打包图片的大小：
+                limit: 1024, //限制打包图片的大小：
                 //如果大于或等于8192Byte，则按照相应的文件名和路径打包图片；如果小于8192Byte，则将图片转成base64格式的字符串。
-                name:'images/[name]-[hash:8].[ext]',//images:图片打包的文件夹；
+                name: 'images/[name]-[hash:8].[ext]', //images:图片打包的文件夹；
                 //[name].[ext]：设定图片按照本来的文件名和扩展名打包，不用进行额外编码
                 //[hash:8]：一个项目中如果两个文件夹中的图片重名，打包图片就会被覆盖，加上hash值的前八位作为图片名，可以避免重名。
-              }
-            }
-          ]
-        }
-      ]
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',
         filename: 'service/index.html',
-        minify: { //压缩HTML文件
-          removeComments: true,    //移除HTML中的注释
-          collapseWhitespace: true    //删除空白符与换行符
-        } 
+        minify: {
+          //压缩HTML文件
+          removeComments: true, //移除HTML中的注释
+          collapseWhitespace: true, //删除空白符与换行符
+        },
       }),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'admin'],
         template: './public/admin.html',
         filename: 'admin/index.html',
-        minify: { //压缩HTML文件
-          removeComments: true,    //移除HTML中的注释
-          collapseWhitespace: true    //删除空白符与换行符
-        } 
+        minify: {
+          //压缩HTML文件
+          removeComments: true, //移除HTML中的注释
+          collapseWhitespace: true, //删除空白符与换行符
+        },
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
@@ -160,11 +158,11 @@ module.exports = (env, argvs) =>{
             'react',
             'react-dom',
             'react-router-dom',
-          ]
-        }
+          ],
+        },
       }),
     ],
-  
+
     performance: {
       hints: 'warning',
       maxEntrypointSize: argvs.mode === 'production' ? 2000000 : 6000000,
@@ -177,18 +175,21 @@ module.exports = (env, argvs) =>{
           cssProcessor: require('cssnano'),
           // cssProcessorOptions: cssnanoOptions,
           cssProcessorPluginOptions: {
-            preset: ['default', {
-              discardComments: {
-                removeAll: true,
+            preset: [
+              'default',
+              {
+                discardComments: {
+                  removeAll: true,
+                },
+                normalizeUnicode: false,
               },
-              normalizeUnicode: false
-            }]
+            ],
           },
-          canPrint: true
-        })
+          canPrint: true,
+        }),
       ],
       splitChunks: {
-        chunks: 'async', 
+        chunks: 'async',
         minSize: 30000,
         maxSize: 0,
         minChunks: 1,
@@ -199,15 +200,15 @@ module.exports = (env, argvs) =>{
         cacheGroups: {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
-            priority: -10
+            priority: -10,
           },
           default: {
             minChunks: 2,
             priority: -20,
-            reuseExistingChunk: true
-          }
-        }
-      }
+            reuseExistingChunk: true,
+          },
+        },
+      },
     },
     // externals: {
     //   'react':'react',
@@ -216,7 +217,5 @@ module.exports = (env, argvs) =>{
     //   'moment':'moment',
     //   "antd":"antd"
     // }
-    
-  }
-  
-}
+  };
+};
