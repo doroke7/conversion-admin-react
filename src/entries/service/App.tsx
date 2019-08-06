@@ -10,7 +10,7 @@ import SocketIOFileUpload from 'socketio-file-upload';
 
 import oRoutes from '@/routers';
 
-import { Header, Socket } from '@/_commons';
+import { Header, Socket } from '@/commons';
 
 import { SOCKET } from '@/CONFIGS/';
 

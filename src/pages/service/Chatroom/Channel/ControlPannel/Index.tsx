@@ -10,7 +10,7 @@ import Message from 'antd/es/message';
 
 import store from '@/store';
 
-import { Socket } from '@/_commons';
+import { Socket } from '@/commons';
 
 import { AuthenticationHelper, EmitterHelper } from '@/Helpers/';
 

@@ -6,7 +6,7 @@ import SocketIOFileClient from 'socket.io-file-client';
 import SocketIOFileUpload from 'socketio-file-upload';
 import moment from 'moment';
 
-import { Socket } from '@/_commons';
+import { Socket } from '@/commons';
 
 import { AuthenticationHelper } from '@/Helpers/';
 

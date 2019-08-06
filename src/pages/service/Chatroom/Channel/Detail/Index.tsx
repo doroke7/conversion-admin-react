@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Socket } from '@/_commons/index';
+import { Socket } from '@/commons/index';
 import './Index.scss';
 
 class Detail extends React.Component {
