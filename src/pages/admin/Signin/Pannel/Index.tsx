@@ -27,6 +27,7 @@ function Pannel(): any {
       <Avatar className={classes.avatar}>
         <PageviewIcon />
       </Avatar>
+      <h1 className={classes.title}>登入</h1>
       <TextField
         id="user-name"
         label="名称"
