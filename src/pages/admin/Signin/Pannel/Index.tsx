@@ -1,5 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
+import PageviewIcon from '@material-ui/icons/Pageview';
 
 import style from './style';
 
@@ -22,6 +24,9 @@ function Pannel(): any {
 
   return (
     <div className={classes.pannel}>
+      <Avatar className={classes.avatar}>
+        <PageviewIcon />
+      </Avatar>
       <TextField
         id="user-name"
         label="名称"

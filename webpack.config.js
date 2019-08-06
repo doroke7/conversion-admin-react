@@ -57,7 +57,7 @@ module.exports = (env, argvs) => {
       watchOptions: {
         ignored: ['node_modules'],
         aggregateTimeout: 300,
-        poll: 1500,
+        poll: 3000,
       },
     },
     devtool: argvs.mode === 'production' ? 'none' : 'source-map',

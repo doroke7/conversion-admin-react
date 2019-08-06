@@ -4,13 +4,16 @@ const style = makeStyles((theme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
-      margin: 10,
+      margin: 30,
     },
     container: {
       display: 'flex',
       flexWrap: 'wrap',
     },
     textField: {},
+    avatar: {
+      margin: 'auto',
+    },
   }),
 );
 
