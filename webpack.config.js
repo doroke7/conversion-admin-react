@@ -44,7 +44,10 @@ module.exports = (env, argvs) => {
       hot: true,
       progress: true,
       historyApiFallback: {
-        rewrites: [{ from: /^\/service\/.*/, to: '/service/index.html' }],
+        rewrites: [
+          { from: /^\/service\/.*/, to: '/service/index.html' },
+          { from: /^\/admin\/.*/, to: '/admin/index.html' },
+        ],
       },
       allowedHosts: [
         'fea.chatroom.ques98.cn',
