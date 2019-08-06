@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles((theme: Theme): any =>
   createStyles({
@@ -15,23 +16,23 @@ const useStyles = makeStyles((theme: Theme): any =>
   }),
 );
 
-function NestedGrid(): any {
+function Login(): any {
   const classes: any = useStyles(void 0);
 
   return (
     <div className={classes.root}>
       <Grid container spacing={0}>
-        <Grid container item xs={4} spacing={0}>
-          A
+        <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
+          <Hidden only={['xs', 'sm']}></Hidden>
         </Grid>
-        <Grid container item xs={4} spacing={0}>
+        <Grid container item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
           B
         </Grid>
-        <Grid container item xs={4} spacing={0}>
-          C
+        <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
+          <Hidden only={['xs', 'sm']}></Hidden>
         </Grid>
       </Grid>
     </div>
   );
 }
-export default NestedGrid;
+export default Login;
