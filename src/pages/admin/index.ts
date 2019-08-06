@@ -1,5 +1,5 @@
-import Login from './Login/Index';
+import Signin from './Signin/Index';
 
 export default {
-  Login,
+  Signin,
 };
