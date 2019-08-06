@@ -42,6 +42,7 @@ module.exports = (env, argvs) =>{
       port: 3001,
       inline: true,
       hot: true,
+      progress: true,
       historyApiFallback: {
         rewrites: [
           { from: /^\/service\/.*/, to: '/service/index.html' },
