@@ -20,14 +20,14 @@ function NestedGrid(): any {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={3}>
+      <Grid container spacing={0}>
+        <Grid container item xs={4} spacing={0}>
           A
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={4} spacing={0}>
           B
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={4} spacing={0}>
           C
         </Grid>
       </Grid>
