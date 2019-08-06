@@ -2,56 +2,45 @@ import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
-    },
-    dense: {
-      marginTop: 19,
-    },
-    menu: {
-      width: 200,
-    },
-  }),
-);
+import style from './style';
 
-interface State {
+interface IState {
   name: string;
-  age: string;
-  multiline: string;
-  currency: string;
+  password: string;
 }
 
 function Pannel(): any {
-  const classes: any = useStyles(void 0);
+  const classes: any = style(void 0);
 
-  const [values, setValues] = React.useState<State>({
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
+  const [values, setValues] = React.useState<IState>({
+    name: '',
+    password: '',
   });
 
-  const handleChange = (name: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [name]: event.target.value });
+  const handleChange = (sKey: keyof IState) => (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [sKey]: oEvent.target.value });
   };
 
   return (
-    <div>
+    <div className={classes.pannel}>
       <TextField
-        id="outlined-name"
-        label="Name"
+        id="user-name"
+        label="名称"
         className={classes.textField}
         value={values.name}
         onChange={handleChange('name')}
         margin="normal"
+        fullWidth
+        variant="outlined"
+      />
+      <TextField
+        id="user-password"
+        label="密码"
+        className={classes.textField}
+        value={values.password}
+        onChange={handleChange('password')}
+        margin="normal"
+        fullWidth
         variant="outlined"
       />
     </div>
