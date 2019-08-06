@@ -5,7 +5,10 @@ const style = makeStyles((theme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
-      marginTop: '8rem',
+      marginTop: '5rem',
+    },
+    lockIcon: {
+      fontSize: '2rem',
     },
     container: {
       display: 'flex',

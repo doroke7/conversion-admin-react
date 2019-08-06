@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
-import PageviewIcon from '@material-ui/icons/Pageview';
+import LockIcon from '@material-ui/icons/Lock';
 
 import style from './style';
 
@@ -25,7 +25,7 @@ function Pannel(): any {
   return (
     <div className={classes.pannel}>
       <Avatar className={classes.avatar}>
-        <PageviewIcon />
+        <LockIcon />
       </Avatar>
       <h1 className={classes.title}>登入</h1>
       <TextField
