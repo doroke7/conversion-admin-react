@@ -6,7 +6,7 @@
     "serve": "webpack-dev-server --mode=development",
     "build": "webpack --mode=production --compress",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json ",
-    "eslint": "eslint src"
+    "eslint": "eslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@material-ui/core": "^4.3.1",
