@@ -13,14 +13,14 @@ const oUserReducer = (oUsers: any = {}, oAction: any) => {
 
       return oUsers;
     case 'SHOW_USER_VIA_MESSAGE':
-        let aMessages = oAction.payload;
-        oUsers = aMessages.reduce((__oUsers: any, oMessage: any) => {
-          let oUser = oMessage.user;
-          let sUserId = oUser._id;
-          __oUsers[sUserId] = oUser;
-          return __oUsers;
-        }, oUsers);
-        return oUsers;
+      let aMessages = oAction.payload;
+      oUsers = aMessages.reduce((__oUsers: any, oMessage: any) => {
+        let oUser = oMessage.user;
+        let sUserId = oUser._id;
+        __oUsers[sUserId] = oUser;
+        return __oUsers;
+      }, oUsers);
+      return oUsers;
     case 'EDIT_USER':
       aUsers = oAction.payload;
       oUsers = aUsers.reduce((__oUsers: any, _oUser: any) => {
@@ -33,7 +33,7 @@ const oUserReducer = (oUsers: any = {}, oAction: any) => {
           return __oUsers;
         }
 
-        __oUsers[sUserId] = _oUser
+        __oUsers[sUserId] = _oUser;
 
         return __oUsers;
       }, oUsers);
