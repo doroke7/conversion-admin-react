@@ -36,7 +36,7 @@ const style = makeStyles((theme: Theme): any =>
     link: {},
     copyright: {
       color: grey[500],
-      textAlign: 'center',
+      textAlign: 'left',
     },
   }),
 );
