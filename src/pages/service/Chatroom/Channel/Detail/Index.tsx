@@ -1,25 +1,17 @@
 import React from 'react';
 
-import {
-  Socket
-} from '@/Commons/index';
+import { Socket } from '@/_commons/index';
 import './Index.scss';
 
 class Detail extends React.Component {
-  public render(){
+  public render() {
     return (
       <div className="detail">
         <div className="info-wrapper">
-          <div className="iconfont icon-info info text-center">
-
-          </div>
-          <div className="description text-center">
-            聊天室基本信息
-          </div>
+          <div className="iconfont icon-info info text-center"></div>
+          <div className="description text-center">聊天室基本信息</div>
         </div>
-
       </div>
-
     );
   }
 }
