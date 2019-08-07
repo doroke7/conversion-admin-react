@@ -15,13 +15,19 @@ interface IState {
 function Pannel(): any {
   const classes: any = style(void 0);
 
-  const [values, setValues] = React.useState<IState>({
+  const [oValues, setValues] = React.useState<IState>({
     name: '',
     password: '',
   });
 
-  const handleChange = (sKey: keyof IState) => (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [sKey]: oEvent.target.value });
+  let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    let sName = oEvent.target.value;
+    setValues({ ...oValues, name: sName });
+  };
+
+  let onChangePassword = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    let sPassword = oEvent.target.value;
+    setValues({ ...oValues, password: sPassword });
   };
 
   return (
@@ -34,8 +40,8 @@ function Pannel(): any {
         id="user-name"
         label="名称"
         className={classes.textField}
-        value={values.name}
-        onChange={handleChange('name')}
+        value={oValues.name}
+        onChange={onChangeName}
         margin="normal"
         fullWidth
         variant="outlined"
@@ -44,8 +50,8 @@ function Pannel(): any {
         id="user-password"
         label="密码"
         className={classes.textField}
-        value={values.password}
-        onChange={handleChange('password')}
+        value={oValues.password}
+        onChange={onChangePassword}
         margin="normal"
         fullWidth
         variant="outlined"

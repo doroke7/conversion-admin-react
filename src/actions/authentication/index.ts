@@ -2,7 +2,7 @@ import jwtDecode from 'jwt-decode';
 
 import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
-let cLogin: any = (sJwt: any) => {
+let cLogIn: any = (sJwt: any) => {
   return {
     type: 'JWT_LOGIN',
     payload: sJwt,
@@ -12,6 +12,13 @@ let cLogin: any = (sJwt: any) => {
 let cRefresh: any = (sJwt: any) => {
   return {
     type: 'JWT_REFRESH',
+    payload: sJwt,
+  };
+};
+
+let cSignIn: any = (sJwt: any) => {
+  return {
+    type: 'JWT_SIGNIN',
     payload: sJwt,
   };
 };
@@ -31,7 +38,7 @@ let oAuthentication: any = {
       let sJwt = oResponse.jwt;
       AuthenticationHelper.setJwt(sJwt);
       AuthenticationHelper.removeLoginState();
-      cDispatch(cLogin(sJwt));
+      cDispatch(cLogIn(sJwt));
     };
   },
   refresh: (oBody: any, oOption: any) => {
@@ -68,7 +75,7 @@ let oAuthentication: any = {
       fNext();
     };
   },
-  accessTokenToJwt(oBody: any) {
+  accessTokenToJwt(oBody: any): any {
     return async (cDispatch: any) => {
       let sJwt = AuthenticationHelper.getJwt();
       let sAccessToken = AuthenticationHelper.getAccessToken();
@@ -92,6 +99,22 @@ let oAuthentication: any = {
         AuthenticationHelper.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));
       }
+    };
+  },
+  signIn(oBody: any) {
+    return async (cDispatch: any) => {
+      let oResponse = await AxiosHelper.post({
+        path: '/admin/authentication/authentication/sign-in',
+        params: oBody,
+      });
+
+      if (-1 === oResponse.result || !oResponse.jwt) {
+        throw new Error('IT_FAILS_TO_SIGN_IN');
+      }
+
+      let sJwt = oResponse.jwt;
+      AuthenticationHelper.setJwt(sJwt);
+      cDispatch(cSignIn(sJwt));
     };
   },
 };

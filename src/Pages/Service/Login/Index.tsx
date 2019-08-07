@@ -71,13 +71,13 @@ class Login extends React.Component<IProps> {
     }
   }
 
-  public setName(oEvent: any) {
+  public setName(oEvent: any): void {
     this.setState({
       name: oEvent.target.value,
     });
   }
 
-  public setPassword(oEvent: any) {
+  public setPassword(oEvent: any): void {
     this.setState({
       password: oEvent.target.value,
     });
