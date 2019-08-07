@@ -6,7 +6,7 @@ import Pannel from './Pannel/Index';
 
 import style from './style';
 
-function Signin(): any {
+function SignIn(): any {
   const classes: any = style(void 0);
 
   return (
@@ -25,4 +25,4 @@ function Signin(): any {
     </div>
   );
 }
-export default Signin;
+export default SignIn;

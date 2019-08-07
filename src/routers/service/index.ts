@@ -1,4 +1,4 @@
-import { Service } from '@/_pages';
+import { Service } from '@/Pages';
 
 let aRoutes = [
   {
