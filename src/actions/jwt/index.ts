@@ -1,31 +1,27 @@
 import jwtDecode from 'jwt-decode';
 
-import {
-  AxiosHelper,
-  AuthenticationHelper,
-} from '@/Helpers/';
+import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
 let cLogin: any = (sJwt: any) => {
   return {
     type: 'JWT_LOGIN',
-    payload: sJwt
+    payload: sJwt,
   };
 };
 
 let cRefresh: any = (sJwt: any) => {
   return {
     type: 'JWT_REFRESH',
-    payload: sJwt
+    payload: sJwt,
   };
 };
 
 let oJwt: any = {
   login: (oBody: any) => {
     return async (cDispatch: any) => {
-
       let oResponse = await AxiosHelper.post({
-        path: '/service/authentication/authentication/login',
-        params: oBody
+        path: '/service/authentication/authentication/log-in',
+        params: oBody,
       });
 
       if (-1 === oResponse.result || !oResponse.jwt) {
@@ -36,29 +32,27 @@ let oJwt: any = {
       AuthenticationHelper.setJwt(sJwt);
       AuthenticationHelper.removeLoginState();
       cDispatch(cLogin(sJwt));
-    }
+    };
   },
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
-
       let fNext = async () => {
         let sJwt = AuthenticationHelper.getJwt();
         let sAccessToken = AuthenticationHelper.getAccessToken();
-  
+
         let oOptions = {
           headers: {
-            'jwt': sJwt,  // 一定要 引号
-            'access-token': sAccessToken
-          }
+            jwt: sJwt, // 一定要 引号
+            'access-token': sAccessToken,
+          },
         };
         let oResponse = await AxiosHelper.post({
           path: '/service/authentication/authentication/refresh',
           params: oBody,
-          options: oOptions
+          options: oOptions,
         });
         if (-1 === oResponse.jwt.result || !oResponse.jwt) {
           throw new Error('IT_FAILS_TO_REFRESH_JWT');
-
         }
         sJwt = oResponse.jwt;
         cDispatch(cRefresh(sJwt));
@@ -70,9 +64,9 @@ let oJwt: any = {
         setTimeout(async () => {
           await fNext();
         }, iSecond * 1000); // microsecond
-      }
+      };
       fNext();
-    }
+    };
   },
   accessTokenToJwt(oBody: any) {
     return async (cDispatch: any) => {
@@ -80,16 +74,16 @@ let oJwt: any = {
       let sAccessToken = AuthenticationHelper.getAccessToken();
       let oOptions = {
         headers: {
-          'jwt': sJwt,  // 一定要 引号
-          'access-token': sAccessToken
-        }
+          jwt: sJwt, // 一定要 引号
+          'access-token': sAccessToken,
+        },
       };
 
       if (sAccessToken) {
         let oResponse = await AxiosHelper.post({
           path: '/service/authentication/authentication/access-token-to-jwt',
           params: oBody,
-          options: oOptions
+          options: oOptions,
         });
         if (-1 === oResponse.result || !oResponse.jwt) {
           throw new Error('IT_FAILS_TO_LOGIN_VIA_ACESS_TOKEN');
@@ -98,8 +92,8 @@ let oJwt: any = {
         AuthenticationHelper.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));
       }
-    }
-  }
+    };
+  },
 };
 
 export default oJwt;
