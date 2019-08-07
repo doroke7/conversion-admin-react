@@ -16,7 +16,7 @@ let cRefresh: any = (sJwt: any) => {
   };
 };
 
-let oJwt: any = {
+let oAuthentication: any = {
   login: (oBody: any) => {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
@@ -96,4 +96,4 @@ let oJwt: any = {
   },
 };
 
-export default oJwt;
+export default oAuthentication;

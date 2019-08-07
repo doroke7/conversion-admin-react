@@ -47,6 +47,7 @@ module.exports = (env, argvs) => {
         rewrites: [
           { from: /^\/service\/.*/, to: '/service/index.html' },
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
+          { from: /.*/, to: '/service/index.html' },
         ],
       },
       allowedHosts: [

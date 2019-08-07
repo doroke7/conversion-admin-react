@@ -24,7 +24,7 @@ import './Index.scss';
 // } from '@/Helpers';
 
 import {
-  jwtAction
+  authenticationAction
 } from '@/actions/';
 
 import {
@@ -67,7 +67,7 @@ class Login extends React.Component<IProps> {
         throw new Error('THE_USER_PASSWORD_IS_EMPTY');
       }
   
-      let oState = await store.dispatch(jwtAction.login(oBody));
+      let oState = await store.dispatch(authenticationAction.login(oBody));
       this.props.history.push('/service/chatroom');
     } catch (oException) {
       let sMessage = oException.message;

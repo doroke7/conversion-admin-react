@@ -11,7 +11,7 @@ import { Service } from '@/Commons';
 import { AuthenticationHelper } from '@/Helpers/';
 
 import store from '@/store';
-import { roomMessage, word, jwtAction, userAction } from '@/actions/';
+import { roomMessage, word, authenticationAction, userAction } from '@/actions/';
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
@@ -51,8 +51,8 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on('MESSAGE', this.onMessage);
     this.chatroomSocket.on('disconnet', () => {});
     try {
-      await store.dispatch(jwtAction.accessTokenToJwt());
-      await store.dispatch(jwtAction.refresh());
+      await store.dispatch(authenticationAction.accessTokenToJwt());
+      await store.dispatch(authenticationAction.refresh());
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
