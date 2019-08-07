@@ -10,7 +10,7 @@ import SocketIOFileUpload from 'socketio-file-upload';
 
 import oRoutes from '@/routers';
 
-import { Header, Socket } from '@/commons';
+import { Service } from '@/Commons';
 
 import { SOCKET } from '@/CONFIGS/';
 
@@ -42,10 +42,10 @@ class App extends React.Component {
     };
 
     return (
-      <Socket.Provider value={oValue}>
-        <Header></Header>
+      <Service.Socket.Provider value={oValue}>
+        <Service.Header></Service.Header>
         <BrowserRouter>{renderRoutes(oRoutes.service)}</BrowserRouter>
-      </Socket.Provider>
+      </Service.Socket.Provider>
     );
   }
 }

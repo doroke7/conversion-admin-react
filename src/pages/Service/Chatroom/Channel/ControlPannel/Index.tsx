@@ -10,7 +10,7 @@ import Message from 'antd/es/message';
 
 import store from '@/store';
 
-import { Socket } from '@/commons';
+import { Service } from '@/Commons';
 
 import { AuthenticationHelper, EmitterHelper } from '@/Helpers/';
 
@@ -51,7 +51,7 @@ class ControlPannel extends React.Component<IProps> {
     this.onAbort = this.onAbort.bind(this);
   }
 
-  public static contextType = Socket;
+  public static contextType = Service.Socket;
   public props: any;
   public fileRef: any;
   public ref: any;
@@ -342,7 +342,9 @@ class ControlPannel extends React.Component<IProps> {
 
 function ControlPannelWrapper(oProps: any) {
   return (
-    <Socket.Consumer>{oContext => <ControlPannel context={oContext} {...oProps}></ControlPannel>}</Socket.Consumer>
+    <Service.Socket.Consumer>
+      {oContext => <ControlPannel context={oContext} {...oProps}></ControlPannel>}
+    </Service.Socket.Consumer>
   );
 }
 export default ControlPannelWrapper;

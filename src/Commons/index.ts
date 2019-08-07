@@ -1,5 +1,4 @@
-import Footer from './Footer/Index';
-import Header from './Header/Index';
-import Socket from './Socket/Index';
+import Admin from './Admin/Index';
+import Service from './Service/Index';
 
-export { Footer, Header, Socket };
+export { Admin, Service };

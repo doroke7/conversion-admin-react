@@ -6,7 +6,7 @@ import SocketIOFileClient from 'socket.io-file-client';
 import SocketIOFileUpload from 'socketio-file-upload';
 import moment from 'moment';
 
-import { Socket } from '@/commons';
+import { Service } from '@/Commons';
 
 import { AuthenticationHelper } from '@/Helpers/';
 
@@ -38,7 +38,7 @@ class Chatroom extends React.Component<any> {
     this.onLogout = this.onLogout.bind(this);
   }
 
-  public static contextType = Socket;
+  public static contextType = Service.Socket;
 
   public async componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
@@ -164,7 +164,7 @@ class Chatroom extends React.Component<any> {
 }
 
 const Wrapper = (...oProps: any) => (
-  <Socket.Consumer>{oContext => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Socket.Consumer>
+  <Service.Socket.Consumer>{oContext => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Socket.Consumer>
 );
 
 export default withRouter(Wrapper);
