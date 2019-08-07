@@ -1,7 +1,7 @@
-import Signin from './Signin/Index';
+import SignIn from './SignIn/Index';
 import Room from './Room/Index';
 
 export default {
-  Signin,
+  SignIn,
   Room,
 };
