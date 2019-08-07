@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 
 import style from './style';
 
-interface IState {
+interface State {
   name: string;
   password: string;
 }
@@ -15,19 +15,23 @@ interface IState {
 function Pannel(): any {
   const classes: any = style(void 0);
 
-  const [oValues, setValues] = React.useState<IState>({
+  const [oState, setValues] = React.useState<State>({
     name: '',
     password: '',
   });
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
-    setValues({ ...oValues, name: sName });
+    setValues({ ...oState, name: sName });
   };
 
   let onChangePassword = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sPassword = oEvent.target.value;
-    setValues({ ...oValues, password: sPassword });
+    setValues({ ...oState, password: sPassword });
+  };
+
+  let SignIn = () => {
+    console.log('SignIn', oState);
   };
 
   return (
@@ -40,7 +44,7 @@ function Pannel(): any {
         id="user-name"
         label="名称"
         className={classes.textField}
-        value={oValues.name}
+        value={oState.name}
         onChange={onChangeName}
         margin="normal"
         fullWidth
@@ -50,13 +54,13 @@ function Pannel(): any {
         id="user-password"
         label="密码"
         className={classes.textField}
-        value={oValues.password}
+        value={oState.password}
         onChange={onChangePassword}
         margin="normal"
         fullWidth
         variant="outlined"
       />
-      <Button className={classes.button} variant="contained" color="primary" fullWidth>
+      <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
         登入
       </Button>
       <div className={classes.forgetPasswordAndSignup}>
