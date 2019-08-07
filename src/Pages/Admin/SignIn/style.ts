@@ -4,7 +4,7 @@ const style = makeStyles((theme: Theme): any =>
   createStyles({
     root: {
       flexGrow: 1,
-      padding: '1rem',
+      padding: '0.5rem',
     },
     paper: {
       padding: theme.spacing(1),
