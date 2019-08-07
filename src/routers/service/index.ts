@@ -1,24 +1,24 @@
-import { service } from '@/pages/';
+import { Service } from '@/pages/';
 
 let aRoutes = [
   {
     path: '/service',
-    component: service.Login,
+    component: Service.Login,
     exact: true,
   },
   {
     path: '/service/login',
-    component: service.Login,
+    component: Service.Login,
     exact: true,
   },
   {
     path: '/service/chatroom',
-    component: service.Chatroom,
+    component: Service.Chatroom,
     exact: true,
   },
   {
     path: '/service/user',
-    component: service.User,
+    component: Service.User,
     exact: true,
   },
 ];

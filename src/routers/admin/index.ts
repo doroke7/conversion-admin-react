@@ -1,19 +1,19 @@
-import { admin } from '@/pages/';
+import { Admin } from '@/pages/';
 
 let aRoutes = [
   {
     path: '/admin',
-    component: admin.Signin,
+    component: Admin.Signin,
     exact: true,
   },
   {
     path: '/admin/signin',
-    component: admin.Signin,
+    component: Admin.Signin,
     exact: true,
   },
   {
     path: '/admin/room',
-    component: admin.Room,
+    component: Admin.Room,
     exact: true,
   },
 ];
