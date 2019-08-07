@@ -1,4 +1,4 @@
-import { Admin } from '@/pages/';
+import { Admin } from '@/_pages';
 
 let aRoutes = [
   {
