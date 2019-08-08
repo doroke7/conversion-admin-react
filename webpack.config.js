@@ -49,6 +49,7 @@ module.exports = (env, argvs) => {
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
           { from: /.*/, to: '/service/index.html' },
         ],
+        verbose: true,
       },
       allowedHosts: [
         'fea.chatroom.ques98.cn',
@@ -67,8 +68,8 @@ module.exports = (env, argvs) => {
         {
           test: /\.tsx?$/,
           use: [
-            'ts-loader', // 'ts-loader'
-          ], // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
+            'awesome-typecsript-loader', // 'ts-loader'
+          ], // 大小写 问题 会造成 awesome-typescript-loader 报错, */index.tsx */Index.tsx
         },
         {
           enforce: 'pre',
