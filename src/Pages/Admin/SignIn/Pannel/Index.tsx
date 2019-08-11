@@ -93,7 +93,8 @@ function Pannel(): any {
 
       <Dialog
         open={oState.open}
-        maxWidth="lg"
+        maxWidth="sm"
+        fullWidth
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
