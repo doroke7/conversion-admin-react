@@ -43,13 +43,7 @@ module.exports = (env, argvs) => {
       inline: true,
       hot: true,
       progress: true,
-      historyApiFallback: {
-        rewrites: [
-          { from: /^\/service\/.*/, to: '/service/index.html' },
-          { from: /^\/admin\/.*/, to: '/admin/index.html' },
-          { from: /.*/, to: '/service/index.html' },
-        ],
-      },
+      historyApiFallback: true,
       allowedHosts: [
         'fea.chatroom.ques98.cn',
         // '127.0.0.1',
@@ -67,8 +61,8 @@ module.exports = (env, argvs) => {
         {
           test: /\.tsx?$/,
           use: [
-            'ts-loader', // 'ts-loader'
-          ], // 大小写 问题 会造成 awesome-typecript-loader 报错, */index.tsx */Index.tsx
+            'awesome-typescript-loader', // 'ts-loader'
+          ], // 大小写 问题 会造成 awesome-typescript-loader 报错, */index.tsx */Index.tsx
         },
         {
           enforce: 'pre',
