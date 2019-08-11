@@ -5,33 +5,51 @@ import LockIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import style from './style';
 
 interface State {
   name: string;
   password: string;
+  open: boolean;
+  text: string;
 }
 
 function Pannel(): any {
   const classes: any = style(void 0);
 
-  const [oState, setValues] = React.useState<State>({
+  const [oState, setState] = React.useState<State>({
     name: '',
     password: '',
+    open: false,
+    text: '',
   });
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
-    setValues({ ...oState, name: sName });
+    setState({ ...oState, name: sName });
   };
 
   let onChangePassword = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sPassword = oEvent.target.value;
-    setValues({ ...oState, password: sPassword });
+    setState({ ...oState, password: sPassword });
   };
+
+  let handleClose = () => {
+    setState({ ...oState, open: false });
+  }
 
   let SignIn = () => {
     console.log('SignIn', oState);
+    if (!oState.name) {
+      setState({ ...oState, open: true, text: 'the user name is empty' });
+
+    }
   };
 
   return (
@@ -72,6 +90,25 @@ function Pannel(): any {
         </Link>
       </div>
       <h5 className={classes.copyright}>© copyright 2019 梦想平台版权所有</h5>
+
+      <Dialog
+        open={oState.open}
+        maxWidth="lg"
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">错误</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {oState.text}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            确定
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
