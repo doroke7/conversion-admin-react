@@ -1,7 +1,4 @@
-import AButton from './AButton/Index';
-import AInput from './AInput/Index';
+import Admin from './Admin/index';
+// import Service from './Service/Index';
 
-export {
-  AButton,
-  AInput
-};
+export { Admin };

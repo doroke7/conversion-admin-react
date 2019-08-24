@@ -5,13 +5,15 @@ import LockIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { Admin } from '@/Components';
+
+
 
 import style from './style';
+
+import {
+  MESSAGES
+} from '@/CONFIGS/';
 
 interface State {
   name: string;
@@ -19,6 +21,8 @@ interface State {
   open: boolean;
   text: string;
 }
+
+const ENTER_CODE = 13;
 
 function Pannel(): any {
   const classes: any = style(void 0);
@@ -40,15 +44,32 @@ function Pannel(): any {
     setState({ ...oState, password: sPassword });
   };
 
-  let handleClose = () => {
-    setState({ ...oState, open: false });
-  }
-
   let SignIn = () => {
-    console.log('SignIn', oState);
-    if (!oState.name) {
-      setState({ ...oState, open: true, text: 'the user name is empty' });
+    try {
+      if (!oState.name) {
+        throw new Error('THE_ADMINISTRATOR_NAME_IS_EMPTY');
+      }
+  
+      if (!oState.password) {
+        throw new Error('THE_ADMINISTRATOR_PASSWORD_IS_EMPTY');
 
+      }
+    } catch (oException) {
+      let sKey = oException.message;
+      let sMessage = MESSAGES[sKey];
+      setState({ ...oState, open: true, text: sMessage });
+
+    }
+
+  };
+
+  let onClose = () => {
+    setState({ ...oState, open: false });
+  };
+
+  let onKeyPress = (oEvent: any) => {
+    if (ENTER_CODE === oEvent.charCode) {
+      SignIn();
     }
   };
 
@@ -67,6 +88,7 @@ function Pannel(): any {
         margin="normal"
         fullWidth
         variant="outlined"
+        onKeyPress ={onKeyPress}
       />
       <TextField
         id="user-password"
@@ -77,6 +99,7 @@ function Pannel(): any {
         margin="normal"
         fullWidth
         variant="outlined"
+        onKeyPress ={onKeyPress}
       />
       <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
         登入
@@ -90,26 +113,7 @@ function Pannel(): any {
         </Link>
       </div>
       <h5 className={classes.copyright}>© copyright 2019 梦想平台版权所有</h5>
-
-      <Dialog
-        open={oState.open}
-        maxWidth="sm"
-        fullWidth
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-      >
-        <DialogTitle id="responsive-dialog-title">错误</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            {oState.text}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            确定
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <Admin.Alert open={oState.open} text={oState.text} onClose={onClose}/>
     </div>
   );
 }
