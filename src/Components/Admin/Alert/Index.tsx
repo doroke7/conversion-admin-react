@@ -27,12 +27,6 @@ function Alert(oProps: any): any {
     setState({ ...oState, open: oProps.open });
   });
 
-  let handleClose = () => {
-    setState({ ...oState, open: false });
-
-  };
-
-
   return (
     <Dialog
       open={oState.open}
@@ -41,7 +35,10 @@ function Alert(oProps: any): any {
       onClose={oProps.onClose}
       aria-labelledby="responsive-dialog-title"
     >
-      <DialogTitle id="responsive-dialog-title"><ErrorOutline/>错误</DialogTitle>
+      <DialogTitle id="responsive-dialog-title">
+        <ErrorOutline className={classes.errorIcon}/>
+        <span className={classes.title}>错误</span>
+        </DialogTitle>
       <DialogContent>
         <DialogContentText>
           {oProps.text}
