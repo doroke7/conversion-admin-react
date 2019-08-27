@@ -1,4 +1,6 @@
 import React from 'react';
+import {useMappedState,useDispatch} from 'redux-react-hook';
+
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import LockIcon from '@material-ui/icons/LockOpen';
@@ -6,8 +8,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 import { Admin } from '@/Components';
-
-
+import { authenticationAction } from '@/actions/';
 
 import style from './style';
 
@@ -26,6 +27,10 @@ const ENTER_CODE = 13;
 
 function Pannel(): any {
   const classes: any = style(void 0);
+
+  const jwt = useMappedState(state => state.jwt);
+  
+  const dispatch = useDispatch();
 
   const [oState, setState] = React.useState<State>({
     name: '',
@@ -52,8 +57,14 @@ function Pannel(): any {
   
       if (!oState.password) {
         throw new Error('THE_ADMINISTRATOR_PASSWORD_IS_EMPTY');
-
       }
+
+      let oBody = {
+        name: oState.name,
+        password: oState.password,
+      };
+      dispatch(authenticationAction.signIn(oBody));
+
     } catch (oException) {
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey];
