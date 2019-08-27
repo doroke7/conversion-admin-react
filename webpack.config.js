@@ -39,7 +39,7 @@ module.exports = (env, argvs) => {
       publicPath: '/',
       compress: true,
       host: '0.0.0.0',
-      port: 3001,
+      port: 3000,
       inline: true,
       hot: true,
       progress: true,
