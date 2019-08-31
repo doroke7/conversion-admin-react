@@ -49,7 +49,7 @@ function Pannel(): any {
     setState({ ...oState, password: sPassword });
   };
 
-  let SignIn = () => {
+  let SignIn = async () => {
     try {
       if (!oState.name) {
         throw new Error('THE_ADMINISTRATOR_NAME_IS_EMPTY');
@@ -63,7 +63,7 @@ function Pannel(): any {
         name: oState.name,
         password: oState.password,
       };
-      dispatch(authenticationAction.signIn(oBody));
+      await dispatch(authenticationAction.signIn(oBody));
 
     } catch (oException) {
       let sKey = oException.message;

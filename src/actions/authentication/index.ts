@@ -108,6 +108,10 @@ let oAuthentication: any = {
         params: oBody,
       });
 
+      if(!oResponse) {
+        throw new Error('THE_NETWORK_IS_ERROR');
+      }
+
       if (-1 === oResponse.result || !oResponse.jwt) {
         throw new Error('IT_FAILS_TO_SIGN_IN');
       }

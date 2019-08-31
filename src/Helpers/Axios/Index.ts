@@ -166,7 +166,10 @@ class AxiosHelper {
     } catch (oExcepiton) {
       oAxiosResponse = oExcepiton.response;
     }
-    let oResponse = oAxiosResponse.data;
+    let oResponse;
+    if (oAxiosResponse && oAxiosResponse.data) {
+      oResponse = oAxiosResponse.data;
+    }
     return oResponse;
   }
 
