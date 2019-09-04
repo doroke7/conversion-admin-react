@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function PersistentDrawerLeft() {
-  const classes = useStyles();
+  const classes = useStyles(void 0);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
