@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function MiniDrawer() {
+function SideBar(oProps: any) {
   const classes = useStyles(void 0);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -162,13 +162,10 @@ export default function MiniDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          1234
-        </Typography>
-        <Typography paragraph>
-          ABCD
-        </Typography>
+        {oProps.children}
       </main>
     </div>
   );
 }
+
+export default SideBar;

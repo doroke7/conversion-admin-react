@@ -8,7 +8,12 @@ function Room(): any {
 
   return (
     <div className={classes.root}>
-      <Admin.SideBar />
+      <Admin.SideBar >
+        <div>
+          12345
+        </div>
+      </Admin.SideBar >
+
     </div>
   );
 }
