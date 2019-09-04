@@ -18,9 +18,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import {
+  MENUS
+} from '@/CONFIGS';
+
 import style from './style';
 
-function SideBar(oProps: any) {
+function Menu(oProps: any) {
   const classes = style(void 0);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -80,10 +84,10 @@ function SideBar(oProps: any) {
         </div>
         <Divider />
         <List>
-          {['房間', '會員'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {MENUS.map((oMenu, iIndex) => (
+            <ListItem button key={oMenu.text}>
+              <ListItemIcon>{iIndex % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={oMenu.text} />
             </ListItem>
           ))}
         </List>
@@ -105,4 +109,4 @@ function SideBar(oProps: any) {
   );
 }
 
-export default SideBar;
+export default Menu;

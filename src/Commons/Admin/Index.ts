@@ -1,4 +1,4 @@
-import SideBar from './SideBar/Index';
+import Menu from './Menu/Index';
 import TopBar from './TopBar/Index';
 
-export default { SideBar, TopBar };
+export default { Menu, TopBar };

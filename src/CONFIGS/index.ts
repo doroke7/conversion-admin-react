@@ -4,6 +4,7 @@ import MOMENT from "./MOMENT/INDEX";
 import MESSAGES from "./MESSAGES/INDEX";
 import MODALS from "./MODALS/INDEX";
 import HTTP from "./HTTP/INDEX";
+import MENUS from "./MENUS/INDEX";
 
 export {
   SOCKET,
@@ -12,4 +13,5 @@ export {
   MESSAGES,
   HTTP,
   MODALS,
+  MENUS
 };
