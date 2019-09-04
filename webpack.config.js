@@ -43,8 +43,15 @@ module.exports = (env, argvs) => {
       inline: true,
       hot: true,
       progress: true,
-      historyApiFallback: true,
-      allowedHosts: [
+      historyApiFallback: {
+        rewrites: [
+          { from: /^\/service\/.*/, to: '/service/index.html' },
+          { from: /^\/admin\/.*/, to: '/admin/index.html' },
+          { from: /.*/, to: '/service/index.html' },
+        ],
+        verbose: true,
+      },
+       allowedHosts: [
         'fea.chatroom.ques98.cn',
         // '127.0.0.1',
         // 'localhost'

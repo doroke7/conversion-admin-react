@@ -1,4 +1,4 @@
-import SiderBar from './SiderBar/Index';
+import SideBar from './SideBar/Index';
 import TopBar from './TopBar/Index';
 
-export default { SiderBar, TopBar };
+export default { SideBar, TopBar };
