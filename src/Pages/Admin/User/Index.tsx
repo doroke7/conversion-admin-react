@@ -3,18 +3,18 @@ import { Admin } from '@/Commons';
 
 import style from './style';
 
-function Room(): any {
+function User(): any {
   const classes: any = style(void 0);
 
   return (
     <div className={classes.root}>
       <Admin.Menu >
         <div>
-          ROOM
+          USER
         </div>
       </Admin.Menu >
 
     </div>
   );
 }
-export default Room;
+export default User;

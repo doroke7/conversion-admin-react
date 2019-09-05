@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -85,10 +86,13 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {MENUS.map((oMenu, iIndex) => (
-            <ListItem button key={oMenu.text}>
-              <ListItemIcon>{iIndex % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={oMenu.text} />
-            </ListItem>
+            <Link to={"/admin" + oMenu.path} >
+              <ListItem button key={oMenu.text}>
+                <ListItemIcon>{iIndex % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={oMenu.text} />
+              </ListItem>
+            </Link>
+
           ))}
         </List>
         <Divider />
