@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import AccountBox from '@material-ui/icons/AccountBox';
 
 import {
   MENUS
@@ -28,7 +29,7 @@ import style from './style';
 function Menu(oProps: any) {
   const classes = style(void 0);
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -88,7 +89,7 @@ function Menu(oProps: any) {
           {MENUS.map((oMenu, iIndex) => (
             <Link to={"/admin" + oMenu.path} >
               <ListItem button key={oMenu.text}>
-                <ListItemIcon>{iIndex % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemIcon>{ <oMenu.Icon /> }</ListItemIcon>
                 <ListItemText primary={oMenu.text} />
               </ListItem>
             </Link>
