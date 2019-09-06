@@ -77,6 +77,9 @@ const style = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
       background: grey[100]
     },
+    paper: {
+      padding: theme.spacing(3, 2),
+    }
   }),
 );
 

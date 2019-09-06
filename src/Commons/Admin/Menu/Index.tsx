@@ -7,7 +7,7 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Paper from '@material-ui/core/Paper';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -118,7 +118,9 @@ function Menu(oProps: any) {
         <div className={classes.title}>
           {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
         </div>
-        {oProps.children}
+        <Paper className={classes.paper}>
+          {oProps.children}
+        </Paper>
       </main>
     </div>
   );
