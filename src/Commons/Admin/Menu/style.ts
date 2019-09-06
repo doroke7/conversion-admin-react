@@ -1,4 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { pink, grey } from '@material-ui/core/colors';
+
 const drawerWidth = 240;
 
 const style = makeStyles((theme: Theme) =>
@@ -20,6 +22,15 @@ const style = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+    },
+    link: {
+      color: grey[900],
+      '&:hover': {
+        color: grey[900],
+      }
+    },
+    listItemEnable: {
+      background: grey[300]
     },
     menuButton: {
       marginRight: 36,

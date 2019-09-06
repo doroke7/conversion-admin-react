@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -27,10 +28,11 @@ import {
 import style from './style';
 
 function Menu(oProps: any) {
-  const classes = style(void 0);
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-
+  let classes = style(void 0);
+  let theme = useTheme();
+  let [open, setOpen] = React.useState(true);
+  let sPathname = oProps.location.pathname;
+  let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
   function handleDrawerOpen() {
     setOpen(true);
   }
@@ -87,8 +89,11 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {MENUS.map((oMenu, iIndex) => (
-            <Link to={"/admin" + oMenu.path} >
-              <ListItem button key={oMenu.text}>
+            <Link to={"/admin" + oMenu.path} className={clsx(classes.link, {
+            })}>
+              <ListItem button key={oMenu.text} className={clsx({
+                [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, ''),
+              })}>
                 <ListItemIcon>{ <oMenu.Icon /> }</ListItemIcon>
                 <ListItemText primary={oMenu.text} />
               </ListItem>
@@ -114,4 +119,4 @@ function Menu(oProps: any) {
   );
 }
 
-export default Menu;
+export default withRouter(Menu);
