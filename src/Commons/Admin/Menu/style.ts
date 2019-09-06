@@ -75,7 +75,6 @@ const style = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
-      background: grey[100]
     },
     paper: {
       padding: theme.spacing(3, 2),
