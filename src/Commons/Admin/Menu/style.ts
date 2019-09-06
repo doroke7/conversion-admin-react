@@ -25,12 +25,16 @@ const style = makeStyles((theme: Theme) =>
     },
     link: {
       color: grey[900],
+      textDecoration: 'none',
       '&:hover': {
         color: grey[900],
       }
     },
     listItemEnable: {
       background: grey[300]
+    },
+    title: {
+      marginBottom: theme.spacing(3)
     },
     menuButton: {
       marginRight: 36,
@@ -71,6 +75,7 @@ const style = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
+      background: grey[100]
     },
   }),
 );

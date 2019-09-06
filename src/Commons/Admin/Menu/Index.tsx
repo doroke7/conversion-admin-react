@@ -7,6 +7,7 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -63,7 +64,7 @@ function Menu(oProps: any) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            管理系統
           </Typography>
         </Toolbar>
       </AppBar>
@@ -88,7 +89,7 @@ function Menu(oProps: any) {
         </div>
         <Divider />
         <List>
-          {MENUS.map((oMenu, iIndex) => (
+          {Object.values(MENUS).map((oMenu: any, iIndex) => (
             <Link to={"/admin" + oMenu.path} className={clsx(classes.link, {
             })}>
               <ListItem button key={oMenu.text} className={clsx({
@@ -112,7 +113,11 @@ function Menu(oProps: any) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
+        <div className={classes.toolbar}>
+        </div>
+        <div className={classes.title}>
+          {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+        </div>
         {oProps.children}
       </main>
     </div>
