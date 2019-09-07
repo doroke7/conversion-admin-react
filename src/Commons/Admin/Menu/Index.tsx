@@ -8,7 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Paper from '@material-ui/core/Paper';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -114,9 +114,12 @@ function Menu(oProps: any) {
       <main className={classes.content}>
         <div className={classes.toolbar}>
         </div>
-        <div className={classes.title}>
+        <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
           {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
-        </div>
+        </Box>
+        <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
+          {MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+        </Box>
         <Paper className={classes.paper}>
           {oProps.children}
         </Paper>

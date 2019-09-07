@@ -34,7 +34,10 @@ const style = makeStyles((theme: Theme) =>
       background: grey[300]
     },
     title: {
-      marginBottom: theme.spacing(3)
+    },
+    description: {
+      marginBottom: theme.spacing(2)
+
     },
     menuButton: {
       marginRight: 36,
