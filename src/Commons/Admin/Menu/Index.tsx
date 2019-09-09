@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -22,9 +22,13 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountBox from '@material-ui/icons/AccountBox';
 
+import Tabs from './Tabs';
+
 import {
   MENUS
 } from '@/CONFIGS';
+
+const oTabContext = React.createContext([]);
 
 import style from './style';
 
@@ -32,6 +36,9 @@ function Menu(oProps: any) {
   let classes = style(void 0);
   let theme = useTheme();
   let [open, setOpen] = React.useState(true);
+
+  let aTabs = useContext(oTabContext);
+
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
   function handleDrawerOpen() {
@@ -40,6 +47,12 @@ function Menu(oProps: any) {
 
   function handleDrawerClose() {
     setOpen(false);
+  }
+
+  function handleClick(oMenu) {
+    return () => {
+      console.log(oMenu);
+    }
   }
 
   return (
@@ -90,7 +103,7 @@ function Menu(oProps: any) {
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
             <Link to={"/admin" + oMenu.path} className={clsx(classes.link, {
-            })}>
+            })} onClick={handleClick(oMenu)}>
               <ListItem button key={oMenu.text} className={clsx({
                 [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, ''),
               })}>
@@ -114,6 +127,7 @@ function Menu(oProps: any) {
       <main className={classes.content}>
         <div className={classes.toolbar}>
         </div>
+        <Tabs />
         <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
           {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
         </Box>
