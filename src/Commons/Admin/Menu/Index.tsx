@@ -59,10 +59,25 @@ function Menu(oProps: any) {
     setState({ ...oState, open: false });
   }
 
-  function handleClick(oMenu) {
+  function handleClick(oMenu: any) {
     return () => {
       setState({ ...oState, tabs: [oMenu] });
-      TabHelper.set([oMenu]);
+      let aTabs: any[] = TabHelper.get();
+      let iIndex;
+      let iLength = aTabs.length;
+      let bExistent = false;
+      for(iIndex = 0; iIndex < iLength; iIndex++) {
+        let oTab: any = aTabs[iIndex];
+        if(oTab.path === oMenu.path) {
+          bExistent = true;
+          break;
+        }
+      }
+      if(!bExistent) {
+        aTabs.push(oMenu);
+      }
+      setState({ ...oState, tabs: [aTabs] });
+      TabHelper.set(aTabs);
     };
   }
 
