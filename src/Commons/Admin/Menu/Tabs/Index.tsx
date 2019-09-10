@@ -25,16 +25,15 @@ function Tabs(oProps: any) {
 
   return (
     <div>
-      {Object.values(aTabs).map((oTab: any, iIndex) => {
-        let sName = oTab.path.replace(/^\//gi, '');
-        let oMenu = MENUS[sName];
+      {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
+        let oMenu = MENUS[_sMenuName];
         return (
-        <Link to={"/admin" + oTab.path} className={clsx({
-          [classes.tab]: sMenuName !== oTab.path.replace(/^\//gi, ''),
-          [classes.tabEnable]: sMenuName === oTab.path.replace(/^\//gi, ''),
+        <Link to={"/admin" + oMenu.path} className={clsx({
+          [classes.tab]: sMenuName !== _sMenuName,
+          [classes.tabEnable]: sMenuName === _sMenuName,
         })}>
         {<oMenu.Icon />}
-        {oTab.text}
+        {oMenu.text}
         </Link>
         )
       })}

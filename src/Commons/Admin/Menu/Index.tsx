@@ -82,15 +82,17 @@ function Menu(oProps: any) {
     let iIndex;
     let iLength = aTabs.length;
     let bExistent = false;
+    let sMenuName = oMenu.path.replace(/\//gi, '');
+    
     for(iIndex = 0; iIndex < iLength; iIndex++) {
-      let oTab: any = aTabs[iIndex];
-      if(oTab.path === oMenu.path) {
+      let _sMenuName: any = aTabs[iIndex];
+      if(sMenuName === _sMenuName) {
         bExistent = true;
         break;
       }
     }
     if(!bExistent) {
-      aTabs.push(oMenu);
+      aTabs.push(sMenuName);
     }
     setState({ ...oState, tabs: aTabs });
     TabHelper.set(aTabs);
