@@ -25,10 +25,12 @@ import AccountBox from '@material-ui/icons/AccountBox';
 import Tabs from './Tabs';
 
 import {
+  tab
+} from '@/contexts';
+
+import {
   MENUS
 } from '@/CONFIGS';
-
-const oTabContext = React.createContext([]);
 
 import style from './style';
 
@@ -36,8 +38,12 @@ function Menu(oProps: any) {
   let classes = style(void 0);
   let theme = useTheme();
   let [open, setOpen] = React.useState(true);
+  let [tabs, setTabs] = React.useState(8);
 
-  let aTabs = useContext(oTabContext);
+  const [oState, setState] = React.useState<any>({
+    open: true,
+    tabs: [],
+  });
 
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
@@ -49,10 +55,10 @@ function Menu(oProps: any) {
     setOpen(false);
   }
 
-  function handleClick(oMenu) {
-    return () => {
-      console.log(oMenu);
-    }
+  function handleClick() {
+    console.log(54);
+    setTabs(10);
+
   }
 
   return (
@@ -102,15 +108,15 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
-            <Link to={"/admin" + oMenu.path} className={clsx(classes.link, {
-            })} onClick={handleClick(oMenu)}>
+            <div className={clsx(classes.link, {
+            })} onClick={handleClick}>
               <ListItem button key={oMenu.text} className={clsx({
                 [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, ''),
               })}>
                 <ListItemIcon>{ <oMenu.Icon /> }</ListItemIcon>
                 <ListItemText primary={oMenu.text} />
               </ListItem>
-            </Link>
+            </div>
 
           ))}
         </List>
@@ -127,7 +133,11 @@ function Menu(oProps: any) {
       <main className={classes.content}>
         <div className={classes.toolbar}>
         </div>
-        <Tabs />
+        {JSON.stringify(open)}
+        {tabs}
+        {/* <tab.Provider value={tabs} >
+          <Tabs />
+        </tab.Provider> */}
         <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
           {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
         </Box>
