@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -51,6 +51,18 @@ function Menu(oProps: any) {
 
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
+
+
+
+  useEffect(() => {
+    // componentDidMount is here!
+    let oTab = MENUS[sMenuName];
+    enableTab(oTab);
+    return () => {
+        // componentWillUnmount is here!
+    }
+  },[]);
+
   function handleDrawerOpen() {
     setState({ ...oState, open: true });
   }
@@ -61,24 +73,27 @@ function Menu(oProps: any) {
 
   function handleClick(oMenu: any) {
     return () => {
-      setState({ ...oState, tabs: [oMenu] });
-      let aTabs: any[] = TabHelper.get();
-      let iIndex;
-      let iLength = aTabs.length;
-      let bExistent = false;
-      for(iIndex = 0; iIndex < iLength; iIndex++) {
-        let oTab: any = aTabs[iIndex];
-        if(oTab.path === oMenu.path) {
-          bExistent = true;
-          break;
-        }
-      }
-      if(!bExistent) {
-        aTabs.push(oMenu);
-      }
-      setState({ ...oState, tabs: [aTabs] });
-      TabHelper.set(aTabs);
+      enableTab(oMenu);
     };
+  }
+
+  function enableTab(oMenu: any){
+    let aTabs: any[] = TabHelper.get();
+    let iIndex;
+    let iLength = aTabs.length;
+    let bExistent = false;
+    for(iIndex = 0; iIndex < iLength; iIndex++) {
+      let oTab: any = aTabs[iIndex];
+      if(oTab.path === oMenu.path) {
+        bExistent = true;
+        break;
+      }
+    }
+    if(!bExistent) {
+      aTabs.push(oMenu);
+    }
+    setState({ ...oState, tabs: aTabs });
+    TabHelper.set(aTabs);
   }
 
   return (
@@ -137,7 +152,6 @@ function Menu(oProps: any) {
                 <ListItemText primary={oMenu.text} />
               </ListItem>
             </Link>
-
           ))}
         </List>
         <Divider />

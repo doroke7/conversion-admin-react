@@ -6,6 +6,12 @@ const style = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
     },
+    tab: {
+
+    },
+    tabEnable: {
+
+    }
   }),
 );
 
