@@ -29,6 +29,10 @@ import {
 } from '@/contexts';
 
 import {
+  TabHelper
+} from '@/Helpers';
+
+import {
   MENUS
 } from '@/CONFIGS';
 
@@ -37,31 +41,28 @@ import style from './style';
 function Menu(oProps: any) {
   let classes = style(void 0);
   let theme = useTheme();
-  let [open, setOpen] = React.useState(true);
-  let [tabs, setTabs] = React.useState([]);
+  // let [open, setOpen] = React.useState(true);
+  // let [tabs, setTabs] = React.useState([]);
 
   const [oState, setState] = React.useState<any>({
     open: true,
-    tabs: [], // 更換 route 的時候 , React Componet 重新 render
+    tabs: TabHelper.get(),    // 更換 route 的時候 , React Componet 重新 render, state init
   });
 
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
   function handleDrawerOpen() {
-    setOpen(true);
-    oState({ ...oState, open: true });
+    setState({ ...oState, open: true });
   }
 
   function handleDrawerClose() {
-    setOpen(false);
-    oState({ ...oState, open: false });
-
+    setState({ ...oState, open: false });
   }
 
   function handleClick(oMenu) {
     return () => {
-      console.log(54);
-      setTabs([oMenu]);
+      setState({ ...oState, tabs: [oMenu] });
+      TabHelper.set([oMenu]);
     };
   }
 
@@ -70,7 +71,7 @@ function Menu(oProps: any) {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: oState.open,
         })}
       >
         <Toolbar>
@@ -80,7 +81,7 @@ function Menu(oProps: any) {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: oState.open,
             })}
           >
             <MenuIcon />
@@ -93,16 +94,16 @@ function Menu(oProps: any) {
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerOpen]: oState.open,
+          [classes.drawerClose]: !oState.open,
         })}
         classes={{
           paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: oState.open,
+            [classes.drawerClose]: !oState.open,
           }),
         }}
-        open={open}
+        open={oState.open}
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
@@ -112,7 +113,7 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
-            <div className={clsx(classes.link, {
+            <Link to={"/admin" + oMenu.path} className={clsx(classes.link, {
             })} onClick={handleClick(oMenu)}>
               <ListItem button key={oMenu.text} className={clsx({
                 [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, ''),
@@ -120,7 +121,7 @@ function Menu(oProps: any) {
                 <ListItemIcon>{ <oMenu.Icon /> }</ListItemIcon>
                 <ListItemText primary={oMenu.text} />
               </ListItem>
-            </div>
+            </Link>
 
           ))}
         </List>
@@ -137,7 +138,7 @@ function Menu(oProps: any) {
       <main className={classes.content}>
         <div className={classes.toolbar}>
         </div>
-        <tab.Provider value={tabs}>
+        <tab.Provider value={oState.tabs}>
           <Tabs />
         </tab.Provider>
         <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
