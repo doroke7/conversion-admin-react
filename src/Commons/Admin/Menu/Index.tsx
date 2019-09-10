@@ -38,11 +38,11 @@ function Menu(oProps: any) {
   let classes = style(void 0);
   let theme = useTheme();
   let [open, setOpen] = React.useState(true);
-  let [tabs, setTabs] = React.useState(8);
+  let [tabs, setTabs] = React.useState([]);
 
   const [oState, setState] = React.useState<any>({
     open: true,
-    tabs: [],
+    tabs: [], // 更換 route 的時候 , React Componet 重新 render
   });
 
   let sPathname = oProps.location.pathname;
@@ -55,10 +55,11 @@ function Menu(oProps: any) {
     setOpen(false);
   }
 
-  function handleClick() {
-    console.log(54);
-    setTabs(10);
-
+  function handleClick(oMenu) {
+    return () => {
+      console.log(54);
+      setTabs([oMenu]);
+    };
   }
 
   return (
@@ -109,7 +110,7 @@ function Menu(oProps: any) {
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
             <div className={clsx(classes.link, {
-            })} onClick={handleClick}>
+            })} onClick={handleClick(oMenu)}>
               <ListItem button key={oMenu.text} className={clsx({
                 [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, ''),
               })}>
@@ -133,11 +134,9 @@ function Menu(oProps: any) {
       <main className={classes.content}>
         <div className={classes.toolbar}>
         </div>
-        {JSON.stringify(open)}
-        {tabs}
-        {/* <tab.Provider value={tabs} >
+        <tab.Provider value={tabs}>
           <Tabs />
-        </tab.Provider> */}
+        </tab.Provider>
         <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
           {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
         </Box>
