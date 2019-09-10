@@ -49,10 +49,13 @@ function Menu(oProps: any) {
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
   function handleDrawerOpen() {
     setOpen(true);
+    oState({ ...oState, open: true });
   }
 
   function handleDrawerClose() {
     setOpen(false);
+    oState({ ...oState, open: false });
+
   }
 
   function handleClick(oMenu) {
