@@ -172,15 +172,17 @@ function Menu(oProps: any) {
         <tab.Provider value={oState.tabs}>
           <Tabs />
         </tab.Provider>
-        <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-          {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
-        </Box>
-        <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-          {MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
-        </Box>
-        <Paper className={classes.paper}>
-          {oProps.children}
-        </Paper>
+        <div className={classes.subContent}>
+          <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
+            {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+          </Box>
+          <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
+            {MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+          </Box>
+          <Paper className={classes.paper}>
+            {oProps.children}
+          </Paper>
+        </div>
       </main>
     </div>
   );

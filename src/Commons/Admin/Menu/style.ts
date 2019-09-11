@@ -77,6 +77,9 @@ const style = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
+      // padding: theme.spacing(3),
+    },
+    subContent: {
       padding: theme.spacing(3),
     },
     paper: {

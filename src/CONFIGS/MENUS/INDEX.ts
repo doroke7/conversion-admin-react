@@ -1,6 +1,8 @@
 
 import AccountBox from '@material-ui/icons/AccountBox';
 import FormatListNumberedRtl from '@material-ui/icons/FormatListNumberedRtl';
+import HighlightOff from '@material-ui/icons/HighlightOff';
+import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
 
 const MENUS: any = {
   room: {
@@ -19,13 +21,13 @@ const MENUS: any = {
     text: '管理員',
     description: '管理員列表',
     path: '/administrator',
-    Icon: AccountBox
+    Icon: SupervisedUserCircle
   },
   word: {
     text: '禁止字',
     description: '禁止字列表',
     path: '/word',
-    Icon: AccountBox
+    Icon: HighlightOff
   },
 };
 

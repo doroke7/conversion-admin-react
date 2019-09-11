@@ -21,6 +21,16 @@ let aRoutes = [
     component: Admin.User,
     exact: true,
   },
+  {
+    path: '/admin/word',
+    component: Admin.Word,
+    exact: true,
+  },
+  {
+    path: '/admin/administrator',
+    component: Admin.Administrator,
+    exact: true,
+  },
 ];
 
 export default aRoutes;
