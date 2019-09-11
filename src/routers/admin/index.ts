@@ -3,7 +3,7 @@ import { Admin } from '@/Pages';
 let aRoutes = [
   {
     path: '/admin',
-    component: Admin.SignIn,
+    component: Admin._,
     exact: true,
   },
   {

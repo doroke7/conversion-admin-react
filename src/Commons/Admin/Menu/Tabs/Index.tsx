@@ -34,7 +34,7 @@ function Tabs(oProps: any) {
           <span className={classes.text}>
             {oMenu.text}
           </span>
-          <Clear className={classes.clear}/>
+          <Clear className={classes.clear} onClick={oProps.removeTab(iIndex)}/>
         </Link>
         )
       })}

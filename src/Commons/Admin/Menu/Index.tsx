@@ -52,12 +52,13 @@ function Menu(oProps: any) {
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
 
-
-
   useEffect(() => {
     // componentDidMount is here!
-    let oTab = MENUS[sMenuName];
-    enableTab(oTab);
+    if(sMenuName) {
+      let oTab = MENUS[sMenuName];
+      enableTab(oTab);
+    }
+
     return () => {
         // componentWillUnmount is here!
     }
@@ -96,6 +97,36 @@ function Menu(oProps: any) {
     }
     setState({ ...oState, tabs: aTabs });
     TabHelper.set(aTabs);
+  }
+
+  function removeTab(iIndex: number) {
+    // let aTabs: any[] = TabHelper.get();
+    // let _aTabs: any[] = TabHelper.get();
+
+    // let _sMenuName = aTabs[iIndex];
+    // _aTabs.splice(iIndex, 1);
+    // setState({ ...oState, tabs: _aTabs });
+    // TabHelper.set(_aTabs);
+    // if (sMenuName === _sMenuName && 1 === aTabs.length) {
+    //   oProps.history.push('/admin');
+    //   return;
+    // }
+    // if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 < aTabs.length) {
+    //   let __sMenuName = aTabs[iIndex + 1];
+    //   oProps.history.push('/admin/' + __sMenuName);
+    //   return;
+    // }
+
+    // if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 === aTabs.length) {
+    //   let __sMenuName = aTabs[iIndex - 1];
+    //   oProps.history.push('/admin/' + __sMenuName);
+    //   return;
+    // }
+
+    // if (sMenuName !== _sMenuName) {
+    //   // do nothing
+    //   return;
+    // }
   }
 
   return (
@@ -170,14 +201,14 @@ function Menu(oProps: any) {
         <div className={classes.toolbar}>
         </div>
         <tab.Provider value={oState.tabs}>
-          <Tabs />
+          <Tabs removeTab={removeTab}/>
         </tab.Provider>
         <div className={classes.subContent}>
           <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-            {MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+            {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
           </Box>
           <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-            {MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+            {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
           </Box>
           <Paper className={classes.paper}>
             {oProps.children}
