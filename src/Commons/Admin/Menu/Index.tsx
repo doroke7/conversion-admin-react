@@ -100,33 +100,36 @@ function Menu(oProps: any) {
   }
 
   function removeTab(iIndex: number) {
-    // let aTabs: any[] = TabHelper.get();
-    // let _aTabs: any[] = TabHelper.get();
+    return (iIndex: number) => {
+      let aTabs: any[] = TabHelper.get();
+      let _aTabs: any[] = TabHelper.get();
+  
+      let _sMenuName = aTabs[iIndex];
+      _aTabs.splice(iIndex, 1);
+      setState({ ...oState, tabs: _aTabs });
+      TabHelper.set(_aTabs);
+      if (sMenuName === _sMenuName && 1 === aTabs.length) {
+        oProps.history.push('/admin');
+        return;
+      }
+      if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 < aTabs.length) {
+        let __sMenuName = aTabs[iIndex + 1];
+        oProps.history.push('/admin/' + __sMenuName);
+        return;
+      }
+  
+      if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 === aTabs.length) {
+        let __sMenuName = aTabs[iIndex - 1];
+        oProps.history.push('/admin/' + __sMenuName);
+        return;
+      }
+  
+      if (sMenuName !== _sMenuName) {
+        // do nothing
+        return;
+      }
+    }
 
-    // let _sMenuName = aTabs[iIndex];
-    // _aTabs.splice(iIndex, 1);
-    // setState({ ...oState, tabs: _aTabs });
-    // TabHelper.set(_aTabs);
-    // if (sMenuName === _sMenuName && 1 === aTabs.length) {
-    //   oProps.history.push('/admin');
-    //   return;
-    // }
-    // if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 < aTabs.length) {
-    //   let __sMenuName = aTabs[iIndex + 1];
-    //   oProps.history.push('/admin/' + __sMenuName);
-    //   return;
-    // }
-
-    // if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 === aTabs.length) {
-    //   let __sMenuName = aTabs[iIndex - 1];
-    //   oProps.history.push('/admin/' + __sMenuName);
-    //   return;
-    // }
-
-    // if (sMenuName !== _sMenuName) {
-    //   // do nothing
-    //   return;
-    // }
   }
 
   return (
