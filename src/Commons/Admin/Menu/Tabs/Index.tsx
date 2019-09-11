@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import AccountBox from '@material-ui/icons/AccountBox';
+import Clear from '@material-ui/icons/Clear';
 
 import {
   tab
@@ -17,8 +17,6 @@ import style from './style';
 function Tabs(oProps: any) {
   let classes = style(void 0);
   let aTabs = useContext(tab);
-
-  console.log(aTabs);
 
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
@@ -36,6 +34,7 @@ function Tabs(oProps: any) {
           <span className={classes.text}>
             {oMenu.text}
           </span>
+          <Clear className={classes.clear}/>
         </Link>
         )
       })}

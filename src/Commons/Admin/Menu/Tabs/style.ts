@@ -8,6 +8,7 @@ const style = makeStyles((theme: Theme) =>
     },
     tab: {
       padding: theme.spacing(1),
+      backgroundColor: grey[200],
       borderTop: '1px solid #dddddd',
       borderLeft: '1px solid #dddddd',
       borderRight: '1px solid #dddddd',
@@ -26,10 +27,14 @@ const style = makeStyles((theme: Theme) =>
       verticalAlign: 'middle',
       marginRight: theme.spacing(1)
     },
-    text:{
+    text: {
       verticalAlign: 'middle',
       marginRight: theme.spacing(1)
 
+    },
+    clear: {
+      verticalAlign: 'middle',
+      fontWeight: 100,
     }
 
   }),
