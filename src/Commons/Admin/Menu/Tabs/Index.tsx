@@ -32,8 +32,10 @@ function Tabs(oProps: any) {
           [classes.tab]: sMenuName !== _sMenuName,
           [classes.tabEnable]: sMenuName === _sMenuName,
         })}>
-        {<oMenu.Icon />}
-        {oMenu.text}
+          {<oMenu.Icon className={classes.icon}/>}
+          <span className={classes.text}>
+            {oMenu.text}
+          </span>
         </Link>
         )
       })}
