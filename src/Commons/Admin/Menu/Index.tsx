@@ -100,7 +100,7 @@ function Menu(oProps: any) {
   }
 
   function removeTab(iIndex: number) {
-    return (iIndex: number) => {
+    return (oEvent: any) => {
       let aTabs: any[] = TabHelper.get();
       let _aTabs: any[] = TabHelper.get();
   
