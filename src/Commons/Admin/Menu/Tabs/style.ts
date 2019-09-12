@@ -13,15 +13,18 @@ const style = makeStyles((theme: Theme) =>
       borderLeft: '1px solid #dddddd',
       borderRight: '1px solid #dddddd',
       borderBottom: '1px solid #dddddd',
-      borderRadius: '0.5rem 0.5rem 0 0'
+      borderRadius: '0.5rem 0.5rem 0 0',
+      cursor: 'pointer',
+      textDecoration: 'none'
     },
     tabEnable: {
       padding: theme.spacing(1),
       borderTop: '1px solid #dddddd',
       borderLeft: '1px solid #dddddd',
       borderRight: '1px solid #dddddd',
-      borderRadius: '0.5rem 0.5rem 0 0'
-
+      borderRadius: '0.5rem 0.5rem 0 0',
+      cursor: 'pointer',
+      textDecoration: 'none'
     },
     icon:{
       verticalAlign: 'middle',

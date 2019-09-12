@@ -101,6 +101,9 @@ function Menu(oProps: any) {
 
   function removeTab(iIndex: number) {
     return (oEvent: any) => {
+      oEvent.stopPropagation();  // 取消冒泡 取消 <Link></Link>
+      oEvent.preventDefault();   // 取消 a tag 取消 href
+
       let aTabs: any[] = TabHelper.get();
       let _aTabs: any[] = TabHelper.get();
   
