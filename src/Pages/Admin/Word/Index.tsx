@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Paper from '@material-ui/core/Paper';
 
 import Commons from '@/Commons';
+import Components from '@/Components';
 
 import style from './style';
 
@@ -14,6 +15,7 @@ function Word(): any {
     <div className={classes.root}>
       <Commons.Admin.Menu >
         <Paper className={classes.paper}>
+          <Components.Admin.Table />
         </Paper>
       </Commons.Admin.Menu >
 
