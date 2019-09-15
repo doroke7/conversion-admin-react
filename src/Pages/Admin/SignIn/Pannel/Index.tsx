@@ -7,7 +7,7 @@ import LockIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
-import { Admin } from '@/Components';
+import Components from '@/Components';
 import { authenticationAction } from '@/actions/';
 
 import style from './style';
@@ -124,7 +124,7 @@ function Pannel(): any {
         </Link>
       </div>
       <h5 className={classes.copyright}>© copyright 2019 梦想平台版权所有</h5>
-      <Admin.Alert open={oState.open} text={oState.text} onClose={onClose}/>
+      <Components.Admin.Alert open={oState.open} text={oState.text} onClose={onClose}/>
     </div>
   );
 }

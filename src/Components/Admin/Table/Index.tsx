@@ -337,7 +337,7 @@ function EnhancedTable() {
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row.name)}
+                      onClick={event => handleClick(event, (row.name).toString())}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}

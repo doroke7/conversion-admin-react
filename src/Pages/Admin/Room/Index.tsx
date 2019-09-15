@@ -1,6 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Admin } from '@/Commons';
+import Commons from '@/Commons';
 
 import style from './style';
 
@@ -9,14 +9,14 @@ function Room(): any {
 
   return (
     <div className={classes.root}>
-      <Admin.Menu >
+      <Commons.Admin.Menu >
         <Paper className={classes.paper}>
           <div>
             ROOM
           </div>
         </Paper>
 
-      </Admin.Menu >
+      </Commons.Admin.Menu >
 
     </div>
   );
