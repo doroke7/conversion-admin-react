@@ -15,7 +15,7 @@ interface State {
   text: string;
 }
 
-function Alert(oProps: any): any {
+function Dialogs(oProps: any): any {
   let classes: any = style(void 0);
 
   let [oState, setState] = React.useState<State>({
@@ -52,4 +52,4 @@ function Alert(oProps: any): any {
     </Dialog>
   );
 }
-export default Alert;
+export default Dialogs;

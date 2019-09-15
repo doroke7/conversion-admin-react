@@ -1,6 +1,6 @@
-import Alert from './Alert/Index';
+import Dialogs from './Dialogs/Index';
 import Table from './Table/Index';
 
 // import Service from './Service/Index';
 
-export default { Alert, Table };
+export default { Dialogs, Table };

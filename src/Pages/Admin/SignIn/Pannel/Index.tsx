@@ -124,7 +124,7 @@ function Pannel(): any {
         </Link>
       </div>
       <h5 className={classes.copyright}>© copyright 2019 梦想平台版权所有</h5>
-      <Components.Admin.Alert open={oState.open} text={oState.text} onClose={onClose}/>
+      <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose}/>
     </div>
   );
 }
