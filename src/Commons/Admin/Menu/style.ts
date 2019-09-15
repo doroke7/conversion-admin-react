@@ -80,10 +80,12 @@ const style = makeStyles((theme: Theme) =>
       // padding: theme.spacing(3),
     },
     subContent: {
+      minHeight: 'calc(100vh - 128px)';
       padding: theme.spacing(3),
     },
     paper: {
       padding: theme.spacing(3, 2),
+      boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)'
     }
   }),
 );

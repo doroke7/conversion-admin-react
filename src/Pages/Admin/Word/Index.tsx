@@ -1,4 +1,5 @@
 import React from 'react';
+import Paper from '@material-ui/core/Paper';
 import { Admin } from '@/Commons';
 
 import style from './style';
@@ -9,9 +10,11 @@ function Word(): any {
   return (
     <div className={classes.root}>
       <Admin.Menu >
-        <div>
-          WORD!!!!
-        </div>
+        <Paper className={classes.paper}>
+          <div>
+            Word!!!!
+          </div>
+        </Paper>
       </Admin.Menu >
 
     </div>
