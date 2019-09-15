@@ -11,9 +11,6 @@ function User(): any {
     <div className={classes.root}>
       <Admin.Menu >
         <Paper className={classes.paper}>
-          <div>
-            USER!!!!
-          </div>
         </Paper>
       </Admin.Menu >
 
