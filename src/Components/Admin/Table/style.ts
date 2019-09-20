@@ -7,7 +7,6 @@ let style = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(3),
     },
     paper: {
-      width: '100%',
       marginBottom: theme.spacing(2),
     },
     table: {

@@ -17,6 +17,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
+
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountBox from '@material-ui/icons/AccountBox';
@@ -208,13 +210,15 @@ function Menu(oProps: any) {
         <tab.Provider value={oState.tabs}>
           <Tabs removeTab={removeTab}/>
         </tab.Provider>
+        <Paper className={classes.paper}>
+            <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
+              {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+            </Box>
+            <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
+              {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+            </Box>
+          </Paper>
         <div className={classes.subContent}>
-          <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-            {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
-          </Box>
-          <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-            {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
-          </Box>
           {oProps.children}
         </div>
       </main>

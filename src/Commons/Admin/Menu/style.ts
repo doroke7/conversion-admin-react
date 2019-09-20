@@ -81,11 +81,13 @@ const style = makeStyles((theme: Theme) =>
     },
     subContent: {
       minHeight: 'calc(100vh - 128px)',
-      padding: theme.spacing(3),
+      padding: theme.spacing(2),
     },
     paper: {
-      padding: theme.spacing(3, 2),
-      boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)'
+      padding: theme.spacing(2),
+      borderRadius: '6px',
+      boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
+      marginBottom: theme.spacing(3),
     }
   }),
 );
