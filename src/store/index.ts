@@ -11,6 +11,6 @@ const oReducer = combineReducers({
   users: userReducer,
 });
 
-const oStore:  any = createStore(oReducer, applyMiddleware(reduxThunk));
+const oStore: any = createStore(oReducer, applyMiddleware(reduxThunk));
 
 export default oStore;

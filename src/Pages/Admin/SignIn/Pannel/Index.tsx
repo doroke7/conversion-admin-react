@@ -1,5 +1,5 @@
 import React from 'react';
-import {useMappedState,useDispatch} from 'redux-react-hook';
+import { useMappedState, useDispatch } from 'redux-react-hook';
 
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
@@ -26,13 +26,13 @@ interface State {
 const ENTER_CODE = 13;
 
 function Pannel(): any {
-  const classes: any = style(void 0);
+  let classes: any = style(void 0);
 
   const jwt = useMappedState(state => state.jwt);
   
-  const dispatch = useDispatch();
+  let dispatch = useDispatch();
 
-  const [oState, setState] = React.useState<State>({
+  let [oState, setState] = React.useState<State>({
     name: '',
     password: '',
     open: false,
