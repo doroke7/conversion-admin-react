@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var AutoDllPlugin = require('autodll-webpack-plugin');
+const AutoDllPlugin = require('autodll-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -15,6 +16,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
  */
 
 module.exports = (env, argvs) => {
+  console.log(process.env, argvs);
   return {
     mode: 'production',
     entry: {
@@ -39,7 +41,7 @@ module.exports = (env, argvs) => {
       publicPath: '/',
       compress: true,
       host: '0.0.0.0',
-      port: 3000,
+      port: process.env.WEBPACK_HOST || 3000,
       inline: true,
       hot: true,
       progress: true,
@@ -169,6 +171,10 @@ module.exports = (env, argvs) => {
           ],
         },
       }),
+      new Dotenv({
+        path: './.env', // Path to .env file (this is the default)
+        safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
+      })
     ],
 
     performance: {
