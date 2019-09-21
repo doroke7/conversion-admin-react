@@ -23,7 +23,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountBox from '@material-ui/icons/AccountBox';
 
-import Tabs from './Tabs';
+import Tabs from './Tabs/Index.tsx';
 
 import {
   tab
