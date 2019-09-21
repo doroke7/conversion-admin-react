@@ -6,16 +6,19 @@ const style = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
     },
+    wrapperTabs: {
+      marginTop: theme.spacing(1),
+    },
     tab: {
       padding: theme.spacing(1),
       backgroundColor: grey[200],
       borderTop: '1px solid #dddddd',
       borderLeft: '1px solid #dddddd',
       borderRight: '1px solid #dddddd',
-      borderBottom: '1px solid #dddddd',
+      borderBottom: 'none',
       borderRadius: '0.5rem 0.5rem 0 0',
       cursor: 'pointer',
-      textDecoration: 'none'
+      textDecoration: 'none',
     },
     tabEnable: {
       padding: theme.spacing(1),

@@ -87,7 +87,7 @@ const style = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       borderRadius: '6px',
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
-      marginTop: '0.3rem'
+      marginTop: '0.25rem'
     }
   }),
 );

@@ -22,7 +22,7 @@ function Tabs(oProps: any) {
   let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
 
   return (
-    <div>
+    <div className={classes.wrapperTabs}>
       {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
         let oMenu = MENUS[_sMenuName];
         return (
