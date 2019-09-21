@@ -24,7 +24,8 @@ const style = makeStyles((theme: Theme) =>
       borderRight: '1px solid #dddddd',
       borderRadius: '0.5rem 0.5rem 0 0',
       cursor: 'pointer',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      backgroundColor: '#ffffff'
     },
     icon:{
       verticalAlign: 'middle',
