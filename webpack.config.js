@@ -18,8 +18,8 @@ module.exports = (env, argvs) => {
   return {
     mode: 'production',
     entry: {
-      service: './src/entries/service/Index.tsx',
-      admin: './src/entries/admin/Index.tsx',
+      service: './src/entries/service/index.tsx',
+      admin: './src/entries/admin/index.tsx',
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
@@ -68,7 +68,7 @@ module.exports = (env, argvs) => {
         {
           test: /\.tsx?$/,
           use: [
-            'awesome-typescript-loader', // 'ts-loader'
+            'ts-loader', // 'ts-loader'
           ], // 大小写 问题 会造成 awesome-typescript-loader 报错, */index.tsx */Index.tsx
         },
         {
