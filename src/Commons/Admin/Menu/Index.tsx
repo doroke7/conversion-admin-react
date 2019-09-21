@@ -21,7 +21,6 @@ import Paper from '@material-ui/core/Paper';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import AccountBox from '@material-ui/icons/AccountBox';
 
 import Tabs from './Tabs/Index';
 
