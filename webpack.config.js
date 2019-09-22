@@ -16,7 +16,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
  */
 
 module.exports = (env, argvs) => {
-  console.log(process.env, argvs);
   return {
     mode: 'production',
     entry: {
