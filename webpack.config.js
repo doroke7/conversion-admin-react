@@ -40,7 +40,7 @@ module.exports = (env, argvs) => {
       publicPath: '/',
       compress: true,
       host: '0.0.0.0',
-      port: process.env.WEBPACK_HOST || 3000,
+      port: process.env.WEBPACK_HOST || 3001,
       inline: true,
       hot: true,
       progress: true,
