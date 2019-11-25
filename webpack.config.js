@@ -68,6 +68,11 @@ module.exports = (env, argvs) => {
     devtool: argvs.mode === 'production' ? 'none' : 'source-map',
     module: {
       rules: [
+        // {  eslint 检查
+        //   test: /\.(ts|tsx)$/,
+        //   exclude: /node_modules/,
+        //   use: ["eslint-loader"]
+        // },
         {
           test: /\.tsx?$/,
           use: [
