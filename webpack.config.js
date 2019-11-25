@@ -10,7 +10,9 @@ const Dotenv = require('dotenv-webpack');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const dotenv = require('dotenv')
 
+dotenv.config();
 /**
  * Webpack 4.*.* 不需要在 plugin 或 loader 指定 source-map
  */
@@ -40,7 +42,7 @@ module.exports = (env, argvs) => {
       publicPath: '/',
       compress: true,
       host: '0.0.0.0',
-      port: process.env.WEBPACK_HOST || 3001,
+      port: process.env.WEBPACK_PORT || 3001,
       inline: true,
       hot: true,
       progress: true,
