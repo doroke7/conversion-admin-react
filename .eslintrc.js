@@ -15,7 +15,11 @@ module.exports =  {
   rules:  {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/indent": ["error", 2]
+    "@typescript-eslint/indent": ["error", 2],
+    "prefer-const": ["off", {     // 取消强制 const 宣告变量
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": true
+    }]
   },
   settings:  {
     react:  {

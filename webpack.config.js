@@ -77,6 +77,7 @@ module.exports = (env, argvs) => {
           test: /\.tsx?$/,
           use: [
             'ts-loader', // 'ts-loader'
+            // 'eslint-loader' 暂时关闭 eslint 检查
           ], // 大小写 问题 会造成 awesome-typescript-loader 报错, */index.tsx */Index.tsx
         },
         {
