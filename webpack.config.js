@@ -138,6 +138,7 @@ module.exports = (env, argvs) => {
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',
         filename: 'service/index.html',
+        favicon: './public/favicon.ico',
         minify: {
           //压缩HTML文件
           removeComments: true, //移除HTML中的注释
