@@ -11,7 +11,7 @@ import { Service } from '@/Commons';
 import { AuthenticationHelper } from '@/Helpers/';
 
 import store from '@/store';
-import { roomMessage, word, authenticationAction, userAction } from '@/actions/';
+import { roomMessage, word, authenticationAction, userAction, room } from '@/actions/';
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
@@ -44,6 +44,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
 
+    this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
     this.chatroomSocket.on('ENTER ROOM', this.onEnterRoom);
     this.chatroomSocket.on('SHOW MESSAGE', this.onShowMessage);
     this.chatroomSocket.on('USER', this.onUser);
@@ -57,6 +58,8 @@ class Chatroom extends React.Component<any> {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
     }
+
+    this.chatroomSocket.emit('SHOW ROOM', void 0);
 
     this.chatroomSocket.emit('ENTER ROOM', void 0);
   }
@@ -75,6 +78,16 @@ class Chatroom extends React.Component<any> {
   };
 
   public roomId: any;
+
+  public onShowRoom(oBody: any) {
+    let oData = oBody['data'];
+    let aRooms = oData['rooms'];
+    store.dispatch(room.show(aRooms));
+
+    this.setState({
+      rooms: aRooms,
+    });
+  }
 
   public onEnterRoom(oBody: any) {
     let oData = oBody['data'];
