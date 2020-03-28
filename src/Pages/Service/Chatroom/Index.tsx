@@ -84,7 +84,7 @@ class Chatroom extends React.Component<any> {
   public onShowRoom(oBody: any) {
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
-    store.dispatch(room.show(aRooms));
+    // store.dispatch(room.show(aRooms));
 
     this.setState({
       rooms: aRooms,
@@ -112,7 +112,7 @@ class Chatroom extends React.Component<any> {
     });
     let aMessages = oBody.data.messages;
     store.dispatch(roomMessage.show(aMessages));
-    store.dispatch(userAction.showViaMessage(aMessages));
+    // store.dispatch(userAction.showViaMessage(aMessages));
   }
 
   public async onMessage(oBody: any) {

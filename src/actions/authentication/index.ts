@@ -45,12 +45,12 @@ let oAuthentication: any = {
     return async (cDispatch: any) => {
       let fNext = async () => {
         let sJwt = AuthenticationHelper.getJwt();
-        let sAccessToken = AuthenticationHelper.getAccessToken();
+        // let sAccessToken = AuthenticationHelper.getAccessToken();
 
         let oOptions = {
           headers: {
             jwt: sJwt, // 一定要 引号
-            'access-token': sAccessToken,
+            // 'access-token': sAccessToken,
           },
         };
         let oResponse = await AxiosHelper.post({

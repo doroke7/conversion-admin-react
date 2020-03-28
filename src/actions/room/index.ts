@@ -1,7 +1,9 @@
 let oRoom: any = {
   show: (aRooms: any) => {
     return {
-      type: 'SHOW_ROOM'
+      type: 'SHOW_ROOM',
+      payload: aRooms
+
     };
   }
 };

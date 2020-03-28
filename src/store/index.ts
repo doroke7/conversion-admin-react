@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reduxThunk from 'redux-thunk';
 
-import { jwtReducer, uploaderReducer, roomMessageReducer, wordReducer, userReducer } from '@/reducers/';
+import { jwtReducer, uploaderReducer, roomMessageReducer, wordReducer, userReducer, roomReducer } from '@/reducers/';
 
 const oReducer = combineReducers({
   jwt: jwtReducer,
@@ -11,16 +11,22 @@ const oReducer = combineReducers({
   roomMessages: roomMessageReducer,
   words: wordReducer,
   users: userReducer,
+  rooms: roomReducer
 });
+
+// const oStore: any = createStore(
+//   oReducer, 
+//   composeWithDevTools(
+//     applyMiddleware(reduxThunk),
+//     // other store enhancers if any
+//   )
+// );
+
 
 const oStore: any = createStore(
   oReducer, 
-  composeWithDevTools(
-    applyMiddleware(reduxThunk),
-    // other store enhancers if any
-  )
+  applyMiddleware(reduxThunk)
 );
-
 
 
 export default oStore;
