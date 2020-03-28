@@ -1,6 +1,6 @@
 const oRoomMessage = (aMessages: any = [], oAction: any) => {
   let _aMessages = oAction.payload;
-  let __aMessages = aMessages;
+  let __aMessages = [];
 
   switch (oAction.type) {
     case 'SHOW_ROOM_MESSAGE':
