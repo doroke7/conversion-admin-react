@@ -6,7 +6,7 @@ const oWord = (aWords: any = [], oAction: any) => {
       __aWords = [...aWords, ..._aWords];
       return __aWords;
     default:
-      return __aWords;
+      return aWords;
   }
 };
 

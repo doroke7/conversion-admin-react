@@ -76,7 +76,7 @@ const oRoomMessage = (aMessages: any = [], oAction: any) => {
 
       return __aMessages;
     default:
-      return __aMessages;
+      return aMessages;
   }
 };
 
