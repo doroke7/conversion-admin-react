@@ -1,4 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 import reduxThunk from 'redux-thunk';
 
 import { jwtReducer, uploaderReducer, roomMessageReducer, wordReducer, userReducer } from '@/reducers/';
@@ -11,6 +13,14 @@ const oReducer = combineReducers({
   users: userReducer,
 });
 
-const oStore: any = createStore(oReducer, applyMiddleware(reduxThunk));
+const oStore: any = createStore(
+  oReducer, 
+  composeWithDevTools(
+    applyMiddleware(reduxThunk),
+    // other store enhancers if any
+  )
+);
+
+
 
 export default oStore;
