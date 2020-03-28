@@ -38,6 +38,7 @@ class Chatroom extends React.Component<any> {
     this.onUser = this.onUser.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
+    
   }
 
   public static contextType = Service.Socket;
