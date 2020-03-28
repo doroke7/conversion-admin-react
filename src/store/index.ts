@@ -14,19 +14,19 @@ const oReducer = combineReducers({
   rooms: roomReducer
 });
 
-// const oStore: any = createStore(
-//   oReducer, 
-//   composeWithDevTools(
-//     applyMiddleware(reduxThunk),
-//     // other store enhancers if any
-//   )
-// );
-
-
 const oStore: any = createStore(
   oReducer, 
-  applyMiddleware(reduxThunk)
+  composeWithDevTools(
+    applyMiddleware(reduxThunk),
+    // other store enhancers if any
+  )
 );
+
+
+// const oStore: any = createStore(
+//   oReducer, 
+//   applyMiddleware(reduxThunk)
+// );
 
 
 export default oStore;

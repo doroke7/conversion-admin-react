@@ -1,4 +1,6 @@
 import React from 'react';
+import store from '@/store';
+
 import './Index.scss';
 import Top from './Top/Index';
 import Room from './Room/Index';
@@ -6,6 +8,16 @@ import Room from './Room/Index';
 class Rooms extends React.Component {
   public constructor(props: any) {
     super(props);
+
+    store.subscribe(() => {
+      let oState = store.getState();
+      let aRooms = oState.rooms;
+
+      let _oState = {
+        rooms: aRooms,
+      };
+      this.setState(_oState);
+    });
   }
 
 

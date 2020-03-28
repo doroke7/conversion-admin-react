@@ -49,7 +49,7 @@ class Chatroom extends React.Component<any> {
 
     this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
     this.chatroomSocket.on('ENTER ROOM', this.onEnterRoom);
-    this.chatroomSocket.on('SHOW MESSAGE', this.onShowMessage);
+    // this.chatroomSocket.on('SHOW MESSAGE', this.onShowMessage);
     this.chatroomSocket.on('USER', this.onUser);
     this.chatroomSocket.on('connect', () => {});
     this.chatroomSocket.on('MESSAGE', this.onMessage);
@@ -85,7 +85,7 @@ class Chatroom extends React.Component<any> {
   public onShowRoom(oBody: any) {
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
-    // store.dispatch(room.show(aRooms));
+    store.dispatch(room.show(aRooms));
 
     this.setState({
       rooms: aRooms,
