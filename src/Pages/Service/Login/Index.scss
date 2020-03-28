@@ -10,9 +10,10 @@
     }
     .username-wrapper, .password-wrapper {
       input {
-        width: calc(100% - 10vmin);
+        width: calc(100% - 3vmin);
         border-style: none;
         border: none;
+        background: inherit;
       }
       border-bottom: 1px solid #dcdcdc;
     }
