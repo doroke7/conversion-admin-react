@@ -56,6 +56,7 @@ module.exports = (env, argvs) => {
       },
        allowedHosts: [
         'fea.chatroom.landan.com',
+        'www.fea.chatroom.landan.com',
         // '127.0.0.1',
         // 'localhost'
       ],
