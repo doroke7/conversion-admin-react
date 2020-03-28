@@ -32,6 +32,8 @@ class Chatroom extends React.Component<any> {
     super(oProps);
     this.ref = React.createRef();
     this.onEnterRoom = this.onEnterRoom.bind(this);
+    this.onShowRoom = this.onShowRoom.bind(this);
+
     this.onShowMessage = this.onShowMessage.bind(this);
     this.onUser = this.onUser.bind(this);
     this.onMessage = this.onMessage.bind(this);
