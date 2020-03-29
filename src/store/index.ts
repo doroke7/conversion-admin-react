@@ -22,11 +22,4 @@ const oStore: any = createStore(
   )
 );
 
-
-// const oStore: any = createStore(
-//   oReducer, 
-//   applyMiddleware(reduxThunk)
-// );
-
-
 export default oStore;

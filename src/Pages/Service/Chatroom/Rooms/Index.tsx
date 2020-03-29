@@ -20,6 +20,9 @@ class Rooms extends React.Component {
     });
   }
 
+  public state: any = {
+    rooms: [],
+  };
 
   public componentDidMount() {
   }
@@ -32,7 +35,7 @@ class Rooms extends React.Component {
       <div className="rooms">
         <Top />
         <div className="pseudo-rooms overflow-auto">
-          {[1,1,1].map((iNumber, iIndex) => <Room/>)}
+          {this.state.rooms.map((oRoom, iIndex) => <Room icon={oRoom.icon} name={oRoom.name}/>)}
         </div>
       </div>
     );

@@ -1,8 +1,18 @@
 .room {
-  height: 12vmin;
   background: white;
   border-bottom: 1px solid #efefef;
   cursor: pointer;
+  padding: 1vmin;
+  .icon {
+    height: 12vmin;
+    width: 12vmin;
+    border-radius: 50%;
+    border: 1px solid #e3e3e3;
+    img {
+      width: auto;
+      height: 100%;
+    }
+  }
 }
 
 .room:hover {
