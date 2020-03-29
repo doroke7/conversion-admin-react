@@ -204,6 +204,11 @@
   vertical-align: middle;
 }
 
+.align-baseline {
+  vertical-align: baseline;
+
+}
+
 .align-bottom {
   vertical-align: bottom;
 }
@@ -344,6 +349,11 @@
 
 .text-right {
   text-align: right;
+} 
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .float-left {
@@ -472,8 +482,12 @@
 .mt-4 {
   margin-top: 4vmin !important;
 }
+.ml-1 {
+  margin-left:1vmin 
 
-.mg-l-2 {
+}
+
+.ml-l-2 {
   margin-left:2vmin 
 }
 .mt-xs-1 {

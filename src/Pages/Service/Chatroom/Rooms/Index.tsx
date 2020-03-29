@@ -35,7 +35,7 @@ class Rooms extends React.Component {
       <div className="rooms">
         <Top />
         <div className="pseudo-rooms overflow-auto">
-          {this.state.rooms.map((oRoom, iIndex) => <Room icon={oRoom.icon} name={oRoom.name}/>)}
+          {this.state.rooms.map((oRoom, iIndex) => <Room icon={oRoom.icon} name={oRoom.name} editedTime={oRoom.editedTime}/>)}
         </div>
       </div>
     );

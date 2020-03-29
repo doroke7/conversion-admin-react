@@ -13,6 +13,17 @@
       height: 100%;
     }
   }
+  .name-text, .time-count {
+    line-height: 5vmin;
+  }
+  .name, .text {
+    max-width: 14vmin;
+  }
+  .time-count {
+    right: 2vmin;
+    top: 2vmin;
+
+  }
 }
 
 .room:hover {
