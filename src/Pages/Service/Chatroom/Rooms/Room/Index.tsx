@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import './Index.scss';
 
-import STORAGE from '@/CONFIGS/STORAGE';
+import STORAGE from '@/CONFIGS/STORAGE/INDEX';
 
 interface IProps {
   // className?: string | null;
