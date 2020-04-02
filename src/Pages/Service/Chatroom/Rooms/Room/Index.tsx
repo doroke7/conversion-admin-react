@@ -4,6 +4,8 @@ import './Index.scss';
 
 import STORAGE from '@/CONFIGS/STORAGE/INDEX';
 
+import { Badge } from 'antd';
+
 interface IProps {
   // className?: string | null;
   name?: string | null
@@ -15,7 +17,8 @@ class Room extends React.Component<IProps> {
   
   public render() {
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + this.props.icon;
-    let editedTime = moment.unix(new Date(this.props.editedTime).getTime() / 1000).format('HH:mm');
+    let sEditedTime = moment.unix(new Date(this.props.editedTime).getTime() / 1000).format('HH:mm');
+    let iCount = 5;
     return (
       <div className="room align-baseline position-relative">
         <span className="icon d-inline-flex justify-content-center align-middle overflow-hidden">
@@ -31,10 +34,16 @@ class Room extends React.Component<IProps> {
         </span>
         <span className="time-count d-inline-flex flex-column align-middle justify-content-between text-right position-absolute">
           <div >
-            {editedTime}
+            {sEditedTime}
           </div>
           <div >
-            5
+            { 
+              iCount > 0 ? 
+              <Badge count={4}
+                style={{ backgroundColor: '#1890ff', color: '#ffffff'}}
+              /> :
+              ""
+            }
           </div>
         </span>
       </div>
