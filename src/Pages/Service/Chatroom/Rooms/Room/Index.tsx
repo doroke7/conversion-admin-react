@@ -12,12 +12,14 @@ interface IProps {
 }
 
 class Room extends React.Component<IProps> {
+  
   public render() {
+    let sSrc = window.location.protocol + '//' + STORAGE.HOST + this.props.icon;
     let editedTime = moment.unix(new Date(this.props.editedTime).getTime() / 1000).format('HH:mm');
     return (
       <div className="room align-baseline position-relative">
         <span className="icon d-inline-flex justify-content-center align-middle overflow-hidden">
-          <img src={STORAGE.HOST + this.props.icon}/>
+          <img src={sSrc}/>
         </span>
         <span className="name-text d-inline-flex flex-column align-middle justify-content-between ml-1">
           <div className="name font-weight-bold text-truncate">
