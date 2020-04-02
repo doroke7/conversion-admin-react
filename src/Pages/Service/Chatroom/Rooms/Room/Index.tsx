@@ -2,7 +2,9 @@ import React from 'react';
 import moment from 'moment';
 import './Index.scss';
 
-import STORAGE from '@/CONFIGS/STORAGE/INDEX';
+import {
+  STORAGE
+} from '@/CONFIGS/';
 
 import { Badge } from 'antd';
 
