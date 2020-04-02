@@ -13,6 +13,7 @@ interface IProps {
   name?: string | null
   icon?: string
   editedTime?: string
+  onClick?: ()=> void
 }
 
 class Room extends React.Component<IProps> {
@@ -22,7 +23,7 @@ class Room extends React.Component<IProps> {
     let sEditedTime = moment.unix(new Date(this.props.editedTime).getTime() / 1000).format('HH:mm');
     let iCount = 5;
     return (
-      <div className="room align-baseline position-relative">
+      <div className="room align-baseline position-relative" onClick={this.props.onClick}>
         <span className="icon d-inline-flex justify-content-center align-middle overflow-hidden">
           <img src={sSrc}/>
         </span>

@@ -3,7 +3,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reduxThunk from 'redux-thunk';
 
-import { jwtReducer, uploaderReducer, roomMessageReducer, wordReducer, userReducer, roomReducer } from '@/reducers/';
+import {
+  jwtReducer,
+  uploaderReducer,
+  roomMessageReducer,
+  wordReducer,
+  userReducer,
+  roomReducer,
+  roomIdReducer
+} from '@/reducers/';
 
 const oReducer = combineReducers({
   jwt: jwtReducer,
@@ -11,7 +19,8 @@ const oReducer = combineReducers({
   roomMessages: roomMessageReducer,
   words: wordReducer,
   users: userReducer,
-  rooms: roomReducer
+  rooms: roomReducer,
+  roomId: roomIdReducer,
 });
 
 const oStore: any = createStore(

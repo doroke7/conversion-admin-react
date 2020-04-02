@@ -1,5 +1,9 @@
 import React from 'react';
+
 import store from '@/store';
+import {
+  roomIdAction
+} from '@/actions';
 
 import './Index.scss';
 import Top from './Top/Index';
@@ -8,6 +12,8 @@ import Room from './Room/Index';
 class Rooms extends React.Component {
   public constructor(props: any) {
     super(props);
+
+    this.onClick = this.onClick.bind(this);
 
     store.subscribe(() => {
       let oState = store.getState();
@@ -24,6 +30,13 @@ class Rooms extends React.Component {
     rooms: [],
   };
 
+  public onClick(sRoomId: string) {
+
+    return () => {
+      store.dispatch(roomIdAction.edit(sRoomId));
+    };
+  }
+
   public componentDidMount() {
   }
 
@@ -36,7 +49,7 @@ class Rooms extends React.Component {
       <div className="rooms">
         <Top />
         <div className="pseudo-rooms overflow-auto">
-          {aRooms.map((oRoom : any, iIndex) => <Room icon={oRoom.icon} name={oRoom.name} editedTime={oRoom.editedTime}/>)}
+          {aRooms.map((oRoom : any, iIndex) => <Room icon={oRoom.icon} name={oRoom.name} editedTime={oRoom.editedTime} onClick={this.onClick(oRoom._id)}/>)}
         </div>
       </div>
     );
