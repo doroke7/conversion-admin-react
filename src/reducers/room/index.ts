@@ -1,12 +1,21 @@
-const oRoom = (aRooms: any = [], oAction: any) => {
-  let _aRooms = oAction.payload;
-
+const oRoom = (oRooms: any = {}, oAction: any) => {
+  let _oRooms = {};
+  let aRooms;
   switch (oAction.type) {
     case 'SHOW_ROOM':
-      let __aRooms = [..._aRooms, ...aRooms];
-      return __aRooms;
+      aRooms = oAction.payload;
+
+      oRooms = aRooms.reduce((_oRooms: any, oRoom: any) => {
+        let sKey = oRoom._id;
+        _oRooms[sKey] = oRoom;
+        return _oRooms;
+      }, oRooms);
+
+      return oRooms;
+
+
     default:
-      return aRooms;
+      return oRooms;
   }
 };
 

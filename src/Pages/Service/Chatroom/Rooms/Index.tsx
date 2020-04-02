@@ -11,10 +11,10 @@ class Rooms extends React.Component {
 
     store.subscribe(() => {
       let oState = store.getState();
-      let aRooms = oState.rooms;
+      let oRooms = oState.rooms;
 
       let _oState = {
-        rooms: aRooms,
+        rooms: oRooms,
       };
       this.setState(_oState);
     });
@@ -31,11 +31,12 @@ class Rooms extends React.Component {
   }
 
   public render() {
+    let aRooms = Object.values(this.state.rooms);
     return (
       <div className="rooms">
         <Top />
         <div className="pseudo-rooms overflow-auto">
-          {this.state.rooms.map((oRoom, iIndex) => <Room icon={oRoom.icon} name={oRoom.name} editedTime={oRoom.editedTime}/>)}
+          {aRooms.map((oRoom : any, iIndex) => <Room icon={oRoom.icon} name={oRoom.name} editedTime={oRoom.editedTime}/>)}
         </div>
       </div>
     );
