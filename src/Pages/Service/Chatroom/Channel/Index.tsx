@@ -13,7 +13,6 @@ import './Index.scss';
 interface IProps {
   // className?: string | null;
   onLogout: any,
-  roomId: any,
 }
 
 class Channel extends React.Component<IProps> {
@@ -27,7 +26,7 @@ class Channel extends React.Component<IProps> {
             <Messages />
             <ControlPannel 
               className="position-absolute" 
-              roomId={this.props.roomId}>
+            >
               
             </ControlPannel>
           </Col>

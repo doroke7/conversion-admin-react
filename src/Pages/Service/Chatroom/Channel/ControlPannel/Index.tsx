@@ -34,6 +34,18 @@ interface IProps {
 class ControlPannel extends React.Component<IProps> {
   constructor(props: any) {
     super(props);
+
+    store.subscribe(() => {
+      let oState = store.getState();
+      let sRoomId = oState.roomId;
+      let oRooms = oState.rooms;
+
+      let _oState = {
+        room: sRoomId in oRooms ? oRooms[sRoomId] : {},
+        roomId: sRoomId ? sRoomId : ''
+      };
+      this.setState(_oState);
+    });
     this.fileRef = React.createRef();
     this.ref = React.createRef();
 
@@ -134,7 +146,7 @@ class ControlPannel extends React.Component<IProps> {
     }, 200);
 
     let oMessage: any = {
-      roomId: this.props.roomId,
+      roomId: this.state.roomId,
       user: {
         _id: AuthenticationHelper.getUserId(),
       },
@@ -193,13 +205,13 @@ class ControlPannel extends React.Component<IProps> {
       }
 
       let oMessage: any = {
-        roomId: this.props.roomId,
+        roomId: this.state.roomId,
         user: {
           _id: AuthenticationHelper.getUserId(),
         },
         text: this.state.text,
         addedTime: moment(new Date()).format(MOMENT.FORMAT),
-        virtualId: AuthenticationHelper.getUserId() + '-' + Date.now(),
+        // virtualId: AuthenticationHelper.getUserId() + '-' + Date.now(),
         loading: true,
       };
 
@@ -207,14 +219,15 @@ class ControlPannel extends React.Component<IProps> {
         let aMessages = [oMessage];
         store.dispatch(roomMessage.willSend(aMessages));
         let sJwt = AuthenticationHelper.getJwt();
-        let sAccessToken = AuthenticationHelper.getAccessToken();
+        // let sAccessToken = AuthenticationHelper.getAccessToken();
 
         oMessage['jwt'] = sJwt;
-        oMessage['accessToken'] = sAccessToken;
+        // oMessage['accessToken'] = sAccessToken;
 
         this.chatroomSocket.emit('MESSAGE', oMessage);
       }
     } catch (oException) {
+      //
     } finally {
       this.setState({
         text: '',

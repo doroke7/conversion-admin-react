@@ -170,7 +170,7 @@ class Chatroom extends React.Component<any> {
               <Rooms />
             </Col>
             <Col xs={24} sm={16} md={16} lg={18} xl={18}>
-              <Channel onLogout={this.onLogout} roomId={this.state.roomId} />
+              <Channel onLogout={this.onLogout} />
             </Col>
           </Row>
         </Spin>
