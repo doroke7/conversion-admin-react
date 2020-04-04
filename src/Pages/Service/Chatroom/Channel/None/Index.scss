@@ -1,5 +1,10 @@
 .none {
-  min-height: 95vmin;
+  @media (max-width: 576px) {
+    min-height: calc(100vh - 10vmin);
+  }
+  min-height: calc(100vh - 5vmin);
+
+  
   .icon-wrapper {
     top: calc(50% - 18vmin);
     left: calc(50% - 15vmin);
