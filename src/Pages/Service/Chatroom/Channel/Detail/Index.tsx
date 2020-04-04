@@ -25,6 +25,18 @@ class Detail extends React.Component {
 
   }
 
+  public componentDidMount() {
+    let oState = store.getState();
+    let sRoomId = oState.roomId;
+    let oRooms = oState.rooms;
+
+    let _oState = {
+      room: sRoomId in oRooms ? oRooms[sRoomId] : {},
+      roomId: sRoomId ? sRoomId : ''
+    };
+    this.setState(_oState);
+  }
+
   public state: any = {
     room: {},
     roomId: ''
