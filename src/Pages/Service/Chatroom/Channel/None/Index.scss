@@ -1,0 +1,16 @@
+.none {
+  min-height: 95vmin;
+  .icon-wrapper {
+    top: calc(50% - 18vmin);
+    left: calc(50% - 15vmin);
+    .icon {
+      width: 30vmin;
+      height: 30vmin;
+      border-radius: 50%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+}

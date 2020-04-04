@@ -312,8 +312,16 @@
   background: gray;
 }
 
+.bg-light {
+  background-color: #f8f9fa!important;
+}
+
 .rounded-circle {
   border-radius: 50%;
+}
+
+.text-secondary {
+  color: #6c757d!important;
 }
 
 .text-danger {
