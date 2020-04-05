@@ -31,7 +31,6 @@ class Chatroom extends React.Component<any> {
   public constructor(...oProps: any) {
     super(oProps);
     this.ref = React.createRef();
-    this.onEnterRoom = this.onEnterRoom.bind(this);
     this.onShowRoom = this.onShowRoom.bind(this);
 
     this.onShowMessage = this.onShowMessage.bind(this);
@@ -48,7 +47,6 @@ class Chatroom extends React.Component<any> {
     this.chatroomFileSocket = this.props.context.chatroomFile;
 
     this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
-    this.chatroomSocket.on('ENTER ROOM', this.onEnterRoom);
     this.chatroomSocket.on('SHOW MESSAGE', this.onShowMessage);
     this.chatroomSocket.on('USER', this.onUser);
     this.chatroomSocket.on('connect', () => {});
@@ -63,8 +61,8 @@ class Chatroom extends React.Component<any> {
     }
 
     this.chatroomSocket.emit('SHOW ROOM', void 0);
+    this.chatroomSocket.emit('SHOW MESSAGE', void 0);
 
-    this.chatroomSocket.emit('ENTER ROOM', void 0);
   }
 
   public ref: any;
@@ -92,28 +90,12 @@ class Chatroom extends React.Component<any> {
     });
   }
 
-  public onEnterRoom(oBody: any) {
-    let oData = oBody['data'];
-    let aRooms = oData['rooms'];
-    let oRoom = aRooms.pop();
-    let sRoomId = oRoom._id;
-    this.roomId = sRoomId;
-    let _oBody = {
-      roomId: sRoomId,
-    };
-    this.setState({
-      roomId: sRoomId,
-    });
-    this.chatroomSocket.emit('SHOW MESSAGE', _oBody);
-  }
-
   public onShowMessage(oBody: any) {
     this.setState({
       loading: false,
     });
     let aMessages = oBody.data.messages;
     store.dispatch(roomMessage.show(aMessages));
-    // store.dispatch(userAction.showViaMessage(aMessages));
   }
 
   public async onMessage(oBody: any) {
