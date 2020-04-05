@@ -49,10 +49,11 @@ const oRoomMessage = (oRoomMessages: any = {}, oAction: any) => {
           }
           if(oMessage.virtualId){
             let oRoom = oRoomMessages[sKey];
-            for(let _iIndex = oRoom.messages.length; _iIndex >= 0; _iIndex--) {
-              let _oMessage = oRoom.messages[iIndex];
+            for(let _iIndex = oRoom.messages.length - 1; _iIndex >= 0; _iIndex--) {
+              let _oMessage = oRoom.messages[_iIndex];
               if(_oMessage.virtualId == oMessage.virtualId) {
                 _oMessage.loading = false;
+                break;
               }
             }
           }
