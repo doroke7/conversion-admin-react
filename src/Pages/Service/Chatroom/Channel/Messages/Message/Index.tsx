@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import htmlReactParser from 'html-react-parser';
 
@@ -16,7 +17,7 @@ import './Index.scss';
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
-
+moment.locale(MOMENT.LOCALE);
 
 const MESSAGE_ERROR_SRC = '/rooms/_/messages/_/src/no-image.gif';
 const USER_ERROR_SRC = '/users/_/url/not-found.png';
@@ -180,6 +181,13 @@ class Message extends React.Component<IProps> {
       }, 1)
     }
 
+  
+    let _sTime :any = moment().format('YYYY-MM-DD 00:00:00');
+    
+    let iSecond = Number(moment(this.props.time).format('X')) - Number(moment(_sTime).format('X'));
+
+    let sTime = iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
+
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
@@ -197,7 +205,7 @@ class Message extends React.Component<IProps> {
         </span>
         <span className="time-name-conten-wrapper d-inline-block align-top">
           <div className={"time-name d-flex justify-content-end " + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
-            <span className="time">{this.props.time}</span>
+            <span className="time">{sTime}</span>
             <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ""}</span>
           </div>
           <span className={"content text-left d-inline-block"}>
