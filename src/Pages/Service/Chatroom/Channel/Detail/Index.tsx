@@ -26,6 +26,7 @@ class Detail extends React.Component {
   }
 
   public componentDidMount() {
+    // 因为 这个 元件 construct 的在 store.roomId 跟新之前
     let oState = store.getState();
     let sRoomId = oState.roomId;
     let oRooms = oState.rooms;
