@@ -1,4 +1,6 @@
 .detail {
+  user-select: none;
+
   background-color: #ffffff;
   height: calc(100vh - 5vmin);
   .info-wrapper {

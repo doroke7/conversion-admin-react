@@ -1,4 +1,6 @@
 .none {
+  user-select: none;
+
   @media (max-width: 576px) {
     min-height: calc(100vh - 10vmin);
   }
