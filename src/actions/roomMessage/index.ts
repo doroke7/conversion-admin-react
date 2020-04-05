@@ -6,17 +6,17 @@ let oRoomMessage: any = {
     };
   },
 
-  willSend: (aMessages: any) => {
+  willSend: (aRoomMessages: any) => {
     return {
       type: 'WILL_SEND_ROOM_MESSAGE',
-      payload: aMessages
+      payload: aRoomMessages
     };
   },
 
-  didSend: (aMessages: any) => {
+  didSend: (aRoomMessages: any) => {
     return {
       type: 'DID_SEND_ROOM_MESSAGE',
-      payload: aMessages
+      payload: aRoomMessages
     };
   },
 

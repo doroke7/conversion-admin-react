@@ -36,12 +36,22 @@ moment.locale(MOMENT.LOCALE);
 class Chatroom extends React.Component<any> {
   public constructor(...oProps: any) {
     super(oProps);
+
+    store.subscribe(() => {
+      let oState = store.getState();
+      let oUsers = oState.users;
+
+      let _oState = {
+        users: oUsers
+      };
+      this.setState(_oState);
+    });
     this.ref = React.createRef();
     this.onShowRoom = this.onShowRoom.bind(this);
 
     this.onShowRoomMessage = this.onShowRoomMessage.bind(this);
     this.onShowUser = this.onShowUser.bind(this);
-    this.onMessage = this.onMessage.bind(this);
+    this.onPostRoomMessage = this.onPostRoomMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
     
   }
@@ -56,7 +66,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowRoomMessage);
     this.chatroomSocket.on('SHOW USER', this.onShowUser);
     this.chatroomSocket.on('connect', () => {});
-    this.chatroomSocket.on('MESSAGE', this.onMessage);
+    this.chatroomSocket.on('POST ROOM MESSAGE', this.onPostRoomMessage);
     this.chatroomSocket.on('disconnet', () => {});
     try {
       await store.dispatch(authenticationAction.accessTokenToJwt());
@@ -79,6 +89,7 @@ class Chatroom extends React.Component<any> {
   public chatroomFileSocket: any;
 
   public state: any = {
+    users: {},
     roomMessages: [],
     roomId: '',
     loading: true,
@@ -107,19 +118,28 @@ class Chatroom extends React.Component<any> {
     store.dispatch(roomMessage.show(aRooms));
   }
 
-  public async onMessage(oBody: any) {
+  public async onPostRoomMessage(oBody: any) {
+    debugger;
     try {
       if (-1 === oBody.result && -1.05 === oBody.code) {
         throw new Error('THE_GUEST_CAN_NOT_SEND_MESSAGE');
       }
 
-      if (-1 === oBody.result || !oBody.data || !oBody.data.messages) {
+      if (-1 === oBody.result || !oBody.data || !oBody.data.rooms) {
         throw new Error('THE_USER_CAN_NOT_SEND_MESSAGE');
       }
 
-      let aMessages = oBody.data.messages;
-      await store.dispatch(roomMessage.didSend(aMessages));
-      await store.dispatch(userAction.showViaMessage(aMessages));
+      let aRooms = oBody.data.rooms;
+      let oRoom = aRooms.pop();
+      let aMessages = oRoom.messages;
+      let oMessage = aMessages.pop();
+      let sUserId = oMessage.user_id;
+      if(sUserId && !this.state.users[sUserId]) {
+        this.chatroomSocket.emit('SHOW USER', sUserId);
+
+      }
+      
+      await store.dispatch(roomMessage.didSend(aRooms));
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);

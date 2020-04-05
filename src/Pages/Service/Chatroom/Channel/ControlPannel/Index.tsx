@@ -75,6 +75,7 @@ class ControlPannel extends React.Component<IProps> {
     src: emptyImage,
     file: null,
     text: '',
+    roomId: '',
   };
 
   public onFileChange(oEvent: any) {
@@ -186,6 +187,7 @@ class ControlPannel extends React.Component<IProps> {
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
 
+
     if ('' === sText || null === sText || undefined === sText) {
       return;
     }
@@ -196,7 +198,6 @@ class ControlPannel extends React.Component<IProps> {
     if (oEvent.type === 'click' && this.state.text === '') {
       return;
     }
-
     try {
       if (!AuthenticationHelper.getUserId()) {
         let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
@@ -206,25 +207,29 @@ class ControlPannel extends React.Component<IProps> {
 
       let oMessage: any = {
         roomId: this.state.roomId,
-        user: {
-          _id: AuthenticationHelper.getUserId(),
-        },
+        user_id: AuthenticationHelper.getUserId(),
         text: this.state.text,
-        addedTime: moment(new Date()).format(MOMENT.FORMAT),
-        // virtualId: AuthenticationHelper.getUserId() + '-' + Date.now(),
+        addedTime: new Date(),
         loading: true,
       };
+      let aRoomMessages = [
+        {
+          '_id': this.state.roomId,
+          messages: [
+            oMessage
+          ]
+        }
+      ];
 
       if (!('' === sText || null === sText || undefined === sText)) {
-        let aMessages = [oMessage];
-        store.dispatch(roomMessage.willSend(aMessages));
+        store.dispatch(roomMessage.willSend(aRoomMessages));
         let sJwt = AuthenticationHelper.getJwt();
         // let sAccessToken = AuthenticationHelper.getAccessToken();
 
         oMessage['jwt'] = sJwt;
         // oMessage['accessToken'] = sAccessToken;
 
-        this.chatroomSocket.emit('MESSAGE', oMessage);
+        this.chatroomSocket.emit('POST ROOM MESSAGE', oMessage);
       }
     } catch (oException) {
       //
@@ -292,6 +297,17 @@ class ControlPannel extends React.Component<IProps> {
     this.chatroomFileSocket.on('complete', this.onComplete);
     this.chatroomFileSocket.on('error', this.onError);
     this.chatroomFileSocket.on('abort', this.onAbort);
+  }
+
+  public componentDidMount(){
+    // 因为此 原件 contrusct 时候， store 已经更新了
+    let oState = store.getState();
+    let sRoomId = oState.roomId;
+
+    let _oState = {
+      roomId: sRoomId ? sRoomId : ''
+    };
+    this.setState(_oState);
   }
 
   public render() {
