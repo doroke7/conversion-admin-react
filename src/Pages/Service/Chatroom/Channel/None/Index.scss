@@ -10,9 +10,13 @@
       width: 30vmin;
       height: 30vmin;
       border-radius: 50%;
+      margin: auto;
       img {
         width: 100%;
       }
+    }
+    .text {
+      max-width: 30vmin;
     }
   }
 

@@ -75,28 +75,26 @@ class Message extends React.Component<IProps> {
   public componentDidMount() {
 
 
-    store.subscribe(() => {
-      let oState = store.getState();
-      let oUploaders = oState.uploaders;
-      let oUsers = oState.users;
-      let _oState: any = {
-        users: oUsers,
+    let oState = store.getState();
+    let oUploaders = oState.uploaders;
+    let oUsers = oState.users;
+    let _oState: any = {
+      users: oUsers,
 
-      };
-      // if (oUploaders[this.props.uploaderId]) {
+    };
+    // if (oUploaders[this.props.uploaderId]) {
 
-      //   _oState['uploaders'] = {
-      //     [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-      //   }
-      // }
+    //   _oState['uploaders'] = {
+    //     [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+    //   }
+    // }
 
-      // if (oUsers[this.props.userId]) {
-      //   _oState['users'] = {
-      //     [this.props.userId]: oUsers[this.props.userId]
-      //   }
-      // }
-      this.setState(_oState);
-    });
+    // if (oUsers[this.props.userId]) {
+    //   _oState['users'] = {
+    //     [this.props.userId]: oUsers[this.props.userId]
+    //   }
+    // }
+    this.setState(_oState);
     this.props.scrollTopToBottom();
 
   }
@@ -167,6 +165,7 @@ class Message extends React.Component<IProps> {
         this.setState(oState);
       }, 1)
     }
+    debugger;
 
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>

@@ -34,7 +34,7 @@ class None extends React.Component<IProps> {
           <div className="icon d-flex justify-content-center align-middle overflow-hidden text-center">
             <img src={noneSrc} />
           </div>
-          <div className="text-center text-secondary mt-2">
+          <div className="text text-center text-secondary text-truncate mt-2">
             超级聊天室平台服务
           </div>
         </div>
