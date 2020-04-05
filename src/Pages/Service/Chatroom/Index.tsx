@@ -119,7 +119,8 @@ class Chatroom extends React.Component<any> {
   }
 
   public async onPostRoomMessage(oBody: any) {
-    debugger;
+  
+
     try {
       if (-1 === oBody.result && -1.05 === oBody.code) {
         throw new Error('THE_GUEST_CAN_NOT_SEND_MESSAGE');
@@ -138,8 +139,17 @@ class Chatroom extends React.Component<any> {
         this.chatroomSocket.emit('SHOW USER', sUserId);
 
       }
-      
-      await store.dispatch(roomMessage.didSend(aRooms));
+
+      let _aRooms = [
+        {
+          ...oRoom,
+          messages: [
+            oMessage
+          ]
+        }
+      ];
+
+      await store.dispatch(roomMessage.didSend(_aRooms));
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);

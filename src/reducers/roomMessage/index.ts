@@ -31,7 +31,36 @@ const oRoomMessage = (oRoomMessages: any = {}, oAction: any) => {
 
 
     case 'DID_SEND_ROOM_MESSAGE':
+      debugger;
+      aRoomMessages.forEach((oRoom: any) => {
+        let sKey = oRoom._id;
+        let aMessages = oRoom.messages;
+        if (!oRoomMessages[sKey]) {
+          oRoomMessages[sKey] = {
+            messages: aMessages
+          };
+        };
 
+        let _aMessages = [];
+        for(let iIndex = 0 ; iIndex < aMessages.length; iIndex++) {
+          let oMessage = aMessages[iIndex];
+          if(!oMessage.virtualId){
+            oRoomMessages[sKey].messages.push(oMessage);
+          }
+          if(oMessage.virtualId){
+            let oRoom = oRoomMessages[sKey];
+            for(let _iIndex = oRoom.messages.length; _iIndex >= 0; _iIndex--) {
+              let _oMessage = oRoom.messages[iIndex];
+              if(_oMessage.virtualId == oMessage.virtualId) {
+                _oMessage.loading = false;
+              }
+            }
+          }
+        }
+
+      });
+
+      return oRoomMessages;
     default:
       return oRoomMessages;
   }

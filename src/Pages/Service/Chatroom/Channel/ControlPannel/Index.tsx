@@ -206,7 +206,7 @@ class ControlPannel extends React.Component<IProps> {
       }
 
       let oMessage: any = {
-        roomId: this.state.roomId,
+        virtualId: Math.random().toString(36) + Date.now(),
         user_id: AuthenticationHelper.getUserId(),
         text: this.state.text,
         addedTime: new Date(),
@@ -216,7 +216,10 @@ class ControlPannel extends React.Component<IProps> {
         {
           '_id': this.state.roomId,
           messages: [
-            oMessage
+            {
+              ...oMessage,
+              roomId: this.state.roomId,
+            }
           ]
         }
       ];
@@ -228,7 +231,10 @@ class ControlPannel extends React.Component<IProps> {
 
         oMessage['jwt'] = sJwt;
         // oMessage['accessToken'] = sAccessToken;
-
+        let _oMessage = {
+          ...oMessage,
+          roomId: this.state.roomId
+        }
         this.chatroomSocket.emit('POST ROOM MESSAGE', oMessage);
       }
     } catch (oException) {
