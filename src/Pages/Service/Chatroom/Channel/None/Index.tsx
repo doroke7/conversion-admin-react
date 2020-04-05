@@ -35,7 +35,7 @@ class None extends React.Component<IProps> {
             <img src={noneSrc} />
           </div>
           <div className="text text-center text-secondary text-truncate mt-2">
-            超级聊天室平台服务
+            超级聊天室服务平台
           </div>
         </div>
       </div>
