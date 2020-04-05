@@ -188,6 +188,7 @@ class Message extends React.Component<IProps> {
 
     let sTime = iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
 
+    debugger;
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
         <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
