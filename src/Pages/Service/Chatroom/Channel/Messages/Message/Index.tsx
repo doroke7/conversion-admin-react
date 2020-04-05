@@ -18,7 +18,7 @@ import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 
 
-const ERROR_SRC = 'room/message/image-error.png';
+const ERROR_SRC = '/rooms/_/messages/_/src/not-found.jpg';
 
 interface IProps {
   time?: any;

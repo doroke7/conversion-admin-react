@@ -42,7 +42,7 @@ class Room extends React.Component<IProps> {
           <div >
             { 
               iCount > 0 ? 
-              <Badge count={4}
+              <Badge count={iCount}
                 style={{ backgroundColor: '#1890ff', color: '#ffffff'}}
               /> :
               ""

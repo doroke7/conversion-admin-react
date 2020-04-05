@@ -1,6 +1,6 @@
 const STORAGE: any = {
-  HOST: 'http://' + process.env.STORAGE_HOST || "storage.fea.chatroom.ques98.cn",
-  PRE_PATH: "/"
+  HOST: process.env.STORAGE_HOST || "storage.fea.chatroom.com",
+  PRE_PATH: ""
 };
 
 export default STORAGE;
