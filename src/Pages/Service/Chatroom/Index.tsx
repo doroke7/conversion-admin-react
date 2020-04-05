@@ -56,7 +56,7 @@ class Chatroom extends React.Component<any> {
     
   }
 
-  public static contextType = Service.Socket;
+  public static contextType = Service.Tool;
 
   public async componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
@@ -195,7 +195,7 @@ class Chatroom extends React.Component<any> {
 }
 
 const Wrapper = (...oProps: any) => (
-  <Service.Socket.Consumer>{oContext => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Socket.Consumer>
+  <Service.Tool.Consumer>{oContext => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Tool.Consumer>
 );
 
 export default withRouter(Wrapper);

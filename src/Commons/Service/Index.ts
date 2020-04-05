@@ -1,5 +1,5 @@
 import Footer from './Footer/Index';
 import Header from './Header/Index';
-import Socket from './Socket/Index';
+import Tool from './Tool/Index';
 
-export default { Footer, Header, Socket };
+export default { Footer, Header, Tool };

@@ -39,13 +39,14 @@ class App extends React.Component {
       chatroom: this.chatroom,
       chatroomFile: this.chatroomFile,
       chatroomUploader: this.chatroomUploader,
+      notification: false,
     };
 
     return (
-      <Service.Socket.Provider value={oValue}>
+      <Service.Tool.Provider value={oValue}>
         <Service.Header></Service.Header>
         <BrowserRouter>{renderRoutes(oRoutes.service)}</BrowserRouter>
-      </Service.Socket.Provider>
+      </Service.Tool.Provider>
     );
   }
 }

@@ -63,7 +63,7 @@ class ControlPannel extends React.Component<IProps> {
     this.onAbort = this.onAbort.bind(this);
   }
 
-  public static contextType = Service.Socket;
+  public static contextType = Service.Tool;
   public props: any;
   public fileRef: any;
   public ref: any;
@@ -377,9 +377,9 @@ class ControlPannel extends React.Component<IProps> {
 
 function ControlPannelWrapper(oProps: any) {
   return (
-    <Service.Socket.Consumer>
+    <Service.Tool.Consumer>
       {oContext => <ControlPannel context={oContext} {...oProps}></ControlPannel>}
-    </Service.Socket.Consumer>
+    </Service.Tool.Consumer>
   );
 }
 export default ControlPannelWrapper;
