@@ -11,7 +11,13 @@ import { Service } from '@/Commons';
 import { AuthenticationHelper } from '@/Helpers/';
 
 import store from '@/store';
-import { roomMessage, word, authenticationAction, userAction, room } from '@/actions/';
+
+import { 
+  roomMessage,
+  authenticationAction,
+  userAction,
+  room
+} from '@/actions/';
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
@@ -33,8 +39,8 @@ class Chatroom extends React.Component<any> {
     this.ref = React.createRef();
     this.onShowRoom = this.onShowRoom.bind(this);
 
-    this.onShowMessage = this.onShowMessage.bind(this);
-    this.onUser = this.onUser.bind(this);
+    this.onShowRoomMessage = this.onShowRoomMessage.bind(this);
+    this.onShowUser = this.onShowUser.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
     
@@ -47,8 +53,8 @@ class Chatroom extends React.Component<any> {
     this.chatroomFileSocket = this.props.context.chatroomFile;
 
     this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
-    this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowMessage);
-    this.chatroomSocket.on('USER', this.onUser);
+    this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowRoomMessage);
+    this.chatroomSocket.on('SHOW USER', this.onShowUser);
     this.chatroomSocket.on('connect', () => {});
     this.chatroomSocket.on('MESSAGE', this.onMessage);
     this.chatroomSocket.on('disconnet', () => {});
@@ -62,6 +68,7 @@ class Chatroom extends React.Component<any> {
 
     this.chatroomSocket.emit('SHOW ROOM', void 0);
     this.chatroomSocket.emit('SHOW ROOM MESSAGE', void 0);
+    this.chatroomSocket.emit('SHOW USER', void 0);
 
   }
 
@@ -90,12 +97,14 @@ class Chatroom extends React.Component<any> {
     });
   }
 
-  public onShowMessage(oBody: any) {
+  public onShowRoomMessage(oBody: any) {
     this.setState({
       loading: false,
     });
-    let aMessages = oBody.data.messages;
-    store.dispatch(roomMessage.show(aMessages));
+    let oData = oBody['data'];
+    let aRooms = oData['rooms'];
+
+    store.dispatch(roomMessage.show(aRooms));
   }
 
   public async onMessage(oBody: any) {
@@ -117,18 +126,12 @@ class Chatroom extends React.Component<any> {
     }
   }
 
-  public async onUser(oBody: any) {
-    try {
-      if (-1 === oBody.result || !oBody.data || !oBody.data.users) {
-        throw new Error('IT_FAILS_TO_EDIT_USER');
-      }
+  public async onShowUser(oBody: any) {
 
-      let aUsers = oBody.data.users;
-      await store.dispatch(userAction.edit(aUsers));
-    } catch (oExeption) {
-      let sMessage = oExeption.message;
-      Message.warning(MESSAGES[sMessage]);
-    }
+    let oData = oBody['data'];
+    let aUsers = oData['users'];
+
+    store.dispatch(userAction.show(aUsers));
   }
 
   public onLogout() {

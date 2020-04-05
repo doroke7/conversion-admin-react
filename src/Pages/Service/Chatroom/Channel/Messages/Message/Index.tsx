@@ -34,9 +34,6 @@ interface IProps {
   uploaderId?: any;
 }
 
-
-let sUserId = AuthenticationHelper.getUserId(); 
-
 class Message extends React.Component<IProps> {
 
   public constructor(...oProps: any) {
@@ -82,19 +79,22 @@ class Message extends React.Component<IProps> {
       let oState = store.getState();
       let oUploaders = oState.uploaders;
       let oUsers = oState.users;
-      let _oState: any = {};
-      if (oUploaders[this.props.uploaderId]) {
+      let _oState: any = {
+        users: oUsers,
 
-        _oState['uploaders'] = {
-          [this.props.uploaderId]: oUploaders[this.props.uploaderId]
-        }
-      }
+      };
+      // if (oUploaders[this.props.uploaderId]) {
 
-      if (oUsers[this.props.userId]) {
-        _oState['users'] = {
-          [this.props.userId]: oUsers[this.props.userId]
-        }
-      }
+      //   _oState['uploaders'] = {
+      //     [this.props.uploaderId]: oUploaders[this.props.uploaderId]
+      //   }
+      // }
+
+      // if (oUsers[this.props.userId]) {
+      //   _oState['users'] = {
+      //     [this.props.userId]: oUsers[this.props.userId]
+      //   }
+      // }
       this.setState(_oState);
     });
     this.props.scrollTopToBottom();
@@ -129,6 +129,7 @@ class Message extends React.Component<IProps> {
     this.props.scrollTopToBottom();
 
   }
+  
 
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any){
@@ -146,9 +147,10 @@ class Message extends React.Component<IProps> {
   }
 
   public render() {
+    let sUserId = AuthenticationHelper.getUserId();
+
     let position = this.props.userId === sUserId || !this.props.userId ? 'right' : 'left';
-    let sUrl = this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].url : '';
-    sUrl = (!sUrl || 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
+    let sUrl = this.state.users && this.state.users[this.props.userId] ? window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + this.state.users[this.props.userId].url : '';
     let sRole = this.state.users && this.state.users[this.props.userId] ? (this.state.users[this.props.userId].role).toLowerCase() : '';
     let sUploaderId = this.props.uploaderId;
 

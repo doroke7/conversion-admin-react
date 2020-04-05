@@ -36,10 +36,12 @@ class Messages extends React.Component {
       let oState = store.getState();
       let aRoomMessages = oState.roomMessages;
       let oUsers = oState.users; // TODO
+      let sRoomId = oState.roomId; // TODO
 
       let _oState = {
         roomMessages: aRoomMessages,
-        users: oUsers
+        users: oUsers,
+        roomId: sRoomId,
       };
       this.setState(_oState);
     });
@@ -131,10 +133,20 @@ class Messages extends React.Component {
     let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
-    let oState = {
+
+    let oState = store.getState();
+    let aRoomMessages = oState.roomMessages;
+    let oUsers = oState.users; // TODO
+    let sRoomId = oState.roomId; // TODO
+
+    let _oState = {
+      roomMessages: aRoomMessages,
+      roomId: sRoomId,
+      users: oUsers,
       scrollTopRatio: iScrollTopRatio
     };
-    this.setState(oState);
+    this.setState(_oState);
+
   }
 
   public componentDidUnmount() {
@@ -158,22 +170,25 @@ class Messages extends React.Component {
   }
 
   public render() {
+    let aMessages = this.state.roomId && this.state.roomMessages && this.state.roomMessages[this.state.roomId] && this.state.roomMessages[this.state.roomId].messages ? this.state.roomMessages[this.state.roomId].messages : []
+    debugger;
     return (
       <div className="position-relative">
         <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
-          {this.state.roomMessages.map((oMessage: any, iIndex: any) => (
+          {aMessages.map((oMessage: any, iIndex: any) => (
           <Message
             src={oMessage.src}
             text={oMessage.text}
             time={moment(oMessage.addedTime).format(MOMENT.FORMAT)}
-            userId={oMessage.user && oMessage.user._id ? oMessage.user._id: null}
+            userId={oMessage.user_id}
             messageId={oMessage._id}
-            uploaderId={oMessage.uploaderId}
-            loading={oMessage.loading}
+            uploaderId={oMessage.uploaderId ? oMessage.uploaderId : ""}
+            loading={oMessage.loading ? oMessage.loading : false}
             scrollTopToBottom={this.scrollTopToBottom}
             scrollTopToPosition={this.scrollTopToPosition}
             setScrollHeight={this.setScrollHeight}
-            />))}
+            />))
+          }
         </div>
         <ScrollButton
           className={this.state.scrollTopRatio === 1 ? "d-none" : ""}

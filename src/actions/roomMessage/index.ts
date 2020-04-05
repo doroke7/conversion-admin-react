@@ -1,8 +1,8 @@
 let oRoomMessage: any = {
-  show: (aMessages: any) => {
+  show: (aRoomMessages: any) => {
     return {
       type: 'SHOW_ROOM_MESSAGE',
-      payload: aMessages
+      payload: aRoomMessages
     };
   },
 

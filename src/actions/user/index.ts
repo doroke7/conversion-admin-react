@@ -6,15 +6,22 @@ import {
 
 let cShow: any = (aUsers: any, oResponse: any) => {
   return {
-    type: 'SHOW_USER',
+    type: '__SHOW_USER',
     payload: aUsers,
     response: oResponse
   };
 };
 
 let oUserAction: any = {
+  show: (aUsers: any) => {
+    return {
+      type: 'SHOW_USER',
+      payload: aUsers
 
-  show: (sUserId: any) => {
+    };
+  },
+
+  __show: (sUserId: any) => {
     return async (cDispatch: any) => {
       let sJwt = AuthenticationHelper.getJwt();
 
