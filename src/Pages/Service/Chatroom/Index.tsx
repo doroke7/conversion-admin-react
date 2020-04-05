@@ -47,7 +47,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomFileSocket = this.props.context.chatroomFile;
 
     this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
-    this.chatroomSocket.on('SHOW MESSAGE', this.onShowMessage);
+    this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowMessage);
     this.chatroomSocket.on('USER', this.onUser);
     this.chatroomSocket.on('connect', () => {});
     this.chatroomSocket.on('MESSAGE', this.onMessage);
@@ -61,7 +61,7 @@ class Chatroom extends React.Component<any> {
     }
 
     this.chatroomSocket.emit('SHOW ROOM', void 0);
-    this.chatroomSocket.emit('SHOW MESSAGE', void 0);
+    this.chatroomSocket.emit('SHOW ROOM MESSAGE', void 0);
 
   }
 
