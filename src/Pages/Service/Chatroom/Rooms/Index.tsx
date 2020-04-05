@@ -33,7 +33,12 @@ class Rooms extends React.Component {
   public onClick(sRoomId: string) {
 
     return () => {
-      store.dispatch(roomIdAction.edit(sRoomId));
+      let oState = store.getState();
+      let _sRoomId = oState.roomId;
+      if (sRoomId !== _sRoomId) {
+        store.dispatch(roomIdAction.edit(sRoomId));
+
+      }
     };
   }
 
