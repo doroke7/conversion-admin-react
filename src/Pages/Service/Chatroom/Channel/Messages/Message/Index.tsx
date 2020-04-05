@@ -18,7 +18,8 @@ import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 
 
-const ERROR_SRC = '/rooms/_/messages/_/src/not-found.jpg';
+const MESSAGE_ERROR_SRC = '/rooms/_/messages/_/src/no-image.gif';
+const USER_ERROR_SRC = '/users/_/url/not-found.png';
 
 interface IProps {
   time?: any;
@@ -38,7 +39,7 @@ class Message extends React.Component<IProps> {
 
   public constructor(...oProps: any) {
     super(oProps);
-    this.onError = this.onError.bind(this);
+    this.onUserUrlError = this.onUserUrlError.bind(this);
     this.onLoad = this.onLoad.bind(this);
 
   }
@@ -48,6 +49,7 @@ class Message extends React.Component<IProps> {
     users: {},
     progressDispaly: true,
     src: '',
+    url: '',
     srcDisplay: true,
   };
 
@@ -64,12 +66,22 @@ class Message extends React.Component<IProps> {
     // this.props.setScrollHeight();
 
   }
-  public onError(oEvent: any) {
-    let sSrc = window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC;
-    this.setState({
+  public onUserUrlError(oEvent: any) {
+    let sSrc = window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + USER_ERROR_SRC;
+    let _oState: any = {
+      url: sSrc,
+    };
+    this.setState(_oState);
+
+  }
+
+  public onMessageSrcError(oEvent: any) {
+    let sSrc = window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC;
+    let _oState: any = {
       src: sSrc,
-      srcDisplay: true,
-    });
+    };
+    this.setState(_oState);
+
   }
 
   public componentDidMount() {
@@ -106,7 +118,7 @@ class Message extends React.Component<IProps> {
   public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
     let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf("http") || 0 === oNextProps.src.indexOf("data:") ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
 
-    if (sSrc !== oPrevState.src  && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + ERROR_SRC) {
+    if (sSrc !== oPrevState.src  && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC) {
       return {
         src: sSrc
       };
@@ -149,6 +161,8 @@ class Message extends React.Component<IProps> {
 
     let position = this.props.userId === sUserId || !this.props.userId ? 'right' : 'left';
     let sUrl = this.state.users && this.state.users[this.props.userId] ? window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + this.state.users[this.props.userId].url : '';
+    sUrl = this.state.url ? this.state.url : sUrl;
+
     let sRole = this.state.users && this.state.users[this.props.userId] ? (this.state.users[this.props.userId].role).toLowerCase() : '';
     let sUploaderId = this.props.uploaderId;
 
@@ -165,7 +179,6 @@ class Message extends React.Component<IProps> {
         this.setState(oState);
       }, 1)
     }
-    debugger;
 
     return (
       <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
@@ -198,7 +211,7 @@ class Message extends React.Component<IProps> {
 
               {this.state.src ? (<img 
                             onLoad={this.onLoad}
-                            onError={this.onError}
+                            onError={this.onMessageSrcError}
                             src={this.state.src}
                             className={(undefined === this.progress || !this.state.progressDispaly ? "" : "opacity ") + (false === this.state.srcDisplay ? "d-none" : "")}/>) : null}
             </div>
@@ -213,7 +226,7 @@ class Message extends React.Component<IProps> {
         </span>
         <span className="d-inline-block align-top">
           <div className="avator">
-            <img src={sUrl} data-user-id={this.props.userId}/>
+            <img src={sUrl} data-user-id={this.props.userId} onError={this.onUserUrlError}/>
           </div>
         </span>
       </div>
