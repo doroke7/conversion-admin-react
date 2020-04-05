@@ -235,7 +235,7 @@ class ControlPannel extends React.Component<IProps> {
           ...oMessage,
           roomId: this.state.roomId
         }
-        this.chatroomSocket.emit('POST ROOM MESSAGE', oMessage);
+        this.chatroomSocket.emit('POST ROOM MESSAGE', _oMessage);
       }
     } catch (oException) {
       //
