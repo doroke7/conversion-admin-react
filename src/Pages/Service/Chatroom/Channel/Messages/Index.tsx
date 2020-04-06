@@ -57,7 +57,8 @@ class Messages extends React.Component {
   public setScrollTop() {
     let oDom = this.ref.current;
 
-    let sScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)).toString() : '1';
+    let fScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)) : 1;
+    let sScrollTopRatio = (Math.round(fScrollTopRatio * 100) / 100).toString();
     window.sessionStorage.setItem('messages:scroll-top-ratio', sScrollTopRatio);
     window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
 
@@ -170,6 +171,7 @@ class Messages extends React.Component {
   }
 
   public render() {
+    console.log(this.state.scrollTopRatio)
     let aMessages = this.state.roomId && this.state.roomMessages && this.state.roomMessages[this.state.roomId] && this.state.roomMessages[this.state.roomId].messages ? this.state.roomMessages[this.state.roomId].messages : []
     return (
       <div className="position-relative">
@@ -190,7 +192,7 @@ class Messages extends React.Component {
           }
         </div>
         <ScrollButton
-          className={this.state.scrollTopRatio === 1 ? "d-none" : ""}
+          className={this.state.scrollTopRatio >= 1 ? "d-none" : ""}
           onClick={this.scrollTopToBottomForce}/>
       </div>
 

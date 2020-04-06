@@ -148,6 +148,11 @@ class Chatroom extends React.Component<any> {
           ]
         }
       ];
+      debugger;
+
+      if (!oMessage.virtualId) {
+        this.props.context.notifacation = true;
+      }
 
       await store.dispatch(roomMessage.didSend(_aRooms));
     } catch (oExeption) {
@@ -169,16 +174,29 @@ class Chatroom extends React.Component<any> {
   }
 
   public componentDidMount() {
-    // setInterval(() => {
-    //   store.dispatch(Counter.increase())
-    // }, 1000);
+    let sTitle = document.title;
+    setInterval(() => {
+      let bNotification = this.props.context.notifacation;
+      if ( bNotification) {
+        document.title = '您有新讯息...';
+        setTimeout(() => {
+          document.title = sTitle;
+  
+        }, 2500);
+      }
+
+    }, 4000);
   }
 
   public componentDidUpdate() {}
 
+  public onFocus () {
+    this.props.context.notifacation = false;
+  }
+
   public render() {
     return (
-      <div className="chatroom">
+      <div className="chatroom" onFocus={this.onFocus}>
         <Spin ref={this.ref} tip="进入聊天室" spinning={this.state.loading} delay={0}>
           <Row onFocus={this.props.onFocus} onMouseMove={this.props.onMouseMove}>
             <Col xs={0} sm={8} md={8} lg={6} xl={6}>
