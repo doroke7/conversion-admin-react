@@ -6,7 +6,8 @@ import store from '@/store';
 
 
 import {
-  EmitterHelper
+  EmitterHelper,
+  AuthenticationHelper
 } from '@/Helpers/';
 
 import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
@@ -56,11 +57,13 @@ class Messages extends React.Component {
 
   public setScrollTop() {
     let oDom = this.ref.current;
+    let sRoomId = this.state.roomId;
+    let sUserId = AuthenticationHelper.getUserId();
 
     let fScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? (oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight)) : 1;
     let sScrollTopRatio = (Math.round(fScrollTopRatio * 100) / 100).toString();
-    window.sessionStorage.setItem('messages:scroll-top-ratio', sScrollTopRatio);
-    window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio', sScrollTopRatio);
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height', oDom.scrollHeight);
 
     let iScrollTopRatio = Number(sScrollTopRatio);
     let oState = {
@@ -71,8 +74,9 @@ class Messages extends React.Component {
 
   public setScrollHeight() {
     let oDom = this.ref.current;
-
-    window.sessionStorage.setItem('messages:scroll-height', oDom.scrollHeight);
+    let sRoomId = this.state.roomId;
+    let sUserId = AuthenticationHelper.getUserId();
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height', oDom.scrollHeight);
 
   }
 
@@ -80,38 +84,55 @@ class Messages extends React.Component {
     this.scrollTopToPosition();
   }
 
-  public scrollTopToPosition() {
-    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
-    let sScrollHeight = window.sessionStorage.getItem('messages:scroll-height');
+  public scrollTopToPosition(bForce?: any) {
+    let oState = store.getState();
+
+    let sRoomId = oState.roomId; // TODO
+    let sUserId = AuthenticationHelper.getUserId();
+    
+    let sScrollTopRatio = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio');
+    
+    let sScrollHeight = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
-    let oState = {
-      scrollTopRatio: iScrollTopRatio
-    };
-    this.setState(oState);
+
+    if (bForce) {
+      let _oState = {
+        scrollTopRatio: iScrollTopRatio
+      };
+      this.setState(_oState);
+    }
+
     let iScrollHeight = Number(sScrollHeight);
     // <img src=... 还没读取完毕... 不改变 scrollTop
-    if(this.ref.current.scrollHeight >= iScrollHeight) {
+    if(iScrollHeight) {
       this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
     }
 
   }
 
   public scrollTopToBottom() {
-    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
-    let sScrollHeight = window.sessionStorage.getItem('messages:scroll-height');
+    let sRoomId = this.state.roomId;
+    let sUserId = AuthenticationHelper.getUserId();
+    let sScrollTopRatio = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio');
+    let sScrollHeight = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
     let iScrollHeight = Number(sScrollHeight);
 
     // 只有 scroll 最底下 时候, 接收到讯息才会自动到最下面
     if (1 === iScrollTopRatio && this.ref.current.scrollHeight > iScrollHeight) {
-      this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+      if (this.ref.current.scrollHeight - this.ref.current.offsetHeight != this.ref.current.scrollTop){
+        this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+      }
+      
     }
   }
 
   public scrollTopToBottomForce() {
-    window.sessionStorage.setItem('messages:scroll-top-ratio', '1');
+    let sRoomId = this.state.roomId;
+    let sUserId = AuthenticationHelper.getUserId();
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio', '1');
     this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
   }
 
@@ -128,17 +149,20 @@ class Messages extends React.Component {
   };
 
   public componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-    this.eventEmitter = EmitterHelper.on('messagesScrollToBottom', this.scrollTopToBottomForce);
-
-    let sScrollTopRatio = window.sessionStorage.getItem('messages:scroll-top-ratio');
-
-    let iScrollTopRatio = Number(sScrollTopRatio);
-
     let oState = store.getState();
     let aRoomMessages = oState.roomMessages;
     let oUsers = oState.users; // TODO
     let sRoomId = oState.roomId; // TODO
+    let sUserId = AuthenticationHelper.getUserId();
+
+    window.addEventListener('resize', this.onResize);
+    this.eventEmitter = EmitterHelper.on('messagesScrollToBottom', this.scrollTopToBottomForce);
+
+    let sScrollTopRatio = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio');
+
+    let iScrollTopRatio = Number(sScrollTopRatio);
+
+
 
     let _oState = {
       roomMessages: aRoomMessages,
@@ -147,7 +171,6 @@ class Messages extends React.Component {
       scrollTopRatio: iScrollTopRatio
     };
     this.setState(_oState);
-
   }
 
   public componentDidUnmount() {
@@ -158,20 +181,38 @@ class Messages extends React.Component {
   }
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
-    if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      this.scrollTopToPosition();
+
+    if(oPreviousState.roomId != this.state.roomId) {
+      this.scrollTopToPosition(true);
       return;
     }
 
+    let oState = store.getState();
+
+    let sRoomId = oState.roomId; // TODO
+    let sUserId = AuthenticationHelper.getUserId();
+    let sScrollHeight = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height');
+
+    let iScrollHeight = Number(sScrollHeight);
+
+    if (oPreviousState.roomId == this.state.roomId && this.ref.current.scrollHeight >= iScrollHeight) {
+      this.scrollTopToPosition();
+      return;
+    } 
+    if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
+      this.scrollTopToPosition();
+      return;
+    } 
     if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
       this.scrollTopToPosition();
       return;
     }
+  
 
   }
 
   public render() {
-    console.log(this.state.scrollTopRatio)
+    
     let aMessages = this.state.roomId && this.state.roomMessages && this.state.roomMessages[this.state.roomId] && this.state.roomMessages[this.state.roomId].messages ? this.state.roomMessages[this.state.roomId].messages : []
     return (
       <div className="position-relative">
