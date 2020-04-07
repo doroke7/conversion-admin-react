@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { EventEmitter } from "events";
-
+import { Service } from '@/Commons';
 import store from '@/store';
 
 
@@ -22,8 +22,9 @@ STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 moment.locale(MOMENT.LOCALE);
 let oEventEmitter = new EventEmitter();
 
-class Messages extends React.Component {
-  public constructor(oProps: any) {
+class Messages extends React.Component<any> {
+  public static contextType = Service.Tool;
+  public constructor(...oProps: any) {
     super(oProps);
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
@@ -50,6 +51,7 @@ class Messages extends React.Component {
   }
 
   public ref: any;
+  public pros: any;
   public eventEmitter: any;
   public onScroll(oEvent: any) {
     this.setScrollTop();
@@ -67,8 +69,10 @@ class Messages extends React.Component {
 
     let iScrollTopRatio = Number(sScrollTopRatio);
     let oState = {
-     scrollTopRatio: iScrollTopRatio
+      scrollTopRatio: iScrollTopRatio,
     };
+
+    this.props.context.isScrolling = true;
     this.setState(oState);
   }
 
@@ -148,7 +152,6 @@ class Messages extends React.Component {
     words: [],
     users: {},
     scrollTopRatio: 1,
-    constructed: false,
   };
 
   public componentDidMount() {
@@ -172,7 +175,6 @@ class Messages extends React.Component {
       roomId: sRoomId,
       users: oUsers,
       scrollTopRatio: iScrollTopRatio,
-      constructed: true
     };
     this.setState(_oState);
   }
@@ -188,7 +190,7 @@ class Messages extends React.Component {
 
     debugger;
     if(oPreviousState.roomId != this.state.roomId) {
-      this.scrollTopToPosition(false, false);
+      this.scrollTopToPosition(true, false);
       return;
     }
 
@@ -202,12 +204,12 @@ class Messages extends React.Component {
 
     // debugger;
     // 2. 首次进入时候 fasle, true
-    if (oPreviousState.roomId == this.state.roomId && !oPreviousState.constructed) {
+    if (oPreviousState.roomId == this.state.roomId && !this.props.context.isScrolling) {
       this.scrollTopToPosition(false, true);
       return;
     }
     // 1. 滑动  的时候 false, false
-    if (oPreviousState.roomId == this.state.roomId && oPreviousState.constructed) {
+    if (oPreviousState.roomId == this.state.roomId && this.props.context.isScrolling) {
       this.scrollTopToPosition(false, false);
       return;
     } 
@@ -253,4 +255,8 @@ class Messages extends React.Component {
   }
 }
 
-export default Messages;
+const Wrapper = (...oProps: any) => (
+  <Service.Tool.Consumer>{oContext => <Messages context={oContext}>{...oProps}</Messages>}</Service.Tool.Consumer>
+);
+
+export default Wrapper;

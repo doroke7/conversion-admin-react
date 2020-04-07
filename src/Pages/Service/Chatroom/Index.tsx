@@ -59,6 +59,7 @@ class Chatroom extends React.Component<any> {
   public static contextType = Service.Tool;
 
   public async componentWillMount() {
+    debugger;
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
 

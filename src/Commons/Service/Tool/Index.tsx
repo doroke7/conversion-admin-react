@@ -5,6 +5,7 @@ const Tool = React.createContext({
   chatroomFile: null,
   chatroomUploader: null,
   notification: false,
+  isScrolling: false,
 });
 
 export default Tool;

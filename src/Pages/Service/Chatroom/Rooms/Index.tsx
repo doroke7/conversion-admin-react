@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Service } from '@/Commons';
 import store from '@/store';
 import {
   roomIdAction
@@ -9,9 +9,12 @@ import './Index.scss';
 import Top from './Top/Index';
 import Room from './Room/Index';
 
-class Rooms extends React.Component {
-  public constructor(props: any) {
-    super(props);
+class Rooms extends React.Component<any> {
+  public static contextType = Service.Tool;
+
+
+  public constructor(...oProps: any) {
+    super(oProps);
 
     this.onClick = this.onClick.bind(this);
 
@@ -31,8 +34,9 @@ class Rooms extends React.Component {
   };
 
   public onClick(sRoomId: string) {
-
+    debugger;    
     return () => {
+      this.props.context.isScrolling = false;
       let oState = store.getState();
       let _sRoomId = oState.roomId;
       if (sRoomId !== _sRoomId) {
@@ -61,4 +65,9 @@ class Rooms extends React.Component {
   }
 }
 
-export default Rooms;
+const Wrapper = (...oProps: any) => (
+  <Service.Tool.Consumer>{oContext => <Rooms context={oContext}>{...oProps}</Rooms>}</Service.Tool.Consumer>
+);
+  // 使用 Wrapper  >> this.props.context
+  // 使用 ..       >> this.context
+export default Wrapper;

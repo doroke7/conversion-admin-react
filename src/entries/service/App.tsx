@@ -40,6 +40,7 @@ class App extends React.Component {
       chatroomFile: this.chatroomFile,
       chatroomUploader: this.chatroomUploader,
       notification: false,
+      isScrolling: false,
     };
 
     return (
