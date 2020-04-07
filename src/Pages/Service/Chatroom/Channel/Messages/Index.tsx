@@ -199,10 +199,14 @@ class Messages extends React.Component {
     let iScrollHeight = Number(sScrollHeight);
 
     // debugger;
-    // 1. 滑动  的时候 false, false
     // 2. 首次进入时候 fasle, true
-    if (oPreviousState.roomId == this.state.roomId) {
+    if (oPreviousState.roomId == this.state.roomId && oPreviousState.scrollTopRatio != this.state.scrollTopRatio) {
       this.scrollTopToPosition(false, true);
+      return;
+    }
+    // 1. 滑动  的时候 false, false
+    if (oPreviousState.roomId == this.state.roomId && oPreviousState.scrollTopRatio == this.state.scrollTopRatio) {
+      this.scrollTopToPosition(false, false);
       return;
     } 
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
