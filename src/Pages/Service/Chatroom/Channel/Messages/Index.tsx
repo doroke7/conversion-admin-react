@@ -184,8 +184,9 @@ class Messages extends React.Component {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
 
+    debugger;
     if(oPreviousState.roomId != this.state.roomId) {
-      this.scrollTopToPosition(true, false);
+      this.scrollTopToPosition(false, false);
       return;
     }
 
@@ -198,6 +199,8 @@ class Messages extends React.Component {
     let iScrollHeight = Number(sScrollHeight);
 
     // debugger;
+    // 1. 滑动  的时候 false, false
+    // 2. 首次进入时候 fasle, true
     if (oPreviousState.roomId == this.state.roomId) {
       this.scrollTopToPosition(false, true);
       return;
