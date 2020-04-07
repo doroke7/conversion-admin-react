@@ -35,6 +35,8 @@ moment.locale(MOMENT.LOCALE);
 
 class Chatroom extends React.Component<any> {
   public constructor(...oProps: any) {
+
+
     super(oProps);
 
     store.subscribe(() => {

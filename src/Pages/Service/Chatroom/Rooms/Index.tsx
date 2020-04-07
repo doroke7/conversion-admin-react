@@ -66,7 +66,7 @@ class Rooms extends React.Component<any> {
 }
 
 const Wrapper = (...oProps: any) => (
-  <Service.Tool.Consumer>{oContext => <Rooms context={oContext}>{...oProps}</Rooms>}</Service.Tool.Consumer>
+  <Service.Tool.Consumer>{oValue => <Rooms context={oValue}>{...oProps}</Rooms>}</Service.Tool.Consumer>
 );
   // 使用 Wrapper  >> this.props.context
   // 使用 ..       >> this.context
