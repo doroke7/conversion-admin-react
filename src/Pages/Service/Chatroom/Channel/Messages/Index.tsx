@@ -188,7 +188,7 @@ class Messages extends React.Component<any> {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
 
-    debugger;
+
     if(oPreviousState.roomId != this.state.roomId) {
       this.scrollTopToPosition(true, false);
       return;
@@ -228,6 +228,12 @@ class Messages extends React.Component<any> {
   public render() {
     
     let aMessages = this.state.roomId && this.state.roomMessages && this.state.roomMessages[this.state.roomId] && this.state.roomMessages[this.state.roomId].messages ? this.state.roomMessages[this.state.roomId].messages : []
+    let fOpacity =this.state.scrollTopRatio > 0.9 && this.state.scrollTopRatio <= 1 ? ( 1 - this.state.scrollTopRatio) * 10 : 1;
+    
+    const oStyle = {
+      opacity: fOpacity,
+    }
+
     return (
       <div className="position-relative">
         <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
@@ -248,6 +254,7 @@ class Messages extends React.Component<any> {
         </div>
         <ScrollButton
           className={this.state.scrollTopRatio >= 1 ? "d-none" : ""}
+          style={oStyle}
           onClick={this.scrollTopToBottomForce}/>
       </div>
 

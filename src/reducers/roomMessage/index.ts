@@ -31,7 +31,7 @@ const oRoomMessage = (oRoomMessages: any = {}, oAction: any) => {
 
 
     case 'DID_SEND_ROOM_MESSAGE':
-      debugger;
+
       aRoomMessages.forEach((oRoom: any) => {
         let sKey = oRoom._id;
         let aMessages = oRoom.messages;

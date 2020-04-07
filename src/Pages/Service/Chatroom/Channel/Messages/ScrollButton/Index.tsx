@@ -3,6 +3,7 @@ import './Index.scss';
 interface IProps {
   onClick: any;
   className: any;
+  style?: any;
 }
 
 class ScrollButton extends React.Component<IProps> {
@@ -16,8 +17,9 @@ class ScrollButton extends React.Component<IProps> {
   }
 
   public render() {
+    debugger;
     return (
-      <div className={"scroll-button position-absolute " + this.props.className} onClick={this.onClick}>
+      <div className={"scroll-button position-absolute " + this.props.className} onClick={this.onClick} style={this.props.style}>
         <div className="iconfont icon-down down"></div>
       </div>
     );

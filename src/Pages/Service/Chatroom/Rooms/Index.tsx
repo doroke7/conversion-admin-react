@@ -34,7 +34,7 @@ class Rooms extends React.Component<any> {
   };
 
   public onClick(sRoomId: string) {
-    debugger;    
+  
     return () => {
       this.props.context.isScrolling = false;
       let oState = store.getState();
