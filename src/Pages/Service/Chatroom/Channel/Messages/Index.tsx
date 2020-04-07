@@ -67,7 +67,7 @@ class Messages extends React.Component {
 
     let iScrollTopRatio = Number(sScrollTopRatio);
     let oState = {
-      scrollTopRatio: iScrollTopRatio
+     scrollTopRatio: iScrollTopRatio
     };
     this.setState(oState);
   }
@@ -101,12 +101,10 @@ class Messages extends React.Component {
         scrollTopRatio: iScrollTopRatio
       };
       this.setState(_oState);
-    }
+          // <img src=... 还没读取完毕... 不改变 scrollTop
+      let fScrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
 
-    let iScrollHeight = Number(sScrollHeight);
-    // <img src=... 还没读取完毕... 不改变 scrollTop
-    if(iScrollHeight) {
-      this.ref.current.scrollTop = iScrollTopRatio * (this.ref.current.scrollHeight - this.ref.current.offsetHeight );
+      this.ref.current.scrollTop = fScrollTop;
     }
 
   }
@@ -195,16 +193,17 @@ class Messages extends React.Component {
 
     let iScrollHeight = Number(sScrollHeight);
 
+    // debugger;
     if (oPreviousState.roomId == this.state.roomId && this.ref.current.scrollHeight >= iScrollHeight) {
-      this.scrollTopToPosition();
+      this.scrollTopToPosition(false);
       return;
     } 
     if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
-      this.scrollTopToPosition();
+      this.scrollTopToPosition(false);
       return;
     } 
     if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
-      this.scrollTopToPosition();
+      this.scrollTopToPosition(false);
       return;
     }
   
