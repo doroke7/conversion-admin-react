@@ -20,6 +20,14 @@
   .name, .text {
     max-width: 14vmin;
   }
+  .text {
+    .nickname, .colon {
+      color: #3a63aa;;
+    }
+    .message {
+
+    }
+  }
   .time-count {
     right: 2vmin;
     top: 2vmin;

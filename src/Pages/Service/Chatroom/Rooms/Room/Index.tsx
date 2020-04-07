@@ -3,9 +3,10 @@ import moment from 'moment';
 import './Index.scss';
 import store from '@/store';
 import {
-  STORAGE
+  STORAGE,
+  MOMENT
 } from '@/CONFIGS/';
-
+import { AuthenticationHelper } from '@/Helpers/';
 import { Badge } from 'antd';
 
 interface IProps {
@@ -39,17 +40,33 @@ class Room extends React.Component<IProps> {
   };
 
   public render() {
+    let sUserId = AuthenticationHelper.getUserId();
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + this.props.icon;
-    let sEditedTime = moment.unix(new Date(this.props.editedTime).getTime() / 1000).format('HH:mm');
+
     let iCount = 5;
     let aMessages = [...this.props.messages];
     let oMessage = aMessages.pop();
     let sMessage = '';
-    let oUser = oMessage.user_id && this.state.users && this.state.users[oMessage.user_id] ? this.state.users[oMessage.user_id] : {};
+
+    let _sTime :any = moment().format('YYYY-MM-DD 00:00:00');
+    
+    let iSecond = Number(moment(oMessage.createdTim).format('X')) - Number(moment(_sTime).format('X'));
+
+    let sTime = iSecond > 0 ? moment(oMessage.createdTime).format(MOMENT.FORMAT2) : moment(oMessage.createdTime).format(MOMENT.FORMAT1);
+
+    let sNickname = '用户';
+
+    if(oMessage.user_id == sUserId) {
+      sNickname = '您';
+    }
+    else if(oMessage.user_id && this.state.users && this.state.users[oMessage.user_id] && this.state.users[oMessage.user_id].nickname) {
+      sNickname = this.state.users[oMessage.user_id].nickname;
+    }
+
     if(oMessage.type == 'TEXT') {
-      sMessage = oUser && oUser.nickname ? oUser.nickname + ': ' + oMessage.text : oMessage.text;
+      sMessage = oMessage.text;
     } else if (oMessage.type == 'IMAGE') {
-      sMessage = oUser && oUser.nickname ? oUser.nickname + '上传了图片' : '上传了图';
+      sMessage = '上传了图';
     }
     return (
       <div className="room align-baseline position-relative" onClick={this.props.onClick}>
@@ -61,12 +78,15 @@ class Room extends React.Component<IProps> {
             {this.props.name}
           </div>
           <div className="text text-truncate">
-            {sMessage}
+            <span className="nickname">{sNickname}</span>
+            {sNickname ? <span className="colon">: </span>: ""}
+            <span className="message">{sMessage}</span>
+            
           </div>
         </span>
         <span className="time-count d-inline-flex flex-column align-middle justify-content-between text-right position-absolute">
           <div >
-            {sEditedTime}
+            {sTime}
           </div>
           <div >
             { 
