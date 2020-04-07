@@ -147,7 +147,8 @@ class Messages extends React.Component {
     roomMessages: [],
     words: [],
     users: {},
-    scrollTopRatio: 1
+    scrollTopRatio: 1,
+    constructed: false,
   };
 
   public componentDidMount() {
@@ -170,7 +171,8 @@ class Messages extends React.Component {
       roomMessages: aRoomMessages,
       roomId: sRoomId,
       users: oUsers,
-      scrollTopRatio: iScrollTopRatio
+      scrollTopRatio: iScrollTopRatio,
+      constructed: true
     };
     this.setState(_oState);
   }
@@ -200,12 +202,12 @@ class Messages extends React.Component {
 
     // debugger;
     // 2. 首次进入时候 fasle, true
-    if (oPreviousState.roomId == this.state.roomId && oPreviousState.scrollTopRatio != this.state.scrollTopRatio) {
+    if (oPreviousState.roomId == this.state.roomId && !oPreviousState.constructed) {
       this.scrollTopToPosition(false, true);
       return;
     }
     // 1. 滑动  的时候 false, false
-    if (oPreviousState.roomId == this.state.roomId && oPreviousState.scrollTopRatio == this.state.scrollTopRatio) {
+    if (oPreviousState.roomId == this.state.roomId && oPreviousState.constructed) {
       this.scrollTopToPosition(false, false);
       return;
     } 
