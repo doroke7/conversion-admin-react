@@ -180,6 +180,7 @@ class Messages extends React.Component {
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
 
+    debugger;
     if(oPreviousState.roomId != this.state.roomId) {
       this.scrollTopToPosition(true);
       return;

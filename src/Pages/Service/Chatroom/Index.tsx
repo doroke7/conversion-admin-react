@@ -53,7 +53,7 @@ class Chatroom extends React.Component<any> {
     this.onShowUser = this.onShowUser.bind(this);
     this.onPostRoomMessage = this.onPostRoomMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    
+    this.onFocus = this.onFocus.bind(this);
   }
 
   public static contextType = Service.Tool;
