@@ -7,6 +7,7 @@ const oRoom = (oRooms: any = {}, oAction: any) => {
 
       oRooms = aRooms.reduce((_oRooms: any, oRoom: any) => {
         let sKey = oRoom._id;
+        debugger;
         _oRooms[sKey] = oRoom;
         return _oRooms;
       }, oRooms);

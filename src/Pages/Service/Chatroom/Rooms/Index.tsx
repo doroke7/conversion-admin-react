@@ -58,7 +58,14 @@ class Rooms extends React.Component<any> {
       <div className="rooms">
         <Top />
         <div className="pseudo-rooms overflow-auto">
-          {aRooms.map((oRoom : any, iIndex) => <Room icon={oRoom.icon} name={oRoom.name} editedTime={oRoom.editedTime} onClick={this.onClick(oRoom._id)}/>)}
+          {aRooms.map((oRoom : any, iIndex) => 
+          <Room
+            icon={oRoom.icon}
+            name={oRoom.name}
+            messages={oRoom.messages}
+            editedTime={oRoom.editedTime} 
+            onClick={this.onClick(oRoom._id)}
+          />)}
         </div>
       </div>
     );
