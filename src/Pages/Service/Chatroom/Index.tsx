@@ -38,6 +38,7 @@ class Chatroom extends React.Component<any> {
 
 
     super(oProps);
+  
 
     store.subscribe(() => {
       let oState = store.getState();
@@ -55,7 +56,51 @@ class Chatroom extends React.Component<any> {
     this.onShowUser = this.onShowUser.bind(this);
     this.onPostRoomMessage = this.onPostRoomMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
-    this.onFocus = this.onFocus.bind(this);
+    this.onClick = this.onClick.bind(this);
+
+
+
+    window.document.addEventListener('notification', (oEvent: any) => {
+      let sTitle = document.title;
+
+      let oPromise = new Promise((cResolve, cReject) => {
+        cResolve();
+      });
+
+      let _sTitle =  '📨 您有新讯息...';
+
+      // Chrome 66 无法 autoplay mp3
+      // this.props.context.messageAudio.play();
+      oPromise.then(() => {
+        return new Promise((cResolve, cReject) => {
+          if (this.props.context.notifacation) {
+            document.title = _sTitle;
+            setTimeout(() => {
+              document.title = sTitle;
+      
+            }, 1500);
+          } 
+
+          setInterval(() => {
+            if (this.props.context.notifacation) {
+              document.title = _sTitle;
+              setTimeout(() => {
+                document.title = sTitle;
+        
+              }, 1500);
+            } else {
+              cReject();
+            }
+
+      
+          }, 3000);
+        });
+      }).catch(() => {
+        // DO NOTHINH
+      });
+
+    })
+
   }
 
   public static contextType = Service.Tool;
@@ -153,9 +198,11 @@ class Chatroom extends React.Component<any> {
 
       if (!oMessage.virtualId) {
         this.props.context.notifacation = true;
+        window.document.dispatchEvent(this.props.context.notificationEvent);
       }
 
       await store.dispatch(roomMessage.didSend(_aRooms));
+
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
@@ -175,29 +222,18 @@ class Chatroom extends React.Component<any> {
   }
 
   public componentDidMount() {
-    let sTitle = document.title;
-    setInterval(() => {
-      let bNotification = this.props.context.notifacation;
-      if ( bNotification) {
-        document.title = '您有新讯息...';
-        setTimeout(() => {
-          document.title = sTitle;
-  
-        }, 2500);
-      }
 
-    }, 4000);
   }
 
   public componentDidUpdate() {}
 
-  public onFocus () {
+  public onClick () {
     this.props.context.notifacation = false;
   }
 
   public render() {
     return (
-      <div className="chatroom" onFocus={this.onFocus}>
+      <div className="chatroom" onClick={this.onClick}>
         <Spin ref={this.ref} tip="进入聊天室" spinning={this.state.loading} delay={0}>
           <Row onFocus={this.props.onFocus} onMouseMove={this.props.onMouseMove}>
             <Col xs={0} sm={8} md={8} lg={6} xl={6}>

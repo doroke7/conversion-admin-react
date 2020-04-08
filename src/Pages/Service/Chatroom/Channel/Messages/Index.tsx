@@ -202,7 +202,6 @@ class Messages extends React.Component<any> {
 
     let iScrollHeight = Number(sScrollHeight);
 
-    // debugger;
     // 2. 首次进入时候 fasle, true
     if (oPreviousState.roomId == this.state.roomId && !this.props.context.isScrolling) {
       this.scrollTopToPosition(false, true);

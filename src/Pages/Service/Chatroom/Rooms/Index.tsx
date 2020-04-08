@@ -63,6 +63,7 @@ class Rooms extends React.Component<any> {
             icon={oRoom.icon}
             name={oRoom.name}
             messages={oRoom.messages}
+            count={oRoom.count}
             editedTime={oRoom.editedTime} 
             onClick={this.onClick(oRoom._id)}
           />)}

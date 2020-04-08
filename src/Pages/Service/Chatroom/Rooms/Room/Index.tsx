@@ -15,6 +15,7 @@ interface IProps {
   icon?: string
   editedTime?: string
   messages ?: any[]
+  count ?: number
   onClick?: ()=> void
 }
 
@@ -43,16 +44,17 @@ class Room extends React.Component<IProps> {
     let sUserId = AuthenticationHelper.getUserId();
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + this.props.icon;
 
-    let iCount = 5;
     let aMessages = [...this.props.messages];
     let oMessage = aMessages.pop();
     let sMessage = '';
+    let iCount = this.props.count;
 
     let _sTime :any = moment().format('YYYY-MM-DD 00:00:00');
     
-    let iSecond = Number(moment(oMessage.createdTim).format('X')) - Number(moment(_sTime).format('X'));
+    let iSecond = Number(moment(oMessage.addedTime).format('X')) - Number(moment(_sTime).format('X'));
 
-    let sTime = iSecond > 0 ? moment(oMessage.createdTime).format(MOMENT.FORMAT2) : moment(oMessage.createdTime).format(MOMENT.FORMAT1);
+    let sTime = iSecond > 0 ? moment(oMessage.addedTime).format(MOMENT.FORMAT2) : moment(oMessage.addedTime
+      ).format(MOMENT.FORMAT1);
 
     let sNickname = '用户';
 
@@ -91,7 +93,9 @@ class Room extends React.Component<IProps> {
           <div >
             { 
               iCount > 0 ? 
-              <Badge count={iCount}
+              <Badge 
+                count={iCount}
+                overflowCount={9999}
                 style={{ backgroundColor: '#1890ff', color: '#ffffff'}}
               /> :
               ""
