@@ -114,7 +114,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowRoomMessage);
     this.chatroomSocket.on('SHOW USER', this.onShowUser);
     this.chatroomSocket.on('connect', () => {});
-    this.chatroomSocket.on('POST ROOM MESSAGE', this.onPostRoomMessage);
+    this.chatroomSocket.on('MESSAGE ROOM MESSAGE', this.onPostRoomMessage);
     this.chatroomSocket.on('disconnet', () => {});
     try {
       await store.dispatch(authenticationAction.accessTokenToJwt());
