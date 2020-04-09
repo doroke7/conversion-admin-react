@@ -5,7 +5,13 @@ let oRoom: any = {
       payload: aRooms
 
     };
-  }
+  },
+  didSend: (aRooms: any) => {
+    return {
+      type: 'DID_SEND_ROOM',
+      payload: aRooms
+    };
+  },
 };
 
 export default oRoom;

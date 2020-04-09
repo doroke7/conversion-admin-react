@@ -69,6 +69,7 @@ class Chatroom extends React.Component<any> {
 
       let _sTitle =  '📨 您有新讯息...';
 
+      let iSetInterval;
       // Chrome 66 无法 autoplay mp3
       // this.props.context.messageAudio.play();
       oPromise.then(() => {
@@ -81,7 +82,7 @@ class Chatroom extends React.Component<any> {
             }, 1500);
           } 
 
-          setInterval(() => {
+          iSetInterval = setInterval(() => {
             if (this.props.context.notifacation) {
               document.title = _sTitle;
               setTimeout(() => {
@@ -89,14 +90,14 @@ class Chatroom extends React.Component<any> {
         
               }, 1500);
             } else {
-              cReject();
+              cReject(iSetInterval);
             }
 
       
           }, 3000);
         });
-      }).catch(() => {
-        // DO NOTHINH
+      }).catch((iSetInterval) => {
+        clearInterval(iSetInterval);
       });
 
     })
@@ -202,6 +203,7 @@ class Chatroom extends React.Component<any> {
       }
 
       await store.dispatch(roomMessage.didSend(_aRooms));
+      await store.dispatch(room.didSend(_aRooms));
 
     } catch (oExeption) {
       let sMessage = oExeption.message;

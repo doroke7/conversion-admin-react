@@ -65,9 +65,9 @@ class Room extends React.Component<IProps> {
       sNickname = this.state.users[oMessage.user_id].nickname;
     }
 
-    if(oMessage.type == 'TEXT') {
+    if(oMessage.text && !oMessage.src) {
       sMessage = oMessage.text;
-    } else if (oMessage.type == 'IMAGE') {
+    } else if (oMessage.src == 'IMAGE') {
       sMessage = '上传了图';
     }
     return (
@@ -95,7 +95,7 @@ class Room extends React.Component<IProps> {
               iCount > 0 ? 
               <Badge 
                 count={iCount}
-                overflowCount={9999}
+                overflowCount={99}
                 style={{ backgroundColor: '#1890ff', color: '#ffffff'}}
               /> :
               ""

@@ -44,7 +44,6 @@ class App extends React.Component {
       notification: false,
       notificationEvent: oNotificationEvent,
       isScrolling: false,
-      messageAudio: new Audio('./source/message.mp3')
 
     };
 
