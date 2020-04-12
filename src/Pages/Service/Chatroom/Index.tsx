@@ -55,6 +55,7 @@ class Chatroom extends React.Component<any> {
     this.onShowRoom = this.onShowRoom.bind(this);
 
     this.onShowRoomMessage = this.onShowRoomMessage.bind(this);
+    this.onShowUserRoom = this.onShowUserRoom.bind(this);
     this.onShowUser = this.onShowUser.bind(this);
     this.onPostRoomMessage = this.onPostRoomMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
@@ -111,7 +112,7 @@ class Chatroom extends React.Component<any> {
   public async componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
-
+    this.chatroomSocket.on('SHOW USER ROOM', this.onShowUserRoom);
     this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
     this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowRoomMessage);
     this.chatroomSocket.on('SHOW USER', this.onShowUser);
@@ -127,6 +128,10 @@ class Chatroom extends React.Component<any> {
       Message.warning(MESSAGES[sMessage]);
     }
 
+    let oBody = {
+      jwt: AuthenticationHelper.getJwt(),
+    }
+    this.chatroomSocket.emit('SHOW USER ROOM', oBody);
     this.chatroomSocket.emit('SHOW ROOM', void 0);
     this.chatroomSocket.emit('SHOW ROOM MESSAGE', void 0);
     this.chatroomSocket.emit('SHOW USER', void 0);
@@ -169,6 +174,10 @@ class Chatroom extends React.Component<any> {
     store.dispatch(roomMessage.show(aRooms));
   }
 
+  public onShowUserRoom(oBody: any) {
+    // 09158320666
+    // 
+  }
   public async onPostRoomMessage(oBody: any) {
   
 
@@ -210,7 +219,7 @@ class Chatroom extends React.Component<any> {
       if(this.state.roomId == oRoom._id) {
 
         let oBody = {
-          jwt: AuthenticationHelper.getJwt(),
+          jwt: AuthenticationHelper.getUserId(),
           room_id: this.state.roomId,
           count: iCount,
         }
