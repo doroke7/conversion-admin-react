@@ -11,6 +11,7 @@ import { Badge } from 'antd';
 
 interface IProps {
   // className?: string | null;
+  id: string
   name?: string | null
   icon?: string
   editedTime?: string
@@ -28,9 +29,13 @@ class Room extends React.Component<IProps> {
     store.subscribe(() => {
       let oState = store.getState();
       let oUsers = oState.users;
+      let oUsersRooms = oState.usersRooms;
+      let sRoomId = oState.roomId;
 
       let _oState = {
         users: oUsers,
+        usersRooms: oUsersRooms,
+        roomId: sRoomId
       };
       this.setState(_oState);
     });
@@ -38,6 +43,7 @@ class Room extends React.Component<IProps> {
 
   public state: any = {
     users: {},
+    usersRooms: {}
   };
 
   public render() {
@@ -47,14 +53,24 @@ class Room extends React.Component<IProps> {
     let aMessages = [...this.props.messages];
     let oMessage = aMessages.pop();
     let sMessage = '';
-    let iCount = this.props.count;
+    let sRoomId = this.props.id;
+    let iCount = 0;
+    let iUserCount = 0;
+    // 当下的 聊天室, 还没读取到 当下 用户 读取数 预设 0 个未读
+
+    iUserCount = sUserId && this.state.usersRooms[sUserId] && sRoomId && this.state.usersRooms[sUserId].rooms[sRoomId] && this.state.usersRooms[sUserId].rooms[sRoomId].count ? this.state.usersRooms[sUserId].rooms[sRoomId].count : 0;
+    iCount = this.props.count - iUserCount;
+
+    if(this.props.id == this.state.roomId || !this.state.usersRooms[sUserId]) {
+      iCount = 0;
+    }
+
 
     let _sTime :any = moment().format('YYYY-MM-DD 00:00:00');
     
     let iSecond = Number(moment(oMessage.addedTime).format('X')) - Number(moment(_sTime).format('X'));
 
-    let sTime = iSecond > 0 ? moment(oMessage.addedTime).format(MOMENT.FORMAT2) : moment(oMessage.addedTime
-      ).format(MOMENT.FORMAT1);
+    let sTime = iSecond > 0 ? moment(oMessage.addedTime).format(MOMENT.FORMAT2) : moment(oMessage.addedTime).format(MOMENT.FORMAT1);
 
     let sNickname = '用户';
 
@@ -90,7 +106,8 @@ class Room extends React.Component<IProps> {
           <div >
             {sTime}
           </div>
-          <div >
+          <div>
+          {this.props.count} - {iUserCount}
             { 
               iCount > 0 ? 
               <Badge 

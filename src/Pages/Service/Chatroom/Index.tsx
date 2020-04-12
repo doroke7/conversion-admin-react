@@ -145,7 +145,7 @@ class Chatroom extends React.Component<any> {
 
   public state: any = {
     users: {},
-    roomMessages: [],
+    roomsMessages: [],
     roomId: '',
     loading: true,
     text: '',
@@ -230,7 +230,7 @@ class Chatroom extends React.Component<any> {
       if(this.state.roomId == oRoom._id) {
 
         let oBody = {
-          jwt: AuthenticationHelper.getUserId(),
+          jwt: AuthenticationHelper.getJwt(),
           room_id: this.state.roomId,
           count: iCount,
         }
