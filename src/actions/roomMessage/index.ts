@@ -1,22 +1,22 @@
 let oRoomMessageAction: any = {
-  show: (aRoomMessages: any) => {
+  show: (aRoomsMessages: any) => {
     return {
       type: 'SHOW_ROOM_MESSAGE',
-      payload: aRoomMessages
+      payload: aRoomsMessages
     };
   },
 
-  willSend: (aRoomMessages: any) => {
+  willSend: (aRoomsMessages: any) => {
     return {
       type: 'WILL_SEND_ROOM_MESSAGE',
-      payload: aRoomMessages
+      payload: aRoomsMessages
     };
   },
 
-  didSend: (aRoomMessages: any) => {
+  didSend: (aRoomsMessages: any) => {
     return {
       type: 'DID_SEND_ROOM_MESSAGE',
-      payload: aRoomMessages
+      payload: aRoomsMessages
     };
   },
 

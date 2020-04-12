@@ -212,7 +212,7 @@ class ControlPannel extends React.Component<IProps> {
         addedTime: new Date(),
         loading: true,
       };
-      let aRoomMessages = [
+      let aRoomsMessages = [
         {
           '_id': this.state.roomId,
           messages: [
@@ -225,7 +225,7 @@ class ControlPannel extends React.Component<IProps> {
       ];
 
       if (!('' === sText || null === sText || undefined === sText)) {
-        store.dispatch(roomMessageAction.willSend(aRoomMessages));
+        store.dispatch(roomMessageAction.willSend(aRoomsMessages));
         let sJwt = AuthenticationHelper.getJwt();
         // let sAccessToken = AuthenticationHelper.getAccessToken();
 

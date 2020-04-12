@@ -5,8 +5,6 @@ const oUserRoomReducer = (oUsersRooms: any = {}, oAction: any) => {
       aUsersRooms = oAction.payload;
 
       oUsersRooms = aUsersRooms.reduce((_oUsersRooms: any, oUser: any) => {
-        debugger;
-        let sKey = oUser._id;
         if(!_oUsersRooms[oUser._id]) {
           oUsersRooms[oUser._id] = {
             rooms: {}

@@ -1,42 +1,42 @@
-const oRoomMessage = (oRoomMessages: any = {}, oAction: any) => {
-  let aRoomMessages = oAction.payload;
+const oRoomMessage = (oRoomsMessages: any = {}, oAction: any) => {
+  let aRoomsMessages = oAction.payload;
 
   switch (oAction.type) {
     case 'SHOW_ROOM_MESSAGE':
 
-      oRoomMessages = aRoomMessages.reduce((_oRoomMessages: any, oRoom: any) => {
+      oRoomsMessages = aRoomsMessages.reduce((_oRoomsMessages: any, oRoom: any) => {
         let sKey = oRoom._id;
-        _oRoomMessages[sKey] = oRoom;
-        return _oRoomMessages;
-      }, oRoomMessages);
+        _oRoomsMessages[sKey] = oRoom;
+        return _oRoomsMessages;
+      }, oRoomsMessages);
 
-      return oRoomMessages;
+      return oRoomsMessages;
     case 'WILL_SEND_ROOM_MESSAGE':
-      oRoomMessages = aRoomMessages.reduce((_oRoomMessages: any, oRoom: any) => {
+      oRoomsMessages = aRoomsMessages.reduce((_oRoomsMessages: any, oRoom: any) => {
         let sKey = oRoom._id;
 
         let aMessages = oRoom.messages;
-        if (!_oRoomMessages[sKey]) {
-          _oRoomMessages[sKey] = {
+        if (!_oRoomsMessages[sKey]) {
+          _oRoomsMessages[sKey] = {
             messages: aMessages
           };
         };
-        if (_oRoomMessages[sKey]) {
-          _oRoomMessages[sKey].messages = [... _oRoomMessages[sKey].messages, ...aMessages]
+        if (_oRoomsMessages[sKey]) {
+          _oRoomsMessages[sKey].messages = [... _oRoomsMessages[sKey].messages, ...aMessages]
         }
-        return _oRoomMessages;
-      }, oRoomMessages);
+        return _oRoomsMessages;
+      }, oRoomsMessages);
 
-      return oRoomMessages;
+      return oRoomsMessages;
 
 
     case 'DID_SEND_ROOM_MESSAGE':
 
-      aRoomMessages.forEach((oRoom: any) => {
+      aRoomsMessages.forEach((oRoom: any) => {
         let sKey = oRoom._id;
         let aMessages = oRoom.messages;
-        if (!oRoomMessages[sKey]) {
-          oRoomMessages[sKey] = {
+        if (!oRoomsMessages[sKey]) {
+          oRoomsMessages[sKey] = {
             messages: aMessages
           };
         };
@@ -45,10 +45,10 @@ const oRoomMessage = (oRoomMessages: any = {}, oAction: any) => {
         for(let iIndex = 0 ; iIndex < aMessages.length; iIndex++) {
           let oMessage = aMessages[iIndex];
           if(!oMessage.virtualId){
-            oRoomMessages[sKey].messages.push(oMessage);
+            oRoomsMessages[sKey].messages.push(oMessage);
           }
           if(oMessage.virtualId){
-            let oRoom = oRoomMessages[sKey];
+            let oRoom = oRoomsMessages[sKey];
             for(let _iIndex = oRoom.messages.length - 1; _iIndex >= 0; _iIndex--) {
               let _oMessage = oRoom.messages[_iIndex];
               if(_oMessage.virtualId == oMessage.virtualId) {
@@ -61,9 +61,9 @@ const oRoomMessage = (oRoomMessages: any = {}, oAction: any) => {
 
       });
 
-      return oRoomMessages;
+      return oRoomsMessages;
     default:
-      return oRoomMessages;
+      return oRoomsMessages;
   }
 };
 

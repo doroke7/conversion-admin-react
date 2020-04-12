@@ -36,12 +36,12 @@ class Messages extends React.Component<any> {
 
     store.subscribe(() => {
       let oState = store.getState();
-      let aRoomMessages = oState.roomMessages;
+      let aRoomsMessages = oState.roomsMessages;
       let oUsers = oState.users; // TODO
       let sRoomId = oState.roomId; // TODO
 
       let _oState = {
-        roomMessages: aRoomMessages,
+        roomsMessages: aRoomsMessages,
         users: oUsers,
         roomId: sRoomId,
       };
@@ -148,7 +148,7 @@ class Messages extends React.Component<any> {
   }
   
   public state: any = {
-    roomMessages: [],
+    roomsMessages: [],
     words: [],
     users: {},
     scrollTopRatio: 1,
@@ -156,7 +156,7 @@ class Messages extends React.Component<any> {
 
   public componentDidMount() {
     let oState = store.getState();
-    let aRoomMessages = oState.roomMessages;
+    let aRoomsMessages = oState.roomsMessages;
     let oUsers = oState.users; // TODO
     let sRoomId = oState.roomId; // TODO
     let sUserId = AuthenticationHelper.getUserId();
@@ -171,7 +171,7 @@ class Messages extends React.Component<any> {
 
 
     let _oState = {
-      roomMessages: aRoomMessages,
+      roomsMessages: aRoomsMessages,
       roomId: sRoomId,
       users: oUsers,
       scrollTopRatio: iScrollTopRatio,
@@ -212,11 +212,11 @@ class Messages extends React.Component<any> {
       this.scrollTopToPosition(false, false);
       return;
     } 
-    if (oPreviousState.roomMessages.length === 0 && oPreviousState.roomMessages.length < this.state.roomMessages.length) {
+    if (oPreviousState.roomsMessages.length === 0 && oPreviousState.roomsMessages.length < this.state.roomsMessages.length) {
       this.scrollTopToPosition(false, false);
       return;
     } 
-    if (oPreviousState.roomMessages.length !== this.state.roomMessages.length) {
+    if (oPreviousState.roomsMessages.length !== this.state.roomsMessages.length) {
       this.scrollTopToPosition(false, false);
       return;
     }
@@ -226,7 +226,7 @@ class Messages extends React.Component<any> {
 
   public render() {
     
-    let aMessages = this.state.roomId && this.state.roomMessages && this.state.roomMessages[this.state.roomId] && this.state.roomMessages[this.state.roomId].messages ? this.state.roomMessages[this.state.roomId].messages : []
+    let aMessages = this.state.roomId && this.state.roomsMessages && this.state.roomsMessages[this.state.roomId] && this.state.roomsMessages[this.state.roomId].messages ? this.state.roomsMessages[this.state.roomId].messages : []
     let fOpacity =this.state.scrollTopRatio > 0.9 && this.state.scrollTopRatio <= 1 ? ( 1 - this.state.scrollTopRatio) * 10 : 1;
     
     const oStyle = {

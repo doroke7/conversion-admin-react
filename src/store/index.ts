@@ -17,7 +17,7 @@ import {
 const oReducer = combineReducers({
   jwt: jwtReducer,
   uploaders: uploaderReducer,
-  roomMessages: roomMessageReducer,
+  roomsMessages: roomMessageReducer,
   words: wordReducer,
   users: userReducer,
   usersRooms: userRoomReducer,
