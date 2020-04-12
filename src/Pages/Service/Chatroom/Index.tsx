@@ -13,7 +13,7 @@ import { AuthenticationHelper } from '@/Helpers/';
 import store from '@/store';
 
 import { 
-  roomMessage,
+  roomMessageAction,
   authenticationAction,
   userAction,
   roomActon
@@ -60,8 +60,6 @@ class Chatroom extends React.Component<any> {
     this.onPostRoomMessage = this.onPostRoomMessage.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.onClick = this.onClick.bind(this);
-
-
 
     window.document.addEventListener('notification', (oEvent: any) => {
       let sTitle = document.title;
@@ -171,7 +169,7 @@ class Chatroom extends React.Component<any> {
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
 
-    store.dispatch(roomMessage.show(aRooms));
+    store.dispatch(roomMessageAction.show(aRooms));
   }
 
   public onShowUserRoom(oBody: any) {
@@ -226,7 +224,7 @@ class Chatroom extends React.Component<any> {
         this.chatroomSocket.emit('READ USER ROOM', oBody);
 
       }
-      await store.dispatch(roomMessage.didSend(_aRooms));
+      await store.dispatch(roomMessageAction.didSend(_aRooms));
       await store.dispatch(roomActon.didSend(_aRooms));
 
 
