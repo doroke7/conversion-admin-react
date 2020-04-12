@@ -6,6 +6,7 @@ import roomIdReducer from './roomId/index';
 import roomMessageReducer from './roomMessage/index';
 import wordReducer from './word/index';
 import userReducer from './user/index';
+import userRoomReducer from './userRoom/index';
 
 export { 
 	jwtReducer,
@@ -13,6 +14,7 @@ export {
 	roomMessageReducer,
 	wordReducer,
 	userReducer,
+	userRoomReducer,
 	roomReducer,
 	roomIdReducer
 };

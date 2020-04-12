@@ -5,7 +5,6 @@ import clsx from 'clsx';
 
 import Paper from '@material-ui/core/Paper';
 
-import { word } from '@/actions/';
 import Commons from '@/Commons';
 import Components from '@/Components';
 
@@ -32,7 +31,7 @@ function Word(): any {
         type: 'admin'
       };
       debugger;
-      await dispatch(word.show(void 0, oOptions));
+      // await dispatch(word.show(void 0, oOptions));
       debugger;
       let oStore = useStore();
       debugger;

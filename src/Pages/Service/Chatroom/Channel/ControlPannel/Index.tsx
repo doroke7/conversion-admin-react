@@ -14,7 +14,7 @@ import { Service } from '@/Commons';
 
 import { AuthenticationHelper, EmitterHelper } from '@/Helpers/';
 
-import { roomMessage, uploaderAction } from '@/actions/';
+import { roomMessageAction, uploaderAction } from '@/actions/';
 
 import './Index.scss';
 
@@ -225,7 +225,7 @@ class ControlPannel extends React.Component<IProps> {
       ];
 
       if (!('' === sText || null === sText || undefined === sText)) {
-        store.dispatch(roomMessage.willSend(aRoomMessages));
+        store.dispatch(roomMessageAction.willSend(aRoomMessages));
         let sJwt = AuthenticationHelper.getJwt();
         // let sAccessToken = AuthenticationHelper.getAccessToken();
 
@@ -265,7 +265,7 @@ class ControlPannel extends React.Component<IProps> {
     };
 
     let aMessages = [oMessage];
-    store.dispatch(roomMessage.willSend(aMessages));
+    store.dispatch(roomMessageAction.willSend(aMessages));
     store.dispatch(uploaderAction.willSend(oUploaders));
     let sJwt = AuthenticationHelper.getJwt();
     let sAccessToken = AuthenticationHelper.getAccessToken();

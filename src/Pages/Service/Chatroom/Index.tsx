@@ -16,7 +16,8 @@ import {
   roomMessageAction,
   authenticationAction,
   userAction,
-  roomActon
+  roomActon,
+  userRoomAction
 } from '@/actions/';
 
 import Spin from 'antd/es/spin';
@@ -172,9 +173,21 @@ class Chatroom extends React.Component<any> {
     store.dispatch(roomMessageAction.show(aRooms));
   }
 
-  public onShowUserRoom(oBody: any) {
-    // 09158320666
-    // 
+  public async onShowUserRoom(oBody: any) {
+    try {
+      if (-1 === oBody.result || !oBody.data) {
+        throw new Error('IT_FAILS_TO_SHOW_USER_ROOM')
+      }
+      let oData = oBody['data'];
+      let aUsersRooms = oData['users'];
+
+      store.dispatch(userRoomAction.show(aUsersRooms));
+
+    } catch (oExeption) {
+      // DO NOTHING
+      // 读取 users.$[user].rooms.$[room].count 未读书 失败
+    }
+     
   }
   public async onPostRoomMessage(oBody: any) {
   
@@ -236,8 +249,11 @@ class Chatroom extends React.Component<any> {
   }
 
   public async onReadUserRoom(oBody: any) {
-    let oData = oBody['data'];
-    let aUsers = oData['users'];
+    if(oBody['data'] && oBody['data']['users']) {
+      let oData = oBody['data'];
+      let aUsers = oData['users'];
+    }
+
     // store.dispatch(userAction.show(aUsers));
 
   }

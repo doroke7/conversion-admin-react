@@ -9,6 +9,7 @@ import {
   roomMessageReducer,
   wordReducer,
   userReducer,
+  userRoomReducer,
   roomReducer,
   roomIdReducer
 } from '@/reducers/';
@@ -19,6 +20,7 @@ const oReducer = combineReducers({
   roomMessages: roomMessageReducer,
   words: wordReducer,
   users: userReducer,
+  usersRooms: userRoomReducer,
   rooms: roomReducer,
   roomId: roomIdReducer,
 });

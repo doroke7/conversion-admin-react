@@ -2,8 +2,9 @@ import authenticationAction from './authentication/';
 import roomMessageAction from './roomMessage/';
 import uploaderAction from './uploader/';
 import userAction from './user/';
+import userRoomAction from './userRoom/';
 import roomActon from './room/';
-import oRoomIdAction from './roomId/';
+import roomIdAction from './roomId/';
 
 export {
   roomActon,
@@ -11,5 +12,6 @@ export {
   authenticationAction,
   roomMessageAction,
   userAction,
-  oRoomIdAction
+  userRoomAction,
+  roomIdAction
 };
