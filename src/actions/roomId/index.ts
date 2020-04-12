@@ -1,4 +1,4 @@
-let oRoomId: any = {
+let oRoomIdAction: any = {
   show: (sRoomId: any) => {
     return {
       type: 'SHOW_ROOMID',
@@ -14,4 +14,4 @@ let oRoomId: any = {
   }
 };
 
-export default oRoomId;
+export default oRoomIdAction;

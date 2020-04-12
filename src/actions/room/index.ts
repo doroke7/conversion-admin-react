@@ -1,4 +1,4 @@
-let oRoom: any = {
+let oRoomAction: any = {
   show: (aRooms: any) => {
     return {
       type: 'SHOW_ROOM',
@@ -14,4 +14,4 @@ let oRoom: any = {
   },
 };
 
-export default oRoom;
+export default oRoomAction;

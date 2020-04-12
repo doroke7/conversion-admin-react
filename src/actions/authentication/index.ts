@@ -23,7 +23,7 @@ let cSignIn: any = (sJwt: any) => {
   };
 };
 
-let oAuthentication: any = {
+let oAuthenticationAction: any = {
   login: (oBody: any) => {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
@@ -123,4 +123,4 @@ let oAuthentication: any = {
   },
 };
 
-export default oAuthentication;
+export default oAuthenticationAction;

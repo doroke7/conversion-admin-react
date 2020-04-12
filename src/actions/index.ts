@@ -4,7 +4,7 @@ import word from './word/';
 import uploaderAction from './uploader/';
 import userAction from './user/';
 import room from './room/';
-import roomId from './roomId/';
+import oRoomIdAction from './roomId/';
 
 export {
   room,
@@ -13,5 +13,5 @@ export {
   roomMessage,
   word,
   userAction,
-  roomId as roomIdAction
+  oRoomIdAction
 };

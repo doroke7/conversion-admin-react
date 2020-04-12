@@ -1,4 +1,4 @@
-let oRoomMessage: any = {
+let oRoomMessageAction: any = {
   show: (aRoomMessages: any) => {
     return {
       type: 'SHOW_ROOM_MESSAGE',
@@ -22,4 +22,4 @@ let oRoomMessage: any = {
 
 };
 
-export default oRoomMessage;
+export default oRoomMessageAction;
