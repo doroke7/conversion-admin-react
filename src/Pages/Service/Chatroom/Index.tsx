@@ -16,7 +16,7 @@ import {
   roomMessage,
   authenticationAction,
   userAction,
-  room
+  roomActon
 } from '@/actions/';
 
 import Spin from 'antd/es/spin';
@@ -157,7 +157,7 @@ class Chatroom extends React.Component<any> {
   public onShowRoom(oBody: any) {
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
-    store.dispatch(room.show(aRooms));
+    store.dispatch(roomActon.show(aRooms));
 
     this.setState({
       rooms: aRooms,
@@ -227,7 +227,7 @@ class Chatroom extends React.Component<any> {
 
       }
       await store.dispatch(roomMessage.didSend(_aRooms));
-      await store.dispatch(room.didSend(_aRooms));
+      await store.dispatch(roomActon.didSend(_aRooms));
 
 
 
