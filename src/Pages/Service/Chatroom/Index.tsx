@@ -43,9 +43,11 @@ class Chatroom extends React.Component<any> {
     store.subscribe(() => {
       let oState = store.getState();
       let oUsers = oState.users;
+      let sRoomId = oState.roomId;
 
       let _oState = {
-        users: oUsers
+        users: oUsers,
+        roomId: sRoomId,
       };
       this.setState(_oState);
     });
@@ -113,6 +115,7 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on('SHOW ROOM', this.onShowRoom);
     this.chatroomSocket.on('SHOW ROOM MESSAGE', this.onShowRoomMessage);
     this.chatroomSocket.on('SHOW USER', this.onShowUser);
+    this.chatroomSocket.on('READ USER ROOM', this.onReadUserRoom);
     this.chatroomSocket.on('connect', () => {});
     this.chatroomSocket.on('MESSAGE ROOM MESSAGE', this.onPostRoomMessage);
     this.chatroomSocket.on('disconnet', () => {});
@@ -183,6 +186,7 @@ class Chatroom extends React.Component<any> {
       let aMessages = oRoom.messages;
       let oMessage = aMessages.pop();
       let sUserId = oMessage.user_id;
+      let iCount = oRoom.count;
       if(sUserId && !this.state.users[sUserId]) {
         this.chatroomSocket.emit('SHOW USER', sUserId);
 
@@ -202,13 +206,33 @@ class Chatroom extends React.Component<any> {
         window.document.dispatchEvent(this.props.context.notificationEvent);
       }
 
+
+      if(this.state.roomId == oRoom._id) {
+
+        let oBody = {
+          jwt: AuthenticationHelper.getJwt(),
+          room_id: this.state.roomId,
+          count: iCount,
+        }
+        this.chatroomSocket.emit('READ USER ROOM', oBody);
+
+      }
       await store.dispatch(roomMessage.didSend(_aRooms));
       await store.dispatch(room.didSend(_aRooms));
+
+
 
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
     }
+  }
+
+  public async onReadUserRoom(oBody: any) {
+    let oData = oBody['data'];
+    let aUsers = oData['users'];
+    // store.dispatch(userAction.show(aUsers));
+
   }
 
   public async onShowUser(oBody: any) {
