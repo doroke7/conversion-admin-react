@@ -67,6 +67,8 @@ class ControlPannel extends React.Component<IProps> {
     this.onComplete = this.onComplete.bind(this);
     this.onError = this.onError.bind(this);
     this.onAbort = this.onAbort.bind(this);
+    this.onEmoji = this.onEmoji.bind(this);
+
   }
 
   public static contextType = Service.Tool;
@@ -82,6 +84,7 @@ class ControlPannel extends React.Component<IProps> {
     file: null,
     text: '',
     roomId: '',
+    isEmojiPickerShowed: false
   };
 
   public onFileChange(oEvent: any) {
@@ -188,6 +191,13 @@ class ControlPannel extends React.Component<IProps> {
     if (ENTER_KEY_CODE === oEvent.keyCode && !oEvent.shiftKey) {
       oEvent.preventDefault();
     }
+  }
+
+  public onEmoji(oEvent: any) {
+    let oState = {
+      isEmojiPickerShowed: !this.state.isEmojiPickerShowed
+    };
+    this.setState(oState);
   }
 
   public onSendMessage(oEvent: any) {
@@ -326,7 +336,7 @@ class ControlPannel extends React.Component<IProps> {
     return (
       <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
 
-        {/* <Picker
+        <Picker
           perLine={24}
           showPreview={false}
           set={'facebook'}
@@ -334,15 +344,22 @@ class ControlPannel extends React.Component<IProps> {
             position: 'absolute',
             bottom: '10vmin',
             right: '',
-            width: '100%'
+            width: '100%',
+            display: this.state.isEmojiPickerShowed == false ? 'none' : ''
             }} 
-        /> */}
-        <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+        />
+        {/* <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
           <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
           <div>
             <i className="iconfont icon-image image"></i>
           </div>
           <div className="xs-d-none">档案</div>
+        </span> */}
+        <span className="emoji-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.onEmoji}>
+          <div>
+            <i className="iconfont icon-emoji emoji"></i>
+          </div>
+          <div className="xs-d-none">表情</div>
         </span>
         <span className="d-inline-block textarea-wrapper">
           <TextArea

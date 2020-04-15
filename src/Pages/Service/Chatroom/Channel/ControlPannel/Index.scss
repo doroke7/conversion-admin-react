@@ -10,7 +10,7 @@
   @media (min-width: 576px){
     height: 10vmin;
   }
-  .plus, .send, .image {
+  .plus, .send, .image, .emoji {
     font-size: 7vmin;
     @media (min-width: 576px){
       font-size: 4.5vmin;
@@ -30,7 +30,7 @@
       }
     }
   }
-  .plus-wrapper, .send-wrapper, .image-wrapper  {
+  .plus-wrapper, .send-wrapper, .image-wrapper, .emoji-wrapper  {
     line-height: 1;
     vertical-align: top;
     cursor: pointer;
