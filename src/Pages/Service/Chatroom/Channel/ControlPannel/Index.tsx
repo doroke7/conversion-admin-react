@@ -1,4 +1,10 @@
 import React from 'react';
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
+import EmojiPicker from 'emojione-picker';
+
+
+
 
 import { EventEmitter } from 'events';
 
@@ -319,6 +325,18 @@ class ControlPannel extends React.Component<IProps> {
   public render() {
     return (
       <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
+
+        {/* <Picker
+          perLine={24}
+          showPreview={false}
+          set={'facebook'}
+          style={{ 
+            position: 'absolute',
+            bottom: '10vmin',
+            right: '',
+            width: '100%'
+            }} 
+        /> */}
         <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
           <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
           <div>

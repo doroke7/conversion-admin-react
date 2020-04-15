@@ -65,4 +65,10 @@
     margin: auto;
     background: #FFFFFF;
   }
+
+  .emoji-mart {
+    .emoji-mart-search, .emoji-mart-bar:last-child {
+      display: none;
+    }
+  }
 }
