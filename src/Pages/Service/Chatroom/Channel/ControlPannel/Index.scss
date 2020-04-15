@@ -1,11 +1,14 @@
 .control-pannel {
   user-select: none;
-  height: 10vmin;
+  height: 4vmin;
   bottom: 0;
   left: 0;
   right: 0;
   color: #2f62af;
   border-top: 1px solid rgba(41,53,62,.18);
+  @media (min-width: 576px){
+    height: 10vmin;
+  }
   .game, .send, .image {
     font-size: 9vmin;
     @media (min-width: 576px){
