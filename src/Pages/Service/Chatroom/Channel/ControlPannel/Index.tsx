@@ -319,16 +319,17 @@ class ControlPannel extends React.Component<IProps> {
   public render() {
     return (
       <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
-        <span className="game-wrapper d-inline-block text-center pl-1 pr-1">
+        <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+          <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
           <div>
-            <i className="iconfont icon-game game"></i>
+            <i className="iconfont icon-image image"></i>
           </div>
-          <div>游戏</div>
+          <div className="xs-d-none">档案</div>
         </span>
         <span className="d-inline-block textarea-wrapper">
           <TextArea
             className={'texarea'}
-            rows={2}
+            //rows={2}
             value={this.state.text}
             onChange={this.setText}
             onKeyUp={this.onSendMessage}
@@ -339,14 +340,13 @@ class ControlPannel extends React.Component<IProps> {
           <div>
             <i className="iconfont icon-telegram send"></i>
           </div>
-          <div>发送</div>
+          <div className="xs-d-none">发送</div>
         </span>
-        <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-          <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
+        <span className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1">
           <div>
-            <i className="iconfont icon-image image"></i>
+            <i className="iconfont icon-plus plus"></i>
           </div>
-          <div>档案</div>
+          <div className="xs-d-none">更多</div>
         </span>
         <Modal
           wrapClassName="control-pannel"

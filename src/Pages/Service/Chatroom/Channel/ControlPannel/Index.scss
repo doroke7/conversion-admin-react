@@ -1,6 +1,7 @@
 .control-pannel {
   user-select: none;
-  height: 4vmin;
+  height: 10vmin;
+  line-height: 10vmin;
   bottom: 0;
   left: 0;
   right: 0;
@@ -9,27 +10,29 @@
   @media (min-width: 576px){
     height: 10vmin;
   }
-  .game, .send, .image {
-    font-size: 9vmin;
+  .plus, .send, .image {
+    font-size: 7vmin;
     @media (min-width: 576px){
       font-size: 4.5vmin;
     }
   }
   .textarea-wrapper {
-    width: calc( 100% - 33vmin);
+    width: calc( 100% - 20vmin);
+    line-height: 1;
     @media (min-width: 576px){
-      width: calc( 100% - 19.6vmin);
+      //width: calc( 100% - 19.6vmin);
     }
     textarea{
-      height: 13vmin;
+      max-height: 8vmin;
       font-size: 1.2rem;
       @media (min-width: 576px){
-        height: 6.5vmin;
+        //height: 6.5vmin;
       }
     }
   }
-  .game-wrapper, .send-wrapper, .image-wrapper  {
+  .plus-wrapper, .send-wrapper, .image-wrapper  {
     line-height: 1;
+    vertical-align: top;
     cursor: pointer;
     font-size: 3.5vmin;
     @media (min-width: 576px){
