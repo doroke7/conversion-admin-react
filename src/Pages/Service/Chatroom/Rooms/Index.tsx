@@ -1,9 +1,15 @@
 import React from 'react';
+import moment from 'moment';
+
 import { Service } from '@/Commons';
 import store from '@/store';
 import {
   roomIdAction
 } from '@/actions';
+
+import {
+  AuthenticationHelper
+} from '@/Helpers';
 
 import './Index.scss';
 import Top from './Top/Index';
@@ -33,17 +39,30 @@ class Rooms extends React.Component<any> {
     rooms: [],
   };
 
-  public onClick(sRoomId: string) {
+  public chatroomSocket: any
+
+  public onClick(sRoomId: string, iCount) {
   
     return () => {
       this.props.context.isScrolling = false;
       let oState = store.getState();
       let _sRoomId = oState.roomId;
       if (sRoomId !== _sRoomId) {
+        let oBody = {
+          jwt: AuthenticationHelper.getJwt(),
+          room_id: this.state.roomId,
+          count: iCount,
+        }
+        this.chatroomSocket.emit('READ USER ROOM', oBody);
         store.dispatch(roomIdAction.edit(sRoomId));
 
       }
     };
+  }
+
+  public componentWillMount(){
+    this.chatroomSocket = this.props.context.chatroom;
+
   }
 
   public componentDidMount() {
@@ -54,6 +73,22 @@ class Rooms extends React.Component<any> {
 
   public render() {
     let aRooms = Object.values(this.state.rooms);
+    aRooms = aRooms.sort((oRoom: any, _oRoom:any) => {
+      let aMessages = [...oRoom.messages];
+      let _aMessages = [..._oRoom.messages];
+      let oMessage = aMessages.pop();
+      let _oMessage = _aMessages.pop();
+      let iDifferentTime = Number(moment(oMessage.addedTime).format('X')) - Number(moment(_oMessage.addedTime).format('X'));
+      let iResult = 0;
+      if(0 < iDifferentTime) {
+        iResult = -1;
+      }
+      if(0 > iDifferentTime) {
+        iResult = 1;
+      }
+      
+      return iResult;
+    });
     return (
       <div className="rooms">
         <Top />
@@ -66,7 +101,7 @@ class Rooms extends React.Component<any> {
             count={oRoom.count}
             id={oRoom._id}
             editedTime={oRoom.editedTime} 
-            onClick={this.onClick(oRoom._id)}
+            onClick={this.onClick(oRoom._id, oRoom.count)}
           />)}
         </div>
       </div>

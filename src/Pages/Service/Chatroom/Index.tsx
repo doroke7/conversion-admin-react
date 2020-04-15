@@ -226,7 +226,6 @@ class Chatroom extends React.Component<any> {
         window.document.dispatchEvent(this.props.context.notificationEvent);
       }
 
-
       if(this.state.roomId == oRoom._id) {
 
         let oBody = {
@@ -251,7 +250,9 @@ class Chatroom extends React.Component<any> {
   public async onReadUserRoom(oBody: any) {
     if(oBody['data'] && oBody['data']['users']) {
       let oData = oBody['data'];
-      let aUsers = oData['users'];
+      let aUsersRooms = oData['users'];
+      store.dispatch(userRoomAction.show(aUsersRooms));
+
     }
 
     // store.dispatch(userAction.show(aUsers));

@@ -1,7 +1,10 @@
-const oUserRoomReducer = (oUsersRooms: any = {}, oAction: any) => {
+const oUserRoomReducer = (oUsersRooms: any = false, oAction: any) => {
   let aUsersRooms;
   switch (oAction.type) {
     case 'SHOW_USER_ROOM':
+      if(false === oUsersRooms){
+        oUsersRooms = {};
+      }
       aUsersRooms = oAction.payload;
 
       oUsersRooms = aUsersRooms.reduce((_oUsersRooms: any, oUser: any) => {

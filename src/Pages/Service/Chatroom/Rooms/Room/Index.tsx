@@ -43,7 +43,7 @@ class Room extends React.Component<IProps> {
 
   public state: any = {
     users: {},
-    usersRooms: {}
+    usersRooms: false
   };
 
   public render() {
@@ -61,7 +61,7 @@ class Room extends React.Component<IProps> {
     iUserCount = sUserId && this.state.usersRooms[sUserId] && sRoomId && this.state.usersRooms[sUserId].rooms[sRoomId] && this.state.usersRooms[sUserId].rooms[sRoomId].count ? this.state.usersRooms[sUserId].rooms[sRoomId].count : 0;
     iCount = this.props.count - iUserCount;
 
-    if(this.props.id == this.state.roomId || !this.state.usersRooms[sUserId]) {
+    if(this.props.id == this.state.roomId || !this.state.usersRooms) {
       iCount = 0;
     }
 
@@ -107,7 +107,7 @@ class Room extends React.Component<IProps> {
             {sTime}
           </div>
           <div>
-          {this.props.count} - {iUserCount}
+          {/* {this.props.count} - {iUserCount} */}
             { 
               iCount > 0 ? 
               <Badge 
