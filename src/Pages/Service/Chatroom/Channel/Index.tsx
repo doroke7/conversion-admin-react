@@ -48,10 +48,7 @@ class Channel extends React.Component<IProps> {
           <Row>
             <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
               <Messages />
-              <ControlPannel 
-                className="position-absolute" 
-              >
-                
+              <ControlPannel>
               </ControlPannel>
             </Col>
             <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">

@@ -334,78 +334,77 @@ class ControlPannel extends React.Component<IProps> {
 
   public render() {
     return (
-      <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
-
+      <div className="control-pannel-wrapper position-absolute bg-light">
+        <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
+          {/* <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+            <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
+            <div>
+              <i className="iconfont icon-image image"></i>
+            </div>
+            <div className="xs-d-none">档案</div>
+          </span> */}
+          <span className="emoji-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.onEmoji}>
+            <div>
+              <i className="iconfont icon-emoji emoji"></i>
+            </div>
+            <div className="xs-d-none">表情</div>
+          </span>
+          <span className="d-inline-block textarea-wrapper">
+            <TextArea
+              className={'texarea'}
+              //rows={2}
+              value={this.state.text}
+              onChange={this.setText}
+              onKeyUp={this.onSendMessage}
+              onKeyDown={this.onKeyDown}
+            />
+          </span>
+          <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.onSendMessage}>
+            <div>
+              <i className="iconfont icon-telegram send"></i>
+            </div>
+            <div className="xs-d-none">发送</div>
+          </span>
+          <span className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+            <div>
+              <i className="iconfont icon-plus plus"></i>
+            </div>
+            <div className="xs-d-none">更多</div>
+          </span>
+          <Modal
+            wrapClassName="control-pannel"
+            visible={this.state.modal}
+            closable={false}
+            onCancel={this.onCancel}
+            centered={true}
+            cancelText="取消"
+            onOk={this.onOK}
+            okText="送出"
+          >
+            <div className="preview-image-wrapper">
+              <img className="preview-image" src={this.state.src} />
+            </div>
+            <Input
+              className="d-inline mt-2"
+              placeholder="描述"
+              size="large"
+              value={this.state.text}
+              onChange={this.setText}
+              onPressEnter={this.onOK}
+            />
+          </Modal>
+        </div>
         <Picker
-          perLine={24}
-          showPreview={false}
-          set={'facebook'}
-          style={{ 
-            position: 'absolute',
-            bottom: '10vmin',
-            right: '',
-            width: '100%',
-            display: this.state.isEmojiPickerShowed == false ? 'none' : ''
-            }} 
-        />
-        {/* <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-          <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
-          <div>
-            <i className="iconfont icon-image image"></i>
-          </div>
-          <div className="xs-d-none">档案</div>
-        </span> */}
-        <span className="emoji-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.onEmoji}>
-          <div>
-            <i className="iconfont icon-emoji emoji"></i>
-          </div>
-          <div className="xs-d-none">表情</div>
-        </span>
-        <span className="d-inline-block textarea-wrapper">
-          <TextArea
-            className={'texarea'}
-            //rows={2}
-            value={this.state.text}
-            onChange={this.setText}
-            onKeyUp={this.onSendMessage}
-            onKeyDown={this.onKeyDown}
+            perLine={24}
+            showPreview={false}
+            set={'facebook'}
+            style={{ 
+              width: '100%',
+              display: this.state.isEmojiPickerShowed == false ? 'none' : ''
+              }} 
           />
-        </span>
-        <span className="send-wrapper d-inline-block text-center pl-1 pr-1" onClick={this.onSendMessage}>
-          <div>
-            <i className="iconfont icon-telegram send"></i>
-          </div>
-          <div className="xs-d-none">发送</div>
-        </span>
-        <span className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-          <div>
-            <i className="iconfont icon-plus plus"></i>
-          </div>
-          <div className="xs-d-none">更多</div>
-        </span>
-        <Modal
-          wrapClassName="control-pannel"
-          visible={this.state.modal}
-          closable={false}
-          onCancel={this.onCancel}
-          centered={true}
-          cancelText="取消"
-          onOk={this.onOK}
-          okText="送出"
-        >
-          <div className="preview-image-wrapper">
-            <img className="preview-image" src={this.state.src} />
-          </div>
-          <Input
-            className="d-inline mt-2"
-            placeholder="描述"
-            size="large"
-            value={this.state.text}
-            onChange={this.setText}
-            onPressEnter={this.onOK}
-          />
-        </Modal>
       </div>
+
     );
   }
 }
