@@ -28,7 +28,6 @@ class Messages extends React.Component<any> {
     
     super(oProps);
     
-    debugger;
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
@@ -235,8 +234,6 @@ class Messages extends React.Component<any> {
     const oStyle = {
       opacity: fOpacity,
     }
-
-    debugger;
 
     return (
       <div className="position-relative">
