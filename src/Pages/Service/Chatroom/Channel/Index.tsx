@@ -21,6 +21,7 @@ class Channel extends React.Component<IProps> {
   constructor(props: any) {
     super(props);
 
+    this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this);
     store.subscribe(() => {
       let oState = store.getState();
       let sRoomId = oState.roomId;
@@ -35,7 +36,16 @@ class Channel extends React.Component<IProps> {
 
   public state: any = {
     roomId: '',
+    isEmojiPickerShowed: false,
   };
+
+  public toggleEmojiPicker() {
+    let oState = {
+      isEmojiPickerShowed: !this.state.isEmojiPickerShowed
+    };
+
+    this.setState(oState);
+  }
 
   public render () {
 
@@ -48,7 +58,7 @@ class Channel extends React.Component<IProps> {
           <Row>
             <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
               <Messages />
-              <ControlPannel>
+              <ControlPannel isEmojiPickerShowed={this.state.isEmojiPickerShowed} toggleEmojiPicker={this.toggleEmojiPicker}>
               </ControlPannel>
             </Col>
             <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">

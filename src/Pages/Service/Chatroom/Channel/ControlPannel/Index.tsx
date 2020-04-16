@@ -35,6 +35,8 @@ interface IProps {
   // className?: string | null;
   roomId: any;
   onOKControlPannelModal: any;
+  isEmojiPickerShowed: boolean;
+  toggleEmojiPicker: any;
 }
 
 class ControlPannel extends React.Component<IProps> {
@@ -67,7 +69,6 @@ class ControlPannel extends React.Component<IProps> {
     this.onComplete = this.onComplete.bind(this);
     this.onError = this.onError.bind(this);
     this.onAbort = this.onAbort.bind(this);
-    this.onEmoji = this.onEmoji.bind(this);
 
   }
 
@@ -84,7 +85,6 @@ class ControlPannel extends React.Component<IProps> {
     file: null,
     text: '',
     roomId: '',
-    isEmojiPickerShowed: false
   };
 
   public onFileChange(oEvent: any) {
@@ -193,12 +193,6 @@ class ControlPannel extends React.Component<IProps> {
     }
   }
 
-  public onEmoji(oEvent: any) {
-    let oState = {
-      isEmojiPickerShowed: !this.state.isEmojiPickerShowed
-    };
-    this.setState(oState);
-  }
 
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
@@ -343,7 +337,7 @@ class ControlPannel extends React.Component<IProps> {
             </div>
             <div className="xs-d-none">档案</div>
           </span> */}
-          <span className="emoji-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.onEmoji}>
+          <span className="emoji-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
             <div>
               <i className="iconfont icon-emoji emoji"></i>
             </div>
@@ -400,7 +394,7 @@ class ControlPannel extends React.Component<IProps> {
             set={'facebook'}
             style={{ 
               width: '100%',
-              display: this.state.isEmojiPickerShowed == false ? 'none' : ''
+              display: this.props.isEmojiPickerShowed == false ? 'none' : ''
               }} 
           />
       </div>
