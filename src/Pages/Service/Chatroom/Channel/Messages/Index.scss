@@ -3,6 +3,12 @@
   @media (min-width: 576px){
     height: calc(100vh - 15vmin);
   }
+
+  &.emoji-picker-on {
+    @media (min-width: 576px){
+      height: calc(100vh - 59.6vmin);
+    }
+  }
 }
 
 

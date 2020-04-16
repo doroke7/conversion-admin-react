@@ -24,8 +24,11 @@ let oEventEmitter = new EventEmitter();
 
 class Messages extends React.Component<any> {
   public static contextType = Service.Tool;
-  public constructor(...oProps: any) {
+  public constructor(oProps: any) {
+    
     super(oProps);
+    
+    debugger;
     this.ref = React.createRef();
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
@@ -233,9 +236,11 @@ class Messages extends React.Component<any> {
       opacity: fOpacity,
     }
 
+    debugger;
+
     return (
       <div className="position-relative">
-        <div ref={this.ref} className="messages pt-4 pl-2 pr-2 pb-2 overflow-auto" onScroll={this.onScroll}>
+        <div ref={this.ref} className={'messages pt-4 pl-2 pr-2 pb-2 overflow-auto' + (this.props.isEmojiPickerShowed ? ' emoji-picker-on' : '')} onScroll={this.onScroll}>
           {aMessages.map((oMessage: any, iIndex: any) => (
           <Message
             src={oMessage.src}
@@ -261,8 +266,8 @@ class Messages extends React.Component<any> {
   }
 }
 
-const Wrapper = (...oProps: any) => (
-  <Service.Tool.Consumer>{oContext => <Messages context={oContext}>{...oProps}</Messages>}</Service.Tool.Consumer>
+const Wrapper = (oProps: any) => (
+  <Service.Tool.Consumer>{oContext => <Messages context={oContext} {...oProps}></Messages>}</Service.Tool.Consumer>
 );
 
 export default Wrapper;

@@ -57,7 +57,7 @@ class Channel extends React.Component<IProps> {
         {this.state.roomId ?
           <Row>
             <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
-              <Messages />
+              <Messages isEmojiPickerShowed={this.state.isEmojiPickerShowed}/>
               <ControlPannel isEmojiPickerShowed={this.state.isEmojiPickerShowed} toggleEmojiPicker={this.toggleEmojiPicker}>
               </ControlPannel>
             </Col>
