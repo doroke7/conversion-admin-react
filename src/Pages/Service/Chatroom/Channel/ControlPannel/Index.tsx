@@ -337,13 +337,13 @@ class ControlPannel extends React.Component<IProps> {
             </div>
             <div className="xs-d-none">档案</div>
           </span> */}
-          <span className="emoji-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
+          <span className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
             <div>
               <i className="iconfont icon-emoji emoji"></i>
             </div>
             <div className="xs-d-none">表情</div>
           </span>
-          <span className="d-inline-block textarea-wrapper">
+          <span className="d-inline-block ml-xs-1 textarea-wrapper">
             <TextArea
               className={'texarea'}
               //rows={2}

@@ -771,9 +771,17 @@
   }
 }
 
+.ml-xs-1 {
+  @media only screen and (max-width: 575.98px) {
+    margin-left: 1vmin !important;
+  }
+}
+
 .ml-1 {
   margin-left: 1vmin !important;
 }
+
+
 
 .ml-2 {
   margin-left: 2vmin !important;
