@@ -388,15 +388,18 @@ class ControlPannel extends React.Component<IProps> {
             />
           </Modal>
         </div>
-        <Picker
-            perLine={24}
-            showPreview={false}
-            set={'facebook'}
-            style={{ 
-              width: '100%',
-              display: this.props.isEmojiPickerShowed == false ? 'none' : ''
-              }} 
-          />
+        <div className="emoji-picker-wrapper xs-d-none">
+          <Picker
+              perLine={24}
+              showPreview={false}
+              set={'facebook'}
+              style={{ 
+                width: '100%',
+                display: this.props.isEmojiPickerShowed == false ? 'none' : ''
+                }}
+            />
+        </div>
+
       </div>
 
     );
