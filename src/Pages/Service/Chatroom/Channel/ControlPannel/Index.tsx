@@ -1,10 +1,6 @@
 import React from 'react';
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
-import EmojiPicker from 'emojione-picker';
-
-
-
 
 import { EventEmitter } from 'events';
 
@@ -36,7 +32,8 @@ interface IProps {
   roomId: any;
   onOKControlPannelModal: any;
   isEmojiPickerShowed: boolean;
-  toggleEmojiPicker: any;
+  toggleEmojiPicker: () => {};
+  togglePlusPicker: () => {};
 }
 
 class ControlPannel extends React.Component<IProps> {
@@ -330,13 +327,7 @@ class ControlPannel extends React.Component<IProps> {
     return (
       <div className="control-pannel-wrapper position-absolute bg-light">
         <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
-          {/* <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
-            <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
-            <div>
-              <i className="iconfont icon-image image"></i>
-            </div>
-            <div className="xs-d-none">档案</div>
-          </span> */}
+
           <span className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
             <div>
               <i className="iconfont icon-emoji emoji"></i>
@@ -359,7 +350,10 @@ class ControlPannel extends React.Component<IProps> {
             </div>
             <div className="xs-d-none">发送</div>
           </span>
-          <span className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+          <span 
+            className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1"
+            onClick={this.props.togglePlusPicker}
+          >
             <div>
               <i className="iconfont icon-plus plus"></i>
             </div>
@@ -401,7 +395,15 @@ class ControlPannel extends React.Component<IProps> {
                 }}
             />
         </div>
-
+        <div className={'plus-picker-wrapper ' + (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')}>
+          <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+            <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
+            <div>
+              <i className="iconfont icon-image image"></i>
+            </div>
+            <div className="xs-d-none">档案</div>
+          </span>
+        </div>
       </div>
 
     );

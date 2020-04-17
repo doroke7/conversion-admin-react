@@ -23,6 +23,8 @@ class Channel extends React.Component<IProps> {
     this.messagesRef = React.createRef();
 
     this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this);
+    this.togglePlusPicker = this.togglePlusPicker.bind(this);
+
     store.subscribe(() => {
       let oState = store.getState();
       let sRoomId = oState.roomId;
@@ -57,6 +59,21 @@ class Channel extends React.Component<IProps> {
     // this.messagesRef.current.scrollTop(322.3);
   }
 
+  public togglePlusPicker() {
+    let sPannelStatus = 'OFF';
+    if (this.state.pannelStatus == 'OFF' || this.state.pannelStatus == 'EMOJI') {
+      sPannelStatus = 'PLUS';   
+    } else if (this.state.pannelStatus == 'PLUS') {
+      // NOTHING
+    }
+    let oState = {
+      pannelStatus: sPannelStatus
+    };
+
+    this.setState(oState);
+    // this.messagesRef.current.scrollTop(322.3);
+  }
+
   public render () {
 
 
@@ -75,6 +92,7 @@ class Channel extends React.Component<IProps> {
               <ControlPannel
                 isEmojiPickerShowed={this.state.isEmojiPickerShowed}
                 toggleEmojiPicker={this.toggleEmojiPicker}
+                togglePlusPicker={this.togglePlusPicker}
                 pannelStatus={this.state.pannelStatus}
               >
               </ControlPannel>
