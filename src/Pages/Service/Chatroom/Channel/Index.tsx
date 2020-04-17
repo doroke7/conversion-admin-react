@@ -20,6 +20,7 @@ interface IProps {
 class Channel extends React.Component<IProps> {
   constructor(props: any) {
     super(props);
+    this.messagesRef = React.createRef();
 
     this.toggleEmojiPicker = this.toggleEmojiPicker.bind(this);
     store.subscribe(() => {
@@ -34,17 +35,26 @@ class Channel extends React.Component<IProps> {
 
   }
 
+  public messagesRef: any
+
   public state: any = {
     roomId: '',
-    isEmojiPickerShowed: false,
+    pannelStatus: 'OFF',
   };
 
   public toggleEmojiPicker() {
+    let sPannelStatus = 'OFF';
+    if (this.state.pannelStatus == 'OFF' || this.state.pannelStatus == 'PLUS') {
+      sPannelStatus = 'EMOJI';   
+    } else if (this.state.pannelStatus == 'EMOJI') {
+      // NOTHING
+    }
     let oState = {
-      isEmojiPickerShowed: !this.state.isEmojiPickerShowed
+      pannelStatus: sPannelStatus
     };
 
     this.setState(oState);
+    // this.messagesRef.current.scrollTop(322.3);
   }
 
   public render () {
@@ -57,8 +67,16 @@ class Channel extends React.Component<IProps> {
         {this.state.roomId ?
           <Row>
             <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
-              <Messages isEmojiPickerShowed={this.state.isEmojiPickerShowed}/>
-              <ControlPannel isEmojiPickerShowed={this.state.isEmojiPickerShowed} toggleEmojiPicker={this.toggleEmojiPicker}>
+              <Messages
+                ref={this.messagesRef}
+                isEmojiPickerShowed={this.state.isEmojiPickerShowed}
+                pannelStatus={this.state.pannelStatus}
+              />
+              <ControlPannel
+                isEmojiPickerShowed={this.state.isEmojiPickerShowed}
+                toggleEmojiPicker={this.toggleEmojiPicker}
+                pannelStatus={this.state.pannelStatus}
+              >
               </ControlPannel>
             </Col>
             <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">

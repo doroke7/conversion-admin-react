@@ -397,7 +397,7 @@ class ControlPannel extends React.Component<IProps> {
               set={'facebook'}
               style={{ 
                 width: '100%',
-                display: this.props.isEmojiPickerShowed == false ? 'none' : ''
+                display: this.props.pannelStatus == 'EMOJI' ? '' : 'none'
                 }}
             />
         </div>

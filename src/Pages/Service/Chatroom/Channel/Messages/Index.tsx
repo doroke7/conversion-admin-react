@@ -35,6 +35,7 @@ class Messages extends React.Component<any> {
     this.scrollTopToPosition = this.scrollTopToPosition.bind(this);
     this.scrollTopToBottom = this.scrollTopToBottom.bind(this);
     this.scrollTopToBottomForce = this.scrollTopToBottomForce.bind(this);
+    this.scrollTop = this.scrollTop.bind(this);
 
     store.subscribe(() => {
       let oState = store.getState();
@@ -116,6 +117,16 @@ class Messages extends React.Component<any> {
 
       this.ref.current.scrollTop = fScrollTop;
     }
+
+  }
+
+  public scrollTop(iLength: any){
+
+    if (this.ref.current.scrollTop + iLength > this.ref.current.scrollHeight - this.ref.current.offsetHeight) {
+      this.ref.current.scrollTop = this.ref.current.scrollTop + iLength;
+      return; 
+    }
+    this.ref.current.scrollTop = this.ref.current.scrollHeight - this.ref.current.offsetHeight;
 
   }
 
@@ -237,7 +248,7 @@ class Messages extends React.Component<any> {
 
     return (
       <div className="position-relative">
-        <div ref={this.ref} className={'messages pt-4 pl-2 pr-2 pb-2 overflow-auto' + (this.props.isEmojiPickerShowed ? ' emoji-picker-on' : '')} onScroll={this.onScroll}>
+        <div ref={this.ref} className={'messages pt-4 pl-2 pr-2 pb-2 overflow-auto' + (this.props.pannelStatus == 'EMOJI' ? ' emoji-picker-on' : '')} onScroll={this.onScroll}>
           {aMessages.map((oMessage: any, iIndex: any) => (
           <Message
             src={oMessage.src}
