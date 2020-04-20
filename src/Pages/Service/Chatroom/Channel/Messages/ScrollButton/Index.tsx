@@ -19,7 +19,7 @@ class ScrollButton extends React.Component<IProps> {
   public render() {
     return (
       <div className={"scroll-button position-absolute " + this.props.className} onClick={this.onClick} style={this.props.style}>
-        <div className="iconfont icon-down down"></div>
+        <span className="iconfont icon-down down"></span>
       </div>
     );
   }
