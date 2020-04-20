@@ -1,25 +1,76 @@
-.control-pannel-wrapper {
+.control-pannel {
   left: 0;
   right: 0;
   bottom: 0;
-  .control-pannel {
+  color: #2f62af;
+
+  .plus, .send, .image, .emoji, .red-envelope, .notification {
+    font-size: 7vmin;
+    @media (min-width: 576px){
+      font-size: 4.5vmin;
+    }
+  }
+  .plus-wrapper, .send-wrapper, .emoji-wrapper {
+    line-height: 1;
+    vertical-align: top;
+    cursor: pointer;
+    font-size: 3.5vmin;
+    @media (min-width: 576px){
+      font-size: 1.95vmin;
+    }
+  }
+
+  .square-pannel {
+    width: 9vmin;
+    height: 9vmin;
+    border-radius: 5px;
+  }
+
+  .square-pannel::before {
+    content: '';
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .image-wrapper, .red-envelope-wrapper, .notification-wrapper {
+
+    line-height: 1;
+    cursor: pointer;
+    font-size: 3.5vmin;
+    @media (min-width: 576px){
+      font-size: 1.95vmin;
+    }
+  }
+  
+
+  
+
+  input.file {
+    position: absolute;
+    top: 0;
+    // left: 0;
+    right: 0;
+    //bottom: 0;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    filter: alpha(opacity=0);
+    cursor: pointer
+  }
+
+  .main-pannel {
     user-select: none;
     height: 10vmin;
     line-height: 10vmin;
     bottom: 0;
     left: 0;
     right: 0;
-    color: #2f62af;
     border-top: 1px solid rgba(41,53,62,.18);
     @media (min-width: 576px){
       height: 10vmin;
     }
-    .plus, .send, .image, .emoji {
-      font-size: 7vmin;
-      @media (min-width: 576px){
-        font-size: 4.5vmin;
-      }
-    }
+
     .textarea-wrapper {
       width: calc( 100% - 19vmin);
       line-height: 1;
@@ -34,28 +85,9 @@
         }
       }
     }
-    .plus-wrapper, .send-wrapper, .image-wrapper, .emoji-wrapper  {
-      line-height: 1;
-      vertical-align: top;
-      cursor: pointer;
-      font-size: 3.5vmin;
-      @media (min-width: 576px){
-        font-size: 1.95vmin;
-      }
-    }
+
   
-    input.file {
-      position: absolute;
-      top: 0;
-      // left: 0;
-      right: 0;
-      //bottom: 0;
-      opacity: 0;
-      height: 100%;
-      width: 100%;
-      filter: alpha(opacity=0);
-      cursor: pointer
-    }
+
   
     .preview-image-wrapper {
       background: #EEEEEE;

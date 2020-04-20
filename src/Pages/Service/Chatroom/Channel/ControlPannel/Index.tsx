@@ -325,8 +325,8 @@ class ControlPannel extends React.Component<IProps> {
 
   public render() {
     return (
-      <div className="control-pannel-wrapper position-absolute bg-light">
-        <div className={'control-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
+      <div className="control-pannel position-absolute bg-light">
+        <div className={'main-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
 
           <span className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
             <div>
@@ -395,14 +395,33 @@ class ControlPannel extends React.Component<IProps> {
                 }}
             />
         </div>
-        <div className={'plus-picker-wrapper ' + (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')}>
-          <span className="image-wrapper position-relative d-inline-block text-center pl-1 pr-1">
+        <div className={'plus-picker-wrapper d-flex justify-content-around p-2 ' + (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')}>
+          <div className="square-pannel text-center position-relative bg-white">
             <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
-            <div>
-              <i className="iconfont icon-image image"></i>
-            </div>
-            <div className="xs-d-none">档案</div>
-          </span>
+            <span className="image-wrapper d-inline-block align-middle bg-white text-center pl-1 pr-1">
+              <div>
+                <i className="iconfont icon-image image"></i>
+              </div>
+              <div className="xs-d-none">档案</div>
+            </span>
+          </div>
+          <div className="square-pannel text-center position-relative bg-white">
+            <span className="red-envelope-wrapper d-inline-block align-middle bg-white text-center pl-1 pr-1">
+              <div>
+                <i className="iconfont icon-red-envelope red-envelope"></i>
+              </div>
+              <div className="xs-d-none">红包</div>
+            </span>
+          </div>
+          <div className="square-pannel text-center position-relative bg-white">
+            <span className="notification-wrapper d-inline-block align-middle bg-white text-center pl-1 pr-1">
+              <div>
+                <i className="iconfont icon-notification notification"></i>
+              </div>
+              <div className="xs-d-none">广播</div>
+            </span>
+          </div>
+
         </div>
       </div>
 
