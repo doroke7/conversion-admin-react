@@ -21,9 +21,13 @@
   }
 
   .square-pannel {
-    width: 9vmin;
-    height: 9vmin;
+    width: 12vmin;
+    height: 12vmin;
     border-radius: 5px;
+    @media (min-width: 576px){
+      width: 9vmin;
+      height: 9vmin;
+    }
   }
 
   .square-pannel::before {
@@ -37,10 +41,8 @@
 
     line-height: 1;
     cursor: pointer;
-    font-size: 3.5vmin;
-    @media (min-width: 576px){
-      font-size: 1.95vmin;
-    }
+    font-size: 1.95vmin;
+
   }
   
 

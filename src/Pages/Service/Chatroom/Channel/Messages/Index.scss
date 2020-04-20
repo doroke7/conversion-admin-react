@@ -1,36 +1,37 @@
 .messages {
-  height: calc(100vh - 20vmin);
+  height: calc(100vh - 32vmin);
   @media (min-width: 576px){
-    height: calc(100vh - 15vmin);
+    height: calc(100vh - 18vmin);
   }
 
   &.emoji-picker-on {
 
     @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-      height: calc(100vh - 15vmin - 322.3px);
+      height: calc(100vh - 18vmin - 322.3px);
     }
     
     @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-      height: calc(100vh - 15vmin - 322.3px);
+      height: calc(100vh - 18vmin - 322.3px);
     }
 
     @media only screen and (min-width: 992px) {
-      height: calc(100vh - 15vmin - 322.3px);
+      height: calc(100vh - 18vmin - 322.3px);
     }
   }
 
   &.plus-picker-on {
+    height: calc(100vh - 42vmin);
 
     @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-      height: calc(100vh - 28vmin);
+      height: calc(100vh - 31vmin);
     }
     
     @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-      height: calc(100vh - 28vmin);
+      height: calc(100vh - 31vmin);
     }
 
     @media only screen and (min-width: 992px) {
-      height: calc(100vh - 28vmin);
+      height: calc(100vh - 31vmin);
     }
   }
 }

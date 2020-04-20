@@ -1,61 +1,63 @@
-.chatroom .channel .top {
+.top {
   /* sm ~ */
+  .chatroom .channel & {
+    .title {
+      cursor: default;
+    }
+    height: 16vmin;
+    font-size: 5vmin;
+    @media (min-width: 576px){
+      height: 8vmin;
+      font-size: 2.5vmin;
+    }
+    background: rgb(58, 99, 170);
   
-  .title {
-    cursor: default;
-  }
-  height: 10vmin;
-  font-size: 5vmin;
-  @media (min-width: 576px){
-    height: 5vmin;
-    font-size: 2.5vmin;
-  }
-  background: rgb(58, 99, 170);
-
-  border-left: 1px solid #0d46a9;
-  .left {
-    left: 1.5vmin;
-    top: calc(50% - 4vmin);
-    @media (min-width: 576px){
-      top: calc(50% - 2.25vmin);
+    border-left: 1px solid #0d46a9;
+    .left {
+      left: 1.5vmin;
+      top: calc(50% - 4vmin);
+      @media (min-width: 576px){
+        top: calc(50% - 2.25vmin);
+      }
+      cursor: pointer;
     }
-    cursor: pointer;
-  }
-  .setting {
-    right: 9.5vmin;
-    top: calc(50% - 4vmin);
-    @media (min-width: 576px){
-      top: calc(50% - 2.25vmin);
-      right: 5.5vmin;
-    }    
-    cursor: pointer;
-  }
-  .list {
-    right: 1.5vmin;
-    top: calc(50% - 4vmin);
-
-    @media (min-width: 576px){
-      top: calc(50% - 2.25vmin);
-    }    
-    cursor: pointer;
-  }
-
-  .iconfont.icon-left, .iconfont.icon-setting, .iconfont.icon-list {
-    font-size: 6vmin;
-    @media (min-width: 576px){
-      font-size: 3vmin;
+    .setting {
+      right: 9.5vmin;
+      top: calc(50% - 4vmin);
+      @media (min-width: 576px){
+        top: calc(50% - 2.25vmin);
+        right: 5.5vmin;
+      }    
+      cursor: pointer;
+    }
+    .list {
+      right: 1.5vmin;
+      top: calc(50% - 4vmin);
+  
+      @media (min-width: 576px){
+        top: calc(50% - 2.25vmin);
+      }    
+      cursor: pointer;
+    }
+  
+    .iconfont.icon-left, .iconfont.icon-setting, .iconfont.icon-list {
+      font-size: 6vmin;
+      @media (min-width: 576px){
+        font-size: 3vmin;
+      }
+    }
+  
+    span::before {
+      content: "";
+      height:100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
     }
   }
 
-  span::before {
-    content: "";
-    height:100%;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  span {
-    vertical-align: middle;
-  }
 
 
 }

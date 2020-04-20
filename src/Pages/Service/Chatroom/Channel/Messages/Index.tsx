@@ -257,7 +257,7 @@ class Messages extends React.Component<any> {
 
     return (
       <div className="position-relative">
-        <div ref={this.ref} className={'messages pt-4 pl-2 pr-2 pb-2 overflow-auto ' + sClassName} onScroll={this.onScroll}>
+        <div ref={this.ref} className={'messages pt-4 pl-2 pr-2 pb-4 overflow-auto ' + sClassName} onScroll={this.onScroll}>
           {aMessages.map((oMessage: any, iIndex: any) => (
           <Message
             src={oMessage.src}

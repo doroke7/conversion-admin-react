@@ -1,8 +1,8 @@
 .channel {
   .room-wrapper, .detail-wrapper {
-    height: calc(100vh - 10vmin);
+    height: calc(100vh - 16vmin);
     @media (min-width: 576px){
-      height: calc(100vh - 5vmin);
+      height: calc(100vh - 8vmin);
     }
   }
   .room-wrapper{

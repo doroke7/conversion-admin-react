@@ -402,7 +402,7 @@ class ControlPannel extends React.Component<IProps> {
               <div>
                 <i className="iconfont icon-image image"></i>
               </div>
-              <div className="xs-d-none">档案</div>
+              <div className="">档案</div>
             </span>
           </div>
           <div className="square-pannel text-center position-relative bg-white">
@@ -410,7 +410,7 @@ class ControlPannel extends React.Component<IProps> {
               <div>
                 <i className="iconfont icon-red-envelope red-envelope"></i>
               </div>
-              <div className="xs-d-none">红包</div>
+              <div className="">红包</div>
             </span>
           </div>
           <div className="square-pannel text-center position-relative bg-white">
@@ -418,7 +418,7 @@ class ControlPannel extends React.Component<IProps> {
               <div>
                 <i className="iconfont icon-notification notification"></i>
               </div>
-              <div className="xs-d-none">广播</div>
+              <div className="">广播</div>
             </span>
           </div>
 
