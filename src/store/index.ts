@@ -22,13 +22,13 @@ const oReducer = combineReducers({
   users: userReducer,
   usersRooms: userRoomReducer,
   rooms: roomReducer,
-  roomId: roomIdReducer,
+  roomId: roomIdReducer
 });
 
 const oStore: any = createStore(
-  oReducer, 
+  oReducer,
   composeWithDevTools(
-    applyMiddleware(reduxThunk),
+    applyMiddleware(reduxThunk)
     // other store enhancers if any
   )
 );

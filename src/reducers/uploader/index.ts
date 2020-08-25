@@ -2,14 +2,13 @@ const oUploaderReducer = (oUploaders: any = {}, oAction: any) => {
   let _oUploaders = oAction.payload;
   switch (oAction.type) {
     case 'WILL_SEND':
-      oUploaders = { ...oUploaders, ..._oUploaders}
+      oUploaders = { ...oUploaders, ..._oUploaders };
       return oUploaders;
     case 'IS_SENDING':
-      oUploaders = { ...oUploaders, ..._oUploaders}
-      return oUploaders;    
+      oUploaders = { ...oUploaders, ..._oUploaders };
+      return oUploaders;
     case 'DID_SEND':
-      
-      oUploaders = { ...oUploaders, ..._oUploaders}
+      oUploaders = { ...oUploaders, ..._oUploaders };
       return oUploaders;
     default:
       return oUploaders;

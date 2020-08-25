@@ -14,7 +14,7 @@ import './Index.scss';
 
 interface IProps {
   // className?: string | null;
-  onLogout: any,
+  onLogout: any;
 }
 
 class Channel extends React.Component<IProps> {
@@ -34,20 +34,19 @@ class Channel extends React.Component<IProps> {
       };
       this.setState(_oState);
     });
-
   }
 
-  public messagesRef: any
+  public messagesRef: any;
 
   public state: any = {
     roomId: '',
-    pannelStatus: 'OFF',
+    pannelStatus: 'OFF'
   };
 
   public toggleEmojiPicker() {
     let sPannelStatus = 'OFF';
     if (this.state.pannelStatus == 'OFF' || this.state.pannelStatus == 'PLUS') {
-      sPannelStatus = 'EMOJI';   
+      sPannelStatus = 'EMOJI';
     } else if (this.state.pannelStatus == 'EMOJI') {
       // NOTHING
     }
@@ -62,7 +61,7 @@ class Channel extends React.Component<IProps> {
   public togglePlusPicker() {
     let sPannelStatus = 'OFF';
     if (this.state.pannelStatus == 'OFF' || this.state.pannelStatus == 'EMOJI') {
-      sPannelStatus = 'PLUS';   
+      sPannelStatus = 'PLUS';
     } else if (this.state.pannelStatus == 'PLUS') {
       // NOTHING
     }
@@ -74,14 +73,11 @@ class Channel extends React.Component<IProps> {
     // this.messagesRef.current.scrollTop(322.3);
   }
 
-  public render () {
-
-
-    
+  public render() {
     return (
       <div className="channel">
-        <Top onLogout={this.props.onLogout}/>
-        {this.state.roomId ?
+        <Top onLogout={this.props.onLogout} />
+        {this.state.roomId ? (
           <Row>
             <Col xs={24} sm={24} md={24} lg={24} xl={16} className="room-wrapper position-relative">
               <Messages
@@ -94,18 +90,19 @@ class Channel extends React.Component<IProps> {
                 toggleEmojiPicker={this.toggleEmojiPicker}
                 togglePlusPicker={this.togglePlusPicker}
                 pannelStatus={this.state.pannelStatus}
-              >
-              </ControlPannel>
+              ></ControlPannel>
             </Col>
             <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
               <Detail />
             </Col>
-          </Row> : 
+          </Row>
+        ) : (
           <Row>
             <Col xs={24} sm={24} md={24} lg={24} xl={24} className="position-relative">
               <None />
             </Col>
-          </Row>}
+          </Row>
+        )}
       </div>
     );
   }

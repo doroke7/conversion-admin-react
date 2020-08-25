@@ -9,14 +9,11 @@ function Administrator(): any {
 
   return (
     <div className={classes.root}>
-      <Commons.Admin.Menu >
+      <Commons.Admin.Menu>
         <Paper className={classes.paper}>
-          <div>
-            Administrator!!!!
-          </div>
+          <div>Administrator!!!!</div>
         </Paper>
-      </Commons.Admin.Menu >
-
+      </Commons.Admin.Menu>
     </div>
   );
 }

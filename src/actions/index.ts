@@ -6,12 +6,4 @@ import userRoomAction from './userRoom/';
 import roomActon from './room/';
 import roomIdAction from './roomId/';
 
-export {
-  roomActon,
-  uploaderAction,
-  authenticationAction,
-  roomMessageAction,
-  userAction,
-  userRoomAction,
-  roomIdAction
-};
+export { roomActon, uploaderAction, authenticationAction, roomMessageAction, userAction, userRoomAction, roomIdAction };

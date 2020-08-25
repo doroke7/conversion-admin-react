@@ -4,13 +4,9 @@ import clsx from 'clsx';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Clear from '@material-ui/icons/Clear';
 
-import {
-  tab
-} from '@/contexts';
+import { tab } from '@/contexts';
 
-import {
-  MENUS
-} from '@/CONFIGS';
+import { MENUS } from '@/CONFIGS';
 
 import style from './style';
 
@@ -26,17 +22,18 @@ function Tabs(oProps: any) {
       {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
         let oMenu = MENUS[_sMenuName];
         return (
-        <Link to={'/admin' + oMenu.path} className={clsx({
-          [classes.tab]: sMenuName !== _sMenuName,
-          [classes.tabEnable]: sMenuName === _sMenuName,
-        })}>
-          {<oMenu.Icon className={classes.icon}/>}
-          <span className={classes.text}>
-            {oMenu.text}
-          </span>
-          <Clear className={classes.clear} onClick={oProps.removeTab(iIndex)}/>
-        </Link>
-        )
+          <Link
+            to={'/admin' + oMenu.path}
+            className={clsx({
+              [classes.tab]: sMenuName !== _sMenuName,
+              [classes.tabEnable]: sMenuName === _sMenuName
+            })}
+          >
+            {<oMenu.Icon className={classes.icon} />}
+            <span className={classes.text}>{oMenu.text}</span>
+            <Clear className={classes.clear} onClick={oProps.removeTab(iIndex)} />
+          </Link>
+        );
       })}
     </div>
   );

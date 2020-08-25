@@ -1,6 +1,6 @@
 import React from 'react';
-import 'emoji-mart/css/emoji-mart.css'
-import { Picker } from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css';
+import { Picker } from 'emoji-mart';
 
 import { EventEmitter } from 'events';
 
@@ -66,7 +66,6 @@ class ControlPannel extends React.Component<IProps> {
     this.onComplete = this.onComplete.bind(this);
     this.onError = this.onError.bind(this);
     this.onAbort = this.onAbort.bind(this);
-
   }
 
   public static contextType = Service.Tool;
@@ -81,7 +80,7 @@ class ControlPannel extends React.Component<IProps> {
     src: emptyImage,
     file: null,
     text: '',
-    roomId: '',
+    roomId: ''
   };
 
   public onFileChange(oEvent: any) {
@@ -93,7 +92,7 @@ class ControlPannel extends React.Component<IProps> {
     }
 
     this.setState({
-      file: oFile,
+      file: oFile
     });
 
     this.showImageModal();
@@ -106,10 +105,10 @@ class ControlPannel extends React.Component<IProps> {
         oImage.title = oFile.name;
         oImage.src = _oEvent.target.result;
         this.setState({
-          src: _oEvent.target.result,
+          src: _oEvent.target.result
         });
       },
-      false,
+      false
     );
     oFileReader.readAsDataURL(oFile);
   }
@@ -118,7 +117,7 @@ class ControlPannel extends React.Component<IProps> {
 
   public setText(oEvent: any) {
     this.setState({
-      text: oEvent.target.value,
+      text: oEvent.target.value
     });
   }
 
@@ -126,13 +125,13 @@ class ControlPannel extends React.Component<IProps> {
     let oFile = this.ref.current;
 
     this.setState({
-      modal: false,
+      modal: false
     });
     oFile.value = null;
 
     setTimeout(() => {
       this.setState({
-        src: emptyImage,
+        src: emptyImage
       });
     }, 200);
   }
@@ -143,44 +142,44 @@ class ControlPannel extends React.Component<IProps> {
     let oFile = this.ref.current;
 
     this.setState({
-      modal: false,
+      modal: false
     });
 
     setTimeout(() => {
       this.setState({
-        src: emptyImage,
+        src: emptyImage
       });
     }, 200);
 
     let oMessage: any = {
       roomId: this.state.roomId,
       user: {
-        _id: AuthenticationHelper.getUserId(),
+        _id: AuthenticationHelper.getUserId()
       },
       user_id: AuthenticationHelper.getUserId(),
       text: this.state.text,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
-      loading: true,
+      loading: true
     };
 
     let aIds = this.chatroomFileSocket.upload(oFile, {
       uploadTo: 'roomMessage',
       data: {
         ...oMessage,
-        jwt: AuthenticationHelper.getJwt(),
-      },
+        jwt: AuthenticationHelper.getJwt()
+      }
     });
     // this.chatroomFileSocket.abort(aIds[0]);
     oFile.value = null;
     let oState = {
-      text: '',
+      text: ''
     };
     this.setState(oState);
   }
 
   public showImageModal() {
     this.setState({
-      modal: true,
+      modal: true
     });
   }
 
@@ -190,10 +189,8 @@ class ControlPannel extends React.Component<IProps> {
     }
   }
 
-
   public onSendMessage(oEvent: any) {
     let sText = this.state.text;
-
 
     if ('' === sText || null === sText || undefined === sText) {
       return;
@@ -217,15 +214,15 @@ class ControlPannel extends React.Component<IProps> {
         user_id: AuthenticationHelper.getUserId(),
         text: this.state.text,
         addedTime: new Date(),
-        loading: true,
+        loading: true
       };
       let aRoomsMessages = [
         {
-          '_id': this.state.roomId,
+          _id: this.state.roomId,
           messages: [
             {
               ...oMessage,
-              roomId: this.state.roomId,
+              roomId: this.state.roomId
             }
           ]
         }
@@ -241,14 +238,14 @@ class ControlPannel extends React.Component<IProps> {
         let _oMessage = {
           ...oMessage,
           roomId: this.state.roomId
-        }
+        };
         this.chatroomSocket.emit('MESSAGE ROOM MESSAGE', _oMessage);
       }
     } catch (oException) {
       //
     } finally {
       this.setState({
-        text: '',
+        text: ''
       });
       EmitterHelper.emit('messagesScrollToBottom', 1);
     }
@@ -256,19 +253,19 @@ class ControlPannel extends React.Component<IProps> {
 
   public onStart(oFileInfo: any) {
     let oUploaders = {
-      [oFileInfo.uploadId]: oFileInfo,
+      [oFileInfo.uploadId]: oFileInfo
     };
     let oMessage: any = {
       roomId: this.props.roomId,
       user: {
-        _id: AuthenticationHelper.getUserId(),
+        _id: AuthenticationHelper.getUserId()
       },
       text: this.state.text,
       uploaderId: oFileInfo.uploadId,
       src: this.state.src,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
       virtualId: AuthenticationHelper.getUserId() + '-' + Date.now(),
-      loading: true,
+      loading: true
     };
 
     let aMessages = [oMessage];
@@ -284,14 +281,14 @@ class ControlPannel extends React.Component<IProps> {
 
   public onStream(oFileInfo: any) {
     let oUploaders = {
-      [oFileInfo.uploadId]: oFileInfo,
+      [oFileInfo.uploadId]: oFileInfo
     };
     store.dispatch(uploaderAction.isSending(oUploaders));
   }
 
   public onComplete(oFileInfo: any) {
     let oUploaders = {
-      [oFileInfo.uploadId]: oFileInfo,
+      [oFileInfo.uploadId]: oFileInfo
     };
     store.dispatch(uploaderAction.didSend(oUploaders));
   }
@@ -312,7 +309,7 @@ class ControlPannel extends React.Component<IProps> {
     this.chatroomFileSocket.on('abort', this.onAbort);
   }
 
-  public componentDidMount(){
+  public componentDidMount() {
     // 因为此 原件 contrusct 时候， store 已经更新了
     let oState = store.getState();
     let sRoomId = oState.roomId;
@@ -327,8 +324,10 @@ class ControlPannel extends React.Component<IProps> {
     return (
       <div className="control-pannel position-absolute bg-light">
         <div className={'main-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
-
-          <span className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
+          <span
+            className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1"
+            onClick={this.props.toggleEmojiPicker}
+          >
             <div>
               <i className="iconfont icon-emoji emoji"></i>
             </div>
@@ -350,7 +349,7 @@ class ControlPannel extends React.Component<IProps> {
             </div>
             <div className="xs-d-none">发送</div>
           </span>
-          <span 
+          <span
             className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1"
             onClick={this.props.togglePlusPicker}
           >
@@ -384,18 +383,23 @@ class ControlPannel extends React.Component<IProps> {
         </div>
         <div className="emoji-picker-wrapper xs-d-none">
           <Picker
-              perLine={24}
-              color={'#2f62af'}
-              showPreview={false}
-              defaultSkin={4}
-              set={'facebook'}
-              style={{ 
-                width: '100%',
-                display: this.props.pannelStatus == 'EMOJI' ? '' : 'none'
-                }}
-            />
+            perLine={24}
+            color={'#2f62af'}
+            showPreview={false}
+            defaultSkin={4}
+            set={'facebook'}
+            style={{
+              width: '100%',
+              display: this.props.pannelStatus == 'EMOJI' ? '' : 'none'
+            }}
+          />
         </div>
-        <div className={'plus-picker-wrapper d-flex justify-content-around p-2 ' + (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')}>
+        <div
+          className={
+            'plus-picker-wrapper d-flex justify-content-around p-2 ' +
+            (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')
+          }
+        >
           <div className="square-pannel text-center position-relative bg-white">
             <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
             <span className="image-wrapper d-inline-block align-middle bg-white text-center pl-1 pr-1">
@@ -421,10 +425,8 @@ class ControlPannel extends React.Component<IProps> {
               <div className="">广播</div>
             </span>
           </div>
-
         </div>
       </div>
-
     );
   }
 }
@@ -432,7 +434,7 @@ class ControlPannel extends React.Component<IProps> {
 function ControlPannelWrapper(oProps: any) {
   return (
     <Service.Tool.Consumer>
-      {oContext => <ControlPannel context={oContext} {...oProps}></ControlPannel>}
+      {(oContext) => <ControlPannel context={oContext} {...oProps}></ControlPannel>}
     </Service.Tool.Consumer>
   );
 }

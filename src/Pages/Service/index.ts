@@ -5,5 +5,5 @@ import User from './User/Index';
 export default {
   Chatroom,
   Login,
-  User,
+  User
 };

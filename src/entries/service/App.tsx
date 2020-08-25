@@ -20,7 +20,7 @@ let sChatroomUrl =
 let oChatroomSocket = oIo(sChatroomUrl);
 let oSocketIOFileClient = new SocketIOFileClient(oChatroomSocket);
 let oSocketIOFileUploader = new SocketIOFileUpload(oChatroomSocket);
-let oNotificationEvent = new Event('notification', {'bubbles':true, 'cancelable':false});
+let oNotificationEvent = new Event('notification', { bubbles: true, cancelable: false });
 
 class App extends React.Component {
   public constructor(...oProps: any) {
@@ -28,7 +28,6 @@ class App extends React.Component {
     this.chatroom = oChatroomSocket;
     this.chatroomFile = oSocketIOFileClient;
     this.chatroomUploader = oSocketIOFileUploader;
-
   }
 
   public chatroom: any;
@@ -43,8 +42,7 @@ class App extends React.Component {
       chatroomUploader: this.chatroomUploader,
       notification: false,
       notificationEvent: oNotificationEvent,
-      isScrolling: false,
-
+      isScrolling: false
     };
 
     return (

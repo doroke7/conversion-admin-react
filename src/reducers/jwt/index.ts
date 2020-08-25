@@ -1,5 +1,5 @@
 const oJwt = (sJwt: string = '', oAction: any) => {
-  let _sJwt = oAction.payload ? oAction.payload: sJwt;
+  let _sJwt = oAction.payload ? oAction.payload : sJwt;
 
   switch (oAction.type) {
     case 'JWT_LOGIN':

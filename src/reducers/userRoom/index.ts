@@ -1,20 +1,21 @@
 const oUserRoomReducer = (oUsersRooms: any = false, oAction: any) => {
   let aUsersRooms;
+  let aRooms = [];
   switch (oAction.type) {
     case 'SHOW_USER_ROOM':
-      if(false === oUsersRooms){
+      if (false === oUsersRooms) {
         oUsersRooms = {};
       }
       aUsersRooms = oAction.payload;
 
       oUsersRooms = aUsersRooms.reduce((_oUsersRooms: any, oUser: any) => {
-        if(!_oUsersRooms[oUser._id]) {
+        if (!_oUsersRooms[oUser._id]) {
           oUsersRooms[oUser._id] = {
             rooms: {}
           };
         }
 
-        let aRooms = oUser.rooms;
+        aRooms = oUser.rooms;
 
         oUsersRooms[oUser._id]['rooms'] = aRooms.reduce((_oRooms: any, oRoom: any) => {
           _oRooms[oRoom._id] = oRoom;

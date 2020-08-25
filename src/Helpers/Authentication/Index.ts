@@ -54,7 +54,6 @@ class AuthenticationHelper {
     window.localStorage.removeItem('loginState');
   }
 
-
   public static setJwt(sJwt: string): void {
     window.localStorage.setItem('jwt', sJwt);
   }
@@ -67,10 +66,9 @@ class AuthenticationHelper {
       let oLoginState = JSON.parse(sLoginState);
       sAccessToken = oLoginState['accessToken'];
       return sAccessToken;
-    } catch(sException) {
+    } catch (sException) {
       return sAccessToken;
     }
-
   }
 }
 

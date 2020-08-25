@@ -1,8 +1,4 @@
-
-import {
-  AxiosHelper,
-  AuthenticationHelper,
-} from '@/Helpers/';
+import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
 let cShow: any = (aUsers: any, oResponse: any) => {
   return {
@@ -17,7 +13,6 @@ let oUserAction: any = {
     return {
       type: 'SHOW_USER',
       payload: aUsers
-
     };
   },
 
@@ -33,7 +28,7 @@ let oUserAction: any = {
         path: '/service/resource/user/show/' + sUserId,
         params: oBody,
         headers: {
-          'jwt': sJwt,  // 一定要 引号
+          jwt: sJwt // 一定要 引号
         }
       });
 
@@ -44,7 +39,7 @@ let oUserAction: any = {
       let aUsers = oResponse.data.users;
 
       cDispatch(cShow(aUsers, oResponse));
-    }
+    };
   },
 
   showViaMessage: (aMessages: any) => {

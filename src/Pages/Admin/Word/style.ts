@@ -1,16 +1,16 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
-const style = makeStyles((theme: Theme): any => 
+const style = makeStyles((theme: Theme): any =>
   createStyles({
     paper: {
       padding: theme.spacing(1),
       borderRadius: '6px',
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(2)
     },
     root: {
-      width: '100%',
+      width: '100%'
     }
   })
 );

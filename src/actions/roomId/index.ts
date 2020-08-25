@@ -9,7 +9,6 @@ let oRoomIdAction: any = {
     return {
       type: 'EDIT_ROOMID',
       payload: sRoomId
-
     };
   }
 };

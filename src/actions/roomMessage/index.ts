@@ -18,8 +18,7 @@ let oRoomMessageAction: any = {
       type: 'DID_SEND_ROOM_MESSAGE',
       payload: aRoomsMessages
     };
-  },
-
+  }
 };
 
 export default oRoomMessageAction;

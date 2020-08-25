@@ -1,23 +1,15 @@
 import oIo from 'socket.io-client';
-import {
-  AuthenticationHelper,
-} from '@/Helpers/';
+import { AuthenticationHelper } from '@/Helpers/';
 import { SOCKET } from '@/CONFIGS/';
 
 let sLoginUrl =
-  SOCKET.HOST +
-  (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT)
-    ? ':' + SOCKET.PORT
-    : '') +
-  '/login';
+  SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/login';
 
 const oLoginSocket = oIo(sLoginUrl);
 
 let sJwt = AuthenticationHelper.getJwt();
-let sChatroomUrl = SOCKET.HOST + 
-                  (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT)
-                   ? ':' + SOCKET.PORT : '') +
-                   '/chatroom';
+let sChatroomUrl =
+  SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';
 let oOption = {
   query: {
     jwt: sJwt
@@ -26,10 +18,9 @@ let oOption = {
 const oChatroomSocket = oIo(sChatroomUrl, oOption);
 
 class SocketHelper {
-  public constructor () {
-  }
+  public constructor() {}
   public static login = oLoginSocket;
   public static chatroom = oChatroomSocket;
-};
+}
 
 export default SocketHelper;

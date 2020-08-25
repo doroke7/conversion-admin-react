@@ -9,15 +9,11 @@ function Room(): any {
 
   return (
     <div className={classes.root}>
-      <Commons.Admin.Menu >
+      <Commons.Admin.Menu>
         <Paper className={classes.paper}>
-          <div>
-            ROOM
-          </div>
+          <div>ROOM</div>
         </Paper>
-
-      </Commons.Admin.Menu >
-
+      </Commons.Admin.Menu>
     </div>
   );
 }

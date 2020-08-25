@@ -12,13 +12,7 @@ import { AuthenticationHelper } from '@/Helpers/';
 
 import store from '@/store';
 
-import { 
-  roomMessageAction,
-  authenticationAction,
-  userAction,
-  roomActon,
-  userRoomAction
-} from '@/actions/';
+import { roomMessageAction, authenticationAction, userAction, roomActon, userRoomAction } from '@/actions/';
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
@@ -36,10 +30,7 @@ moment.locale(MOMENT.LOCALE);
 
 class Chatroom extends React.Component<any> {
   public constructor(...oProps: any) {
-
-
     super(oProps);
-  
 
     store.subscribe(() => {
       let oState = store.getState();
@@ -48,7 +39,7 @@ class Chatroom extends React.Component<any> {
 
       let _oState = {
         users: oUsers,
-        roomId: sRoomId,
+        roomId: sRoomId
       };
       this.setState(_oState);
     });
@@ -69,41 +60,37 @@ class Chatroom extends React.Component<any> {
         cResolve();
       });
 
-      let _sTitle =  '📨 您有新讯息...';
+      let _sTitle = '📨 您有新讯息...';
 
       let iSetInterval;
       // Chrome 66 无法 autoplay mp3
       // this.props.context.messageAudio.play();
-      oPromise.then(() => {
-        return new Promise((cResolve, cReject) => {
-          if (this.props.context.notifacation) {
-            document.title = _sTitle;
-            setTimeout(() => {
-              document.title = sTitle;
-      
-            }, 1500);
-          } 
-
-          iSetInterval = setInterval(() => {
+      oPromise
+        .then(() => {
+          return new Promise((cResolve, cReject) => {
             if (this.props.context.notifacation) {
               document.title = _sTitle;
               setTimeout(() => {
                 document.title = sTitle;
-        
               }, 1500);
-            } else {
-              cReject(iSetInterval);
             }
 
-      
-          }, 3000);
+            iSetInterval = setInterval(() => {
+              if (this.props.context.notifacation) {
+                document.title = _sTitle;
+                setTimeout(() => {
+                  document.title = sTitle;
+                }, 1500);
+              } else {
+                cReject(iSetInterval);
+              }
+            }, 3000);
+          });
+        })
+        .catch((iSetInterval) => {
+          clearInterval(iSetInterval);
         });
-      }).catch((iSetInterval) => {
-        clearInterval(iSetInterval);
-      });
-
-    })
-
+    });
   }
 
   public static contextType = Service.Tool;
@@ -128,13 +115,12 @@ class Chatroom extends React.Component<any> {
     }
 
     let oBody = {
-      jwt: AuthenticationHelper.getJwt(),
-    }
+      jwt: AuthenticationHelper.getJwt()
+    };
     this.chatroomSocket.emit('SHOW USER ROOM', oBody);
     this.chatroomSocket.emit('SHOW ROOM', void 0);
     this.chatroomSocket.emit('SHOW ROOM MESSAGE', void 0);
     this.chatroomSocket.emit('SHOW USER', void 0);
-
   }
 
   public ref: any;
@@ -148,7 +134,7 @@ class Chatroom extends React.Component<any> {
     roomsMessages: [],
     roomId: '',
     loading: true,
-    text: '',
+    text: ''
   };
 
   public roomId: any;
@@ -159,13 +145,13 @@ class Chatroom extends React.Component<any> {
     store.dispatch(roomActon.show(aRooms));
 
     this.setState({
-      rooms: aRooms,
+      rooms: aRooms
     });
   }
 
   public onShowRoomMessage(oBody: any) {
     this.setState({
-      loading: false,
+      loading: false
     });
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
@@ -176,22 +162,18 @@ class Chatroom extends React.Component<any> {
   public async onShowUserRoom(oBody: any) {
     try {
       if (-1 === oBody.result || !oBody.data) {
-        throw new Error('IT_FAILS_TO_SHOW_USER_ROOM')
+        throw new Error('IT_FAILS_TO_SHOW_USER_ROOM');
       }
       let oData = oBody['data'];
       let aUsersRooms = oData['users'];
 
       store.dispatch(userRoomAction.show(aUsersRooms));
-
     } catch (oExeption) {
       // DO NOTHING
       // 读取 users.$[user].rooms.$[room].count 未读书 失败
     }
-     
   }
   public async onPostRoomMessage(oBody: any) {
-  
-
     try {
       if (-1 === oBody.result && -1.05 === oBody.code) {
         throw new Error('THE_GUEST_CAN_NOT_SEND_MESSAGE');
@@ -207,17 +189,14 @@ class Chatroom extends React.Component<any> {
       let oMessage = aMessages.pop();
       let sUserId = oMessage.user_id;
       let iCount = oRoom.count;
-      if(sUserId && !this.state.users[sUserId]) {
+      if (sUserId && !this.state.users[sUserId]) {
         this.chatroomSocket.emit('SHOW USER', sUserId);
-
       }
 
       let _aRooms = [
         {
           ...oRoom,
-          messages: [
-            oMessage
-          ]
+          messages: [oMessage]
         }
       ];
 
@@ -226,21 +205,16 @@ class Chatroom extends React.Component<any> {
         window.document.dispatchEvent(this.props.context.notificationEvent);
       }
 
-      if(this.state.roomId == oRoom._id) {
-
+      if (this.state.roomId == oRoom._id) {
         let oBody = {
           jwt: AuthenticationHelper.getJwt(),
           room_id: this.state.roomId,
-          count: iCount,
-        }
+          count: iCount
+        };
         this.chatroomSocket.emit('READ USER ROOM', oBody);
-
       }
       await store.dispatch(roomMessageAction.didSend(_aRooms));
       await store.dispatch(roomActon.didSend(_aRooms));
-
-
-
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
@@ -248,19 +222,16 @@ class Chatroom extends React.Component<any> {
   }
 
   public async onReadUserRoom(oBody: any) {
-    if(oBody['data'] && oBody['data']['users']) {
+    if (oBody['data'] && oBody['data']['users']) {
       let oData = oBody['data'];
       let aUsersRooms = oData['users'];
       store.dispatch(userRoomAction.show(aUsersRooms));
-
     }
 
     // store.dispatch(userAction.show(aUsers));
-
   }
 
   public async onShowUser(oBody: any) {
-
     let oData = oBody['data'];
     let aUsers = oData['users'];
 
@@ -271,13 +242,11 @@ class Chatroom extends React.Component<any> {
     AuthenticationHelper.removeJwt();
   }
 
-  public componentDidMount() {
-
-  }
+  public componentDidMount() {}
 
   public componentDidUpdate() {}
 
-  public onClick () {
+  public onClick() {
     this.props.context.notifacation = false;
   }
 
@@ -300,7 +269,7 @@ class Chatroom extends React.Component<any> {
 }
 
 const Wrapper = (...oProps: any) => (
-  <Service.Tool.Consumer>{oContext => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Tool.Consumer>
+  <Service.Tool.Consumer>{(oContext) => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Tool.Consumer>
 );
 
 export default withRouter(Wrapper);

@@ -3,13 +3,9 @@ import moment from 'moment';
 
 import { Service } from '@/Commons';
 import store from '@/store';
-import {
-  roomIdAction
-} from '@/actions';
+import { roomIdAction } from '@/actions';
 
-import {
-  AuthenticationHelper
-} from '@/Helpers';
+import { AuthenticationHelper } from '@/Helpers';
 
 import './Index.scss';
 import Top from './Top/Index';
@@ -17,7 +13,6 @@ import Room from './Room/Index';
 
 class Rooms extends React.Component<any> {
   public static contextType = Service.Tool;
-
 
   public constructor(...oProps: any) {
     super(oProps);
@@ -29,20 +24,19 @@ class Rooms extends React.Component<any> {
       let oRooms = oState.rooms;
 
       let _oState = {
-        rooms: oRooms,
+        rooms: oRooms
       };
       this.setState(_oState);
     });
   }
 
   public state: any = {
-    rooms: [],
+    rooms: []
   };
 
-  public chatroomSocket: any
+  public chatroomSocket: any;
 
   public onClick(sRoomId: string, iCount) {
-  
     return () => {
       this.props.context.isScrolling = false;
       let oState = store.getState();
@@ -51,58 +45,56 @@ class Rooms extends React.Component<any> {
         let oBody = {
           jwt: AuthenticationHelper.getJwt(),
           room_id: this.state.roomId,
-          count: iCount,
-        }
+          count: iCount
+        };
         this.chatroomSocket.emit('READ USER ROOM', oBody);
         store.dispatch(roomIdAction.edit(sRoomId));
-
       }
     };
   }
 
-  public componentWillMount(){
+  public componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
-
   }
 
-  public componentDidMount() {
-  }
+  public componentDidMount() {}
 
-  public componentDidUpdate() {
-  }
+  public componentDidUpdate() {}
 
   public render() {
     let aRooms = Object.values(this.state.rooms);
-    aRooms = aRooms.sort((oRoom: any, _oRoom:any) => {
+    aRooms = aRooms.sort((oRoom: any, _oRoom: any) => {
       let aMessages = [...oRoom.messages];
       let _aMessages = [..._oRoom.messages];
       let oMessage = aMessages.pop();
       let _oMessage = _aMessages.pop();
-      let iDifferentTime = Number(moment(oMessage.addedTime).format('X')) - Number(moment(_oMessage.addedTime).format('X'));
+      let iDifferentTime =
+        Number(moment(oMessage.addedTime).format('X')) - Number(moment(_oMessage.addedTime).format('X'));
       let iResult = 0;
-      if(0 < iDifferentTime) {
+      if (0 < iDifferentTime) {
         iResult = -1;
       }
-      if(0 > iDifferentTime) {
+      if (0 > iDifferentTime) {
         iResult = 1;
       }
-      
+
       return iResult;
     });
     return (
       <div className="rooms">
         <Top />
         <div className="pseudo-rooms overflow-auto">
-          {aRooms.map((oRoom : any, iIndex) => 
-          <Room
-            icon={oRoom.icon}
-            name={oRoom.name}
-            messages={oRoom.messages}
-            count={oRoom.count}
-            id={oRoom._id}
-            editedTime={oRoom.editedTime} 
-            onClick={this.onClick(oRoom._id, oRoom.count)}
-          />)}
+          {aRooms.map((oRoom: any, iIndex) => (
+            <Room
+              icon={oRoom.icon}
+              name={oRoom.name}
+              messages={oRoom.messages}
+              count={oRoom.count}
+              id={oRoom._id}
+              editedTime={oRoom.editedTime}
+              onClick={this.onClick(oRoom._id, oRoom.count)}
+            />
+          ))}
         </div>
       </div>
     );
@@ -110,8 +102,8 @@ class Rooms extends React.Component<any> {
 }
 
 const Wrapper = (...oProps: any) => (
-  <Service.Tool.Consumer>{oValue => <Rooms context={oValue}>{...oProps}</Rooms>}</Service.Tool.Consumer>
+  <Service.Tool.Consumer>{(oValue) => <Rooms context={oValue}>{...oProps}</Rooms>}</Service.Tool.Consumer>
 );
-  // 使用 Wrapper  >> this.props.context
-  // 使用 ..       >> this.context
+// 使用 Wrapper  >> this.props.context
+// 使用 ..       >> this.context
 export default Wrapper;

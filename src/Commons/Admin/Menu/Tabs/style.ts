@@ -4,10 +4,10 @@ import { pink, grey } from '@material-ui/core/colors';
 const style = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
+      display: 'flex'
     },
     wrapperTabs: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(1)
     },
     tab: {
       padding: theme.spacing(1),
@@ -18,7 +18,7 @@ const style = makeStyles((theme: Theme) =>
       borderBottom: 'none',
       borderRadius: '0.5rem 0.5rem 0 0',
       cursor: 'pointer',
-      textDecoration: 'none',
+      textDecoration: 'none'
     },
     tabEnable: {
       padding: theme.spacing(1),
@@ -30,21 +30,19 @@ const style = makeStyles((theme: Theme) =>
       textDecoration: 'none',
       backgroundColor: '#ffffff'
     },
-    icon:{
+    icon: {
       verticalAlign: 'middle',
       marginRight: theme.spacing(1)
     },
     text: {
       verticalAlign: 'middle',
       marginRight: theme.spacing(1)
-
     },
     clear: {
       verticalAlign: 'middle',
-      fontWeight: 100,
+      fontWeight: 100
     }
-
-  }),
+  })
 );
 
 export default style;

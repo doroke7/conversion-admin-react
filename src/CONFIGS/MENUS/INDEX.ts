@@ -1,4 +1,3 @@
-
 import AccountBox from '@material-ui/icons/AccountBox';
 import FormatListNumberedRtl from '@material-ui/icons/FormatListNumberedRtl';
 import HighlightOff from '@material-ui/icons/HighlightOff';
@@ -9,7 +8,7 @@ const MENUS: any = {
     text: '房間',
     description: '聊天室的房間列表',
     path: '/room',
-    Icon: FormatListNumberedRtl,
+    Icon: FormatListNumberedRtl
   },
   user: {
     text: '會員',
@@ -28,7 +27,7 @@ const MENUS: any = {
     description: '禁止字列表',
     path: '/word',
     Icon: HighlightOff
-  },
+  }
 };
 
 export default MENUS;

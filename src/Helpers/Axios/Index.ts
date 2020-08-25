@@ -37,7 +37,7 @@ class AxiosHelper {
           oOptions = {
             params: oParams,
             data: oParams,
-            headers: oHeaders,
+            headers: oHeaders
           };
 
           let oAxiosResponse;
@@ -55,7 +55,7 @@ class AxiosHelper {
       }
 
       aResponses = await Promise.all(
-        aRequests.map(async oRequest => {
+        aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
           let oHeaders = oRequest.headers;
@@ -63,7 +63,7 @@ class AxiosHelper {
           oOptions = {
             params: oParams,
             data: oParams,
-            headers: oHeaders,
+            headers: oHeaders
           };
 
           let oAxiosResponse;
@@ -75,7 +75,7 @@ class AxiosHelper {
           let oResponse = oAxiosResponse.data;
 
           return oResponse;
-        }),
+        })
       );
 
       return aResponses;
@@ -89,7 +89,7 @@ class AxiosHelper {
     oOptions = {
       params: oParams,
       data: oParams,
-      headers: oHeaders,
+      headers: oHeaders
     };
 
     let oAxiosResponse;
@@ -137,7 +137,7 @@ class AxiosHelper {
       }
 
       aResponses = await Promise.all(
-        aRequests.map(async oRequest => {
+        aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           let oParams = oRequest.params;
           oOptions = oRequest.options;
@@ -150,7 +150,7 @@ class AxiosHelper {
           }
           let oResponse = oAxiosReponse.data;
           return oResponse;
-        }),
+        })
       );
 
       return aResponses;

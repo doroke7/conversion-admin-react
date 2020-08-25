@@ -6,12 +6,4 @@ import MODALS from './MODALS/INDEX';
 import HTTP from './HTTP/INDEX';
 import MENUS from './MENUS/INDEX';
 
-export {
-  SOCKET,
-  STORAGE,
-  MOMENT,
-  MESSAGES,
-  HTTP,
-  MODALS,
-  MENUS
-};
+export { SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };

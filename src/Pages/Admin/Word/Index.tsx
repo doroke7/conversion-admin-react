@@ -18,7 +18,7 @@ function Word(): any {
   let classes: any = style(void 0);
   let dispatch = useDispatch();
   let [oState, setState] = useState<State>({
-    words: [],
+    words: []
   });
   // let aWords = useSelector((_oState: any) => {
   //   let aWords = _oState.words;
@@ -35,25 +35,22 @@ function Word(): any {
       debugger;
       let oStore = useStore();
       debugger;
-
     } catch (oExeption) {
       debugger;
       oExeption;
     }
-  };
+  }
   useEffect(() => {
     showWord();
   });
 
-
   return (
     <div className={classes.root}>
-      <Commons.Admin.Menu >
+      <Commons.Admin.Menu>
         <Paper className={classes.paper}>
           <Components.Admin.Table />
         </Paper>
-      </Commons.Admin.Menu >
-
+      </Commons.Admin.Menu>
     </div>
   );
 }

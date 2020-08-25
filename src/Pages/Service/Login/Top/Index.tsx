@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import Modal from 'antd/es/modal';
 import Drawer from 'antd/es/drawer';
@@ -13,45 +13,42 @@ class Top extends React.Component {
 
   public state = {
     modal: false,
-    drawer: false,
+    drawer: false
   };
 
   public showModal = () => {
     this.setState({
-      modal: true,
+      modal: true
     });
   };
 
   public handleOk = (e: any) => {
     this.setState({
-      modal: true,
+      modal: true
     });
   };
 
   public handleCancel = (e: any) => {
     this.setState({
-      modal: false,
+      modal: false
     });
   };
 
   showDrawer = () => {
     this.setState({
-      drawer: true,
+      drawer: true
     });
   };
 
   onClose = () => {
     this.setState({
-      drawer: false,
+      drawer: false
     });
   };
 
+  public componentDidMount() {}
 
-  public componentDidMount() {
-  }
-
-  public componentDidUpdate() {
-  }
+  public componentDidUpdate() {}
 
   public render() {
     return (

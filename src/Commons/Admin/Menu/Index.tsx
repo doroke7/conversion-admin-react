@@ -24,17 +24,11 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import Tabs from './Tabs/Index';
 
-import {
-  tab
-} from '@/contexts';
+import { tab } from '@/contexts';
 
-import {
-  TabHelper
-} from '@/Helpers';
+import { TabHelper } from '@/Helpers';
 
-import {
-  MENUS
-} from '@/CONFIGS';
+import { MENUS } from '@/CONFIGS';
 
 import style from './style';
 
@@ -46,7 +40,7 @@ function Menu(oProps: any) {
 
   const [oState, setState] = React.useState<any>({
     open: true,
-    tabs: TabHelper.get(),    // 更換 route 的時候 , React Componet 重新 render, state init
+    tabs: TabHelper.get() // 更換 route 的時候 , React Componet 重新 render, state init
   });
 
   let sPathname = oProps.location.pathname;
@@ -54,15 +48,15 @@ function Menu(oProps: any) {
 
   useEffect(() => {
     // componentDidMount is here!
-    if(sMenuName) {
+    if (sMenuName) {
       let oTab = MENUS[sMenuName];
       enableTab(oTab);
     }
 
     return () => {
-        // componentWillUnmount is here!
-    }
-  },[]);
+      // componentWillUnmount is here!
+    };
+  }, []);
 
   function handleDrawerOpen() {
     setState({ ...oState, open: true });
@@ -78,21 +72,21 @@ function Menu(oProps: any) {
     };
   }
 
-  function enableTab(oMenu: any){
+  function enableTab(oMenu: any) {
     let aTabs: any[] = TabHelper.get();
     let iIndex;
     let iLength = aTabs.length;
     let bExistent = false;
     let sMenuName = oMenu.path.replace(/\//gi, '');
-    
-    for(iIndex = 0; iIndex < iLength; iIndex++) {
+
+    for (iIndex = 0; iIndex < iLength; iIndex++) {
       let _sMenuName: any = aTabs[iIndex];
-      if(sMenuName === _sMenuName) {
+      if (sMenuName === _sMenuName) {
         bExistent = true;
         break;
       }
     }
-    if(!bExistent) {
+    if (!bExistent) {
       aTabs.push(sMenuName);
     }
     setState({ ...oState, tabs: aTabs });
@@ -101,12 +95,12 @@ function Menu(oProps: any) {
 
   function removeTab(iIndex: number) {
     return (oEvent: any) => {
-      oEvent.stopPropagation();  // 取消冒泡 取消 <Link></Link>
-      oEvent.preventDefault();   // 取消 a tag 取消 href
+      oEvent.stopPropagation(); // 取消冒泡 取消 <Link></Link>
+      oEvent.preventDefault(); // 取消 a tag 取消 href
 
       let aTabs: any[] = TabHelper.get();
       let _aTabs: any[] = TabHelper.get();
-  
+
       let _sMenuName = aTabs[iIndex];
       _aTabs.splice(iIndex, 1);
       setState({ ...oState, tabs: _aTabs });
@@ -120,19 +114,18 @@ function Menu(oProps: any) {
         oProps.history.push('/admin/' + __sMenuName);
         return;
       }
-  
+
       if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 === aTabs.length) {
         let __sMenuName = aTabs[iIndex - 1];
         oProps.history.push('/admin/' + __sMenuName);
         return;
       }
-  
+
       if (sMenuName !== _sMenuName) {
         // do nothing
         return;
       }
-    }
-
+    };
   }
 
   return (
@@ -140,7 +133,7 @@ function Menu(oProps: any) {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: oState.open,
+          [classes.appBarShift]: oState.open
         })}
       >
         <Toolbar>
@@ -150,7 +143,7 @@ function Menu(oProps: any) {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: oState.open,
+              [classes.hide]: oState.open
             })}
           >
             <MenuIcon />
@@ -164,13 +157,13 @@ function Menu(oProps: any) {
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: oState.open,
-          [classes.drawerClose]: !oState.open,
+          [classes.drawerClose]: !oState.open
         })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: oState.open,
-            [classes.drawerClose]: !oState.open,
-          }),
+            [classes.drawerClose]: !oState.open
+          })
         }}
         open={oState.open}
       >
@@ -182,12 +175,15 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
-            <Link to={'/admin' + oMenu.path} className={clsx(classes.link, {
-            })} onClick={handleClick(oMenu)}>
-              <ListItem button key={oMenu.text} className={clsx({
-                [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, ''),
-              })}>
-                <ListItemIcon>{ <oMenu.Icon /> }</ListItemIcon>
+            <Link to={'/admin' + oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)}>
+              <ListItem
+                button
+                key={oMenu.text}
+                className={clsx({
+                  [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, '')
+                })}
+              >
+                <ListItemIcon>{<oMenu.Icon />}</ListItemIcon>
                 <ListItemText primary={oMenu.text} />
               </ListItem>
             </Link>
@@ -204,22 +200,19 @@ function Menu(oProps: any) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar}>
-        </div>
+        <div className={classes.toolbar}></div>
         <tab.Provider value={oState.tabs}>
-          <Tabs removeTab={removeTab}/>
+          <Tabs removeTab={removeTab} />
         </tab.Provider>
         <Paper className={classes.paper}>
-            <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-              {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
-            </Box>
-            <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-              {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
-            </Box>
-          </Paper>
-        <div className={classes.subContent}>
-          {oProps.children}
-        </div>
+          <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
+            {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+          </Box>
+          <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
+            {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+          </Box>
+        </Paper>
+        <div className={classes.subContent}>{oProps.children}</div>
       </main>
     </div>
   );

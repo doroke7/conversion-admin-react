@@ -9,15 +9,12 @@ function _(): any {
 
   return (
     <div className={classes.root}>
-      <Admin.Menu >
+      <Admin.Menu>
         <div className={classes.iconWrapper}>
-          <ImportantDevices className={classes.icon}/>
+          <ImportantDevices className={classes.icon} />
         </div>
-        <div className={classes.text}>
-          - 後台管理平台 -
-        </div>
-      </Admin.Menu >
-
+        <div className={classes.text}>- 後台管理平台 -</div>
+      </Admin.Menu>
     </div>
   );
 }

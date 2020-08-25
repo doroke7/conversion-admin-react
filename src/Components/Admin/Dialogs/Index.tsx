@@ -20,7 +20,7 @@ function Dialogs(oProps: any): any {
 
   let [oState, setState] = React.useState<State>({
     open: oProps.open,
-    text: '',
+    text: ''
   });
 
   React.useEffect(() => {
@@ -36,13 +36,11 @@ function Dialogs(oProps: any): any {
       aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">
-        <ErrorOutline className={classes.errorIcon}/>
+        <ErrorOutline className={classes.errorIcon} />
         <span className={classes.title}>错误</span>
-        </DialogTitle>
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          {oProps.text}
-        </DialogContentText>
+        <DialogContentText>{oProps.text}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={oProps.onClose} color="primary" autoFocus>

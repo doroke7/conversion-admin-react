@@ -5,21 +5,21 @@ import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 let cLogIn: any = (sJwt: any) => {
   return {
     type: 'JWT_LOGIN',
-    payload: sJwt,
+    payload: sJwt
   };
 };
 
 let cRefresh: any = (sJwt: any) => {
   return {
     type: 'JWT_REFRESH',
-    payload: sJwt,
+    payload: sJwt
   };
 };
 
 let cSignIn: any = (sJwt: any) => {
   return {
     type: 'JWT_SIGNIN',
-    payload: sJwt,
+    payload: sJwt
   };
 };
 
@@ -28,7 +28,7 @@ let oAuthenticationAction: any = {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
         path: '/service/authentication/authentication/log-in',
-        params: oBody,
+        params: oBody
       });
 
       if (-1 === oResponse.result || !oResponse.jwt) {
@@ -49,14 +49,14 @@ let oAuthenticationAction: any = {
 
         let oOptions = {
           headers: {
-            jwt: sJwt, // 一定要 引号
+            jwt: sJwt // 一定要 引号
             // 'access-token': sAccessToken,
-          },
+          }
         };
         let oResponse = await AxiosHelper.post({
           path: '/service/authentication/authentication/refresh',
           params: oBody,
-          options: oOptions,
+          options: oOptions
         });
         if (-1 === oResponse.jwt.result || !oResponse.jwt) {
           throw new Error('IT_FAILS_TO_REFRESH_JWT');
@@ -82,15 +82,15 @@ let oAuthenticationAction: any = {
       let oOptions = {
         headers: {
           jwt: sJwt, // 一定要 引号
-          'access-token': sAccessToken,
-        },
+          'access-token': sAccessToken
+        }
       };
 
       if (sAccessToken) {
         let oResponse = await AxiosHelper.post({
           path: '/service/authentication/authentication/access-token-to-jwt',
           params: oBody,
-          options: oOptions,
+          options: oOptions
         });
         if (-1 === oResponse.result || !oResponse.jwt) {
           throw new Error('IT_FAILS_TO_LOGIN_VIA_ACESS_TOKEN');
@@ -105,10 +105,10 @@ let oAuthenticationAction: any = {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
         path: '/admin/authentication/authentication/sign-in',
-        params: oBody,
+        params: oBody
       });
 
-      if(!oResponse) {
+      if (!oResponse) {
         throw new Error('THE_NETWORK_IS_ERROR');
       }
 
@@ -120,7 +120,7 @@ let oAuthenticationAction: any = {
       AuthenticationHelper.setJwt(sJwt);
       cDispatch(cSignIn(sJwt));
     };
-  },
+  }
 };
 
 export default oAuthenticationAction;

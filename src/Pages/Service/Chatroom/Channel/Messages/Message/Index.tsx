@@ -8,9 +8,7 @@ import Progress from 'antd/es/progress';
 
 import store from '@/store';
 
-import {
-  AuthenticationHelper
-} from '@/Helpers';
+import { AuthenticationHelper } from '@/Helpers';
 
 import './Index.scss';
 
@@ -37,12 +35,10 @@ interface IProps {
 }
 
 class Message extends React.Component<IProps> {
-
   public constructor(...oProps: any) {
     super(oProps);
     this.onUserUrlError = this.onUserUrlError.bind(this);
     this.onLoad = this.onLoad.bind(this);
-
   }
 
   public state: any = {
@@ -51,13 +47,12 @@ class Message extends React.Component<IProps> {
     progressDispaly: true,
     src: '',
     url: '',
-    srcDisplay: true,
+    srcDisplay: true
   };
 
   public eventEmitter: any;
   public progress: number | void;
   public src: string;
-
 
   public onLoad(oEvent: any) {
     this.props.scrollTopToPosition();
@@ -65,35 +60,29 @@ class Message extends React.Component<IProps> {
     //   srcDisplay: true,
     // });
     // this.props.setScrollHeight();
-
   }
   public onUserUrlError(oEvent: any) {
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + USER_ERROR_SRC;
     let _oState: any = {
-      url: sSrc,
+      url: sSrc
     };
     this.setState(_oState);
-
   }
 
   public onMessageSrcError(oEvent: any) {
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC;
     let _oState: any = {
-      src: sSrc,
+      src: sSrc
     };
     this.setState(_oState);
-
   }
 
   public componentDidMount() {
-
-
     let oState = store.getState();
     let oUploaders = oState.uploaders;
     let oUsers = oState.users;
     let _oState: any = {
-      users: oUsers,
-
+      users: oUsers
     };
     // if (oUploaders[this.props.uploaderId]) {
 
@@ -109,17 +98,17 @@ class Message extends React.Component<IProps> {
     // }
     this.setState(_oState);
     this.props.scrollTopToBottom();
-
   }
 
-  public componentWillReceiveProps(oNextProps: any){
-
-  }
+  public componentWillReceiveProps(oNextProps: any) {}
 
   public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
-    let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf('http') || 0 === oNextProps.src.indexOf('data:') ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
+    let sSrc =
+      !oNextProps.src || 0 === oNextProps.src.indexOf('http') || 0 === oNextProps.src.indexOf('data:')
+        ? oNextProps.src
+        : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src;
 
-    if (sSrc !== oPrevState.src  && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC) {
+    if (sSrc !== oPrevState.src && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC) {
       return {
         src: sSrc
       };
@@ -130,7 +119,7 @@ class Message extends React.Component<IProps> {
     };
   }
 
-  public componentDidUpdate(a: any){
+  public componentDidUpdate(a: any) {
     // if (100 === this.progress) {
     //   let oState = {
     //     progressDispaly: false
@@ -138,103 +127,139 @@ class Message extends React.Component<IProps> {
     //   this.setState(oState);
     // }
     this.props.scrollTopToBottom();
-
   }
-  
 
-
-  public shouldComponentUpdate(oNextProps: any, oNextState: any){
+  public shouldComponentUpdate(oNextProps: any, oNextState: any) {
     return true;
 
     let sUploaderId = this.props.uploaderId;
-    // if (oNextProps.messageId === this.props.messageId && 
-    //     oNextProps.loading === this.props.loading && 
+    // if (oNextProps.messageId === this.props.messageId &&
+    //     oNextProps.loading === this.props.loading &&
     //     !this.props.uploaderId ) {
     //   return false;
     // }
   }
 
-  public componentWillUnmount() {
-  }
+  public componentWillUnmount() {}
 
   public render() {
     let sUserId = AuthenticationHelper.getUserId();
 
     let position = this.props.userId === sUserId || !this.props.userId ? 'right' : 'left';
-    let sUrl = this.state.users && this.state.users[this.props.userId] ? window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + this.state.users[this.props.userId].url : '';
+    let sUrl =
+      this.state.users && this.state.users[this.props.userId]
+        ? window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + this.state.users[this.props.userId].url
+        : '';
     sUrl = this.state.url ? this.state.url : sUrl;
 
-    let sRole = this.state.users && this.state.users[this.props.userId] ? (this.state.users[this.props.userId].role).toLowerCase() : '';
+    let sRole =
+      this.state.users && this.state.users[this.props.userId]
+        ? this.state.users[this.props.userId].role.toLowerCase()
+        : '';
     let sUploaderId = this.props.uploaderId;
 
-    if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
-      let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
+    if (
+      this.state &&
+      this.state.uploaders[sUploaderId] &&
+      (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) &&
+      0 < this.state.uploaders[sUploaderId].size
+    ) {
+      let fProgress =
+        ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) /
+          this.state.uploaders[sUploaderId].size) *
+        100;
       this.progress = Math.floor(fProgress);
     }
 
     if (100 === this.progress && this.state.progressDispaly) {
       let oState = {
         progressDispaly: false
-      }
+      };
       setTimeout(async () => {
         this.setState(oState);
-      }, 1)
+      }, 1);
     }
 
-  
-    let _sTime :any = moment().format('YYYY-MM-DD 00:00:00');
-    
+    let _sTime: any = moment().format('YYYY-MM-DD 00:00:00');
+
     let iSecond = Number(moment(this.props.time).format('X')) - Number(moment(_sTime).format('X'));
 
-    let sTime = iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
+    let sTime =
+      iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
 
     return (
-      <div className={'message d-flex justify-content-end '+ (this.state.users[this.props.userId] ? '' : 'd-none ' ) +(position === 'right' ? 'flex-row ' : 'flex-row-reverse ') + ' ' + (position === 'right' ? 'text-right ' : 'text-left ') + position + ' ' + sRole}>
-        <span className={'loading-wrapper d-inline-block align-bottom ' + (!this.props.loading || this.state.src  ? 'd-none' : '' )}>
-          <Spin indicator={
-            <div className="loading">
-              <div>
+      <div
+        className={
+          'message d-flex justify-content-end ' +
+          (this.state.users[this.props.userId] ? '' : 'd-none ') +
+          (position === 'right' ? 'flex-row ' : 'flex-row-reverse ') +
+          ' ' +
+          (position === 'right' ? 'text-right ' : 'text-left ') +
+          position +
+          ' ' +
+          sRole
+        }
+      >
+        <span
+          className={
+            'loading-wrapper d-inline-block align-bottom ' + (!this.props.loading || this.state.src ? 'd-none' : '')
+          }
+        >
+          <Spin
+            indicator={
+              <div className="loading">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
               </div>
-              <div>
-              </div>
-              <div>
-              </div>
-              <div>
-              </div>
-            </div>} />
+            }
+          />
         </span>
         <span className="time-name-conten-wrapper d-inline-block align-top">
-          <div className={'time-name d-flex justify-content-end ' + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
+          <div
+            className={
+              'time-name d-flex justify-content-end ' + (position === 'right' ? 'flex-row' : 'flex-row-reverse')
+            }
+          >
             <span className="time">{sTime}</span>
-            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ''}</span>
+            <span className="name">
+              {this.props.userId && this.state.users && this.state.users[this.props.userId]
+                ? this.state.users[this.props.userId].nickname
+                : ''}
+            </span>
           </div>
           <span className={'content text-left d-inline-block'}>
             <div className="image position-relative">
-              {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? 
-               <Progress 
-                className={'position-absolute progress ' + (!this.state.progressDispaly ? 'd-none' : '')}
-                type="dashboard" 
-                percent={this.progress ? this.progress : 0} /> : 
-               null}
+              {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? (
+                <Progress
+                  className={'position-absolute progress ' + (!this.state.progressDispaly ? 'd-none' : '')}
+                  type="dashboard"
+                  percent={this.progress ? this.progress : 0}
+                />
+              ) : null}
 
-              {this.state.src ? (<img 
-                            onLoad={this.onLoad}
-                            onError={this.onMessageSrcError}
-                            src={this.state.src}
-                            className={(undefined === this.progress || !this.state.progressDispaly ? '' : 'opacity ') + (false === this.state.srcDisplay ? 'd-none' : '')}/>) : null}
+              {this.state.src ? (
+                <img
+                  onLoad={this.onLoad}
+                  onError={this.onMessageSrcError}
+                  src={this.state.src}
+                  className={
+                    (undefined === this.progress || !this.state.progressDispaly ? '' : 'opacity ') +
+                    (false === this.state.srcDisplay ? 'd-none' : '')
+                  }
+                />
+              ) : null}
             </div>
-            <div className="text">
-              {htmlReactParser(this.props.text.replace(new RegExp('\n', 'gm'),'<br />'))}
-            </div>
+            <div className="text">{htmlReactParser(this.props.text.replace(new RegExp('\n', 'gm'), '<br />'))}</div>
           </span>
         </span>
         <span className="d-inline-block align-top">
-          <div className="triangle">
-          </div>
+          <div className="triangle"></div>
         </span>
         <span className="d-inline-block align-top">
           <div className="avator">
-            <img src={sUrl} data-user-id={this.props.userId} onError={this.onUserUrlError}/>
+            <img src={sUrl} data-user-id={this.props.userId} onError={this.onUserUrlError} />
           </div>
         </span>
       </div>

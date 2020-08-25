@@ -3,7 +3,6 @@ let oRoomAction: any = {
     return {
       type: 'SHOW_ROOM',
       payload: aRooms
-
     };
   },
   didSend: (aRooms: any) => {
@@ -11,7 +10,7 @@ let oRoomAction: any = {
       type: 'DID_SEND_ROOM',
       payload: aRooms
     };
-  },
+  }
 };
 
 export default oRoomAction;

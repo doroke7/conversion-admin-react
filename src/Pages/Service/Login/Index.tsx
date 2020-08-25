@@ -38,7 +38,7 @@ class Login extends React.Component<IProps> {
 
     this.state = {
       name: '',
-      password: '',
+      password: ''
     };
   }
 
@@ -48,7 +48,7 @@ class Login extends React.Component<IProps> {
     try {
       let oBody = {
         name: this.state.name,
-        password: this.state.password,
+        password: this.state.password
       };
 
       if (!oBody.name) {
@@ -66,20 +66,20 @@ class Login extends React.Component<IProps> {
       let MODAL = MODALS[sMessage] || MODALS['IT_IS_UNKNOWN_ERROR'];
       Modal.info({
         title: MODAL.TITLE,
-        content: MODAL.CONTENT,
+        content: MODAL.CONTENT
       });
     }
   }
 
   public setName(oEvent: any): void {
     this.setState({
-      name: oEvent.target.value,
+      name: oEvent.target.value
     });
   }
 
   public setPassword(oEvent: any): void {
     this.setState({
-      password: oEvent.target.value,
+      password: oEvent.target.value
     });
   }
 

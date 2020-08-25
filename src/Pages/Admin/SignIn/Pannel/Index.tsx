@@ -12,9 +12,7 @@ import { authenticationAction } from '@/actions/';
 
 import style from './style';
 
-import {
-  MESSAGES
-} from '@/CONFIGS/';
+import { MESSAGES } from '@/CONFIGS/';
 
 interface State {
   name: string;
@@ -28,15 +26,15 @@ const ENTER_CODE = 13;
 function Pannel(): any {
   let classes: any = style(void 0);
 
-  const jwt = useMappedState(state => state.jwt);
-  
+  const jwt = useMappedState((state) => state.jwt);
+
   let dispatch = useDispatch();
 
   let [oState, setState] = React.useState<State>({
     name: '',
     password: '',
     open: false,
-    text: '',
+    text: ''
   });
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,24 +52,21 @@ function Pannel(): any {
       if (!oState.name) {
         throw new Error('THE_ADMINISTRATOR_NAME_IS_EMPTY');
       }
-  
+
       if (!oState.password) {
         throw new Error('THE_ADMINISTRATOR_PASSWORD_IS_EMPTY');
       }
 
       let oBody = {
         name: oState.name,
-        password: oState.password,
+        password: oState.password
       };
       await dispatch(authenticationAction.signIn(oBody));
-
     } catch (oException) {
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey];
       setState({ ...oState, open: true, text: sMessage });
-
     }
-
   };
 
   let onClose = () => {
@@ -99,7 +94,7 @@ function Pannel(): any {
         margin="normal"
         fullWidth
         variant="outlined"
-        onKeyPress ={onKeyPress}
+        onKeyPress={onKeyPress}
       />
       <TextField
         id="user-password"
@@ -110,7 +105,7 @@ function Pannel(): any {
         margin="normal"
         fullWidth
         variant="outlined"
-        onKeyPress ={onKeyPress}
+        onKeyPress={onKeyPress}
       />
       <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
         登入
@@ -124,7 +119,7 @@ function Pannel(): any {
         </Link>
       </div>
       <h5 className={classes.copyright}>© copyright 2019 梦想平台版权所有</h5>
-      <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose}/>
+      <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
 }

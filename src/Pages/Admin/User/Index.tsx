@@ -9,11 +9,9 @@ function User(): any {
 
   return (
     <div className={classes.root}>
-      <Commons.Admin.Menu >
-        <Paper className={classes.paper}>
-        </Paper>
-      </Commons.Admin.Menu >
-
+      <Commons.Admin.Menu>
+        <Paper className={classes.paper}></Paper>
+      </Commons.Admin.Menu>
     </div>
   );
 }

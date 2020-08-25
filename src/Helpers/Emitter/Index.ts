@@ -1,13 +1,12 @@
 import { EventEmitter } from 'events';
 
 class EmitterHelper {
-  public constructor() {
-  }
+  public constructor() {}
 
   public static eventEmitter: any = new EventEmitter();
 
   public static on(sName: string, oListener: any) {
-    EmitterHelper.eventEmitter.on(sName, oListener); 
+    EmitterHelper.eventEmitter.on(sName, oListener);
   }
 
   public static removeEventListener(sName: string, oListener: any) {

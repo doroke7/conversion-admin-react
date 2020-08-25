@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import {StoreContext} from 'redux-react-hook';
+import { StoreContext } from 'redux-react-hook';
 import store from '@/store';
 
 import { renderRoutes } from 'react-router-config';

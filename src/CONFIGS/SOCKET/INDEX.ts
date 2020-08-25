@@ -1,7 +1,6 @@
-
 const SOCKET: any = {
   HOST: process.env.SOCKET_HOST || 'fea.socket.chatroom.ques98.cn',
-  PORT: '',
+  PORT: ''
 };
 
 export default SOCKET;

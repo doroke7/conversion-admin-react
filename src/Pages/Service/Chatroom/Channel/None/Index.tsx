@@ -1,29 +1,20 @@
 import React from 'react';
 
-import {
-  STORAGE
-} from '@/CONFIGS';
+import { STORAGE } from '@/CONFIGS';
 
 import noneSrc from '@/images/none.png';
 import './Index.scss';
 
-interface IProps {
-}
+interface IProps {}
 
 class None extends React.Component<IProps> {
   public constructor(props: any) {
     super(props);
-
-
   }
 
+  public componentDidMount() {}
 
-
-  public componentDidMount() {
-  }
-
-  public componentDidUpdate() {
-  }
+  public componentDidUpdate() {}
 
   public render() {
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + '/_/none.png';
@@ -34,9 +25,7 @@ class None extends React.Component<IProps> {
           <div className="icon d-flex justify-content-center align-middle overflow-hidden text-center">
             <img src={noneSrc} />
           </div>
-          <div className="text text-center text-secondary text-truncate mt-2">
-            超级聊天室服务平台
-          </div>
+          <div className="text text-center text-secondary text-truncate mt-2">超级聊天室服务平台</div>
         </div>
       </div>
     );

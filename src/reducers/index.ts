@@ -8,13 +8,13 @@ import wordReducer from './word/index';
 import userReducer from './user/index';
 import userRoomReducer from './userRoom/index';
 
-export { 
-	jwtReducer,
-	uploaderReducer,
-	roomMessageReducer,
-	wordReducer,
-	userReducer,
-	userRoomReducer,
-	roomReducer,
-	roomIdReducer
+export {
+  jwtReducer,
+  uploaderReducer,
+  roomMessageReducer,
+  wordReducer,
+  userReducer,
+  userRoomReducer,
+  roomReducer,
+  roomIdReducer
 };

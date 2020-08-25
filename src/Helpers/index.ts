@@ -4,10 +4,4 @@ import SocketHelper from './Socket/Index';
 import EmitterHelper from './Emitter/Index';
 import TabHelper from './Tab/Index';
 
-export {
-  AxiosHelper,
-  AuthenticationHelper,
-  SocketHelper,
-  EmitterHelper,
-  TabHelper
-};
+export { AxiosHelper, AuthenticationHelper, SocketHelper, EmitterHelper, TabHelper };

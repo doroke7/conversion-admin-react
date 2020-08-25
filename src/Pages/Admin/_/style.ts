@@ -1,7 +1,7 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
-let style = makeStyles((theme: Theme): any => 
+let style = makeStyles((theme: Theme): any =>
   createStyles({
     iconWrapper: {
       textAlign: 'center'
@@ -12,14 +12,14 @@ let style = makeStyles((theme: Theme): any =>
       MaxWidth: '20rem',
       MaxHeight: '20rem',
       width: '20rem',
-      height: '20rem',
+      height: '20rem'
     },
     text: {
       textAlign: 'center',
-      color: grey[500],
+      color: grey[500]
     }
-  }
-));
+  })
+);
 
 export default style;
 
