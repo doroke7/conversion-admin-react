@@ -385,7 +385,7 @@ class ControlPannel extends React.Component<IProps> {
         <div className="emoji-picker-wrapper xs-d-none">
           <Picker
               perLine={24}
-              color={"#2f62af"}
+              color={'#2f62af'}
               showPreview={false}
               defaultSkin={4}
               set={'facebook'}

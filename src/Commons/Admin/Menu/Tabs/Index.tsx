@@ -26,7 +26,7 @@ function Tabs(oProps: any) {
       {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
         let oMenu = MENUS[_sMenuName];
         return (
-        <Link to={"/admin" + oMenu.path} className={clsx({
+        <Link to={'/admin' + oMenu.path} className={clsx({
           [classes.tab]: sMenuName !== _sMenuName,
           [classes.tabEnable]: sMenuName === _sMenuName,
         })}>

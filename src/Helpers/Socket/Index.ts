@@ -1,23 +1,23 @@
-import oIo from "socket.io-client";
+import oIo from 'socket.io-client';
 import {
   AuthenticationHelper,
 } from '@/Helpers/';
-import { SOCKET } from "@/CONFIGS/";
+import { SOCKET } from '@/CONFIGS/';
 
 let sLoginUrl =
   SOCKET.HOST +
-  (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
-    ? ":" + SOCKET.PORT
-    : "") +
-  "/login";
+  (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT)
+    ? ':' + SOCKET.PORT
+    : '') +
+  '/login';
 
 const oLoginSocket = oIo(sLoginUrl);
 
 let sJwt = AuthenticationHelper.getJwt();
 let sChatroomUrl = SOCKET.HOST + 
-                  (SOCKET.PORT && (80 !== SOCKET.PORT || "80" !== SOCKET.PORT)
-                   ? ":" + SOCKET.PORT : "") +
-                   "/chatroom";
+                  (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT)
+                   ? ':' + SOCKET.PORT : '') +
+                   '/chatroom';
 let oOption = {
   query: {
     jwt: sJwt

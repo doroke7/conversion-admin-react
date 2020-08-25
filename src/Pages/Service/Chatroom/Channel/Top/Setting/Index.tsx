@@ -8,7 +8,7 @@ import {
 
 import {
   STORAGE
-} from "@/CONFIGS/";
+} from '@/CONFIGS/';
 
 import Divider from 'antd/es/divider';
 import Avatar from 'antd/es/avatar';
@@ -65,7 +65,7 @@ class Top extends React.Component<IProps> {
   public render() {
     let sUserId = AuthenticationHelper.getUserId();
     let sUrl = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].url : '';
-    sUrl = (sUrl && 0 === sUrl.indexOf("http") ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
+    sUrl = (sUrl && 0 === sUrl.indexOf('http') ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl);
     let sNickname = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].nickname : '';
     let iLevel = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].level : 1;
     iLevel = iLevel && iLevel >= 0 && iLevel <= 6 ? iLevel : 1;
@@ -96,7 +96,7 @@ class Top extends React.Component<IProps> {
           </div>
           <Divider/>
           <div className="list">
-            <span>我的等级</span><span className="float-right"><span className={"d-inline-block " + sLevelClassName}></span></span>
+            <span>我的等级</span><span className="float-right"><span className={'d-inline-block ' + sLevelClassName}></span></span>
           </div>
           <Divider/>
           <div className="list">

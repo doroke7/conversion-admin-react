@@ -69,10 +69,17 @@ module.exports = (env, argvs) => {
     devtool: argvs.mode === 'production' ? 'none' : 'source-map',
     module: {
       rules: [
-        // {  eslint 检查
-        //   test: /\.(ts|tsx)$/,
+        // {
+        //   enforce: 'pre',
+        //   test: /\.tsx?$/,
         //   exclude: /node_modules/,
-        //   use: ["eslint-loader"]
+        //   // include: [ src],
+        //   loader: 'eslint-loader',
+        //   options: {
+        //     emitWarning: true, // 这个配置需要打开，才能在控制台输出warning信息
+        //     emitError: true, // 这个配置需要打开，才能在控制台输出error信息
+        //     fix: true // 是否自动修复，如果是，每次保存时会自动修复可以修复的部分
+        //   }
         // },
         {
           test: /\.tsx?$/,

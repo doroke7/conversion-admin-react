@@ -97,7 +97,7 @@ class Room extends React.Component<IProps> {
           </div>
           <div className="text text-truncate">
             <span className="nickname">{sNickname}</span>
-            {sNickname ? <span className="colon">: </span>: ""}
+            {sNickname ? <span className="colon">: </span>: ''}
             <span className="message">{sMessage}</span>
             
           </div>
@@ -115,7 +115,7 @@ class Room extends React.Component<IProps> {
                 overflowCount={99}
                 style={{ backgroundColor: '#1890ff', color: '#ffffff'}}
               /> :
-              ""
+              ''
             }
           </div>
         </span>

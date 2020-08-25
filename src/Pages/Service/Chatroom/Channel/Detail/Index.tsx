@@ -2,7 +2,7 @@ import React from 'react';
 
 import store from '@/store';
 
-import { STORAGE } from "@/CONFIGS";
+import { STORAGE } from '@/CONFIGS';
 
 
 import './Index.scss';

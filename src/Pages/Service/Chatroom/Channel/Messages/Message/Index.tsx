@@ -14,7 +14,7 @@ import {
 
 import './Index.scss';
 
-import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
+import { STORAGE, SOCKET, MOMENT } from '@/CONFIGS';
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 moment.locale(MOMENT.LOCALE);
@@ -117,7 +117,7 @@ class Message extends React.Component<IProps> {
   }
 
   public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
-    let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf("http") || 0 === oNextProps.src.indexOf("data:") ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
+    let sSrc = (!oNextProps.src || 0 === oNextProps.src.indexOf('http') || 0 === oNextProps.src.indexOf('data:') ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src);
 
     if (sSrc !== oPrevState.src  && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC) {
       return {
@@ -189,8 +189,8 @@ class Message extends React.Component<IProps> {
     let sTime = iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
 
     return (
-      <div className={"message d-flex justify-content-end "+ (this.state.users[this.props.userId] ? "" : "d-none " ) +(position === 'right' ? "flex-row " : "flex-row-reverse ") + " " + (position === 'right' ? "text-right " : "text-left ") + position + " " + sRole}>
-        <span className={"loading-wrapper d-inline-block align-bottom " + (!this.props.loading || this.state.src  ? "d-none" : "" )}>
+      <div className={'message d-flex justify-content-end '+ (this.state.users[this.props.userId] ? '' : 'd-none ' ) +(position === 'right' ? 'flex-row ' : 'flex-row-reverse ') + ' ' + (position === 'right' ? 'text-right ' : 'text-left ') + position + ' ' + sRole}>
+        <span className={'loading-wrapper d-inline-block align-bottom ' + (!this.props.loading || this.state.src  ? 'd-none' : '' )}>
           <Spin indicator={
             <div className="loading">
               <div>
@@ -204,15 +204,15 @@ class Message extends React.Component<IProps> {
             </div>} />
         </span>
         <span className="time-name-conten-wrapper d-inline-block align-top">
-          <div className={"time-name d-flex justify-content-end " + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
+          <div className={'time-name d-flex justify-content-end ' + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
             <span className="time">{sTime}</span>
-            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ""}</span>
+            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ''}</span>
           </div>
-          <span className={"content text-left d-inline-block"}>
+          <span className={'content text-left d-inline-block'}>
             <div className="image position-relative">
               {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? 
                <Progress 
-                className={"position-absolute progress " + (!this.state.progressDispaly ? "d-none" : "")}
+                className={'position-absolute progress ' + (!this.state.progressDispaly ? 'd-none' : '')}
                 type="dashboard" 
                 percent={this.progress ? this.progress : 0} /> : 
                null}
@@ -221,10 +221,10 @@ class Message extends React.Component<IProps> {
                             onLoad={this.onLoad}
                             onError={this.onMessageSrcError}
                             src={this.state.src}
-                            className={(undefined === this.progress || !this.state.progressDispaly ? "" : "opacity ") + (false === this.state.srcDisplay ? "d-none" : "")}/>) : null}
+                            className={(undefined === this.progress || !this.state.progressDispaly ? '' : 'opacity ') + (false === this.state.srcDisplay ? 'd-none' : '')}/>) : null}
             </div>
             <div className="text">
-              {htmlReactParser(this.props.text.replace(new RegExp("\n", "gm"),'<br />'))}
+              {htmlReactParser(this.props.text.replace(new RegExp('\n', 'gm'),'<br />'))}
             </div>
           </span>
         </span>

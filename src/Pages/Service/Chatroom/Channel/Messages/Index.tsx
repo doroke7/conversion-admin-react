@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { EventEmitter } from "events";
+import { EventEmitter } from 'events';
 import { Service } from '@/Commons';
 import store from '@/store';
 
@@ -10,7 +10,7 @@ import {
   AuthenticationHelper
 } from '@/Helpers/';
 
-import { STORAGE, SOCKET, MOMENT } from "@/CONFIGS";
+import { STORAGE, SOCKET, MOMENT } from '@/CONFIGS';
 
 import Message from './Message/Index';
 import ScrollButton from './ScrollButton/Index';
@@ -265,7 +265,7 @@ class Messages extends React.Component<any> {
             time={oMessage.addedTime}
             userId={oMessage.user_id}
             messageId={oMessage._id}
-            uploaderId={oMessage.uploaderId ? oMessage.uploaderId : ""}
+            uploaderId={oMessage.uploaderId ? oMessage.uploaderId : ''}
             loading={oMessage.loading ? oMessage.loading : false}
             scrollTopToBottom={this.scrollTopToBottom}
             scrollTopToPosition={this.scrollTopToPosition}
@@ -274,7 +274,7 @@ class Messages extends React.Component<any> {
           }
         </div>
         <ScrollButton
-          className={this.state.scrollTopRatio >= 1 ? "d-none" : ""}
+          className={this.state.scrollTopRatio >= 1 ? 'd-none' : ''}
           style={oStyle}
           onClick={this.scrollTopToBottomForce}/>
       </div>
