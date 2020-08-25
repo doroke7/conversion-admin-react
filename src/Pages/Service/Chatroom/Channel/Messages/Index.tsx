@@ -274,6 +274,7 @@ class Messages extends React.Component<any> {
         >
           {aMessages.map((oMessage: any, iIndex: any) => (
             <Message
+              key={iIndex}
               src={oMessage.src}
               text={oMessage.text}
               time={oMessage.addedTime}

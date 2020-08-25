@@ -46,7 +46,9 @@ class Top extends React.Component<IProps> {
     try {
       let sUserId = AuthenticationHelper.getUserId();
       store.dispatch(userAction.show(sUserId));
-    } catch (oException) {}
+    } catch (oException) {
+      // DO NOTHING
+    }
   }
   public showModal(): void {
     this.setState({

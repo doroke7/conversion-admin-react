@@ -30,13 +30,8 @@ function Word(): any {
       let oOptions = {
         type: 'admin'
       };
-      debugger;
       // await dispatch(word.show(void 0, oOptions));
-      debugger;
-      let oStore = useStore();
-      debugger;
     } catch (oExeption) {
-      debugger;
       oExeption;
     }
   }

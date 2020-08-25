@@ -131,13 +131,6 @@ class Message extends React.Component<IProps> {
 
   public shouldComponentUpdate(oNextProps: any, oNextState: any) {
     return true;
-
-    let sUploaderId = this.props.uploaderId;
-    // if (oNextProps.messageId === this.props.messageId &&
-    //     oNextProps.loading === this.props.loading &&
-    //     !this.props.uploaderId ) {
-    //   return false;
-    // }
   }
 
   public componentWillUnmount() {}
