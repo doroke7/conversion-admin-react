@@ -14,6 +14,10 @@ let Page = (PageComponent: any) =>
       this.checkAuthentication = this.checkAuthentication.bind(this);
     }
 
+    get displayName() {
+      return 'Page';
+    }
+
     public onFocus() {
       this.checkAuthentication();
     }

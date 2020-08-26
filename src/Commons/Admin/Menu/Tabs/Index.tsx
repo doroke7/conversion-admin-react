@@ -23,6 +23,7 @@ function Tabs(oProps: any) {
         let oMenu = MENUS[_sMenuName];
         return (
           <Link
+            key={iIndex}
             to={'/admin' + oMenu.path}
             className={clsx({
               [classes.tab]: sMenuName !== _sMenuName,
