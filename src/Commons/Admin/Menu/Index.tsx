@@ -175,7 +175,12 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
-            <Link to={'/admin' + oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)}>
+            <Link
+              to={'/admin' + oMenu.path}
+              className={clsx(classes.link, {})}
+              onClick={handleClick(oMenu)}
+              key={iIndex}
+            >
               <ListItem
                 button
                 key={oMenu.text}
