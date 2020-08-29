@@ -178,7 +178,23 @@ module.exports = (env, argvs) => {
       new AutoDllPlugin({
         filename: '[name].dll.js',
         entry: {
-          vendor: [
+          'service': [
+            'socket.io-client',
+            'socket.io-file-client',
+            'jwt-decode',
+            'axios',
+            'moment',
+            'react',
+            'react-dom',
+            'react-router-dom',
+            'redux',
+            'redux-thunk',
+            'redux-react-hook',
+            'antd',
+            'emoji-mart',
+            '@material-ui/core', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
+          ],
+          'admin': [
             'socket.io-client',
             'socket.io-file-client',
             'jwt-decode',
@@ -192,7 +208,6 @@ module.exports = (env, argvs) => {
             'redux-react-hook',
             'antd',
             '@material-ui/core', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
-            'emoji-mart'
           ],
         },
       }),
