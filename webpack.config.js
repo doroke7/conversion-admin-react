@@ -2,7 +2,7 @@ const path = require('path');
 const os = require('os');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
@@ -92,7 +92,11 @@ module.exports = (env, argvs) => {
         {
           enforce: 'pre',
           test: /\.js$/,
-          use: ['source-map-loader'],
+          exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
+          loader: 'source-map-loader',
+          query: {
+            presets: ['es2015']
+          }
         },
         {
           test: [/\.scss$/, /\.css$/],
@@ -171,7 +175,6 @@ module.exports = (env, argvs) => {
         filename: '[name]/bundle.[contenthash:8].css',
         chunkFilename: '[id].css',
       }),
-      // new UglifyJsPlugin(),
       new AutoDllPlugin({
         filename: '[name].dll.js',
         entry: {
@@ -205,7 +208,9 @@ module.exports = (env, argvs) => {
       maxAssetSize: argvs.mode === 'production' ? 2000000 : 6000000,
     },
     optimization: {
+      minimize: true,
       minimizer: [
+        new TerserPlugin(),
         new OptimizeCSSAssetsPlugin({
           assetNameRegExp: /\.css$/g,
           cssProcessor: require('cssnano'),
