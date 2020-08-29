@@ -22,8 +22,8 @@ module.exports = (env, argvs) => {
   return {
     mode: 'production',
     entry: {
-      service: './src/entries/service/index.tsx',
-      admin: './src/entries/admin/index.tsx',
+      service: './src/entries/service/index.tsx', // 目前 webpack 多入口都会打包在一起
+      admin: './src/entries/admin/index.tsx',     // 目前 webpack 多入口都会打包在一起
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
@@ -186,6 +186,9 @@ module.exports = (env, argvs) => {
             'redux',
             'redux-thunk',
             'redux-react-hook',
+            'antd',
+            '@material-ui/core', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
+            'emoji-mart'
           ],
         },
       }),
