@@ -67,7 +67,7 @@ module.exports = (env, argvs) => {
         poll: 3000,
       },
     },
-    devtool: argvs.mode === 'production' ? 'cheap-module-eval-source-map' : 'source-map',
+    devtool: argvs.mode === 'production' ? 'none' : 'source-map',
     module: {
       rules: [
         {
@@ -171,6 +171,7 @@ module.exports = (env, argvs) => {
         filename: '[name]/bundle.[contenthash:8].css',
         chunkFilename: '[id].css',
       }),
+      new UglifyJsPlugin(),
       new AutoDllPlugin({
         filename: '[name].dll.js',
         entry: {
