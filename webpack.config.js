@@ -10,7 +10,8 @@ const Dotenv = require('dotenv-webpack');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 dotenv.config();
 /**
@@ -66,7 +67,7 @@ module.exports = (env, argvs) => {
         poll: 3000,
       },
     },
-    devtool: argvs.mode === 'production' ? 'none' : 'source-map',
+    devtool: argvs.mode === 'production' ? 'cheap-module-eval-source-map' : 'source-map',
     module: {
       rules: [
         {
@@ -142,6 +143,7 @@ module.exports = (env, argvs) => {
       ],
     },
     plugins: [
+      new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',

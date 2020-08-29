@@ -162,7 +162,7 @@ class Messages extends React.Component<any> {
     this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight);
   }
 
-  public componentWillMount() {}
+  public UNSAFE_componentWillMount() {}
 
   public state: any = {
     roomsMessages: [],
@@ -199,8 +199,6 @@ class Messages extends React.Component<any> {
   public componentDidUnmount() {
     window.removeEventListener('resize', this.onResize);
   }
-
-  public componentWillUpdate() {}
 
   public componentDidUpdate(oPreviousProps: any, oPreviousState: any) {
     if (oPreviousState.roomId != this.state.roomId) {

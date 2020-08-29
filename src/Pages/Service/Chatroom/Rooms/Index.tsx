@@ -53,7 +53,7 @@ class Rooms extends React.Component<any> {
     };
   }
 
-  public componentWillMount() {
+  public UNSAFE_componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
   }
 

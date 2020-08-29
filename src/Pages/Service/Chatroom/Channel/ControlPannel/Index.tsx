@@ -297,7 +297,7 @@ class ControlPannel extends React.Component<IProps> {
 
   public onAbort(oFileInfo: any) {}
 
-  public componentWillMount() {
+  public UNSAFE_componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
     this.chatroomUploaderSocket = this.props.context.chatroomUploader;

@@ -100,8 +100,6 @@ class Message extends React.Component<IProps> {
     this.props.scrollTopToBottom();
   }
 
-  public componentWillReceiveProps(oNextProps: any) {}
-
   public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
     let sSrc =
       !oNextProps.src || 0 === oNextProps.src.indexOf('http') || 0 === oNextProps.src.indexOf('data:')

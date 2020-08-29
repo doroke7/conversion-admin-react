@@ -28,7 +28,7 @@ let Page = (PageComponent: any) =>
 
     public checkAuthentication() {}
 
-    public componentWillMount() {
+    public UNSAFE_componentWillMount() {
       this.checkAuthentication();
     }
 

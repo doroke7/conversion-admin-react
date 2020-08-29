@@ -95,7 +95,7 @@ class Chatroom extends React.Component<any> {
 
   public static contextType = Service.Tool;
 
-  public async componentWillMount() {
+  public async UNSAFE_componentWillMount() {
     this.chatroomSocket = this.props.context.chatroom;
     this.chatroomFileSocket = this.props.context.chatroomFile;
     this.chatroomSocket.on('SHOW USER ROOM', this.onShowUserRoom);
