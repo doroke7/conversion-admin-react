@@ -143,7 +143,7 @@ module.exports = (env, argvs) => {
       ],
     },
     plugins: [
-      new BundleAnalyzerPlugin({ analyzerPort: 8081 }),
+      ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: 8081 })]),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',
@@ -171,7 +171,7 @@ module.exports = (env, argvs) => {
         filename: '[name]/bundle.[contenthash:8].css',
         chunkFilename: '[id].css',
       }),
-      new UglifyJsPlugin(),
+      // new UglifyJsPlugin(),
       new AutoDllPlugin({
         filename: '[name].dll.js',
         entry: {
