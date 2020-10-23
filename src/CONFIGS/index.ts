@@ -5,5 +5,7 @@ import MESSAGES from './MESSAGES/INDEX';
 import MODALS from './MODALS/INDEX';
 import HTTP from './HTTP/INDEX';
 import MENUS from './MENUS/INDEX';
+import SERVICE from './SERVICE/INDEX';
+import API from './API/INDEX';
 
-export { SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };
+export { API, SERVICE, SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };

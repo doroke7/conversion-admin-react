@@ -12,7 +12,7 @@ import { authenticationAction } from '@/actions/';
 
 import style from './style';
 
-import { MESSAGES } from '@/CONFIGS/';
+import { MESSAGES, SERVICE } from '@/CONFIGS/';
 
 interface State {
   name: string;
@@ -111,14 +111,14 @@ function Pannel(): any {
         登入
       </Button>
       <div className={classes.forgetPasswordAndSignup}>
-        <Link href={'/admin/forget-password'} className={classes.link}>
-          忘记密码
+        {/* <Link href={SERVICE.HOST + SERVICE.PATH} className={classes.link}>
+          短管理
         </Link>
         <Link href={'/admin/sign-up'} className={classes.link}>
           没有账号? 注冊
-        </Link>
+        </Link> */}
       </div>
-      <h5 className={classes.copyright}>© copyright 2020 野草平台版权所有</h5>
+      <h5 className={classes.copyright}>© copyright 2020 野草科技版权所有</h5>
       <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );

@@ -26,7 +26,8 @@ const style = makeStyles((theme: Theme): any =>
       height: '4rem'
     },
     button: {
-      marginTop: '1rem'
+      marginTop: '1rem',
+      fontSize: '1rem'
     },
     forgetPasswordAndSignup: {
       marginTop: '0.5rem',

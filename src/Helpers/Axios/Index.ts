@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { HTTP } from '@/CONFIGS/';
+import { API } from '@/CONFIGS/';
 
-let sHost = HTTP.HOST.replace(/\/$/, '');
+let sHost = API.HOST.replace(/\/$/, '');
 sHost.replace(/^http(s)?:\/\//, '');
-sHost = 'http://' + sHost;
+sHost = window.location.protocol + '//' + sHost + API.PRE_PATH;
 
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 

@@ -163,6 +163,7 @@ module.exports = (env, argvs) => {
         chunks: ['manifest', 'vendor', 'admin'],
         template: './public/admin.html',
         filename: 'admin/index.html',
+        favicon: './public/favicon.ico',
         minify: {
           //压缩HTML文件
           removeComments: true, //移除HTML中的注释
