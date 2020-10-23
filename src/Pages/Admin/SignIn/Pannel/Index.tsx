@@ -114,11 +114,11 @@ function Pannel(): any {
         <Link href={'/admin/forget-password'} className={classes.link}>
           忘记密码
         </Link>
-        <Link href={'/admin/signup'} className={classes.link}>
+        <Link href={'/admin/sign-up'} className={classes.link}>
           没有账号? 注冊
         </Link>
       </div>
-      <h5 className={classes.copyright}>© copyright 2019 梦想平台版权所有</h5>
+      <h5 className={classes.copyright}>© copyright 2020 野草平台版权所有</h5>
       <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
