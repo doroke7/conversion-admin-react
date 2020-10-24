@@ -298,15 +298,14 @@ class ControlPannel extends React.Component<IProps> {
   public onAbort(oFileInfo: any) {}
 
   public UNSAFE_componentWillMount() {
-    this.chatroomSocket = this.props.context.chatroom;
-    this.chatroomFileSocket = this.props.context.chatroomFile;
-    this.chatroomUploaderSocket = this.props.context.chatroomUploader;
-
-    this.chatroomFileSocket.on('start', this.onStart);
-    this.chatroomFileSocket.on('stream', this.onStream);
-    this.chatroomFileSocket.on('complete', this.onComplete);
-    this.chatroomFileSocket.on('error', this.onError);
-    this.chatroomFileSocket.on('abort', this.onAbort);
+    // this.chatroomSocket = this.props.context.chatroom;
+    // this.chatroomFileSocket = this.props.context.chatroomFile;
+    // this.chatroomUploaderSocket = this.props.context.chatroomUploader;
+    // this.chatroomFileSocket.on('start', this.onStart);
+    // this.chatroomFileSocket.on('stream', this.onStream);
+    // this.chatroomFileSocket.on('complete', this.onComplete);
+    // this.chatroomFileSocket.on('error', this.onError);
+    // this.chatroomFileSocket.on('abort', this.onAbort);
   }
 
   public componentDidMount() {
