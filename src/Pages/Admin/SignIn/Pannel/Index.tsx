@@ -89,14 +89,35 @@ function Pannel(): any {
         id="user-name"
         label="名称"
         className={classes.textField}
-        // value={oState.name}
         //onChange={onChangeName}
         margin="normal"
         fullWidth
         variant="outlined"
         // onKeyPress={onKeyPress}
       />
-
+      <TextField
+        id="user-password"
+        label="密码"
+        className={classes.textField}
+        onChange={onChangePassword}
+        margin="normal"
+        fullWidth
+        variant="outlined"
+        onKeyPress={onKeyPress}
+      />
+      <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
+        登入
+      </Button>
+      <div className={classes.forgetPasswordAndSignup}>
+        {/* <Link href={SERVICE.HOST + SERVICE.PATH} className={classes.link}>
+          短管理
+        </Link>
+        <Link href={'/admin/sign-up'} className={classes.link}>
+          没有账号? 注冊
+        </Link> */}
+      </div>
+      <h5 className={classes.copyright}>© copyright 2020 野草科技版权所有</h5>
+      <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
 }
