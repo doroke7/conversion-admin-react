@@ -67,7 +67,7 @@ module.exports = (env, argvs) => {
         poll: 3000,
       },
     },
-    devtool: 'none',
+    devtool: argvs.mode === 'production' ? 'none' : 'source-map',
     module: {
       rules: [
         {
