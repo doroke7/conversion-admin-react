@@ -99,11 +99,11 @@ function Pannel(): any {
         id="user-password"
         label="密码"
         className={classes.textField}
-        onChange={onChangePassword}
+        //onChange={onChangePassword}
         margin="normal"
         fullWidth
         variant="outlined"
-        onKeyPress={onKeyPress}
+        //onKeyPress={onKeyPress}
       />
       <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
         登入
