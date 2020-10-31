@@ -12,17 +12,7 @@ function SignIn(): any {
   return (
     <div className={classes.root}>
       TEST
-      {/* <Grid container spacing={0}>
-        <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
-          {/* <Hidden only={['xs', 'sm']}></Hidden> */}
-        </Grid>
-        <Grid container item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
-          <Pannel />
-        </Grid>
-        <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
-          {/* <Hidden only={['xs', 'sm']}></Hidden> */}
-        </Grid>
-      </Grid> */}
+
     </div>
   );
 }
