@@ -90,22 +90,22 @@ function Pannel(): any {
         label="名称"
         className={classes.textField}
         value={oState.name}
-        onChange={onChangeName}
+        //onChange={onChangeName}
         margin="normal"
         fullWidth
         variant="outlined"
-        onKeyPress={onKeyPress}
+        // onKeyPress={onKeyPress}
       />
       <TextField
         id="user-password"
         label="密码"
         className={classes.textField}
         value={oState.password}
-        onChange={onChangePassword}
+        //onChange={onChangePassword}
         margin="normal"
         fullWidth
         variant="outlined"
-        onKeyPress={onKeyPress}
+        // onKeyPress={onKeyPress}
       />
       <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
         登入
