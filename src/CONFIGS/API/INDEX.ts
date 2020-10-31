@@ -1,5 +1,5 @@
 const API: any = {
-  HOST: process.env.API_HOST || 'fea.api.service.chatroom.ques98.cn',
+  HOST: process.env.API_HOST || 'api.fea.ycdis-test.xyz',
   PRE_PATH: '/admin/'
 };
 
