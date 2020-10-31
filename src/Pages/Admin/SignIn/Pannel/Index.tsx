@@ -89,7 +89,7 @@ function Pannel(): any {
         id="user-name"
         label="名称"
         className={classes.textField}
-        //onChange={onChangeName}
+        onChange={onChangeName}
         margin="normal"
         fullWidth
         variant="outlined"
@@ -98,8 +98,9 @@ function Pannel(): any {
       <TextField
         id="user-password"
         label="密码"
+        type="password"
         className={classes.textField}
-        //onChange={onChangePassword}
+        onChange={onChangePassword}
         margin="normal"
         fullWidth
         variant="outlined"
