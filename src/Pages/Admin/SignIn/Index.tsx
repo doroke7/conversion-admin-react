@@ -11,7 +11,8 @@ function SignIn(): any {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={0}>
+      TEST
+      {/* <Grid container spacing={0}>
         <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
           {/* <Hidden only={['xs', 'sm']}></Hidden> */}
         </Grid>
@@ -21,7 +22,7 @@ function SignIn(): any {
         <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
           {/* <Hidden only={['xs', 'sm']}></Hidden> */}
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 }
