@@ -89,7 +89,7 @@ function Pannel(): any {
         id="user-name"
         label="名称"
         className={classes.textField}
-        value={oState.name}
+        // value={oState.name}
         //onChange={onChangeName}
         margin="normal"
         fullWidth
