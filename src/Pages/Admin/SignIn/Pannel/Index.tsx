@@ -85,6 +85,17 @@ function Pannel(): any {
         <LockIcon />
       </Avatar>
       <h2 className={classes.title}>管理平台</h2>
+      <TextField
+        id="user-name"
+        label="名称"
+        className={classes.textField}
+        value={oState.name}
+        //onChange={onChangeName}
+        margin="normal"
+        fullWidth
+        variant="outlined"
+        // onKeyPress={onKeyPress}
+      />
 
     </div>
   );
