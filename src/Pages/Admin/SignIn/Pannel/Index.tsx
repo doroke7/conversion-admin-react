@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 
 import TextField from '@material-ui/core/TextField';
@@ -29,6 +30,7 @@ function Pannel(): any {
   const jwt = useMappedState((state) => state.jwt);
 
   let dispatch = useDispatch();
+  let history = useHistory();
 
   let [oState, setState] = React.useState<State>({
     name: '',
@@ -36,6 +38,12 @@ function Pannel(): any {
     open: false,
     text: ''
   });
+
+  let redirect = async () => {
+    // React Hook 棄用 props.history 寫法
+    // await this.props.history.push('/admin');
+    history.push('/admin');
+  };
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
@@ -62,6 +70,7 @@ function Pannel(): any {
         password: oState.password
       };
       await dispatch(actions.admin.authentication.signIn(oBody));
+      await redirect();
     } catch (oException) {
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey];
