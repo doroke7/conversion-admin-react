@@ -1,6 +1,5 @@
 const API: any = {
-  HOST: process.env.API_HOST || 'api.fea.ycdis-test.xyz',
-  PRE_PATH: '/admin/'
+  HOST: process.env.API_HOST || 'api.fea.ycdis-test.xyz'
 };
 
 export default API;

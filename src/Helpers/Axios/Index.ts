@@ -1,10 +1,12 @@
+import querystring from 'querystring';
+
 import axios from 'axios';
 
 import { API } from '@/CONFIGS/';
 
 let sHost = API.HOST.replace(/\/$/, '');
 sHost.replace(/^http(s)?:\/\//, '');
-sHost = window.location.protocol + '//' + sHost + API.PRE_PATH;
+sHost = window.location.protocol + '//' + sHost;
 
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 

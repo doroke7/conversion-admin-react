@@ -63,6 +63,8 @@ function Pannel(): any {
       };
       await dispatch(authenticationAction.signIn(oBody));
     } catch (oException) {
+      debugger;
+      console.log(oException);
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey];
       setState({ ...oState, open: true, text: sMessage });
@@ -93,7 +95,7 @@ function Pannel(): any {
         margin="normal"
         fullWidth
         variant="outlined"
-        // onKeyPress={onKeyPress}
+        onKeyPress={onKeyPress}
       />
       <TextField
         id="user-password"
@@ -104,7 +106,7 @@ function Pannel(): any {
         margin="normal"
         fullWidth
         variant="outlined"
-        //onKeyPress={onKeyPress}
+        onKeyPress={onKeyPress}
       />
       <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
         登入
