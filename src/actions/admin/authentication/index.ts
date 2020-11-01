@@ -24,23 +24,6 @@ let cSignIn: any = (sJwt: any) => {
 };
 
 let oAuthenticationAction: any = {
-  login: (oBody: any) => {
-    return async (cDispatch: any) => {
-      let oResponse = await AxiosHelper.post({
-        path: '/service/authentication/authentication/log-in',
-        params: oBody
-      });
-
-      if (-1 === oResponse.result || !oResponse.jwt) {
-        throw new Error('IT_FAILS_TO_LOGIN');
-      }
-
-      let sJwt = oResponse.jwt;
-      AuthenticationHelper.setJwt(sJwt);
-      AuthenticationHelper.removeLoginState();
-      cDispatch(cLogIn(sJwt));
-    };
-  },
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
@@ -75,32 +58,7 @@ let oAuthenticationAction: any = {
       fNext();
     };
   },
-  accessTokenToJwt(oBody: any): any {
-    return async (cDispatch: any) => {
-      let sJwt = AuthenticationHelper.getJwt();
-      let sAccessToken = AuthenticationHelper.getAccessToken();
-      let oOptions = {
-        headers: {
-          jwt: sJwt, // 一定要 引号
-          'access-token': sAccessToken
-        }
-      };
 
-      if (sAccessToken) {
-        let oResponse = await AxiosHelper.post({
-          path: '/service/authentication/authentication/access-token-to-jwt',
-          params: oBody,
-          options: oOptions
-        });
-        if (-1 === oResponse.result || !oResponse.jwt) {
-          throw new Error('IT_FAILS_TO_LOGIN_VIA_ACESS_TOKEN');
-        }
-        sJwt = oResponse.jwt;
-        AuthenticationHelper.setJwt(sJwt);
-        cDispatch(cRefresh(sJwt));
-      }
-    };
-  },
   signIn(oBody: any) {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
@@ -112,7 +70,7 @@ let oAuthenticationAction: any = {
         throw new Error('THE_NETWORK_IS_ERROR');
       }
 
-      if (-1 === oResponse.result || !oResponse.jwt) {
+      if (-1 === oResponse.status || !oResponse.jwt) {
         throw new Error('IT_FAILS_TO_SIGN_IN');
       }
 
