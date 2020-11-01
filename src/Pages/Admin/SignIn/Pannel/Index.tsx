@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 import Components from '@/Components';
-import { authenticationAction } from '@/actions/';
+import actions from '@/actions/';
 
 import style from './style';
 
@@ -61,7 +61,7 @@ function Pannel(): any {
         name: oState.name,
         password: oState.password
       };
-      await dispatch(authenticationAction.signIn(oBody));
+      await dispatch(actions.admin.authentication.signIn(oBody));
     } catch (oException) {
       debugger;
       console.log(oException);
