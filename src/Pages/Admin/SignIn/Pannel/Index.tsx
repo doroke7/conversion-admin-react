@@ -63,8 +63,6 @@ function Pannel(): any {
       };
       await dispatch(actions.admin.authentication.signIn(oBody));
     } catch (oException) {
-      debugger;
-      console.log(oException);
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey];
       setState({ ...oState, open: true, text: sMessage });

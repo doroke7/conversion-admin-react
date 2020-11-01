@@ -38,7 +38,6 @@ module.exports = {
     "no-unused-vars": 0, // 不允许未定义的变量
     "jsx-control-statements/jsx-use-if-tag": 0,
     "no-control-regex": 0,
-    "no-debugger": 0
     // ...你自己的配置
   }
 };

@@ -71,7 +71,7 @@ let oAuthenticationAction: any = {
       }
 
       if (-1 === oResponse.status || !oResponse.jwt) {
-        throw new Error('IT_FAILS_TO_SIGN_IN');
+        throw new Error(oResponse.key);
       }
 
       let sJwt = oResponse.jwt;
