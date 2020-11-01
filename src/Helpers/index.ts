@@ -1,7 +1,21 @@
-import AxiosHelper from './Axios/Index';
-import AuthenticationHelper from './Authentication/Index';
-import SocketHelper from './Socket/Index';
-import EmitterHelper from './Emitter/Index';
-import TabHelper from './Tab/Index';
+import Axios from './Axios/Index';
+import Authentication from './Authentication/Index';
+import Socket from './Socket/Index';
+import Emitter from './Emitter/Index';
+import Tab from './Tab/Index';
 
-export { AxiosHelper, AuthenticationHelper, SocketHelper, EmitterHelper, TabHelper };
+export {
+  Axios as AxiosHelper,
+  Authentication as AuthenticationHelper,
+  Socket as SocketHelper,
+  Emitter as EmitterHelper,
+  Tab as TabHelper
+};
+
+export default {
+  Axios,
+  Authentication,
+  Socket,
+  Emitter,
+  Tab
+};

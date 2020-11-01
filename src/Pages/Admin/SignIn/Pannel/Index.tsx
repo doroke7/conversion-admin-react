@@ -10,10 +10,11 @@ import Link from '@material-ui/core/Link';
 
 import Components from '@/Components';
 import actions from '@/actions/';
+import Helpers from '@/Helpers/';
 
 import style from './style';
 
-import { MESSAGES, SERVICE } from '@/CONFIGS/';
+import { MESSAGES } from '@/CONFIGS/';
 
 interface State {
   name: string;
@@ -40,9 +41,12 @@ function Pannel(): any {
   });
 
   let redirect = async () => {
-    // React Hook 棄用 props.history 寫法
-    // await this.props.history.push('/admin');
-    history.push('/admin');
+    let bResult = Helpers.Authentication.isExpired();
+    if (!bResult) {
+      // React Hook 棄用 props.history 寫法
+      // await this.props.history.push('/admin');
+      history.push('/admin');
+    }
   };
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +91,8 @@ function Pannel(): any {
       SignIn();
     }
   };
+
+  redirect();
 
   return (
     <div className={classes.pannel}>
