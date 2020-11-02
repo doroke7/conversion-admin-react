@@ -25,7 +25,7 @@ interface State {
 
 const ENTER_CODE = 13;
 
-function Pannel(): any {
+function Pannel(oProps: any): any {
   let classes: any = style(void 0);
 
   const jwt = useMappedState((state) => state.jwt);

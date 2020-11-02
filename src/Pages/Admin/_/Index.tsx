@@ -13,7 +13,7 @@ function _(): any {
         <div className={classes.iconWrapper}>
           <ImportantDevices className={classes.icon} />
         </div>
-        <div className={classes.text}>- 後台管理平台 -</div>
+        <div className={classes.text}>- 管理平台 -</div>
       </Admin.Menu>
     </div>
   );

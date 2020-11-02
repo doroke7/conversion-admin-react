@@ -209,14 +209,19 @@ function Menu(oProps: any) {
         <tab.Provider value={oState.tabs}>
           <Tabs removeTab={removeTab} />
         </tab.Provider>
-        <Paper className={classes.paper}>
-          <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-            {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
-          </Box>
-          <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-            {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
-          </Box>
-        </Paper>
+        {oState.tabs.length >= 1 ? (
+          <Paper className={classes.paper}>
+            <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
+              {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+            </Box>
+            <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
+              {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+            </Box>
+          </Paper>
+        ) : (
+          ''
+        )}
+
         <div className={classes.subContent}>{oProps.children}</div>
       </main>
     </div>
