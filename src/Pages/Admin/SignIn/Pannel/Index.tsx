@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 
 import TextField from '@material-ui/core/TextField';
@@ -32,6 +32,7 @@ function Pannel(): any {
 
   let dispatch = useDispatch();
   let history = useHistory();
+  let location = useLocation();
 
   let [oState, setState] = React.useState<State>({
     name: '',
