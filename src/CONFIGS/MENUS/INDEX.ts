@@ -2,8 +2,15 @@ import AccountBox from '@material-ui/icons/AccountBox';
 import FormatListNumberedRtl from '@material-ui/icons/FormatListNumberedRtl';
 import HighlightOff from '@material-ui/icons/HighlightOff';
 import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
+import FilterDramaIcon from '@material-ui/icons/FilterDrama';
 
 const MENUS: any = {
+  domain: {
+    text: '域名',
+    description: '移動端使用的域名列表',
+    path: '/domain',
+    Icon: FilterDramaIcon
+  },
   room: {
     text: '房間',
     description: '聊天室的房間列表',

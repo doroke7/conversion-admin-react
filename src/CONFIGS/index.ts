@@ -7,5 +7,6 @@ import HTTP from './HTTP/INDEX';
 import MENUS from './MENUS/INDEX';
 import SERVICE from './SERVICE/INDEX';
 import API from './API/INDEX';
+import APP from './APP/INDEX';
 
-export { API, SERVICE, SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };
+export { APP, API, SERVICE, SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };

@@ -12,6 +12,11 @@ let aRoutes = [
     exact: true
   },
   {
+    path: '/admin/domain',
+    component: Admin.Domain,
+    exact: true
+  },
+  {
     path: '/admin/room',
     component: Admin.Room,
     exact: true

@@ -11,9 +11,11 @@ function _(): any {
     <div className={classes.root}>
       <Admin.Menu>
         <div className={classes.iconWrapper}>
-          <ImportantDevices className={classes.icon} />
+          <div>
+            <ImportantDevices className={classes.icon} />
+          </div>
+          <div className={classes.text}>- 管理平台 -</div>
         </div>
-        <div className={classes.text}>- 管理平台 -</div>
       </Admin.Menu>
     </div>
   );

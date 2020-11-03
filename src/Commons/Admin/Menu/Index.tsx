@@ -28,7 +28,7 @@ import { tab } from '@/contexts';
 
 import { TabHelper } from '@/Helpers';
 
-import { MENUS } from '@/CONFIGS';
+import { MENUS, APP } from '@/CONFIGS';
 
 import style from './style';
 
@@ -149,7 +149,7 @@ function Menu(oProps: any) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            管理系統
+            {APP.NAME}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -195,14 +195,7 @@ function Menu(oProps: any) {
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <List></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar}></div>

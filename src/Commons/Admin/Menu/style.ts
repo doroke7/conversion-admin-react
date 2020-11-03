@@ -79,7 +79,8 @@ const style = makeStyles((theme: Theme) =>
     },
     subContent: {
       minHeight: 'calc(100vh - 128px)',
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
+      position: 'relative'
     },
     paper: {
       padding: theme.spacing(2),
