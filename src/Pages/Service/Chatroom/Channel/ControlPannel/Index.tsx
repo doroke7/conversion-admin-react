@@ -18,9 +18,6 @@ import { AuthenticationHelper, EmitterHelper } from '@/Helpers/';
 
 import actions from '@/actions/';
 
-let roomMessageAction = actions.service.roomMessage;
-let uploaderAction = actions.service.uploader;
-
 import './Index.scss';
 
 import CONFIGS from '@/CONFIGS/';
@@ -235,7 +232,7 @@ class ControlPannel extends React.Component<IProps> {
       ];
 
       if (!('' === sText || null === sText || undefined === sText)) {
-        store.dispatch(roomMessageAction.willSend(aRoomsMessages));
+        store.dispatch(actions.service.resource.roomMessage.willSend(aRoomsMessages));
         let sJwt = AuthenticationHelper.getJwt();
         // let sAccessToken = AuthenticationHelper.getAccessToken();
 
@@ -275,8 +272,8 @@ class ControlPannel extends React.Component<IProps> {
     };
 
     let aMessages = [oMessage];
-    store.dispatch(roomMessageAction.willSend(aMessages));
-    store.dispatch(uploaderAction.willSend(oUploaders));
+    store.dispatch(actions.service.resource.roomMessage.willSend(aMessages));
+    store.dispatch(actions.service.resource.uploader.willSend(oUploaders));
     let sJwt = AuthenticationHelper.getJwt();
     let sAccessToken = AuthenticationHelper.getAccessToken();
     oMessage['jwt'] = sJwt;
@@ -289,14 +286,14 @@ class ControlPannel extends React.Component<IProps> {
     let oUploaders = {
       [oFileInfo.uploadId]: oFileInfo
     };
-    store.dispatch(uploaderAction.isSending(oUploaders));
+    store.dispatch(actions.service.resource.uploader.isSending(oUploaders));
   }
 
   public onComplete(oFileInfo: any) {
     let oUploaders = {
       [oFileInfo.uploadId]: oFileInfo
     };
-    store.dispatch(uploaderAction.didSend(oUploaders));
+    store.dispatch(actions.service.resource.uploader.didSend(oUploaders));
   }
 
   public onError(oError: any) {}

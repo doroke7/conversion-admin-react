@@ -6,19 +6,6 @@ import SocketIOFileClient from 'socket.io-file-client';
 import SocketIOFileUpload from 'socketio-file-upload';
 import moment from 'moment';
 
-import { Service } from '@/Commons';
-
-import { AuthenticationHelper } from '@/Helpers/';
-
-import store from '@/store';
-
-import actions from '@/actions/';
-
-let roomMessageAction = actions.service.roomMessage;
-let userAction = actions.service.user;
-let roomActon = actions.service.room;
-let userRoomAction = actions.service.userRoom;
-
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
@@ -30,6 +17,14 @@ import Channel from './Channel/Index';
 import './Index.scss';
 
 import CONFIGS from '@/CONFIGS/';
+
+import { Service } from '@/Commons';
+
+import { AuthenticationHelper } from '@/Helpers/';
+
+import store from '@/store';
+
+import actions from '@/actions/';
 
 const MOMENT = CONFIGS.MOMENT;
 const MESSAGES = CONFIGS.MESSAGES;
@@ -150,7 +145,7 @@ class Chatroom extends React.Component<any> {
   public onShowRoom(oBody: any) {
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
-    store.dispatch(roomActon.show(aRooms));
+    store.dispatch(actions.service.resource.room.show(aRooms));
 
     this.setState({
       rooms: aRooms
@@ -164,7 +159,7 @@ class Chatroom extends React.Component<any> {
     let oData = oBody['data'];
     let aRooms = oData['rooms'];
 
-    store.dispatch(roomMessageAction.show(aRooms));
+    store.dispatch(actions.service.resource.roomMessage.show(aRooms));
   }
 
   public async onShowUserRoom(oBody: any) {
@@ -175,7 +170,7 @@ class Chatroom extends React.Component<any> {
       let oData = oBody['data'];
       let aUsersRooms = oData['users'];
 
-      store.dispatch(userRoomAction.show(aUsersRooms));
+      store.dispatch(actions.service.resource.userRoom.show(aUsersRooms));
     } catch (oExeption) {
       // DO NOTHING
       // 读取 users.$[user].rooms.$[room].count 未读书 失败
@@ -221,8 +216,8 @@ class Chatroom extends React.Component<any> {
         };
         this.chatroomSocket.emit('READ USER ROOM', oBody);
       }
-      await store.dispatch(roomMessageAction.didSend(_aRooms));
-      await store.dispatch(roomActon.didSend(_aRooms));
+      await store.dispatch(actions.service.resource.roomMessage.didSend(_aRooms));
+      await store.dispatch(actions.service.resource.room.didSend(_aRooms));
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);
@@ -233,17 +228,17 @@ class Chatroom extends React.Component<any> {
     if (oBody['data'] && oBody['data']['users']) {
       let oData = oBody['data'];
       let aUsersRooms = oData['users'];
-      store.dispatch(userRoomAction.show(aUsersRooms));
+      store.dispatch(actions.service.resource.userRoom.show(aUsersRooms));
     }
 
-    // store.dispatch(userAction.show(aUsers));
+    // store.dispatch( actions.service.resource.user.show(aUsers));
   }
 
   public async onShowUser(oBody: any) {
     let oData = oBody['data'];
     let aUsers = oData['users'];
 
-    store.dispatch(userAction.show(aUsers));
+    store.dispatch(actions.service.resource.user.show(aUsers));
   }
 
   public onLogout() {

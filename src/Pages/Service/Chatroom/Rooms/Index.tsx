@@ -6,8 +6,6 @@ import store from '@/store';
 
 import actions from '@/actions/';
 
-let roomIdAction = actions.service.roomId;
-
 import { AuthenticationHelper } from '@/Helpers';
 
 import './Index.scss';
@@ -51,7 +49,7 @@ class Rooms extends React.Component<any> {
           count: iCount
         };
         this.chatroomSocket.emit('READ USER ROOM', oBody);
-        store.dispatch(roomIdAction.edit(sRoomId));
+        store.dispatch(actions.service.resource.roomId.edit(sRoomId));
       }
     };
   }

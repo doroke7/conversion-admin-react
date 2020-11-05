@@ -12,8 +12,6 @@ import store from '@/store';
 
 import actions from '@/actions/';
 
-let userAction = actions.service.user;
-
 import { AuthenticationHelper } from '@/Helpers/';
 
 import './Index.scss';
@@ -47,7 +45,7 @@ class Top extends React.Component<IProps> {
   public async getUser(): Promise<void> {
     try {
       let sUserId = AuthenticationHelper.getUserId();
-      store.dispatch(userAction.show(sUserId));
+      store.dispatch(actions.service.resource.user.show(sUserId));
     } catch (oException) {
       // DO NOTHING
     }
