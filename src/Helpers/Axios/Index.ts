@@ -1,4 +1,4 @@
-import querystring from 'querystring';
+import { AuthenticationHelper } from '@/Helpers/';
 
 import axios from 'axios';
 
@@ -21,6 +21,7 @@ class AxiosHelper {
    * @param {boolean} concurrent 使用同步模式 (递归模式), 也就是一个 AJAX 等待回应后才发下一个请求
    */
   public static async get(oRequest: any | any[], bConcurrent: boolean = false): Promise<any> {
+    let sJwt = AuthenticationHelper.getJwt();
     bConcurrent = !!bConcurrent;
     let oParams;
     let oOptions;
@@ -39,7 +40,10 @@ class AxiosHelper {
           oOptions = {
             params: oParams,
             data: oParams,
-            headers: oHeaders
+            headers: {
+              Authorization: sJwt || '',
+              ...oHeaders
+            }
           };
 
           let oAxiosResponse;
@@ -65,7 +69,10 @@ class AxiosHelper {
           oOptions = {
             params: oParams,
             data: oParams,
-            headers: oHeaders
+            headers: {
+              Authorization: sJwt || '',
+              ...oHeaders
+            }
           };
 
           let oAxiosResponse;
@@ -111,6 +118,8 @@ class AxiosHelper {
    * @param {boolean} concurrent Use polling (recursive) to send the request
    */
   public static async post(oRequest: any | any[], bConcurrent: boolean = false): Promise<any> {
+    let sJwt = AuthenticationHelper.getJwt();
+
     bConcurrent = !!bConcurrent;
     let oParams;
     let oOptions;

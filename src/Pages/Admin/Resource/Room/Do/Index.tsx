@@ -4,17 +4,17 @@ import Commons from '@/Commons';
 
 import style from './style';
 
-function Domain(): any {
+function Do(): any {
   const classes: any = style(void 0);
 
   return (
     <div className={classes.root}>
       <Commons.Admin.Menu>
         <Paper className={classes.paper}>
-          <div>DOMAIN</div>
+          <div>ROOM</div>
         </Paper>
       </Commons.Admin.Menu>
     </div>
   );
 }
-export default Domain;
+export default Do;

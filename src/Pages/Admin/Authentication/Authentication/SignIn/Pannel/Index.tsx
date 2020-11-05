@@ -80,7 +80,7 @@ function Pannel(oProps: any): any {
         name: oState.name,
         password: oState.password
       };
-      await dispatch(actions.admin.authentication.signIn(oBody));
+      await dispatch(actions.admin.authentication.authentication.signIn(oBody));
       await redirect();
     } catch (oException) {
       let sKey = oException.message;

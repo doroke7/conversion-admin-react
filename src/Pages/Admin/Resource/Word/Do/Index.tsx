@@ -14,7 +14,7 @@ interface State {
   words: any[];
 }
 
-function Word(): any {
+function Do(): any {
   let classes: any = style(void 0);
   let dispatch = useDispatch();
   let [oState, setState] = useState<State>({
@@ -49,4 +49,4 @@ function Word(): any {
     </div>
   );
 }
-export default Word;
+export default Do;

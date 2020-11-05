@@ -4,17 +4,15 @@ import Commons from '@/Commons';
 
 import style from './style';
 
-function Administrator(): any {
+function Do(): any {
   const classes: any = style(void 0);
 
   return (
     <div className={classes.root}>
       <Commons.Admin.Menu>
-        <Paper className={classes.paper}>
-          <div>Administrator!!!!</div>
-        </Paper>
+        <Paper className={classes.paper}></Paper>
       </Commons.Admin.Menu>
     </div>
   );
 }
-export default Administrator;
+export default Do;
