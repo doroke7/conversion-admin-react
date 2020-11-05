@@ -1,4 +1,4 @@
-import SignIn from './SignIn/Index';
+import Authentication from './Authentication/Index';
 import _ from './_/Index';
 
 import Room from './Room/Index';
@@ -8,7 +8,7 @@ import Administrator from './Administrator/Index';
 import Domain from './Domain/Index';
 
 export default {
-  SignIn,
+  Authentication,
   Room,
   User,
   Word,
