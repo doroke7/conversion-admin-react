@@ -27,11 +27,13 @@ import Tabs from './Tabs/Index';
 import { tab } from '@/contexts';
 
 import { TabHelper } from '@/Helpers';
-
-import { MENUS, APP } from '@/CONFIGS';
+import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
 import { AnyARecord } from 'dns';
+
+const MENUS = CONFIGS.MENUS;
+const APP = CONFIGS.APP;
 
 function Menu(oProps: any) {
   let classes = style(void 0);

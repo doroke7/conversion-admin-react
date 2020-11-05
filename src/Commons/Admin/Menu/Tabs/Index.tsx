@@ -6,9 +6,11 @@ import Clear from '@material-ui/icons/Clear';
 
 import { tab } from '@/contexts';
 
-import { MENUS } from '@/CONFIGS';
+import CONFIGS from '@/CONFIGS';
 
 import style from './style';
+
+const MENUS = CONFIGS.MENUS;
 
 function Tabs(oProps: any) {
   let classes = style(void 0);

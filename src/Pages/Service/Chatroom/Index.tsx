@@ -24,7 +24,10 @@ import Channel from './Channel/Index';
 
 import './Index.scss';
 
-import { MOMENT, MESSAGES } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const MOMENT = CONFIGS.MOMENT;
+const MESSAGES = CONFIGS.MESSAGES;
 
 moment.locale(MOMENT.LOCALE);
 

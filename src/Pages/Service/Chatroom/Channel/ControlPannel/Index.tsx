@@ -20,7 +20,10 @@ import { roomMessageAction, uploaderAction } from '@/actions/';
 
 import './Index.scss';
 
-import { MOMENT, MESSAGES, SOCKET } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const MOMENT = CONFIGS.MOMENT;
+const MESSAGES = CONFIGS.MESSAGES;
 
 import emptyImage from '@/images/empty-image.gif';
 const ENTER_KEY_CODE = 13;

@@ -4,7 +4,7 @@ import store from '@/store';
 
 import { AuthenticationHelper } from '@/Helpers/';
 
-import { STORAGE } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
 
 import Divider from 'antd/es/divider';
 import Avatar from 'antd/es/avatar';
@@ -13,6 +13,7 @@ import Switch from 'antd/es/switch';
 import Button from 'antd/es/button';
 
 import './Index.scss';
+const STORAGE = CONFIGS.STORAGE;
 
 interface IProps {}
 

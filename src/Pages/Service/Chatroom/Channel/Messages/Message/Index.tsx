@@ -12,7 +12,11 @@ import { AuthenticationHelper } from '@/Helpers';
 
 import './Index.scss';
 
-import { STORAGE, SOCKET, MOMENT } from '@/CONFIGS';
+import CONFIGS from '@/CONFIGS/';
+
+const STORAGE = CONFIGS.STORAGE;
+const SOCKET = CONFIGS.SOCKET;
+const MOMENT = CONFIGS.MOMENT;
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 moment.locale(MOMENT.LOCALE);

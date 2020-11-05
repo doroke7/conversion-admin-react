@@ -2,7 +2,9 @@ import { AuthenticationHelper } from '@/Helpers/';
 
 import axios from 'axios';
 
-import { API } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const API = CONFIGS.API;
 
 let sHost = API.HOST.replace(/\/$/, '');
 sHost.replace(/^http(s)?:\/\//, '');

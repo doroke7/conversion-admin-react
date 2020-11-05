@@ -1,11 +1,11 @@
 import React from 'react';
 
 import store from '@/store';
-
-import { STORAGE } from '@/CONFIGS';
+import CONFIGS from '@/CONFIGS/';
 
 import './Index.scss';
 
+let STORAGE = CONFIGS.STORAGE;
 class Detail extends React.Component {
   public constructor(oProps: any) {
     super(oProps);

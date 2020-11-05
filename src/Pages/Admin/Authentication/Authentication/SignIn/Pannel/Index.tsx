@@ -14,7 +14,9 @@ import Helpers from '@/Helpers/';
 
 import style from './style';
 
-import { MESSAGES } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const MESSAGES = CONFIGS.MESSAGES;
 
 interface State {
   name: string;

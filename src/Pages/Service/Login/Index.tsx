@@ -15,15 +15,11 @@ import store from '@/store';
 import Top from './Top/Index';
 import './Index.scss';
 
-// import {
-//   AuthenticationHelper,
-//   SocketHelper,
-//   AxiosHelper,
-// } from '@/Helpers';
-
 import { authenticationAction } from '@/actions/';
 
-import { MODALS } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const MODALS = CONFIGS.MODALS;
 
 interface IProps {
   history: any;

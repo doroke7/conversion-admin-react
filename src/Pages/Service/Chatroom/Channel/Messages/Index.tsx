@@ -6,12 +6,16 @@ import store from '@/store';
 
 import { EmitterHelper, AuthenticationHelper } from '@/Helpers/';
 
-import { STORAGE, SOCKET, MOMENT } from '@/CONFIGS';
+import CONFIGS from '@/CONFIGS/';
 
 import Message from './Message/Index';
 import ScrollButton from './ScrollButton/Index';
 
 import './Index.scss';
+
+const STORAGE = CONFIGS.STORAGE;
+const SOCKET = CONFIGS.SOCKET;
+const MOMENT = CONFIGS.MOMENT;
 
 STORAGE.HOST = STORAGE.HOST.replace(/^http:\/\//, '');
 

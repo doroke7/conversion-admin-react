@@ -2,9 +2,14 @@ import React from 'react';
 import moment from 'moment';
 import './Index.scss';
 import store from '@/store';
-import { STORAGE, MOMENT } from '@/CONFIGS/';
+
+import CONFIGS from '@/CONFIGS/';
+
 import { AuthenticationHelper } from '@/Helpers/';
 import { Badge } from 'antd';
+
+let STORAGE = CONFIGS.STORAGE;
+let MOMENT = CONFIGS.MOMENT;
 
 interface IProps {
   // className?: string | null;

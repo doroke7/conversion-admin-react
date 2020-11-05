@@ -1,6 +1,8 @@
 import oIo from 'socket.io-client';
 import { AuthenticationHelper } from '@/Helpers/';
-import { SOCKET } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const SOCKET = CONFIGS.SOCKET;
 
 let sLoginUrl =
   SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/login';

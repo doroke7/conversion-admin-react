@@ -12,7 +12,9 @@ import oRoutes from '@/routers';
 
 import { Service } from '@/Commons';
 
-import { SOCKET } from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/';
+
+const SOCKET = CONFIGS.SOCKET;
 
 let sChatroomUrl =
   SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';

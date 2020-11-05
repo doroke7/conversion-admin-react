@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, blue } from '@material-ui/core/colors';
+import { pink, grey, indigo } from '@material-ui/core/colors';
 
 const style = makeStyles((theme: Theme) =>
   createStyles({
@@ -10,7 +10,7 @@ const style = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(1)
     },
     tab: {
-      color: blue[900],
+      color: indigo[900],
       padding: theme.spacing(1),
       backgroundColor: grey[200],
       borderTop: '1px solid #dddddd',
@@ -22,7 +22,7 @@ const style = makeStyles((theme: Theme) =>
       textDecoration: 'none'
     },
     tabEnable: {
-      color: blue[900],
+      color: indigo[900],
       padding: theme.spacing(1),
       borderTop: '1px solid #dddddd',
       borderLeft: '1px solid #dddddd',

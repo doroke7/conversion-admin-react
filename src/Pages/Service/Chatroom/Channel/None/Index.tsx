@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { STORAGE } from '@/CONFIGS';
+import CONFIGS from '@/CONFIGS/';
 
 import noneSrc from '@/images/none.png';
 import './Index.scss';
+
+const STORAGE = CONFIGS.STORAGE;
 
 interface IProps {}
 
