@@ -44,15 +44,15 @@ function Pannel(oProps: any): any {
   let redirect = async () => {
     let bResult = Helpers.Authentication.isExpired();
 
-    if ('/admin/sign-in' == location.pathname && !bResult) {
+    if ('/admin/authentication/authentication/sign-in' == location.pathname && !bResult) {
       history.push('/admin');
       return;
     }
 
-    if ('/admin/sign-in' != location.pathname && bResult) {
+    if ('/admin/authentication/authentication/sign-in' != location.pathname && bResult) {
       // React Hook 棄用 props.history 寫法
       // await this.props.history.push('/admin');
-      history.push('/admin/sign-in');
+      history.push('/admin/authentication/authentication/sign-in');
     }
   };
 
