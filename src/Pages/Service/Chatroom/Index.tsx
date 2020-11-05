@@ -12,7 +12,12 @@ import { AuthenticationHelper } from '@/Helpers/';
 
 import store from '@/store';
 
-import { roomMessageAction, authenticationAction, userAction, roomActon, userRoomAction } from '@/actions/';
+import actions from '@/actions/';
+
+let roomMessageAction = actions.service.roomMessage;
+let userAction = actions.service.user;
+let roomActon = actions.service.room;
+let userRoomAction = actions.service.userRoom;
 
 import Spin from 'antd/es/spin';
 import Row from 'antd/es/row';
@@ -110,8 +115,8 @@ class Chatroom extends React.Component<any> {
     this.chatroomSocket.on('MESSAGE ROOM MESSAGE', this.onPostRoomMessage);
     this.chatroomSocket.on('disconnet', () => {});
     try {
-      await store.dispatch(authenticationAction.accessTokenToJwt());
-      await store.dispatch(authenticationAction.refresh());
+      await store.dispatch(actions.service.authentication.authentication.accessTokenToJwt());
+      await store.dispatch(actions.service.authentication.authentication.refresh());
     } catch (oExeption) {
       let sMessage = oExeption.message;
       Message.warning(MESSAGES[sMessage]);

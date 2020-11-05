@@ -23,7 +23,7 @@ let cSignIn: any = (sJwt: any) => {
   };
 };
 
-let oAuthenticationAction: any = {
+let oAuthentication: any = {
   login: (oBody: any) => {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
@@ -45,12 +45,12 @@ let oAuthenticationAction: any = {
     return async (cDispatch: any) => {
       let fNext = async () => {
         let sJwt = AuthenticationHelper.getJwt();
-        // let sAccessToken = AuthenticationHelper.getAccessToken();
+        let sAccessToken = AuthenticationHelper.getAccessToken();
 
         let oOptions = {
           headers: {
-            jwt: sJwt // 一定要 引号
-            // 'access-token': sAccessToken,
+            jwt: sJwt, // 一定要 引号
+            'access-token': sAccessToken
           }
         };
         let oResponse = await AxiosHelper.post({
@@ -108,10 +108,6 @@ let oAuthenticationAction: any = {
         params: oBody
       });
 
-      if (!oResponse) {
-        throw new Error('THE_NETWORK_IS_ERROR');
-      }
-
       if (-1 === oResponse.result || !oResponse.jwt) {
         throw new Error('IT_FAILS_TO_SIGN_IN');
       }
@@ -123,4 +119,4 @@ let oAuthenticationAction: any = {
   }
 };
 
-export default oAuthenticationAction;
+export default oAuthentication;

@@ -10,7 +10,9 @@ import List from './List/Index';
 
 import store from '@/store';
 
-import { userAction } from '@/actions/';
+import actions from '@/actions/';
+
+let userAction = actions.service.user;
 
 import { AuthenticationHelper } from '@/Helpers/';
 

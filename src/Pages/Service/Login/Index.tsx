@@ -15,8 +15,7 @@ import store from '@/store';
 import Top from './Top/Index';
 import './Index.scss';
 
-import { authenticationAction } from '@/actions/';
-
+import actions from '@/actions/';
 import CONFIGS from '@/CONFIGS/';
 
 const MODALS = CONFIGS.MODALS;
@@ -55,7 +54,7 @@ class Login extends React.Component<IProps> {
         throw new Error('THE_USER_PASSWORD_IS_EMPTY');
       }
 
-      let oState = await store.dispatch(authenticationAction.login(oBody));
+      let oState = await store.dispatch(actions.service.authentication.authentication.login(oBody));
       this.props.history.push('/service/chatroom');
     } catch (oException) {
       let sMessage = oException.message;

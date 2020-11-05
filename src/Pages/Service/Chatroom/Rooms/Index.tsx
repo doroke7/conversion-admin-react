@@ -3,7 +3,10 @@ import moment from 'moment';
 
 import { Service } from '@/Commons';
 import store from '@/store';
-import { roomIdAction } from '@/actions';
+
+import actions from '@/actions/';
+
+let roomIdAction = actions.service.roomId;
 
 import { AuthenticationHelper } from '@/Helpers';
 

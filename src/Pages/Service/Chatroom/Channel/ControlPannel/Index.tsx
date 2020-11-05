@@ -16,7 +16,10 @@ import { Service } from '@/Commons';
 
 import { AuthenticationHelper, EmitterHelper } from '@/Helpers/';
 
-import { roomMessageAction, uploaderAction } from '@/actions/';
+import actions from '@/actions/';
+
+let roomMessageAction = actions.service.roomMessage;
+let uploaderAction = actions.service.uploader;
 
 import './Index.scss';
 
