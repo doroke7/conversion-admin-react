@@ -131,10 +131,6 @@ function Menu(oProps: any) {
     };
   }
 
-  function consolelog(s: any) {
-    console.log(s);
-  }
-
   return (
     <div className={classes.root}>
       <AppBar
@@ -187,7 +183,7 @@ function Menu(oProps: any) {
                 button
                 key={oMenu.text}
                 className={clsx({
-                  [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, '')
+                  [classes.listItemEnable]: sMenuName === oMenu.path
                 })}
               >
                 <ListItemIcon className={clsx(classes.listItemIcon)}>{<oMenu.Icon />}</ListItemIcon>

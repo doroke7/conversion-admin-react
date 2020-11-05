@@ -36,7 +36,7 @@ const style = makeStyles((theme: Theme) =>
       color: grey[100]
     },
     listItemEnable: {
-      background: grey[300]
+      background: grey[800]
     },
     title: {},
     description: {
