@@ -15,7 +15,7 @@ function Tabs(oProps: any) {
   let aTabs = useContext(tab);
 
   let sPathname = oProps.location.pathname;
-  let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
+  let sMenuName = sPathname;
 
   return (
     <div className={classes.wrapperTabs}>
