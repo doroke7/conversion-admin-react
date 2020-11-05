@@ -108,23 +108,6 @@ function Menu(oProps: any) {
       let aTabs: any[] = TabHelper.get();
       let _aTabs: any[] = TabHelper.get();
 
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-      // TODO
-
       let _sMenuName = aTabs[iIndex];
       _aTabs.splice(iIndex, 1);
       setState({ ...oState, tabs: _aTabs });
@@ -135,13 +118,13 @@ function Menu(oProps: any) {
       }
       if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 < aTabs.length) {
         let __sMenuName = aTabs[iIndex + 1];
-        oProps.history.push('/admin/' + __sMenuName);
+        oProps.history.push(__sMenuName);
         return;
       }
 
       if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 === aTabs.length) {
         let __sMenuName = aTabs[iIndex - 1];
-        oProps.history.push('/admin/' + __sMenuName);
+        oProps.history.push(__sMenuName);
         return;
       }
 
