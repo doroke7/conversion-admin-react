@@ -32,6 +32,9 @@ const style = makeStyles((theme: Theme) =>
         color: grey[0]
       }
     },
+    listItemIcon: {
+      color: grey[100]
+    },
     listItemEnable: {
       background: grey[300]
     },

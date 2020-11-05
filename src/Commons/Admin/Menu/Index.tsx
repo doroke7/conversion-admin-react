@@ -188,7 +188,7 @@ function Menu(oProps: any) {
                   [classes.listItemEnable]: sMenuName === oMenu.path.replace(/^\//gi, '')
                 })}
               >
-                <ListItemIcon>{<oMenu.Icon />}</ListItemIcon>
+                <ListItemIcon className={clsx(classes.listItemIcon)}>{<oMenu.Icon />}</ListItemIcon>
                 <ListItemText primary={oMenu.text} />
               </ListItem>
             </Link>
