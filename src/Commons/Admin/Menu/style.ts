@@ -9,6 +9,8 @@ const style = makeStyles((theme: Theme) =>
       display: 'flex'
     },
     appBar: {
+      background: grey[800],
+
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -24,10 +26,10 @@ const style = makeStyles((theme: Theme) =>
       })
     },
     link: {
-      color: grey[900],
+      color: grey[200],
       textDecoration: 'none',
       '&:hover': {
-        color: grey[900]
+        color: grey[0]
       }
     },
     listItemEnable: {
@@ -82,7 +84,10 @@ const style = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       position: 'relative'
     },
-    paper: {
+    paper1: {
+      background: grey[900]
+    },
+    paper2: {
       padding: theme.spacing(2),
       borderRadius: '6px',
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',

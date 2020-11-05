@@ -160,7 +160,7 @@ function Menu(oProps: any) {
           [classes.drawerClose]: !oState.open
         })}
         classes={{
-          paper: clsx({
+          paper: clsx(classes.paper1, {
             [classes.drawerOpen]: oState.open,
             [classes.drawerClose]: !oState.open
           })
@@ -203,7 +203,7 @@ function Menu(oProps: any) {
           <Tabs removeTab={removeTab} />
         </tab.Provider>
         {oState.tabs.length >= 1 ? (
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper2}>
             <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
               {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
             </Box>

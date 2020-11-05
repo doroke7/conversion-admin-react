@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { lightBlue, blue, blueGrey } from '@material-ui/core/colors';
 
 let style = makeStyles((theme: Theme): any =>
   createStyles({
@@ -11,7 +11,7 @@ let style = makeStyles((theme: Theme): any =>
       transform: 'translate(-50%, -50%)'
     },
     icon: {
-      color: grey[400],
+      color: blueGrey[200],
       fontSize: '5rem',
       MaxWidth: '20rem',
       MaxHeight: '20rem',
@@ -20,7 +20,7 @@ let style = makeStyles((theme: Theme): any =>
     },
     text: {
       textAlign: 'center',
-      color: grey[500]
+      color: blueGrey[200]
     }
   })
 );
