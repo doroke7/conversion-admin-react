@@ -24,13 +24,15 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import Tabs from './Tabs/Index';
 
-import { tab } from '@/contexts';
+import context from '@/contexts';
 
 import { TabHelper } from '@/Helpers';
 import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
 import { AnyARecord } from 'dns';
+
+let tab = context.tab;
 
 const MENUS = CONFIGS.MENUS;
 const APP = CONFIGS.APP;
@@ -105,6 +107,23 @@ function Menu(oProps: any) {
 
       let aTabs: any[] = TabHelper.get();
       let _aTabs: any[] = TabHelper.get();
+
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
+      // TODO
 
       let _sMenuName = aTabs[iIndex];
       _aTabs.splice(iIndex, 1);

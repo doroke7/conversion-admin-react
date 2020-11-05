@@ -4,13 +4,15 @@ import clsx from 'clsx';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Clear from '@material-ui/icons/Clear';
 
-import { tab } from '@/contexts';
+import context from '@/contexts';
 
 import CONFIGS from '@/CONFIGS';
 
 import style from './style';
 
 const MENUS = CONFIGS.MENUS;
+
+let tab = context.tab;
 
 function Tabs(oProps: any) {
   let classes = style(void 0);
