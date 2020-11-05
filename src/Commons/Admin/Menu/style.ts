@@ -73,10 +73,14 @@ const style = makeStyles((theme: Theme) =>
     },
     toolbar: {
       display: 'flex',
+      color: grey[100],
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar
+    },
+    iconButton: {
+      color: grey[200]
     },
     content: {
       flexGrow: 1

@@ -175,8 +175,8 @@ function Menu(oProps: any) {
         open={oState.open}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          <IconButton className={classes.iconButton} onClick={handleDrawerClose}>
+            ➤
           </IconButton>
         </div>
         <Divider />
