@@ -5,34 +5,34 @@ import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
 import FilterDramaIcon from '@material-ui/icons/FilterDrama';
 
 const MENUS: any = {
-  domain: {
+  '/admin/resource/domain': {
     text: '域名',
     description: '移動端使用的域名列表',
-    path: '/domain',
+    path: '/admin/resource/domain',
     Icon: FilterDramaIcon
   },
-  room: {
+  '/admin/resource/room': {
     text: '房間',
     description: '聊天室的房間列表',
-    path: '/room',
+    path: '/admin/resource/room',
     Icon: FormatListNumberedRtl
   },
-  user: {
+  '/admin/resource/user': {
     text: '會員',
     description: '聊天室的會員列表',
-    path: '/user',
+    path: '/admin/resource/user',
     Icon: AccountBox
   },
-  administrator: {
+  '/admin/resource/administrator': {
     text: '管理員',
     description: '管理員列表',
-    path: '/administrator',
+    path: '/admin/resource/administrator',
     Icon: SupervisedUserCircle
   },
-  word: {
+  '/admin/resource/word': {
     text: '禁止字',
     description: '禁止字列表',
-    path: '/word',
+    path: '/admin/resource/word',
     Icon: HighlightOff
   }
 };

@@ -31,6 +31,7 @@ import { TabHelper } from '@/Helpers';
 import { MENUS, APP } from '@/CONFIGS';
 
 import style from './style';
+import { AnyARecord } from 'dns';
 
 function Menu(oProps: any) {
   let classes = style(void 0);
@@ -44,11 +45,13 @@ function Menu(oProps: any) {
   });
 
   let sPathname = oProps.location.pathname;
-  let sMenuName = sPathname.replace(/^\/admin\//gi, '').replace(/\/\w*/gi, '');
+  let sMenuName = sPathname;
 
   useEffect(() => {
     // componentDidMount is here!
-    if (sMenuName) {
+    let oRegular = /admin\/(\w+)/i;
+
+    if (sMenuName.match(oRegular)) {
       let oTab = MENUS[sMenuName];
       enableTab(oTab);
     }
@@ -77,7 +80,7 @@ function Menu(oProps: any) {
     let iIndex;
     let iLength = aTabs.length;
     let bExistent = false;
-    let sMenuName = oMenu.path.replace(/\//gi, '');
+    let sMenuName = oMenu.path;
 
     for (iIndex = 0; iIndex < iLength; iIndex++) {
       let _sMenuName: any = aTabs[iIndex];
@@ -128,6 +131,10 @@ function Menu(oProps: any) {
     };
   }
 
+  function consolelog(s: any) {
+    console.log(s);
+  }
+
   return (
     <div className={classes.root}>
       <AppBar
@@ -175,12 +182,7 @@ function Menu(oProps: any) {
         <Divider />
         <List>
           {Object.values(MENUS).map((oMenu: any, iIndex) => (
-            <Link
-              to={'/admin' + oMenu.path}
-              className={clsx(classes.link, {})}
-              onClick={handleClick(oMenu)}
-              key={iIndex}
-            >
+            <Link to={oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)} key={iIndex}>
               <ListItem
                 button
                 key={oMenu.text}
@@ -205,10 +207,10 @@ function Menu(oProps: any) {
         {oState.tabs.length >= 1 ? (
           <Paper className={classes.paper2}>
             <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-              {sMenuName && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+              {sMenuName && MENUS[sMenuName] && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
             </Box>
             <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-              {sMenuName && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+              {sMenuName && MENUS[sMenuName] && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
             </Box>
           </Paper>
         ) : (
