@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.4.1",
+    "@material-ui/data-grid": "^4.0.0-alpha.8",
     "@material-ui/icons": "^4.4.1",
     "antd": "^3.19.8",
     "autodll-webpack-plugin": "^0.4.2",
