@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -37,6 +38,7 @@ function Bar(oProps: any) {
         <Typography variant="h6" noWrap>
           {CONFIGS.APP.NAME}
         </Typography>
+        <Avatar className={classes.avatar}>H</Avatar>
       </Toolbar>
     </AppBar>
   );

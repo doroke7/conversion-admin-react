@@ -7,7 +7,6 @@ const style = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
       background: grey[800],
-
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -27,6 +26,11 @@ const style = makeStyles((theme: Theme) =>
     },
     hide: {
       display: 'none'
+    },
+    avatar: {
+      position: 'absolute',
+      right: '1rem',
+      cursor: 'pointer'
     }
   })
 );
