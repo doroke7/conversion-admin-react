@@ -7,6 +7,7 @@ import roomMessageReducer from './roomMessage/index';
 import wordReducer from './word/index';
 import userReducer from './user/index';
 import userRoomReducer from './userRoom/index';
+import domain from './domain/index';
 
 export {
   jwtReducer,
@@ -17,4 +18,8 @@ export {
   userRoomReducer,
   roomReducer,
   roomIdReducer
+};
+
+export default {
+  domain
 };

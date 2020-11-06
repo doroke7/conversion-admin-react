@@ -2,7 +2,7 @@ import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
 let cShow: any = (sJwt: any) => {
   return {
-    type: 'ADMIN_RESOURCE_DOMAIN_SHOW',
+    type: 'DOMAIN_SHOW',
     payload: sJwt
   };
 };
