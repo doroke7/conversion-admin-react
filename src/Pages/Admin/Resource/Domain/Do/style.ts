@@ -10,7 +10,7 @@ const style = makeStyles((theme: Theme): any =>
     },
     dataGridWrapper: {
       width: '100%',
-      height: '500px'
+      minHeight: '550px'
     }
   })
 );

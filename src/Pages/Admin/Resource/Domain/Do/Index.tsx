@@ -44,22 +44,32 @@ function Do(): any {
     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
     { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
     { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+    { id: 6, lastName: 'ff', firstName: 'fffxccc', age: 150 },
     { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
+    { id: 10, lastName: 'Rff', firstName: 'Harvey', age: 65 },
+    { id: 11, lastName: 'RFFFie', firstName: 'Harvey', age: 65 },
+    { id: 12, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 13, lastName: 'jkie', firstName: 'Harvey', age: 65 }
   ];
+
+  let bLoading = false;
 
   return (
     <div className={classes.root}>
       <Commons.Admin.Menu>
         <Paper className={classes.paper}>
           <div className={classes.dataGridWrapper}>
-            <DataGrid rows={rows} columns={columns} autoPageSize={true} />
+            <DataGrid
+              rows={rows}
+              loading={bLoading}
+              columns={columns}
+              autoPageSize={true}
+              pageSize={10}
+              rowHeight={44}
+              headerHeight={48}
+            />
           </div>
         </Paper>
       </Commons.Admin.Menu>
