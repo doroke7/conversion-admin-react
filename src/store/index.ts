@@ -13,7 +13,8 @@ const oReducer = combineReducers({
   users: reducers.user,
   usersRooms: reducers.userRoom,
   rooms: reducers.room,
-  roomId: reducers.roomId
+  roomId: reducers.roomId,
+  domain: reducers.domain
 });
 
 const oStore: any = createStore(

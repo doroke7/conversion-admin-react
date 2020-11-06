@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StoreContext } from 'redux-react-hook';
+import { useMappedState, useDispatch, StoreContext } from 'redux-react-hook';
+import { useStore } from 'react-redux';
 
-import { useMappedState, useDispatch } from 'redux-react-hook';
 import Paper from '@material-ui/core/Paper';
 import { DataGrid } from '@material-ui/data-grid';
 import Commons from '@/Commons';
@@ -30,13 +30,16 @@ function Do(): any {
     await setState(_oState);
   };
 
+  const store = useContext(StoreContext);
+  console.log(34, store.getState());
+
   // useEffect(() => {
   //   cShow();
   // });
 
   useEffect(() => {
     cShow();
-  }, []);
+  }, []); // only run once
 
   // const oStore = useContext(StoreContext);
 
