@@ -61,7 +61,7 @@ function Do(): any {
 
   return (
     <div className={classes.root}>
-      <Commons.Admin.Menu>
+      <Commons.Admin.Navigation>
         <Paper className={classes.paper}>
           <div className={classes.dataGridWrapper}>
             <DataGrid
@@ -75,7 +75,7 @@ function Do(): any {
             />
           </div>
         </Paper>
-      </Commons.Admin.Menu>
+      </Commons.Admin.Navigation>
     </div>
   );
 }

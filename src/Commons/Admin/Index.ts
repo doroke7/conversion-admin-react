@@ -1,3 +1,3 @@
-import Menu from './Menu/Index';
+import Navigation from './Navigation/Index';
 
-export default { Menu };
+export default { Navigation };

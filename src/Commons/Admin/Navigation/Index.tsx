@@ -31,7 +31,7 @@ import style from './style';
 
 let tab = context.tab;
 
-function Menu(oProps: any) {
+function Navigation(oProps: any) {
   let classes = style(void 0);
   // let [open, setOpen] = React.useState(true);
   // let [tabs, setTabs] = React.useState([]);
@@ -198,4 +198,4 @@ function Menu(oProps: any) {
   );
 }
 
-export default withRouter(Menu);
+export default withRouter(Navigation);
