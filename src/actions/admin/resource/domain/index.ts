@@ -1,9 +1,9 @@
 import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
-let cShow: any = (sJwt: any) => {
+let cShow: any = (aDmains: any) => {
   return {
-    type: 'DOMAIN_SHOW',
-    payload: sJwt
+    type: 'SHOW_DOMAIN',
+    payload: aDmains
   };
 };
 
@@ -23,7 +23,13 @@ let oDomain: any = {
         throw new Error(oResponse.key);
       }
 
-      cDispatch(cShow());
+      if (!oResponse.data || !oResponse.data.domains) {
+        throw new Error('THE_API_IS_ERROR');
+      }
+
+      if (oResponse.data && oResponse.data.domains) {
+        cDispatch(cShow(oResponse.data.domains));
+      }
     };
   }
 };
