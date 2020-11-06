@@ -51,10 +51,21 @@ function Do(): any {
     { id: 10, lastName: 'Rff', firstName: 'Harvey', age: 65 },
     { id: 11, lastName: 'RFFFie', firstName: 'Harvey', age: 65 },
     { id: 12, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
-    { id: 13, lastName: 'jkie', firstName: 'Harvey', age: 65 }
+    { id: 13, lastName: 'jkie', firstName: 'Harvey', age: 65 },
+    { id: 14, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 15, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 16, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 17, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 18, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 19, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 20, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 21, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 22, lastName: 'RTFe', firstName: 'Harvey', age: 65 },
+    { id: 23, lastName: 'RTFe', firstName: 'Harvey', age: 65 }
   ];
 
   let bLoading = false;
+  let iPageSize: number = 10;
 
   return (
     <div className={classes.root}>
@@ -65,8 +76,8 @@ function Do(): any {
               rows={rows}
               loading={bLoading}
               columns={columns}
-              autoPageSize={true}
-              pageSize={10}
+              autoPageSize={false}
+              pageSize={iPageSize}
               rowHeight={44}
               headerHeight={48}
             />
