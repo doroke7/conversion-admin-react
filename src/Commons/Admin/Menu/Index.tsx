@@ -30,12 +30,8 @@ import { TabHelper } from '@/Helpers';
 import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
-import { AnyARecord } from 'dns';
 
 let tab = context.tab;
-
-const MENUS = CONFIGS.MENUS;
-const APP = CONFIGS.APP;
 
 function Menu(oProps: any) {
   let classes = style(void 0);
@@ -56,7 +52,7 @@ function Menu(oProps: any) {
     let oRegular = /admin\/(\w+)/i;
 
     if (sMenuName.match(oRegular)) {
-      let oTab = MENUS[sMenuName];
+      let oTab = CONFIGS.MENUS[sMenuName];
       enableTab(oTab);
     }
 
@@ -156,7 +152,7 @@ function Menu(oProps: any) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            {APP.NAME}
+            {CONFIGS.APP.NAME}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -181,7 +177,7 @@ function Menu(oProps: any) {
         </div>
         <Divider />
         <List>
-          {Object.values(MENUS).map((oMenu: any, iIndex) => (
+          {Object.values(CONFIGS.MENUS).map((oMenu: any, iIndex) => (
             <Link to={oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)} key={iIndex}>
               <ListItem
                 button
@@ -207,10 +203,14 @@ function Menu(oProps: any) {
         {oState.tabs.length >= 1 ? (
           <Paper className={classes.paper2}>
             <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-              {sMenuName && MENUS[sMenuName] && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+              {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].text
+                ? CONFIGS.MENUS[sMenuName].text
+                : sMenuName}
             </Box>
             <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-              {sMenuName && MENUS[sMenuName] && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+              {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].description
+                ? CONFIGS.MENUS[sMenuName].description
+                : ''}
             </Box>
           </Paper>
         ) : (
