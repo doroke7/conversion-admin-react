@@ -53,10 +53,10 @@ function Do(): any {
 
   const columns = [
     { field: 'domain_id', headerName: 'ID', width: 70 },
-    { field: 'server', headerName: '域名', width: 130 },
-    { field: 'path', headerName: '资源', width: 70 },
-    { field: 'weight', headerName: '权重', width: 70 },
-    { field: 'status', headerName: '状态', width: 70 }
+    { field: 'server', headerName: '域名', width: 300 },
+    { field: 'path', headerName: '资源', width: 150 },
+    { field: 'weight', headerName: '权重', width: 100 },
+    { field: 'status', headerName: '状态', width: 100 }
   ];
 
   return (
