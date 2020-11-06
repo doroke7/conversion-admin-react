@@ -13,7 +13,7 @@ import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
 
-import administator from '@/images/administator.png';
+import administrator from '@/images/administrator.png';
 
 function Bar(oProps: any) {
   let classes = style(void 0);
@@ -40,7 +40,7 @@ function Bar(oProps: any) {
         <Typography variant="h6" noWrap>
           {CONFIGS.APP.NAME}
         </Typography>
-        <Avatar src={administator} className={classes.avatar}></Avatar>
+        <Avatar src={administrator} className={classes.avatar}></Avatar>
       </Toolbar>
     </AppBar>
   );
