@@ -9,7 +9,7 @@ let cShow: any = (aDmains: any) => {
 
 let oDomain: any = {
   show(oBody: any) {
-    let sQuery = '{ domains { server type path  weight status added_time edited_time removed_time } }';
+    let sQuery = '{ domains { domain_id server type path weight status added_time edited_time removed_time } }';
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.get({
         path: '/admin/resource/graphql/query?query=' + sQuery
