@@ -1,5 +1,3 @@
-import jwtDecode from 'jwt-decode';
-
 import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
 let cShow: any = (sJwt: any) => {

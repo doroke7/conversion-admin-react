@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import Paper from '@material-ui/core/Paper';
 import { DataGrid } from '@material-ui/data-grid';
@@ -8,12 +9,24 @@ import style from './style';
 
 import actions from '@/actions/';
 
+interface State {
+  loading: boolean;
+}
+
 function Do(): any {
   const classes: any = style(void 0);
   let dispatch = useDispatch();
 
+  let [oState, setState] = useState<State>({
+    loading: true
+  });
+
   let cShow = async () => {
     await dispatch(actions.admin.resource.domain.show());
+    let _oState = {
+      loading: false
+    };
+    await setState(_oState);
   };
 
   cShow();
@@ -64,7 +77,6 @@ function Do(): any {
     { id: 23, lastName: 'RTFe', firstName: 'Harvey', age: 65 }
   ];
 
-  let bLoading = false;
   let iPageSize: number = 10;
 
   return (
@@ -74,7 +86,7 @@ function Do(): any {
           <div className={classes.dataGridWrapper}>
             <DataGrid
               rows={rows}
-              loading={bLoading}
+              loading={oState.loading}
               columns={columns}
               autoPageSize={false}
               pageSize={iPageSize}
