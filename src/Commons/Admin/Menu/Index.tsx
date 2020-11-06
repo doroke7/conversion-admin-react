@@ -19,10 +19,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
 import Tabs from './Tabs/Index';
+import Bar from './Bar/Index';
 
 import context from '@/contexts';
 
@@ -35,7 +33,6 @@ let tab = context.tab;
 
 function Menu(oProps: any) {
   let classes = style(void 0);
-  let theme = useTheme();
   // let [open, setOpen] = React.useState(true);
   // let [tabs, setTabs] = React.useState([]);
 
@@ -133,29 +130,7 @@ function Menu(oProps: any) {
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: oState.open
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: oState.open
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            {CONFIGS.APP.NAME}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Bar handleDrawerOpen={handleDrawerOpen} open={oState.open}></Bar>
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
