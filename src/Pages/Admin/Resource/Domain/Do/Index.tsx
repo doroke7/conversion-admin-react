@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { StoreContext } from 'redux-react-hook';
 
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import Paper from '@material-ui/core/Paper';
@@ -29,7 +30,15 @@ function Do(): any {
     await setState(_oState);
   };
 
-  cShow();
+  // useEffect(() => {
+  //   cShow();
+  // });
+
+  useEffect(() => {
+    cShow();
+  }, []);
+
+  // const oStore = useContext(StoreContext);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },

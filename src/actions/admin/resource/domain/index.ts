@@ -19,7 +19,7 @@ let oDomain: any = {
         throw new Error('THE_NETWORK_IS_ERROR');
       }
 
-      if (-1 === oResponse.status || !oResponse.jwt) {
+      if (-1 === oResponse.status) {
         throw new Error(oResponse.key);
       }
 
