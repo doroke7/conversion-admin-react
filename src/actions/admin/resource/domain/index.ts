@@ -1,17 +1,15 @@
-import jwtDecode from 'jwt-decode';
-
 import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
 
-let cShow: any = (sJwt: any) => {
+let cShow: any = (aDmains: any) => {
   return {
-    type: 'ADMIN_RESOURCE_DOMAIN_SHOW',
-    payload: sJwt
+    type: 'SHOW_DOMAIN',
+    payload: aDmains
   };
 };
 
 let oDomain: any = {
   show(oBody: any) {
-    let sQuery = '{ domains { server type path  weight status added_time edited_time removed_time } }';
+    let sQuery = '{ domains { domain_id server type path weight status added_time edited_time removed_time } }';
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.get({
         path: '/admin/resource/graphql/query?query=' + sQuery
@@ -21,11 +19,17 @@ let oDomain: any = {
         throw new Error('THE_NETWORK_IS_ERROR');
       }
 
-      if (-1 === oResponse.status || !oResponse.jwt) {
+      if (-1 === oResponse.status) {
         throw new Error(oResponse.key);
       }
 
-      cDispatch(cShow());
+      if (!oResponse.data || !oResponse.data.domains) {
+        throw new Error('THE_API_IS_ERROR');
+      }
+
+      if (oResponse.data && oResponse.data.domains) {
+        cDispatch(cShow(oResponse.data.domains));
+      }
     };
   }
 };

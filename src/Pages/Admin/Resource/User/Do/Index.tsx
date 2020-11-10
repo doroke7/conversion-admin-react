@@ -9,9 +9,9 @@ function Do(): any {
 
   return (
     <div className={classes.root}>
-      <Commons.Admin.Menu>
+      <Commons.Admin.Navigation>
         <Paper className={classes.paper}></Paper>
-      </Commons.Admin.Menu>
+      </Commons.Admin.Navigation>
     </div>
   );
 }

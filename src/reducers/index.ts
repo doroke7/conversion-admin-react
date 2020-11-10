@@ -1,20 +1,22 @@
-import jwtReducer from './jwt/index';
-import uploaderReducer from './uploader/index';
+import jwt from './jwt/index';
+import uploader from './uploader/index';
 
-import roomReducer from './room/index';
-import roomIdReducer from './roomId/index';
-import roomMessageReducer from './roomMessage/index';
-import wordReducer from './word/index';
-import userReducer from './user/index';
-import userRoomReducer from './userRoom/index';
+import room from './room/index';
+import roomId from './roomId/index';
+import roomMessage from './roomMessage/index';
+import word from './word/index';
+import user from './user/index';
+import userRoom from './userRoom/index';
+import domain from './domain/index';
 
-export {
-  jwtReducer,
-  uploaderReducer,
-  roomMessageReducer,
-  wordReducer,
-  userReducer,
-  userRoomReducer,
-  roomReducer,
-  roomIdReducer
+export default {
+  domain,
+  jwt,
+  uploader,
+  roomMessage,
+  word,
+  user,
+  userRoom,
+  room,
+  roomId
 };

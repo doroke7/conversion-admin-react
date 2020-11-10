@@ -8,23 +8,7 @@ const style = makeStyles((theme: Theme) =>
     root: {
       display: 'flex'
     },
-    appBar: {
-      background: grey[800],
 
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      })
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
-      })
-    },
     link: {
       color: grey[200],
       textDecoration: 'none',
@@ -42,9 +26,7 @@ const style = makeStyles((theme: Theme) =>
     description: {
       marginBottom: theme.spacing(2)
     },
-    menuButton: {
-      marginRight: 36
-    },
+
     hide: {
       display: 'none'
     },
@@ -87,8 +69,8 @@ const style = makeStyles((theme: Theme) =>
       // padding: theme.spacing(3),
     },
     subContent: {
-      minHeight: 'calc(100vh - 128px)',
-      padding: theme.spacing(2),
+      minHeight: 'calc(100vh - 186px)',
+      // padding: theme.spacing(2),
       position: 'relative'
     },
     paper1: {

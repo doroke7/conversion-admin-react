@@ -19,10 +19,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
 import Tabs from './Tabs/Index';
+import Bar from './Bar/Index';
 
 import context from '@/contexts';
 
@@ -30,16 +28,11 @@ import { TabHelper } from '@/Helpers';
 import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
-import { AnyARecord } from 'dns';
 
 let tab = context.tab;
 
-const MENUS = CONFIGS.MENUS;
-const APP = CONFIGS.APP;
-
-function Menu(oProps: any) {
+function Navigation(oProps: any) {
   let classes = style(void 0);
-  let theme = useTheme();
   // let [open, setOpen] = React.useState(true);
   // let [tabs, setTabs] = React.useState([]);
 
@@ -56,7 +49,7 @@ function Menu(oProps: any) {
     let oRegular = /admin\/(\w+)/i;
 
     if (sMenuName.match(oRegular)) {
-      let oTab = MENUS[sMenuName];
+      let oTab = CONFIGS.MENUS[sMenuName];
       enableTab(oTab);
     }
 
@@ -137,29 +130,7 @@ function Menu(oProps: any) {
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: oState.open
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: oState.open
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            {APP.NAME}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Bar handleDrawerOpen={handleDrawerOpen} open={oState.open}></Bar>
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -181,7 +152,7 @@ function Menu(oProps: any) {
         </div>
         <Divider />
         <List>
-          {Object.values(MENUS).map((oMenu: any, iIndex) => (
+          {Object.values(CONFIGS.MENUS).map((oMenu: any, iIndex) => (
             <Link to={oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)} key={iIndex}>
               <ListItem
                 button
@@ -207,10 +178,14 @@ function Menu(oProps: any) {
         {oState.tabs.length >= 1 ? (
           <Paper className={classes.paper2}>
             <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-              {sMenuName && MENUS[sMenuName] && MENUS[sMenuName].text ? MENUS[sMenuName].text : sMenuName}
+              {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].text
+                ? CONFIGS.MENUS[sMenuName].text
+                : sMenuName}
             </Box>
             <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-              {sMenuName && MENUS[sMenuName] && MENUS[sMenuName].description ? MENUS[sMenuName].description : ''}
+              {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].description
+                ? CONFIGS.MENUS[sMenuName].description
+                : ''}
             </Box>
           </Paper>
         ) : (
@@ -223,4 +198,4 @@ function Menu(oProps: any) {
   );
 }
 
-export default withRouter(Menu);
+export default withRouter(Navigation);

@@ -161,7 +161,6 @@ class AxiosHelper {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           let oParams = oRequest.params;
           oOptions = oRequest.options;
-
           oOptions['headers'] = {
             Authorization: sJwt || '',
             ...oOptions['headers']
