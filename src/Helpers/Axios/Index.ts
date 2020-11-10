@@ -100,7 +100,10 @@ class AxiosHelper {
     oOptions = {
       params: oParams,
       data: oParams,
-      headers: oHeaders
+      headers: {
+        Authorization: sJwt || '',
+        ...oHeaders
+      }
     };
 
     let oAxiosResponse;
@@ -136,6 +139,10 @@ class AxiosHelper {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
           oOptions = oRequest.options;
+          oOptions['headers'] = {
+            Authorization: sJwt || '',
+            ...oOptions['headers']
+          };
           let oAxiosReponse;
           try {
             oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
@@ -155,6 +162,10 @@ class AxiosHelper {
           let oParams = oRequest.params;
           oOptions = oRequest.options;
 
+          oOptions['headers'] = {
+            Authorization: sJwt || '',
+            ...oOptions['headers']
+          };
           let oAxiosReponse;
           try {
             oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
@@ -173,6 +184,10 @@ class AxiosHelper {
     oParams = oRequest.params;
     oOptions = oRequest.options;
     // params.headers = oHeaders;
+    oOptions['headers'] = {
+      Authorization: sJwt || '',
+      ...oOptions['headers']
+    };
     let oAxiosResponse;
     try {
       oAxiosResponse = await axios.post(sUrl, oParams, oOptions);
