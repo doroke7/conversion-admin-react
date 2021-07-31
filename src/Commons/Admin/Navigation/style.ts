@@ -11,16 +11,22 @@ const style = makeStyles((theme: Theme) =>
 
     link: {
       color: grey[200],
-      textDecoration: 'none',
-      '&:hover': {
-        color: grey[0]
-      }
+      textDecoration: 'none'
     },
     listItemIcon: {
-      color: grey[100]
+      color: grey[100],
+      minWidth: '36px'
     },
     listItemEnable: {
       background: grey[800]
+    },
+    listItem: {
+      paddingTop: '0em',
+      paddingBottom: '0em',
+      '&:hover': {
+        background: grey[0]
+      },
+      background: grey[0]
     },
     title: {},
     description: {

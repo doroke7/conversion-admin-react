@@ -158,6 +158,7 @@ function Navigation(oProps: any) {
                 button
                 key={oMenu.text}
                 className={clsx({
+                  [classes.listItem]: true,
                   [classes.listItemEnable]: sMenuName === oMenu.path
                 })}
               >
