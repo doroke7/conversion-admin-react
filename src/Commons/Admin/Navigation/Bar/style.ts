@@ -7,6 +7,7 @@ const style = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
       background: grey[800],
+
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -22,10 +23,12 @@ const style = makeStyles((theme: Theme) =>
       })
     },
     toolbar: {
-      minHeight: '45px'
+      minHeight: '45px',
+      paddingLeft: '12px',
+      paddingRight: '12px'
     },
     menuButton: {
-      marginRight: 36
+      marginRight: 0
     },
     hide: {
       display: 'none'
