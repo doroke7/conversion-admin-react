@@ -38,6 +38,7 @@ const style = makeStyles((theme: Theme) =>
     },
     drawer: {
       width: drawerWidth,
+      background: grey[900],
       flexShrink: 0,
       whiteSpace: 'nowrap'
     },
@@ -86,7 +87,7 @@ const style = makeStyles((theme: Theme) =>
       // padding: theme.spacing(2),
       position: 'relative'
     },
-    paper1: {
+    drawer2: {
       background: grey[900]
     },
     paper2: {

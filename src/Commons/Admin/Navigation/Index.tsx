@@ -138,7 +138,7 @@ function Navigation(oProps: any) {
           [classes.drawerClose]: !oState.open
         })}
         classes={{
-          paper: clsx(classes.paper1, {
+          paper: clsx(classes.drawer2, {
             [classes.drawerOpen]: oState.open,
             [classes.drawerClose]: !oState.open
           })
