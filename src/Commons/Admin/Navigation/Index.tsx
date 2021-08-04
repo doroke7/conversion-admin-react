@@ -147,7 +147,7 @@ function Navigation(oProps: any) {
       >
         <div className={classes.toolbar}>
           <IconButton className={classes.iconButton} onClick={handleDrawerClose}>
-            ➤
+            ⮞
           </IconButton>
         </div>
         <Divider />

@@ -1,7 +1,7 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const style = makeStyles((theme: Theme) =>
   createStyles({
@@ -67,8 +67,14 @@ const style = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar
     },
+    ['@media (min-width: 600px)']: {
+      toolbar: {
+        minHeight: '45px'
+      }
+    },
     iconButton: {
-      color: grey[200]
+      color: grey[200],
+      padding: '0px'
     },
     content: {
       flexGrow: 1

@@ -25,7 +25,7 @@ function Bar(oProps: any) {
         [classes.appBarShift]: oProps.open
       })}
     >
-      <Toolbar>
+      <Toolbar className={clsx(classes.toolbar)}>
         <IconButton
           color="inherit"
           aria-label="open drawer"

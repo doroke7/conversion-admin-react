@@ -1,7 +1,7 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const style = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,6 +20,9 @@ const style = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen
       })
+    },
+    toolbar: {
+      minHeight: '45px'
     },
     menuButton: {
       marginRight: 36
