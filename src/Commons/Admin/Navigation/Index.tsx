@@ -138,7 +138,7 @@ function Navigation(oProps: any) {
           [classes.drawerClose]: !oState.open
         })}
         classes={{
-          paper: clsx(classes.drawer2, {
+          paper: clsx(classes.drawerPaper, {
             [classes.drawerOpen]: oState.open,
             [classes.drawerClose]: !oState.open
           })
@@ -177,7 +177,7 @@ function Navigation(oProps: any) {
           <Tabs removeTab={removeTab} />
         </tab.Provider>
         {oState.tabs.length >= 1 ? (
-          <Paper className={classes.paper2}>
+          <Paper className={classes.paper}>
             <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
               {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].text
                 ? CONFIGS.MENUS[sMenuName].text

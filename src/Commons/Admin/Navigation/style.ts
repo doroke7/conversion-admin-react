@@ -21,8 +21,9 @@ const style = makeStyles((theme: Theme) =>
       background: grey[800]
     },
     listItem: {
-      paddingTop: '0em',
-      paddingBottom: '0em',
+      paddingTop: '0px',
+      paddingLeft: '12px',
+      paddingBottom: '0px',
       '&:hover': {
         background: grey[0]
       },
@@ -42,6 +43,9 @@ const style = makeStyles((theme: Theme) =>
       flexShrink: 0,
       whiteSpace: 'nowrap'
     },
+    drawerPaper: {
+      background: grey[900]
+    },
     drawerOpen: {
       width: drawerWidth,
       transition: theme.transitions.create('width', {
@@ -57,7 +61,7 @@ const style = makeStyles((theme: Theme) =>
       overflowX: 'hidden',
       width: theme.spacing(7) + 1,
       [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9) + 1
+        width: theme.spacing(5) + 5 // 一个 8px
       }
     },
     toolbar: {
@@ -69,9 +73,9 @@ const style = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar
     },
-    ['@media (min-width: 600px)']: {
+    [theme.breakpoints.up('sm')]: {
       toolbar: {
-        minHeight: '45px'
+        minHeight: theme.spacing(5) + 5
       }
     },
     iconButton: {
@@ -87,10 +91,8 @@ const style = makeStyles((theme: Theme) =>
       // padding: theme.spacing(2),
       position: 'relative'
     },
-    drawer2: {
-      background: grey[900]
-    },
-    paper2: {
+
+    paper: {
       padding: theme.spacing(2),
       borderRadius: '6px',
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
