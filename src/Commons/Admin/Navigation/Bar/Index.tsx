@@ -31,13 +31,13 @@ function Bar(oProps: any) {
           aria-label="open drawer"
           onClick={oProps.handleDrawerOpen}
           edge="start"
-          className={clsx(classes.menuButton, {
+          className={clsx(classes.iconButton, {
             [classes.hide]: oProps.open
           })}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap>
+        <Typography variant="h6" noWrap className={clsx(classes.typography)}>
           {CONFIGS.APP.NAME}
         </Typography>
         <Avatar src={administrator} className={classes.avatar}></Avatar>

@@ -27,8 +27,12 @@ const style = makeStyles((theme: Theme) =>
       paddingLeft: '12px',
       paddingRight: '12px'
     },
-    menuButton: {
-      marginRight: 0
+    iconButton: {
+      marginRight: 0,
+      padding: theme.spacing(1) + 2
+    },
+    typography: {
+      paddingLeft: theme.spacing(2)
     },
     hide: {
       display: 'none'
