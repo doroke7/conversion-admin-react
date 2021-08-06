@@ -18,14 +18,14 @@ const style = makeStyles((theme: Theme) =>
       minWidth: theme.spacing(3)
     },
     listItemEnable: {
-      background: grey[800]
+      background: grey[700]
     },
     listItem: {
       paddingTop: theme.spacing(0),
       paddingLeft: theme.spacing(1) + 2,
       paddingBottom: theme.spacing(0),
       '&:hover': {
-        background: grey[0]
+        background: grey[800]
       },
       background: grey[0]
     },
