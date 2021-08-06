@@ -18,7 +18,8 @@ const style = makeStyles((theme: Theme) =>
       minWidth: theme.spacing(3)
     },
     listItemEnable: {
-      background: grey[700]
+      background: grey[700] + ' !important'
+      // grey[xxx] 数值越小 #yyy 越大，  颜色越亮
     },
     listItem: {
       paddingTop: theme.spacing(0),
