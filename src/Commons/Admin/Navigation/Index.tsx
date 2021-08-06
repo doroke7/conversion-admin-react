@@ -163,7 +163,7 @@ function Navigation(oProps: any) {
                 })}
               >
                 <ListItemIcon className={clsx(classes.listItemIcon)}>{<oMenu.Icon />}</ListItemIcon>
-                <ListItemText primary={oMenu.text} />
+                <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
               </ListItem>
             </Link>
           ))}

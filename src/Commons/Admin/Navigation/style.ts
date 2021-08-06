@@ -15,21 +15,23 @@ const style = makeStyles((theme: Theme) =>
     },
     listItemIcon: {
       color: grey[100],
-      minWidth: '36px'
+      minWidth: theme.spacing(3)
     },
     listItemEnable: {
       background: grey[800]
     },
     listItem: {
-      paddingTop: '0px',
-      paddingLeft: '12px',
-      paddingBottom: '0px',
+      paddingTop: theme.spacing(0),
+      paddingLeft: theme.spacing(1) + 2,
+      paddingBottom: theme.spacing(0),
       '&:hover': {
         background: grey[0]
       },
       background: grey[0]
     },
-    title: {},
+    listText: {
+      marginLeft: theme.spacing(2)
+    },
     description: {
       marginBottom: theme.spacing(2)
     },
@@ -80,7 +82,7 @@ const style = makeStyles((theme: Theme) =>
     },
     iconButton: {
       color: grey[200],
-      padding: '0px'
+      padding: theme.spacing(0)
     },
     content: {
       flexGrow: 1
