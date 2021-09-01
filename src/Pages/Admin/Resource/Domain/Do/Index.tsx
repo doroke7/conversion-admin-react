@@ -13,7 +13,7 @@ interface State {
   loading: boolean;
 }
 
-function Do(): any {
+function Index(): any {
   const classes: any = style(void 0);
   let dispatch = useDispatch();
 
@@ -79,4 +79,4 @@ function Do(): any {
     </div>
   );
 }
-export default Do;
+export default Index;

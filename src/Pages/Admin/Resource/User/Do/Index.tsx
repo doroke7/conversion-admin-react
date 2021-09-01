@@ -4,7 +4,7 @@ import Commons from '@/Commons';
 
 import style from './style';
 
-function Do(): any {
+function Index(): any {
   const classes: any = style(void 0);
 
   return (
@@ -15,4 +15,4 @@ function Do(): any {
     </div>
   );
 }
-export default Do;
+export default Index;
