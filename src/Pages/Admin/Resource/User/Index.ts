@@ -1,5 +1,5 @@
-import Do from './Do/Index';
+import Index from './Index/Index';
 
 export default {
-  Do
+  Index
 };

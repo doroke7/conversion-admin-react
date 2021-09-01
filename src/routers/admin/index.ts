@@ -12,28 +12,28 @@ let aRoutes = [
     exact: true
   },
   {
-    path: '/admin/resource/domain/do',
-    component: Admin.Resource.Domain.Do,
+    path: '/admin/resource/domain/index',
+    component: Admin.Resource.Domain.Index,
     exact: true
   },
   {
-    path: '/admin/resource/room/do',
-    component: Admin.Resource.Room.Do,
+    path: '/admin/resource/room/index',
+    component: Admin.Resource.Room.Index,
     exact: true
   },
   {
-    path: '/admin/resource/user/do',
-    component: Admin.Resource.User.Do,
+    path: '/admin/resource/user/index',
+    component: Admin.Resource.User.Index,
     exact: true
   },
   {
-    path: '/admin/resource/word/do',
-    component: Admin.Resource.Word.Do,
+    path: '/admin/resource/word/index',
+    component: Admin.Resource.Word.Index,
     exact: true
   },
   {
-    path: '/admin/resource/administrator/do',
-    component: Admin.Resource.Administrator.Do,
+    path: '/admin/resource/administrator/index',
+    component: Admin.Resource.Administrator.Index,
     exact: true
   }
 ];
