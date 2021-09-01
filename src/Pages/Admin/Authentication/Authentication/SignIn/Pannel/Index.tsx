@@ -108,7 +108,7 @@ function Pannel(oProps: any): any {
       <Avatar className={classes.avatar}>
         <LockIcon />
       </Avatar>
-      <h2 className={classes.title}>管理平台</h2>
+      <h2 className={classes.title}>{CONFIGS.APP.NAME}</h2>
       <TextField
         id="user-name"
         label="名称"
@@ -141,7 +141,7 @@ function Pannel(oProps: any): any {
           没有账号? 注冊
         </Link> */}
       </div>
-      <h5 className={classes.copyright}>© copyright 2020 野草科技版权所有</h5>
+      <h5 className={classes.copyright}>{CONFIGS.APP.DESCRIPTION}</h5>
       <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
