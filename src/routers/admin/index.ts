@@ -8,7 +8,7 @@ let aRoutes = [
   },
   {
     path: '/admin/authentication/authenticator/sign-in',
-    component: Admin.Authentication.Authentication.SignIn,
+    component: Admin.Authentication.Authenticator.SignIn,
     exact: true
   },
   {

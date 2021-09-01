@@ -1,5 +1,5 @@
-import Authentication from './Authentication/Index';
+import Authenticator from './Authenticator/Index';
 
 export default {
-  Authentication
+  Authenticator
 };
