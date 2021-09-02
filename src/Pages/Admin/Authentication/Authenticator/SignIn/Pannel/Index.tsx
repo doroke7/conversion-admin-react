@@ -43,9 +43,8 @@ function Pannel(oProps: any): any {
     text: ''
   });
 
-  // var s = Helpers.Aes.encrypt('aaaaa', '', '');
-
-  // console.log(s, 38);
+  var s = Helpers.Aes.encode('aaaaa');
+  var p = Helpers.Aes.decode(s);
 
   let redirect = async () => {
     let bResult = Helpers.Authentication.isExpired();

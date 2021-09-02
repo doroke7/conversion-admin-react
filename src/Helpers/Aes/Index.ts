@@ -1,35 +1,45 @@
-import aesjs from 'aes-js';
+import CryptoJS from 'crypto-js';
 
 import CONFIGS from '@/CONFIGS/';
 
 class AesHelper {
   public static encode(sString: string): string {
-    return sString;
+    let sKey = CONFIGS.AES.KEY;
+    let sIv = CONFIGS.AES.IV;
+    let sResult = AesHelper.encrypt(sString, sKey, sIv);
+    return sResult;
   }
 
   public static decode(sString: string): string {
-    return sString;
+    let sKey = CONFIGS.AES.KEY;
+    let sIv = CONFIGS.AES.IV;
+    let sResult = AesHelper.decrypt(sString, sKey, sIv);
+    return sResult;
   }
 
   public static encrypt(sString: string, sKey: string, sIv: string): string {
-    var key = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    let _sKey = CryptoJS.enc.Utf8.parse(sKey);
+    let _sIv = CryptoJS.enc.Utf8.parse(sIv);
 
-    // The initialization vector (must be 16 bytes)
-    var iv = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
+    let _sString = CryptoJS.enc.Utf8.parse(sString);
+    let oOption = { iv: _sIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 };
+    let oEncrypted = CryptoJS.AES.encrypt(_sString, _sKey, oOption);
+    let sResult = oEncrypted.ciphertext.toString();
 
-    var sByteString = aesjs.utils.utf8.toBytes(sString);
-
-    var oAesCbc = new aesjs.ModeOfOperation.cbc(key, iv);
-    var sEncryptedByteString = oAesCbc.encrypt(sByteString);
-
-    // To print or store the binary data, you may convert it to hex
-    var sEncryptedHexString = aesjs.utils.hex.fromBytes(sEncryptedByteString);
-
-    return sEncryptedHexString;
+    return sResult;
   }
 
   public static decrypt(sString: string, sKey: string, sIv: string): string {
-    return sString;
+    let _sKey = CryptoJS.enc.Utf8.parse(sKey);
+    let _sIv = CryptoJS.enc.Utf8.parse(sIv);
+
+    let _sString = CryptoJS.enc.Hex.parse(sString);
+    let __sString = CryptoJS.enc.Base64.stringify(_sString);
+    let oOption = { iv: _sIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 };
+
+    let oEncrypted = CryptoJS.AES.decrypt(__sString, _sKey, oOption);
+    let sResult = oEncrypted.toString(CryptoJS.enc.Utf8);
+    return sResult.toString();
   }
 }
 export default AesHelper;
