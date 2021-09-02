@@ -8,5 +8,6 @@ import MENUS from './MENUS/INDEX';
 import SERVICE from './SERVICE/INDEX';
 import API from './API/INDEX';
 import APP from './APP/INDEX';
+import AES from './AES/INDEX';
 
-export default { APP, API, SERVICE, SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };
+export default { APP, API, AES, SERVICE, SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS };

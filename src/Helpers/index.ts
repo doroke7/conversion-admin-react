@@ -1,4 +1,5 @@
 import Axios from './Axios/Index';
+import Aes from './Aes/Index';
 import Authentication from './Authentication/Index';
 import Socket from './Socket/Index';
 import Emitter from './Emitter/Index';
@@ -9,7 +10,8 @@ export {
   Authentication as AuthenticationHelper,
   Socket as SocketHelper,
   Emitter as EmitterHelper,
-  Tab as TabHelper
+  Tab as TabHelper,
+  Aes as AesHelper
 };
 
 export default {
@@ -17,5 +19,6 @@ export default {
   Authentication,
   Socket,
   Emitter,
-  Tab
+  Tab,
+  Aes
 };

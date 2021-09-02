@@ -43,6 +43,10 @@ function Pannel(oProps: any): any {
     text: ''
   });
 
+  // var s = Helpers.Aes.encrypt('aaaaa', '', '');
+
+  // console.log(s, 38);
+
   let redirect = async () => {
     let bResult = Helpers.Authentication.isExpired();
 
@@ -82,7 +86,7 @@ function Pannel(oProps: any): any {
         name: oState.name,
         password: oState.password
       };
-      await dispatch(actions.admin.authentication.authentication.signIn(oBody));
+      await dispatch(actions.admin.authentication.authenticator.signIn(oBody));
       await redirect();
     } catch (oException) {
       let sKey = oException.message;

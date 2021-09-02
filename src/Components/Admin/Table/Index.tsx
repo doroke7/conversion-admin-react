@@ -353,21 +353,6 @@ function EnhancedTable() {
           </TableBody>
         </Table>
       </div>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        backIconButtonProps={{
-          'aria-label': 'previous page'
-        }}
-        nextIconButtonProps={{
-          'aria-label': 'next page'
-        }}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
     </div>
   );
 }

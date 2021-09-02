@@ -23,7 +23,7 @@ let cSignIn: any = (sJwt: any) => {
   };
 };
 
-let oAuthenticationAction: any = {
+let oAuthenticatorAction: any = {
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
@@ -37,7 +37,7 @@ let oAuthenticationAction: any = {
           }
         };
         let oResponse = await AxiosHelper.post({
-          path: '/service/authentication/authentication/refresh',
+          path: '/admin/authentication/authenticator/refresh',
           params: oBody,
           options: oOptions
         });
@@ -62,7 +62,7 @@ let oAuthenticationAction: any = {
   signIn(oBody: any) {
     return async (cDispatch: any) => {
       let oResponse = await AxiosHelper.post({
-        path: '/admin/authentication/authentication/sign-in',
+        path: '/admin/authentication/authenticator/signIn',
         params: oBody
       });
 
@@ -81,4 +81,4 @@ let oAuthenticationAction: any = {
   }
 };
 
-export default oAuthenticationAction;
+export default oAuthenticatorAction;
