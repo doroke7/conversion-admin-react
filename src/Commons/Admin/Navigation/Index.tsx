@@ -24,7 +24,7 @@ import Bar from './Bar/Index';
 
 import context from '@/contexts';
 
-import { TabHelper } from '@/Helpers';
+import Helpers from '@/Helpers';
 import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
@@ -38,7 +38,7 @@ function Navigation(oProps: any) {
 
   const [oState, setState] = React.useState<any>({
     open: true,
-    tabs: TabHelper.get() // 更換 route 的時候 , React Componet 重新 render, state init
+    tabs: Helpers.Tab.get() // 更換 route 的時候 , React Componet 重新 render, state init
   });
 
   let sPathname = oProps.location.pathname;

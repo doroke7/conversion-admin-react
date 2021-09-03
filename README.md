@@ -1,3 +1,30 @@
-# 代码改变 路由 path 需要手动清除 storage.tabs
 
-## 强烈禁止使用 Table Component 改用 Data Grid Component
+
+# 后台前端服务文档
+
+### (壹) 架构图
+
+
+
+
+####  (贰)【后台前端项目】运行与更新相关
+
+````txt
+【首次更新】
+sudo git pull;
+yarn;
+yarn run build;
+````
+
+````txt
+【更新】
+sudo git pull;
+yarn run build;
+````
+
+####  (叁) 其他
+````txt
+代码改变 路由 path 需要手动清除 storage.tabs (太麻烦，可以加上版本号)
+
+强烈禁止使用 Table Component 改用 Data Grid Component
+````
