@@ -1,5 +1,5 @@
 import oIo from 'socket.io-client';
-import { AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 import CONFIGS from '@/CONFIGS/';
 
 const SOCKET = CONFIGS.SOCKET;
@@ -9,7 +9,7 @@ let sLoginUrl =
 
 const oLoginSocket = oIo(sLoginUrl);
 
-let sJwt = AuthenticationHelper.getJwt();
+let sJwt = Helpers.Authentication.getJwt();
 let sChatroomUrl =
   SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';
 let oOption = {

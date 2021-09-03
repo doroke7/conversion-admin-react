@@ -20,7 +20,7 @@ import CONFIGS from '@/CONFIGS/';
 
 import { Service } from '@/Commons';
 
-import { AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 import store from '@/store';
 
@@ -118,7 +118,7 @@ class Chatroom extends React.Component<any> {
     }
 
     let oBody = {
-      jwt: AuthenticationHelper.getJwt()
+      jwt: Helpers.Authentication.getJwt()
     };
     this.chatroomSocket.emit('SHOW USER ROOM', oBody);
     this.chatroomSocket.emit('SHOW ROOM', void 0);
@@ -210,7 +210,7 @@ class Chatroom extends React.Component<any> {
 
       if (this.state.roomId == oRoom._id) {
         let oBody = {
-          jwt: AuthenticationHelper.getJwt(),
+          jwt: Helpers.Authentication.getJwt(),
           room_id: this.state.roomId,
           count: iCount
         };
@@ -242,7 +242,7 @@ class Chatroom extends React.Component<any> {
   }
 
   public onLogout() {
-    AuthenticationHelper.removeJwt();
+    Helpers.Authentication.removeJwt();
   }
 
   public componentDidMount() {}
