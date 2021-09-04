@@ -5,7 +5,8 @@ import Modal from 'antd/es/modal';
 import Drawer from 'antd/es/drawer';
 import Divider from 'antd/es/divider';
 
-import Setting from './Setting/Index';
+import Preference from './Preference/Index';
+
 import List from './List/Index';
 
 import store from '@/store';
@@ -108,7 +109,7 @@ class Top extends React.Component<IProps> {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <Setting />
+          <Preference />
         </Modal>
         <Drawer className="top" placement="right" closable={false} onClose={this.onClose} visible={this.state.drawer}>
           <List onLogout={this.props.onLogout} />

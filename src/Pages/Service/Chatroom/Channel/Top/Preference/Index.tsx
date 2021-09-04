@@ -18,7 +18,7 @@ const STORAGE = CONFIGS.STORAGE;
 interface IProps {}
 
 // TO DO  改成 Preference
-class Top extends React.Component<IProps> {
+class Preference extends React.Component<IProps> {
   public constructor(...props: any) {
     super(props);
     this.enableNickname = this.enableNickname.bind(this);
@@ -119,4 +119,4 @@ class Top extends React.Component<IProps> {
   }
 }
 
-export default Top;
+export default Preference;

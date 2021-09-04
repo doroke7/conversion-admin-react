@@ -1,12 +1,13 @@
 import React from 'react';
 import moment from 'moment';
-import './Index.scss';
 import store from '@/store';
 
 import CONFIGS from '@/CONFIGS/';
 
 import Helpers from '@/Helpers/';
 import { Badge } from 'antd';
+
+import './Index.scss';
 
 let STORAGE = CONFIGS.STORAGE;
 let MOMENT = CONFIGS.MOMENT;
