@@ -73,7 +73,7 @@ function Navigation(oProps: any) {
   }
 
   function enableTab(oMenu: any) {
-    let aTabs: any[] = TabHelper.get();
+    let aTabs: any[] = Helpers.Tab.get();
     let iIndex;
     let iLength = aTabs.length;
     let bExistent = false;
@@ -90,7 +90,7 @@ function Navigation(oProps: any) {
       aTabs.push(sMenuName);
     }
     setState({ ...oState, tabs: aTabs });
-    TabHelper.set(aTabs);
+    Helpers.Tab.set(aTabs);
   }
 
   function removeTab(iIndex: number) {
@@ -98,13 +98,13 @@ function Navigation(oProps: any) {
       oEvent.stopPropagation(); // 取消冒泡 取消 <Link></Link>
       oEvent.preventDefault(); // 取消 a tag 取消 href
 
-      let aTabs: any[] = TabHelper.get();
-      let _aTabs: any[] = TabHelper.get();
+      let aTabs: any[] = Helpers.Tab.get();
+      let _aTabs: any[] = Helpers.Tab.get();
 
       let _sMenuName = aTabs[iIndex];
       _aTabs.splice(iIndex, 1);
       setState({ ...oState, tabs: _aTabs });
-      TabHelper.set(_aTabs);
+      Helpers.Tab.set(_aTabs);
       if (sMenuName === _sMenuName && 1 === aTabs.length) {
         oProps.history.push('/admin');
         return;

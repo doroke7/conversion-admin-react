@@ -14,7 +14,7 @@ import store from '@/store';
 
 import { Service } from '@/Commons';
 
-import { AuthenticationHelper, EmitterHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 import actions from '@/actions/';
 
@@ -140,7 +140,7 @@ class ControlPannel extends React.Component<IProps> {
   }
 
   public onOK() {
-    EmitterHelper.emit('messagesScrollToBottom', 1);
+    Helpers.Emitter.emit('messagesScrollToBottom', 1);
 
     let oFile = this.ref.current;
 
@@ -157,9 +157,9 @@ class ControlPannel extends React.Component<IProps> {
     let oMessage: any = {
       roomId: this.state.roomId,
       user: {
-        _id: AuthenticationHelper.getUserId()
+        _id: Helpers.Authentication.getUserId()
       },
-      user_id: AuthenticationHelper.getUserId(),
+      user_id: Helpers.Authentication.getUserId(),
       text: this.state.text,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
       loading: true
@@ -169,7 +169,7 @@ class ControlPannel extends React.Component<IProps> {
       uploadTo: 'roomMessage',
       data: {
         ...oMessage,
-        jwt: AuthenticationHelper.getJwt()
+        jwt: Helpers.Authentication.getJwt()
       }
     });
     // this.chatroomFileSocket.abort(aIds[0]);
@@ -206,7 +206,7 @@ class ControlPannel extends React.Component<IProps> {
       return;
     }
     try {
-      if (!AuthenticationHelper.getUserId()) {
+      if (!Helpers.Authentication.getUserId()) {
         let sMessage = MESSAGES['THE_GUEST_CAN_NOT_SEND_MESSAGE'];
         Message.warning(sMessage);
         return;
@@ -214,7 +214,7 @@ class ControlPannel extends React.Component<IProps> {
 
       let oMessage: any = {
         virtualId: Math.random().toString(36) + Date.now(),
-        user_id: AuthenticationHelper.getUserId(),
+        user_id: Helpers.Authentication.getUserId(),
         text: this.state.text,
         addedTime: new Date(),
         loading: true
@@ -233,7 +233,7 @@ class ControlPannel extends React.Component<IProps> {
 
       if (!('' === sText || null === sText || undefined === sText)) {
         store.dispatch(actions.service.resource.roomMessage.willSend(aRoomsMessages));
-        let sJwt = AuthenticationHelper.getJwt();
+        let sJwt = Helpers.Authentication.getJwt();
         // let sAccessToken = AuthenticationHelper.getAccessToken();
 
         oMessage['jwt'] = sJwt;
@@ -250,7 +250,7 @@ class ControlPannel extends React.Component<IProps> {
       this.setState({
         text: ''
       });
-      EmitterHelper.emit('messagesScrollToBottom', 1);
+      Helpers.Emitter.emit('messagesScrollToBottom', 1);
     }
   }
 
@@ -261,21 +261,21 @@ class ControlPannel extends React.Component<IProps> {
     let oMessage: any = {
       roomId: this.props.roomId,
       user: {
-        _id: AuthenticationHelper.getUserId()
+        _id: Helpers.Authentication.getUserId()
       },
       text: this.state.text,
       uploaderId: oFileInfo.uploadId,
       src: this.state.src,
       addedTime: moment(new Date()).format(MOMENT.FORMAT),
-      virtualId: AuthenticationHelper.getUserId() + '-' + Date.now(),
+      virtualId: Helpers.Authentication.getUserId() + '-' + Date.now(),
       loading: true
     };
 
     let aMessages = [oMessage];
     store.dispatch(actions.service.resource.roomMessage.willSend(aMessages));
     store.dispatch(actions.service.resource.uploader.willSend(oUploaders));
-    let sJwt = AuthenticationHelper.getJwt();
-    let sAccessToken = AuthenticationHelper.getAccessToken();
+    let sJwt = Helpers.Authentication.getJwt();
+    let sAccessToken = Helpers.Authentication.getAccessToken();
     oMessage['jwt'] = sJwt;
     oMessage['accessToken'] = sAccessToken;
 

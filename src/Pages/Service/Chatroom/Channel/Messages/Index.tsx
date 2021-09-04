@@ -4,7 +4,7 @@ import { EventEmitter } from 'events';
 import { Service } from '@/Commons';
 import store from '@/store';
 
-import { EmitterHelper, AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -61,7 +61,7 @@ class Messages extends React.Component<any> {
   public setScrollTop() {
     let oDom = this.ref.current;
     let sRoomId = this.state.roomId;
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
 
     let fScrollTopRatio =
       oDom.scrollHeight - oDom.offsetHeight > 0 ? oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight) : 1;
@@ -87,7 +87,7 @@ class Messages extends React.Component<any> {
   public setScrollHeight() {
     let oDom = this.ref.current;
     let sRoomId = this.state.roomId;
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
     window.sessionStorage.setItem(
       'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height',
       oDom.scrollHeight
@@ -102,7 +102,7 @@ class Messages extends React.Component<any> {
     let oState = store.getState();
 
     let sRoomId = oState.roomId; // TODO
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
 
     let sScrollTopRatio = window.sessionStorage.getItem(
       'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio'
@@ -140,7 +140,7 @@ class Messages extends React.Component<any> {
 
   public scrollTopToBottom() {
     let sRoomId = this.state.roomId;
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
     let sScrollTopRatio = window.sessionStorage.getItem(
       'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio'
     );
@@ -161,7 +161,7 @@ class Messages extends React.Component<any> {
 
   public scrollTopToBottomForce() {
     let sRoomId = this.state.roomId;
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
     window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio', '1');
     this.ref.current.scrollTop = 1 * (this.ref.current.scrollHeight - this.ref.current.offsetHeight);
   }
@@ -180,10 +180,10 @@ class Messages extends React.Component<any> {
     let aRoomsMessages = oState.roomsMessages;
     let oUsers = oState.users; // TODO
     let sRoomId = oState.roomId; // TODO
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
 
     window.addEventListener('resize', this.onResize);
-    this.eventEmitter = EmitterHelper.on('messagesScrollToBottom', this.scrollTopToBottomForce);
+    this.eventEmitter = Helpers.Emitter.on('messagesScrollToBottom', this.scrollTopToBottomForce);
 
     let sScrollTopRatio = window.sessionStorage.getItem(
       'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio'
@@ -213,7 +213,7 @@ class Messages extends React.Component<any> {
     let oState = store.getState();
 
     let sRoomId = oState.roomId; // TODO
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
     let sScrollHeight = window.sessionStorage.getItem(
       'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height'
     );

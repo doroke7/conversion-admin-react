@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 let cLogIn: any = (sJwt: any) => {
   return {
@@ -27,7 +27,7 @@ let oAuthenticatorAction: any = {
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
-        let sJwt = AuthenticationHelper.getJwt();
+        let sJwt = Helpers.Authentication.getJwt();
         // let sAccessToken = AuthenticationHelper.getAccessToken();
 
         let oOptions = {
@@ -36,7 +36,7 @@ let oAuthenticatorAction: any = {
             // 'access-token': sAccessToken,
           }
         };
-        let oResponse = await AxiosHelper.post({
+        let oResponse = await Helpers.Axios.post({
           path: '/admin/authentication/authenticator/refresh',
           params: oBody,
           options: oOptions
@@ -46,7 +46,7 @@ let oAuthenticatorAction: any = {
         }
         sJwt = oResponse.jwt;
         cDispatch(cRefresh(sJwt));
-        AuthenticationHelper.setJwt(sJwt);
+        Helpers.Authentication.setJwt(sJwt);
         let oPayLoad: any = jwtDecode(sJwt);
         let iExp = oPayLoad.exp; // second
         let iNow = new Date().getTime() / 1000; // second
@@ -61,7 +61,7 @@ let oAuthenticatorAction: any = {
 
   signIn(oBody: any) {
     return async (cDispatch: any) => {
-      let oResponse = await AxiosHelper.post({
+      let oResponse = await Helpers.Axios.post({
         path: '/admin/authentication/authenticator/signIn',
         params: oBody
       });
@@ -75,7 +75,7 @@ let oAuthenticatorAction: any = {
       }
 
       let sJwt = oResponse.jwt;
-      AuthenticationHelper.setJwt(sJwt);
+      Helpers.Authentication.setJwt(sJwt);
       cDispatch(cSignIn(sJwt));
     };
   }

@@ -8,7 +8,7 @@ import Progress from 'antd/es/progress';
 
 import store from '@/store';
 
-import { AuthenticationHelper } from '@/Helpers';
+import Helpers from '@/Helpers';
 
 import './Index.scss';
 
@@ -138,7 +138,7 @@ class Message extends React.Component<IProps> {
   public componentWillUnmount() {}
 
   public render() {
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
 
     let position = this.props.userId === sUserId || !this.props.userId ? 'right' : 'left';
     let sUrl =
