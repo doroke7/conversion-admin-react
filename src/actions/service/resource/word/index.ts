@@ -1,4 +1,4 @@
-import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 let cShow: any = (aWords: any) => {
   return {
@@ -11,7 +11,7 @@ let oWord: any = {
   show: (aWords: any, oOptions: any) => {
     return async (cDispatch: any) => {
       let sType = oOptions.type;
-      let oResponse = await AxiosHelper.get({
+      let oResponse = await Helpers.Axios.get({
         path: '/' + sType + '/resource/word/show',
         params: {}
       });

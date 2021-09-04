@@ -1,4 +1,4 @@
-import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 let cShow: any = (aUsers: any, oResponse: any) => {
   return {
@@ -18,13 +18,13 @@ let oUserAction: any = {
 
   __show: (sUserId: any) => {
     return async (cDispatch: any) => {
-      let sJwt = AuthenticationHelper.getJwt();
+      let sJwt = Helpers.Authentication.getJwt();
 
       let oBody = {
         user_id: sUserId
       };
 
-      let oResponse = await AxiosHelper.get({
+      let oResponse = await Helpers.Axios.get({
         path: '/service/resource/user/show/' + sUserId,
         params: oBody,
         headers: {

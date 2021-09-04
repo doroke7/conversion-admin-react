@@ -6,7 +6,7 @@ import store from '@/store';
 
 import actions from '@/actions/';
 
-import { AuthenticationHelper } from '@/Helpers';
+import Helpers from '@/Helpers';
 
 import './Index.scss';
 import Top from './Top/Index';
@@ -44,7 +44,7 @@ class Rooms extends React.Component<any> {
       let _sRoomId = oState.roomId;
       if (sRoomId !== _sRoomId) {
         let oBody = {
-          jwt: AuthenticationHelper.getJwt(),
+          jwt: Helpers.Authentication.getJwt(),
           room_id: this.state.roomId,
           count: iCount
         };

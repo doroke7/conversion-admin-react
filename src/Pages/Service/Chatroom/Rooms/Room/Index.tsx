@@ -5,7 +5,7 @@ import store from '@/store';
 
 import CONFIGS from '@/CONFIGS/';
 
-import { AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 import { Badge } from 'antd';
 
 let STORAGE = CONFIGS.STORAGE;
@@ -47,7 +47,7 @@ class Room extends React.Component<IProps> {
   };
 
   public render() {
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
     let sSrc = window.location.protocol + '//' + STORAGE.HOST + this.props.icon;
 
     let aMessages = [...this.props.messages];

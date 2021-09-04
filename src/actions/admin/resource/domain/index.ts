@@ -1,4 +1,4 @@
-import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 let cShow: any = (aDmains: any) => {
   return {
@@ -11,7 +11,7 @@ let oDomain: any = {
   show(oBody: any) {
     let sQuery = '{ domains { domain_id server type path weight status added_time edited_time removed_time } }';
     return async (cDispatch: any) => {
-      let oResponse = await AxiosHelper.get({
+      let oResponse = await Helpers.Axios.get({
         path: '/admin/resource/graphql/query?query=' + sQuery
       });
 

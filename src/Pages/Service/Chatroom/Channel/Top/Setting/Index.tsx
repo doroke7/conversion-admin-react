@@ -2,7 +2,7 @@ import React from 'react';
 
 import store from '@/store';
 
-import { AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -39,7 +39,7 @@ class Top extends React.Component<IProps> {
 
   public componentDidMount() {
     store.subscribe(() => {
-      let sUserId = AuthenticationHelper.getUserId();
+      let sUserId = Helpers.Authentication.getUserId();
       let oState = store.getState();
       let oUsers = oState.users;
       let _oState: any = {};
@@ -55,7 +55,7 @@ class Top extends React.Component<IProps> {
   public componentDidUpdate() {}
 
   public render() {
-    let sUserId = AuthenticationHelper.getUserId();
+    let sUserId = Helpers.Authentication.getUserId();
     let sUrl = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].url : '';
     sUrl = sUrl && 0 === sUrl.indexOf('http') ? sUrl : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + sUrl;
     let sNickname = sUserId && this.state.users[sUserId] ? this.state.users[sUserId].nickname : '';

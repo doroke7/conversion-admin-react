@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-import { AxiosHelper, AuthenticationHelper } from '@/Helpers/';
+import Helpers from '@/Helpers/';
 
 let cLogIn: any = (sJwt: any) => {
   return {
@@ -26,7 +26,7 @@ let cSignIn: any = (sJwt: any) => {
 let oAuthentication: any = {
   login: (oBody: any) => {
     return async (cDispatch: any) => {
-      let oResponse = await AxiosHelper.post({
+      let oResponse = await Helpers.Axios.post({
         path: '/service/authentication/authentication/log-in',
         params: oBody
       });
@@ -36,16 +36,16 @@ let oAuthentication: any = {
       }
 
       let sJwt = oResponse.jwt;
-      AuthenticationHelper.setJwt(sJwt);
-      AuthenticationHelper.removeLoginState();
+      Helpers.Authentication.setJwt(sJwt);
+      Helpers.Authentication.removeLoginState();
       cDispatch(cLogIn(sJwt));
     };
   },
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
-        let sJwt = AuthenticationHelper.getJwt();
-        let sAccessToken = AuthenticationHelper.getAccessToken();
+        let sJwt = Helpers.Authentication.getJwt();
+        let sAccessToken = Helpers.Authentication.getAccessToken();
 
         let oOptions = {
           headers: {
@@ -53,7 +53,7 @@ let oAuthentication: any = {
             'access-token': sAccessToken
           }
         };
-        let oResponse = await AxiosHelper.post({
+        let oResponse = await Helpers.Axios.post({
           path: '/service/authentication/authentication/refresh',
           params: oBody,
           options: oOptions
@@ -63,7 +63,7 @@ let oAuthentication: any = {
         }
         sJwt = oResponse.jwt;
         cDispatch(cRefresh(sJwt));
-        AuthenticationHelper.setJwt(sJwt);
+        Helpers.Authentication.setJwt(sJwt);
         let oPayLoad: any = jwtDecode(sJwt);
         let iExp = oPayLoad.exp; // second
         let iNow = new Date().getTime() / 1000; // second
@@ -77,8 +77,8 @@ let oAuthentication: any = {
   },
   accessTokenToJwt(oBody: any): any {
     return async (cDispatch: any) => {
-      let sJwt = AuthenticationHelper.getJwt();
-      let sAccessToken = AuthenticationHelper.getAccessToken();
+      let sJwt = Helpers.Authentication.getJwt();
+      let sAccessToken = Helpers.Authentication.getAccessToken();
       let oOptions = {
         headers: {
           jwt: sJwt, // 一定要 引号
@@ -87,7 +87,7 @@ let oAuthentication: any = {
       };
 
       if (sAccessToken) {
-        let oResponse = await AxiosHelper.post({
+        let oResponse = await Helpers.Axios.post({
           path: '/service/authentication/authentication/access-token-to-jwt',
           params: oBody,
           options: oOptions
@@ -96,14 +96,14 @@ let oAuthentication: any = {
           throw new Error('IT_FAILS_TO_LOGIN_VIA_ACESS_TOKEN');
         }
         sJwt = oResponse.jwt;
-        AuthenticationHelper.setJwt(sJwt);
+        Helpers.Authentication.setJwt(sJwt);
         cDispatch(cRefresh(sJwt));
       }
     };
   },
   signIn(oBody: any) {
     return async (cDispatch: any) => {
-      let oResponse = await AxiosHelper.post({
+      let oResponse = await Helpers.Axios.post({
         path: '/admin/authentication/authentication/sign-in',
         params: oBody
       });
@@ -113,7 +113,7 @@ let oAuthentication: any = {
       }
 
       let sJwt = oResponse.jwt;
-      AuthenticationHelper.setJwt(sJwt);
+      Helpers.Authentication.setJwt(sJwt);
       cDispatch(cSignIn(sJwt));
     };
   }
