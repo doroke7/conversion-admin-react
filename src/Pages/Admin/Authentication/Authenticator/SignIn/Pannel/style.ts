@@ -35,8 +35,17 @@ const style = makeStyles((theme: Theme): any =>
       justifyContent: 'space-between'
     },
     link: {},
-    copyright: {
+    decription: {
       color: grey[500],
+      fontWeight: 700,
+      fontSize: '0.75rem',
+      textAlign: 'left'
+    },
+    version: {
+      marginLeft: '0.5rem',
+      color: grey[500],
+      fontWeight: 300,
+      fontSize: '0.75rem',
       textAlign: 'left'
     }
   })

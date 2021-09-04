@@ -144,7 +144,8 @@ function Pannel(oProps: any): any {
           没有账号? 注冊
         </Link> */}
       </div>
-      <h5 className={classes.copyright}>{CONFIGS.APP.DESCRIPTION}</h5>
+      <span className={classes.decription}>{CONFIGS.APP.DESCRIPTION}</span>
+      <span className={classes.version}>Ver. ({CONFIGS.APP.VERSION})</span>
       <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
