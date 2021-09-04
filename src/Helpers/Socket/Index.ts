@@ -1,5 +1,4 @@
 import oIo from 'socket.io-client';
-import Helpers from '@/Helpers/';
 import CONFIGS from '@/CONFIGS/';
 
 const SOCKET = CONFIGS.SOCKET;
@@ -9,14 +8,9 @@ let sLoginUrl =
 
 const oLoginSocket = oIo(sLoginUrl);
 
-let sJwt = Helpers.Authentication.getJwt();
 let sChatroomUrl =
   SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';
-let oOption = {
-  query: {
-    jwt: sJwt
-  }
-};
+let oOption = {};
 const oChatroomSocket = oIo(sChatroomUrl, oOption);
 
 class SocketHelper {
