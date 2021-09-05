@@ -90,7 +90,7 @@ function Pannel(oProps: any): any {
       await redirect();
     } catch (oException) {
       let sKey = oException.message;
-      let sMessage = MESSAGES[sKey];
+      let sMessage = MESSAGES[sKey] || sKey;
       setState({ ...oState, open: true, text: sMessage });
     }
   };

@@ -6,12 +6,12 @@ const SOCKET = CONFIGS.SOCKET;
 let sLoginUrl =
   SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/login';
 
-const oLoginSocket = oIo(sLoginUrl);
-
 let sChatroomUrl =
   SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';
 let oOption = {};
-const oChatroomSocket = oIo(sChatroomUrl, oOption);
+
+const oLoginSocket = SOCKET.STATUS ? oIo(sLoginUrl) : null;
+const oChatroomSocket = SOCKET.STATUS ? oIo(sChatroomUrl, oOption) : null;
 
 class SocketHelper {
   public constructor() {}

@@ -62,7 +62,7 @@ let oAuthenticatorAction: any = {
   signIn(oBody: any) {
     return async (cDispatch: any) => {
       let oResponse = await Helpers.Axios.post({
-        path: '/admin/authentication/authenticator/signIn',
+        path: '/Admin/Authentication/Authenticator/signIn',
         params: oBody
       });
 
