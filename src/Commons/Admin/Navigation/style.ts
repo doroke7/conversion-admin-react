@@ -3,7 +3,7 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const drawerWidth = 200;
 
-const style = makeStyles((theme: Theme) =>
+const style = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       display: 'flex'
@@ -15,26 +15,26 @@ const style = makeStyles((theme: Theme) =>
     },
     listItemIcon: {
       color: grey[100],
-      minWidth: theme.spacing(3)
+      minWidth: oTheme.spacing(3)
     },
     listItemEnable: {
       background: grey[700] + ' !important'
       // grey[xxx] 数值越小 #yyy 越大，  颜色越亮
     },
     listItem: {
-      paddingTop: theme.spacing(0),
-      paddingLeft: theme.spacing(1) + 2,
-      paddingBottom: theme.spacing(0),
+      paddingTop: oTheme.spacing(0),
+      paddingLeft: oTheme.spacing(1) + 2,
+      paddingBottom: oTheme.spacing(0),
       '&:hover': {
         background: grey[800]
       },
       background: grey[0]
     },
     listText: {
-      marginLeft: theme.spacing(2)
+      marginLeft: oTheme.spacing(2)
     },
     description: {
-      marginBottom: theme.spacing(2)
+      marginBottom: oTheme.spacing(2)
     },
 
     hide: {
@@ -51,52 +51,52 @@ const style = makeStyles((theme: Theme) =>
     },
     drawerOpen: {
       width: drawerWidth,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
+      transition: oTheme.transitions.create('width', {
+        easing: oTheme.transitions.easing.sharp,
+        duration: oTheme.transitions.duration.enteringScreen
       })
     },
     drawerClose: {
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
+      transition: oTheme.transitions.create('width', {
+        easing: oTheme.transitions.easing.sharp,
+        duration: oTheme.transitions.duration.leavingScreen
       }),
       overflowX: 'hidden',
-      width: theme.spacing(7) + 1,
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(5) + 5 // 一个 8px
+      width: oTheme.spacing(7) + 1,
+      [oTheme.breakpoints.up('sm')]: {
+        width: oTheme.spacing(5) + 5 // 一个 8px
       }
     },
     toolbar: {
+      ...oTheme.mixins.toolbar,
       display: 'flex',
       color: grey[100],
-
       alignItems: 'center',
       justifyContent: 'flex-end',
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar
+      padding: oTheme.spacing(0, 1),
+      minHeight: '44px'
     },
-    [theme.breakpoints.up('sm')]: {
+    [oTheme.breakpoints.up('sm')]: {
       toolbar: {
-        minHeight: theme.spacing(5) + 5
+        minHeight: oTheme.spacing(5) + 5
       }
     },
     iconButton: {
       color: grey[200],
-      padding: theme.spacing(0)
+      padding: oTheme.spacing(0)
     },
     content: {
       flexGrow: 1
-      // padding: theme.spacing(3),
+      // padding: oTheme.spacing(3),
     },
     subContent: {
-      minHeight: 'calc(100vh - 186px)',
-      // padding: theme.spacing(2),
+      minHeight: 'calc(100vh - 70px)',
+      // padding: oTheme.spacing(2),
       position: 'relative'
     },
 
     paper: {
-      padding: theme.spacing(2),
+      padding: oTheme.spacing(2),
       borderRadius: '6px',
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
       marginTop: '0.25rem'
