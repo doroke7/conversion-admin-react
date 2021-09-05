@@ -35,15 +35,28 @@ class AxiosHelper {
   public static sign(oParams: any, oConfigs: any = {}): any {
     let sJwt = Helpers.Authentication.getJwt() || '';
     let sVersion = CONFIGS.APP.VERSION;
-
     let sTime = oParams.time.toString();
     let sParam = oParams.param;
+    let sSalt = CONFIGS.API.SALT;
 
     let sSignature1 = CryptoJS.MD5(sJwt + '.' + sVersion).toString();
     let sSignature2 = CryptoJS.MD5(sTime + '-' + sParam).toString();
-    let sSignature = CryptoJS.MD5(sSignature1 + sSignature2).toString();
+    let sSignature = CryptoJS.MD5(sSignature1 + sSignature2 + sSalt).toString();
 
     return sSignature;
+  }
+
+  public static response(oResponse: any, oConfigs: any = {}): any {
+    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
+
+    if (bAes && Object.prototype.hasOwnProperty.call(oResponse, 'result')) {
+      let sResult = oResponse.result;
+      let sRaw = Helpers.Aes.decode(sResult);
+      let oRaw = JSON.parse(sRaw);
+      oResponse.raw = oRaw;
+    }
+
+    return oResponse;
   }
 
   public static options(oOptions: any, oConfigs: any = {}): any {
@@ -158,8 +171,6 @@ class AxiosHelper {
    * @param {boolean} concurrent Use polling (recursive) to send the request
    */
   public static async post(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
-    let sJwt = Helpers.Authentication.getJwt();
-
     let bConcurrent = !Object.prototype.hasOwnProperty.call(oConfigs, 'concurrent') || oConfigs.concurrent;
     let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
     let oParams;
@@ -184,13 +195,7 @@ class AxiosHelper {
             oAxiosResponse = oExcepiton.response;
           }
 
-          if (bAes && Object.prototype.hasOwnProperty.call(oAxiosResponse.data, 'data')) {
-            let sData = oAxiosResponse.data.data;
-            let _sData = Helpers.Aes.decode(sData);
-            let oData = JSON.parse(_sData);
-            oAxiosResponse.data.data = oData;
-          }
-          let oResponse = oAxiosResponse.data;
+          let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
           aResponses.push(oResponse);
         }
 
@@ -210,14 +215,8 @@ class AxiosHelper {
             oAxiosResponse = oExcepiton.response;
           }
 
-          if (bAes && Object.prototype.hasOwnProperty.call(oAxiosResponse.data, 'data')) {
-            let sData = oAxiosResponse.data.data;
-            let _sData = Helpers.Aes.decode(sData);
-            let oData = JSON.parse(_sData);
-            oAxiosResponse.data.data = oData;
-          }
+          let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
 
-          let oResponse = oAxiosResponse.data;
           return oResponse;
         })
       );
@@ -235,17 +234,8 @@ class AxiosHelper {
     } catch (oExcepiton) {
       oAxiosResponse = oExcepiton.response;
     }
-    let oResponse;
-    if (oAxiosResponse && oAxiosResponse.data) {
-      if (bAes && Object.prototype.hasOwnProperty.call(oAxiosResponse.data, 'data')) {
-        let sData = oAxiosResponse.data.data;
-        let _sData = Helpers.Aes.decode(sData);
-        let oData = JSON.parse(_sData);
-        oAxiosResponse.data.data = oData;
-      }
+    let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
 
-      oResponse = oAxiosResponse.data;
-    }
     return oResponse;
   }
 

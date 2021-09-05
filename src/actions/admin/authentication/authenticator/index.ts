@@ -70,11 +70,15 @@ let oAuthenticatorAction: any = {
         throw new Error('THE_NETWORK_IS_ERROR');
       }
 
-      if (-1 === oResponse.status || !oResponse.jwt) {
-        throw new Error(oResponse.key);
+      if (-1 === oResponse.code || 200 != oResponse.status) {
+        throw new Error(oResponse.message);
       }
 
-      let sJwt = oResponse.jwt;
+      if (!oResponse.raw || Object.prototype.hasOwnProperty.call(oResponse.raw, 'jwt') || !oResponse.raw.jwt) {
+        throw new Error('接口格式异常');
+      }
+
+      let sJwt = oResponse.raw.jwt;
       Helpers.Authentication.setJwt(sJwt);
       cDispatch(cSignIn(sJwt));
     };
