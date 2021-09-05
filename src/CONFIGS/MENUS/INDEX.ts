@@ -3,13 +3,13 @@ import CloudDoneTwoToneIcon from '@material-ui/icons/CloudDoneTwoTone';
 import FaceTwoToneIcon from '@material-ui/icons/FaceTwoTone';
 
 const MENUS: any = {
-  '/admin/resource/domain/do': {
+  '/admin/resource/domain/index': {
     text: '域名',
     description: '移動端使用的域名列表',
     path: '/admin/resource/domain/index',
     Icon: CloudDoneTwoToneIcon
   },
-  '/admin/resource/user/do': {
+  '/admin/resource/user/index': {
     text: '會員',
     description: '聊天室的會員列表',
     path: '/admin/resource/user/index',
