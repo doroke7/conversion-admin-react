@@ -8,17 +8,27 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HappyPack = require('happypack');
+const Webpack = require('webpack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const dotenv = require('dotenv');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const dotenv = require('dotenv');
 
 dotenv.config();
+
+let oDate = new Date();
+let sY = oDate.getFullYear().toString().substr(-2);
+let sM = (oDate.getMonth() + 1).toString().padStart(2, '0');
+let sD = oDate.getDate().toString().padStart(2, '0');
+let sVersion = sY + sM + sD;
+
 /**
  * Webpack 4.*.* 不需要在 plugin 或 loader 指定 source-map
  */
 
 module.exports = (env, argvs) => {
+
+  
   return {
     mode: 'production',
     entry: {
@@ -51,7 +61,7 @@ module.exports = (env, argvs) => {
         rewrites: [
           { from: /^\/service\/.*/, to: '/service/index.html' },
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
-          { from: /.*/, to: '/service/index.html' },
+          { from: /.*/, to: '/admin/index.html' },
         ],
         verbose: true,
       },
@@ -215,6 +225,9 @@ module.exports = (env, argvs) => {
       new Dotenv({
         path: './.env', // Path to .env file (this is the default)
         safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
+      }),
+      new Webpack.EnvironmentPlugin({
+        APP_VERSION: sVersion,
       })
     ],
 
