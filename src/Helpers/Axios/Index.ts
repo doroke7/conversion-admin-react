@@ -1,7 +1,7 @@
-import Helpers from '@/Helpers/';
-
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
+import Helpers from '@/Helpers/';
 import CONFIGS from '@/CONFIGS/';
 
 const API = CONFIGS.API;
@@ -17,6 +17,48 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
  * 能过批次处理 AJAX 的 类模组
  */
 class AxiosHelper {
+  public static params(oParams: any, oConfigs: any = {}): any {
+    oParams = oParams || {};
+
+    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
+
+    if (bAes && Object.prototype.hasOwnProperty.call(oParams, 'param')) {
+      let sParam = JSON.stringify(oParams.param);
+      let _sParam = Helpers.Aes.encode(sParam);
+      oParams.param = _sParam;
+    }
+    oParams.time = Math.floor(Date.now() / 1000);
+    oParams.signature = AxiosHelper.sign(oParams);
+    return oParams;
+  }
+
+  public static sign(oParams: any, oConfigs: any = {}): any {
+    let sJwt = Helpers.Authentication.getJwt() || '';
+    let sVersion = CONFIGS.APP.VERSION;
+
+    let sTime = oParams.time.toString();
+    let sParam = oParams.param;
+
+    let sSignature1 = CryptoJS.MD5(sJwt + '.' + sVersion).toString();
+    let sSignature2 = CryptoJS.MD5(sTime + '-' + sParam).toString();
+    let sSignature = CryptoJS.MD5(sSignature1 + sSignature2).toString();
+
+    return sSignature;
+  }
+
+  public static options(oOptions: any, oConfigs: any = {}): any {
+    let sJwt = Helpers.Authentication.getJwt();
+
+    oOptions = oOptions || {};
+    oOptions['headers'] = {
+      Version: CONFIGS.APP.VERSION
+    };
+
+    oOptions['headers']['Authorization'] = sJwt;
+
+    return oOptions;
+  }
+
   /** 可以批次发送 AJAX 请求的 方法
    * @param {object | Array<object>} request The request of HTTP body
    * @param {boolean} concurrent 使用同步模式 (递归模式), 也就是一个 AJAX 等待回应后才发下一个请求
@@ -131,18 +173,10 @@ class AxiosHelper {
         for (iIndex = 0; iIndex < iLength; iLength++) {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
-          if (bAes && Object.prototype.hasOwnProperty.call(oRequest.params, 'param')) {
-            let sParam = JSON.stringify(oRequest.params.param);
-            let _sParam = Helpers.Aes.encode(sParam);
-            oRequest.params.param = _sParam;
-          }
-          oRequest.params.time = Math.floor(Date.now() / 1000);
-          oParams = oRequest.params || {};
-          oOptions = oRequest.options || {};
-          oOptions['headers'] = {
-            Authorization: sJwt || '',
-            Version: CONFIGS.APP.VERSION
-          };
+
+          oParams = AxiosHelper.params(oRequest.params, oConfigs);
+          oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+
           let oAxiosResponse;
           try {
             oAxiosResponse = await axios.post(_sUrl, oParams, oOptions);
@@ -166,18 +200,9 @@ class AxiosHelper {
       aResponses = await Promise.all(
         aRequests.map(async (oRequest) => {
           let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
-          if (bAes && Object.prototype.hasOwnProperty.call(oRequest.params, 'param')) {
-            let sParam = JSON.stringify(oRequest.params.param);
-            let _sParam = Helpers.Aes.encode(sParam);
-            oRequest.params.param = _sParam;
-          }
-          oRequest.params.time = Math.floor(Date.now() / 1000);
-          let oParams = oRequest.params || {};
-          oOptions = oRequest.options || {};
-          oOptions['headers'] = {
-            Authorization: sJwt || '',
-            Version: CONFIGS.APP.VERSION
-          };
+          oParams = AxiosHelper.params(oRequest.params, oConfigs);
+          oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+
           let oAxiosResponse;
           try {
             oAxiosResponse = await axios.post(_sUrl, oParams, oOptions);
@@ -201,20 +226,9 @@ class AxiosHelper {
     }
 
     let sUrl: string = (oRequest.url || sHost) + oRequest.path;
-    oParams = oRequest.params || {};
-    oOptions = oRequest.options || {};
+    oParams = AxiosHelper.params(oRequest.params, oConfigs);
+    oOptions = AxiosHelper.options(oRequest.options, oConfigs);
 
-    if (bAes && Object.prototype.hasOwnProperty.call(oParams, 'param')) {
-      let sParam = JSON.stringify(oParams.param);
-      let _sParam = Helpers.Aes.encode(sParam);
-      oParams.param = _sParam;
-    }
-    oParams.time = Math.floor(Date.now() / 1000);
-
-    oOptions['headers'] = {
-      Authorization: sJwt || '',
-      Version: CONFIGS.APP.VERSION
-    };
     let oAxiosResponse;
     try {
       oAxiosResponse = await axios.post(sUrl, oParams, oOptions);
