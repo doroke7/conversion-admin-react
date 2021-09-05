@@ -74,7 +74,7 @@ let oAuthenticatorAction: any = {
         throw new Error(oResponse.message);
       }
 
-      if (!oResponse.raw || Object.prototype.hasOwnProperty.call(oResponse.raw, 'jwt') || !oResponse.raw.jwt) {
+      if (!oResponse.raw || !Object.prototype.hasOwnProperty.call(oResponse.raw, 'jwt') || !oResponse.raw.jwt) {
         throw new Error('接口格式异常');
       }
 

@@ -172,7 +172,6 @@ class AxiosHelper {
    */
   public static async post(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
     let bConcurrent = !Object.prototype.hasOwnProperty.call(oConfigs, 'concurrent') || oConfigs.concurrent;
-    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
     let oParams;
     let oOptions;
     if (oRequest instanceof Array) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Admin } from '@/Commons';
-import ImportantDevices from '@material-ui/icons/ImportantDevices';
-
+import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+import CONFIGS from '@/CONFIGS';
 import style from './style';
 
 function _(): any {
@@ -12,9 +12,9 @@ function _(): any {
       <Admin.Navigation>
         <div className={classes.iconWrapper}>
           <div>
-            <ImportantDevices className={classes.icon} />
+            <InfoTwoToneIcon className={classes.icon} />
           </div>
-          <div className={classes.text}>- 管理平台 -</div>
+          <div className={classes.text}>- {CONFIGS.APP.NAME} -</div>
         </div>
       </Admin.Navigation>
     </div>

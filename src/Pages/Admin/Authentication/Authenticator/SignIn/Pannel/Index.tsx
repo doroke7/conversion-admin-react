@@ -44,17 +44,15 @@ function Pannel(oProps: any): any {
   });
 
   let redirect = async () => {
-    let bResult = Helpers.Authentication.isExpired();
+    let sJwt = Helpers.Authentication.getJwt();
 
-    if ('/admin/authentication/authenticator/sign-in' == location.pathname && !bResult) {
-      history.push('/admin');
-      return;
+    if (!sJwt) {
+      throw new Error('客户端登入异常');
     }
 
-    if ('/admin/authentication/authenticator/sign-in' != location.pathname && bResult) {
-      // React Hook 棄用 props.history 寫法
-      // await this.props.history.push('/admin');
-      history.push('/admin/authentication/authenticator/sign-in');
+    if ('/admin/authentication/authenticator/sign-in' == location.pathname) {
+      history.push('/admin');
+      return;
     }
   };
 

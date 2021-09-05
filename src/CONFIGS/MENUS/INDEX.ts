@@ -6,33 +6,21 @@ const MENUS: any = {
   '/admin/resource/domain/do': {
     text: '域名',
     description: '移動端使用的域名列表',
-    path: '/admin/resource/domain/do',
+    path: '/admin/resource/domain/index',
     Icon: CloudDoneTwoToneIcon
   },
-  // '/admin/resource/room': {
-  //   text: '房間',
-  //   description: '聊天室的房間列表',
-  //   path: '/admin/resource/room/do',
-  //   Icon: FormatListNumberedRtl
-  // },
   '/admin/resource/user/do': {
     text: '會員',
     description: '聊天室的會員列表',
-    path: '/admin/resource/user/do',
+    path: '/admin/resource/user/index',
     Icon: FaceTwoToneIcon
   },
-  '/admin/resource/administrator/do': {
+  '/admin/resource/administrator/index': {
     text: '管理員',
     description: '管理員列表',
-    path: '/admin/resource/administrator/do',
+    path: '/admin/resource/administrator/index',
     Icon: SupervisedUserCircleTwoToneIcon
   }
-  // '/admin/resource/word/do': {
-  //   text: '禁止字',
-  //   description: '禁止字列表',
-  //   path: '/admin/resource/word',
-  //   Icon: HighlightOff
-  // }
 };
 
 export default MENUS;

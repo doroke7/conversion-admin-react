@@ -13,10 +13,10 @@ let style = makeStyles((theme: Theme): any =>
     icon: {
       color: blueGrey[200],
       fontSize: '5rem',
-      MaxWidth: '20rem',
-      MaxHeight: '20rem',
-      width: '20rem',
-      height: '20rem'
+      MaxWidth: '10rem',
+      MaxHeight: '10rem',
+      width: '10rem',
+      height: '10rem'
     },
     text: {
       textAlign: 'center',
