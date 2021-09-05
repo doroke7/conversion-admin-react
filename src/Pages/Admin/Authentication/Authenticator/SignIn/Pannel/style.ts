@@ -35,18 +35,25 @@ const style = makeStyles((theme: Theme): any =>
       justifyContent: 'space-between'
     },
     link: {},
+    decriptionAndVersion: {
+      '&:after': {
+        display: 'block',
+        clear: 'both',
+        content: ''
+      }
+    },
     decription: {
       color: grey[500],
       fontWeight: 700,
       fontSize: '0.75rem',
-      textAlign: 'left'
+      float: 'left'
     },
     version: {
       marginLeft: '0.5rem',
       color: grey[500],
       fontWeight: 300,
       fontSize: '0.75rem',
-      textAlign: 'left'
+      float: 'right'
     }
   })
 );

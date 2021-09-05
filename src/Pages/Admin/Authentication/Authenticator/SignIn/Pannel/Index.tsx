@@ -43,9 +43,6 @@ function Pannel(oProps: any): any {
     text: ''
   });
 
-  var s = Helpers.Aes.encode('aaaaa');
-  var p = Helpers.Aes.decode(s);
-
   let redirect = async () => {
     let bResult = Helpers.Authentication.isExpired();
 
@@ -81,9 +78,13 @@ function Pannel(oProps: any): any {
         throw new Error('THE_ADMINISTRATOR_PASSWORD_IS_EMPTY');
       }
 
-      let oBody = {
-        name: oState.name,
+      let oParam = {
+        username: oState.name,
         password: oState.password
+      };
+
+      let oBody = {
+        param: oParam
       };
       await dispatch(actions.admin.authentication.authenticator.signIn(oBody));
       await redirect();
@@ -144,8 +145,10 @@ function Pannel(oProps: any): any {
           没有账号? 注冊
         </Link> */}
       </div>
-      <span className={classes.decription}>{CONFIGS.APP.DESCRIPTION}</span>
-      <span className={classes.version}>Ver. ({CONFIGS.APP.VERSION})</span>
+      <div className={classes.decriptionAndVersion}>
+        <span className={classes.decription}>{CONFIGS.APP.DESCRIPTION}</span>
+        <span className={classes.version}>Ver. ({CONFIGS.APP.VERSION})</span>
+      </div>
       <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );

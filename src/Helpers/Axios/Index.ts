@@ -37,14 +37,12 @@ class AxiosHelper {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
-          let oHeaders = oRequest.headers;
 
           oOptions = {
             params: oParams,
             data: oParams,
             headers: {
-              Authorization: sJwt || '',
-              ...oHeaders
+              Authorization: sJwt || ''
             }
           };
 
@@ -66,14 +64,12 @@ class AxiosHelper {
         aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
           oParams = oRequest.params;
-          let oHeaders = oRequest.headers;
 
           oOptions = {
             params: oParams,
             data: oParams,
             headers: {
-              Authorization: sJwt || '',
-              ...oHeaders
+              Authorization: sJwt || ''
             }
           };
 
@@ -95,14 +91,12 @@ class AxiosHelper {
     let sUrl: string = oRequest.url || sHost + oRequest.path;
     oParams = oRequest.params;
     oParams = oRequest.params;
-    let oHeaders = oRequest.headers;
 
     oOptions = {
       params: oParams,
       data: oParams,
       headers: {
-        Authorization: sJwt || '',
-        ...oHeaders
+        Authorization: sJwt || ''
       }
     };
 
@@ -122,10 +116,11 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} concurrent Use polling (recursive) to send the request
    */
-  public static async post(oRequest: any | any[], bConcurrent: boolean = false): Promise<any> {
+  public static async post(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
     let sJwt = Helpers.Authentication.getJwt();
 
-    bConcurrent = !!bConcurrent;
+    let bConcurrent = !Object.prototype.hasOwnProperty.call(oConfigs, 'concurrent') || oConfigs.concurrent;
+    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
     let oParams;
     let oOptions;
     if (oRequest instanceof Array) {
@@ -137,17 +132,30 @@ class AxiosHelper {
         for (iIndex = 0; iIndex < iLength; iLength++) {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
-          oParams = oRequest.params;
-          oOptions = oRequest.options;
+          if (bAes && Object.prototype.hasOwnProperty.call(oRequest.params, 'param')) {
+            let sParam = JSON.stringify(oRequest.params.param);
+            let _sParam = Helpers.Aes.encode(sParam);
+            oRequest.params.param = _sParam;
+          }
+          oRequest.params.time = Math.floor(Date.now() / 1000);
+          oParams = oRequest.params || {};
+          oOptions = oRequest.options || {};
           oOptions['headers'] = {
             Authorization: sJwt || '',
-            ...oOptions['headers']
+            Version: CONFIGS.APP.VERSION
           };
           let oAxiosReponse;
           try {
             oAxiosReponse = await axios.post(_sUrl, oParams, oOptions);
           } catch (oExcepiton) {
             oAxiosReponse = oExcepiton.response;
+          }
+
+          if (bAes && Object.prototype.hasOwnProperty.call(oAxiosReponse.data, 'data')) {
+            let sData = oAxiosReponse.data.data;
+            let _sData = Helpers.Aes.decode(sData);
+            let oData = JSON.parse(_sData);
+            oAxiosReponse.data.data = oData;
           }
           let oResponse = oAxiosReponse.data;
           aResponses.push(oResponse);
@@ -159,11 +167,17 @@ class AxiosHelper {
       aResponses = await Promise.all(
         aRequests.map(async (oRequest) => {
           let _sUrl: string = oRequest.url || sHost + oRequest.path;
-          let oParams = oRequest.params;
-          oOptions = oRequest.options;
+          if (bAes && Object.prototype.hasOwnProperty.call(oRequest.params, 'param')) {
+            let sParam = JSON.stringify(oRequest.params.param);
+            let _sParam = Helpers.Aes.encode(sParam);
+            oRequest.params.param = _sParam;
+          }
+
+          let oParams = oRequest.params || {};
+          oOptions = oRequest.options || {};
           oOptions['headers'] = {
             Authorization: sJwt || '',
-            ...oOptions['headers']
+            Version: CONFIGS.APP.VERSION
           };
           let oAxiosReponse;
           try {
@@ -171,6 +185,14 @@ class AxiosHelper {
           } catch (oExcepiton) {
             oAxiosReponse = oExcepiton.response;
           }
+
+          if (bAes && Object.prototype.hasOwnProperty.call(oAxiosReponse.data, 'data')) {
+            let sData = oAxiosReponse.data.data;
+            let _sData = Helpers.Aes.decode(sData);
+            let oData = JSON.parse(_sData);
+            oAxiosReponse.data.data = oData;
+          }
+
           let oResponse = oAxiosReponse.data;
           return oResponse;
         })
@@ -185,7 +207,7 @@ class AxiosHelper {
     // params.headers = oHeaders;
     oOptions['headers'] = {
       Authorization: sJwt || '',
-      ...oOptions['headers']
+      Version: CONFIGS.APP.VERSION
     };
     let oAxiosResponse;
     try {
