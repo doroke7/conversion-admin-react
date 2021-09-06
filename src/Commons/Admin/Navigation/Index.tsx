@@ -105,16 +105,20 @@ function Navigation(oProps: any) {
       _aTabs.splice(iIndex, 1);
       setState({ ...oState, tabs: _aTabs });
       Helpers.Tab.set(_aTabs);
+
+      // 如果移除的 tab 为最后一个，就返回 /admin
       if (sMenuName === _sMenuName && 1 === aTabs.length) {
         oProps.history.push('/admin');
         return;
       }
+      // 如果移除的 tab 不为最后一个，而且 不是 UI 最右边那个 tab, 就 返回最右边那个 地址
       if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 < aTabs.length) {
         let __sMenuName = aTabs[iIndex + 1];
         oProps.history.push(__sMenuName);
         return;
       }
 
+      // 如果移除的 tab 不为最后一个，而且 是 UI 最右边那个 tab, 就 返回最右边-的左边 那个 地址
       if (sMenuName === _sMenuName && 2 <= aTabs.length && iIndex + 1 === aTabs.length) {
         let __sMenuName = aTabs[iIndex - 1];
         oProps.history.push(__sMenuName);
