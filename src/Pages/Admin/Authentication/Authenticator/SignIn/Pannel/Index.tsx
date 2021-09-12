@@ -23,6 +23,7 @@ interface State {
   password: string;
   open: boolean;
   text: string;
+  error: boolean;
 }
 
 const ENTER_CODE = 13;
@@ -40,7 +41,8 @@ function Pannel(oProps: any): any {
     name: '',
     password: '',
     open: false,
-    text: ''
+    text: '',
+    error: true
   });
 
   let redirect = async () => {
@@ -86,7 +88,7 @@ function Pannel(oProps: any): any {
       };
       let s = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       if (s) {
-        setState({ ...oState, open: true, text: '登入成功' });
+        setState({ ...oState, open: true, text: '登入成功', error: false });
         await redirect();
       }
     } catch (oException) {

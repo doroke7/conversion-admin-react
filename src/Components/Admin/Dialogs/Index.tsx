@@ -15,7 +15,7 @@ interface State {
   text: string;
 }
 
-function Dialog(oProps: any): any {
+function Message(oProps: any): any {
   let oClasses: any = style(void 0);
 
   let [oState, setState] = React.useState<State>({
@@ -36,8 +36,14 @@ function Dialog(oProps: any): any {
       aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">
-        <ErrorOutline className={oClasses.errorIcon} />
-        <span className={oClasses.title}>错误</span>
+        {oProps.error ? (
+          <>
+            <ErrorOutline className={oClasses.errorIcon} />
+            <span className={oClasses.title}>错误</span>
+          </>
+        ) : (
+          <></>
+        )}
       </DialogTitle>
       <DialogContent>
         <DialogContentText>{oProps.text}</DialogContentText>
@@ -50,4 +56,4 @@ function Dialog(oProps: any): any {
     </Dialog>
   );
 }
-export default Dialog;
+export default Message;
