@@ -153,7 +153,7 @@ function Pannel(oProps: any): any {
         <span className={classes.decription}>{CONFIGS.APP.DESCRIPTION}</span>
         <span className={classes.version}>Ver. ({CONFIGS.APP.VERSION})</span>
       </div>
-      <Components.Admin.Dialogs open={oState.open} text={oState.text} onClose={onClose} />
+      <Components.Admin.Message open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
 }

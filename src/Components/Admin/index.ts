@@ -1,6 +1,6 @@
-import Dialogs from './Dialogs/Index';
+import Message from './Message/Index';
 import Table from './Table/Index';
 
 // import Service from './Service/Index';
 
-export default { Dialogs, Table };
+export default { Message, Table };
