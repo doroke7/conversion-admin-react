@@ -90,12 +90,10 @@ function Pannel(oProps: any): any {
           password: oState.password
         }
       };
-      let s = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
-      if (s) {
+      let oPlayLoad = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
+      if (oPlayLoad) {
         setState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
-
-        // onAlertClose();
-        // await redirect();
+        await redirect();
       }
     } catch (oException) {
       let sKey = oException.message;
