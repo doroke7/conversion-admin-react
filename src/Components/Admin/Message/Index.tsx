@@ -18,32 +18,17 @@ interface State {
 function Message(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let [oState, setState] = React.useState<State>({
-    open: oProps.open,
-    text: ''
-  });
-
-  React.useEffect(() => {
-    setState({ ...oState, open: oProps.open });
-  });
-
   return (
     <Dialog
-      open={oState.open}
+      open={oProps.open}
       maxWidth="sm"
       fullWidth
       onClose={oProps.onClose}
       aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">
-        {oProps.error ? (
-          <>
-            <ErrorOutline className={oClasses.errorIcon} />
-            <span className={oClasses.title}>错误</span>
-          </>
-        ) : (
-          <></>
-        )}
+        <ErrorOutline className={oClasses.errorIcon} />
+        <span className={oClasses.title}>错误</span>
       </DialogTitle>
       <DialogContent>
         <DialogContentText>{oProps.text}</DialogContentText>

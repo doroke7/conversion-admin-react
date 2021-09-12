@@ -24,12 +24,14 @@ interface State {
   open: boolean;
   text: string;
   error: boolean;
+  alertOpen: boolean;
+  alertMessage: string;
 }
 
 const ENTER_CODE = 13;
 
 function Pannel(oProps: any): any {
-  let classes: any = style(void 0);
+  let oClasses: any = style(void 0);
 
   const jwt = useMappedState((state) => state.jwt);
 
@@ -42,7 +44,9 @@ function Pannel(oProps: any): any {
     password: '',
     open: false,
     text: '',
-    error: true
+    error: true,
+    alertOpen: false,
+    alertMessage: ''
   });
 
   let redirect = async () => {
@@ -88,8 +92,10 @@ function Pannel(oProps: any): any {
       };
       let s = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       if (s) {
-        setState({ ...oState, open: true, text: '登入成功', error: false });
-        await redirect();
+        setState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
+
+        // onAlertClose();
+        // await redirect();
       }
     } catch (oException) {
       let sKey = oException.message;
@@ -102,6 +108,10 @@ function Pannel(oProps: any): any {
     setState({ ...oState, open: false });
   };
 
+  let onAlertClose = () => {
+    setState({ ...oState, alertOpen: false });
+  };
+
   let onKeyPress = (oEvent: any) => {
     if (ENTER_CODE === oEvent.charCode) {
       SignIn();
@@ -112,15 +122,16 @@ function Pannel(oProps: any): any {
   // redirect();
 
   return (
-    <div className={classes.pannel}>
-      <Avatar className={classes.avatar}>
+    <div className={oClasses.pannel}>
+      <Components.Admin.Alert open={oState.alertOpen} message={oState.alertMessage} onClose={onAlertClose} />
+      <Avatar className={oClasses.avatar}>
         <LockIcon />
       </Avatar>
-      <h2 className={classes.title}>{CONFIGS.APP.NAME}</h2>
+      <h2 className={oClasses.title}>{CONFIGS.APP.NAME}</h2>
       <TextField
         id="user-name"
         label="名称"
-        className={classes.textField}
+        className={oClasses.textField}
         onChange={onChangeName}
         margin="normal"
         fullWidth
@@ -131,27 +142,27 @@ function Pannel(oProps: any): any {
         id="user-password"
         label="密码"
         type="password"
-        className={classes.textField}
+        className={oClasses.textField}
         onChange={onChangePassword}
         margin="normal"
         fullWidth
         variant="outlined"
         onKeyPress={onKeyPress}
       />
-      <Button onClick={SignIn} className={classes.button} variant="contained" color="primary" fullWidth>
+      <Button onClick={SignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
         登入
       </Button>
-      <div className={classes.forgetPasswordAndSignup}>
-        {/* <Link href={SERVICE.HOST + SERVICE.PATH} className={classes.link}>
+      <div className={oClasses.forgetPasswordAndSignup}>
+        {/* <Link href={SERVICE.HOST + SERVICE.PATH} className={oClasses.link}>
           短管理
         </Link>
-        <Link href={'/admin/sign-up'} className={classes.link}>
+        <Link href={'/admin/sign-up'} className={oClasses.link}>
           没有账号? 注冊
         </Link> */}
       </div>
-      <div className={classes.decriptionAndVersion}>
-        <span className={classes.decription}>{CONFIGS.APP.DESCRIPTION}</span>
-        <span className={classes.version}>Ver. ({CONFIGS.APP.VERSION})</span>
+      <div className={oClasses.decriptionAndVersion}>
+        <span className={oClasses.decription}>{CONFIGS.APP.DESCRIPTION}</span>
+        <span className={oClasses.version}>Ver. ({CONFIGS.APP.VERSION})</span>
       </div>
       <Components.Admin.Message open={oState.open} text={oState.text} onClose={onClose} />
     </div>
