@@ -76,15 +76,15 @@ function Pannel(oProps: any): any {
         throw new Error('THE_ADMINISTRATOR_PASSWORD_IS_EMPTY');
       }
 
-      let oParam = {
-        username: oState.name,
-        password: oState.password
-      };
+      let oParams = {};
 
-      let oBody = {
-        param: oParam
+      let oData = {
+        param: {
+          username: oState.name,
+          password: oState.password
+        }
       };
-      await dispatch(actions.admin.authentication.authenticator.signIn(oBody));
+      await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       await redirect();
     } catch (oException) {
       let sKey = oException.message;
@@ -103,7 +103,8 @@ function Pannel(oProps: any): any {
     }
   };
 
-  redirect();
+  // 全局跳转改写地方
+  // redirect();
 
   return (
     <div className={classes.pannel}>
