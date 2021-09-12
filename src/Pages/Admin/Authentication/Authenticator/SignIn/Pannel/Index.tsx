@@ -69,11 +69,11 @@ function Pannel(oProps: any): any {
   let SignIn = async () => {
     try {
       if (!oState.name) {
-        throw new Error('THE_ADMINISTRATOR_NAME_IS_EMPTY');
+        throw new Error('请输入管理用户名称');
       }
 
       if (!oState.password) {
-        throw new Error('THE_ADMINISTRATOR_PASSWORD_IS_EMPTY');
+        throw new Error('请输入管理用户密码');
       }
 
       let oParams = {};
@@ -84,8 +84,11 @@ function Pannel(oProps: any): any {
           password: oState.password
         }
       };
-      await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
-      await redirect();
+      let s = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
+      if (s) {
+        setState({ ...oState, open: true, text: '登入成功' });
+        await redirect();
+      }
     } catch (oException) {
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey] || sKey;

@@ -2,24 +2,24 @@ import jwtDecode from 'jwt-decode';
 
 import Helpers from '@/Helpers/';
 
-let cLogIn: any = (sJwt: any) => {
+let cLogIn: any = (oRaw: any) => {
   return {
     type: 'JWT_LOGIN',
-    payload: sJwt
+    raw: oRaw
   };
 };
 
-let cRefresh: any = (sJwt: any) => {
+let cRefresh: any = (oRaw: any) => {
   return {
     type: 'JWT_REFRESH',
-    payload: sJwt
+    raw: oRaw
   };
 };
 
-let cSignIn: any = (sJwt: any) => {
+let cSignIn: any = (oRaw: any) => {
   return {
     type: 'JWT_SIGNIN',
-    payload: sJwt
+    raw: oRaw
   };
 };
 
@@ -68,7 +68,7 @@ let oAuthenticatorAction: any = {
       });
 
       if (!oResponse) {
-        throw new Error('THE_NETWORK_IS_ERROR');
+        throw new Error('网络异常');
       }
 
       if (-1 === oResponse.code || 200 != oResponse.status) {
@@ -81,7 +81,7 @@ let oAuthenticatorAction: any = {
 
       let sJwt = oResponse.raw.jwt;
       Helpers.Authentication.setJwt(sJwt);
-      cDispatch(cSignIn(sJwt));
+      return cDispatch(cSignIn(oResponse.raw));
     };
   }
 };
