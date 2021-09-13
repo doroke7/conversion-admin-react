@@ -93,7 +93,7 @@ function Pannel(oProps: any): any {
       let oPlayLoad = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       if (oPlayLoad) {
         setState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
-        await redirect();
+        history.push('/admin');
       }
     } catch (oException) {
       let sKey = oException.message;
