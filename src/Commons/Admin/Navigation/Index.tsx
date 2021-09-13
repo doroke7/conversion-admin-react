@@ -44,12 +44,16 @@ function Navigation(oProps: any) {
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
 
+  let oMenus = CONFIGS.MENUS.reduce((_oMenus: any, _oMenu: any) => {
+    return { ..._oMenus, [_oMenu.path]: _oMenu };
+  }, {});
+
   useEffect(() => {
     // componentDidMount is here!
     let oRegular = /admin\/(\w+)/i;
 
     if (sMenuName.match(oRegular)) {
-      let oTab = CONFIGS.MENUS[sMenuName];
+      let oTab = oMenus[sMenuName];
       enableTab(oTab);
     }
 
@@ -156,7 +160,7 @@ function Navigation(oProps: any) {
         </div>
         <Divider />
         <List>
-          {Object.values(CONFIGS.MENUS).map((oMenu: any, iIndex) => (
+          {CONFIGS.MENUS.map((oMenu: any, iIndex) => (
             <Link to={oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)} key={iIndex}>
               <ListItem
                 button
@@ -183,14 +187,10 @@ function Navigation(oProps: any) {
         {oState.tabs.length >= 1 ? (
           <Paper className={classes.paper}>
             <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
-              {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].text
-                ? CONFIGS.MENUS[sMenuName].text
-                : sMenuName}
+              {sMenuName && oMenus[sMenuName] && oMenus[sMenuName].text ? oMenus[sMenuName].text : sMenuName}
             </Box>
             <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
-              {sMenuName && CONFIGS.MENUS[sMenuName] && CONFIGS.MENUS[sMenuName].description
-                ? CONFIGS.MENUS[sMenuName].description
-                : ''}
+              {sMenuName && oMenus[sMenuName] && oMenus[sMenuName].description ? oMenus[sMenuName].description : ''}
             </Box>
           </Paper>
         ) : (

@@ -10,8 +10,6 @@ import CONFIGS from '@/CONFIGS';
 
 import style from './style';
 
-const MENUS = CONFIGS.MENUS;
-
 let tab = context.tab;
 
 function Tabs(oProps: any) {
@@ -21,10 +19,14 @@ function Tabs(oProps: any) {
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
 
+  let oMenus = CONFIGS.MENUS.reduce((_oMenus: any, _oMenu: any) => {
+    return { ..._oMenus, [_oMenu.path]: _oMenu };
+  }, {});
+
   return (
     <div className={classes.wrapperTabs}>
       {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
-        let oMenu = MENUS[_sMenuName];
+        let oMenu = oMenus[_sMenuName];
         return (
           <Link
             key={iIndex}
