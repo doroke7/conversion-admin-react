@@ -18,9 +18,11 @@ import cLinkToQuery from './linkToQuery/';
 import cIsUpOrDown from './isUpOrDown/';
 import selectType from './selectType/';
 import cParNumber from './parNumber/';
+import cDeTree from './deTree/';
 
 export {
   selectType,
+  cDeTree as deTree,
   cCount as count,
   cDetermineSequence as determineSequence,
   cIsDragonOrTiger as isDragonOrTiger,
