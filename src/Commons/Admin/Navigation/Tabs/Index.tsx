@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Clear from '@material-ui/icons/Clear';
 
 import context from '@/contexts';
+import utilities from '@/utilities';
 
 import CONFIGS from '@/CONFIGS';
 
@@ -19,14 +19,14 @@ function Tabs(oProps: any) {
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
 
-  let oMenus = CONFIGS.MENUS.reduce((_oMenus: any, _oMenu: any) => {
-    return { ..._oMenus, [_oMenu.path]: _oMenu };
-  }, {});
+  let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
   return (
     <div className={classes.wrapperTabs}>
       {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
         if (!Object.prototype.hasOwnProperty.call(oMenus, _sMenuName)) {
+          // TODO: 最好改写成 try catch
+          // catch 到 Error 把 tab 的 storage 清空
           return <></>;
         }
         let oMenu = oMenus[_sMenuName];

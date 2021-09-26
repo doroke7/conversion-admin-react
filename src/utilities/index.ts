@@ -19,6 +19,7 @@ import cIsUpOrDown from './isUpOrDown/';
 import selectType from './selectType/';
 import cParNumber from './parNumber/';
 import cDeTree from './deTree/';
+import deTree from './deTree/';
 
 export {
   selectType,
@@ -41,5 +42,9 @@ export {
   cLinkToPath as linkToPath,
   cLinkToQuery as linkToQuery,
   cIsUpOrDown as isUpOrDown,
-  cParNumber as parNumber,
+  cParNumber as parNumber
+};
+
+export default {
+  deTree
 };

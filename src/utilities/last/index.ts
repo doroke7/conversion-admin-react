@@ -9,7 +9,7 @@ const KLSF: string = 'KLSF';
 
 let cLast = (aNumbers: number[]): number | undefined => {
   let iLength = aNumbers.length;
-  let iNumber = aNumbers[iLength - 1 ];
+  let iNumber = aNumbers[iLength - 1];
   return iNumber;
 };
 

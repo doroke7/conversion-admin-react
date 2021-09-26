@@ -3,8 +3,7 @@
 // const SMALL: string = '小';
 // const LAGRE: string = '大';
 let cParNumber = (aNumbers: number[], aPreviousNumberss: number[], iPreviousNumber: number) => {
- 
- // return aNumbers;
+  // return aNumbers;
 };
 
 export default cParNumber;

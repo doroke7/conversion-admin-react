@@ -9,19 +9,19 @@ const UNKNOWN: string = '未知';
 let cIsFishOrShrimpOrCrab = (aNumbers: number[], iPosition: number): string => {
   let iNumber = aNumbers[iPosition];
   switch (iNumber) {
-  case 1:
-    return FISH;
-  case 2:
-    return SHRIMP;
-  case 3:
-    return GOURD;
-  case 4:
-    return GOLD;
-  case 5:
-    return CRAB;
-  case 6:
-    return COCK;
-  default:
+    case 1:
+      return FISH;
+    case 2:
+      return SHRIMP;
+    case 3:
+      return GOURD;
+    case 4:
+      return GOLD;
+    case 5:
+      return CRAB;
+    case 6:
+      return COCK;
+    default:
   }
   return UNKNOWN;
 };

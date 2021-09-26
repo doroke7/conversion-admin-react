@@ -10,7 +10,7 @@ let cIsFrontOrBack = (aNumbers: number[] | number): string => {
   let iCountFront = 0;
   let iCountBack = 0;
   if (!(aNumbers instanceof Array)) {
-    aNumbers = [aNumbers, ];
+    aNumbers = [aNumbers];
   }
   aNumbers.forEach((iNumber) => {
     if (iNumber < 40) {

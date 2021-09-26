@@ -1,4 +1,4 @@
-let selectType = (type: any , index: any) => {
+let selectType = (type: any, index: any) => {
   let iSmallUpperBound = 0;
   let iLargeLowerBound = 0;
   let sTypes = type.toUpperCase();
@@ -28,9 +28,9 @@ let selectType = (type: any , index: any) => {
       iLargeLowerBound = 25;
       break;
     default:
-      // code block
+    // code block
   }
-  if ( index === undefined ) {
+  if (index === undefined) {
     switch (sTypes) {
       case 'PK10':
         iSmallUpperBound = 22;
@@ -57,11 +57,10 @@ let selectType = (type: any , index: any) => {
         iLargeLowerBound = 175;
         break;
       default:
-        // code block
+      // code block
     }
   }
-  return [ iSmallUpperBound , iLargeLowerBound ];
+  return [iSmallUpperBound, iLargeLowerBound];
 };
 
 export default selectType;
-
