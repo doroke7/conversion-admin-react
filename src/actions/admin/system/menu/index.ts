@@ -2,8 +2,6 @@ import jwtDecode from 'jwt-decode';
 
 import Helpers from '@/Helpers/';
 
-
-
 let cShow: any = (oRaw: any) => {
   return {
     type: 'SYSTEM_MENU',
@@ -12,7 +10,6 @@ let cShow: any = (oRaw: any) => {
 };
 
 let oMenuAction: any = {
-
   show(oParams: any, oData: any) {
     return async (cDispatch: any) => {
       let oResponse = await Helpers.Axios.post({

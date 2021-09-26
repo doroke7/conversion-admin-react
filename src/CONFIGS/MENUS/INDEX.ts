@@ -16,10 +16,18 @@ let MENUS: any = [
     Icon: FaceTwoToneIcon
   },
   {
-    text: '管理員',
-    description: '管理員列表',
-    path: '/admin/resource/administrator/index',
-    Icon: SupervisedUserCircleTwoToneIcon
+    text: '系统管理',
+    description: '系统管理菜单',
+    path: '/admin/system',
+    Icon: SupervisedUserCircleTwoToneIcon,
+    menus: [
+      {
+        text: '管理員',
+        description: '管理員列表',
+        path: '/admin/resource/administrator/index',
+        Icon: SupervisedUserCircleTwoToneIcon
+      }
+    ]
   }
 ];
 

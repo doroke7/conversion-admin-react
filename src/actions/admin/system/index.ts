@@ -1,5 +1,5 @@
-import authenticator from './authenticator/index';
+import menu from './menu/index';
 
 export default {
-  authenticator
+  menu
 };
