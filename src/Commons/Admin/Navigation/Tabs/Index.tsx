@@ -26,7 +26,11 @@ function Tabs(oProps: any) {
   return (
     <div className={classes.wrapperTabs}>
       {Object.values(aTabs).map((_sMenuName: any, iIndex) => {
+        if (!Object.prototype.hasOwnProperty.call(oMenus, _sMenuName)) {
+          return <></>;
+        }
         let oMenu = oMenus[_sMenuName];
+
         return (
           <Link
             key={iIndex}
