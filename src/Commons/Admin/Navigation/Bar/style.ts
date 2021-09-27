@@ -32,7 +32,10 @@ const style = makeStyles((theme: Theme) =>
       padding: theme.spacing(1) + 2
     },
     typography: {
-      paddingLeft: theme.spacing(2)
+      paddingLeft: theme.spacing(2),
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '12px'
+      }
     },
     hide: {
       display: 'none'
