@@ -10,7 +10,6 @@ const style = makeStyles((oTheme: Theme) =>
     },
 
     link: {
-      color: grey[200],
       textDecoration: 'none'
     },
     listItemIcon: {
@@ -28,15 +27,22 @@ const style = makeStyles((oTheme: Theme) =>
       '&:hover': {
         background: grey[800]
       },
+      cursor: 'pointer',
       background: grey[0]
     },
     listText: {
+      color: grey[200],
       marginLeft: oTheme.spacing(2)
     },
     description: {
       marginBottom: oTheme.spacing(2)
     },
-
+    expandMore: {
+      color: grey[400] + ' !important'
+    },
+    expandLess: {
+      color: grey[400] + ' !important'
+    },
     hide: {
       display: 'none'
     },

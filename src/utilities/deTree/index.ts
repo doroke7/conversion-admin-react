@@ -9,7 +9,7 @@ let cDeTree = (aTree: any, sProperty: string = 'children', sType: string = 'obje
     let iLength = aTree.length;
     let iIndex = 0;
     for (iIndex = 0; iIndex < iLength; iIndex++) {
-      let oRow = aTree[iIndex];
+      let oRow = { ...aTree[iIndex] }; // oRow = Object.assign({}, ... aTree[iIndex]); 从新 clone object
       let _mResult: any;
       if (Object.prototype.hasOwnProperty.call(oRow, sProperty)) {
         let aChildren = oRow[sProperty];
