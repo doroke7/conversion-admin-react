@@ -22,6 +22,8 @@ import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import ListIcon from '@material-ui/icons/List';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
@@ -184,13 +186,13 @@ function Navigation(oProps: any) {
                 <ListItem
                   button
                   onClick={handleExpand(oMenu)}
-                  key={oMenu.text}
+                  key={oMenu.id}
                   className={clsx({
                     [classes.listItem]: true,
                     [classes.listItemEnable]: sMenuName === oMenu.path
                   })}
                 >
-                  <ListItemIcon className={clsx(classes.listItemIcon)}>{<oMenu.Icon />}</ListItemIcon>
+                  <ListItemIcon className={clsx(classes.listItemFisrtIcon)}>{<oMenu.Icon />}</ListItemIcon>
                   <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
                   {Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) && oState.menus[oMenu.id] ? (
                     <ExpandLess className={classes.expandLess} />
@@ -198,18 +200,27 @@ function Navigation(oProps: any) {
                     <ExpandMore className={classes.expandMore} />
                   )}
                 </ListItem>
+
                 <Collapse
                   in={Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) && oState.menus[oMenu.id]}
                   timeout="auto"
                   unmountOnExit
                 >
-                  <List component="div" disablePadding>
-                    <ListItem button className={classes.listText}>
-                      <ListItemIcon className={clsx(classes.listItemIcon)}>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText primary="TEST" />
-                    </ListItem>
+                  <List component="div">
+                    {oMenu.menus.map((oMenu: any, iIndex: any) => (
+                      <ListItem
+                        button
+                        className={clsx({
+                          [classes.listItem]: true,
+                          [classes.listText]: true
+                        })}
+                        key={oMenu.id}
+                      >
+                        <ListItemIcon className={clsx(classes.listItemSecondIcon)}>{<oMenu.Icon />}</ListItemIcon>
+
+                        <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
+                      </ListItem>
+                    ))}
                   </List>
                 </Collapse>
               </>
@@ -223,7 +234,7 @@ function Navigation(oProps: any) {
                     [classes.listItemEnable]: sMenuName === oMenu.path
                   })}
                 >
-                  <ListItemIcon className={clsx(classes.listItemIcon)}>{<oMenu.Icon />}</ListItemIcon>
+                  <ListItemIcon className={clsx(classes.listItemFisrtIcon)}>{<oMenu.Icon />}</ListItemIcon>
                   <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
                 </ListItem>
               </Link>

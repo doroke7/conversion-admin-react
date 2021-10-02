@@ -26,9 +26,23 @@ let MENUS: any = [
     menus: [
       {
         id: 4,
-        text: '管理員',
+        text: '管理員A',
         description: '管理員列表',
-        path: '/admin/resource/administrator/index',
+        path: '/admin/resource/fsfs/index',
+        Icon: SupervisedUserCircleTwoToneIcon
+      },
+      {
+        id: 44,
+        text: '管理員B',
+        description: '管理員列表',
+        path: '/admin/resource/sss/index',
+        Icon: SupervisedUserCircleTwoToneIcon
+      },
+      {
+        id: 4444,
+        text: '管理員C',
+        description: '管理員列表',
+        path: '/admin/resource/fffff/index',
         Icon: SupervisedUserCircleTwoToneIcon
       }
     ]
