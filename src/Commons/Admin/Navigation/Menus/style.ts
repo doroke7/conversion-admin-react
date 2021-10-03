@@ -47,9 +47,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
       color: grey[200],
       marginLeft: oTheme.spacing(1) + 4
     },
-    description: {
-      marginBottom: oTheme.spacing(2)
-    },
+
     expandMore: {
       color: grey[400] + ' !important'
     },
