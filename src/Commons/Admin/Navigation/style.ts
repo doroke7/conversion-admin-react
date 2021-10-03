@@ -12,11 +12,11 @@ const style = makeStyles((oTheme: Theme) =>
     link: {
       textDecoration: 'none'
     },
-    listItemFisrtIcon: {
+    listItemIconFirst: {
       color: grey[200],
       minWidth: oTheme.spacing(3)
     },
-    listItemSecondIcon: {
+    listItemIconSecond: {
       color: grey[600],
       minWidth: oTheme.spacing(3)
     },

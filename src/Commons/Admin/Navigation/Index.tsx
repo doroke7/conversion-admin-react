@@ -193,7 +193,7 @@ function Navigation(oProps: any) {
                     [classes.listItemEnable]: sMenuName === oMenu.path
                   })}
                 >
-                  <ListItemIcon className={clsx(classes.listItemFisrtIcon)}>{<oMenu.Icon />}</ListItemIcon>
+                  <ListItemIcon className={clsx(classes.listItemIconFirst)}>{<oMenu.Icon />}</ListItemIcon>
                   <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
                   {Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) && oState.menus[oMenu.id] ? (
                     <ExpandLess className={classes.expandLess} />
@@ -216,7 +216,7 @@ function Navigation(oProps: any) {
                         })}
                         key={oMenu.id}
                       >
-                        <ListItemIcon className={clsx(classes.listItemSecondIcon)}>{<oMenu.Icon />}</ListItemIcon>
+                        <ListItemIcon className={clsx(classes.listItemIconSecond)}>{<oMenu.Icon />}</ListItemIcon>
                         <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
                         {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? <ArrowRightIcon /> : <></>}
                       </ListItem>
@@ -234,7 +234,7 @@ function Navigation(oProps: any) {
                     [classes.listItemEnable]: sMenuName === oMenu.path
                   })}
                 >
-                  <ListItemIcon className={clsx(classes.listItemFisrtIcon)}>{<oMenu.Icon />}</ListItemIcon>
+                  <ListItemIcon className={clsx(classes.listItemIconFirst)}>{<oMenu.Icon />}</ListItemIcon>
                   <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
                 </ListItem>
               </Link>
