@@ -128,9 +128,9 @@ function FirstMenu(oProps: any) {
         <ListItemIcon className={clsx(classes.listItemIconFirst)}>{<oMenu.Icon />}</ListItemIcon>
         <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
         {Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) && oState.menus[oMenu.id] ? (
-          <ExpandLessIcon className={classes.expandLess} />
+          <ExpandLessIcon className={classes.expandLessIcon} />
         ) : (
-          <ExpandMoreIcon className={classes.expandMore} />
+          <ExpandMoreIcon className={classes.expandMoreIcon} />
         )}
       </ListItem>
 

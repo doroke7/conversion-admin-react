@@ -47,10 +47,10 @@ const oStyle = makeStyles((oTheme: Theme) =>
       color: grey[200],
       marginLeft: oTheme.spacing(1) + 4
     },
-    expandMore: {
+    expandMoreIcon: {
       color: grey[400] + ' !important'
     },
-    expandLess: {
+    expandLessIcon: {
       color: grey[400] + ' !important'
     },
     arrowRightIcon: {
