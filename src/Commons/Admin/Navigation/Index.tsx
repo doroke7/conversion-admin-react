@@ -49,7 +49,9 @@ function Navigation(oProps: any) {
   const [oState, setState] = React.useState<any>({
     open: true,
     tabs: Helpers.Tab.get(), // 更換 route 的時候 , React Componet 重新 render, state init
-    menus: {}
+    menus: {},
+    anchors: {},
+    anchor: null
   });
 
   let sPathname = oProps.location.pathname;
@@ -76,6 +78,10 @@ function Navigation(oProps: any) {
 
   function handleDrawerClose() {
     setState({ ...oState, open: false });
+  }
+
+  function handleMouseEnter(oEvent: any) {
+    setState({ ...oState, anchor: oEvent.currentTarget });
   }
 
   function handleExpand(oMenu: any) {
@@ -211,6 +217,7 @@ function Navigation(oProps: any) {
                     {oMenu.menus.map((oMenu: any, iIndex: any) => (
                       <ListItem
                         button
+                        onMouseEnter={handleMouseEnter}
                         className={clsx({
                           [classes.listItemSecond]: true
                         })}
@@ -218,7 +225,11 @@ function Navigation(oProps: any) {
                       >
                         <ListItemIcon className={clsx(classes.listItemIconSecond)}>{<oMenu.Icon />}</ListItemIcon>
                         <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
-                        {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? <ArrowRightIcon /> : <></>}
+                        {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
+                          <ArrowRightIcon className={classes.arrowRightIcon} />
+                        ) : (
+                          <></>
+                        )}
                       </ListItem>
                     ))}
                   </List>

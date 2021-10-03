@@ -60,6 +60,9 @@ const style = makeStyles((oTheme: Theme) =>
     expandLess: {
       color: grey[400] + ' !important'
     },
+    arrowRightIcon: {
+      color: grey[400] + ' !important'
+    },
     hide: {
       display: 'none'
     },
