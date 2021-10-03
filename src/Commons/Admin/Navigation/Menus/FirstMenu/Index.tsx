@@ -24,7 +24,7 @@ import style from './style';
 
 function FirstMenu(oProps: any) {
   let classes = style(void 0);
-  const oAnchorRef: any = React.useRef<HTMLButtonElement>(null);
+  let oAnchorRef: any = React.useRef<HTMLButtonElement>(null);
   let oLocation = useLocation();
   let sPathname = oLocation.pathname;
   let sMenuName = sPathname;
