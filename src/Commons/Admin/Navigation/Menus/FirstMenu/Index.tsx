@@ -7,16 +7,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import Popper from '@material-ui/core/Popper';
-import Grow from '@material-ui/core/Grow';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Paper from '@material-ui/core/Paper';
-import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
+import SecondMenu from './SecondMenu/Index';
 
 import Helpers from '@/Helpers';
 
@@ -141,60 +136,7 @@ function FirstMenu(oProps: any) {
       >
         <List component="div">
           {oMenu.menus.map((oMenu: any, iIndex: any) => (
-            <ListItem
-              button
-              onMouseEnter={handleMouseEnter(oMenu)}
-              onMouseOut={handleMouseOut(oMenu)}
-              ref={oAnchorRef}
-              aria-controls={'menu-' + oMenu.id}
-              aria-haspopup="true"
-              className={clsx({
-                [classes.listItemSecond]: true
-              })}
-              key={oMenu.id}
-            >
-              <ListItemIcon className={clsx(classes.listItemIconSecond)}>{<oMenu.Icon />}</ListItemIcon>
-              <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
-              {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
-                <ArrowRightIcon className={classes.arrowRightIcon} />
-              ) : (
-                <></>
-              )}
-              {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
-                <Popper
-                  open={Object.prototype.hasOwnProperty.call(oState.anchors, oMenu.id) && oState.anchors[oMenu.id]}
-                  anchorEl={oAnchorRef.current}
-                  role={undefined}
-                  transition
-                  disablePortal
-                >
-                  {({ TransitionProps, placement }) => (
-                    // Grow： Material-UI 动画组件
-                    <Grow {...TransitionProps}>
-                      <Paper>
-                        <ClickAwayListener onClickAway={handleShiftAway(oMenu)}>
-                          <MenuList
-                            autoFocusItem={
-                              Object.prototype.hasOwnProperty.call(oState.anchors, oMenu.id) && oState.anchors[oMenu.id]
-                            }
-                            id={'menu-' + oMenu.id}
-                            onKeyDown={handleKeyDown}
-                          >
-                            {oMenu.menus.map((oMenu: any, iIndex: any) => (
-                              <MenuItem key={oMenu.id} onClick={handleShiftAway(oMenu)}>
-                                {oMenu.text}
-                              </MenuItem>
-                            ))}
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-              ) : (
-                <></>
-              )}
-            </ListItem>
+            <SecondMenu menu={oMenu} key={oMenu.id}></SecondMenu>
           ))}
         </List>
       </Collapse>

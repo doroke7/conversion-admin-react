@@ -3,10 +3,6 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const drawerWidth = 200;
 
-const oStyle = makeStyles((oTheme: Theme) =>
-  createStyles({
-
-  })
-);
+const oStyle = makeStyles((oTheme: Theme) => createStyles({}));
 
 export default oStyle;
