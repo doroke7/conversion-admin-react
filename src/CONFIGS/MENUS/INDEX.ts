@@ -29,7 +29,23 @@ let MENUS: any = [
         text: '管理員A',
         description: '管理員列表',
         path: '/admin/resource/fsfs/index',
-        Icon: SupervisedUserCircleTwoToneIcon
+        Icon: SupervisedUserCircleTwoToneIcon,
+        menus: [
+          {
+            id: 7,
+            text: '三级A',
+            description: '三级',
+            path: '/admin/resource/ufdfddffdser/index',
+            Icon: FaceTwoToneIcon
+          },
+          {
+            id: 77,
+            text: '三级B',
+            description: '三级',
+            path: '/admin/resource/ufdfddffdser/index',
+            Icon: FaceTwoToneIcon
+          }
+        ]
       },
       {
         id: 44,
