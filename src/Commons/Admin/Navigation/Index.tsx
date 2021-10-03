@@ -2,29 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import clsx from 'clsx';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Box from '@material-ui/core/Box';
 
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
-import StarBorder from '@material-ui/icons/StarBorder';
 
-import ListIcon from '@material-ui/icons/List';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
 import Menus from './Menus/Index';
