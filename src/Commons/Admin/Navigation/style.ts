@@ -9,10 +9,6 @@ const style = makeStyles((oTheme: Theme) =>
       display: 'flex'
     },
 
-    link: {
-      textDecoration: 'none'
-    },
-
     hide: {
       display: 'none'
     },

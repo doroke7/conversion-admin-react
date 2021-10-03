@@ -16,11 +16,9 @@ function FirstMenu(oProps: any) {
 
  
 
-  return (
-    <>
-
-    </>
-  );
+  return 
+    {Object.prototype.hasOwnProperty.call(oProps.menu, 'menus') ? (<></>) : (<></>)}
+  ;
 }
 
-export default withRouter(FirstMenu);
+export default FirstMenu;

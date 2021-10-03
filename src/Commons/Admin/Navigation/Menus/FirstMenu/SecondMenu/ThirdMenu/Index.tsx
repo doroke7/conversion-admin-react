@@ -23,4 +23,4 @@ function ThirdMenu(oProps: any) {
   );
 }
 
-export default withRouter(ThirdMenu);
+export default ThirdMenu;

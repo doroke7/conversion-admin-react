@@ -23,4 +23,4 @@ function SecondMenu(oProps: any) {
   );
 }
 
-export default withRouter(SecondMenu);
+export default SecondMenu;
