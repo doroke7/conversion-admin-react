@@ -25,7 +25,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import ListIcon from '@material-ui/icons/List';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
 import utilities from '@/utilities';
@@ -189,7 +189,7 @@ function Navigation(oProps: any) {
                   onClick={handleExpand(oMenu)}
                   key={oMenu.id}
                   className={clsx({
-                    [classes.listItem]: true,
+                    [classes.listItemFirst]: true,
                     [classes.listItemEnable]: sMenuName === oMenu.path
                   })}
                 >
@@ -212,15 +212,13 @@ function Navigation(oProps: any) {
                       <ListItem
                         button
                         className={clsx({
-                          [classes.listItem]: true,
-                          [classes.listText]: true
+                          [classes.listItemSecond]: true
                         })}
                         key={oMenu.id}
                       >
                         <ListItemIcon className={clsx(classes.listItemSecondIcon)}>{<oMenu.Icon />}</ListItemIcon>
-
                         <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
-                        {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? <></> : <></>}
+                        {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? <ArrowRightIcon /> : <></>}
                       </ListItem>
                     ))}
                   </List>
@@ -232,7 +230,7 @@ function Navigation(oProps: any) {
                   button
                   key={oMenu.text}
                   className={clsx({
-                    [classes.listItem]: true,
+                    [classes.listItemFirst]: true,
                     [classes.listItemEnable]: sMenuName === oMenu.path
                   })}
                 >
