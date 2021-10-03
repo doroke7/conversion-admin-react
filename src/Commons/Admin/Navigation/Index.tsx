@@ -24,6 +24,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ListIcon from '@material-ui/icons/List';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
@@ -175,7 +176,7 @@ function Navigation(oProps: any) {
       >
         <div className={classes.toolbar}>
           <IconButton className={classes.iconButton} onClick={handleDrawerClose}>
-            ⮞
+            <DoubleArrowIcon></DoubleArrowIcon>
           </IconButton>
         </div>
         <Divider />
@@ -219,6 +220,7 @@ function Navigation(oProps: any) {
                         <ListItemIcon className={clsx(classes.listItemSecondIcon)}>{<oMenu.Icon />}</ListItemIcon>
 
                         <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
+                        {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? <></> : <></>}
                       </ListItem>
                     ))}
                   </List>
