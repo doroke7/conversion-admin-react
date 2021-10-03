@@ -8,6 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Box from '@material-ui/core/Box';
+
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,19 +19,18 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
-import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+
 import ListIcon from '@material-ui/icons/List';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
-import utilities from '@/utilities';
+import Menus from './Menus/Index';
 
 import context from '@/contexts';
+import utilities from '@/utilities';
 
 import Helpers from '@/Helpers';
 import CONFIGS from '@/CONFIGS/';
@@ -39,38 +39,19 @@ import style from './style';
 
 let tab = context.tab;
 
-console.log(CONFIGS.MENUS);
+let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
-  let classes = style(void 0);
-  // let [open, setOpen] = React.useState(true);
-  // let [tabs, setTabs] = React.useState([]);
-
-  const [oState, setState] = React.useState<any>({
-    open: true,
-    tabs: Helpers.Tab.get(), // 更換 route 的時候 , React Componet 重新 render, state init
-    menus: {},
-    anchors: {},
-    anchor: null
-  });
-
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
   let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
-  useEffect(() => {
-    // componentDidMount is here!
-    let oRegular = /admin\/(\w+)/i;
+  let classes = style(void 0);
 
-    if (sMenuName.match(oRegular)) {
-      let oTab = oMenus[sMenuName];
-      enableClick(oTab);
-    }
-
-    return () => {
-      // componentWillUnmount is here!
-    };
-  }, []);
+  const [oState, setState] = React.useState<any>({
+    open: true,
+    tabs: Helpers.Tab.get() // 更換 route 的時候 , React Componet 重新 render, state init
+  });
 
   function handleDrawerOpen() {
     setState({ ...oState, open: true });
@@ -78,50 +59,6 @@ function Navigation(oProps: any) {
 
   function handleDrawerClose() {
     setState({ ...oState, open: false });
-  }
-
-  function handleMouseEnter(oEvent: any) {
-    setState({ ...oState, anchor: oEvent.currentTarget });
-  }
-
-  function handleExpand(oMenu: any) {
-    return () => {
-      enableExpand(oMenu);
-    };
-  }
-
-  function enableExpand(oMenu: any) {
-    let oMenus = {
-      [oMenu.id]: Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) ? !oState.menus[oMenu.id] : true
-    };
-    setState({ ...oState, menus: oMenus });
-  }
-
-  function handleClick(oMenu: any) {
-    return () => {
-      enableClick(oMenu);
-    };
-  }
-
-  function enableClick(oMenu: any) {
-    let aTabs: any[] = Helpers.Tab.get();
-    let iIndex;
-    let iLength = aTabs.length;
-    let bExistent = false;
-    let sMenuName = oMenu.path;
-
-    for (iIndex = 0; iIndex < iLength; iIndex++) {
-      let _sMenuName: any = aTabs[iIndex];
-      if (sMenuName === _sMenuName) {
-        bExistent = true;
-        break;
-      }
-    }
-    if (!bExistent) {
-      aTabs.push(sMenuName);
-    }
-    setState({ ...oState, tabs: aTabs });
-    Helpers.Tab.set(aTabs);
   }
 
   function removeTab(iIndex: number) {
@@ -186,72 +123,7 @@ function Navigation(oProps: any) {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {CONFIGS.MENUS.map((oMenu: any, iIndex: any) =>
-            Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
-              <>
-                <ListItem
-                  button
-                  onClick={handleExpand(oMenu)}
-                  key={oMenu.id}
-                  className={clsx({
-                    [classes.listItemFirst]: true,
-                    [classes.listItemEnable]: sMenuName === oMenu.path
-                  })}
-                >
-                  <ListItemIcon className={clsx(classes.listItemIconFirst)}>{<oMenu.Icon />}</ListItemIcon>
-                  <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
-                  {Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) && oState.menus[oMenu.id] ? (
-                    <ExpandLess className={classes.expandLess} />
-                  ) : (
-                    <ExpandMore className={classes.expandMore} />
-                  )}
-                </ListItem>
-
-                <Collapse
-                  in={Object.prototype.hasOwnProperty.call(oState.menus, oMenu.id) && oState.menus[oMenu.id]}
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <List component="div">
-                    {oMenu.menus.map((oMenu: any, iIndex: any) => (
-                      <ListItem
-                        button
-                        onMouseEnter={handleMouseEnter}
-                        className={clsx({
-                          [classes.listItemSecond]: true
-                        })}
-                        key={oMenu.id}
-                      >
-                        <ListItemIcon className={clsx(classes.listItemIconSecond)}>{<oMenu.Icon />}</ListItemIcon>
-                        <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
-                        {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
-                          <ArrowRightIcon className={classes.arrowRightIcon} />
-                        ) : (
-                          <></>
-                        )}
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
-              </>
-            ) : (
-              <Link to={oMenu.path} className={clsx(classes.link, {})} onClick={handleClick(oMenu)} key={iIndex}>
-                <ListItem
-                  button
-                  key={oMenu.text}
-                  className={clsx({
-                    [classes.listItemFirst]: true,
-                    [classes.listItemEnable]: sMenuName === oMenu.path
-                  })}
-                >
-                  <ListItemIcon className={clsx(classes.listItemIconFirst)}>{<oMenu.Icon />}</ListItemIcon>
-                  <ListItemText className={clsx(classes.listText)} primary={oMenu.text} />
-                </ListItem>
-              </Link>
-            )
-          )}
-        </List>
+        <Menus />
         <Divider />
         <List></List>
       </Drawer>
