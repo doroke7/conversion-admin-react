@@ -13,7 +13,7 @@ const style = makeStyles((oTheme: Theme) =>
       textDecoration: 'none'
     },
     listItemFisrtIcon: {
-      color: grey[400],
+      color: grey[200],
       minWidth: oTheme.spacing(3)
     },
     listItemSecondIcon: {
@@ -26,7 +26,7 @@ const style = makeStyles((oTheme: Theme) =>
     },
     listItem: {
       paddingTop: oTheme.spacing(0),
-      // paddingLeft: oTheme.spacing(1) + 2,
+      paddingLeft: oTheme.spacing(1) + 2,
       paddingBottom: oTheme.spacing(0),
       '&:hover': {
         background: grey[800]
@@ -36,7 +36,7 @@ const style = makeStyles((oTheme: Theme) =>
     },
     listText: {
       color: grey[200],
-      marginLeft: oTheme.spacing(1)
+      marginLeft: oTheme.spacing(1) + 4
     },
     description: {
       marginBottom: oTheme.spacing(2)
