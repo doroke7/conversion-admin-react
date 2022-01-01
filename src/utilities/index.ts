@@ -20,6 +20,7 @@ import selectType from './selectType/';
 import cParNumber from './parNumber/';
 import cDeTree from './deTree/';
 import deTree from './deTree/';
+import randString from './randString/';
 
 export {
   selectType,
@@ -46,5 +47,6 @@ export {
 };
 
 export default {
-  deTree
+  deTree,
+  randString
 };
