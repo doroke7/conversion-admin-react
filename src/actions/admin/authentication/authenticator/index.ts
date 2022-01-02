@@ -33,7 +33,6 @@ let oAuthenticatorAction: any = {
         let oOptions = {
           headers: {
             jwt: sJwt // 一定要 引号
-            // 'access-token': sAccessToken,
           }
         };
         let oResponse = await Helpers.Axios.post({
@@ -71,17 +70,13 @@ let oAuthenticatorAction: any = {
         throw new Error('网络异常');
       }
 
-      if (-1 === oResponse.code || 200 != oResponse.status) {
-        throw new Error(oResponse.message);
+      if (-1 === oResponse.data.code || 200 != oResponse.status) {
+        throw new Error(oResponse.data.message);
       }
 
-      if (!oResponse.raw || !Object.prototype.hasOwnProperty.call(oResponse.raw, 'jwt') || !oResponse.raw.jwt) {
-        throw new Error('接口格式异常');
-      }
-
-      let sJwt = oResponse.raw.jwt;
+      let sJwt = oResponse.headers['Authrozation'];
       Helpers.Authentication.setJwt(sJwt);
-      return cDispatch(cSignIn(oResponse.raw));
+      return cDispatch(cSignIn(oResponse.data.raw));
     };
   }
 };

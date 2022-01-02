@@ -4,6 +4,7 @@ import Authentication from './Authentication/Index';
 import Socket from './Socket/Index';
 import Emitter from './Emitter/Index';
 import Tab from './Tab/Index';
+import Rsa from './Rsa/Index';
 
 export default {
   Axios,
@@ -11,5 +12,6 @@ export default {
   Socket,
   Emitter,
   Tab,
-  Aes
+  Aes,
+  Rsa
 };

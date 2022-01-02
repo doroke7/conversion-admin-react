@@ -3,6 +3,7 @@ import CryptoJS from 'crypto-js';
 
 import Helpers from '@/Helpers/';
 import CONFIGS from '@/CONFIGS/';
+import utilities from '@/utilities';
 
 const API = CONFIGS.API;
 
@@ -17,87 +18,79 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
  * 能过批次处理 AJAX 的 类模组
  */
 class AxiosHelper {
-  public static params(oParams: any, oConfigs: any = {}): any {
+  public static params(oParams: any, sKey: string, sIv: string): any {
     oParams = oParams || {};
+    oParams.query = oParams.query || {};
 
-    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
-
-    if (!Object.prototype.hasOwnProperty.call(oParams, 'query')) {
-      oParams.query = {};
-    }
-
-    if (bAes) {
-      let sQuery = JSON.stringify(oParams.query);
-      let _sQuery = Helpers.Aes.encode(sQuery);
-      oParams.query = _sQuery;
-    }
-
-    if (!Object.prototype.hasOwnProperty.call(oParams, 'time')) {
-      oParams.time = Math.floor(Date.now() / 1000);
-    }
+    let sQuery = JSON.stringify(oParams.query);
+    oParams.query = Helpers.Aes.encrypt(sQuery, sKey, sIv);
 
     return oParams;
   }
 
-  public static data(oData: any, oParams: any = {}, oConfigs: any = {}): any {
+  public static data(oData: any, sKey: string, sIv: string): any {
     oData = oData || {};
+    oData.param = oData.param || {};
 
-    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
-
-    if (!Object.prototype.hasOwnProperty.call(oData, 'param')) {
-      oData.param = {};
-    }
-
-    if (bAes) {
-      let sParam = JSON.stringify(oData.param);
-      let _sParam = Helpers.Aes.encode(sParam);
-      oData.param = _sParam;
-    }
+    let sParam = JSON.stringify(oData.param);
+    oData.param = Helpers.Aes.encrypt(sParam, sKey, sIv);
 
     return oData;
   }
 
-  public static sign(oParams: any, oData: any = {}): any {
-    let sJwt = Helpers.Authentication.getJwt() || '';
-    let sVersion = CONFIGS.APP.VERSION;
+  public static options(oOptions: any, sKey: string, sIv: string): any {
+    let sJwt = Helpers.Authentication.getJwt();
+    let iTime = Math.floor(Date.now() / 1000);
+    let oKeys = { key: sKey, iv: sIv };
+    let sKeys = JSON.stringify(oKeys);
+    sKeys = Helpers.Rsa.encode(sKeys);
+
+    oOptions = oOptions || {};
+    oOptions['params'] = oOptions['params'] || {};
+    oOptions['headers'] = {
+      Authorization: sJwt,
+      Version: CONFIGS.APP.VERSION,
+      Ver: CONFIGS.APP.VER,
+      Keys: sKeys, // TODO
+      Time: iTime
+    };
+
+    return oOptions;
+  }
+
+  public static sign(oParams: any, oData: any = {}, oOptions: any = {}): any {
+    let sJwt = oOptions['headers']['Authorization'] ?? '';
+    let sVersion = oOptions['headers']['Version'] ?? '';
+    let sVer = oOptions['headers']['Ver'] ?? '';
+    let sKeys = oOptions['headers']['Keys'] ?? '';
+    let sTime = oOptions['headers']['Time'] ?? '';
+
     let sQuery = oParams.query;
-    let sTime = oParams.time.toString();
     let sParam = oData.param;
     let sSalt = CONFIGS.API.SALT;
 
-    let sSignature1 = CryptoJS.MD5(sJwt + ';' + sVersion).toString();
-    let sSignature2 = CryptoJS.MD5(sQuery + '&' + sTime).toString();
+    let sSignature1 = CryptoJS.MD5(sJwt + ';' + sVersion + ';' + sVer + ';' + sKeys + ';' + sTime).toString();
+    let sSignature2 = CryptoJS.MD5(sQuery).toString();
     let sSignature3 = CryptoJS.MD5(sParam).toString();
-    let sSignature = CryptoJS.MD5(sSignature1 + sSignature2 + sSignature3 + sSalt).toString();
+    let sSignature = CryptoJS.MD5(sSignature1 + '+' + sSignature2 + '+' + sSignature3 + '+' + sSalt).toString();
 
     return sSignature;
   }
 
-  public static response(oResponse: any, oConfigs: any = {}): any {
-    let bAes = !Object.prototype.hasOwnProperty.call(oConfigs, 'aes') || oConfigs.aes;
+  public static response(oResponse: any): any {
+    console.log(oResponse);
+    let sKeys = oResponse.headers['keys'] || '';
+    sKeys = Helpers.Rsa.decode(sKeys);
+    let oKeys = JSON.parse(sKeys);
+    let sKey = oKeys['key'] || '';
+    let sIv = oKeys['iv'] || '';
 
-    if (bAes && Object.prototype.hasOwnProperty.call(oResponse, 'result')) {
-      let sResult = oResponse.result;
-      let sRaw = Helpers.Aes.decode(sResult);
-      let oRaw = JSON.parse(sRaw);
-      oResponse.raw = oRaw;
-    }
+    let sResult = oResponse.data.result;
+    let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
+    let oRaw = JSON.parse(sRaw);
+    oResponse.data.raw = oRaw;
 
     return oResponse;
-  }
-
-  public static options(oOptions: any, oConfigs: any = {}): any {
-    let sJwt = Helpers.Authentication.getJwt();
-
-    oOptions = oOptions || {};
-    oOptions['params'] = oOptions['params'] || {};
-
-    oOptions['headers'] = {
-      Version: CONFIGS.APP.VERSION,
-      Authorization: sJwt
-    };
-
-    return oOptions;
   }
 
   public static async get(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
@@ -114,13 +107,15 @@ class AxiosHelper {
         for (iIndex = 0; iIndex < iLength; iLength++) {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
+          let sKey = utilities.randString(16);
+          let sIv = utilities.randString(16);
 
-          oParams = AxiosHelper.params(oRequest.params, oConfigs);
-          oData = AxiosHelper.data(oRequest.data, oConfigs);
-          oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+          oParams = AxiosHelper.params(oRequest.params, sKey, sIv);
+          oData = AxiosHelper.data(oRequest.data, sKey, sIv);
+          oOptions = AxiosHelper.options(oRequest.options, sKey, sIv);
 
           oOptions['params'] = oParams;
-          oData['signature'] = AxiosHelper.sign(oParams, oData);
+          oOptions['headers']['Signature'] = AxiosHelper.sign(oParams, oData, oOptions);
 
           let oAxiosResponse;
           try {
@@ -129,7 +124,7 @@ class AxiosHelper {
             oAxiosResponse = oExcepiton.response;
           }
 
-          let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
+          let oResponse = AxiosHelper.response(oAxiosResponse);
           aResponses.push(oResponse);
         }
 
@@ -140,12 +135,15 @@ class AxiosHelper {
         aRequests.map(async (oRequest) => {
           let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
 
-          oParams = AxiosHelper.params(oRequest.params, oConfigs);
-          oData = AxiosHelper.data(oRequest.data, oConfigs);
-          oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+          let sKey = utilities.randString(16);
+          let sIv = utilities.randString(16);
+
+          oParams = AxiosHelper.params(oRequest.params, sKey, sIv);
+          oData = AxiosHelper.data(oRequest.data, sKey, sIv);
+          oOptions = AxiosHelper.options(oRequest.options, sKey, sIv);
 
           oOptions['params'] = oParams;
-          oData['signature'] = AxiosHelper.sign(oParams, oData);
+          oOptions['headers']['Signature'] = AxiosHelper.sign(oParams, oData, oOptions);
 
           let oAxiosResponse;
           try {
@@ -154,7 +152,7 @@ class AxiosHelper {
             oAxiosResponse = oExcepiton.response;
           }
 
-          let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
+          let oResponse = AxiosHelper.response(oAxiosResponse);
 
           return oResponse;
         })
@@ -179,12 +177,14 @@ class AxiosHelper {
           let oRequest = aRequests[iIndex];
           let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
 
-          oParams = AxiosHelper.params(oRequest.params, oConfigs);
-          oData = AxiosHelper.data(oRequest.data, oConfigs);
-          oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+          let sKey = utilities.randString(16);
+          let sIv = utilities.randString(16);
 
+          oParams = AxiosHelper.params(oRequest.params, sKey, sIv);
+          oData = AxiosHelper.data(oRequest.data, sKey, sIv);
+          oOptions = AxiosHelper.options(oRequest.options, sKey, sIv);
           oOptions['params'] = oParams;
-          oData['signature'] = AxiosHelper.sign(oParams, oData);
+          oOptions['headers']['Signature'] = AxiosHelper.sign(oParams, oData, oOptions);
 
           let oAxiosResponse;
           try {
@@ -193,7 +193,7 @@ class AxiosHelper {
             oAxiosResponse = oExcepiton.response;
           }
 
-          let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
+          let oResponse = AxiosHelper.response(oAxiosResponse);
           aResponses.push(oResponse);
         }
 
@@ -204,12 +204,14 @@ class AxiosHelper {
         aRequests.map(async (oRequest) => {
           let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
 
-          oParams = AxiosHelper.params(oRequest.params, oConfigs);
-          oData = AxiosHelper.data(oRequest.data, oConfigs);
-          oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+          let sKey = utilities.randString(16);
+          let sIv = utilities.randString(16);
 
+          oParams = AxiosHelper.params(oRequest.params, sKey, sIv);
+          oData = AxiosHelper.data(oRequest.data, sKey, sIv);
+          oOptions = AxiosHelper.options(oRequest.options, sKey, sIv);
           oOptions['params'] = oParams;
-          oData['signature'] = AxiosHelper.sign(oParams, oData);
+          oOptions['headers']['Signature'] = AxiosHelper.sign(oParams, oData, oOptions);
 
           let oAxiosResponse;
           try {
@@ -218,7 +220,7 @@ class AxiosHelper {
             oAxiosResponse = oExcepiton.response;
           }
 
-          let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
+          let oResponse = AxiosHelper.response(oAxiosResponse);
 
           return oResponse;
         })
@@ -228,12 +230,14 @@ class AxiosHelper {
     }
 
     let sUrl: string = (oRequest.url || sHost) + oRequest.path;
-    oParams = AxiosHelper.params(oRequest.params, oConfigs);
-    oData = AxiosHelper.data(oRequest.data, oConfigs);
-    oOptions = AxiosHelper.options(oRequest.options, oConfigs);
+    let sKey = utilities.randString(16);
+    let sIv = utilities.randString(16);
 
+    oParams = AxiosHelper.params(oRequest.params, sKey, sIv);
+    oData = AxiosHelper.data(oRequest.data, sKey, sIv);
+    oOptions = AxiosHelper.options(oRequest.options, sKey, sIv);
     oOptions['params'] = oParams;
-    oData['signature'] = AxiosHelper.sign(oParams, oData);
+    oOptions['headers']['Signature'] = AxiosHelper.sign(oParams, oData, oOptions);
 
     let oAxiosResponse;
     try {
@@ -241,7 +245,7 @@ class AxiosHelper {
     } catch (oExcepiton) {
       oAxiosResponse = oExcepiton.response;
     }
-    let oResponse = AxiosHelper.response(oAxiosResponse.data, oConfigs);
+    let oResponse = AxiosHelper.response(oAxiosResponse);
 
     return oResponse;
   }
