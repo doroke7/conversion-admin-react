@@ -78,10 +78,10 @@ class AxiosHelper {
   }
 
   public static response(oResponse: any): any {
-    console.log(oResponse);
     let sKeys = oResponse.headers['keys'] || '';
-    sKeys = Helpers.Rsa.decode(sKeys);
-    let oKeys = JSON.parse(sKeys);
+    sKeys = sKeys == '' ? sKeys : Helpers.Rsa.decode(sKeys);
+
+    let oKeys = sKeys == '' ? {} : JSON.parse(sKeys);
     let sKey = oKeys['key'] || '';
     let sIv = oKeys['iv'] || '';
 
