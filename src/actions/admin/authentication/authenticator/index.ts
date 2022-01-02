@@ -74,7 +74,7 @@ let oAuthenticatorAction: any = {
         throw new Error(oResponse.data.message);
       }
 
-      let sJwt = oResponse.headers['Authrozation'];
+      let sJwt = oResponse.headers['authorization'];
       Helpers.Authentication.setJwt(sJwt);
       return cDispatch(cSignIn(oResponse.data.raw));
     };
