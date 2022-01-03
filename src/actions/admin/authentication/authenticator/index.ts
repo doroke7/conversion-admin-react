@@ -16,10 +16,10 @@ let cRefresh: any = (oRaw: any) => {
   };
 };
 
-let cSignIn: any = (oRaw: any) => {
+let cSignIn: any = (oResponse: any) => {
   return {
     type: 'JWT_SIGNIN',
-    raw: oRaw
+    response: oResponse
   };
 };
 
@@ -75,8 +75,10 @@ let oAuthenticatorAction: any = {
       }
 
       let sJwt = oResponse.headers['authorization'];
-      Helpers.Authentication.setJwt(sJwt);
-      return cDispatch(cSignIn(oResponse.data.raw));
+      if (sJwt) {
+        Helpers.Authentication.setJwt(sJwt);
+      }
+      return cDispatch(cSignIn(oResponse));
     };
   }
 };
