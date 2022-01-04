@@ -91,7 +91,6 @@ function Pannel(oProps: any): any {
         }
       };
       let oPlayLoad = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
-      console.log(oPlayLoad, 'oPlayLoad');
       if (oPlayLoad) {
         setState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
         history.push('/admin');
