@@ -2,6 +2,8 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
+import Zoom from '@material-ui/core/Zoom';
+import Slide from '@material-ui/core/Slide';
 
 import Pannel from './Pannel/Index';
 
@@ -11,7 +13,7 @@ function SignIn(): any {
   const oClasses: any = style(void 0);
 
   return (
-    <Grow in={true} style={{ transformOrigin: 'top center 0' }} timeout={1000}>
+    <Slide in={true} direction="down" timeout={500} mountOnEnter unmountOnExit>
       <div className={oClasses.root}>
         <Grid container spacing={0}>
           <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
@@ -25,7 +27,7 @@ function SignIn(): any {
           </Grid>
         </Grid>
       </div>
-    </Grow>
+    </Slide>
   );
 }
 export default SignIn;

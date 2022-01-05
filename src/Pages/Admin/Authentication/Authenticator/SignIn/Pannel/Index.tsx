@@ -35,7 +35,7 @@ function Pannel(oProps: any): any {
 
   const jwt = useMappedState((state) => state.jwt);
 
-  let dispatch = useDispatch();
+  let cDispatch = useDispatch();
   let history = useHistory();
   let location = useLocation();
 
@@ -90,7 +90,7 @@ function Pannel(oProps: any): any {
           password: oState.password
         }
       };
-      let oPlayLoad = await dispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
+      let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       if (oPlayLoad) {
         setState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
         history.push('/admin');
