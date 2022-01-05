@@ -36,10 +36,10 @@ function Pannel(oProps: any): any {
   const jwt = useMappedState((state) => state.jwt);
 
   let cDispatch = useDispatch();
-  let history = useHistory();
-  let location = useLocation();
+  let oHistory = useHistory();
+  let oLocation = useLocation();
 
-  let [oState, setState] = React.useState<State>({
+  let [oState, cSetState] = React.useState<State>({
     name: '',
     password: '',
     open: false,
@@ -56,20 +56,20 @@ function Pannel(oProps: any): any {
       throw new Error('客户端登入异常');
     }
 
-    if ('/admin/authentication/authenticator/sign-in' == location.pathname) {
-      history.push('/admin');
+    if ('/admin/authentication/authenticator/sign-in' == oLocation.pathname) {
+      oHistory.push('/admin');
       return;
     }
   };
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
-    setState({ ...oState, name: sName });
+    cSetState({ ...oState, name: sName });
   };
 
   let onChangePassword = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sPassword = oEvent.target.value;
-    setState({ ...oState, password: sPassword });
+    cSetState({ ...oState, password: sPassword });
   };
 
   let SignIn = async () => {
@@ -92,13 +92,13 @@ function Pannel(oProps: any): any {
       };
       let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       if (oPlayLoad) {
-        setState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
-        history.push('/admin');
+        cSetState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
+        oHistory.push('/admin');
       }
     } catch (oException) {
       let sKey = oException.message;
       let sMessage = MESSAGES[sKey] || sKey;
-      setState({ ...oState, open: true, text: sMessage });
+      cSetState({ ...oState, open: true, text: sMessage });
     }
   };
 
