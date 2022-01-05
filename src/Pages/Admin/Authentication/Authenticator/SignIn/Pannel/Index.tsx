@@ -103,11 +103,11 @@ function Pannel(oProps: any): any {
   };
 
   let onClose = () => {
-    setState({ ...oState, open: false });
+    cSetState({ ...oState, open: false });
   };
 
   let onAlertClose = () => {
-    setState({ ...oState, alertOpen: false });
+    cSetState({ ...oState, alertOpen: false });
   };
 
   let onKeyPress = (oEvent: any) => {
