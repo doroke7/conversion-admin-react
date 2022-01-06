@@ -93,6 +93,7 @@ function Pannel(oProps: any): any {
       let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
       if (oPlayLoad) {
         cSetState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
+        oProps.onSignInToggle();
         oHistory.push('/admin');
       }
     } catch (oException) {
