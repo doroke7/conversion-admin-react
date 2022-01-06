@@ -5,16 +5,16 @@ import CONFIGS from '@/CONFIGS';
 import style from './style';
 
 function _(): any {
-  const classes: any = style(void 0);
+  const oClasses: any = style(void 0);
 
   return (
-    <div className={classes.root}>
+    <div className={oClasses.root}>
       <Admin.Navigation>
-        <div className={classes.iconWrapper}>
+        <div className={oClasses.iconWrapper}>
           <div>
-            <InfoTwoToneIcon className={classes.icon} />
+            <InfoTwoToneIcon className={oClasses.icon} />
           </div>
-          <div className={classes.text}>- {CONFIGS.APP.NAME} -</div>
+          <div className={oClasses.text}>- {CONFIGS.APP.NAME} -</div>
         </div>
       </Admin.Navigation>
     </div>
