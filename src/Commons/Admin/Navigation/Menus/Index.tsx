@@ -17,12 +17,12 @@ import cStyle from './style';
 function Menus() {
   const oClasses = cStyle();
 
-  let [oState, setState] = React.useState<any>({
+  let [oState, cSetState] = React.useState<any>({
     open: true
   });
 
   const cHandleClick = () => {
-    setState({ ...oState, open: !oState.open });
+    cSetState({ ...oState, open: !oState.open });
   };
 
   return (
