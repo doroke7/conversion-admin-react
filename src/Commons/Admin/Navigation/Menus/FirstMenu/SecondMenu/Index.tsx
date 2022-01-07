@@ -35,6 +35,9 @@ function SecondMenu(oProps: any) {
   }
 
   function handleMouseOut(oEvent: any) {
+    if (oState.anchor.current && oState.anchor.contains(oEvent.target)) {
+      return;
+    }
     setState({ ...oState, anchor: null });
   }
 
@@ -73,19 +76,13 @@ function SecondMenu(oProps: any) {
         <></>
       )}
       {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
-        <Popper open={Boolean(oState.current)} anchorEl={oState.current} role={undefined} transition disablePortal>
+        <Popper open={Boolean(oState.anchor)} anchorEl={oState.anchor} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             // Grow： Material-UI 动画组件
             <Grow {...TransitionProps}>
               <Paper>
                 <ClickAwayListener onClickAway={handleShiftAway(oMenu)}>
-                  <MenuList
-                    autoFocusItem={
-                      Object.prototype.hasOwnProperty.call(oState.anchors, oMenu.id) && oState.anchors[oMenu.id]
-                    }
-                    id={'menu-' + oMenu.id}
-                    onKeyDown={handleKeyDown}
-                  >
+                  <MenuList autoFocusItem={true} id={'menu-' + oMenu.id} onKeyDown={handleKeyDown}>
                     {oMenu.menus.map((oMenu: any, iIndex: any) => (
                       <ThirdMenu key={oMenu.id} text={oMenu.text} onClick={handleShiftAway(oMenu)}></ThirdMenu>
                     ))}

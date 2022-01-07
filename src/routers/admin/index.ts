@@ -2,6 +2,11 @@ import { Admin } from '@/Pages';
 
 let aRoutes = [
   {
+    path: '/admin/sample',
+    component: Admin.Sample,
+    exact: true
+  },
+  {
     path: '/admin',
     component: Admin._,
     exact: true
