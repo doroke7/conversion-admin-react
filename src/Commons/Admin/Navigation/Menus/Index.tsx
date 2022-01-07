@@ -16,10 +16,13 @@ import cStyle from './style';
 
 function Menus() {
   const oClasses = cStyle();
-  const [bOpen, setOpen] = React.useState(true);
 
-  const handleClick = () => {
-    setOpen(!bOpen);
+  let [oState, setState] = React.useState<any>({
+    open: true
+  });
+
+  const cHandleClick = () => {
+    setState({ ...oState, open: !oState.open });
   };
 
   return (
@@ -36,14 +39,14 @@ function Menus() {
         </ListItemIcon>
         <ListItemText primary="第二" />
       </ListItem>
-      <ListItem button onClick={handleClick}>
+      <ListItem button onClick={cHandleClick}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
         <ListItemText primary="第三" />
-        {bOpen ? <ExpandLess /> : <ExpandMore />}
+        {oState.open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={bOpen} timeout="auto" unmountOnExit>
+      <Collapse in={oState.open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={oClasses.nested}>
             <ListItemIcon>
