@@ -4,16 +4,16 @@ import { pink, grey } from '@material-ui/core/colors';
 const drawerWidth = 200;
 
 const oStyle = makeStyles((theme: Theme) =>
-createStyles({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  },
-  nested: {
-    paddingLeft: theme.spacing(4)
-  }
-})
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    },
+    nested: {
+      paddingLeft: theme.spacing(4)
+    }
+  })
 );
 
 export default oStyle;

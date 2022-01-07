@@ -13,21 +13,10 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper
-    },
-    nested: {
-      paddingLeft: theme.spacing(4)
-    }
-  })
-);
+import cStyle from './style';
 
 function Menus() {
-  const classes = useStyles();
+  const oClasses = cStyle();
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -43,7 +32,7 @@ function Menus() {
           Nested List Items
         </ListSubheader>
       }
-      className={classes.root}
+      className={oClasses.root}
     >
       <ListItem button>
         <ListItemIcon>
@@ -66,7 +55,7 @@ function Menus() {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
+          <ListItem button className={oClasses.nested}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
