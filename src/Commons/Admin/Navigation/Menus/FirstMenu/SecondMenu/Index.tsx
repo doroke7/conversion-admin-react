@@ -22,35 +22,19 @@ import style from './style';
 
 function SecondMenu(oProps: any) {
   let classes = style(void 0);
-  let oAnchorRef: any = React.useRef<HTMLButtonElement>(null);
 
   const [oState, setState] = React.useState<any>({
     menus: {},
-    anchors: {}
+    anchor: null
   });
 
   let oMenu = oProps.menu;
 
-  function handleMouseEnter(oMenu: any) {
-    return (oEvent: any) => {
-      enableMouseEnter(oEvent, oMenu);
-    };
+  function handleMouseEnter(oEvent: any) {
+    setState({ ...oState, anchor: oEvent.currentTarget });
   }
 
-  function enableMouseEnter(oEvent: any, oMenu: any) {
-    let oAnchors = {
-      [oMenu.id]: Object.prototype.hasOwnProperty.call(oState.anchors, oMenu.id) ? !oState.anchors[oMenu.id] : true
-    };
-    setState({ ...oState, anchors: oAnchors });
-  }
-
-  function handleMouseOut(oMenu: any) {
-    return () => {
-      enableMouseOut(oMenu);
-    };
-  }
-
-  function enableMouseOut(oMenu: any) {
+  function handleMouseOut(oEvent: any) {
     setState({ ...oState, anchor: null });
   }
 
@@ -71,9 +55,9 @@ function SecondMenu(oProps: any) {
   return (
     <ListItem
       button
-      onMouseEnter={handleMouseEnter(oMenu)}
-      onMouseOut={handleMouseOut(oMenu)}
-      ref={oAnchorRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseOut={handleMouseOut}
+      ref={oState.anchor}
       aria-controls={'menu-' + oMenu.id}
       aria-haspopup="true"
       className={clsx({
@@ -89,13 +73,7 @@ function SecondMenu(oProps: any) {
         <></>
       )}
       {Object.prototype.hasOwnProperty.call(oMenu, 'menus') ? (
-        <Popper
-          open={Object.prototype.hasOwnProperty.call(oState.anchors, oMenu.id) && oState.anchors[oMenu.id]}
-          anchorEl={oAnchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
-        >
+        <Popper open={Boolean(oState.current)} anchorEl={oState.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             // Grow： Material-UI 动画组件
             <Grow {...TransitionProps}>
