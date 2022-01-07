@@ -21,37 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function MenuListComposition() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  let aUsers = ['A', 'B', '233'];
 
-  const handleClose = (event: React.MouseEvent<EventTarget>) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-      return;
-    }
+  let aDoms = aUsers.map((number) => <li key={number.toString()}>{number}</li>);
 
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current!.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
-
-  return <></>;
+  return aUsers.map((number) => <li key={number.toString()}>{number}</li>);
 }
