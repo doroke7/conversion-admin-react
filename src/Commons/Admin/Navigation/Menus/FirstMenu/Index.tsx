@@ -16,7 +16,6 @@ import SecondMenu from './SecondMenu/Index';
 import Helpers from '@/Helpers';
 
 import style from './style';
-
 function FirstMenu(oProps: any) {
   let classes = style(void 0);
   let oAnchorRef: any = React.useRef<HTMLButtonElement>(null);
