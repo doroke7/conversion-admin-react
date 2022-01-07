@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -17,10 +16,10 @@ import cStyle from './style';
 
 function Menus() {
   const oClasses = cStyle();
-  const [open, setOpen] = React.useState(true);
+  const [bOpen, setOpen] = React.useState(true);
 
   const handleClick = () => {
-    setOpen(!open);
+    setbOpen(!bOpen);
   };
 
   return (
@@ -51,9 +50,9 @@ function Menus() {
           <InboxIcon />
         </ListItemIcon>
         <ListItemText primary="Inbox" />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {bOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={bOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={oClasses.nested}>
             <ListItemIcon>
