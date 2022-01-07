@@ -14,7 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import ThirdMenu from './ThirdMenu/Index';
+import ThirdMenus from './ThirdMenus/Index';
 
 import Helpers from '@/Helpers';
 
@@ -83,9 +83,7 @@ function SecondMenu(oProps: any) {
               <Paper>
                 <ClickAwayListener onClickAway={handleShiftAway(oMenu)}>
                   <MenuList autoFocusItem={true} id={'menu-' + oMenu.id} onKeyDown={handleKeyDown}>
-                    {oMenu.menus.map((oMenu: any, iIndex: any) => (
-                      <ThirdMenu key={oMenu.id} text={oMenu.text} onClick={handleShiftAway(oMenu)}></ThirdMenu>
-                    ))}
+                    <ThirdMenus menus={oMenu.menus} onClick={handleShiftAway}></ThirdMenus>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
