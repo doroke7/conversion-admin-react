@@ -22,9 +22,16 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function MenuListComposition() {
   const classes = useStyles();
 
-  let aUsers = ['A', 'B', '233'];
+  let aUsers = ['1', '2', '3'];
 
   let aDoms = aUsers.map((number) => <li key={number.toString()}>{number}</li>);
 
-  return aUsers.map((number) => <li key={number.toString()}>{number}</li>);
+  return (
+    <div>
+      <div>A</div>
+      {aUsers.map((number) => (
+        <li key={number.toString()}>{number}</li>
+      ))}
+    </div>
+  );
 }
