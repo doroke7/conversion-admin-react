@@ -14,6 +14,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
+import ThirdMenu from './ThirdMenu/Index';
+
 import Helpers from '@/Helpers';
 
 import style from './style';
@@ -107,9 +109,7 @@ function SecondMenu(oProps: any) {
                     onKeyDown={handleKeyDown}
                   >
                     {oMenu.menus.map((oMenu: any, iIndex: any) => (
-                      <MenuItem key={oMenu.id} onClick={handleShiftAway(oMenu)}>
-                        {oMenu.text}
-                      </MenuItem>
+                      <ThirdMenu key={oMenu.id} text={oMenu.text} onClick={handleShiftAway(oMenu)}></ThirdMenu>
                     ))}
                   </MenuList>
                 </ClickAwayListener>
