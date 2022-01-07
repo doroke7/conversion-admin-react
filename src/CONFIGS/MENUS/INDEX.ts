@@ -33,14 +33,14 @@ let MENUS: any = [
         menus: [
           {
             id: 7,
-            text: '三级A',
+            text: '管理員A-1',
             description: '三级',
             path: '/admin/resource/ufdfddffdser/index',
             Icon: FaceTwoToneIcon
           },
           {
             id: 77,
-            text: '三级B',
+            text: '管理員A-2',
             description: '三级',
             path: '/admin/resource/ufdfddffdser/index',
             Icon: FaceTwoToneIcon
@@ -75,7 +75,23 @@ let MENUS: any = [
         text: '其他AA',
         description: '其他A',
         path: '/admin/resource/admiddddd/index',
-        Icon: SupervisedUserCircleTwoToneIcon
+        Icon: SupervisedUserCircleTwoToneIcon,
+        menus: [
+          {
+            id: 47,
+            text: '管理員C-1',
+            description: '三级',
+            path: '/admin/resource/ufdfddffdser/index',
+            Icon: FaceTwoToneIcon
+          },
+          {
+            id: 48,
+            text: '管理員C-2',
+            description: '三级',
+            path: '/admin/resource/ufdfddffdser/index',
+            Icon: FaceTwoToneIcon
+          }
+        ]
       }
     ]
   }
