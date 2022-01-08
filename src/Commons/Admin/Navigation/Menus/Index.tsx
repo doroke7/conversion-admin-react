@@ -48,14 +48,16 @@ function Menus() {
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
           {oMenu.menus !== undefined && oState.menus[oMenu.id] !== undefined ? (
-            <Collapse in={oState.open} timeout="auto" unmountOnExit>
+            <Collapse in={true} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItem button className={oClasses.nested}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItem>
+                {oMenu.menus.map((oSecondMenu: any, iSecondIndex: any) => (
+                  <ListItem button className={oClasses.nested} key={oSecondMenu.id}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText primary={oSecondMenu.text} />
+                  </ListItem>
+                ))}
               </List>
             </Collapse>
           ) : (
