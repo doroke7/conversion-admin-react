@@ -72,7 +72,7 @@ let MENUS: any = [
     menus: [
       {
         id: 6,
-        text: '其他AA',
+        text: '其他666',
         description: '其他A',
         path: '/admin/resource/admiddddd/index',
         Icon: SupervisedUserCircleTwoToneIcon,

@@ -59,14 +59,7 @@ class Room extends React.Component<IProps> {
     let iUserCount = 0;
     // 当下的 聊天室, 还没读取到 当下 用户 读取数 预设 0 个未读
 
-    iUserCount =
-      sUserId &&
-      this.state.usersRooms[sUserId] &&
-      sRoomId &&
-      this.state.usersRooms[sUserId].rooms[sRoomId] &&
-      this.state.usersRooms[sUserId].rooms[sRoomId].count
-        ? this.state.usersRooms[sUserId].rooms[sRoomId].count
-        : 0;
+    iUserCount = sUserId && this.state.usersRooms[sUserId] && sRoomId && this.state.usersRooms[sUserId].rooms[sRoomId] && this.state.usersRooms[sUserId].rooms[sRoomId].count ? this.state.usersRooms[sUserId].rooms[sRoomId].count : 0;
     iCount = this.props.count - iUserCount;
 
     if (this.props.id == this.state.roomId || !this.state.usersRooms) {
@@ -77,21 +70,13 @@ class Room extends React.Component<IProps> {
 
     let iSecond = Number(moment(oMessage.addedTime).format('X')) - Number(moment(_sTime).format('X'));
 
-    let sTime =
-      iSecond > 0
-        ? moment(oMessage.addedTime).format(MOMENT.FORMAT2)
-        : moment(oMessage.addedTime).format(MOMENT.FORMAT1);
+    let sTime = iSecond > 0 ? moment(oMessage.addedTime).format(MOMENT.FORMAT2) : moment(oMessage.addedTime).format(MOMENT.FORMAT1);
 
     let sNickname = '用户';
 
     if (oMessage.user_id == sUserId) {
       sNickname = '您';
-    } else if (
-      oMessage.user_id &&
-      this.state.users &&
-      this.state.users[oMessage.user_id] &&
-      this.state.users[oMessage.user_id].nickname
-    ) {
+    } else if (oMessage.user_id && this.state.users && this.state.users[oMessage.user_id] && this.state.users[oMessage.user_id].nickname) {
       sNickname = this.state.users[oMessage.user_id].nickname;
     }
 
@@ -117,11 +102,7 @@ class Room extends React.Component<IProps> {
           <div>{sTime}</div>
           <div>
             {/* {this.props.count} - {iUserCount} */}
-            {iCount > 0 ? (
-              <Badge count={iCount} overflowCount={99} style={{ backgroundColor: '#1890ff', color: '#ffffff' }} />
-            ) : (
-              ''
-            )}
+            {iCount > 0 ? <Badge count={iCount} overflowCount={99} style={{ backgroundColor: '#1890ff', color: '#ffffff' }} /> : ''}
           </div>
         </span>
       </div>
