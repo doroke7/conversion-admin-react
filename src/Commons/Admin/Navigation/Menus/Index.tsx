@@ -1,5 +1,4 @@
 import React from 'react';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -12,50 +11,58 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 
+import CONFIGS from '@/CONFIGS/';
+
 import cStyle from './style';
 
 function Menus() {
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
-    open: true
+    open: true,
+    menus: {}
   });
 
-  const cHandleClick = () => {
-    cSetState({ ...oState, open: !oState.open });
+  const cHandleClick = (oMenu) => {
+    return (oEvent) => {
+      let oMenus = {};
+
+      if (!oState.menus[oMenu.id]) {
+        oMenus = {
+          [oMenu.id]: true
+        };
+      }
+      cSetState({ ...oState, menus: oMenus });
+    };
   };
 
   return (
     <List component="nav" aria-labelledby="nested-list-subheader" className={oClasses.root}>
-      <ListItem button>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText primary="第一" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="第二" />
-      </ListItem>
-      <ListItem button onClick={cHandleClick}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="第三" />
-        {oState.open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse in={oState.open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={oClasses.nested}>
+      {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
+        <>
+          <ListItem button onClick={cHandleClick(oMenu)}>
             <ListItemIcon>
-              <StarBorder />
+              <DraftsIcon />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemText primary={oMenu.text} />
+            {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
-        </List>
-      </Collapse>
+          {oMenu.menus !== undefined && oState.menus[oMenu.id] !== undefined ? (
+            <Collapse in={oState.open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={oClasses.nested}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary="Starred" />
+                </ListItem>
+              </List>
+            </Collapse>
+          ) : (
+            ''
+          )}
+        </>
+      ))}
     </List>
   );
 }

@@ -69,8 +69,7 @@ class Rooms extends React.Component<any> {
       let _aMessages = [..._oRoom.messages];
       let oMessage = aMessages.pop();
       let _oMessage = _aMessages.pop();
-      let iDifferentTime =
-        Number(moment(oMessage.addedTime).format('X')) - Number(moment(_oMessage.addedTime).format('X'));
+      let iDifferentTime = Number(moment(oMessage.addedTime).format('X')) - Number(moment(_oMessage.addedTime).format('X'));
       let iResult = 0;
       if (0 < iDifferentTime) {
         iResult = -1;
@@ -86,16 +85,7 @@ class Rooms extends React.Component<any> {
         <Top />
         <div className="pseudo-rooms overflow-auto">
           {aRooms.map((oRoom: any, iIndex) => (
-            <Room
-              key={iIndex}
-              icon={oRoom.icon}
-              name={oRoom.name}
-              messages={oRoom.messages}
-              count={oRoom.count}
-              id={oRoom._id}
-              editedTime={oRoom.editedTime}
-              onClick={this.onClick(oRoom._id, oRoom.count)}
-            />
+            <Room key={iIndex} icon={oRoom.icon} name={oRoom.name} messages={oRoom.messages} count={oRoom.count} id={oRoom._id} editedTime={oRoom.editedTime} onClick={this.onClick(oRoom._id, oRoom.count)} />
           ))}
         </div>
       </div>
@@ -103,9 +93,7 @@ class Rooms extends React.Component<any> {
   }
 }
 
-const Wrapper = (...oProps: any) => (
-  <Service.Tool.Consumer>{(oValue) => <Rooms context={oValue}>{...oProps}</Rooms>}</Service.Tool.Consumer>
-);
+const Wrapper = (...oProps: any) => <Service.Tool.Consumer>{(oValue) => <Rooms context={oValue}>{...oProps}</Rooms>}</Service.Tool.Consumer>;
 // 使用 Wrapper  >> this.props.context
 // 使用 ..       >> this.context
 export default Wrapper;

@@ -271,8 +271,6 @@ class Chatroom extends React.Component<any> {
   }
 }
 
-const Wrapper = (...oProps: any) => (
-  <Service.Tool.Consumer>{(oContext) => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Tool.Consumer>
-);
+const Wrapper = (...oProps: any) => <Service.Tool.Consumer>{(oContext) => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Tool.Consumer>;
 
 export default withRouter(Wrapper);

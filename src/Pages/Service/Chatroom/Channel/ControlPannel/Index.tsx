@@ -326,10 +326,7 @@ class ControlPannel extends React.Component<IProps> {
     return (
       <div className="control-pannel position-absolute bg-light">
         <div className={'main-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
-          <span
-            className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1"
-            onClick={this.props.toggleEmojiPicker}
-          >
+          <span className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.toggleEmojiPicker}>
             <div>
               <i className="iconfont icon-emoji emoji"></i>
             </div>
@@ -351,36 +348,17 @@ class ControlPannel extends React.Component<IProps> {
             </div>
             <div className="xs-d-none">发送</div>
           </span>
-          <span
-            className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1"
-            onClick={this.props.togglePlusPicker}
-          >
+          <span className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1" onClick={this.props.togglePlusPicker}>
             <div>
               <i className="iconfont icon-plus plus"></i>
             </div>
             <div className="xs-d-none">更多</div>
           </span>
-          <Modal
-            wrapClassName="control-pannel"
-            visible={this.state.modal}
-            closable={false}
-            onCancel={this.onCancel}
-            centered={true}
-            cancelText="取消"
-            onOk={this.onOK}
-            okText="送出"
-          >
+          <Modal wrapClassName="control-pannel" visible={this.state.modal} closable={false} onCancel={this.onCancel} centered={true} cancelText="取消" onOk={this.onOK} okText="送出">
             <div className="preview-image-wrapper">
               <img className="preview-image" src={this.state.src} />
             </div>
-            <Input
-              className="d-inline mt-2"
-              placeholder="描述"
-              size="large"
-              value={this.state.text}
-              onChange={this.setText}
-              onPressEnter={this.onOK}
-            />
+            <Input className="d-inline mt-2" placeholder="描述" size="large" value={this.state.text} onChange={this.setText} onPressEnter={this.onOK} />
           </Modal>
         </div>
         <div className="emoji-picker-wrapper xs-d-none">
@@ -396,12 +374,7 @@ class ControlPannel extends React.Component<IProps> {
             }}
           />
         </div>
-        <div
-          className={
-            'plus-picker-wrapper d-flex justify-content-around p-2 ' +
-            (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')
-          }
-        >
+        <div className={'plus-picker-wrapper d-flex justify-content-around p-2 ' + (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')}>
           <div className="square-pannel text-center position-relative bg-white">
             <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
             <span className="image-wrapper d-inline-block align-middle bg-white text-center pl-1 pr-1">
@@ -434,10 +407,6 @@ class ControlPannel extends React.Component<IProps> {
 }
 
 function ControlPannelWrapper(oProps: any) {
-  return (
-    <Service.Tool.Consumer>
-      {(oContext) => <ControlPannel context={oContext} {...oProps}></ControlPannel>}
-    </Service.Tool.Consumer>
-  );
+  return <Service.Tool.Consumer>{(oContext) => <ControlPannel context={oContext} {...oProps}></ControlPannel>}</Service.Tool.Consumer>;
 }
 export default ControlPannelWrapper;

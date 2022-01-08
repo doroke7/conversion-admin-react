@@ -63,17 +63,10 @@ class Messages extends React.Component<any> {
     let sRoomId = this.state.roomId;
     let sUserId = Helpers.Authentication.getUserId();
 
-    let fScrollTopRatio =
-      oDom.scrollHeight - oDom.offsetHeight > 0 ? oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight) : 1;
+    let fScrollTopRatio = oDom.scrollHeight - oDom.offsetHeight > 0 ? oDom.scrollTop / (oDom.scrollHeight - oDom.offsetHeight) : 1;
     let sScrollTopRatio = (Math.round(fScrollTopRatio * 100) / 100).toString();
-    window.sessionStorage.setItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio',
-      sScrollTopRatio
-    );
-    window.sessionStorage.setItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height',
-      oDom.scrollHeight
-    );
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio', sScrollTopRatio);
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height', oDom.scrollHeight);
 
     let iScrollTopRatio = Number(sScrollTopRatio);
     let oState = {
@@ -88,10 +81,7 @@ class Messages extends React.Component<any> {
     let oDom = this.ref.current;
     let sRoomId = this.state.roomId;
     let sUserId = Helpers.Authentication.getUserId();
-    window.sessionStorage.setItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height',
-      oDom.scrollHeight
-    );
+    window.sessionStorage.setItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height', oDom.scrollHeight);
   }
 
   public onResize(oEvent: any) {
@@ -104,13 +94,9 @@ class Messages extends React.Component<any> {
     let sRoomId = oState.roomId; // TODO
     let sUserId = Helpers.Authentication.getUserId();
 
-    let sScrollTopRatio = window.sessionStorage.getItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio'
-    );
+    let sScrollTopRatio = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio');
 
-    let sScrollHeight = window.sessionStorage.getItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height'
-    );
+    let sScrollHeight = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
 
@@ -141,12 +127,8 @@ class Messages extends React.Component<any> {
   public scrollTopToBottom() {
     let sRoomId = this.state.roomId;
     let sUserId = Helpers.Authentication.getUserId();
-    let sScrollTopRatio = window.sessionStorage.getItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio'
-    );
-    let sScrollHeight = window.sessionStorage.getItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height'
-    );
+    let sScrollTopRatio = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio');
+    let sScrollHeight = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
     let iScrollHeight = Number(sScrollHeight);
@@ -185,9 +167,7 @@ class Messages extends React.Component<any> {
     window.addEventListener('resize', this.onResize);
     this.eventEmitter = Helpers.Emitter.on('messagesScrollToBottom', this.scrollTopToBottomForce);
 
-    let sScrollTopRatio = window.sessionStorage.getItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio'
-    );
+    let sScrollTopRatio = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-top-ratio');
 
     let iScrollTopRatio = Number(sScrollTopRatio);
 
@@ -214,9 +194,7 @@ class Messages extends React.Component<any> {
 
     let sRoomId = oState.roomId; // TODO
     let sUserId = Helpers.Authentication.getUserId();
-    let sScrollHeight = window.sessionStorage.getItem(
-      'user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height'
-    );
+    let sScrollHeight = window.sessionStorage.getItem('user_id:' + sUserId + '-room_id:' + sRoomId + '-messages:scroll-height');
 
     let iScrollHeight = Number(sScrollHeight);
 
@@ -230,10 +208,7 @@ class Messages extends React.Component<any> {
       this.scrollTopToPosition(false, false);
       return;
     }
-    if (
-      oPreviousState.roomsMessages.length === 0 &&
-      oPreviousState.roomsMessages.length < this.state.roomsMessages.length
-    ) {
+    if (oPreviousState.roomsMessages.length === 0 && oPreviousState.roomsMessages.length < this.state.roomsMessages.length) {
       this.scrollTopToPosition(false, false);
       return;
     }
@@ -244,15 +219,8 @@ class Messages extends React.Component<any> {
   }
 
   public render() {
-    let aMessages =
-      this.state.roomId &&
-      this.state.roomsMessages &&
-      this.state.roomsMessages[this.state.roomId] &&
-      this.state.roomsMessages[this.state.roomId].messages
-        ? this.state.roomsMessages[this.state.roomId].messages
-        : [];
-    let fOpacity =
-      this.state.scrollTopRatio > 0.9 && this.state.scrollTopRatio <= 1 ? (1 - this.state.scrollTopRatio) * 10 : 1;
+    let aMessages = this.state.roomId && this.state.roomsMessages && this.state.roomsMessages[this.state.roomId] && this.state.roomsMessages[this.state.roomId].messages ? this.state.roomsMessages[this.state.roomId].messages : [];
+    let fOpacity = this.state.scrollTopRatio > 0.9 && this.state.scrollTopRatio <= 1 ? (1 - this.state.scrollTopRatio) * 10 : 1;
 
     const oStyle = {
       opacity: fOpacity
@@ -269,11 +237,7 @@ class Messages extends React.Component<any> {
 
     return (
       <div className="position-relative">
-        <div
-          ref={this.ref}
-          className={'messages pt-4 pl-2 pr-2 pb-4 overflow-auto ' + sClassName}
-          onScroll={this.onScroll}
-        >
+        <div ref={this.ref} className={'messages pt-4 pl-2 pr-2 pb-4 overflow-auto ' + sClassName} onScroll={this.onScroll}>
           {aMessages.map((oMessage: any, iIndex: any) => (
             <Message
               key={iIndex}
@@ -290,18 +254,12 @@ class Messages extends React.Component<any> {
             />
           ))}
         </div>
-        <ScrollButton
-          className={this.state.scrollTopRatio >= 1 ? 'd-none' : ''}
-          style={oStyle}
-          onClick={this.scrollTopToBottomForce}
-        />
+        <ScrollButton className={this.state.scrollTopRatio >= 1 ? 'd-none' : ''} style={oStyle} onClick={this.scrollTopToBottomForce} />
       </div>
     );
   }
 }
 
-const Wrapper = (oProps: any) => (
-  <Service.Tool.Consumer>{(oContext) => <Messages context={oContext} {...oProps}></Messages>}</Service.Tool.Consumer>
-);
+const Wrapper = (oProps: any) => <Service.Tool.Consumer>{(oContext) => <Messages context={oContext} {...oProps}></Messages>}</Service.Tool.Consumer>;
 
 export default Wrapper;

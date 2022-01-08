@@ -1,5 +1,5 @@
 module.exports = {
-  "printWidth": 120, //一行的字符数，如果超过会进行换行，默认为80
+  "printWidth": 240, //一行的字符数，如果超过会进行换行，默认为80
   "tabWidth": 2,
   "useTabs": false, // 注意：makefile文件必须使用tab，视具体情况忽略
   "singleQuote": true,
