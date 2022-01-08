@@ -47,9 +47,6 @@ function Menus() {
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
-          {/* {JSON.stringify(oState.menus)}
-          {JSON.stringify(oState.menus[oMenu.id] === undefined)} */}
-
           {oMenu.menus !== undefined ? (
             <Collapse in={oState.menus[oMenu.id] !== undefined} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
