@@ -12,11 +12,16 @@ import fStyles from './style';
 
 export default function MenuListComposition() {
   const oClasses = fStyles();
-  const [open, setOpen] = React.useState(false);
+
+  let [oState, cSetState] = React.useState<any>({
+    open: false,
+    menus: {}
+  });
+
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    cSetState({ ...oState, open: !oState.open });
   };
 
   const handleClose = (oEvent: React.MouseEvent<EventTarget>) => {
@@ -24,38 +29,38 @@ export default function MenuListComposition() {
       return;
     }
 
-    setOpen(false);
+    cSetState({ ...oState, open: false });
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Tab') {
       event.preventDefault();
-      setOpen(false);
+      cSetState({ ...oState, open: false });
     }
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
+  const oPrevOpen = React.useRef(oState.open);
   React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
+    if (oPrevOpen.current === true && oState.open === false) {
       anchorRef.current!.focus();
     }
 
-    prevOpen.current = open;
-  }, [open]);
+    oPrevOpen.current = open;
+  }, [oState.open]);
 
   return (
     <div className={oClasses.root}>
       <div>
-        <Button ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}>
+        <Button ref={anchorRef} aria-controls={oState.open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}>
           打开菜单
         </Button>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+        <Popper open={oState.open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow {...TransitionProps} style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}>
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                  <MenuList autoFocusItem={oState.open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
