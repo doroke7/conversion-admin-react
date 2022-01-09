@@ -40,15 +40,13 @@ function SecondMenus(oProps: any) {
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
         {aMenus.map((oSecondMenu: any, iSecondIndex: any) => (
-          <Button key={oSecondMenu.id} ref={oAnchorRef} aria-controls={oState.open ? 'menu-list-growsss' : undefined} aria-haspopup="false" onClick={handleToggle}>
-            <ListItem button className={oClasses.nested} key={oSecondMenu.id} aria-controls="simple-menu" aria-haspopup="true" onClick={handleToggle}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary={oSecondMenu.text} />
-              {oSecondMenu.menus !== undefined ? <ArrowRightIcon></ArrowRightIcon> : ''}
-            </ListItem>
-          </Button>
+          <ListItem button key={oSecondMenu.id} className={oClasses.nested} aria-controls="simple-menu" aria-haspopup="true" onClick={handleToggle}>
+            <ListItemIcon>
+              <StarBorder />
+            </ListItemIcon>
+            <ListItemText primary={oSecondMenu.text} />
+            {oSecondMenu.menus !== undefined ? <ArrowRightIcon></ArrowRightIcon> : ''}
+          </ListItem>
         ))}
       </List>
     </Collapse>
