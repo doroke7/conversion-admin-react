@@ -52,7 +52,7 @@ export default function MenuListComposition() {
   return (
     <div className={oClasses.root}>
       <div>
-        <Button ref={anchorRef} aria-controls={oState.open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}>
+        <Button ref={anchorRef} aria-controls={oState.open ? 'menu-list-grow' : undefined} aria-haspopup="false" onClick={handleToggle}>
           打开菜单
         </Button>
         {/* NOTE: 如果位置太低， Popper.placement 改为 right end */}

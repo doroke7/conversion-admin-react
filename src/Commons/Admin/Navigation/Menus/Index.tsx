@@ -14,6 +14,8 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import CONFIGS from '@/CONFIGS/';
 
+import SecondMenus from './SecondMenus/Index';
+
 import cStyle from './style';
 
 function Menus() {
@@ -23,6 +25,8 @@ function Menus() {
     open: true,
     menus: {}
   });
+
+  let oAnchorRef = React.useRef<HTMLButtonElement>(null);
 
   const cHandleClick = (oMenu) => {
     return (oEvent) => {
@@ -48,23 +52,7 @@ function Menus() {
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
-          {oMenu.menus !== undefined ? (
-            <Collapse in={oState.menus[oMenu.id] !== undefined} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {oMenu.menus.map((oSecondMenu: any, iSecondIndex: any) => (
-                  <ListItem button className={oClasses.nested} key={oSecondMenu.id}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary={oSecondMenu.text} />
-                    {oSecondMenu.menus !== undefined ? <ArrowRightIcon></ArrowRightIcon> : ''}
-                  </ListItem>
-                ))}
-              </List>
-            </Collapse>
-          ) : (
-            ''
-          )}
+          {oMenu.menus !== undefined ? <SecondMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></SecondMenus> : ''}
         </>
       ))}
     </List>
