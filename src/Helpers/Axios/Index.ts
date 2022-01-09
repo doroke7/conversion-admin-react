@@ -21,9 +21,13 @@ class AxiosHelper {
   public static params(oParams: any, sKey: string, sIv: string): any {
     oParams = oParams || {};
     oParams.query = oParams.query || {};
+    oParams.option = oParams.option || {};
 
     let sQuery = JSON.stringify(oParams.query);
+    let sOption = JSON.stringify(oParams.option);
+
     oParams.query = Helpers.Aes.encrypt(sQuery, sKey, sIv);
+    oParams.option = Helpers.Aes.encrypt(sOption, sKey, sIv);
 
     return oParams;
   }
@@ -63,14 +67,15 @@ class AxiosHelper {
     let sVersion = oOptions['headers']['Version'] ?? '';
     let sVer = oOptions['headers']['Ver'] ?? '';
     let sKeys = oOptions['headers']['Keys'] ?? '';
-    let sTime = oOptions['headers']['Time'] ?? '';
+    let sTime = oOptions['headers']['Time'] ?? '0';
 
     let sQuery = oParams.query;
+    let sOption = oParams.option;
     let sParam = oData.param;
     let sSalt = CONFIGS.API.SALT;
 
     let sSignature1 = CryptoJS.MD5(sJwt + ';' + sVersion + ';' + sVer + ';' + sKeys + ';' + sTime).toString();
-    let sSignature2 = CryptoJS.MD5(sQuery).toString();
+    let sSignature2 = CryptoJS.MD5(sQuery + '&' + sOption).toString();
     let sSignature3 = CryptoJS.MD5(sParam).toString();
     let sSignature = CryptoJS.MD5(sSignature1 + '+' + sSignature2 + '+' + sSignature3 + '+' + sSalt).toString();
 

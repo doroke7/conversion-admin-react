@@ -7,6 +7,21 @@ let aRoutes = [
     exact: true
   },
   {
+    path: '/admin/sample1',
+    component: Admin.Sample1,
+    exact: true
+  },
+  {
+    path: '/admin/sample2',
+    component: Admin.Sample2,
+    exact: true
+  },
+  {
+    path: '/admin/sample3',
+    component: Admin.Sample3,
+    exact: true
+  },
+  {
     path: '/admin',
     component: Admin._,
     exact: true
