@@ -42,7 +42,9 @@ class Detail extends React.Component {
   };
 
   public render() {
-    let sSrc = this.state.room.icon ? window.location.protocol + '//' + STORAGE.HOST + this.state.room.icon : window.location.protocol + '//' + STORAGE.HOST + '/rooms/_/icon/room-icon.png';
+    let sSrc = this.state.room.icon
+      ? window.location.protocol + '//' + STORAGE.HOST + this.state.room.icon
+      : window.location.protocol + '//' + STORAGE.HOST + '/rooms/_/icon/room-icon.png';
     let sName = this.state.room.name ? this.state.room.name : '聊天室基本讯息';
     return (
       <div className="detail">

@@ -127,8 +127,27 @@ function Pannel(oProps: any): any {
         <LockIcon />
       </Avatar>
       <h2 className={oClasses.title}>{CONFIGS.APP.NAME}</h2>
-      <TextField id="user-name" label="名称" className={oClasses.textField} onChange={onChangeName} margin="normal" fullWidth variant="outlined" onKeyPress={onKeyPress} />
-      <TextField id="user-password" label="密码" type="password" className={oClasses.textField} onChange={onChangePassword} margin="normal" fullWidth variant="outlined" onKeyPress={onKeyPress} />
+      <TextField
+        id="user-name"
+        label="名称"
+        className={oClasses.textField}
+        onChange={onChangeName}
+        margin="normal"
+        fullWidth
+        variant="outlined"
+        onKeyPress={onKeyPress}
+      />
+      <TextField
+        id="user-password"
+        label="密码"
+        type="password"
+        className={oClasses.textField}
+        onChange={onChangePassword}
+        margin="normal"
+        fullWidth
+        variant="outlined"
+        onKeyPress={onKeyPress}
+      />
       <Button onClick={SignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
         登入
       </Button>

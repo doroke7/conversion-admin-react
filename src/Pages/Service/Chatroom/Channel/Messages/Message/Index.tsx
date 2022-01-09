@@ -105,7 +105,10 @@ class Message extends React.Component<IProps> {
   }
 
   public static getDerivedStateFromProps(oNextProps: any, oPrevState: any) {
-    let sSrc = !oNextProps.src || 0 === oNextProps.src.indexOf('http') || 0 === oNextProps.src.indexOf('data:') ? oNextProps.src : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src;
+    let sSrc =
+      !oNextProps.src || 0 === oNextProps.src.indexOf('http') || 0 === oNextProps.src.indexOf('data:')
+        ? oNextProps.src
+        : 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + oNextProps.src;
 
     if (sSrc !== oPrevState.src && oPrevState.src !== 'http://' + STORAGE.HOST + STORAGE.PRE_PATH + MESSAGE_ERROR_SRC) {
       return {
@@ -138,14 +141,28 @@ class Message extends React.Component<IProps> {
     let sUserId = Helpers.Authentication.getUserId();
 
     let position = this.props.userId === sUserId || !this.props.userId ? 'right' : 'left';
-    let sUrl = this.state.users && this.state.users[this.props.userId] ? window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + this.state.users[this.props.userId].url : '';
+    let sUrl =
+      this.state.users && this.state.users[this.props.userId]
+        ? window.location.protocol + '//' + STORAGE.HOST + STORAGE.PRE_PATH + this.state.users[this.props.userId].url
+        : '';
     sUrl = this.state.url ? this.state.url : sUrl;
 
-    let sRole = this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].role.toLowerCase() : '';
+    let sRole =
+      this.state.users && this.state.users[this.props.userId]
+        ? this.state.users[this.props.userId].role.toLowerCase()
+        : '';
     let sUploaderId = this.props.uploaderId;
 
-    if (this.state && this.state.uploaders[sUploaderId] && (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) && 0 < this.state.uploaders[sUploaderId].size) {
-      let fProgress = ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) / this.state.uploaders[sUploaderId].size) * 100;
+    if (
+      this.state &&
+      this.state.uploaders[sUploaderId] &&
+      (0 <= this.state.uploaders[sUploaderId].sent || 0 <= this.state.uploaders[sUploaderId].wrote) &&
+      0 < this.state.uploaders[sUploaderId].size
+    ) {
+      let fProgress =
+        ((this.state.uploaders[sUploaderId].sent || this.state.uploaders[sUploaderId].wrote) /
+          this.state.uploaders[sUploaderId].size) *
+        100;
       this.progress = Math.floor(fProgress);
     }
 
@@ -162,7 +179,8 @@ class Message extends React.Component<IProps> {
 
     let iSecond = Number(moment(this.props.time).format('X')) - Number(moment(_sTime).format('X'));
 
-    let sTime = iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
+    let sTime =
+      iSecond > 0 ? moment(this.props.time).format(MOMENT.FORMAT2) : moment(this.props.time).format(MOMENT.FORMAT1);
 
     return (
       <div
@@ -177,7 +195,11 @@ class Message extends React.Component<IProps> {
           sRole
         }
       >
-        <span className={'loading-wrapper d-inline-block align-bottom ' + (!this.props.loading || this.state.src ? 'd-none' : '')}>
+        <span
+          className={
+            'loading-wrapper d-inline-block align-bottom ' + (!this.props.loading || this.state.src ? 'd-none' : '')
+          }
+        >
           <Spin
             indicator={
               <div className="loading">
@@ -190,14 +212,26 @@ class Message extends React.Component<IProps> {
           />
         </span>
         <span className="time-name-conten-wrapper d-inline-block align-top">
-          <div className={'time-name d-flex justify-content-end ' + (position === 'right' ? 'flex-row' : 'flex-row-reverse')}>
+          <div
+            className={
+              'time-name d-flex justify-content-end ' + (position === 'right' ? 'flex-row' : 'flex-row-reverse')
+            }
+          >
             <span className="time">{sTime}</span>
-            <span className="name">{this.props.userId && this.state.users && this.state.users[this.props.userId] ? this.state.users[this.props.userId].nickname : ''}</span>
+            <span className="name">
+              {this.props.userId && this.state.users && this.state.users[this.props.userId]
+                ? this.state.users[this.props.userId].nickname
+                : ''}
+            </span>
           </div>
           <span className={'content text-left d-inline-block'}>
             <div className="image position-relative">
               {sUploaderId && this.state && this.state.uploaders && this.state.uploaders[sUploaderId] ? (
-                <Progress className={'position-absolute progress ' + (!this.state.progressDispaly ? 'd-none' : '')} type="dashboard" percent={this.progress ? this.progress : 0} />
+                <Progress
+                  className={'position-absolute progress ' + (!this.state.progressDispaly ? 'd-none' : '')}
+                  type="dashboard"
+                  percent={this.progress ? this.progress : 0}
+                />
               ) : null}
 
               {this.state.src ? (
@@ -205,7 +239,10 @@ class Message extends React.Component<IProps> {
                   onLoad={this.onLoad}
                   onError={this.onMessageSrcError}
                   src={this.state.src}
-                  className={(undefined === this.progress || !this.state.progressDispaly ? '' : 'opacity ') + (false === this.state.srcDisplay ? 'd-none' : '')}
+                  className={
+                    (undefined === this.progress || !this.state.progressDispaly ? '' : 'opacity ') +
+                    (false === this.state.srcDisplay ? 'd-none' : '')
+                  }
                 />
               ) : null}
             </div>

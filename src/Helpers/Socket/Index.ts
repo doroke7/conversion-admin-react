@@ -3,9 +3,11 @@ import CONFIGS from '@/CONFIGS/';
 
 const SOCKET = CONFIGS.SOCKET;
 
-let sLoginUrl = SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/login';
+let sLoginUrl =
+  SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/login';
 
-let sChatroomUrl = SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';
+let sChatroomUrl =
+  SOCKET.HOST + (SOCKET.PORT && (80 !== SOCKET.PORT || '80' !== SOCKET.PORT) ? ':' + SOCKET.PORT : '') + '/chatroom';
 let oOption = {};
 
 const oLoginSocket = SOCKET.STATUS ? oIo(sLoginUrl) : null;

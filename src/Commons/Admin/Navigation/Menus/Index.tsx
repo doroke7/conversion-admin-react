@@ -26,8 +26,6 @@ function Menus() {
     menus: {}
   });
 
-  let oAnchorRef = React.useRef<HTMLButtonElement>(null);
-
   const cHandleClick = (oMenu) => {
     return (oEvent) => {
       let oMenus = {};

@@ -88,11 +88,26 @@ class Login extends React.Component<IProps> {
             <div className="middle pt-1 pb-1">
               <div className="username-wrapper p-1 ml-2 mr-2">
                 <i className="iconfont icon-user d-inline"></i>
-                <Input className="d-inline" placeholder="请输入账号" size="large" value={this.state.name} onChange={this.setName} onPressEnter={this.login} />
+                <Input
+                  className="d-inline"
+                  placeholder="请输入账号"
+                  size="large"
+                  value={this.state.name}
+                  onChange={this.setName}
+                  onPressEnter={this.login}
+                />
               </div>
               <div className="password-wrapper p-1 ml-2 mr-2">
                 <i className="iconfont icon-password d-inline"></i>
-                <Input className="d-inline" placeholder="请输入密码" type="password" size="large" value={this.state.password} onChange={this.setPassword} onPressEnter={this.login} />
+                <Input
+                  className="d-inline"
+                  placeholder="请输入密码"
+                  type="password"
+                  size="large"
+                  value={this.state.password}
+                  onChange={this.setPassword}
+                  onPressEnter={this.login}
+                />
               </div>
               <Divider />
               <div className="button-wrapper ml-2 mr-2">
