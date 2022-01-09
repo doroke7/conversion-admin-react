@@ -15,6 +15,10 @@
 
 2. typeof iNumber === 'undefined' ， 使用 typeof 为字串
 
+
+3. 网页路由上 使用 ?query={urlencode}&option={urlencode} 或 ?query={AESencode}&option={AESencode}
+
+
 ####  (贰)【后台前端项目】运行与更新相关
 
 ````txt
