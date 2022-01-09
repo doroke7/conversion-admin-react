@@ -4,7 +4,10 @@ import { lightBlue, blue, blueGrey } from '@material-ui/core/colors';
 let oStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex'
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
     },
     paper: {
       marginRight: theme.spacing(2)
