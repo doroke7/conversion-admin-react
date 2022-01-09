@@ -27,8 +27,10 @@ function SecondMenus(oProps: any) {
     menus: {}
   });
 
-  let handleToggle = () => {
-    cSetState({ ...oState, open: !oState.open });
+  let handleToggle = (oSecondMenu: any) => {
+    return () => {
+      cSetState({ ...oState, open: !oState.open });
+    };
   };
 
   let bIn = oProps.in;
@@ -38,7 +40,7 @@ function SecondMenus(oProps: any) {
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
         {aMenus.map((oSecondMenu: any, iSecondIndex: any) => (
-          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleToggle}>
             <ListItem button className={oClasses.nested} key={oSecondMenu.id}>
               <ListItemIcon>
                 <StarBorder />
