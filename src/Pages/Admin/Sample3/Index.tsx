@@ -9,6 +9,8 @@ import MenuList from '@material-ui/core/MenuList';
 
 import Counter1 from './Counter1/Index';
 import Counter2 from './Counter2/Index';
+import Counter3 from './Counter3/Index';
+
 import fStyles from './style';
 
 export default function Sample3() {
@@ -16,7 +18,7 @@ export default function Sample3() {
 
   return (
     <div className={oClasses.root}>
-      <Counter2></Counter2>
+      <Counter3></Counter3>
     </div>
   );
 }

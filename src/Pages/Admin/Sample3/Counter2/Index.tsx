@@ -24,7 +24,7 @@ const Counter = () => {
 
   return (
     <>
-      Counter2: {count}
+      Counter2: {count},{otherCounter}
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
       <button onClick={incrementOtherCounter}>incrementOtherCounter</button>
