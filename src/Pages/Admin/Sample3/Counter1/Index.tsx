@@ -26,7 +26,7 @@ export default function Counter(oProps: any) {
   // 這裡的問題是，每當更新計數器時，都會重新創建所有3個功能。
   return (
     <>
-      Counter: {count}
+      Counter1: {count}
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
       <button onClick={incrementOtherCounter}>incrementOtherCounter</button>
