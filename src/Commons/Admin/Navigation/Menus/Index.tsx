@@ -10,6 +10,7 @@ import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -56,6 +57,7 @@ function Menus() {
                       <StarBorder />
                     </ListItemIcon>
                     <ListItemText primary={oSecondMenu.text} />
+                    {oSecondMenu.menus !== undefined ? <ArrowRightIcon></ArrowRightIcon> : ''}
                   </ListItem>
                 ))}
               </List>
