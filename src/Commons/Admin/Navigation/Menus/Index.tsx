@@ -52,7 +52,11 @@ function Menus() {
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
-          {oMenu.menus !== undefined ? <SecondMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></SecondMenus> : ''}
+          {oMenu.menus !== undefined ? (
+            <SecondMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></SecondMenus>
+          ) : (
+            ''
+          )}
         </>
       ))}
     </List>

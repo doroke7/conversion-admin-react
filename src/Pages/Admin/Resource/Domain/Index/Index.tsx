@@ -64,7 +64,15 @@ function Index(): any {
       <Commons.Admin.Navigation>
         <Paper className={classes.paper}>
           <div className={classes.dataGridWrapper}>
-            <DataGrid rows={oStoreState.domain} loading={oState.loading} columns={columns} autoPageSize={false} pageSize={iPageSize} rowHeight={44} headerHeight={48} />
+            <DataGrid
+              rows={oStoreState.domain}
+              loading={oState.loading}
+              columns={columns}
+              autoPageSize={false}
+              pageSize={iPageSize}
+              rowHeight={44}
+              headerHeight={48}
+            />
           </div>
         </Paper>
       </Commons.Admin.Navigation>
