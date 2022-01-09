@@ -13,6 +13,7 @@ import Counter3 from './Counter3/Index';
 import Counter4 from './Counter4/Index';
 import Counter5 from './Counter5/Index';
 import Counter6 from './Counter6/Index';
+import Counter7 from './Counter7/Index';
 
 import fStyles from './style';
 
@@ -21,7 +22,7 @@ export default function Sample3() {
 
   return (
     <div className={oClasses.root}>
-      <Counter6></Counter6>
+      <Counter7></Counter7>
     </div>
   );
 }
