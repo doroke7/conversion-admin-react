@@ -55,9 +55,11 @@ export default function MenuListComposition() {
         <Button ref={anchorRef} aria-controls={oState.open ? 'menu-list-grow' : undefined} aria-haspopup="true" onClick={handleToggle}>
           打开菜单
         </Button>
+        // NOTE: 如果位置太低， Popper.placement 改为 right end
         <Popper open={oState.open} anchorEl={anchorRef.current} role={undefined} placement={'right-start'}>
           {
-            <Grow in={true}>
+            // Grow.style.transforOrigin: 动画开始的起点
+            <Grow in={true} style={{ transformOrigin: 'left top' }}>
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={oState.open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
