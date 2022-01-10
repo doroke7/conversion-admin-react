@@ -7,6 +7,10 @@ const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     nested: {
       paddingLeft: oTheme.spacing(4)
+    },
+    listItemIcon: {
+      minWidth: '32px',
+      color: grey[100]
     }
   })
 );

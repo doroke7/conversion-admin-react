@@ -14,12 +14,13 @@ const style = makeStyles((oTheme: Theme) =>
     },
     drawer: {
       width: drawerWidth,
-      background: grey[900],
+      background: 'linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))',
       flexShrink: 0,
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      boxShadow: 'rgb(125 125 125) 0rem 1.25rem 1.2875rem'
     },
     drawerPaper: {
-      background: grey[900]
+      background: 'linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))'
     },
     drawerOpen: {
       width: drawerWidth,

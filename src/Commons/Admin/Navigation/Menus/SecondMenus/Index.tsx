@@ -4,23 +4,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'; // 点击事件是否发生在元素之外
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+import FormatListBulletedOutlinedIcon from '@material-ui/icons/FormatListBulletedOutlined';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-
-import CONFIGS from '@/CONFIGS/';
 
 import ThirdMenus from './ThirdMenus/Index';
 
@@ -30,8 +15,6 @@ function SecondMenus(oProps: any) {
   const oClasses = cStyle();
   let bIn = oProps.in;
   let aMenus = oProps.menus;
-
-  let aAnchorRefs = React.useRef([]);
 
   let [oState, cSetState] = React.useState<any>({
     open: false,
@@ -73,8 +56,8 @@ function SecondMenus(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleToggle(oSecondMenu)}
           >
-            <ListItemIcon>
-              <StarBorder />
+            <ListItemIcon className={oClasses.listItemIcon}>
+              <FormatListBulletedOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary={oSecondMenu.text} />
             {oSecondMenu.menus !== undefined ? <ArrowRightIcon /> : ''}

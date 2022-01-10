@@ -3,14 +3,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import Com from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -44,9 +39,7 @@ function Menus() {
       {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
         <>
           <ListItem button onClick={cHandleClick(oMenu)}>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
+            <ListItemIcon className={oClasses.listItemIcon}></ListItemIcon>
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
