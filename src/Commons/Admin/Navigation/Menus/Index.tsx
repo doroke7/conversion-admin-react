@@ -5,7 +5,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Com from '@/Components';
+import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -39,7 +39,9 @@ function Menus() {
       {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
         <>
           <ListItem button onClick={cHandleClick(oMenu)}>
-            <ListItemIcon className={oClasses.listItemIcon}></ListItemIcon>
+            <ListItemIcon className={oClasses.listItemIcon}>
+              {/* <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon> */}
+            </ListItemIcon>
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>

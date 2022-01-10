@@ -7,7 +7,7 @@ function Icon(oProps: any) {
   let sName = oProps.name;
   let oClasses: any = style(void 0);
   let Result = <></>;
-  Result = CONFIGS.MENUS[sName] || CONFIGS.MENUS['AppsRoundedIcon'];
+  Result = CONFIGS.MENUS['AppsRoundedIcon'];
   return Result;
 }
 export default Icon;

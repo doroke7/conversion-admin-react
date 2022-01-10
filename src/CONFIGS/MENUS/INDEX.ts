@@ -5,93 +5,86 @@ import FaceTwoToneIcon from '@material-ui/icons/FaceTwoTone';
 let MENUS: any = [
   {
     id: 1,
-    text: '域名',
-    description: '移動端使用的域名列表',
-    path: '/admin/resource/domain/index',
-    Icon: CloudDoneTwoToneIcon
-  },
-  {
-    id: 2,
-    text: '會員',
-    description: '聊天室的會員列表',
-    path: '/admin/resource/user/index',
-    Icon: FaceTwoToneIcon
-  },
-  {
-    id: 3,
-    text: '系统管理',
-    description: '系统管理菜单',
-    path: '/admin/system',
-    Icon: SupervisedUserCircleTwoToneIcon,
+    text: '会员管理',
+    description: '会员管理',
+    path: '/admin/app_user/index',
+    icon: 'AppsRoundedIcon',
     menus: [
       {
-        id: 4,
-        text: '管理員A',
-        description: '管理員列表',
-        path: '/admin/resource/fsfs/index',
-        Icon: SupervisedUserCircleTwoToneIcon,
-        menus: [
-          {
-            id: 7,
-            text: '管理員A-1',
-            description: '三级',
-            path: '/admin/resource/ufdfddffdser/index',
-            Icon: FaceTwoToneIcon
-          },
-          {
-            id: 77,
-            text: '管理員A-2',
-            description: '三级',
-            path: '/admin/resource/ufdfddffdser/index',
-            Icon: FaceTwoToneIcon
-          }
-        ]
+        id: 11,
+        text: '会员列表',
+        description: '会员列表',
+        path: '/admin/app_user/app_user',
+        icon: 'AppsRoundedIcon'
       },
       {
-        id: 44,
-        text: '管理員B',
-        description: '管理員列表',
-        path: '/admin/resource/sss/index',
-        Icon: SupervisedUserCircleTwoToneIcon
-      },
-      {
-        id: 4444,
-        text: '管理員C',
-        description: '管理員列表',
-        path: '/admin/resource/fffff/index',
-        Icon: SupervisedUserCircleTwoToneIcon
+        id: 12,
+        text: '会员订单列表',
+        description: '会员订单列表',
+        path: '/admin/app_user/app_user',
+        icon: 'AppsRoundedIcon'
       }
     ]
   },
   {
-    id: 5,
-    text: '其他',
-    description: '其他',
-    path: '/admin/other',
-    Icon: SupervisedUserCircleTwoToneIcon,
+    id: 2,
+    text: '广告管理',
+    description: '广告管理',
+    path: '/admin/advertisement/index',
+    icon: 'AppsRoundedIcon',
     menus: [
       {
-        id: 6,
-        text: '其他666',
-        description: '其他A',
-        path: '/admin/resource/admiddddd/index',
-        Icon: SupervisedUserCircleTwoToneIcon,
+        id: 21,
+        text: '首页广告',
+        description: '会员管理',
+        path: '/admin/advertisement/main',
+        icon: 'AppsRoundedIcon'
+      },
+      {
+        id: 22,
+        text: '跑马广告',
+        description: '跑马广告',
+        path: '/admin/advertisement/marquee',
+        icon: 'AppsRoundedIcon'
+      }
+    ]
+  },
+  {
+    id: 4,
+    text: '系统管理',
+    description: '系统管理',
+    path: '/admin/system/index',
+    icon: 'AppsRoundedIcon',
+    menus: [
+      {
+        id: 41,
+        text: '权限管理',
+        description: '权限管理',
+        path: '/admin/system/authroization',
+        icon: 'AppsRoundedIcon',
         menus: [
           {
-            id: 47,
-            text: '管理員C-1',
-            description: '三级',
-            path: '/admin/resource/ufdfddffdser/index',
-            Icon: FaceTwoToneIcon
+            id: 411,
+            text: '管理员列表',
+            description: '管理员列表',
+            path: '/admin/system/administrator',
+            icon: 'AppsRoundedIcon'
           },
           {
-            id: 48,
-            text: '管理員C-2',
-            description: '三级',
-            path: '/admin/resource/ufdfddffdser/index',
-            Icon: FaceTwoToneIcon
+            id: 412,
+            text: '角色列表',
+            description: '角色列表',
+            path: '/admin/system/role',
+            icon: 'AppsRoundedIcon'
           }
         ]
+      },
+      {
+        id: 42,
+        text: '视频域名列表',
+        description: '视频域名列表',
+        path: '/admin/system/domain_name',
+        icon: 'AppsRoundedIcon'
       }
     ]
   }
