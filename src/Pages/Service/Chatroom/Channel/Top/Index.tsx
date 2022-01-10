@@ -107,8 +107,7 @@ class Top extends React.Component<IProps> {
           footer={null}
           visible={this.state.modal}
           onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
+          onCancel={this.handleCancel}>
           <Preference />
         </Modal>
         <Drawer className="top" placement="right" closable={false} onClose={this.onClose} visible={this.state.drawer}>

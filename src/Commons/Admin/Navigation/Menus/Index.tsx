@@ -40,7 +40,7 @@ function Menus() {
         <>
           <ListItem button onClick={cHandleClick(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              {/* <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon> */}
+              <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
             </ListItemIcon>
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}

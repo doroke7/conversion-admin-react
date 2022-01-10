@@ -328,8 +328,7 @@ class ControlPannel extends React.Component<IProps> {
         <div className={'main-pannel pb-1 pt-1' + (this.props.className ? ' ' + this.props.className : '')}>
           <span
             className="emoji-wrapper xs-d-none position-relative d-inline-block text-center pl-1 pr-1"
-            onClick={this.props.toggleEmojiPicker}
-          >
+            onClick={this.props.toggleEmojiPicker}>
             <div>
               <i className="iconfont icon-emoji emoji"></i>
             </div>
@@ -353,8 +352,7 @@ class ControlPannel extends React.Component<IProps> {
           </span>
           <span
             className="plus-wrapper position-relative d-inline-block text-center pl-1 pr-1"
-            onClick={this.props.togglePlusPicker}
-          >
+            onClick={this.props.togglePlusPicker}>
             <div>
               <i className="iconfont icon-plus plus"></i>
             </div>
@@ -368,8 +366,7 @@ class ControlPannel extends React.Component<IProps> {
             centered={true}
             cancelText="取消"
             onOk={this.onOK}
-            okText="送出"
-          >
+            okText="送出">
             <div className="preview-image-wrapper">
               <img className="preview-image" src={this.state.src} />
             </div>
@@ -400,8 +397,7 @@ class ControlPannel extends React.Component<IProps> {
           className={
             'plus-picker-wrapper d-flex justify-content-around p-2 ' +
             (this.props.pannelStatus == 'PLUS' ? '' : 'd-none')
-          }
-        >
+          }>
           <div className="square-pannel text-center position-relative bg-white">
             <input type="file" className="file position-absolute" ref={this.ref} onChange={this.onFileChange} />
             <span className="image-wrapper d-inline-block align-middle bg-white text-center pl-1 pr-1">

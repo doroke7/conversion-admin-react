@@ -38,8 +38,7 @@ function Tabs(oProps: any) {
             className={clsx({
               [classes.tab]: sMenuName !== _sMenuName,
               [classes.tabEnable]: sMenuName === _sMenuName
-            })}
-          >
+            })}>
             {<oMenu.Icon className={classes.icon} />}
             <span className={classes.text}>{oMenu.text}</span>
             <Clear className={classes.clear} onClick={oProps.removeTab(iIndex)} />

@@ -89,8 +89,7 @@ class Channel extends React.Component<IProps> {
                 isEmojiPickerShowed={this.state.isEmojiPickerShowed}
                 toggleEmojiPicker={this.toggleEmojiPicker}
                 togglePlusPicker={this.togglePlusPicker}
-                pannelStatus={this.state.pannelStatus}
-              ></ControlPannel>
+                pannelStatus={this.state.pannelStatus}></ControlPannel>
             </Col>
             <Col xs={0} sm={0} md={0} lg={0} xl={8} className="detail-wrapper position-relative">
               <Detail />

@@ -23,8 +23,7 @@ function Bar(oProps: any) {
       position="fixed"
       className={clsx(classes.appBar, {
         [classes.appBarShift]: oProps.open
-      })}
-    >
+      })}>
       <Toolbar className={clsx(classes.toolbar)}>
         <IconButton
           color="inherit"
@@ -33,8 +32,7 @@ function Bar(oProps: any) {
           edge="start"
           className={clsx(classes.iconButton, {
             [classes.hide]: oProps.open
-          })}
-        >
+          })}>
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap className={clsx(classes.typography)}>

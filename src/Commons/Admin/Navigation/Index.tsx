@@ -101,8 +101,7 @@ function Navigation(oProps: any) {
             [classes.drawerClose]: !oState.open
           })
         }}
-        open={oState.open}
-      >
+        open={oState.open}>
         <div className={classes.toolbar}>
           <IconButton className={classes.iconButton} onClick={handleDrawerClose}>
             <DoubleArrowIcon></DoubleArrowIcon>

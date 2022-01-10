@@ -54,8 +54,7 @@ function SecondMenus(oProps: any) {
             className={oClasses.nested}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleToggle(oSecondMenu)}
-          >
+            onClick={cHandleToggle(oSecondMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
               <FormatListBulletedOutlinedIcon />
             </ListItemIcon>
@@ -67,8 +66,7 @@ function SecondMenus(oProps: any) {
                 menus={oSecondMenu.menus}
                 index={iSecondIndex}
                 anchor={oState.anchor}
-                onClickAway={cHandleClose}
-              ></ThirdMenus>
+                onClickAway={cHandleClose}></ThirdMenus>
             ) : (
               ''
             )}

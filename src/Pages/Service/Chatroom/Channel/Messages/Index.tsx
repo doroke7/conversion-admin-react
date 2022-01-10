@@ -272,8 +272,7 @@ class Messages extends React.Component<any> {
         <div
           ref={this.ref}
           className={'messages pt-4 pl-2 pr-2 pb-4 overflow-auto ' + sClassName}
-          onScroll={this.onScroll}
-        >
+          onScroll={this.onScroll}>
           {aMessages.map((oMessage: any, iIndex: any) => (
             <Message
               key={iIndex}

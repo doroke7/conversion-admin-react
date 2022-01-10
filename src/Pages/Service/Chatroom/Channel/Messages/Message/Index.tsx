@@ -193,13 +193,11 @@ class Message extends React.Component<IProps> {
           position +
           ' ' +
           sRole
-        }
-      >
+        }>
         <span
           className={
             'loading-wrapper d-inline-block align-bottom ' + (!this.props.loading || this.state.src ? 'd-none' : '')
-          }
-        >
+          }>
           <Spin
             indicator={
               <div className="loading">
@@ -215,8 +213,7 @@ class Message extends React.Component<IProps> {
           <div
             className={
               'time-name d-flex justify-content-end ' + (position === 'right' ? 'flex-row' : 'flex-row-reverse')
-            }
-          >
+            }>
             <span className="time">{sTime}</span>
             <span className="name">
               {this.props.userId && this.state.users && this.state.users[this.props.userId]
