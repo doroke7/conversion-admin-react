@@ -17,6 +17,7 @@ import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountO
 import CloudDoneOutlinedIcon from '@material-ui/icons/CloudDoneOutlined';
 import LensRoundedIcon from '@material-ui/icons/LensRounded';
 import DragHandleIcon from '@material-ui/icons/DragHandle';
+import AppsIcon from '@material-ui/icons/Apps';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
@@ -32,7 +33,8 @@ let ICONS: any = {
   SupervisorAccountOutlinedIcon: SupervisorAccountOutlinedIcon,
   CloudDoneOutlinedIcon: CloudDoneOutlinedIcon,
   LensRoundedIcon: LensRoundedIcon,
-  DragHandleIcon: DragHandleIcon
+  DragHandleIcon: DragHandleIcon,
+  AppsIcon: AppsIcon
 };
 
 export default ICONS;
