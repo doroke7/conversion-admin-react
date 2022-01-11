@@ -88,6 +88,27 @@ let MENUS: any = [
         description: '跑马广告',
         path: '/admin/resource/advertisement2',
         icon: 'DehazeIcon'
+      },
+      {
+        id: 23,
+        text: '轮播广告',
+        description: '轮播广告',
+        path: '/admin/resource/advertisement3',
+        icon: 'DehazeIcon'
+      },
+      {
+        id: 24,
+        text: '公告广告',
+        description: '公告广告',
+        path: '/admin/resource/advertisement4',
+        icon: 'DehazeIcon'
+      },
+      {
+        id: 26,
+        text: '插屏广告',
+        description: '插屏广告',
+        path: '/admin/resource/advertisement5',
+        icon: 'DehazeIcon'
       }
     ]
   },
