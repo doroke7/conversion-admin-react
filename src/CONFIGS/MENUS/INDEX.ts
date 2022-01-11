@@ -34,14 +34,14 @@ let MENUS: any = [
         text: '首页广告',
         description: '首页广告',
         path: '/admin/advertisement/main',
-        icon: 'AppsIcon'
+        icon: 'DehazeIcon'
       },
       {
         id: 22,
         text: '跑马广告',
         description: '跑马广告',
         path: '/admin/advertisement/marquee',
-        icon: 'AppsIcon'
+        icon: 'DehazeIcon'
       }
     ]
   },
