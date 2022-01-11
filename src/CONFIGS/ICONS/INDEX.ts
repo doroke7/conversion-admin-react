@@ -15,6 +15,8 @@ import LineWeightOutlinedIcon from '@material-ui/icons/LineWeightOutlined';
 import LinearScaleOutlinedIcon from '@material-ui/icons/LinearScaleOutlined';
 import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
 import CloudDoneOutlinedIcon from '@material-ui/icons/CloudDoneOutlined';
+import LensRoundedIcon from '@material-ui/icons/LensRounded';
+import DragHandleIcon from '@material-ui/icons/DragHandle';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
@@ -28,7 +30,9 @@ let ICONS: any = {
   LineWeightOutlinedIcon: LineWeightOutlinedIcon,
   LinearScaleOutlinedIcon: LinearScaleOutlinedIcon,
   SupervisorAccountOutlinedIcon: SupervisorAccountOutlinedIcon,
-  CloudDoneOutlinedIcon: CloudDoneOutlinedIcon
+  CloudDoneOutlinedIcon: CloudDoneOutlinedIcon,
+  LensRoundedIcon: LensRoundedIcon,
+  DragHandleIcon: DragHandleIcon
 };
 
 export default ICONS;

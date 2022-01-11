@@ -11,14 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -40,11 +33,16 @@ function ThirdMenus(oProps: any) {
       {
         // Grow.style.transforOrigin: 动画开始的起点
         <Grow in={true} style={{ transformOrigin: 'left top' }}>
-          <Paper>
+          <Paper className={oClasses.papper}>
             <ClickAwayListener onClickAway={cOnClickAway}>
               <MenuList autoFocusItem={bOpen} id="menu-list-grow">
                 {aMenus.map((oMenu: any, iIndex: any) => (
-                  <MenuItem key={oMenu.id}>{oMenu.text}</MenuItem>
+                  <MenuItem key={oMenu.id}>
+                    <ListItemIcon className={oClasses.listItemIcon}>
+                      <Components.Admin.Icon name={oMenu.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary={oMenu.text} />
+                  </MenuItem>
                 ))}
               </MenuList>
             </ClickAwayListener>

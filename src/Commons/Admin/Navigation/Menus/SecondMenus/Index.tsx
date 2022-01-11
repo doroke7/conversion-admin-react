@@ -4,8 +4,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import FormatListBulletedOutlinedIcon from '@material-ui/icons/FormatListBulletedOutlined';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import Components from '@/Components';
 
 import ThirdMenus from './ThirdMenus/Index';
 
@@ -56,7 +56,7 @@ function SecondMenus(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleToggle(oSecondMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <FormatListBulletedOutlinedIcon />
+              <Components.Admin.Icon name={oSecondMenu.icon} />
             </ListItemIcon>
             <ListItemText primary={oSecondMenu.text} />
             {oSecondMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
