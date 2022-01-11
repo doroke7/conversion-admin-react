@@ -1,10 +1,15 @@
 import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
+import Helpers from '@/Helpers';
+
 import Components from '@/Components';
 
 import ThirdMenus from './ThirdMenus/Index';
@@ -13,6 +18,7 @@ import cStyle from './style';
 
 function SecondMenus(oProps: any) {
   const oClasses = cStyle();
+  let oHistory = useHistory();
   let bIn = oProps.in;
   let aMenus = oProps.menus;
 
@@ -29,6 +35,17 @@ function SecondMenus(oProps: any) {
       };
       let oAnchor = oEvent.currentTarget;
       cSetState({ ...oState, menus: oMenus, anchor: oAnchor });
+
+      let oQuery = {};
+      let oOption = {
+        limit: 10,
+        page: 1,
+        app_id: 1
+      };
+
+      if (oSecondMenu.path !== undefined && oSecondMenu.menus === undefined) {
+        Helpers.History.push(oHistory, oSecondMenu.path, oQuery, oOption);
+      }
     };
   };
 

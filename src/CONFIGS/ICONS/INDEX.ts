@@ -25,6 +25,8 @@ import BorderAllOutlinedIcon from '@material-ui/icons/BorderAllOutlined';
 import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
 import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined';
 import VideocamOutlinedIcon from '@material-ui/icons/VideocamOutlined';
+import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import LocalAtmOutlinedIcon from '@material-ui/icons/LocalAtmOutlined';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
@@ -48,7 +50,9 @@ let ICONS: any = {
   BorderAllOutlinedIcon: BorderAllOutlinedIcon,
   DuoRoundedIcon: DuoRoundedIcon,
   MovieCreationOutlinedIcon: MovieCreationOutlinedIcon,
-  VideocamOutlinedIcon: VideocamOutlinedIcon
+  VideocamOutlinedIcon: VideocamOutlinedIcon,
+  LockOpenOutlinedIcon: LockOpenOutlinedIcon,
+  LocalAtmOutlinedIcon: LocalAtmOutlinedIcon
 };
 
 export default ICONS;
