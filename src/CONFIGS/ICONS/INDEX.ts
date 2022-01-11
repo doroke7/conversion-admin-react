@@ -19,6 +19,12 @@ import LensRoundedIcon from '@material-ui/icons/LensRounded';
 import DragHandleIcon from '@material-ui/icons/DragHandle';
 import AppsIcon from '@material-ui/icons/Apps';
 import DehazeIcon from '@material-ui/icons/Dehaze';
+import AccessibilityOutlinedIcon from '@material-ui/icons/AccessibilityOutlined';
+import AppsOutlinedIcon from '@material-ui/icons/AppsOutlined';
+import BorderAllOutlinedIcon from '@material-ui/icons/BorderAllOutlined';
+import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
+import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined';
+import VideocamOutlinedIcon from '@material-ui/icons/VideocamOutlined';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
@@ -36,7 +42,13 @@ let ICONS: any = {
   LensRoundedIcon: LensRoundedIcon,
   DragHandleIcon: DragHandleIcon,
   AppsIcon: AppsIcon,
-  DehazeIcon: DehazeIcon
+  DehazeIcon: DehazeIcon,
+  AccessibilityOutlinedIcon: AccessibilityOutlinedIcon,
+  AppsOutlinedIcon: AppsOutlinedIcon,
+  BorderAllOutlinedIcon: BorderAllOutlinedIcon,
+  DuoRoundedIcon: DuoRoundedIcon,
+  MovieCreationOutlinedIcon: MovieCreationOutlinedIcon,
+  VideocamOutlinedIcon: VideocamOutlinedIcon
 };
 
 export default ICONS;

@@ -23,6 +23,45 @@ let MENUS: any = [
     ]
   },
   {
+    id: 3,
+    text: '平台管理',
+    description: '平台管理',
+    path: '/admin/config/index',
+    icon: 'AppsOutlinedIcon',
+    menus: [
+      {
+        id: 31,
+        text: '平台配置',
+        description: '平台配置',
+        path: '/admin/config/config',
+        icon: 'BorderAllOutlinedIcon'
+      }
+    ]
+  },
+  {
+    id: 5,
+    text: '资源管理',
+    description: '资源管理',
+    path: '/admin/vod/index',
+    icon: 'MovieCreationOutlinedIcon',
+    menus: [
+      {
+        id: 51,
+        text: '视频列表',
+        description: '视频列表',
+        path: '/admin/vod/vod',
+        icon: 'VideocamOutlinedIcon'
+      },
+      {
+        id: 52,
+        text: '视频域名列表',
+        description: '视频域名列表',
+        path: '/admin/system/domain_name',
+        icon: 'CloudDoneOutlinedIcon'
+      }
+    ]
+  },
+  {
     id: 2,
     text: '广告管理',
     description: '广告管理',
@@ -71,16 +110,9 @@ let MENUS: any = [
             text: '角色列表',
             description: '角色列表',
             path: '/admin/system/role',
-            icon: 'PersonOutlinedIcon'
+            icon: 'AccessibilityOutlinedIcon'
           }
         ]
-      },
-      {
-        id: 42,
-        text: '视频域名列表',
-        description: '视频域名列表',
-        path: '/admin/system/domain_name',
-        icon: 'CloudDoneOutlinedIcon'
       }
     ]
   }
