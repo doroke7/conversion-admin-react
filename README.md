@@ -18,7 +18,7 @@
 
 3. 网页路由上 使用 ?query={urlencode}&option={urlencode} 或 ?query={AESencode}&option={AESencode}
 
-4. 路由规则，（为最终菜单，可能为2，3级菜单）  /admin/resource/{数据表名}
+4. 路由规则，（为最终菜单，可能为2，3级菜单）  /admin/resource/{数据表名}/index
 5. 路由规则，（为一级菜单）  /admin/{名称1}/index
 6. 路由规则，（为二级菜单）  /admin/{名称1}/{名称2}/index
 

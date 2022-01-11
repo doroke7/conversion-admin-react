@@ -36,7 +36,8 @@ module.exports = (env, argvs) => {
       admin: './src/entries/admin/index.tsx',     // 目前 webpack 多入口都会打包在一起
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js'],
+      // js > ts > tsx
+      extensions: ['.tsx', '.ts', '.js'],
       alias: {
         '@': path.resolve(__dirname, './src/'),
       },

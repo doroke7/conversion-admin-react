@@ -10,14 +10,14 @@ let MENUS: any = [
         id: 11,
         text: '会员列表',
         description: '会员列表',
-        path: '/admin/resource/app_user',
+        path: '/admin/resource/app_user/index',
         icon: 'AssignmentIndOutlinedIcon'
       },
       {
         id: 12,
         text: '会员订单列表',
         description: '会员订单列表',
-        path: '/admin/resource/order_info',
+        path: '/admin/resource/order_info/index',
         icon: 'PlaylistAddCheckOutlinedIcon'
       }
     ]
@@ -33,14 +33,14 @@ let MENUS: any = [
         id: 31,
         text: '平台配置',
         description: '平台配置',
-        path: '/admin/resource/config',
+        path: '/admin/resource/config/index',
         icon: 'BorderAllOutlinedIcon'
       },
       {
         id: 32,
         text: '特权定价列表',
         description: '特权定价列表',
-        path: '/admin/resource/product_info',
+        path: '/admin/resource/product_info/index',
         icon: 'LocalAtmOutlinedIcon'
       }
     ]
@@ -56,14 +56,14 @@ let MENUS: any = [
         id: 51,
         text: '视频列表',
         description: '视频列表',
-        path: '/admin/resource/vod',
+        path: '/admin/resource/vod/index',
         icon: 'VideocamOutlinedIcon'
       },
       {
         id: 52,
         text: '视频域名列表',
         description: '视频域名列表',
-        path: '/admin/resource/domain_name',
+        path: '/admin/resource/domain_name/index',
         icon: 'CloudDoneOutlinedIcon'
       }
     ]
@@ -79,35 +79,35 @@ let MENUS: any = [
         id: 21,
         text: '首页广告',
         description: '首页广告',
-        path: '/admin/resource/advertisement1',
+        path: '/admin/resource/advertisement1/index',
         icon: 'DehazeIcon'
       },
       {
         id: 22,
         text: '跑马广告',
         description: '跑马广告',
-        path: '/admin/resource/advertisement2',
+        path: '/admin/resource/advertisement2/index',
         icon: 'DehazeIcon'
       },
       {
         id: 23,
         text: '轮播广告',
         description: '轮播广告',
-        path: '/admin/resource/advertisement3',
+        path: '/admin/resource/advertisement3/index',
         icon: 'DehazeIcon'
       },
       {
         id: 24,
         text: '公告广告',
         description: '公告广告',
-        path: '/admin/resource/advertisement4',
+        path: '/admin/resource/advertisement4/index',
         icon: 'DehazeIcon'
       },
       {
         id: 26,
         text: '插屏广告',
         description: '插屏广告',
-        path: '/admin/resource/advertisement5',
+        path: '/admin/resource/advertisement5/index',
         icon: 'DehazeIcon'
       }
     ]
@@ -130,21 +130,21 @@ let MENUS: any = [
             id: 411,
             text: '管理员列表',
             description: '管理员列表',
-            path: '/admin/resource/administrator',
+            path: '/admin/resource/administrator/index',
             icon: 'SupervisorAccountOutlinedIcon'
           },
           {
             id: 412,
             text: '角色列表',
             description: '角色列表',
-            path: '/admin/resource/role',
+            path: '/admin/resource/role/index',
             icon: 'AccessibilityOutlinedIcon'
           },
           {
             id: 413,
             text: '权限列表',
             description: '权限列表',
-            path: '/admin/resource/authorization',
+            path: '/admin/resource/authorization/index',
             icon: 'LockOpenOutlinedIcon'
           }
         ]
