@@ -7,13 +7,28 @@ import PersonOutlinedIcon from '@material-ui/icons/PersonOutlined';
 import SecurityOutlinedIcon from '@material-ui/icons/SecurityOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import AssignmentIndOutlinedIcon from '@material-ui/icons/AssignmentIndOutlined';
+import PlaylistAddCheckOutlinedIcon from '@material-ui/icons/PlaylistAddCheckOutlined';
+import LineWeightOutlinedIcon from '@material-ui/icons/LineWeightOutlined';
+import LinearScaleOutlinedIcon from '@material-ui/icons/LinearScaleOutlined';
+import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
+import CloudDoneOutlinedIcon from '@material-ui/icons/CloudDoneOutlined';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
   PersonOutlinedIcon: PersonOutlinedIcon,
   SecurityOutlinedIcon: SecurityOutlinedIcon,
   SettingsOutlinedIcon: SettingsOutlinedIcon,
-  AppsRoundedIcon: AppsRoundedIcon
+  AppsRoundedIcon: AppsRoundedIcon,
+  AccountBoxIcon: AccountBoxIcon,
+  AssignmentIndOutlinedIcon: AssignmentIndOutlinedIcon,
+  PlaylistAddCheckOutlinedIcon: PlaylistAddCheckOutlinedIcon,
+  LineWeightOutlinedIcon: LineWeightOutlinedIcon,
+  LinearScaleOutlinedIcon: LinearScaleOutlinedIcon,
+  SupervisorAccountOutlinedIcon: SupervisorAccountOutlinedIcon,
+  CloudDoneOutlinedIcon: CloudDoneOutlinedIcon
 };
 
 export default ICONS;
