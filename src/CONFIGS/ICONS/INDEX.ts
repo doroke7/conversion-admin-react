@@ -18,6 +18,7 @@ import CloudDoneOutlinedIcon from '@material-ui/icons/CloudDoneOutlined';
 import LensRoundedIcon from '@material-ui/icons/LensRounded';
 import DragHandleIcon from '@material-ui/icons/DragHandle';
 import AppsIcon from '@material-ui/icons/Apps';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
@@ -34,7 +35,8 @@ let ICONS: any = {
   CloudDoneOutlinedIcon: CloudDoneOutlinedIcon,
   LensRoundedIcon: LensRoundedIcon,
   DragHandleIcon: DragHandleIcon,
-  AppsIcon: AppsIcon
+  AppsIcon: AppsIcon,
+  DehazeIcon: DehazeIcon
 };
 
 export default ICONS;
