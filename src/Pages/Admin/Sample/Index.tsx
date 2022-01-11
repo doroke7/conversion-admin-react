@@ -56,8 +56,7 @@ export default function MenuListComposition() {
           ref={anchorRef}
           aria-controls={oState.open ? 'menu-list-growsss' : undefined}
           aria-haspopup="false"
-          onClick={handleToggle}
-        >
+          onClick={handleToggle}>
           打开菜单
         </Button>
         {/* NOTE: 如果位置太低， Popper.placement 改为 right end */}

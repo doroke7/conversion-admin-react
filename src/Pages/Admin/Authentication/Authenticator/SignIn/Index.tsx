@@ -1,8 +1,6 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import Grow from '@material-ui/core/Grow';
-import Zoom from '@material-ui/core/Zoom';
 import Slide from '@material-ui/core/Slide';
 
 import Pannel from './Pannel/Index';

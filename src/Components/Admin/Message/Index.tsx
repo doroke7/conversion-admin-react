@@ -24,8 +24,7 @@ function Message(oProps: any): any {
       maxWidth="sm"
       fullWidth
       onClose={oProps.onClose}
-      aria-labelledby="responsive-dialog-title"
-    >
+      aria-labelledby="responsive-dialog-title">
       <DialogTitle id="responsive-dialog-title">
         <ErrorOutline className={oClasses.errorIcon} />
         <span className={oClasses.title}>错误</span>

@@ -30,31 +30,6 @@ let aRoutes = [
     path: '/admin/authentication/authenticator/sign-in',
     component: Admin.Authentication.Authenticator.SignIn,
     exact: true
-  },
-  {
-    path: '/admin/resource/domain/index',
-    component: Admin.Resource.Domain.Index,
-    exact: true
-  },
-  {
-    path: '/admin/resource/room/index',
-    component: Admin.Resource.Room.Index,
-    exact: true
-  },
-  {
-    path: '/admin/resource/user/index',
-    component: Admin.Resource.User.Index,
-    exact: true
-  },
-  {
-    path: '/admin/resource/word/index',
-    component: Admin.Resource.Word.Index,
-    exact: true
-  },
-  {
-    path: '/admin/resource/administrator/index',
-    component: Admin.Resource.Administrator.Index,
-    exact: true
   }
 ];
 

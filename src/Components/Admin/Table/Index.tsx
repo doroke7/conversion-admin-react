@@ -123,8 +123,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
+            sortDirection={orderBy === headCell.id ? order : false}>
             <TableSortLabel active={orderBy === headCell.id} direction={order} onClick={createSortHandler(headCell.id)}>
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -180,8 +179,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     <Toolbar
       className={clsx(classes.root, {
         [classes.highlight]: numSelected > 0
-      })}
-    >
+      })}>
       <div className={classes.title}>
         {numSelected > 0 ? (
           <Typography color="inherit" variant="subtitle1">
@@ -330,8 +328,7 @@ function EnhancedTable() {
                     aria-checked={isItemSelected}
                     tabIndex={-1}
                     key={row.name}
-                    selected={isItemSelected}
-                  >
+                    selected={isItemSelected}>
                     <TableCell padding="checkbox">
                       <Checkbox checked={isItemSelected} inputProps={{ 'aria-labelledby': labelId }} />
                     </TableCell>
