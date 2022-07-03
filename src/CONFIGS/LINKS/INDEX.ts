@@ -1,0 +1,39 @@
+let LINKS: any = [
+  {
+    id: 11,
+    text: '会员列表',
+    description: '会员列表',
+    path: '/admin/resource/app-user/index',
+    icon: 'AssignmentIndOutlinedIcon'
+  },
+  {
+    id: 12,
+    text: '会员订单列表',
+    description: '会员订单列表',
+    path: '/admin/resource/order-info/index',
+    icon: 'PlaylistAddCheckOutlinedIcon'
+  },
+  {
+    id: 31,
+    text: '平台配置',
+    description: '平台配置',
+    path: '/admin/resource/config/index',
+    icon: 'BorderAllOutlinedIcon'
+  },
+  {
+    id: 51,
+    text: '视频列表',
+    description: '视频列表',
+    path: '/admin/resource/vod/index',
+    icon: 'VideocamOutlinedIcon'
+  },
+  {
+    id: 411,
+    text: '管理员列表',
+    description: '管理员列表',
+    path: '/admin/resource/administrator/index',
+    icon: 'SupervisorAccountOutlinedIcon'
+  }
+];
+
+export default LINKS;

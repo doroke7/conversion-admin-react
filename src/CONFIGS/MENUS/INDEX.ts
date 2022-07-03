@@ -3,21 +3,21 @@ let MENUS: any = [
     id: 1,
     text: '会员管理',
     description: '会员管理',
-    path: '/admin/app_user/index',
+    path: '/admin/app-user/index',
     icon: 'AccountBoxIcon',
     menus: [
       {
         id: 11,
         text: '会员列表',
         description: '会员列表',
-        path: '/admin/resource/app_user/index',
+        path: '/admin/resource/app-user/index',
         icon: 'AssignmentIndOutlinedIcon'
       },
       {
         id: 12,
         text: '会员订单列表',
         description: '会员订单列表',
-        path: '/admin/resource/order_info/index',
+        path: '/admin/resource/order-info/index',
         icon: 'PlaylistAddCheckOutlinedIcon'
       }
     ]
@@ -40,7 +40,7 @@ let MENUS: any = [
         id: 32,
         text: '特权定价列表',
         description: '特权定价列表',
-        path: '/admin/resource/product_info/index',
+        path: '/admin/resource/product-info/index',
         icon: 'LocalAtmOutlinedIcon'
       }
     ]
@@ -63,7 +63,7 @@ let MENUS: any = [
         id: 52,
         text: '视频域名列表',
         description: '视频域名列表',
-        path: '/admin/resource/domain_name/index',
+        path: '/admin/resource/domain-name/index',
         icon: 'CloudDoneOutlinedIcon'
       }
     ]
