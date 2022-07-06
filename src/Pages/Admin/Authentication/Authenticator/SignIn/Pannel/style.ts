@@ -5,7 +5,12 @@ const style = makeStyles((theme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
-      marginTop: '5rem'
+      paddingBottom: '1rem',
+      paddingTop: '1rem',
+      paddingLeft: '1rem',
+      paddingRight: '1rem',
+      borderRadius: '5px',
+      boxShadow: 'rgb(100 116 139 / 12%) 0px 10px 15px'
     },
     lockIcon: {
       fontSize: '2rem'
