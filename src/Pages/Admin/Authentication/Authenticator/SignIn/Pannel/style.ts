@@ -5,12 +5,13 @@ const style = makeStyles((theme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
-      paddingBottom: '1rem',
-      paddingTop: '1rem',
-      paddingLeft: '1rem',
-      paddingRight: '1rem',
-      borderRadius: '5px',
-      boxShadow: 'rgb(100 116 139 / 12%) 0px 10px 15px'
+      paddingBottom: '5rem',
+      paddingTop: '3rem',
+      paddingLeft: '2rem',
+      paddingRight: '2rem',
+      borderRadius: '15px',
+      boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
+      backgroundColor: 'rgb(255, 255, 255)'
     },
     lockIcon: {
       fontSize: '2rem'
@@ -22,13 +23,15 @@ const style = makeStyles((theme: Theme): any =>
     textField: {},
     title: {
       textAlign: 'center',
-      marginTop: '1rem'
+      marginTop: '1rem',
+      marginBottom: '4rem'
     },
     avatar: {
       margin: 'auto',
       backgroundColor: pink[500],
       width: '4rem',
-      height: '4rem'
+      height: '4rem',
+      marginBottom: '2rem'
     },
     button: {
       marginTop: '1rem',

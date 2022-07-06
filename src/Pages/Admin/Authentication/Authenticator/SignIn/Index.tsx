@@ -26,17 +26,19 @@ function SignIn(): any {
   return (
     <Slide in={oState.in} direction="down" timeout={500} mountOnEnter unmountOnExit>
       <div className={oClasses.root}>
-        <Grid container spacing={0}>
-          <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
-            {/* <Hidden only={['xs', 'sm']}></Hidden> */}
+        <div className={oClasses.middle}>
+          <Grid container spacing={0}>
+            <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
+              {/* <Hidden only={['xs', 'sm']}></Hidden> */}
+            </Grid>
+            <Grid container item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
+              <Pannel onSignInToggle={cOnSignInToggle} />
+            </Grid>
+            <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
+              {/* <Hidden only={['xs', 'sm']}></Hidden> */}
+            </Grid>
           </Grid>
-          <Grid container item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
-            <Pannel onSignInToggle={cOnSignInToggle} />
-          </Grid>
-          <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}>
-            {/* <Hidden only={['xs', 'sm']}></Hidden> */}
-          </Grid>
-        </Grid>
+        </div>
       </div>
     </Slide>
   );

@@ -4,8 +4,15 @@ const style = makeStyles((theme: Theme): any =>
   createStyles({
     root: {
       flexGrow: 1,
-      backgroundColor: 'rgb(239, 239, 239)',
-      height: '100vh'
+      backgroundColor: 'rgb(250, 249, 249)',
+      height: '100vh',
+      position: 'relative'
+    },
+    middle: {
+      width: '100%',
+      position: 'absolute',
+      top: '50%',
+      transform: 'translate(0%, -50%)'
     },
     paper: {
       padding: theme.spacing(1),
