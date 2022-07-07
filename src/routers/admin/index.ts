@@ -1,6 +1,24 @@
 import { Admin } from '@/Pages';
+import CONFIGS from '@/CONFIGS';
+let aRoutes1 = [
+  {
+    path: '/admin',
+    component: Admin._,
+    exact: true
+  },
+  {
+    path: '/admin/authentication/authenticator/sign-in',
+    component: Admin.Authentication.Authenticator.SignIn,
+    exact: true
+  },
+  {
+    path: '/admin/resource/app-user/index',
+    component: Admin.Resource.AppUser.Index,
+    exact: true
+  }
+];
 
-let aRoutes = [
+let aRoutes2 = [
   {
     path: '/admin/sample',
     component: Admin.Sample,
@@ -20,22 +38,8 @@ let aRoutes = [
     path: '/admin/sample3',
     component: Admin.Sample3,
     exact: true
-  },
-  {
-    path: '/admin',
-    component: Admin._,
-    exact: true
-  },
-  {
-    path: '/admin/authentication/authenticator/sign-in',
-    component: Admin.Authentication.Authenticator.SignIn,
-    exact: true
-  },
-  {
-    path: '/admin/resource/app-user/index',
-    component: Admin.Resource.AppUser.Index,
-    exact: true
   }
 ];
+aRoutes1 = CONFIGS.APP.ENV.toUpperCase() == 'MASTER' ? aRoutes1 : aRoutes1.concat(aRoutes2);
 
-export default aRoutes;
+export default aRoutes1;

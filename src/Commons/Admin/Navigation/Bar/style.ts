@@ -3,23 +3,23 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const drawerWidth = 200;
 
-const style = makeStyles((theme: Theme) =>
+const style = makeStyles((oTheme: Theme) =>
   createStyles({
     appBar: {
       background: '#125489',
-
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
+      boxShadow: '0 0px 25px 0px rgb(33 203 243 / 60%)',
+      zIndex: oTheme.zIndex.drawer + 1,
+      transition: oTheme.transitions.create(['width', 'margin'], {
+        easing: oTheme.transitions.easing.sharp,
+        duration: oTheme.transitions.duration.leavingScreen
       })
     },
     appBarShift: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
+      transition: oTheme.transitions.create(['width', 'margin'], {
+        easing: oTheme.transitions.easing.sharp,
+        duration: oTheme.transitions.duration.enteringScreen
       })
     },
     toolbar: {
@@ -29,14 +29,20 @@ const style = makeStyles((theme: Theme) =>
     },
     iconButton: {
       marginRight: 0,
-      padding: theme.spacing(1) + 2
+      padding: oTheme.spacing(1) + 2
     },
     typography: {
-      paddingLeft: theme.spacing(2),
-      [theme.breakpoints.down('sm')]: {
+      paddingLeft: oTheme.spacing(2),
+      [oTheme.breakpoints.down('sm')]: {
         fontSize: '12px'
       }
     },
+    formControl: {
+      margin: 0,
+      minWidth: 120,
+      color: 'white'
+    },
+    select: {},
     hide: {
       display: 'none'
     },

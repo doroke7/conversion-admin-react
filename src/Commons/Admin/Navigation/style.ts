@@ -17,7 +17,7 @@ const style = makeStyles((oTheme: Theme) =>
       background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)',
       flexShrink: 0,
       whiteSpace: 'nowrap',
-      boxShadow: 'rgb(125 125 125) 0rem 1.25rem 1.2875rem'
+      boxShadow: '0 8px 25px 4px rgb(33 203 243 / 60%)'
     },
     drawerPaper: {
       background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)'
