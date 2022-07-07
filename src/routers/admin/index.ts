@@ -32,7 +32,7 @@ let aRoutes = [
     exact: true
   },
   {
-    path: '/admin/resource/app_user/index',
+    path: '/admin/resource/app-user/index',
     component: Admin.Resource.AppUser.Index,
     exact: true
   }
