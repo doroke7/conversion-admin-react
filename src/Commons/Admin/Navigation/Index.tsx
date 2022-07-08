@@ -32,7 +32,7 @@ function Navigation(oProps: any) {
   let sMenuName = sPathname;
   let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
-  let classes = style(void 0);
+  let oClasses = style(void 0);
 
   const [oState, setState] = React.useState<any>({
     open: true,
@@ -87,23 +87,24 @@ function Navigation(oProps: any) {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={oClasses.root}>
       <Bar handleDrawerOpen={handleDrawerOpen} open={oState.open}></Bar>
       <Drawer
         variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: oState.open,
-          [classes.drawerClose]: !oState.open
+        className={clsx(oClasses.drawer, {
+          [oClasses.drawerOpen]: oState.open,
+          [oClasses.drawerClose]: !oState.open
         })}
         classes={{
-          paper: clsx(classes.drawerPaper, {
-            [classes.drawerOpen]: oState.open,
-            [classes.drawerClose]: !oState.open
+          paper: clsx(oClasses.drawerPaper, {
+            [oClasses.drawerOpen]: oState.open,
+            [oClasses.drawerClose]: !oState.open
           })
         }}
         open={oState.open}>
-        <div className={classes.toolbar}>
-          <IconButton className={classes.iconButton} onClick={handleDrawerClose}>
+        <div className={oClasses.toolbar}>
+          <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
+          <IconButton className={oClasses.iconButton} onClick={handleDrawerClose}>
             <DoubleArrowIcon></DoubleArrowIcon>
           </IconButton>
         </div>
@@ -112,17 +113,17 @@ function Navigation(oProps: any) {
         <Divider />
         <List></List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar}></div>
+      <main className={oClasses.content}>
+        <div className={oClasses.toolbar}></div>
         <tab.Provider value={oState.tabs}>
           <Tabs removeTab={removeTab} />
         </tab.Provider>
         {oState.tabs.length >= 1 ? (
-          <Paper className={classes.paper}>
-            <Box className={classes.title} fontWeight="fontWeightBold" fontSize={20}>
+          <Paper className={oClasses.paper}>
+            <Box className={oClasses.title} fontWeight="fontWeightBold" fontSize={20}>
               {sMenuName && oMenus[sMenuName] && oMenus[sMenuName].text ? oMenus[sMenuName].text : sMenuName}
             </Box>
-            <Box className={classes.description} fontWeight="fontWeightLight" fontSize={12}>
+            <Box className={oClasses.description} fontWeight="fontWeightLight" fontSize={12}>
               {sMenuName && oMenus[sMenuName] && oMenus[sMenuName].description ? oMenus[sMenuName].description : ''}
             </Box>
           </Paper>
@@ -130,7 +131,7 @@ function Navigation(oProps: any) {
           ''
         )}
 
-        <div className={classes.subContent}>{oProps.children}</div>
+        <div className={oClasses.subContent}>{oProps.children}</div>
       </main>
     </div>
   );

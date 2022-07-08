@@ -22,11 +22,10 @@ import administrator from '@/images/administrator.png';
 
 function Bar(oProps: any) {
   let oClasses = style(void 0);
-  let iAppId = 0;
-  const [appId, setAppId] = React.useState('1');
+  const [sAppId, setAppId] = React.useState('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAppId(event.target.value as string);
+  const handleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    setAppId(oEvent.target.value as string);
   };
 
   return (
@@ -46,11 +45,9 @@ function Bar(oProps: any) {
           })}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap className={clsx(oClasses.typography)}>
-          {CONFIGS.APP.NAME}
-        </Typography>
+        <Typography variant="h6" noWrap className={clsx(oClasses.typography)}></Typography>
         <FormControl variant="filled" className={oClasses.formControl}>
-          <InputLabel id="demo-simple-select-label">分包选择</InputLabel>
+          {/* <InputLabel id="demo-simple-select-label">分包选择</InputLabel> */}
           <Select
             displayEmpty
             labelId="demo-simple-select-label"
@@ -58,7 +55,7 @@ function Bar(oProps: any) {
             inputProps={{ 'aria-label': 'Without label' }}
             className={oClasses.select}
             onChange={handleChange}
-            value={iAppId}>
+            value={sAppId}>
             <MenuItem value="">
               <em>None</em>
             </MenuItem>

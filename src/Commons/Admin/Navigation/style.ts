@@ -45,9 +45,12 @@ const style = makeStyles((oTheme: Theme) =>
       display: 'flex',
       color: grey[100],
       alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: oTheme.spacing(0, 1),
+      justifyContent: 'space-between',
+      padding: '0px 16px 0px 20px',
       minHeight: '44px'
+    },
+    appName: {
+      fontWeight: 100
     },
     [oTheme.breakpoints.up('sm')]: {
       toolbar: {
