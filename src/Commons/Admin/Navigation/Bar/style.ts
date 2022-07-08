@@ -40,9 +40,14 @@ const style = makeStyles((oTheme: Theme) =>
     formControl: {
       margin: 0,
       minWidth: 120,
-      color: 'white'
+      position: 'absolute',
+      right: '4rem'
     },
-    select: {},
+    select: {
+      // padding: '0px 12px 10px',
+      color: grey[50]
+    },
+    menuItem: {},
     hide: {
       display: 'none'
     },

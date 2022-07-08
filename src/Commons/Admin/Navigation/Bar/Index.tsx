@@ -23,10 +23,10 @@ import administrator from '@/images/administrator.png';
 function Bar(oProps: any) {
   let oClasses = style(void 0);
   let iAppId = 0;
-  const [appId, setAppId] = React.useState('1');
+  const [sAppId, cSetAppId] = React.useState('');
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAppId(event.target.value as string);
+    cSetAppId(event.target.value as string);
   };
 
   return (
@@ -49,8 +49,7 @@ function Bar(oProps: any) {
         <Typography variant="h6" noWrap className={clsx(oClasses.typography)}>
           {CONFIGS.APP.NAME}
         </Typography>
-        <FormControl variant="filled" className={oClasses.formControl}>
-          <InputLabel id="demo-simple-select-label">分包</InputLabel>
+        <FormControl variant="standard" className={oClasses.formControl}>
           <Select
             displayEmpty
             labelId="demo-simple-select-label"
@@ -58,13 +57,19 @@ function Bar(oProps: any) {
             inputProps={{ 'aria-label': 'Without label' }}
             className={oClasses.select}
             onChange={handleChange}
-            value={iAppId}>
-            <MenuItem value="">
-              <em>None</em>
+            value={sAppId}>
+            <MenuItem className={oClasses.menuItem} value="" disabled>
+              APP分包
             </MenuItem>
-            <MenuItem value={1}>加菲</MenuItem>
-            <MenuItem value={2}>青山</MenuItem>
-            <MenuItem value={3}>松鼠</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={1}>
+              加菲影视
+            </MenuItem>
+            <MenuItem className={oClasses.menuItem} value={2}>
+              青山影视
+            </MenuItem>
+            <MenuItem className={oClasses.menuItem} value={3}>
+              松鼠影视
+            </MenuItem>
           </Select>
         </FormControl>
         <Avatar src={administrator} className={oClasses.avatar}></Avatar>

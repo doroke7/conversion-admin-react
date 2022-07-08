@@ -47,7 +47,21 @@ export default function MenuListComposition() {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-        <FormHelperText>Ploooo</FormHelperText>
+      </FormControl>
+      <FormControl className={oClasses.formControl}>
+        <Select
+          value={sAge}
+          onChange={cHandleChange}
+          displayEmpty
+          className={''}
+          inputProps={{ 'aria-label': 'Without label' }}>
+          <MenuItem value="" disabled>
+            Placeholder
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
       </FormControl>
     </div>
   );
