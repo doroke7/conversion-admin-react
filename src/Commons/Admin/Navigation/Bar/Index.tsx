@@ -50,7 +50,7 @@ function Bar(oProps: any) {
           {CONFIGS.APP.NAME}
         </Typography>
         <FormControl variant="filled" className={oClasses.formControl}>
-          <InputLabel id="demo-simple-select-label">分包</InputLabel>
+          <InputLabel id="demo-simple-select-label">分包选择</InputLabel>
           <Select
             displayEmpty
             labelId="demo-simple-select-label"
