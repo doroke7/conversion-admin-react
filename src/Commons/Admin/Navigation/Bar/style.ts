@@ -41,7 +41,7 @@ const style = makeStyles((oTheme: Theme) =>
       margin: 0,
       minWidth: 100,
       position: 'absolute',
-      right: '4rem',
+      right: oTheme.spacing(8),
       '& .MuiSvgIcon-root': {
         color: 'white'
       }
