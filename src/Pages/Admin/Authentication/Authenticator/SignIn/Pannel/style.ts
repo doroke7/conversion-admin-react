@@ -1,20 +1,20 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
-const style = makeStyles((theme: Theme): any =>
+const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
-      paddingBottom: '5rem',
-      paddingTop: '3rem',
-      paddingLeft: '2rem',
-      paddingRight: '2rem',
-      borderRadius: '15px',
+      paddingBottom: oTheme.spacing(10),
+      paddingTop: oTheme.spacing(6),
+      paddingLeft: oTheme.spacing(4),
+      paddingRight: oTheme.spacing(4),
+      borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
       backgroundColor: 'rgb(255, 255, 255)'
     },
     lockIcon: {
-      fontSize: '2rem'
+      fontSize: oTheme.spacing(4)
     },
     container: {
       display: 'flex',
@@ -23,22 +23,22 @@ const style = makeStyles((theme: Theme): any =>
     textField: {},
     title: {
       textAlign: 'center',
-      marginTop: '1rem',
-      marginBottom: '4rem'
+      marginTop: oTheme.spacing(2),
+      marginBottom: oTheme.spacing(8)
     },
     avatar: {
       margin: 'auto',
       backgroundColor: pink[500],
-      width: '4rem',
-      height: '4rem',
-      marginBottom: '2rem'
+      width: oTheme.spacing(8),
+      height: oTheme.spacing(8),
+      marginBottom: oTheme.spacing(4)
     },
     button: {
-      marginTop: '1rem',
-      fontSize: '1rem'
+      marginTop: oTheme.spacing(2),
+      fontSize: oTheme.spacing(2)
     },
     forgetPasswordAndSignup: {
-      marginTop: '0.5rem',
+      marginTop: oTheme.spacing(1),
       display: 'flex',
       justifyContent: 'space-between'
     },
@@ -53,14 +53,14 @@ const style = makeStyles((theme: Theme): any =>
     decription: {
       color: grey[500],
       fontWeight: 700,
-      fontSize: '0.75rem',
+      fontSize: oTheme.spacing(1) + 4,
       float: 'left'
     },
     version: {
-      marginLeft: '0.5rem',
+      marginLeft: oTheme.spacing(1),
       color: grey[500],
       fontWeight: 300,
-      fontSize: '0.75rem',
+      fontSize: oTheme.spacing(1) + 4,
       float: 'right'
     }
   })
