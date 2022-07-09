@@ -1,14 +1,14 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
-const style = makeStyles((theme: Theme): any =>
+const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     pannel: {
       width: '100%',
-      marginTop: '5rem'
+      marginTop: oTheme.spacing(10)
     },
     lockIcon: {
-      fontSize: '2rem'
+      fontSize: oTheme.spacing(4)
     },
     container: {
       display: 'flex',
@@ -17,20 +17,20 @@ const style = makeStyles((theme: Theme): any =>
     textField: {},
     title: {
       textAlign: 'center',
-      marginTop: '1rem'
+      marginTop: oTheme.spacing(2)
     },
     avatar: {
       margin: 'auto',
       backgroundColor: pink[500],
-      width: '4rem',
-      height: '4rem'
+      width: oTheme.spacing(8),
+      height: oTheme.spacing(4)
     },
     button: {
-      marginTop: '1rem',
-      fontSize: '1rem'
+      marginTop: oTheme.spacing(8),
+      fontSize: oTheme.spacing(8)
     },
     forgetPasswordAndSignup: {
-      marginTop: '0.5rem',
+      marginTop: oTheme.spacing(1),
       display: 'flex',
       justifyContent: 'space-between'
     },
@@ -45,14 +45,14 @@ const style = makeStyles((theme: Theme): any =>
     decription: {
       color: grey[500],
       fontWeight: 700,
-      fontSize: '0.75rem',
+      fontSize: oTheme.spacing(1) + 4,
       float: 'left'
     },
     version: {
-      marginLeft: '0.5rem',
+      marginLeft: oTheme.spacing(1),
       color: grey[500],
       fontWeight: 300,
-      fontSize: '0.75rem',
+      fontSize: oTheme.spacing(1) + 4,
       float: 'right'
     }
   })
