@@ -39,7 +39,7 @@ const style = makeStyles((oTheme: Theme) =>
     },
     formControl: {
       margin: 0,
-      minWidth: 120,
+      minWidth: 100,
       position: 'absolute',
       right: '4rem'
     },

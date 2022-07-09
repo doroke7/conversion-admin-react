@@ -46,8 +46,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap className={clsx(oClasses.typography)}></Typography>
-        <FormControl variant="filled" className={oClasses.formControl}>
-          {/* <InputLabel id="demo-simple-select-label">分包选择</InputLabel> */}
+        <FormControl variant="standard" className={oClasses.formControl}>
           <Select
             displayEmpty
             labelId="demo-simple-select-label"
@@ -57,7 +56,7 @@ function Bar(oProps: any) {
             onChange={cHandleChange}
             value={sAppId}>
             <MenuItem className={oClasses.menuItem} value="" disabled>
-              APP分包
+              <em>分包选择</em>
             </MenuItem>
             <MenuItem className={oClasses.menuItem} value={1}>
               加菲影视
