@@ -1,7 +1,7 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { lightBlue, blue, blueGrey } from '@material-ui/core/colors';
 
-let style = makeStyles((theme: Theme): any =>
+let style = makeStyles((oTheme: Theme): any =>
   createStyles({
     iconWrapper: {
       textAlign: 'center',
@@ -12,15 +12,16 @@ let style = makeStyles((theme: Theme): any =>
     },
     icon: {
       color: blueGrey[200],
-      fontSize: '5rem',
-      MaxWidth: '10rem',
-      MaxHeight: '10rem',
-      width: '10rem',
-      height: '10rem'
+      fontSize: oTheme.spacing(10),
+      MaxWidth: oTheme.spacing(20),
+      MaxHeight: oTheme.spacing(20),
+      width: oTheme.spacing(20),
+      height: oTheme.spacing(20)
     },
     text: {
       textAlign: 'center',
-      color: blueGrey[200]
+      color: blueGrey[200],
+      userSelect: 'none'
     }
   })
 );
