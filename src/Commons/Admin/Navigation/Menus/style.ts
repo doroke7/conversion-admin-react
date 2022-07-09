@@ -9,8 +9,11 @@ const oStyle = makeStyles((oTheme: Theme) =>
       color: grey[100]
     },
     listItemIcon: {
-      minWidth: '32px',
+      minWidth: oTheme.spacing(4),
       color: grey[100]
+    },
+    listItem: {
+      paddingLeft: oTheme.spacing(1) + 4
     }
   })
 );
