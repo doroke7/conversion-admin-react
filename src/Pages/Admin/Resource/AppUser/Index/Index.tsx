@@ -20,8 +20,6 @@ interface State {
   alertMessage: string;
 }
 
-const ENTER_CODE = 13;
-
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
 

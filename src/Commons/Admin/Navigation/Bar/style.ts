@@ -49,8 +49,13 @@ const style = makeStyles((oTheme: Theme) =>
     select: {
       height: oTheme.spacing(5),
       color: grey[50],
-      backgroundColor: blue[600],
-      boxShadow: '1px 1px 2px rgba(70, 70, 70, 0.4)'
+      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+      boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+      '&:hover': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'rgba(0, 0, 0, 0.23)'
+        }
+      }
     },
     menuItem: {},
     hide: {

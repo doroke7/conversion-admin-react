@@ -1,72 +1,83 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'; // 点击事件是否发生在元素之外
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-import fStyles from './style';
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex'
+    },
+    paper: {
+      marginRight: theme.spacing(2)
+    }
+  })
+);
 
 export default function MenuListComposition() {
-  const oClasses = fStyles();
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-  let [oState, cSetState] = React.useState<any>({
-    open: false,
-    menus: {}
-  });
-
-  let anchorRef = React.useRef<HTMLButtonElement>(null);
-
-  let handleToggle = () => {
-    cSetState({ ...oState, open: !oState.open });
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  let handleClose = (oEvent: React.MouseEvent<EventTarget>) => {
-    // 如果 三级 菜单 有被锚点， 且 点击的 dom 包含 当下的 三级菜单就 不做事
-    if (anchorRef.current && anchorRef.current.contains(oEvent.target as HTMLElement)) {
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
-    // 如果 三级 菜单 没被锚点， 且 点击的 dom 不包含 当下的 三级菜单就 关闭
 
-    cSetState({ ...oState, open: false });
+    setOpen(false);
   };
 
-  function handleListKeyDown(oEvent: React.KeyboardEvent) {
-    if (oEvent.key === 'Tab') {
-      oEvent.preventDefault();
-      cSetState({ ...oState, open: false });
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
     }
   }
 
-  let oPrevOpen = React.useRef(oState.open);
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
   React.useEffect(() => {
-    if (oPrevOpen.current === true && oState.open === false) {
+    if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
     }
 
-    oPrevOpen.current = open;
-  }, [oState.open]);
+    prevOpen.current = open;
+  }, [open]);
 
   return (
-    <div className={oClasses.root}>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <MenuList>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>My account</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </MenuList>
+      </Paper>
       <div>
         <Button
           ref={anchorRef}
-          aria-controls={oState.open ? 'menu-list-growsss' : undefined}
-          aria-haspopup="false"
+          aria-controls={open ? 'menu-list-grow' : undefined}
+          aria-haspopup="true"
           onClick={handleToggle}>
-          打开菜单
+          Toggle Menu Grow
         </Button>
-        {/* NOTE: 如果位置太低， Popper.placement 改为 right end */}
-        <Popper open={oState.open} anchorEl={anchorRef.current} role={undefined} placement={'right-start'}>
-          {
-            // Grow.style.transforOrigin: 动画开始的起点
-            <Grow in={true} style={{ transformOrigin: 'left top' }}>
+        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}>
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={oState.open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
@@ -74,7 +85,7 @@ export default function MenuListComposition() {
                 </ClickAwayListener>
               </Paper>
             </Grow>
-          }
+          )}
         </Popper>
       </div>
     </div>
