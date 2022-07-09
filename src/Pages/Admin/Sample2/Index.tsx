@@ -55,13 +55,6 @@ export default function MenuListComposition() {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <MenuList>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </MenuList>
-      </Paper>
       <div>
         <Button
           ref={anchorRef}
@@ -70,11 +63,15 @@ export default function MenuListComposition() {
           onClick={handleToggle}>
           Toggle Menu Grow
         </Button>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="right-start"
+          transition
+          disablePortal>
           {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}>
+            <Grow {...TransitionProps}>
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
