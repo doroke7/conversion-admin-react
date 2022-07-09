@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, grey， deepOrange, deepPurple } from '@material-ui/core/colors';
 
 const drawerWidth = 200;
 
@@ -45,9 +45,16 @@ const style = makeStyles((oTheme: Theme) =>
       display: 'flex',
       color: grey[100],
       alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: oTheme.spacing(0, 1),
+      justifyContent: 'space-between',
+      padding: '0px 16px 0px 20px',
       minHeight: '44px'
+    },
+    appName: {
+      fontWeight: 900,
+      fontSize: oTheme.spacing(2),
+      color: '#FFFFFF',
+      userSelect: 'none',
+      textShadow: '1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000'
     },
     [oTheme.breakpoints.up('sm')]: {
       toolbar: {

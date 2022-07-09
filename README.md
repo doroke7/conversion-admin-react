@@ -50,4 +50,13 @@ yarn run build;
 代码改变 路由 path 需要手动清除 storage.tabs (太麻烦，可以加上版本号)
 
 强烈禁止使用 Table Component 改用 Data Grid Component
+
+需要请运维在 API Nginx 加上以下 表头
+    add_header 'Access-Control-Allow-Origin' '*' always;
+    add_header 'Access-Control-Allow-Credentials' 'true' always;
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, PATCH, DELETE, OPTIONS' always;
+    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,Version,Ver,Keys,Time,Signature' always;    # allowed header from REQUEST
+    add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,Version,Ver,Keys,Time,Signature' always;   # allowed header from RESPONSE
+
+
 ````
