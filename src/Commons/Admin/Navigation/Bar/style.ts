@@ -23,9 +23,9 @@ const style = makeStyles((oTheme: Theme) =>
       })
     },
     toolbar: {
-      minHeight: '45px',
-      paddingLeft: '12px',
-      paddingRight: '12px'
+      minHeight: oTheme.spacing(7),
+      paddingLeft: oTheme.spacing(1) + 4,
+      paddingRight: oTheme.spacing(1) + 4
     },
     iconButton: {
       marginRight: 0,
@@ -34,14 +34,17 @@ const style = makeStyles((oTheme: Theme) =>
     typography: {
       paddingLeft: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
-        fontSize: '12px'
+        fontSize: oTheme.spacing(1) + 4
       }
     },
     formControl: {
       margin: 0,
       minWidth: 100,
       position: 'absolute',
-      right: '4rem'
+      right: '4rem',
+      '& .MuiSvgIcon-root': {
+        color: 'white'
+      }
     },
     select: {
       // padding: '0px 12px 10px',
@@ -53,7 +56,7 @@ const style = makeStyles((oTheme: Theme) =>
     },
     avatar: {
       position: 'absolute',
-      right: '1rem',
+      right: oTheme.spacing(2),
       cursor: 'pointer'
     }
   })

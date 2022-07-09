@@ -47,7 +47,12 @@ const style = makeStyles((oTheme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0px 16px 0px 20px',
-      minHeight: '44px'
+      minHeight: oTheme.spacing(7)
+    },
+    [oTheme.breakpoints.up('sm')]: {
+      toolbar: {
+        minHeight: oTheme.spacing(7)
+      }
     },
     appName: {
       fontWeight: 900,
@@ -57,11 +62,7 @@ const style = makeStyles((oTheme: Theme) =>
       textShadow:
         '1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000, 1px 1px 1px #000000'
     },
-    [oTheme.breakpoints.up('sm')]: {
-      toolbar: {
-        minHeight: oTheme.spacing(5) + 5
-      }
-    },
+
     iconButton: {
       color: grey[200],
       padding: oTheme.spacing(0)
@@ -72,7 +73,6 @@ const style = makeStyles((oTheme: Theme) =>
     },
     subContent: {
       minHeight: 'calc(100vh - 70px)',
-      // padding: oTheme.spacing(2),
       position: 'relative'
     },
 
