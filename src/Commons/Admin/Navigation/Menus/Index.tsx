@@ -38,7 +38,7 @@ function Menus() {
     <List component="nav" aria-labelledby="nested-list-subheader" className={oClasses.root}>
       {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
         <>
-          <ListItem button onClick={cHandleClick(oMenu)}>
+          <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
             </ListItemIcon>

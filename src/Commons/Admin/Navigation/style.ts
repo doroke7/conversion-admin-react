@@ -46,7 +46,11 @@ const style = makeStyles((oTheme: Theme) =>
       color: grey[100],
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '0px 16px 0px 20px',
+      paddingTop: oTheme.spacing(0),
+      paddingRight: oTheme.spacing(2),
+      paddingBottom: oTheme.spacing(0),
+      paddingLeft: oTheme.spacing(2) + 4,
+
       minHeight: oTheme.spacing(7)
     },
     [oTheme.breakpoints.up('sm')]: {

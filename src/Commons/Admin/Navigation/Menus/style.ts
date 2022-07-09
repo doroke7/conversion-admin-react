@@ -12,9 +12,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
       minWidth: oTheme.spacing(4),
       color: grey[100]
     },
-    listItem: {
-      paddingLeft: oTheme.spacing(1) + 4
-    }
+    listItem: {}
   })
 );
 

@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, grey, purple, blue } from '@material-ui/core/colors';
 
 const drawerWidth = 200;
 
@@ -47,8 +47,10 @@ const style = makeStyles((oTheme: Theme) =>
       }
     },
     select: {
-      // padding: '0px 12px 10px',
-      color: grey[50]
+      height: oTheme.spacing(5),
+      color: grey[50],
+      backgroundColor: blue[600],
+      boxShadow: '1px 1px 2px rgba(70, 70, 70, 0.4)'
     },
     menuItem: {},
     hide: {

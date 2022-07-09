@@ -46,7 +46,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap className={clsx(oClasses.typography)}></Typography>
-        <FormControl variant="standard" className={oClasses.formControl}>
+        <FormControl variant="outlined" className={oClasses.formControl}>
           <Select
             displayEmpty
             labelId="demo-simple-select-label"
