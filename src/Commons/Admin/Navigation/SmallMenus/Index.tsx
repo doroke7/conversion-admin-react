@@ -14,7 +14,7 @@ import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
 
-function PrimaryMenus(oProps) {
+function SmallMenus(oProps) {
   let bStatus = oProps.status;
   let aMenus = oProps.menus;
   const oClasses = cStyle();
@@ -89,4 +89,4 @@ function PrimaryMenus(oProps) {
   );
 }
 
-export default PrimaryMenus;
+export default SmallMenus;
