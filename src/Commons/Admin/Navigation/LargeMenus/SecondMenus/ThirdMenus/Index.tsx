@@ -49,24 +49,22 @@ function ThirdMenus(oProps: any) {
 
   return (
     <Popper open={bOpen} anchorEl={oAnchor} role={undefined} placement={'right-start'}>
-      {
-        <Grow in={true} style={{ transformOrigin: 'left top' }}>
-          <Paper className={oClasses.papper}>
-            <ClickAwayListener onClickAway={cOnClickAway}>
-              <MenuList autoFocusItem={bOpen} id="menu-list-grow">
-                {aMenus.map((oMenu: any, iIndex: any) => (
-                  <MenuItem key={oMenu.id} onClick={cOnClick(oMenu)}>
-                    <ListItemIcon className={oClasses.listItemIcon}>
-                      <Components.Admin.Icon name={oMenu.icon} />
-                    </ListItemIcon>
-                    <ListItemText primary={oMenu.text} />
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </ClickAwayListener>
-          </Paper>
-        </Grow>
-      }
+      <Grow in={true} style={{ transformOrigin: 'left top' }}>
+        <Paper className={oClasses.papper}>
+          <ClickAwayListener onClickAway={cOnClickAway}>
+            <MenuList autoFocusItem={bOpen} id="menu-list-grow">
+              {aMenus.map((oMenu: any, iIndex: any) => (
+                <MenuItem key={oMenu.id} onClick={cOnClick(oMenu)}>
+                  <ListItemIcon className={oClasses.listItemIcon}>
+                    <Components.Admin.Icon name={oMenu.icon} />
+                  </ListItemIcon>
+                  <ListItemText primary={oMenu.text} />
+                </MenuItem>
+              ))}
+            </MenuList>
+          </ClickAwayListener>
+        </Paper>
+      </Grow>
     </Popper>
   );
 }
