@@ -10,9 +10,9 @@ import Popover from '@material-ui/core/Popover';
 import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
+import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
-import console from 'console';
 
 function PrimaryMenus(oProps) {
   let bStatus = oProps.status;
@@ -77,23 +77,11 @@ function PrimaryMenus(oProps) {
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
             </ListItemIcon>
-            <Popover
-              id="mouse-over-popover"
-              className={oClasses.popover}
-              open={Boolean(oState.anchors[oMenu.id])}
-              anchorEl={oState.anchors[oMenu.id]}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left'
-              }}
-              onClose={cHandlePopoverClose}
-              disableRestoreFocus>
-              AAA
-            </Popover>
+            <SecondMenus
+              open={oState.menus[oMenu.id] !== undefined}
+              menus={oMenu.menus}
+              anchor={oState.anchors[oMenu.id]}
+              index={iIndex}></SecondMenus>
           </ListItem>
         </>
       ))}

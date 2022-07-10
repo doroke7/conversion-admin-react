@@ -28,18 +28,17 @@ function SecondMenus(oProps: any) {
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
 
-  let cOnClick = (oThirdMenu: any) => {
+  let cOnClick = (oSecondMenu: any) => {
     return (oEvent: any) => {
-      let oQuery = {};
-      let oOption = {
-        limit: 10,
-        page: 1,
-        app_id: 1
-      };
-
-      if (oThirdMenu.path !== undefined && oThirdMenu.menus === undefined) {
-        Helpers.History.push(oHistory, oThirdMenu.path, oQuery, oOption);
-      }
+      // let oQuery = {};
+      // let oOption = {
+      //   limit: 10,
+      //   page: 1,
+      //   app_id: 1
+      // };
+      // if (oSecondMenu.path !== undefined && oSecondMenu.menus === undefined) {
+      //   Helpers.History.push(oHistory, oSecondMenu.path, oQuery, oOption);
+      // }
     };
   };
 
