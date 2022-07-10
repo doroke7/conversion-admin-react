@@ -23,7 +23,7 @@ function ThirdMenus(oProps: any) {
   const oClasses = cStyle();
   let oHistory = useHistory();
 
-  let aMenus = oProps.menus || []; // 二级 menu
+  let aMenus = oProps.menus || [];
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
@@ -38,7 +38,7 @@ function ThirdMenus(oProps: any) {
       };
 
       if (oThirdMenu.path !== undefined && oThirdMenu.menus === undefined) {
-        Helpers.History.push(oHistory, oThirdMenu.path, oQuery, oOption);
+        // Helpers.History.push(oHistory, oThirdMenu.path, oQuery, oOption);
       }
     };
   };

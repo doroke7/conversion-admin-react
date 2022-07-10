@@ -78,7 +78,7 @@ function PrimaryMenus(oProps) {
               <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
             </ListItemIcon>
             <SecondMenus
-              open={oState.menus[oMenu.id] !== undefined}
+              open={oState.anchors[oMenu.id] !== undefined}
               menus={oMenu.menus}
               anchor={oState.anchors[oMenu.id]}
               index={iIndex}></SecondMenus>
