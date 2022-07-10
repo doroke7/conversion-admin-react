@@ -1,8 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey, purple, blue } from '@material-ui/core/colors';
 
-const drawerWidth = 200;
-
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
     appBar: {
@@ -15,8 +13,8 @@ const style = makeStyles((oTheme: Theme) =>
       })
     },
     appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: oTheme.spacing(25),
+      width: `calc(100% - ${oTheme.spacing(25)}px)`,
       transition: oTheme.transitions.create(['width', 'margin'], {
         easing: oTheme.transitions.easing.sharp,
         duration: oTheme.transitions.duration.enteringScreen
