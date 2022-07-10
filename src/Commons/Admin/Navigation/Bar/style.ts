@@ -29,7 +29,7 @@ const style = makeStyles((oTheme: Theme) =>
     },
     iconButton: {
       marginRight: 0,
-      padding: oTheme.spacing(1) + 2
+      padding: oTheme.spacing(2)
     },
     typography: {
       paddingLeft: oTheme.spacing(2),
