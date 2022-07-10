@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
-import Menus from './Menus/Index';
+import PrimaryMenus from './PrimaryMenus/Index';
 
 import context from '@/contexts';
 import utilities from '@/utilities';
@@ -109,7 +109,7 @@ function Navigation(oProps: any) {
           </IconButton>
         </div>
         <Divider />
-        <Menus />
+        <PrimaryMenus />
         <Divider />
         <List></List>
       </Drawer>

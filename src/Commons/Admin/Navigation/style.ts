@@ -35,9 +35,9 @@ const style = makeStyles((oTheme: Theme) =>
         duration: oTheme.transitions.duration.leavingScreen
       }),
       overflowX: 'hidden',
-      width: oTheme.spacing(7) + 1,
+      width: oTheme.spacing(7),
       [oTheme.breakpoints.up('sm')]: {
-        width: oTheme.spacing(5) + 5 // 一个 8px
+        width: oTheme.spacing(7) // 一个 8px
       }
     },
     toolbar: {

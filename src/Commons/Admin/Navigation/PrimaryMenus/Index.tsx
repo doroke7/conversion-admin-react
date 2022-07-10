@@ -13,7 +13,7 @@ import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
 
-function Menus() {
+function PrimaryMenus() {
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
@@ -56,4 +56,4 @@ function Menus() {
   );
 }
 
-export default Menus;
+export default PrimaryMenus;
