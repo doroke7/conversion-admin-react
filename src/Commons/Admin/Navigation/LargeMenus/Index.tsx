@@ -16,6 +16,8 @@ import cStyle from './style';
 
 function PrimaryMenus(oProps) {
   let bStatus = oProps.status;
+  let aMenus = oProps.menus;
+
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
@@ -43,7 +45,7 @@ function PrimaryMenus(oProps) {
       className={clsx(oClasses.root, {
         [oClasses.rootHidden]: !bStatus
       })}>
-      {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
+      {aMenus.map((oMenu: any, iIndex: any) => (
         <>
           <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>

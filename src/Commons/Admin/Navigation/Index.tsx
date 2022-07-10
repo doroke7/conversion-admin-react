@@ -13,8 +13,8 @@ import Paper from '@material-ui/core/Paper';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
-import PrimaryMenus from './PrimaryMenus/Index';
-import SecondaryMenus from './SecondaryMenus/Index';
+import LargeMenus from './LargeMenus/Index';
+import SmallMenus from './SmallMenus/Index';
 
 import context from '@/contexts';
 import utilities from '@/utilities';
@@ -111,8 +111,8 @@ function Navigation(oProps: any) {
           </IconButton>
         </div>
         <Divider />
-        <PrimaryMenus status={oState.open} />
-        <SecondaryMenus status={!oState.open} />
+        <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
+        <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
         <Divider />
         <List></List>
       </Drawer>

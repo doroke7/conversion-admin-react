@@ -16,6 +16,7 @@ import console from 'console';
 
 function PrimaryMenus(oProps) {
   let bStatus = oProps.status;
+  let aMenus = oProps.menus;
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
