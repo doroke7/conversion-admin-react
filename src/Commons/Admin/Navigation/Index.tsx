@@ -106,6 +106,7 @@ function Navigation(oProps: any) {
           <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
           <IconButton className={oClasses.iconButton} onClick={handleDrawerClose}>
             <DoubleArrowIcon></DoubleArrowIcon>
+            {/* 点击右边的 App-Icon */}
           </IconButton>
         </div>
         <Divider />

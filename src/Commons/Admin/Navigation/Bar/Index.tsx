@@ -45,6 +45,7 @@ function Bar(oProps: any) {
           })}>
           <MenuIcon />
         </IconButton>
+        {/* 点击右边的 App-Icon */}
         <Typography variant="h6" noWrap className={clsx(oClasses.typography)}></Typography>
         <FormControl variant="outlined" className={oClasses.formControl}>
           <Select
