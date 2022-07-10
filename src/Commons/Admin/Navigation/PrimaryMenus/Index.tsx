@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -13,7 +14,8 @@ import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
 
-function PrimaryMenus() {
+function PrimaryMenus(oProps) {
+  let bStatus = oProps.status;
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
@@ -35,7 +37,12 @@ function PrimaryMenus() {
   };
 
   return (
-    <List component="nav" aria-labelledby="nested-list-subheader" className={oClasses.root}>
+    <List
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      className={clsx(oClasses.root, {
+        [oClasses.rootHidden]: !bStatus
+      })}>
       {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
         <>
           <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>

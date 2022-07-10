@@ -1,8 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey, deepOrange, deepPurple } from '@material-ui/core/colors';
 
-const drawerWidth = 200;
-
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
@@ -13,17 +11,17 @@ const style = makeStyles((oTheme: Theme) =>
       display: 'none'
     },
     drawer: {
-      width: drawerWidth,
-      background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)',
+      width: oTheme.spacing(25),
       flexShrink: 0,
       whiteSpace: 'nowrap',
+      background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)',
       boxShadow: '0 8px 25px 4px rgb(33 203 243 / 60%)'
     },
     drawerPaper: {
       background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)'
     },
     drawerOpen: {
-      width: drawerWidth,
+      width: oTheme.spacing(25),
       transition: oTheme.transitions.create('width', {
         easing: oTheme.transitions.easing.sharp,
         duration: oTheme.transitions.duration.enteringScreen

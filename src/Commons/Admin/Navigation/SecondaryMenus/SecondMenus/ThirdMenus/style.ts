@@ -1,22 +1,17 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey } from '@material-ui/core/colors';
 
+const drawerWidth = 200;
+
 const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      color: grey[100]
-    },
-    rootHidden: {
-      display: 'none'
-    },
     listItemIcon: {
-      minWidth: oTheme.spacing(4),
+      minWidth: '32px',
       color: grey[100]
     },
-    listItem: {
-      height: oTheme.spacing(6)
+    papper: {
+      color: grey[100],
+      background: 'linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))'
     }
   })
 );

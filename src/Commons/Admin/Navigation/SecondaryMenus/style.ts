@@ -17,6 +17,12 @@ const oStyle = makeStyles((oTheme: Theme) =>
     },
     listItem: {
       height: oTheme.spacing(6)
+    },
+    popover: {
+      pointerEvents: 'none'
+      /**
+       * Title： 非常重要的 CSS 属性， 代表 弹跳 区域 能被滑鼠 穿透，进而 使用 mouseEnter, mouseLeave 等交互
+       */
     }
   })
 );
