@@ -67,7 +67,7 @@ function PrimaryMenus(oProps) {
       className={clsx(oClasses.root, {
         [oClasses.rootHidden]: !bStatus
       })}>
-      {CONFIGS.MENUS.map((oMenu: any, iIndex: any) => (
+      {aMenus.map((oMenu: any, iIndex: any) => (
         <>
           <ListItem
             className={oClasses.listItem}
