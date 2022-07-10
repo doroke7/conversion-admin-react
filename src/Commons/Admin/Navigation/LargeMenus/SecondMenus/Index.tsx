@@ -23,7 +23,6 @@ function SecondMenus(oProps: any) {
   let aMenus = oProps.menus;
 
   let [oState, cSetState] = React.useState<any>({
-    open: false,
     anchor: null,
     menus: {}
   });

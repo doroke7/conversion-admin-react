@@ -21,7 +21,6 @@ function LargeMenus(oProps) {
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
-    open: true,
     menus: {}
   });
 
