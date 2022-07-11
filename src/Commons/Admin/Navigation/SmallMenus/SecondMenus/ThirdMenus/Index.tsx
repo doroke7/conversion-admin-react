@@ -12,7 +12,6 @@ import Helpers from '@/Helpers';
 
 import Components from '@/Components';
 
-
 import cStyle from './style';
 
 function SecondMenus(oProps: any) {
@@ -25,7 +24,7 @@ function SecondMenus(oProps: any) {
     anchors: {}
   });
 
-  let cHandleToggle = (oMenu: any) => {
+  let cHandleClick = (oMenu: any) => {
     return (oEvent: any) => {
       let oAnchor = oEvent.currentTarget;
       let oAnchors = {
@@ -68,7 +67,7 @@ function SecondMenus(oProps: any) {
             className={oClasses.nested}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleToggle(oMenu)}>
+            onClick={cHandleClick(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Admin.Icon name={oMenu.icon} />
             </ListItemIcon>
