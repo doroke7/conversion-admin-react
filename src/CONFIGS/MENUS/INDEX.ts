@@ -47,7 +47,7 @@ let MENUS: any = [
   },
   {
     id: 5,
-    text: '资源管理',
+    text: '视频管理',
     description: '资源管理',
     path: '/admin/vod/index',
     icon: 'MovieCreationOutlinedIcon',
@@ -61,8 +61,8 @@ let MENUS: any = [
       },
       {
         id: 52,
-        text: '视频域名列表',
-        description: '视频域名列表',
+        text: '域名列表',
+        description: '域名列表',
         path: '/admin/resource/domain-name/index',
         icon: 'CloudDoneOutlinedIcon'
       }
