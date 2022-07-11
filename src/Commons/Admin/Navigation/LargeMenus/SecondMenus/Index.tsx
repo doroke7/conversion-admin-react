@@ -23,17 +23,16 @@ function SecondMenus(oProps: any) {
   let aMenus = oProps.menus;
 
   let [oState, cSetState] = React.useState<any>({
-    anchor: null,
-    menus: {}
+    anchors: {}
   });
 
   let cHandleToggle = (oMenu: any) => {
     return (oEvent: any) => {
-      let oMenus = {
-        [oMenu.id]: true
-      };
       let oAnchor = oEvent.currentTarget;
-      cSetState({ ...oState, menus: oMenus, anchor: oAnchor });
+      let oAnchors = {
+        [oMenu.id]: oAnchor
+      };
+      cSetState({ ...oState, anchors: oAnchors });
 
       let oQuery = {};
       let oOption = {
@@ -55,8 +54,8 @@ function SecondMenus(oProps: any) {
     if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
       return;
     }
-    let oMenus = {};
-    cSetState({ ...oState, menus: oMenus });
+    let oAnchors = {};
+    cSetState({ ...oState, anchors: oAnchors });
   };
 
   return (
@@ -78,10 +77,10 @@ function SecondMenus(oProps: any) {
             {oMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
             {oMenu.menus !== undefined ? (
               <ThirdMenus
-                open={oState.menus[oMenu.id] !== undefined}
+                open={oState.anchors[oMenu.id] !== undefined}
                 menus={oMenu.menus}
                 index={iSecondIndex}
-                anchor={oState.anchor}
+                anchor={oState.anchors[oMenu.id]}
                 onClickAway={cHandleClose}></ThirdMenus>
             ) : (
               ''
