@@ -12,7 +12,6 @@ import Helpers from '@/Helpers';
 
 import Components from '@/Components';
 
-import ThirdMenus from './ThirdMenus/Index';
 
 import cStyle from './style';
 
@@ -23,18 +22,16 @@ function SecondMenus(oProps: any) {
   let aMenus = oProps.menus;
 
   let [oState, cSetState] = React.useState<any>({
-    open: false,
-    anchor: null,
-    menus: {}
+    anchors: {}
   });
 
-  let cHandleToggle = (oSecondMenu: any) => {
+  let cHandleToggle = (oMenu: any) => {
     return (oEvent: any) => {
-      let oMenus = {
-        [oSecondMenu.id]: true
-      };
       let oAnchor = oEvent.currentTarget;
-      cSetState({ ...oState, menus: oMenus, anchor: oAnchor });
+      let oAnchors = {
+        [oMenu.id]: oAnchor
+      };
+      cSetState({ ...oState, anchors: oAnchors });
 
       let oQuery = {};
       let oOption = {
@@ -43,8 +40,8 @@ function SecondMenus(oProps: any) {
         app_id: 1
       };
 
-      if (oSecondMenu.path !== undefined && oSecondMenu.menus === undefined) {
-        Helpers.History.push(oHistory, oSecondMenu.path, oQuery, oOption);
+      if (oMenu.path !== undefined && oMenu.menus === undefined) {
+        Helpers.History.push(oHistory, oMenu.path, oQuery, oOption);
       }
     };
   };
@@ -56,37 +53,26 @@ function SecondMenus(oProps: any) {
     if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
       return;
     }
-    let oMenus = {};
-    cSetState({ ...oState, menus: oMenus });
+    let oAnchors = {};
+    cSetState({ ...oState, anchors: oAnchors });
   };
 
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        {aMenus.map((oSecondMenu: any, iSecondIndex: any) => (
+        {aMenus.map((oMenu: any, iSecondIndex: any) => (
           // NOTE： 解决 多个 refs 办法 一： 宣告多一个子 child compoment , 此 compoent 有独立的 ref varible
           <ListItem
             button
-            key={oSecondMenu.id}
+            key={oMenu.id}
             className={oClasses.nested}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleToggle(oSecondMenu)}>
+            onClick={cHandleToggle(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={oSecondMenu.icon} />
+              <Components.Admin.Icon name={oMenu.icon} />
             </ListItemIcon>
-            <ListItemText primary={oSecondMenu.text} />
-            {oSecondMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
-            {oSecondMenu.menus !== undefined ? (
-              <ThirdMenus
-                open={oState.menus[oSecondMenu.id] !== undefined}
-                menus={oSecondMenu.menus}
-                index={iSecondIndex}
-                anchor={oState.anchor}
-                onClickAway={cHandleClose}></ThirdMenus>
-            ) : (
-              ''
-            )}
+            <ListItemText primary={oMenu.text} />
           </ListItem>
         ))}
       </List>

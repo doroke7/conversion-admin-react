@@ -47,15 +47,12 @@ function SmallMenus(oProps) {
     };
   };
 
-  const cHandlePopoverClose = (oMenu) => {
-    return (oEvent) => {
-      let oAnchors = {};
-
-      oAnchors = {
-        [oMenu.id]: null
-      };
-      cSetState({ ...oState, anchors: oAnchors });
-    };
+  let cHandleClose = (oEvent: any) => {
+    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
+      return;
+    }
+    let oAnchors = {};
+    cSetState({ ...oState, anchors: oAnchors });
   };
 
   return (
@@ -79,7 +76,8 @@ function SmallMenus(oProps) {
               open={oState.anchors[oMenu.id] !== undefined}
               menus={oMenu.menus}
               anchor={oState.anchors[oMenu.id]}
-              index={iIndex}></SecondMenus>
+              index={iIndex}
+              onClickAway={cHandleClose}></SecondMenus>
           </ListItem>
         </>
       ))}
