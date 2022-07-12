@@ -17,6 +17,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
+import Links from './Links/Index';
 
 import style from './style';
 
@@ -48,15 +49,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <span>
-          <ListItemIcon className={''}>
-            <Components.Admin.Icon name="AssignmentIndOutlinedIcon" />
-          </ListItemIcon>
-          <ListItemIcon className={''}>
-            <Components.Admin.Icon name="AssignmentIndOutlinedIcon" />
-          </ListItemIcon>
-        </span>
-
+        <Links></Links>
         <FormControl variant="outlined" className={oClasses.formControl}>
           <Select
             displayEmpty
