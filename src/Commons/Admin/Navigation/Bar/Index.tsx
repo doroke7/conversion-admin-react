@@ -11,8 +11,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 import Avatar from '@material-ui/core/Avatar';
+import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -46,7 +48,15 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <Typography variant="h6" noWrap className={clsx(oClasses.typography)}></Typography>
+        <span>
+          <ListItemIcon className={''}>
+            <Components.Admin.Icon name="AssignmentIndOutlinedIcon" />
+          </ListItemIcon>
+          <ListItemIcon className={''}>
+            <Components.Admin.Icon name="AssignmentIndOutlinedIcon" />
+          </ListItemIcon>
+        </span>
+
         <FormControl variant="outlined" className={oClasses.formControl}>
           <Select
             displayEmpty
