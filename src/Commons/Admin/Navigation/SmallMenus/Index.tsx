@@ -40,9 +40,6 @@ function SmallMenus(oProps) {
     return (oEvent) => {
       let oAnchors = {};
 
-      oAnchors = {
-        [oMenu.id]: null
-      };
       cSetState({ ...oState, anchors: oAnchors });
     };
   };
@@ -77,7 +74,8 @@ function SmallMenus(oProps) {
               menus={oMenu.menus}
               anchor={oState.anchors[oMenu.id]}
               index={iIndex}
-              onClickAway={cHandleClose}></SecondMenus>
+              onClickAway={cHandleClose}
+              onMouseLeave={cHandleMouseLeave(oMenu)}></SecondMenus>
           </ListItem>
         </>
       ))}

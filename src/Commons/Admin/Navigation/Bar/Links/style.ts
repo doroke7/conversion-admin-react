@@ -3,8 +3,12 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
+    root: {
+      marginLeft: oTheme.spacing(2)
+    },
     listItemIcon: {
-      color: grey[100]
+      color: grey[100],
+      minWidth: oTheme.spacing(5)
     }
   })
 );

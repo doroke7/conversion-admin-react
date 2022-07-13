@@ -8,8 +8,8 @@ let LINKS: any = [
   },
   {
     id: 12,
-    text: '会员订单列表',
-    description: '会员订单列表',
+    text: '订单列表',
+    description: '订单列表',
     path: '/admin/resource/order-info/index',
     icon: 'PlaylistAddCheckOutlinedIcon'
   },

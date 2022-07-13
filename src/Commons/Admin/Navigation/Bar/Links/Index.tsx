@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Components from '@/Components';
 
@@ -10,13 +11,14 @@ function Links(oProps: any) {
   let aLinks = oProps.links;
 
   return (
-    <span>
-      <ListItemIcon className={oClasses.listItemIcon}>
-        <Components.Admin.Icon name="AssignmentIndOutlinedIcon" />
-      </ListItemIcon>
-      <ListItemIcon className={oClasses.listItemIcon}>
-        <Components.Admin.Icon name="AssignmentIndOutlinedIcon" />
-      </ListItemIcon>
+    <span className={oClasses.root}>
+      {aLinks.map((oLink, sIndex) => (
+        <Tooltip title={oLink.text} arrow>
+          <ListItemIcon key={sIndex} className={oClasses.listItemIcon}>
+            <Components.Admin.Icon name={oLink.icon} />
+          </ListItemIcon>
+        </Tooltip>
+      ))}
     </span>
   );
 }
