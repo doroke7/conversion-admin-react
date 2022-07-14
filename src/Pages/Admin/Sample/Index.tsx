@@ -22,7 +22,6 @@ const useRootStyles = makeStyles((oTheme: Theme) =>
         color: '#44b700',
         boxShadow: `0 0 0 2px ${oTheme.palette.background.paper}`,
         '&::after': {
-          position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
