@@ -4,6 +4,8 @@ import Sample from './Sample/Index';
 import Sample1 from './Sample1/Index';
 import Sample2 from './Sample2/Index';
 import Sample3 from './Sample3/Index';
+import SampleBadge from './SampleBadge/Index';
+import SampleTab from './SampleTab/Index';
 
 import _ from './_/Index';
 
@@ -14,5 +16,7 @@ export default {
   Sample1,
   Sample2,
   Sample3,
+  SampleBadge,
+  SampleTab,
   _
 };
