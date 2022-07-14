@@ -34,7 +34,7 @@ const StyledBadge = withStyles((theme: Theme) =>
   })
 )(Badge);
 
-const SmallAvatar = withStyles((theme: Theme) =>
+const useAvatarStyle = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 22,
@@ -42,7 +42,7 @@ const SmallAvatar = withStyles((theme: Theme) =>
       border: `2px solid ${theme.palette.background.paper}`
     }
   })
-)(Avatar);
+);
 
 const useRootStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,7 +57,7 @@ const useRootStyles = makeStyles((theme: Theme) =>
 
 export default function BadgeAvatars() {
   const oClasses = useRootStyles();
-
+  const oClassAvatar = useAvatarStyle();
   return (
     <div className={oClasses.root}>
       <StyledBadge
@@ -75,7 +75,7 @@ export default function BadgeAvatars() {
           vertical: 'bottom',
           horizontal: 'right'
         }}
-        badgeContent={<SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />}>
+        badgeContent={<Avatar className={oClassAvatar.root} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />}>
         <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       </Badge>
     </div>
