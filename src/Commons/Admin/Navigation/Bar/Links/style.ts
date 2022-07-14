@@ -6,6 +6,9 @@ const style = makeStyles((oTheme: Theme) =>
     root: {
       marginLeft: oTheme.spacing(2)
     },
+    toolTip: {
+      cursor: 'pointer'
+    },
     listItemIcon: {
       color: grey[100],
       minWidth: oTheme.spacing(5)

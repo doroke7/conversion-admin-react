@@ -13,7 +13,7 @@ function Links(oProps: any) {
   return (
     <span className={oClasses.root}>
       {aLinks.map((oLink, sIndex) => (
-        <Tooltip title={oLink.text} arrow>
+        <Tooltip className={oClasses.toolTip} title={oLink.text} arrow>
           <ListItemIcon key={sIndex} className={oClasses.listItemIcon}>
             <Components.Admin.Icon name={oLink.icon} />
           </ListItemIcon>
