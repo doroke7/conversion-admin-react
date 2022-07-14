@@ -44,7 +44,7 @@ const SmallAvatar = withStyles((theme: Theme) =>
   })
 )(Avatar);
 
-const useStyles = makeStyles((theme: Theme) =>
+const useRootStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function BadgeAvatars() {
-  const oClasses = useStyles();
+  const oClasses = useRootStyles();
 
   return (
     <div className={oClasses.root}>
