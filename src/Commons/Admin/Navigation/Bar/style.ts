@@ -39,7 +39,7 @@ const style = makeStyles((oTheme: Theme) =>
       margin: 0,
       minWidth: 100,
       position: 'absolute',
-      right: oTheme.spacing(8),
+      right: oTheme.spacing(9),
       '& .MuiSvgIcon-root': {
         color: 'white'
       }
@@ -59,10 +59,38 @@ const style = makeStyles((oTheme: Theme) =>
     hide: {
       display: 'none'
     },
-    avatar: {
+    avatarWrapper: {
       position: 'absolute',
       right: oTheme.spacing(2),
       cursor: 'pointer'
+    },
+    badge: {
+      '& .MuiBadge-badge': {
+        backgroundColor: '#44b700',
+        color: '#44b700',
+        boxShadow: `0 0 0 2px ${oTheme.palette.background.paper}`,
+        '&::after': {
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          borderRadius: '50%',
+          animation: '$ripple 1.2s infinite ease-in-out',
+          border: '1px solid currentColor',
+          content: '""'
+        }
+      }
+    },
+
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0
+      }
     }
   })
 );

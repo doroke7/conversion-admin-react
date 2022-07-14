@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Badge from '@material-ui/core/Badge';
 
 import Avatar from '@material-ui/core/Avatar';
 import Components from '@/Components';
@@ -73,7 +74,18 @@ function Bar(oProps: any) {
             </MenuItem>
           </Select>
         </FormControl>
-        <Avatar src={administrator} className={oClasses.avatar}></Avatar>
+        <div className={oClasses.avatarWrapper}>
+          <Badge
+            overlap="circular"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right'
+            }}
+            className={oClasses.badge}
+            variant="dot">
+            <Avatar src={administrator}></Avatar>
+          </Badge>
+        </div>
       </Toolbar>
     </AppBar>
   );
