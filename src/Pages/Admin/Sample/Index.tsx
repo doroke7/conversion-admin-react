@@ -34,22 +34,22 @@ const StyledBadge = withStyles((theme: Theme) =>
   })
 )(Badge);
 
-const useAvatarStyle = makeStyles((theme: Theme) =>
+const useAvatarStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       width: 22,
       height: 22,
-      border: `2px solid ${theme.palette.background.paper}`
+      border: `2px solid ${oTheme.palette.background.paper}`
     }
   })
 );
 
-const useRootStyles = makeStyles((theme: Theme) =>
+const useRootStyles = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
       '& > *': {
-        margin: theme.spacing(1)
+        margin: oTheme.spacing(1)
       }
     }
   })
