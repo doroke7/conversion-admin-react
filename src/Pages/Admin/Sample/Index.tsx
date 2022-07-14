@@ -56,10 +56,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function BadgeAvatars() {
-  const classes = useStyles();
+  const oClasses = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={oClasses.root}>
       <StyledBadge
         overlap="circular"
         anchorOrigin={{
