@@ -66,36 +66,16 @@ function ScrollableTabsButtonAuto() {
           variant="scrollable"
           scrollButtons="auto"
           aria-label="scrollable auto tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <Tab label="Item Five" {...a11yProps(4)} />
-          <Tab label="Item Six" {...a11yProps(5)} />
-          <Tab label="Item Seven" {...a11yProps(6)} />
+          {aTabs.map((sTab, sIndex) => (
+            <Tab key={sIndex} label={sTab} {...a11yProps(sIndex)} />
+          ))}
         </Tabs>
       </AppBar>
-      <TabPanel value={iValue} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={iValue} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={iValue} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={iValue} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={iValue} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={iValue} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={iValue} index={6}>
-        Item Seven
-      </TabPanel>
+      {aTabs.map((sTab, sIndex) => (
+        <TabPanel key={sIndex} value={iValue} index={sIndex}>
+          {'内容:' + sTab}
+        </TabPanel>
+      ))}
     </div>
   );
 }
