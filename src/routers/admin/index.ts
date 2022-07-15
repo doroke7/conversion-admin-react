@@ -45,8 +45,8 @@ let aRoutes2 = [
     exact: true
   },
   {
-    path: '/admin/sample-tab',
-    component: Admin.SampleTab,
+    path: '/admin/sample-tabs',
+    component: Admin.SampleTabs,
     exact: true
   }
 ];
