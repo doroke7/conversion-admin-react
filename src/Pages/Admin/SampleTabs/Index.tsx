@@ -47,7 +47,7 @@ const cUseStyles = makeStyles((oTheme: Theme) => ({
   },
   tab: {
     position: 'relative',
-    paddingRight: oTheme.spacing(4),
+    paddingRight: oTheme.spacing(3),
     '&:hover': {
       '& .MuiIconButton-root': {
         opacity: 1
@@ -57,8 +57,8 @@ const cUseStyles = makeStyles((oTheme: Theme) => ({
   iconButton: {
     position: 'absolute',
     right: oTheme.spacing(0),
-    top: '50%',
-    transform: 'translate(0%, -50%) scale(0.8)',
+    top: '0',
+    transform: 'translate(0%, 0%) scale(0.8)',
     color: grey[400],
     opacity: 0
   }
