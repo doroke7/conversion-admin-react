@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { grey } from '@material-ui/core/colors';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -43,6 +44,23 @@ const cUseStyles = makeStyles((oTheme: Theme) => ({
         minWidth: oTheme.spacing(5)
       }
     }
+  },
+  tab: {
+    position: 'relative',
+    paddingRight: oTheme.spacing(4),
+    '&:hover': {
+      '& .MuiIconButton-root': {
+        opacity: 1
+      }
+    }
+  },
+  iconButton: {
+    position: 'absolute',
+    right: oTheme.spacing(0),
+    top: '50%',
+    transform: 'translate(0%, -50%) scale(0.8)',
+    color: grey[400],
+    opacity: 0
   }
 }));
 
@@ -73,14 +91,13 @@ function ScrollableTabsButtonAuto() {
           aria-label="scrollable auto tabs example">
           {aTabs.map((sTab, sIndex) => (
             <Tab
+              className={oClasses.tab}
               key={sIndex}
               label={
                 <span>
-                  {' '}
-                  {sTab}{' '}
-                  <IconButton size="small" onClick={cHandleTab(sIndex)}>
-                    {' '}
-                    <CloseIcon />{' '}
+                  {sTab}
+                  <IconButton className={oClasses.iconButton} size="small" onClick={cHandleTab(sIndex)}>
+                    <CloseIcon />
                   </IconButton>
                 </span>
               }

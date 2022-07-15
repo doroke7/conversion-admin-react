@@ -3,11 +3,18 @@ import { lightBlue, blue, blueGrey } from '@material-ui/core/colors';
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    formControl: {
-      minWidth: oTheme.spacing(15)
+    tab: {
+      position: 'relative'
     },
-    selectEmpty: {
-      marginTop: oTheme.spacing(4)
+    iconButton: {
+      position: 'absolute',
+      right: oTheme.spacing(1),
+      top: '50%',
+      transform: 'translate(-50%, 0%)',
+      opacity: 0,
+      '&:hover': {
+        opacity: 1
+      }
     }
   })
 );
