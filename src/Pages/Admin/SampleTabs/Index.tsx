@@ -31,13 +31,6 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: any) {
-  return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`
-  };
-}
-
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
@@ -67,7 +60,12 @@ function ScrollableTabsButtonAuto() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example">
           {aTabs.map((sTab, sIndex) => (
-            <Tab key={sIndex} label={sTab} {...a11yProps(sIndex)} />
+            <Tab
+              key={sIndex}
+              label={sTab}
+              id={'scrollable-auto-tab-' + sIndex}
+              aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
+            />
           ))}
         </Tabs>
       </AppBar>
