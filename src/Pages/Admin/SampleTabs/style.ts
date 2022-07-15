@@ -4,12 +4,11 @@ import { lightBlue, blue, blueGrey } from '@material-ui/core/colors';
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     formControl: {
-      minWidth: 120
+      minWidth: oTheme.spacing(15)
     },
     selectEmpty: {
       marginTop: oTheme.spacing(4)
-    },
-  
+    }
   })
 );
 
