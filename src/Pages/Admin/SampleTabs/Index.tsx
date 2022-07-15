@@ -3,6 +3,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -31,21 +33,31 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const cUseStyles = makeStyles((oTheme: Theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: oTheme.palette.background.paper,
+    '& .MuiTab-root': {
+      [oTheme.breakpoints.up('sm')]: {
+        minWidth: oTheme.spacing(5)
+      }
+    }
   }
 }));
 
 function ScrollableTabsButtonAuto() {
-  const oClasses = useStyles();
+  const oClasses = cUseStyles();
   const [iValue, cSetValue] = React.useState(0);
 
   let aTabs = ['1st', '2nd', '3rd', '4th', '5th', '6th'];
   let cHandleChange = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
     cSetValue(iValue);
+  };
+
+  let cHandleTab = (iValue: number) => {
+    return (oEvent: React.FocusEvent<{}>) => {};
+    // cSetValue(iValue);
   };
 
   return (
@@ -62,7 +74,16 @@ function ScrollableTabsButtonAuto() {
           {aTabs.map((sTab, sIndex) => (
             <Tab
               key={sIndex}
-              label={sTab}
+              label={
+                <span>
+                  {' '}
+                  {sTab}{' '}
+                  <IconButton size="small" onClick={cHandleTab(sIndex)}>
+                    {' '}
+                    <CloseIcon />{' '}
+                  </IconButton>
+                </span>
+              }
               id={'scrollable-auto-tab-' + sIndex}
               aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
             />
