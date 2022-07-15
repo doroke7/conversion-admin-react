@@ -46,20 +46,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export default function ScrollableTabsButtonAuto() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+function ScrollableTabsButtonAuto() {
+  const oClasses = useStyles();
+  const [iValue, cSetValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+  let aTabs = ['1st', '2nd', '3rd', '4th', '5th', '6th'];
+  let cHandleChange = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
+    cSetValue(iValue);
   };
 
   return (
-    <div className={classes.root}>
+    <div className={oClasses.root}>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
-          onChange={handleChange}
+          value={iValue}
+          onChange={cHandleChange}
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
@@ -74,27 +75,29 @@ export default function ScrollableTabsButtonAuto() {
           <Tab label="Item Seven" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={iValue} index={0}>
         Item One
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={iValue} index={1}>
         Item Two
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={iValue} index={2}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={iValue} index={3}>
         Item Four
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel value={iValue} index={4}>
         Item Five
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      <TabPanel value={iValue} index={5}>
         Item Six
       </TabPanel>
-      <TabPanel value={value} index={6}>
+      <TabPanel value={iValue} index={6}>
         Item Seven
       </TabPanel>
     </div>
   );
 }
+
+export default ScrollableTabsButtonAuto;
