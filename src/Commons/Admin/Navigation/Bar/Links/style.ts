@@ -9,7 +9,7 @@ const style = makeStyles((oTheme: Theme) =>
     toolTip: {
       cursor: 'pointer'
     },
-    listItemIcon: {
+    iconButton: {
       position: 'relative',
       color: grey[100],
       minWidth: oTheme.spacing(5),
