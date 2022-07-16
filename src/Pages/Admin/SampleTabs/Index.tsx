@@ -8,6 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { grey } from '@material-ui/core/colors';
+import style from './style';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -34,38 +35,8 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const cUseStyles = makeStyles((oTheme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: oTheme.palette.background.paper,
-    '& .MuiTab-root': {
-      [oTheme.breakpoints.up('sm')]: {
-        minWidth: oTheme.spacing(5)
-      }
-    }
-  },
-  tab: {
-    position: 'relative',
-    paddingRight: oTheme.spacing(3),
-    '&:hover': {
-      '& .MuiIconButton-root': {
-        opacity: 1
-      }
-    }
-  },
-  iconButton: {
-    position: 'absolute',
-    right: oTheme.spacing(0),
-    top: '0',
-    transform: 'translate(0%, 0%) scale(0.8)',
-    color: grey[400],
-    opacity: 0
-  }
-}));
-
 function ScrollableTabsButtonAuto() {
-  const oClasses = cUseStyles();
+  const oClasses: any = style(void 0);
   const [iValue, cSetValue] = React.useState(0);
 
   let aTabs = [
