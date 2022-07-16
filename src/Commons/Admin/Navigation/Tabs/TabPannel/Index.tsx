@@ -13,11 +13,14 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
+  const oClasses: any = style(void 0);
+
   const { children, value, index, ...other } = props;
 
   return (
     <div
       role="tabpanel"
+      className={oClasses.root}
       hidden={value !== index}
       id={`scrollable-auto-tabpanel-${index}`}
       aria-labelledby={`scrollable-auto-tab-${index}`}

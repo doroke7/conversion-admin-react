@@ -4,12 +4,11 @@ import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-
-    },
-
+      position: 'absolute',
+      height: 'calc( 100% - ' + oTheme.spacing(6) + 'px )',
+      width: '100%'
+    }
   })
 );
 
 export default oStyle;
-
-// csq

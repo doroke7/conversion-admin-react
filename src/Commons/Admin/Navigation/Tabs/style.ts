@@ -4,8 +4,11 @@ import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
+      position: 'relative',
       flexGrow: 1,
       width: '100%',
+      minHeight: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
+      maxHeight: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
       backgroundColor: oTheme.palette.background.paper,
       '& .MuiTab-root': {
         [oTheme.breakpoints.up('sm')]: {

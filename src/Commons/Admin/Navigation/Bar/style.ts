@@ -75,7 +75,7 @@ const style = makeStyles((oTheme: Theme) =>
           width: '100%',
           height: '100%',
           borderRadius: '50%',
-          animation: '$ripple 1.2s infinite ease-in-out',
+          animation: '$ripple 1s infinite ease-in-out',
           border: '1px solid currentColor',
           content: '""'
         }
