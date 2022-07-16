@@ -24,6 +24,54 @@
 
 
 
+#  目录结构
+##  一级目录结构
+```files
+.
+├── dist...            前端服务 API 文档放的地方，由 JS 组成。
+├── node_modules...    前端 三方 NPM 组件库，请忽略
+├── public...          Nginx 服务器 指向的 root 处，里面有 404
+├── src...             项目代码主要处
+├── types...           型别档案
+
+
+```
+
+##  二级目录结构
+```files
+.
+├── src                      
+│   ├── actions          Redux-action 定义处
+│   ├── Commons          基本公共组件, 如 Header, Footer
+│   ├── Components       一般公共组件
+│   ├── CONFIGS          共用设定配置
+│   ├── Contexts         共用Context组件
+│   ├── entries          Webpack 打包入口
+│   ├── events           跨组件事件
+│   ├── Helpers          类别形式的公用程序库
+│   ├── HOCs             目前无用
+│   ├── images           jpg, png, gif 资源处
+│   ├── Pages            页面组件
+│   ├── reducers         Redux-reducer 定义处
+│   ├── source           mp3, mp4 资源
+│   ├── store            Redux-store 定义处
+│   ├── styles           基本样式
+│   └── utilities        函数型的自定义函式库
+
+```
+---------------------------------------
+
+##  三级目录结构
+```files
+.
+├── src                      
+│   ├── actions                     Redux-action 定义处(包含 前台,后台,使用)
+│   │   ├── admin                   控制器(后台使用的 API)
+│   │   ├── service                 控制器(前台使用的 API)
+
+
+```
+---------------------------------------
 
 ####  (贰)【后台前端项目】运行与更新相关
 
