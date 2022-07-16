@@ -101,6 +101,7 @@ function ScrollableTabs() {
               label={
                 <span>
                   {oTab.text}
+                  {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
                   <IconButton className={oClasses.iconButton} size="small" onClick={cHandleCloseIcon(sIndex)}>
                     <CloseIcon />
                   </IconButton>

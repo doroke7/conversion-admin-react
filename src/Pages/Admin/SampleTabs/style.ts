@@ -17,6 +17,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'relative',
       paddingRight: oTheme.spacing(6),
       // borderLeft: '1px solid ' + grey[300],
+      cursor: 'pointer',
       '&.Mui-selected': {
         background: grey[50] + ' ' + '!important'
       },
