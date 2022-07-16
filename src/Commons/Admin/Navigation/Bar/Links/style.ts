@@ -1,21 +1,34 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, grey, indigo, blue } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      marginLeft: oTheme.spacing(2)
+      marginLeft: oTheme.spacing(0)
     },
     toolTip: {
       cursor: 'pointer'
     },
     listItemIcon: {
+      position: 'relative',
       color: grey[100],
-      minWidth: oTheme.spacing(3),
-      HeightWidth: oTheme.spacing(3),
-      marginRight: oTheme.spacing(2)
+      minWidth: oTheme.spacing(5),
+      minHeight: oTheme.spacing(5),
+      marginRight: oTheme.spacing(0),
+      borderRadius: '50%',
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: 'rgba(0, 0, 0, 0.12)'
+      }
     },
-    icon: {}
+    icon: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate( -50%, -50%)',
+      minWidth: oTheme.spacing(3),
+      minHeight: oTheme.spacing(3)
+    }
   })
 );
 
