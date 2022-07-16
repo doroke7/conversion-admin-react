@@ -26,21 +26,11 @@ function SecondMenus(oProps: any) {
     anchors: {}
   });
 
-  let cHandleMouseEnter = (oMenu: any) => {
+  let cHandleToggle = (oMenu: any) => {
     return (oEvent: any) => {
       let oAnchor = oEvent.currentTarget;
       let oAnchors = {
-        [oMenu.id]: oAnchor
-      };
-      cSetState({ ...oState, anchors: oAnchors });
-    };
-  };
-
-  let cHandleMouseLeave = (oMenu: any) => {
-    return (oEvent: any) => {
-      let oAnchor = oEvent.currentTarget;
-      let oAnchors = {
-        [oMenu.id]: null
+        [oMenu.id]: oState.anchors[oMenu.id] == null ? oAnchor : null
       };
       cSetState({ ...oState, anchors: oAnchors });
     };
@@ -68,8 +58,7 @@ function SecondMenus(oProps: any) {
             className={oClasses.nested}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onMouseEnter={cHandleMouseEnter(oMenu)}
-            onMouseLeave={cHandleMouseLeave(oMenu)}>
+            onClick={cHandleToggle(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Admin.Icon name={oMenu.icon} />
             </ListItemIcon>
