@@ -28,9 +28,17 @@ let oStyle = makeStyles((oTheme: Theme) =>
       '&:hover': {
         background: grey[200],
         '& .MuiIconButton-root': {
-          opacity: 1,
-          borderRadius: '20%'
+          opacity: 1
         }
+      },
+      '& .MuiIconButton-root': {
+        opacity: 0,
+        borderRadius: '20%',
+        position: 'absolute',
+        right: oTheme.spacing(0.5),
+        top: '50%',
+        transform: 'translate(0%, -50%) scale(0.8)',
+        color: grey[400]
       }
     },
     listItemIcon: {
@@ -41,14 +49,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
     listITemText: {
       verticalAlign: 'middle'
     },
-    iconButton: {
-      position: 'absolute',
-      right: oTheme.spacing(0.5),
-      top: '50%',
-      transform: 'translate(0%, -50%) scale(0.8)',
-      color: grey[400],
-      opacity: 0
-    }
+    iconButton: {}
   })
 );
 
