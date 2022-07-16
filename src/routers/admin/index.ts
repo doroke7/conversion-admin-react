@@ -48,6 +48,11 @@ let aRoutes2 = [
     path: '/admin/sample-tabs',
     component: Admin.SampleTabs,
     exact: true
+  },
+  {
+    path: '/admin/sample-context',
+    component: Admin.SampleTabs,
+    exact: true
   }
 ];
 aRoutes1 = CONFIGS.APP.ENV.toUpperCase() == 'MASTER' ? aRoutes1 : aRoutes1.concat(aRoutes2);
