@@ -45,16 +45,16 @@
 │   ├── Commons          基本公共组件, 如 Header, Footer
 │   ├── Components       一般公共组件
 │   ├── CONFIGS          共用设定配置
-│   ├── Contexts         共用Context组件
+│   ├── Contexts         共用Context组件, 能处理复杂的共用数据
 │   ├── entries          Webpack 打包入口
-│   ├── events           跨组件事件
+│   ├── events           跨组件事件, 能处理简单的共用数据
 │   ├── Helpers          类别形式的公用程序库
 │   ├── HOCs             目前无用
 │   ├── images           jpg, png, gif 资源处
 │   ├── Pages            页面组件
 │   ├── reducers         Redux-reducer 定义处
 │   ├── source           mp3, mp4 资源
-│   ├── store            Redux-store 定义处
+│   ├── store            Redux-store 定义处, 能处理API来的共用数据
 │   ├── styles           基本样式
 │   └── utilities        函数型的自定义函式库
 
