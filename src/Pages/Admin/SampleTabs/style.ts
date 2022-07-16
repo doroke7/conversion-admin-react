@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { lightBlue, blue, blueGrey, grey } from '@material-ui/core/colors';
+import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '@material-ui/core/colors';
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
@@ -19,7 +19,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       // borderLeft: '1px solid ' + grey[300],
       cursor: 'pointer',
       '&.Mui-selected': {
-        background: grey[50] + ' ' + '!important'
+        background: grey[50] + ' ' + '!important',
+        fontWeight: 900,
+        '& .MuiListItemIcon-root': {
+          color: indigo[500] // indigo[500] 与 Tab 下方底线相同
+        }
       },
       '&:hover': {
         background: grey[200],
@@ -28,6 +32,14 @@ let oStyle = makeStyles((oTheme: Theme) =>
           borderRadius: '20%'
         }
       }
+    },
+    listItemIcon: {
+      minWidth: oTheme.spacing(3),
+      marginRight: oTheme.spacing(1),
+      verticalAlign: 'middle'
+    },
+    listITemText: {
+      verticalAlign: 'middle'
     },
     iconButton: {
       position: 'absolute',

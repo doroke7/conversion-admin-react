@@ -22,8 +22,8 @@ let LINKS: any = [
   },
   {
     id: 51,
-    text: '视频列表',
-    description: '视频列表',
+    text: '剧集列表',
+    description: '剧集列表',
     path: '/admin/resource/vod/index',
     icon: 'VideocamOutlinedIcon'
   },

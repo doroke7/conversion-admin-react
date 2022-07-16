@@ -1,15 +1,16 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { grey } from '@material-ui/core/colors';
+import Components from '@/Components';
 import style from './style';
-import { JSONparse } from '@/utilities';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -40,23 +41,23 @@ function ScrollableTabs() {
   let aTabsRows = [
     {
       text: '会员列表',
-      icon: 'OC',
-      content: 'AA'
-    },
-    {
-      text: '域名列表',
-      icon: 'OC',
-      content: 'BB'
-    },
-    {
-      text: '跑马列表',
-      icon: 'OC',
-      content: 'CC'
+      icon: 'AssignmentIndOutlinedIcon',
+      content: 'AppUser'
     },
     {
       text: '订单列表',
-      icon: 'OC',
-      content: 'DD'
+      icon: 'PlaylistAddCheckOutlinedIcon',
+      content: 'OrderInnfo'
+    },
+    {
+      text: '平台配置',
+      icon: 'BorderAllOutlinedIcon',
+      content: 'Config'
+    },
+    {
+      text: '剧集列表',
+      icon: 'VideocamOutlinedIcon',
+      content: 'Vod'
     }
   ];
   const oClasses: any = style(void 0);
@@ -78,7 +79,9 @@ function ScrollableTabs() {
       let aTabs = aTabsRows1.concat(aTabsRows2);
       // 如果当下关闭的 tab 大于 当下启用的 tab => 当下启用的 tab 不变
       // 如果当下关闭的 tab 小于等于 当下启用的 tab => 当下启用的 tab 往前移动一个
-      let iValue = iIndex > oState.value ? oState.value : oState.value - 1;
+      let iValue = 0;
+      iValue = iIndex > oState.value ? oState.value : oState.value - 1;
+      iValue = iValue < 0 ? 0 : iValue;
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
   };
@@ -100,7 +103,10 @@ function ScrollableTabs() {
               key={sIndex}
               label={
                 <span>
-                  {oTab.text}
+                  <ListItemIcon className={oClasses.listItemIcon}>
+                    <Components.Admin.Icon name={oTab.icon} />
+                  </ListItemIcon>
+                  <span className={oClasses.listITemText}>{oTab.text}</span>
                   {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
                   <IconButton className={oClasses.iconButton} size="small" onClick={cHandleCloseIcon(sIndex)}>
                     <CloseIcon />
