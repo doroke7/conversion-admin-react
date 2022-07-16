@@ -15,8 +15,6 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     tab: {
       position: 'relative',
-      paddingRight: oTheme.spacing(6),
-      // borderLeft: '1px solid ' + grey[300],
       cursor: 'pointer',
       '&.Mui-selected': {
         background: grey[50] + ' ' + '!important',
@@ -25,6 +23,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
           color: indigo[500] // indigo[500] 与 Tab 下方底线相同
         }
       },
+      paddingRight: oTheme.spacing(0.5),
       '&:hover': {
         background: grey[200],
         '& .MuiIconButton-root': {
@@ -32,12 +31,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
         }
       },
       '& .MuiIconButton-root': {
+        marginLeft: oTheme.spacing(1),
         opacity: 0,
         borderRadius: '20%',
-        position: 'absolute',
-        right: oTheme.spacing(0.5),
-        top: '50%',
-        transform: 'translate(0%, -50%) scale(0.8)',
         color: grey[400]
       }
     },
