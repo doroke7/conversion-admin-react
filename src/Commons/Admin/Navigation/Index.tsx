@@ -24,11 +24,32 @@ import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
 
-let tab = context.tab;
-
 let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
+  let aTabsRows = [
+    {
+      text: '会员列表',
+      icon: 'AssignmentIndOutlinedIcon',
+      content: 'AppUser'
+    }
+    // {
+    //   text: '订单列表',
+    //   icon: 'PlaylistAddCheckOutlinedIcon',
+    //   content: 'OrderInnfo'
+    // },
+    // {
+    //   text: '平台配置',
+    //   icon: 'BorderAllOutlinedIcon',
+    //   content: 'Config'
+    // },
+    // {
+    //   text: '剧集列表',
+    //   icon: 'VideocamOutlinedIcon',
+    //   content: 'Vod'
+    // }
+  ];
+
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
   let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
@@ -118,7 +139,7 @@ function Navigation(oProps: any) {
       </Drawer>
       <main className={oClasses.content}>
         <div className={oClasses.toolbar}></div>
-        <Tabs></Tabs>
+        <Tabs tabs={aTabsRows}></Tabs>
       </main>
     </div>
   );

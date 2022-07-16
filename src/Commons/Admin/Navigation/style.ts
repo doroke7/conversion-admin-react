@@ -71,11 +71,6 @@ const style = makeStyles((oTheme: Theme) =>
     },
     content: {
       flexGrow: 1
-      // padding: oTheme.spacing(3),
-    },
-    subContent: {
-      minHeight: 'calc(100vh - 70px)',
-      position: 'relative'
     },
 
     paper: {

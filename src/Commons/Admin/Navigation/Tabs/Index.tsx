@@ -8,31 +8,16 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Box from '@material-ui/core/Box';
 import Components from '@/Components';
 import TabPanel from './TabPannel/Index';
+import Empty from './Empty/Index';
+
 import style from './style';
 
-function ScrollableTabs() {
-  let aTabsRows = [
-    {
-      text: '会员列表',
-      icon: 'AssignmentIndOutlinedIcon',
-      content: 'AppUser'
-    },
-    {
-      text: '订单列表',
-      icon: 'PlaylistAddCheckOutlinedIcon',
-      content: 'OrderInnfo'
-    },
-    {
-      text: '平台配置',
-      icon: 'BorderAllOutlinedIcon',
-      content: 'Config'
-    },
-    {
-      text: '剧集列表',
-      icon: 'VideocamOutlinedIcon',
-      content: 'Vod'
-    }
-  ];
+interface Props {
+  tabs: any;
+}
+
+function ScrollableTabs(oProps: any) {
+  let aTabsRows = oProps.tabs;
   const oClasses: any = style(void 0);
   let [oState, cSetState] = React.useState<any>({
     value: 0,
@@ -61,42 +46,49 @@ function ScrollableTabs() {
 
   return (
     <div className={oClasses.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={oState.value}
-          onChange={cHandleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example">
+      {oState.tabs.length >= 1 ? (
+        <>
+          {/* {'两个 elements 不能在 short if 里面'} */}
+          <AppBar position="static" color="default">
+            <Tabs
+              value={oState.value}
+              onChange={cHandleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="scrollable"
+              scrollButtons="auto"
+              aria-label="scrollable auto tabs example">
+              {oState.tabs.map((oTab, sIndex) => (
+                <Tab
+                  className={oClasses.tab}
+                  key={sIndex}
+                  label={
+                    <span>
+                      <ListItemIcon className={oClasses.listItemIcon}>
+                        <Components.Admin.Icon name={oTab.icon} />
+                      </ListItemIcon>
+                      <span className={oClasses.listITemText}>{oTab.text}</span>
+                      {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
+                      <IconButton size="small" onClick={cHandleCloseIcon(sIndex)}>
+                        <CloseIcon />
+                      </IconButton>
+                    </span>
+                  }
+                  id={'scrollable-auto-tab-' + sIndex}
+                  aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
+                />
+              ))}
+            </Tabs>
+          </AppBar>
           {oState.tabs.map((oTab, sIndex) => (
-            <Tab
-              className={oClasses.tab}
-              key={sIndex}
-              label={
-                <span>
-                  <ListItemIcon className={oClasses.listItemIcon}>
-                    <Components.Admin.Icon name={oTab.icon} />
-                  </ListItemIcon>
-                  <span className={oClasses.listITemText}>{oTab.text}</span>
-                  {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
-                  <IconButton size="small" onClick={cHandleCloseIcon(sIndex)}>
-                    <CloseIcon />
-                  </IconButton>
-                </span>
-              }
-              id={'scrollable-auto-tab-' + sIndex}
-              aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
-            />
+            <TabPanel key={sIndex} value={oState.value} index={sIndex}>
+              {'内容:' + oTab.content}
+            </TabPanel>
           ))}
-        </Tabs>
-      </AppBar>
-      {oState.tabs.map((oTab, sIndex) => (
-        <TabPanel key={sIndex} value={oState.value} index={sIndex}>
-          {'内容:' + oTab.content}
-        </TabPanel>
-      ))}
+        </>
+      ) : (
+        <Empty></Empty>
+      )}
     </div>
   );
 }

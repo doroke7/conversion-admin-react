@@ -20,7 +20,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'relative',
       cursor: 'pointer',
       '&.Mui-selected': {
-        background: grey[50] + ' ' + '!important',
+        background: oTheme.palette.background.paper + ' ' + '!important',
         fontWeight: 900,
         '& .MuiListItemIcon-root': {
           color: indigo[500] // indigo[500] 与 Tab 下方底线相同
