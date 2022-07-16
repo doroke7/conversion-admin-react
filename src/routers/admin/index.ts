@@ -51,7 +51,7 @@ let aRoutes2 = [
   },
   {
     path: '/admin/sample-context',
-    component: Admin.SampleTabs,
+    component: Admin.SampleContext,
     exact: true
   }
 ];
