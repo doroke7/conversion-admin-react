@@ -1,50 +1,54 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, indigo } from '@material-ui/core/colors';
+import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '@material-ui/core/colors';
 
-const style = makeStyles((theme: Theme) =>
+let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      display: 'flex'
-    },
-    wrapperTabs: {
-      marginTop: theme.spacing(1)
+      flexGrow: 1,
+      width: '100%',
+      backgroundColor: oTheme.palette.background.paper,
+      '& .MuiTab-root': {
+        [oTheme.breakpoints.up('sm')]: {
+          minWidth: oTheme.spacing(5)
+        }
+      }
     },
     tab: {
-      color: indigo[900],
-      padding: theme.spacing(1),
-      backgroundColor: grey[200],
-      borderTop: '1px solid #dddddd',
-      borderLeft: '1px solid #dddddd',
-      borderRight: '1px solid #dddddd',
-      borderBottom: 'none',
-      borderRadius: '0.5rem 0.5rem 0 0',
+      position: 'relative',
       cursor: 'pointer',
-      textDecoration: 'none'
+      '&.Mui-selected': {
+        background: grey[50] + ' ' + '!important',
+        fontWeight: 900,
+        '& .MuiListItemIcon-root': {
+          color: indigo[500] // indigo[500] 与 Tab 下方底线相同
+        }
+      },
+      paddingRight: oTheme.spacing(0.5),
+      '&:hover': {
+        background: grey[200],
+        '& .MuiIconButton-root': {
+          opacity: 1
+        }
+      },
+      '& .MuiIconButton-root': {
+        marginLeft: oTheme.spacing(1),
+        opacity: 0,
+        borderRadius: '20%',
+        color: grey[400]
+      }
     },
-    tabEnable: {
-      color: indigo[900],
-      padding: theme.spacing(1),
-      borderTop: '1px solid #dddddd',
-      borderLeft: '1px solid #dddddd',
-      borderRight: '1px solid #dddddd',
-      borderRadius: '0.5rem 0.5rem 0 0',
-      cursor: 'pointer',
-      textDecoration: 'none',
-      backgroundColor: '#ffffff'
+    listItemIcon: {
+      minWidth: oTheme.spacing(3),
+      marginRight: oTheme.spacing(1),
+      verticalAlign: 'middle'
     },
-    icon: {
-      verticalAlign: 'middle',
-      marginRight: theme.spacing(1)
+    listITemText: {
+      verticalAlign: 'middle'
     },
-    text: {
-      verticalAlign: 'middle',
-      marginRight: theme.spacing(1)
-    },
-    clear: {
-      verticalAlign: 'middle',
-      fontWeight: 100
-    }
+    iconButton: {}
   })
 );
 
-export default style;
+export default oStyle;
+
+// csq

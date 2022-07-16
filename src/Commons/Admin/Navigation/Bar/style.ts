@@ -5,7 +5,7 @@ const style = makeStyles((oTheme: Theme) =>
   createStyles({
     appBar: {
       background: '#125489',
-      boxShadow: '0 0px 25px 0px rgb(33 203 243 / 60%)',
+      boxShadow: '0 0px 0px 0px rgb(33 203 243 / 60%)',
       zIndex: oTheme.zIndex.drawer + 1,
       transition: oTheme.transitions.create(['width', 'margin'], {
         easing: oTheme.transitions.easing.sharp,

@@ -11,10 +11,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-import Tabs from './Tabs/Index';
 import Bar from './Bar/Index';
 import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
+import Tabs from './Tabs/Index';
 
 import context from '@/contexts';
 import utilities from '@/utilities';
@@ -118,23 +118,7 @@ function Navigation(oProps: any) {
       </Drawer>
       <main className={oClasses.content}>
         <div className={oClasses.toolbar}></div>
-        <tab.Provider value={oState.tabs}>
-          <Tabs removeTab={removeTab} />
-        </tab.Provider>
-        {oState.tabs.length >= 1 ? (
-          <Paper className={oClasses.paper}>
-            <Box className={oClasses.title} fontWeight="fontWeightBold" fontSize={20}>
-              {sMenuName && oMenus[sMenuName] && oMenus[sMenuName].text ? oMenus[sMenuName].text : sMenuName}
-            </Box>
-            <Box className={oClasses.description} fontWeight="fontWeightLight" fontSize={12}>
-              {sMenuName && oMenus[sMenuName] && oMenus[sMenuName].description ? oMenus[sMenuName].description : ''}
-            </Box>
-          </Paper>
-        ) : (
-          ''
-        )}
-
-        <div className={oClasses.subContent}>{oProps.children}</div>
+        <Tabs></Tabs>
       </main>
     </div>
   );
