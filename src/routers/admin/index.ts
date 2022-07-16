@@ -53,6 +53,11 @@ let aRoutes2 = [
     path: '/admin/sample-context',
     component: Admin.SampleContext,
     exact: true
+  },
+  {
+    path: '/admin/sample-event',
+    component: Admin.SampleEvent,
+    exact: true
   }
 ];
 aRoutes1 = CONFIGS.APP.ENV.toUpperCase() == 'MASTER' ? aRoutes1 : aRoutes1.concat(aRoutes2);

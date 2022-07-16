@@ -7,6 +7,7 @@ import Sample3 from './Sample3/Index';
 import SampleBadge from './SampleBadge/Index';
 import SampleTabs from './SampleTabs/Index';
 import SampleContext from './SampleContext/Index';
+import SampleEvent from './SampleEvent/Index';
 
 import _ from './_/Index';
 
@@ -20,5 +21,6 @@ export default {
   SampleBadge,
   SampleTabs,
   SampleContext,
+  SampleEvent,
   _
 };
