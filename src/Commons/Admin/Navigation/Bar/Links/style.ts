@@ -12,8 +12,10 @@ const style = makeStyles((oTheme: Theme) =>
     listItemIcon: {
       color: grey[100],
       minWidth: oTheme.spacing(3),
+      HeightWidth: oTheme.spacing(3),
       marginRight: oTheme.spacing(2)
-    }
+    },
+    icon: {}
   })
 );
 
