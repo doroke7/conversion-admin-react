@@ -7,8 +7,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Box from '@material-ui/core/Box';
 import Contexts from '@/Contexts';
-
 import Components from '@/Components';
+
 import TabPanel from './TabPannel/Index';
 import Empty from './Empty/Index';
 
@@ -17,6 +17,7 @@ import style from './style';
 function ScrollableTabs(oProps: any) {
   let oClasses: any = style(void 0);
   const aTabs = useContext(Contexts.Admin.Tabs);
+  const iTabsValue = useContext(Contexts.Admin.TabsValue);
 
   return (
     <div className={oClasses.root}>
@@ -25,7 +26,7 @@ function ScrollableTabs(oProps: any) {
           {/* {'两个 elements 不能在 short if 里面'} */}
           <AppBar position="static" color="default">
             <Tabs
-              value={oProps.value}
+              value={iTabsValue}
               onChange={oProps.onChange}
               indicatorColor="primary"
               textColor="primary"
@@ -55,7 +56,7 @@ function ScrollableTabs(oProps: any) {
             </Tabs>
           </AppBar>
           {aTabs.map((oTab, sIndex) => (
-            <TabPanel key={sIndex} value={oProps.value} index={sIndex}>
+            <TabPanel key={sIndex} value={iTabsValue} index={sIndex}>
               {'内容:' + oTab.content}
             </TabPanel>
           ))}

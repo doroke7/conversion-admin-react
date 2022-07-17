@@ -1,4 +1,4 @@
-import ContextTabs from './ContextTabs/Index';
 import Tabs from './Tabs/Index';
+import TabsValue from './TabsValue/Index';
 
-export default { ContextTabs, Tabs };
+export default { Tabs, TabsValue };
