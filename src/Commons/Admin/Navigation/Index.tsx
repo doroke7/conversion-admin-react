@@ -17,6 +17,7 @@ import SmallMenus from './SmallMenus/Index';
 import Tabs from './Tabs/Index';
 
 import context from '@/contexts';
+import events from '@/events';
 import utilities from '@/utilities';
 
 import Helpers from '@/Helpers';
@@ -28,27 +29,68 @@ let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
   let sPathname = oProps.location.pathname;
-  let sMenuName = sPathname;
   let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
   let oClasses = style(void 0);
 
-  const [oState, setState] = React.useState<any>({
+  const [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab
     tabs: [] // Tab 列表
   });
 
+  useEffect(() => {
+    let cClickLink = (oLink) => {
+      let aTabsOfStateRows = oState.tabs;
+      let aTabs = [...oState.tabs];
+
+      let oTabOfLink = {
+        id: oLink.id,
+        path: oLink.path,
+        query: '',
+        text: oLink.text,
+        icon: oLink.icon,
+        content: oLink.description
+      };
+      let iValue = oState.value;
+      let bExist = false;
+      if (aTabsOfStateRows.length >= 1) {
+        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
+          if (aTabsOfStateRows[iIndex]['id'] == oTabOfLink['id']) {
+            iValue = iIndex;
+            bExist = true;
+            break;
+          }
+        }
+      }
+
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs = aTabs.concat(oTabOfLink);
+        iValue = aTabs.length - 1;
+      }
+      cSetState({ ...oState, value: iValue, tabs: aTabs });
+    };
+
+    let oEventEmitter: any = events.admin.addListener('onClickLink', cClickLink);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.admin.removeListener('onClickLink', cClickLink);
+    };
+  }, [oState.tabs]);
+
   let cHandleDrawerOpen = () => {
-    setState({ ...oState, open: true });
+    cSetState({ ...oState, open: true });
   };
 
   let cHandleDrawerClose = () => {
-    setState({ ...oState, open: false });
+    cSetState({ ...oState, open: false });
   };
 
   let cHandleChange = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
-    setState({ ...oState, value: iValue });
+    cSetState({ ...oState, value: iValue });
   };
 
   let cRemoveTab = (iIndex: number) => {
@@ -65,7 +107,7 @@ function Navigation(oProps: any) {
       let iValue = 0;
       iValue = iIndex > oState.value ? oState.value : oState.value - 1;
       iValue = iValue < 0 ? 0 : iValue;
-      setState({ ...oState, value: iValue, tabs: aTabs });
+      cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
   };
 
@@ -108,53 +150,13 @@ function Navigation(oProps: any) {
         iValue = aTabs.length - 1;
       }
 
-      setState({ ...oState, value: iValue, tabs: aTabs });
-    };
-  };
-
-  let cClickLink = (oLink: any) => {
-    // test
-    return (oEvent) => {
-      oEvent.stopPropagation();
-      oEvent.preventDefault(); // 取消 a tag 取消 href
-      let aTabsOfStateRows = oState.tabs;
-      let aTabs = [...oState.tabs];
-
-      let oTabOfLink = {
-        id: oLink.id,
-        path: oLink.path,
-        query: '',
-        text: oLink.text,
-        icon: oLink.icon,
-        content: oLink.description
-      };
-      let iValue = oState.value;
-      let bExist = false;
-      if (aTabsOfStateRows.length >= 1) {
-        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
-          if (aTabsOfStateRows[iIndex]['id'] == oTabOfLink['id']) {
-            iValue = iIndex;
-            bExist = true;
-            break;
-          }
-        }
-      }
-
-      if (bExist) {
-        // DO NOTHING
-      }
-      if (!bExist) {
-        aTabs = aTabs.concat(oTabOfLink);
-        iValue = aTabs.length - 1;
-      }
-
-      setState({ ...oState, value: iValue, tabs: aTabs });
+      cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
   };
 
   return (
     <div className={oClasses.root}>
-      <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} onClickLink={cClickLink}></Bar>
+      <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
       <Drawer
         variant="permanent"
         className={clsx(oClasses.drawer, {

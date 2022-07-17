@@ -50,7 +50,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <Links links={CONFIGS.LINKS} onClickLink={oProps.onClickLink}></Links>
+        <Links links={CONFIGS.LINKS}></Links>
         <FormControl variant="outlined" className={oClasses.formControl}>
           <Select
             displayEmpty
