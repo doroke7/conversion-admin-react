@@ -17,11 +17,7 @@ interface Props {
 }
 
 function ScrollableTabs(oProps: any) {
-  let aTabsRows = oProps.tabs || [];
-  let cRemoveTab = oProps.onRemove;
-  let cHandleChange = oProps.onChange;
-
-  const oClasses: any = style(void 0);
+  let oClasses: any = style(void 0);
 
   return (
     <div className={oClasses.root}>
@@ -31,7 +27,7 @@ function ScrollableTabs(oProps: any) {
           <AppBar position="static" color="default">
             <Tabs
               value={oProps.value}
-              onChange={cHandleChange}
+              onChange={oProps.onChange}
               indicatorColor="primary"
               textColor="primary"
               variant="scrollable"
@@ -48,7 +44,7 @@ function ScrollableTabs(oProps: any) {
                       </ListItemIcon>
                       <span className={oClasses.listITemText}>{oTab.text}</span>
                       {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
-                      <IconButton size="small" onClick={cRemoveTab(sIndex)}>
+                      <IconButton size="small" onClick={oProps.onRemove(sIndex)}>
                         <CloseIcon />
                       </IconButton>
                     </span>

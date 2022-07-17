@@ -27,29 +27,6 @@ import style from './style';
 let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
-  let aTabsRows = [
-    {
-      text: '会员列表',
-      icon: 'AssignmentIndOutlinedIcon',
-      content: 'AppUser'
-    },
-    {
-      text: '订单列表',
-      icon: 'PlaylistAddCheckOutlinedIcon',
-      content: 'OrderInnfo'
-    },
-    {
-      text: '平台配置',
-      icon: 'BorderAllOutlinedIcon',
-      content: 'Config'
-    },
-    {
-      text: '剧集列表',
-      icon: 'VideocamOutlinedIcon',
-      content: 'Vod'
-    }
-  ];
-
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
   let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
@@ -59,7 +36,7 @@ function Navigation(oProps: any) {
   const [oState, setState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab
-    tabs: aTabsRows // Tab 列表
+    tabs: [] // Tab 列表
   });
 
   let cHandleDrawerOpen = () => {
@@ -92,9 +69,92 @@ function Navigation(oProps: any) {
     };
   };
 
+  let cClickMenu = (oMenu: any) => {
+    // test
+    return (oEvent) => {
+      oEvent.stopPropagation();
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+      let aTabsOfStateRows = oState.tabs;
+      let aTabs = [...oState.tabs];
+      // 如果 Menu 旗下还有子 menu 就不做事
+      if (Object.prototype.hasOwnProperty.call(oMenu, 'menus') && oMenu.menus.length >= 1) {
+        return;
+      }
+      let oTabOfMenu = {
+        id: oMenu.id,
+        path: oMenu.path,
+        query: '',
+        text: oMenu.text,
+        icon: oMenu.icon,
+        content: oMenu.description
+      };
+      let iValue = oState.value;
+      let bExist = false;
+      if (aTabsOfStateRows.length >= 1) {
+        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
+          if (aTabsOfStateRows[iIndex]['id'] == oTabOfMenu['id']) {
+            iValue = iIndex;
+            bExist = true;
+            break;
+          }
+        }
+      }
+
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs = aTabs.concat(oTabOfMenu);
+        iValue = aTabs.length - 1;
+      }
+
+      setState({ ...oState, value: iValue, tabs: aTabs });
+    };
+  };
+
+  let cClickLink = (oLink: any) => {
+    // test
+    return (oEvent) => {
+      oEvent.stopPropagation();
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+      let aTabsOfStateRows = oState.tabs;
+      let aTabs = [...oState.tabs];
+
+      let oTabOfLink = {
+        id: oLink.id,
+        path: oLink.path,
+        query: '',
+        text: oLink.text,
+        icon: oLink.icon,
+        content: oLink.description
+      };
+      let iValue = oState.value;
+      let bExist = false;
+      if (aTabsOfStateRows.length >= 1) {
+        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
+          if (aTabsOfStateRows[iIndex]['id'] == oTabOfLink['id']) {
+            iValue = iIndex;
+            bExist = true;
+            break;
+          }
+        }
+      }
+
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs = aTabs.concat(oTabOfLink);
+        iValue = aTabs.length - 1;
+      }
+
+      setState({ ...oState, value: iValue, tabs: aTabs });
+    };
+  };
+
   return (
     <div className={oClasses.root}>
-      <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
+      <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} onClickLink={cClickLink}></Bar>
       <Drawer
         variant="permanent"
         className={clsx(oClasses.drawer, {

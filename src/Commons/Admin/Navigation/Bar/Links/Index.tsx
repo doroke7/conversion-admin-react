@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Components from '@/Components';
 
 import style from './style';
@@ -15,7 +14,7 @@ function Links(oProps: any) {
     <span className={oClasses.root}>
       {aLinks.map((oLink, sIndex) => (
         <Tooltip key={sIndex} className={oClasses.toolTip} title={oLink.text} arrow>
-          <IconButton className={oClasses.iconButton}>
+          <IconButton className={oClasses.iconButton} onClick={oProps.onClickLink(oLink)}>
             <Components.Admin.Icon name={oLink.icon} className={oClasses.icon} />
           </IconButton>
         </Tooltip>
