@@ -102,16 +102,23 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs]);
 
+  useEffect(() => {
+    let cClickTab = (iIndex: number) => {
+      cSetState({ ...oState, value: iValue });
+    };
+
+    let oEventEmitter: any = events.admin.addListener('onClickTab', cClickTab);
+    return () => {
+      events.admin.removeListener('onClickTab', cClickTab);
+    };
+  }, []);
+
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
   };
 
   let cHandleDrawerClose = () => {
     cSetState({ ...oState, open: false });
-  };
-
-  let cHandleChange = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
-    cSetState({ ...oState, value: iValue });
   };
 
   let cClickMenu = (oMenu: any) => {
@@ -190,7 +197,7 @@ function Navigation(oProps: any) {
           </Drawer>
           <main className={oClasses.content}>
             <div className={oClasses.toolbar}></div>
-            <Tabs onChange={cHandleChange}></Tabs>
+            <Tabs></Tabs>
           </main>
         </div>
       </Contexts.Admin.Tabs.Provider>
