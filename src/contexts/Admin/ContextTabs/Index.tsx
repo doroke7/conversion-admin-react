@@ -1,4 +1,4 @@
 import React, { createContext } from 'react';
-const TabsContext = createContext({ name: 'Joyceeweee' });
+const TabsContext = createContext([]);
 
 export default TabsContext;

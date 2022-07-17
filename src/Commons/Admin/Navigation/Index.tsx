@@ -16,7 +16,7 @@ import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
 import Tabs from './Tabs/Index';
 
-import context from '@/contexts';
+import Contexts from '@/Contexts';
 import events from '@/events';
 import utilities from '@/utilities';
 
@@ -155,39 +155,41 @@ function Navigation(oProps: any) {
   };
 
   return (
-    <div className={oClasses.root}>
-      <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
-      <Drawer
-        variant="permanent"
-        className={clsx(oClasses.drawer, {
-          [oClasses.drawerOpen]: oState.open,
-          [oClasses.drawerClose]: !oState.open
-        })}
-        classes={{
-          paper: clsx(oClasses.drawerPaper, {
+    <Contexts.Admin.ContextTabs.Provider value={oState.tabs}>
+      <div className={oClasses.root}>
+        <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
+        <Drawer
+          variant="permanent"
+          className={clsx(oClasses.drawer, {
             [oClasses.drawerOpen]: oState.open,
             [oClasses.drawerClose]: !oState.open
-          })
-        }}
-        open={oState.open}>
-        <div className={oClasses.toolbar}>
-          <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
-          <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
-            <DoubleArrowIcon></DoubleArrowIcon>
-            {/* 点击右边的 App-Icon */}
-          </IconButton>
-        </div>
-        <Divider />
-        <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
-        <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
-        <Divider />
-        <List></List>
-      </Drawer>
-      <main className={oClasses.content}>
-        <div className={oClasses.toolbar}></div>
-        <Tabs tabs={oState.tabs} value={oState.value} onRemove={cRemoveTab} onChange={cHandleChange}></Tabs>
-      </main>
-    </div>
+          })}
+          classes={{
+            paper: clsx(oClasses.drawerPaper, {
+              [oClasses.drawerOpen]: oState.open,
+              [oClasses.drawerClose]: !oState.open
+            })
+          }}
+          open={oState.open}>
+          <div className={oClasses.toolbar}>
+            <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
+            <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
+              <DoubleArrowIcon></DoubleArrowIcon>
+              {/* 点击右边的 App-Icon */}
+            </IconButton>
+          </div>
+          <Divider />
+          <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
+          <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
+          <Divider />
+          <List></List>
+        </Drawer>
+        <main className={oClasses.content}>
+          <div className={oClasses.toolbar}></div>
+          <Tabs value={oState.value} onRemove={cRemoveTab} onChange={cHandleChange}></Tabs>
+        </main>
+      </div>
+    </Contexts.Admin.ContextTabs.Provider>
   );
 }
 

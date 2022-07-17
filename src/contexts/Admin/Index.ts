@@ -1,3 +1,3 @@
-import Tabs from './Tabs/Index';
+import ContextTabs from './ContextTabs/Index';
 
-export default { Tabs };
+export default { ContextTabs };
