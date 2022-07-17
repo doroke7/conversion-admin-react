@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Bar from './Bar/Index';
+import LargeApps from './LargeApps/Index';
 import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
 import Tabs from './Tabs/Index';
@@ -192,6 +193,8 @@ function Navigation(oProps: any) {
                 {/* 点击右边的 App-Icon */}
               </IconButton>
             </div>
+            <Divider />
+            <LargeApps status={oState.open}></LargeApps>
             <Divider />
             <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
             <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
