@@ -5,9 +5,9 @@ import Tab from '@material-ui/core/Tab';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Box from '@material-ui/core/Box';
 import Contexts from '@/Contexts';
 import Components from '@/Components';
+import events from '@/events';
 
 import TabPanel from './TabPannel/Index';
 import Empty from './Empty/Index';
@@ -18,6 +18,14 @@ function ScrollableTabs(oProps: any) {
   let oClasses: any = style(void 0);
   const aTabs = useContext(Contexts.Admin.Tabs);
   const iTabsValue = useContext(Contexts.Admin.TabsValue);
+
+  let cHandleRemoveTab = (sIndex) => {
+    return (oEvent) => {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+      events.admin.emit('onRemoveTab', sIndex);
+    };
+  };
 
   return (
     <div className={oClasses.root}>
@@ -44,7 +52,7 @@ function ScrollableTabs(oProps: any) {
                       </ListItemIcon>
                       <span className={oClasses.listITemText}>{oTab.text}</span>
                       {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
-                      <IconButton size="small" onClick={oProps.onRemove(sIndex)}>
+                      <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
                         <CloseIcon />
                       </IconButton>
                     </span>

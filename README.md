@@ -45,7 +45,7 @@
 │   ├── Commons          基本公共组件, 如 Header, Footer
 │   ├── Components       一般公共组件
 │   ├── CONFIGS          共用设定配置
-│   ├── Contexts         共用Context组件, 能处理复杂的共用数据
+│   ├── Contexts         共用Context组件, 能处理复杂的共用数据, 可以接受嵌套 Context.Provider 语法
 │   ├── entries          Webpack 打包入口
 │   ├── events           跨组件事件, 能处理简单的共用数据
 │   ├── Helpers          类别形式的公用程序库

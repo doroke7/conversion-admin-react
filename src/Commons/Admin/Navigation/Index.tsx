@@ -81,6 +81,27 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs]);
 
+  useEffect(() => {
+    let cRemoveTab = (iIndex: number) => {
+      let aTabs = [...oState.tabs];
+
+      let aTabsRows1 = aTabs.slice(0, iIndex);
+      let aTabsRows2 = aTabs.slice(iIndex + 1, oState.tabs.length);
+      aTabs = aTabsRows1.concat(aTabsRows2);
+      // 如果当下关闭的 tab 大于 当下启用的 tab => 当下启用的 tab 不变
+      // 如果当下关闭的 tab 小于等于 当下启用的 tab => 当下启用的 tab 往前移动一个
+      let iValue = 0;
+      iValue = iIndex > oState.value ? oState.value : oState.value - 1;
+      iValue = iValue < 0 ? 0 : iValue;
+      cSetState({ ...oState, value: iValue, tabs: aTabs });
+    };
+
+    let oEventEmitter: any = events.admin.addListener('onRemoveTab', cRemoveTab);
+    return () => {
+      events.admin.removeListener('onRemoveTab', cRemoveTab);
+    };
+  }, [oState.tabs]);
+
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
   };
@@ -91,24 +112,6 @@ function Navigation(oProps: any) {
 
   let cHandleChange = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
     cSetState({ ...oState, value: iValue });
-  };
-
-  let cRemoveTab = (iIndex: number) => {
-    // test
-    return (oEvent) => {
-      oEvent.stopPropagation();
-      oEvent.preventDefault(); // 取消 a tag 取消 href
-
-      let aTabsRows1 = oState.tabs.slice(0, iIndex);
-      let aTabsRows2 = oState.tabs.slice(iIndex + 1, oState.tabs.length);
-      let aTabs = aTabsRows1.concat(aTabsRows2);
-      // 如果当下关闭的 tab 大于 当下启用的 tab => 当下启用的 tab 不变
-      // 如果当下关闭的 tab 小于等于 当下启用的 tab => 当下启用的 tab 往前移动一个
-      let iValue = 0;
-      iValue = iIndex > oState.value ? oState.value : oState.value - 1;
-      iValue = iValue < 0 ? 0 : iValue;
-      cSetState({ ...oState, value: iValue, tabs: aTabs });
-    };
   };
 
   let cClickMenu = (oMenu: any) => {
@@ -187,7 +190,7 @@ function Navigation(oProps: any) {
           </Drawer>
           <main className={oClasses.content}>
             <div className={oClasses.toolbar}></div>
-            <Tabs onRemove={cRemoveTab} onChange={cHandleChange}></Tabs>
+            <Tabs onChange={cHandleChange}></Tabs>
           </main>
         </div>
       </Contexts.Admin.Tabs.Provider>
