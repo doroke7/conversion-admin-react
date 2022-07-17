@@ -27,7 +27,7 @@ function ScrollableTabs(oProps: any) {
     };
   };
 
-  let cHandleClickTab = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
+  let cHandleChangeTab = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
     events.admin.emit('Navigation-onClickTab', iValue);
   };
 
@@ -39,7 +39,7 @@ function ScrollableTabs(oProps: any) {
           <AppBar position="static" color="default">
             <Tabs
               value={iTabsValue}
-              onChange={cHandleClickTab}
+              onChange={cHandleChangeTab}
               indicatorColor="primary"
               textColor="primary"
               variant="scrollable"

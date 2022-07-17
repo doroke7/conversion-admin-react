@@ -111,7 +111,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, []);
+  }, [oState.value]);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
