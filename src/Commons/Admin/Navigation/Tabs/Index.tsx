@@ -16,7 +16,7 @@ import style from './style';
 
 function ScrollableTabs(oProps: any) {
   let oClasses: any = style(void 0);
-  const aTabs = useContext(Contexts.Admin.ContextTabs);
+  const aTabs = useContext(Contexts.Admin.Tabs);
 
   return (
     <div className={oClasses.root}>

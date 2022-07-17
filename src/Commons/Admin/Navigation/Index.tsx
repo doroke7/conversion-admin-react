@@ -155,7 +155,7 @@ function Navigation(oProps: any) {
   };
 
   return (
-    <Contexts.Admin.ContextTabs.Provider value={oState.tabs}>
+    <Contexts.Admin.Tabs.Provider value={oState.tabs}>
       <div className={oClasses.root}>
         <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
         <Drawer
@@ -189,7 +189,7 @@ function Navigation(oProps: any) {
           <Tabs value={oState.value} onRemove={cRemoveTab} onChange={cHandleChange}></Tabs>
         </main>
       </div>
-    </Contexts.Admin.ContextTabs.Provider>
+    </Contexts.Admin.Tabs.Provider>
   );
 }
 
