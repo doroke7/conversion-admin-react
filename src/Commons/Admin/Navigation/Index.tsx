@@ -32,31 +32,23 @@ function Navigation(oProps: any) {
       text: '会员列表',
       icon: 'AssignmentIndOutlinedIcon',
       content: 'AppUser'
+    },
+    {
+      text: '订单列表',
+      icon: 'PlaylistAddCheckOutlinedIcon',
+      content: 'OrderInnfo'
+    },
+    {
+      text: '平台配置',
+      icon: 'BorderAllOutlinedIcon',
+      content: 'Config'
+    },
+    {
+      text: '剧集列表',
+      icon: 'VideocamOutlinedIcon',
+      content: 'Vod'
     }
-    // {
-    //   text: '订单列表',
-    //   icon: 'PlaylistAddCheckOutlinedIcon',
-    //   content: 'OrderInnfo'
-    // },
-    // {
-    //   text: '平台配置',
-    //   icon: 'BorderAllOutlinedIcon',
-    //   content: 'Config'
-    // },
-    // {
-    //   text: '剧集列表',
-    //   icon: 'VideocamOutlinedIcon',
-    //   content: 'Vod'
-    // }
   ];
-
-  let oTabs = {
-    1: {
-      text: '会员列表',
-      icon: 'AssignmentIndOutlinedIcon',
-      content: 'AppUser'
-    }
-  };
 
   let sPathname = oProps.location.pathname;
   let sMenuName = sPathname;
@@ -66,27 +58,43 @@ function Navigation(oProps: any) {
 
   const [oState, setState] = React.useState<any>({
     open: true,
-    tabs: Helpers.Tab.get() // 更換 route 的時候 , React Componet 重新 render, state init
+    value: 0, // 当下被 Selected 的 Tab
+    tabs: aTabsRows // Tab 列表
   });
 
-  function handleDrawerOpen() {
+  let cHandleDrawerOpen = () => {
     setState({ ...oState, open: true });
-  }
+  };
 
-  function handleDrawerClose() {
+  let cHandleDrawerClose = () => {
     setState({ ...oState, open: false });
-  }
+  };
 
-  function removeTab(iIndex: number) {
-    return (oEvent: any) => {
-      oEvent.stopPropagation(); // 取消冒泡 取消 <Link></Link>
+  let cHandleChange = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
+    setState({ ...oState, value: iValue });
+  };
+
+  let cRemoveTab = (iIndex: number) => {
+    // test
+    return (oEvent) => {
+      oEvent.stopPropagation();
       oEvent.preventDefault(); // 取消 a tag 取消 href
+
+      let aTabsRows1 = oState.tabs.slice(0, iIndex);
+      let aTabsRows2 = oState.tabs.slice(iIndex + 1, oState.tabs.length);
+      let aTabs = aTabsRows1.concat(aTabsRows2);
+      // 如果当下关闭的 tab 大于 当下启用的 tab => 当下启用的 tab 不变
+      // 如果当下关闭的 tab 小于等于 当下启用的 tab => 当下启用的 tab 往前移动一个
+      let iValue = 0;
+      iValue = iIndex > oState.value ? oState.value : oState.value - 1;
+      iValue = iValue < 0 ? 0 : iValue;
+      setState({ ...oState, value: iValue, tabs: aTabs });
     };
-  }
+  };
 
   return (
     <div className={oClasses.root}>
-      <Bar handleDrawerOpen={handleDrawerOpen} open={oState.open}></Bar>
+      <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
       <Drawer
         variant="permanent"
         className={clsx(oClasses.drawer, {
@@ -102,7 +110,7 @@ function Navigation(oProps: any) {
         open={oState.open}>
         <div className={oClasses.toolbar}>
           <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
-          <IconButton className={oClasses.iconButton} onClick={handleDrawerClose}>
+          <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
             <DoubleArrowIcon></DoubleArrowIcon>
             {/* 点击右边的 App-Icon */}
           </IconButton>
@@ -115,7 +123,7 @@ function Navigation(oProps: any) {
       </Drawer>
       <main className={oClasses.content}>
         <div className={oClasses.toolbar}></div>
-        <Tabs tabs={aTabsRows}></Tabs>
+        <Tabs tabs={oState.tabs} value={oState.value} onRemove={cRemoveTab} onChange={cHandleChange}></Tabs>
       </main>
     </div>
   );
