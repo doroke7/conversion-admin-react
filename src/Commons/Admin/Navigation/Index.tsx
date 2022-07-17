@@ -79,7 +79,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickLink', cClickLink);
     };
-  }, [oState.tabs]);
+  }, [oState.tabs, oState.open]);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -100,7 +100,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [oState.tabs]);
+  }, [oState.tabs, oState.open]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
@@ -111,7 +111,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [oState.value]);
+  }, [oState.value, oState.open]);
 
   useEffect(() => {
     let cClickMenu = (oMenu) => {
@@ -157,7 +157,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickMenu', cClickMenu);
     };
-  }, [oState.tabs]);
+  }, [oState.tabs, oState.open]); // tabs 数据，以及 简单menu 开关变动的时候 => 绑定函数要重新更新
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
