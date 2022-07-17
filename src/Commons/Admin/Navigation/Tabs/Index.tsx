@@ -23,12 +23,12 @@ function ScrollableTabs(oProps: any) {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
-      events.admin.emit('onRemoveTab', sIndex);
+      events.admin.emit('Navigation-onRemoveTab', sIndex);
     };
   };
 
   let cHandleClickTab = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
-    events.admin.emit('onClickTab', iValue);
+    events.admin.emit('Navigation-onClickTab', iValue);
   };
 
   return (

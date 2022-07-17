@@ -12,7 +12,7 @@ function Links(oProps: any) {
   let aLinks = oProps.links;
   let cHandleClick = (oLink) => {
     return (oEvent) => {
-      events.admin.emit('onClickLink', oLink);
+      events.admin.emit('Navigation-onClickLink', oLink);
     };
   };
 

@@ -74,10 +74,10 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
 
-    let oEventEmitter: any = events.admin.addListener('onClickLink', cClickLink);
+    let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);
     // 组件销毁前移除事件监听
     return () => {
-      events.admin.removeListener('onClickLink', cClickLink);
+      events.admin.removeListener('Navigation-onClickLink', cClickLink);
     };
   }, [oState.tabs]);
 
@@ -96,9 +96,9 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
 
-    let oEventEmitter: any = events.admin.addListener('onRemoveTab', cRemoveTab);
+    let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
-      events.admin.removeListener('onRemoveTab', cRemoveTab);
+      events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
   }, [oState.tabs]);
 
@@ -107,9 +107,9 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue });
     };
 
-    let oEventEmitter: any = events.admin.addListener('onClickTab', cClickTab);
+    let oEventEmitter: any = events.admin.addListener('Navigation-onClickTab', cClickTab);
     return () => {
-      events.admin.removeListener('onClickTab', cClickTab);
+      events.admin.removeListener('Navigation-onClickTab', cClickTab);
     };
   }, []);
 
