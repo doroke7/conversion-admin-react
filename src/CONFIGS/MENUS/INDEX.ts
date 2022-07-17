@@ -38,8 +38,8 @@ let MENUS: any = [
       },
       {
         id: 32,
-        text: '特权定价列表',
-        description: '特权定价列表',
+        text: '商品列表',
+        description: '商品列表',
         path: '/admin/resource/product-info/index',
         icon: 'LocalAtmOutlinedIcon'
       }

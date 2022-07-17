@@ -22,17 +22,17 @@ const style = makeStyles((oTheme: Theme) =>
     },
     toolbar: {
       minHeight: oTheme.spacing(7),
-      paddingLeft: oTheme.spacing(1) + 4,
-      paddingRight: oTheme.spacing(1) + 4
+      paddingLeft: oTheme.spacing(1.5),
+      paddingRight: oTheme.spacing(1.5)
     },
     iconButton: {
-      marginRight: 0,
+      marginRight: oTheme.spacing(1.5),
       padding: oTheme.spacing(2)
     },
     typography: {
       paddingLeft: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
-        fontSize: oTheme.spacing(1) + 4
+        fontSize: oTheme.spacing(1.5)
       }
     },
     formControl: {

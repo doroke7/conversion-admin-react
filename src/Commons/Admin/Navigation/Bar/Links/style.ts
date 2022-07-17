@@ -4,7 +4,7 @@ import { pink, grey, indigo, blue } from '@material-ui/core/colors';
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      marginLeft: oTheme.spacing(0)
+      marginLeft: -oTheme.spacing(1)
     },
     toolTip: {
       cursor: 'pointer'
