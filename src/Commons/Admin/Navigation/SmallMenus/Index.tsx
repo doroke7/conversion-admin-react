@@ -8,6 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Popover from '@material-ui/core/Popover';
 import Components from '@/Components';
+import events from '@/events';
 
 import CONFIGS from '@/CONFIGS/';
 import SecondMenus from './SecondMenus/Index';
@@ -31,6 +32,9 @@ function SmallMenus(oProps) {
         oAnchors = {
           [oMenu.id]: oEvent.currentTarget
         };
+      }
+      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        events.admin.emit('Navigation-onClickMenu', oMenu);
       }
       cSetState({ ...oState, anchors: oAnchors });
     };

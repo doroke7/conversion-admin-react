@@ -9,6 +9,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import Helpers from '@/Helpers';
+import events from '@/events';
 
 import Components from '@/Components';
 
@@ -39,21 +40,10 @@ function SecondMenus(oProps: any) {
         app_id: 1
       };
 
-      if (oMenu.path !== undefined && oMenu.menus === undefined) {
-        Helpers.History.push(oHistory, oMenu.path, oQuery, oOption);
+      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        events.admin.emit('Navigation-onClickMenu', oMenu);
       }
     };
-  };
-
-  let cHandleClose = (oEvent: any) => {
-    // 如果 三级 菜单 有被锚点， 且 点击的 dom 包含 当下的 三级菜单就 不做事
-
-    // 如果 三级 菜单 没被锚点， 且 点击的 dom 不包含 当下的 三级菜单就 关闭
-    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
-      return;
-    }
-    let oAnchors = {};
-    cSetState({ ...oState, anchors: oAnchors });
   };
 
   return (

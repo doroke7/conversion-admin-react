@@ -11,7 +11,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Helpers from '@/Helpers';
 
 import Components from '@/Components';
-
+import events from '@/events';
 import ThirdMenus from './ThirdMenus/Index';
 
 import cStyle from './style';
@@ -32,6 +32,10 @@ function SecondMenus(oProps: any) {
       let oAnchors = {
         [oMenu.id]: oState.anchors[oMenu.id] == null ? oAnchor : null
       };
+
+      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        events.admin.emit('Navigation-onClickMenu', oMenu);
+      }
       cSetState({ ...oState, anchors: oAnchors });
     };
   };

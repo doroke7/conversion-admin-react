@@ -11,7 +11,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Helpers from '@/Helpers';
+import events from '@/events';
 
 import Components from '@/Components';
 
@@ -28,7 +28,7 @@ function ThirdMenus(oProps: any) {
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
 
-  let cOnClick = (oThirdMenu: any) => {
+  let cOnClick = (oMenu: any) => {
     return (oEvent: any) => {
       let oQuery = {};
       let oOption = {
@@ -37,8 +37,8 @@ function ThirdMenus(oProps: any) {
         app_id: 1
       };
 
-      if (oThirdMenu.path !== undefined && oThirdMenu.menus === undefined) {
-        // Helpers.History.push(oHistory, oThirdMenu.path, oQuery, oOption);
+      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        events.admin.emit('Navigation-onClickMenu', oMenu);
       }
     };
   };

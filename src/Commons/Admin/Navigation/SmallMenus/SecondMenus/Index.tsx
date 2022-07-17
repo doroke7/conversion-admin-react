@@ -13,7 +13,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Helpers from '@/Helpers';
+import events from '@/events';
 
 import Components from '@/Components';
 
@@ -42,6 +42,9 @@ function SecondMenus(oProps: any) {
         oMenus = {
           [oMenu.id]: true
         };
+      }
+      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        events.admin.emit('Navigation-onClickMenu', oMenu);
       }
       cSetState({ ...oState, menus: oMenus });
       // if (oSecondMenu.path !== undefined && oSecondMenu.menus === undefined) {

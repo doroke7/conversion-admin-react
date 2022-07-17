@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Components from '@/Components';
+import events from '@/events';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -33,6 +34,10 @@ function LargeMenus(oProps) {
           [oMenu.id]: true
         };
       }
+      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        events.admin.emit('Navigation-onClickMenu', oMenu);
+      }
+
       cSetState({ ...oState, menus: oMenus });
     };
   };

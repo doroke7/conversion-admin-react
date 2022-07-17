@@ -113,19 +113,8 @@ function Navigation(oProps: any) {
     };
   }, [oState.value]);
 
-  let cHandleDrawerOpen = () => {
-    cSetState({ ...oState, open: true });
-  };
-
-  let cHandleDrawerClose = () => {
-    cSetState({ ...oState, open: false });
-  };
-
-  let cClickMenu = (oMenu: any) => {
-    // test
-    return (oEvent) => {
-      oEvent.stopPropagation();
-      oEvent.preventDefault(); // 取消 a tag 取消 href
+  useEffect(() => {
+    let cClickMenu = (oMenu) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
       // 如果 Menu 旗下还有子 menu 就不做事
@@ -162,6 +151,20 @@ function Navigation(oProps: any) {
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
+
+    let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.admin.removeListener('Navigation-onClickMenu', cClickMenu);
+    };
+  }, [oState.tabs]);
+
+  let cHandleDrawerOpen = () => {
+    cSetState({ ...oState, open: true });
+  };
+
+  let cHandleDrawerClose = () => {
+    cSetState({ ...oState, open: false });
   };
 
   return (
