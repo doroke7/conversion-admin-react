@@ -103,7 +103,7 @@ function Navigation(oProps: any) {
   }, [oState.tabs]);
 
   useEffect(() => {
-    let cClickTab = (iIndex: number) => {
+    let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
     };
 
