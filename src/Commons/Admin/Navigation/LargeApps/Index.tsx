@@ -42,7 +42,6 @@ function LargeApps(oProps) {
       className={clsx(oClasses.root, {
         [oClasses.rootHidden]: !bStatus
       })}>
-      <div className={oClasses.title}>应用程序大厅</div>
       {aApps.map((oApp: any, iIndex: any) => (
         <>
           <ListItem className={oClasses.listItem} button onClick={cHandleClick(oApp)}>

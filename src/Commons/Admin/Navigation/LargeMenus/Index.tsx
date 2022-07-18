@@ -49,7 +49,6 @@ function LargeMenus(oProps) {
       className={clsx(oClasses.root, {
         [oClasses.rootHidden]: !bStatus
       })}>
-      <div className={oClasses.title}>主要功能区</div>
       {aMenus.map((oMenu: any, iIndex: any) => (
         <>
           <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>
