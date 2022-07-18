@@ -12,11 +12,10 @@ import Helpers from '@/Helpers';
 
 import Components from '@/Components';
 import events from '@/events';
-import ThirdMenus from './ThirdMenus/Index';
 
 import cStyle from './style';
 
-function SecondMenus(oProps: any) {
+function Apps(oProps: any) {
   const oClasses = cStyle();
   let oHistory = useHistory();
   let bIn = oProps.in;
@@ -68,16 +67,6 @@ function SecondMenus(oProps: any) {
             </ListItemIcon>
             <ListItemText primary={oMenu.text} />
             {oMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
-            {oMenu.menus !== undefined ? (
-              <ThirdMenus
-                open={oState.anchors[oMenu.id] !== undefined}
-                menus={oMenu.menus}
-                index={iSecondIndex}
-                anchor={oState.anchors[oMenu.id]}
-                onClickAway={cHandleClose}></ThirdMenus>
-            ) : (
-              ''
-            )}
           </ListItem>
         ))}
       </List>
@@ -85,4 +74,4 @@ function SecondMenus(oProps: any) {
   );
 }
 
-export default SecondMenus;
+export default Apps;

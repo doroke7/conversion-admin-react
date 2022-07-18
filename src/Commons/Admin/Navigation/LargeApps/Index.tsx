@@ -11,7 +11,7 @@ import events from '@/events';
 
 import CONFIGS from '@/CONFIGS/';
 
-import SecondMenus from './SecondMenus/Index';
+import Apps from './Apps/Index';
 
 import cStyle from './style';
 
@@ -58,11 +58,7 @@ function LargeApps(oProps) {
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
           </ListItem>
-          {oMenu.menus !== undefined ? (
-            <SecondMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></SecondMenus>
-          ) : (
-            ''
-          )}
+          {oMenu.menus !== undefined ? <Apps in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></Apps> : ''}
         </>
       ))}
     </List>
