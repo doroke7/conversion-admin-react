@@ -193,12 +193,12 @@ function Navigation(oProps: any) {
                 {/* 点击右边的 App-Icon */}
               </IconButton>
             </div>
-            <Divider />
+            <Divider className={oClasses.divider} />
             <LargeApps status={oState.open}></LargeApps>
-            <Divider />
+            <Divider className={oClasses.divider} />
             <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
             <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
-            <Divider />
+            <Divider className={oClasses.divider} />
             <List></List>
           </Drawer>
           <main className={oClasses.content}>

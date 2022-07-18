@@ -12,5 +12,22 @@ import APP from './APP/INDEX';
 import AES from './AES/INDEX';
 import RSA from './RSA/INDEX';
 import LINKS from './LINKS/INDEX';
+import APPS from './APPS/INDEX';
 
-export default { APP, API, AES, RSA, SERVICE, SOCKET, STORAGE, MOMENT, MESSAGES, HTTP, MODALS, MENUS, ICONS, LINKS };
+export default {
+  APP,
+  API,
+  AES,
+  RSA,
+  SERVICE,
+  SOCKET,
+  STORAGE,
+  MOMENT,
+  MESSAGES,
+  HTTP,
+  MODALS,
+  MENUS,
+  ICONS,
+  LINKS,
+  APPS
+};

@@ -17,7 +17,7 @@ import cStyle from './style';
 
 function SmallMenus(oProps) {
   let bStatus = oProps.status;
-  let aMenus = oProps.menus;
+  let aMenus = oProps.menus || [];
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({

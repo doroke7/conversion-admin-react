@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, deepOrange, deepPurple } from '@material-ui/core/colors';
+import { pink, grey, cyan, deepOrange, deepPurple } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
@@ -78,6 +78,9 @@ const style = makeStyles((oTheme: Theme) =>
       borderRadius: oTheme.spacing(1) - 2,
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
       marginTop: oTheme.spacing(1) - 4
+    },
+    divider: {
+      // backgroundColor: cyan[200]
     }
   })
 );
