@@ -189,7 +189,7 @@ function Navigation(oProps: any) {
             <div className={oClasses.toolbar}>
               <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
               <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
-                <DoubleArrowIcon></DoubleArrowIcon>
+                <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
                 {/* 点击右边的 App-Icon */}
               </IconButton>
             </div>

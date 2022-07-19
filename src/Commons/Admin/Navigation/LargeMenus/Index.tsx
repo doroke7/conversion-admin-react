@@ -56,7 +56,13 @@ function LargeMenus(oProps) {
               <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
             </ListItemIcon>
             <ListItemText primary={oMenu.text} />
-            {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
+            {oMenu.menus === undefined ? (
+              ''
+            ) : oState.menus[oMenu.id] === undefined ? (
+              <ExpandMore className={oClasses.icon} />
+            ) : (
+              <ExpandLess className={oClasses.icon} />
+            )}
           </ListItem>
           {oMenu.menus !== undefined ? (
             <SecondMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></SecondMenus>

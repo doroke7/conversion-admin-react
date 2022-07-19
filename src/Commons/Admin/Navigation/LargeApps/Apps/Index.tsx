@@ -47,12 +47,12 @@ function Apps(oProps: any) {
           <ListItem
             button
             key={oApp.id}
-            className={oClasses.nested}
+            className={oClasses.listItem}
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={cHandleToggle(oApp)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={'AppsOutlinedIcon'} />
+              <Components.Admin.Icon name={'PhoneAndroidIcon'} />
             </ListItemIcon>
             <ListItemText primary={oApp.name} />
           </ListItem>

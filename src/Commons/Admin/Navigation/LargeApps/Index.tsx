@@ -42,10 +42,10 @@ function LargeApps(oProps) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleClick}>
           <ListItemIcon className={oClasses.listItemIcon}>
-            <Components.Admin.Icon name={'AppsOutlinedIcon'}></Components.Admin.Icon>
+            <Components.Admin.Icon name={'PhonelinkIcon'}></Components.Admin.Icon>
           </ListItemIcon>
           <ListItemText primary={'应用程序'} />
-          {oState.open ? <ExpandMore /> : <ExpandLess />}
+          {oState.open ? <ExpandMore className={oClasses.icon} /> : <ExpandLess className={oClasses.icon} />}
         </ListItem>
         <Apps in={oState.open} apps={aApps}></Apps>
       </>

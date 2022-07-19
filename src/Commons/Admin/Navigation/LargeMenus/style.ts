@@ -23,6 +23,10 @@ const oStyle = makeStyles((oTheme: Theme) =>
       minWidth: oTheme.spacing(4),
       color: grey[100]
     },
+    icon: {
+      filter:
+        'drop-shadow( 1px 1px 0px rgba(0, 0, 0, 0.8)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4))'
+    },
     listItem: {
       height: oTheme.spacing(6)
     }

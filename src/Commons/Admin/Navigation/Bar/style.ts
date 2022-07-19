@@ -20,6 +20,10 @@ const style = makeStyles((oTheme: Theme) =>
         duration: oTheme.transitions.duration.enteringScreen
       })
     },
+    icon: {
+      filter:
+        'drop-shadow( 1px 1px 0px rgba(0, 0, 0, 0.8)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4))'
+    },
     toolbar: {
       minHeight: oTheme.spacing(7),
       paddingLeft: oTheme.spacing(1.5),
