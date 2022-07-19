@@ -5,12 +5,18 @@ const drawerWidth = 200;
 
 const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
+    root: {
+      background: grey[50],
+      color: grey[900],
+      margin: oTheme.spacing(1) + 'px' + ' ' + oTheme.spacing(2) + 'px',
+      borderRadius: oTheme.spacing(1)
+    },
     nested: {
-      paddingLeft: oTheme.spacing(4)
+      paddingLeft: oTheme.spacing(2)
     },
     listItemIcon: {
-      minWidth: '32px',
-      color: grey[100]
+      minWidth: oTheme.spacing(4),
+      color: grey[900]
     }
   })
 );

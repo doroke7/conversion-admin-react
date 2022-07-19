@@ -42,7 +42,7 @@ function Apps(oProps: any) {
 
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>
-      <List component="div" disablePadding>
+      <List component="div" disablePadding className={oClasses.root}>
         {aApps.map((oApp: any, iIndex: any) => (
           <ListItem
             button
