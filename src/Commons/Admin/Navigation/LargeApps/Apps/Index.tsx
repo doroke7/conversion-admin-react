@@ -18,8 +18,9 @@ import cStyle from './style';
 function Apps(oProps: any) {
   const oClasses = cStyle();
   let oHistory = useHistory();
-  let bIn = oProps.in;
-  let aMenus = oProps.menus;
+  let bIn = oProps.in || false;
+  let aMenus = oProps.menus || [];
+  let aApps = oProps.apps || [];
 
   let [oState, cSetState] = React.useState<any>({
     anchors: {}
@@ -39,34 +40,21 @@ function Apps(oProps: any) {
     };
   };
 
-  let cHandleClose = (oEvent: any) => {
-    // 如果 三级 菜单 有被锚点， 且 点击的 dom 包含 当下的 三级菜单就 不做事
-
-    // 如果 三级 菜单 没被锚点， 且 点击的 dom 不包含 当下的 三级菜单就 关闭
-    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
-      return;
-    }
-    let oAnchors = {};
-    cSetState({ ...oState, anchors: oAnchors });
-  };
-
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        {aMenus.map((oMenu: any, iSecondIndex: any) => (
-          // NOTE： 解决 多个 refs 办法 一： 宣告多一个子 child compoment , 此 compoent 有独立的 ref varible
+        {aApps.map((oApp: any, iIndex: any) => (
           <ListItem
             button
-            key={oMenu.id}
+            key={oApp.id}
             className={oClasses.nested}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleToggle(oMenu)}>
+            onClick={cHandleToggle(oApp)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={oMenu.icon} />
+              <Components.Admin.Icon name={'AppsOutlinedIcon'} />
             </ListItemIcon>
-            <ListItemText primary={oMenu.text} />
-            {oMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
+            <ListItemText primary={oApp.name} />
           </ListItem>
         ))}
       </List>

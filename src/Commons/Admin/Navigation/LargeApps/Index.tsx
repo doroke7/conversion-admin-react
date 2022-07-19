@@ -16,51 +16,39 @@ import Apps from './Apps/Index';
 import cStyle from './style';
 
 function LargeApps(oProps) {
-  let bStatus = oProps.status;
+  let bStatus = oProps.status; // 简单菜单 or 非简单菜单
   let aMenus = oProps.menus || [];
+  let aApps = oProps.apps || [];
 
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
+    open: false,
     menus: {}
   });
 
-  const cHandleClick = (oMenu) => {
-    return (oEvent) => {
-      let oMenus = {};
-
-      if (!oState.menus[oMenu.id]) {
-        oMenus = {
-          [oMenu.id]: true
-        };
-      }
-      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
-        events.admin.emit('Navigation-onClickMenu', oMenu);
-      }
-
-      cSetState({ ...oState, menus: oMenus });
-    };
+  const cHandleClick = (oEvent) => {
+    let bOpen = !oState.open;
+    cSetState({ ...oState, open: bOpen });
   };
 
   return (
     <List
-      component="nav"
+      component="div"
       aria-labelledby="nested-list-subheader"
       className={clsx(oClasses.root, {
         [oClasses.rootHidden]: !bStatus
       })}>
-      {aMenus.map((oMenu: any, iIndex: any) => (
-        <>
-          <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>
-            <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
-            </ListItemIcon>
-            <ListItemText primary={oMenu.text} />
-            {oMenu.menus === undefined ? '' : oState.menus[oMenu.id] === undefined ? <ExpandMore /> : <ExpandLess />}
-          </ListItem>
-          {oMenu.menus !== undefined ? <Apps in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></Apps> : ''}
-        </>
-      ))}
+      <>
+        <ListItem className={oClasses.listItem} button onClick={cHandleClick}>
+          <ListItemIcon className={oClasses.listItemIcon}>
+            <Components.Admin.Icon name={'AppsOutlinedIcon'}></Components.Admin.Icon>
+          </ListItemIcon>
+          <ListItemText primary={'应用程序'} />
+          {oState.open ? <ExpandMore /> : <ExpandLess />}
+        </ListItem>
+        <Apps in={oState.open} apps={aApps}></Apps>
+      </>
     </List>
   );
 }

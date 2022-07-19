@@ -194,7 +194,7 @@ function Navigation(oProps: any) {
               </IconButton>
             </div>
             <Divider className={oClasses.divider} />
-            <LargeApps status={oState.open}></LargeApps>
+            <LargeApps status={oState.open} apps={CONFIGS.APPS}></LargeApps>
             <Divider className={oClasses.divider} />
             <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
             <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
