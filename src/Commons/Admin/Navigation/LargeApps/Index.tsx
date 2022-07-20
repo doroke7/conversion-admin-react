@@ -6,6 +6,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Avatar from '@material-ui/core/Avatar';
+
 import Components from '@/Components';
 import events from '@/events';
 
