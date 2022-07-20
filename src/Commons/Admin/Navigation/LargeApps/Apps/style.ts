@@ -1,12 +1,9 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/colors';
 
-const drawerWidth = 200;
-
 const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      background: blue[200],
       margin: oTheme.spacing(1) + 'px' + ' ' + oTheme.spacing(2) + 'px',
       padding: oTheme.spacing(2) + 'px' + ' ' + oTheme.spacing(0) + 'px',
       borderRadius: oTheme.spacing(0.5),
@@ -22,12 +19,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
       minWidth: oTheme.spacing(4),
       color: grey[50]
     },
-    avatar: {
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      marginRight: oTheme.spacing(1),
-      background: blue[500]
-    },
+
     '@keyframes brighten': {
       // '0%': {
       //   background: grey[600],

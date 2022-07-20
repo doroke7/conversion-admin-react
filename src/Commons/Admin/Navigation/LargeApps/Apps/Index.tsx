@@ -10,9 +10,10 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Avatar from '@material-ui/core/Avatar';
 
 import Helpers from '@/Helpers';
-
 import Components from '@/Components';
 import events from '@/events';
+
+import Icon from './Icon/Index';
 
 import cStyle from './style';
 
@@ -44,7 +45,7 @@ function Apps(oProps: any) {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={cHandleToggle(oApp)}>
-            <Avatar className={oClasses.avatar}>{oApp.name.substr(0, 1)}</Avatar>
+            <Icon name={oApp.name.substr(0, 1)}></Icon>
             <ListItemText primary={oApp.name} />
           </ListItem>
         ))}
