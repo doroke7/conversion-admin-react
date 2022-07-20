@@ -51,29 +51,7 @@ function Bar(oProps: any) {
         </IconButton>
         {/* 点击右边的 App-Icon */}
         <Links links={CONFIGS.LINKS}></Links>
-        <FormControl variant="outlined" className={oClasses.formControl}>
-          <Select
-            displayEmpty
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            inputProps={{ 'aria-label': 'Without label' }}
-            className={oClasses.select}
-            onChange={cHandleChange}
-            value={sAppId}>
-            <MenuItem className={oClasses.menuItem} value="" disabled>
-              <em>分包选择</em>
-            </MenuItem>
-            <MenuItem className={oClasses.menuItem} value={1}>
-              加菲影视
-            </MenuItem>
-            <MenuItem className={oClasses.menuItem} value={2}>
-              青山影视
-            </MenuItem>
-            <MenuItem className={oClasses.menuItem} value={3}>
-              松鼠影视
-            </MenuItem>
-          </Select>
-        </FormControl>
+
         <div className={oClasses.avatarWrapper}>
           <Badge
             overlap="circular"

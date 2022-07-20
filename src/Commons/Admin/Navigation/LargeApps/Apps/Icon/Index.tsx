@@ -18,19 +18,9 @@ import cStyle from './style';
 
 function Icon(oProps: any) {
   const oClasses = cStyle();
-  let cRandomColor = () => {
-    let oHex = Math.floor(Math.random() * 0xffffff);
-    let sColor = '#' + oHex.toString(16);
-
-    return sColor;
-  };
 
   let sName = oProps.name || '';
-  return (
-    <Avatar className={oClasses.root} style={{ backgroundColor: cRandomColor() }}>
-      {sName}
-    </Avatar>
-  );
+  return <Avatar className={oClasses.root}>{sName}</Avatar>;
 }
 
 export default Icon;

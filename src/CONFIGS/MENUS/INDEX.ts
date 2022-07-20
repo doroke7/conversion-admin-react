@@ -117,7 +117,7 @@ let MENUS: any = [
     text: '系统管理',
     description: '系统管理',
     path: '/admin/system/index',
-    icon: 'SettingsOutlinedIcon',
+    icon: 'BuildIcon',
     menus: [
       {
         id: 41,
