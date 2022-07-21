@@ -1,26 +1,18 @@
 import React from 'react';
+import clsx from 'clsx';
+
 import { useHistory, useLocation } from 'react-router-dom';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Avatar from '@material-ui/core/Avatar';
-
-import Helpers from '@/Helpers';
-
-import Components from '@/Components';
-import events from '@/events';
 
 import cStyle from './style';
 
 function Icon(oProps: any) {
   const oClasses = cStyle();
+  let sClassName = oProps.className || '';
 
   let sName = oProps.name || '';
-  return <Avatar className={oClasses.root}>{sName}</Avatar>;
+  return <Avatar className={clsx(oClasses.root, sClassName)}>{sName}</Avatar>;
 }
 
 export default Icon;

@@ -13,6 +13,11 @@ const APPS: any = [
     id: 3,
     name: '松鼠影视',
     describtion: '24小时同步更新'
+  },
+  {
+    id: 4,
+    name: '瓜子影视',
+    describtion: '已停止维护'
   }
 ];
 

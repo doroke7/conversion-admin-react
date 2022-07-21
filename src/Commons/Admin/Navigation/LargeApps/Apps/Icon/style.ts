@@ -6,8 +6,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
     root: {
       width: oTheme.spacing(4),
       height: oTheme.spacing(4),
-      marginRight: oTheme.spacing(1),
-      background: blue[500]
+      marginRight: oTheme.spacing(1)
     }
   })
 );

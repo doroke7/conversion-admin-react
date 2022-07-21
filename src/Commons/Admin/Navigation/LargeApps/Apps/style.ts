@@ -1,8 +1,41 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/colors';
+import {
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  lightGreen,
+  lime,
+  deepOrange,
+  brown,
+  grey,
+  blueGrey
+} from '@material-ui/core/colors';
 
 const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
+    backgroundColor1: { backgroundColor: red[500] },
+    backgroundColor2: { backgroundColor: pink[500] },
+    backgroundColor3: { backgroundColor: purple[500] },
+    backgroundColor4: { backgroundColor: deepPurple[500] },
+    backgroundColor5: { backgroundColor: indigo[500] },
+    backgroundColor6: { backgroundColor: blue[500] },
+    backgroundColor7: { backgroundColor: lightBlue[500] },
+    backgroundColor8: { backgroundColor: cyan[500] },
+    backgroundColor9: { backgroundColor: teal[500] },
+    backgroundColor10: { backgroundColor: green[500] },
+    backgroundColor11: { backgroundColor: lightGreen[500] },
+    backgroundColor12: { backgroundColor: lime[500] },
+    backgroundColor13: { backgroundColor: deepOrange[500] },
+    backgroundColor14: { backgroundColor: brown[500] },
+    backgroundColor15: { backgroundColor: blueGrey[500] },
+
     root: {
       margin: oTheme.spacing(1) + 'px' + ' ' + oTheme.spacing(2) + 'px',
       padding: oTheme.spacing(2) + 'px' + ' ' + oTheme.spacing(0) + 'px',

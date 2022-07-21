@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import List from '@material-ui/core/List';
@@ -21,12 +22,25 @@ function Apps(oProps: any) {
   const oClasses = cStyle();
   let oHistory = useHistory();
   let bIn = oProps.in || false;
-  let aMenus = oProps.menus || [];
   let aApps = oProps.apps || [];
 
-  let [oState, cSetState] = React.useState<any>({
-    anchors: {}
-  });
+  let aBackgroundClasses = [
+    oClasses.backgroundColor1,
+    oClasses.backgroundColor2,
+    oClasses.backgroundColor3,
+    oClasses.backgroundColor4,
+    oClasses.backgroundColor5,
+    oClasses.backgroundColor6,
+    oClasses.backgroundColor7,
+    oClasses.backgroundColor8,
+    oClasses.backgroundColor9,
+    oClasses.backgroundColor10,
+    oClasses.backgroundColor11,
+    oClasses.backgroundColor12,
+    oClasses.backgroundColor13,
+    oClasses.backgroundColor14,
+    oClasses.backgroundColor15
+  ];
 
   let cHandleToggle = (oMenu: any) => {
     return (oEvent: any) => {
@@ -45,7 +59,9 @@ function Apps(oProps: any) {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={cHandleToggle(oApp)}>
-            <Icon name={oApp.name.substr(0, 1)}></Icon>
+            <Icon
+              className={clsx(aBackgroundClasses[iIndex] || aBackgroundClasses[0])}
+              name={oApp.name.substr(0, 1)}></Icon>
             <ListItemText primary={oApp.name} />
           </ListItem>
         ))}
