@@ -5,8 +5,15 @@ const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      marginRight: oTheme.spacing(1)
+      height: oTheme.spacing(4)
+    },
+    badge: {
+      marginRight: oTheme.spacing(2),
+      '& .MuiBadge-badge': {}
+    },
+    checkCircleIcon: {
+      fontSize: oTheme.spacing(2),
+      color: '#44b700'
     }
   })
 );
