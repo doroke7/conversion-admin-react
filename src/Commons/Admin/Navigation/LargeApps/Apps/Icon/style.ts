@@ -8,15 +8,15 @@ const oStyle = makeStyles((oTheme: Theme) =>
       height: oTheme.spacing(4)
     },
     badge: {
-      marginRight: oTheme.spacing(1),
+      marginRight: oTheme.spacing(1.5),
       '& .MuiBadge-badge': {}
     },
     checkCircleIcon: {
       fontSize: oTheme.spacing(2),
       color: '#44b700',
       backgroundColor: oTheme.palette.background.paper,
-      borderRadius: '50%',
-      boxShadow: `0 0 5px 1px ${oTheme.palette.background.paper}`
+      // borderRadius: '50%',
+      boxShadow: `0 0 5px 0px ${oTheme.palette.background.paper}`
       // 四个变量的 boxShadow: X-offset Y-Offset blur spreed
     }
   })
