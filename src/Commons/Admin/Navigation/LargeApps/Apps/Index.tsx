@@ -25,24 +25,7 @@ function Apps(oProps: any) {
   let iIndex = oProps.index || 0;
   let aApps = oProps.apps || [];
   let cHandleClick = oProps.onClick || (() => void 0);
-
-  let aBackgroundClasses = [
-    oClasses.backgroundColor1,
-    oClasses.backgroundColor2,
-    oClasses.backgroundColor3,
-    oClasses.backgroundColor4,
-    oClasses.backgroundColor5,
-    oClasses.backgroundColor6,
-    oClasses.backgroundColor7,
-    oClasses.backgroundColor8,
-    oClasses.backgroundColor9,
-    oClasses.backgroundColor10,
-    oClasses.backgroundColor11,
-    oClasses.backgroundColor12,
-    oClasses.backgroundColor13,
-    oClasses.backgroundColor14,
-    oClasses.backgroundColor15
-  ];
+  let aBackgroundClasses = oProps.iconColors || [];
 
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>

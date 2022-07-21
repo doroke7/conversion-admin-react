@@ -1,0 +1,25 @@
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/colors';
+
+const oStyle = makeStyles((oTheme: Theme) =>
+  createStyles({
+    root: {
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4)
+    },
+    badge: {
+      marginRight: oTheme.spacing(1.5),
+      '& .MuiBadge-badge': {}
+    },
+    checkCircleIcon: {
+      fontSize: oTheme.spacing(2),
+      color: '#44b700',
+      backgroundColor: oTheme.palette.background.paper,
+      // borderRadius: '50%',
+      boxShadow: `0 0 5px 0px ${oTheme.palette.background.paper}`
+      // 四个变量的 boxShadow: X-offset Y-Offset blur spreed
+    }
+  })
+);
+
+export default oStyle;

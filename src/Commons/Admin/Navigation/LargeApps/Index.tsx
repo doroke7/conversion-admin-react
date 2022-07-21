@@ -14,6 +14,7 @@ import events from '@/events';
 import CONFIGS from '@/CONFIGS/';
 
 import Apps from './Apps/Index';
+import Icon from './Icon/Index';
 
 import cStyle from './style';
 
@@ -40,6 +41,24 @@ function LargeApps(oProps) {
     };
   };
 
+  let aIconColors = [
+    oClasses.backgroundColor1,
+    oClasses.backgroundColor2,
+    oClasses.backgroundColor3,
+    oClasses.backgroundColor4,
+    oClasses.backgroundColor5,
+    oClasses.backgroundColor6,
+    oClasses.backgroundColor7,
+    oClasses.backgroundColor8,
+    oClasses.backgroundColor9,
+    oClasses.backgroundColor10,
+    oClasses.backgroundColor11,
+    oClasses.backgroundColor12,
+    oClasses.backgroundColor13,
+    oClasses.backgroundColor14,
+    oClasses.backgroundColor15
+  ];
+
   return (
     <List
       component="div"
@@ -55,7 +74,7 @@ function LargeApps(oProps) {
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={oState.index} onClick={cHandleClick}></Apps>
+        <Apps in={oState.open} apps={aApps} index={oState.index} onClick={cHandleClick} iconColors={aIconColors}></Apps>
       </>
     </List>
   );
