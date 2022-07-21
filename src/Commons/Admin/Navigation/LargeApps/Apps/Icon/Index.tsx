@@ -12,6 +12,7 @@ import cStyle from './style';
 function Icon(oProps: any) {
   const oClasses = cStyle();
   let sClassName = oProps.className || '';
+  let bStatus = oProps.status || false;
 
   let sName = oProps.name || '';
   return (
@@ -22,7 +23,7 @@ function Icon(oProps: any) {
         horizontal: 'right'
       }}
       className={oClasses.badge}
-      badgeContent={<CheckBoxIcon className={oClasses.checkCircleIcon}></CheckBoxIcon>}>
+      badgeContent={bStatus ? <CheckBoxIcon className={oClasses.checkCircleIcon}></CheckBoxIcon> : <></>}>
       <Avatar className={clsx(oClasses.root, sClassName)} variant="rounded">
         {sName}
       </Avatar>

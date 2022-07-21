@@ -22,7 +22,9 @@ function Apps(oProps: any) {
   const oClasses = cStyle();
   let oHistory = useHistory();
   let bIn = oProps.in || false;
+  let iIndex = oProps.index || 0;
   let aApps = oProps.apps || [];
+  let cHandleClick = oProps.onClick || (() => void 0);
 
   let aBackgroundClasses = [
     oClasses.backgroundColor1,
@@ -42,26 +44,21 @@ function Apps(oProps: any) {
     oClasses.backgroundColor15
   ];
 
-  let cHandleToggle = (oMenu: any) => {
-    return (oEvent: any) => {
-      let oAnchor = oEvent.currentTarget;
-    };
-  };
-
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding className={oClasses.root}>
-        {aApps.map((oApp: any, iIndex: any) => (
+        {aApps.map((oApp: any, iIndexOfApps: any) => (
           <ListItem
             button
             key={oApp.id}
             className={oClasses.listItem}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleToggle(oApp)}>
+            onClick={cHandleClick(iIndexOfApps)}>
             <Icon
-              className={clsx(aBackgroundClasses[iIndex] || aBackgroundClasses[0])}
-              name={oApp.name.substr(0, 1)}></Icon>
+              className={clsx(aBackgroundClasses[iIndexOfApps] || aBackgroundClasses[0])}
+              name={oApp.name.substr(0, 1)}
+              status={iIndexOfApps == iIndex}></Icon>
             <ListItemText primary={oApp.name} />
           </ListItem>
         ))}

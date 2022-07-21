@@ -26,12 +26,18 @@ function LargeApps(oProps) {
 
   let [oState, cSetState] = React.useState<any>({
     open: false,
-    index: 0
+    index: -1
   });
 
-  const cHandleClick = (oEvent) => {
+  let cHandleToggle = (oEvent) => {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });
+  };
+
+  let cHandleClick = (iIndexOfApps: any) => {
+    return (oEvent: any) => {
+      cSetState({ ...oState, index: iIndexOfApps });
+    };
   };
 
   return (
@@ -42,14 +48,14 @@ function LargeApps(oProps) {
         [oClasses.hidden]: !bStatus
       })}>
       <>
-        <ListItem className={oClasses.listItem} button onClick={cHandleClick}>
+        <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <ListItemIcon className={oClasses.listItemIcon}>
             <Components.Admin.Icon name={'PhonelinkIcon'}></Components.Admin.Icon>
           </ListItemIcon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps}></Apps>
+        <Apps in={oState.open} apps={aApps} index={oState.index} onClick={cHandleClick}></Apps>
       </>
     </List>
   );
