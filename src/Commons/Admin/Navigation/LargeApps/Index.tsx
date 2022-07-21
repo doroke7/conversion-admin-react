@@ -26,7 +26,7 @@ function LargeApps(oProps) {
 
   let [oState, cSetState] = React.useState<any>({
     open: false,
-    menus: {}
+    index: 0
   });
 
   const cHandleClick = (oEvent) => {
@@ -39,7 +39,7 @@ function LargeApps(oProps) {
       component="div"
       aria-labelledby="nested-list-subheader"
       className={clsx(oClasses.root, {
-        [oClasses.rootHidden]: !bStatus
+        [oClasses.hidden]: !bStatus
       })}>
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleClick}>

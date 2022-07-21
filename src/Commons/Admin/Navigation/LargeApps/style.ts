@@ -16,7 +16,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
       textShadow:
         '1px 1px 2px #4dd0e1, -1px -1px 2px #4dd0e1, -1px 1px 2px #4dd0e1, 1px -1px 2px #4dd0e1, 1px 0px 2px #4dd0e1, 0px 1px 2px #4dd0e1, -1px 0px 2px #4dd0e1, 0px -1px 2px #4dd0e1'
     },
-    rootHidden: {
+    hidden: {
       display: 'none'
     },
     listItemIcon: {
