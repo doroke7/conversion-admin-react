@@ -24,7 +24,7 @@ function SmallMenus(oProps) {
     anchors: {}
   });
 
-  const cHandleMouseEnter = (oMenu) => {
+  let cHandleMouseEnter = (oMenu) => {
     return (oEvent) => {
       let oAnchors = {};
 
@@ -40,7 +40,7 @@ function SmallMenus(oProps) {
     };
   };
 
-  const cHandleMouseLeave = (oMenu) => {
+  let cHandleMouseLeave = (oMenu) => {
     return (oEvent) => {
       let oAnchors = {};
 
@@ -49,9 +49,9 @@ function SmallMenus(oProps) {
   };
 
   let cHandleClose = (oEvent: any) => {
-    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
-      return;
-    }
+    // if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
+    //   return;
+    // }
     let oAnchors = {};
     cSetState({ ...oState, anchors: oAnchors });
   };

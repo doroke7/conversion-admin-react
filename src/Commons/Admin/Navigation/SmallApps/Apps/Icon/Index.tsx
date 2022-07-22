@@ -5,7 +5,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import cStyle from './style';
 

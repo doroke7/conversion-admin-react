@@ -16,6 +16,7 @@ import Apps from './Apps/Index';
 import Icon from './Icon/Index';
 
 import cStyle from './style';
+import { isNullishCoalesce } from 'typescript';
 
 function SmallApps(oProps) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
@@ -26,7 +27,8 @@ function SmallApps(oProps) {
   const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
-    open: false
+    open: false,
+    anchor: null
   });
 
   let oApp = aApps[iIndex] ?? {};
@@ -54,6 +56,31 @@ function SmallApps(oProps) {
     oClasses.backgroundColor15
   ];
 
+  let cHandleMouseEnter = () => {
+    return (oEvent) => {
+      let oAnchor = oEvent.currentTarget;
+
+      cSetState({ ...oState, anchor: oAnchor });
+    };
+  };
+
+  let cHandleMouseLeave = () => {
+    return (oEvent) => {
+      let oAnchor = null;
+
+      cSetState({ ...oState, anchor: oAnchor });
+    };
+  };
+
+  let cHandleClose = (oEvent: any) => {
+    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
+      return;
+    }
+    let oAnchor = null;
+
+    cSetState({ ...oState, anchor: oAnchor });
+  };
+
   return (
     <List
       component="div"
@@ -62,15 +89,26 @@ function SmallApps(oProps) {
         [oClasses.hidden]: !bStatus
       })}>
       <>
-        <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
+        <ListItem
+          className={oClasses.listItem}
+          button
+          onMouseEnter={cHandleMouseEnter()}
+          onMouseLeave={cHandleMouseLeave()}>
           <Icon
             className={clsx(aIconColors[iIndex] ?? aIconColors[14])}
             name={oApp['name'] ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={''} />
-          {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
+          <Apps
+            open={Boolean(oState.anchor)}
+            apps={aApps}
+            anchor={oState.anchor}
+            index={iIndex}
+            onClick={cOnClickApp}
+            iconColors={aIconColors}
+            onClickAway={cHandleClose}
+            onMouseLeave={cHandleMouseLeave()}></Apps>
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} onClick={cOnClickApp} iconColors={aIconColors}></Apps>
       </>
     </List>
   );
