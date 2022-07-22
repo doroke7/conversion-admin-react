@@ -18,7 +18,7 @@ import {
   blueGrey
 } from '@material-ui/core/colors';
 
-const oStyle = makeStyles((oTheme: Theme) =>
+let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       width: '100%',

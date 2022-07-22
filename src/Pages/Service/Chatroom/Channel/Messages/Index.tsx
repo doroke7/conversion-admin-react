@@ -254,7 +254,7 @@ class Messages extends React.Component<any> {
     let fOpacity =
       this.state.scrollTopRatio > 0.9 && this.state.scrollTopRatio <= 1 ? (1 - this.state.scrollTopRatio) * 10 : 1;
 
-    const oStyle = {
+    let oStyle = {
       opacity: fOpacity
     };
 
