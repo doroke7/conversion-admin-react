@@ -63,9 +63,11 @@ const style = makeStyles((oTheme: Theme) =>
     hide: {
       display: 'none'
     },
-    avatarWrapper: {
+    right: {
       position: 'absolute',
-      right: oTheme.spacing(2),
+      right: oTheme.spacing(2)
+    },
+    avatarWrapper: {
       cursor: 'pointer'
     },
     badge: {

@@ -19,6 +19,7 @@ import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
 import Links from './Links/Index';
+import Right from './Right/Index';
 
 import style from './style';
 
@@ -51,19 +52,7 @@ function Bar(oProps: any) {
         </IconButton>
         {/* 点击右边的 App-Icon */}
         <Links links={CONFIGS.LINKS}></Links>
-
-        <div className={oClasses.avatarWrapper}>
-          <Badge
-            overlap="circular"
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right'
-            }}
-            className={oClasses.badge}
-            variant="dot">
-            <Avatar src={administrator}></Avatar>
-          </Badge>
-        </div>
+        <Right></Right>
       </Toolbar>
     </AppBar>
   );
