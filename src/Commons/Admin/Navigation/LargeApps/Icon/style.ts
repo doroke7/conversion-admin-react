@@ -4,15 +4,16 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 const oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4)
+      fontSize: oTheme.spacing(2),
+      width: oTheme.spacing(3),
+      height: oTheme.spacing(3)
     },
     badge: {
       marginRight: oTheme.spacing(1.5),
       '& .MuiBadge-badge': {}
     },
     checkCircleIcon: {
-      fontSize: oTheme.spacing(2),
+      fontSize: oTheme.spacing(1.5),
       color: '#44b700',
       backgroundColor: oTheme.palette.background.paper,
       // borderRadius: '50%',

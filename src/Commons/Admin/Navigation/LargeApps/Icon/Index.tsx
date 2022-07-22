@@ -17,7 +17,7 @@ function Icon(oProps: any) {
   let sName = oProps.name || '';
   return (
     <Badge
-      overlap="rectangular"
+      overlap="circular"
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'right'

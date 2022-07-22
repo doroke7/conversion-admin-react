@@ -7,7 +7,8 @@ const oStyle = makeStyles((oTheme: Theme) =>
       paddingLeft: oTheme.spacing(4)
     },
     listItemIcon: {
-      minWidth: oTheme.spacing(4),
+      minWidth: oTheme.spacing(3),
+      marginRight: oTheme.spacing(1),
       color: grey[100]
     }
   })
