@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Bar from './Bar/Index';
+import SmallApps from './SmallApps/Index';
 import LargeApps from './LargeApps/Index';
 import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
@@ -200,6 +201,11 @@ function Navigation(oProps: any) {
               </IconButton>
             </div>
             <Divider className={oClasses.divider} />
+            <SmallApps
+              status={!oState.open}
+              apps={CONFIGS.APPS}
+              onClickApp={cHandleClickApp}
+              index={oState.index}></SmallApps>
             <LargeApps
               status={oState.open}
               apps={CONFIGS.APPS}

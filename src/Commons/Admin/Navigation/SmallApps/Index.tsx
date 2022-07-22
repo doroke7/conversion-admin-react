@@ -67,7 +67,7 @@ function SmallApps(oProps) {
             className={clsx(aIconColors[iIndex] ?? aIconColors[14])}
             name={oApp['name'] ?? ''}
             status={iIndex >= 0}></Icon>
-          <ListItemText primary={'应用程序'} />
+          <ListItemText primary={''} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
         <Apps in={oState.open} apps={aApps} index={iIndex} onClick={cOnClickApp} iconColors={aIconColors}></Apps>

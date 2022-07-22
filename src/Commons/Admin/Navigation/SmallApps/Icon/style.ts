@@ -17,7 +17,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
       color: '#44b700',
       backgroundColor: oTheme.palette.background.paper,
       // borderRadius: '50%',
-      boxShadow: `0 0 5px 0px ${oTheme.palette.background.paper}`
+      boxShadow: `0 0 6px 0px ${oTheme.palette.background.paper}`
       // 四个变量的 boxShadow: X-offset Y-Offset blur spreed
     }
   })
