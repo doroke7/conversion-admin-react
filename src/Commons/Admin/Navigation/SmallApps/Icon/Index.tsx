@@ -16,10 +16,10 @@ import cStyle from './style';
 
 function Icon(oProps: any) {
   const oClasses = cStyle();
-  let sClassName = oProps.className ?? '';
-  let bStatus = oProps.status ?? false;
+  let sClassName = oProps.className || '';
+  let bStatus = oProps.status || false;
 
-  let sName = oProps.name ?? '';
+  let sName = oProps.name || '';
   sName = sName.substr(0, 1);
   return (
     <Badge

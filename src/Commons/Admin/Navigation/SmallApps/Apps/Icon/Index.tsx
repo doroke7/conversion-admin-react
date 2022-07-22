@@ -5,13 +5,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
-import SmartphoneIcon from '@material-ui/icons/Smartphone';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-
-import GradientIcon from '@material-ui/icons/Gradient';
-import LanguageIcon from '@material-ui/icons/Language';
-import SelectAllIcon from '@material-ui/icons/SelectAll';
-import WidgetsIcon from '@material-ui/icons/Widgets';
 import cStyle from './style';
 
 function Icon(oProps: any) {
@@ -31,7 +26,7 @@ function Icon(oProps: any) {
       className={oClasses.badge}
       badgeContent={bStatus ? <CheckBoxIcon className={oClasses.checkCircleIcon}></CheckBoxIcon> : <></>}>
       <Avatar className={clsx(oClasses.root, sClassName)} variant="rounded">
-        {sName ? sName : <WidgetsIcon></WidgetsIcon>}
+        {sName}
       </Avatar>
     </Badge>
   );

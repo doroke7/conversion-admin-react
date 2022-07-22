@@ -17,9 +17,8 @@ import Icon from './Icon/Index';
 
 import cStyle from './style';
 
-function LargeApps(oProps) {
+function SmallApps(oProps) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
-  let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
   let iIndex = oProps.index ?? -1;
   let cOnClickApp = oProps.onClickApp ?? (() => void 0);
@@ -77,4 +76,4 @@ function LargeApps(oProps) {
   );
 }
 
-export default LargeApps;
+export default SmallApps;

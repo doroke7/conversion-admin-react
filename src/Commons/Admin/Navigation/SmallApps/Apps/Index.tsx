@@ -40,7 +40,7 @@ function Apps(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleClick(iIndexOfApp)}>
             <Icon
-              className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0])}
+              className={clsx(aBackgroundClasses[iIndexOfApp] || aBackgroundClasses[0])}
               name={oApp.name}
               status={iIndexOfApp == iIndex}></Icon>
             <ListItemText primary={oApp.name} />
