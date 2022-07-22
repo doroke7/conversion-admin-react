@@ -41,7 +41,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       color: grey[100]
     },
     listItem: {
-      height: oTheme.spacing(6)
+      height: oTheme.spacing(8)
     },
     icon: {
       filter:

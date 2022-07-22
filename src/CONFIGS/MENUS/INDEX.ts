@@ -142,8 +142,8 @@ let MENUS: any = [
           },
           {
             id: 413,
-            text: '权限列表',
-            description: '权限列表',
+            text: '权限配置',
+            description: '权限配置',
             path: '/admin/resource/authorization/index',
             icon: 'LockOpenOutlinedIcon'
           }
