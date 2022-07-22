@@ -37,7 +37,8 @@ function Navigation(oProps: any) {
   const [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab
-    tabs: [] // Tab 列表
+    tabs: [], // Tab 列表
+    index: -1 // 选中的 oApp
   });
 
   useEffect(() => {
@@ -168,6 +169,11 @@ function Navigation(oProps: any) {
     cSetState({ ...oState, open: false });
   };
 
+  let cHandleClickApp = (iIndexOfApp: any) => {
+    return (oEvent: any) => {
+      cSetState({ ...oState, index: iIndexOfApp });
+    };
+  };
   return (
     <Contexts.Admin.TabsValue.Provider value={oState.value}>
       <Contexts.Admin.Tabs.Provider value={oState.tabs}>
@@ -194,7 +200,11 @@ function Navigation(oProps: any) {
               </IconButton>
             </div>
             <Divider className={oClasses.divider} />
-            <LargeApps status={oState.open} apps={CONFIGS.APPS}></LargeApps>
+            <LargeApps
+              status={oState.open}
+              apps={CONFIGS.APPS}
+              onClickApp={cHandleClickApp}
+              index={oState.index}></LargeApps>
             <Divider className={oClasses.divider} />
             <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
             <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
