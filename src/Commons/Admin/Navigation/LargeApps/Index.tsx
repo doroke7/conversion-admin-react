@@ -68,9 +68,10 @@ function LargeApps(oProps) {
       })}>
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
-          <ListItemIcon className={oClasses.listItemIcon}>
-            <Components.Admin.Icon name={'PhonelinkIcon'}></Components.Admin.Icon>
-          </ListItemIcon>
+          <Icon
+            className={clsx(aIconColors[oState.index] || aIconColors[14])}
+            name={'X'}
+            status={oState.index >= 1}></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
