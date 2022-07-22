@@ -9,7 +9,7 @@ const oStyle = makeStyles((oTheme: Theme) =>
       height: oTheme.spacing(3)
     },
     badge: {
-      marginRight: oTheme.spacing(1.5),
+      marginRight: oTheme.spacing(1),
       '& .MuiBadge-badge': {}
     },
     checkCircleIcon: {

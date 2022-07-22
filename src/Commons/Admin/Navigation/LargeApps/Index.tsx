@@ -7,7 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
-
 import Components from '@/Components';
 import events from '@/events';
 
@@ -30,6 +29,8 @@ function LargeApps(oProps) {
     index: -1
   });
 
+  let oApp = aApps[oState.index] ?? {};
+  let sName = oApp.name || '';
   let cHandleToggle = (oEvent) => {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });
@@ -70,8 +71,8 @@ function LargeApps(oProps) {
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
             className={clsx(aIconColors[oState.index] || aIconColors[14])}
-            name={'X'}
-            status={oState.index >= 1}></Icon>
+            name={oApp['name'] || ''}
+            status={oState.index >= 0}></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>

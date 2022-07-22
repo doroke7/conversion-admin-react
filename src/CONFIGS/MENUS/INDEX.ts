@@ -27,7 +27,7 @@ let MENUS: any = [
     text: '平台管理',
     description: '平台管理',
     path: '/admin/config/index',
-    icon: 'AppsOutlinedIcon',
+    icon: 'DashboardIcon',
     menus: [
       {
         id: 31,

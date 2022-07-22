@@ -8,6 +8,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import Avatar from '@material-ui/core/Avatar';
 
 import Helpers from '@/Helpers';
@@ -40,7 +41,7 @@ function Apps(oProps: any) {
             onClick={cHandleClick(iIndexOfApps)}>
             <Icon
               className={clsx(aBackgroundClasses[iIndexOfApps] || aBackgroundClasses[0])}
-              name={oApp.name.substr(0, 1)}
+              name={oApp.name}
               status={iIndexOfApps == iIndex}></Icon>
             <ListItemText primary={oApp.name} />
           </ListItem>

@@ -15,6 +15,7 @@ function Icon(oProps: any) {
   let bStatus = oProps.status || false;
 
   let sName = oProps.name || '';
+  sName = sName.substr(0, 1);
   return (
     <Badge
       overlap="circular"

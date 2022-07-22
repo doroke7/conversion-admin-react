@@ -30,6 +30,7 @@ import LocalAtmOutlinedIcon from '@material-ui/icons/LocalAtmOutlined';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import PhonelinkIcon from '@material-ui/icons/Phonelink';
 import BuildIcon from '@material-ui/icons/Build';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 let ICONS: any = {
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
@@ -58,7 +59,8 @@ let ICONS: any = {
   LocalAtmOutlinedIcon: LocalAtmOutlinedIcon,
   PhoneAndroidIcon: PhoneAndroidIcon,
   PhonelinkIcon: PhonelinkIcon,
-  BuildIcon: BuildIcon
+  BuildIcon: BuildIcon,
+  DashboardIcon: DashboardIcon
 };
 
 export default ICONS;
