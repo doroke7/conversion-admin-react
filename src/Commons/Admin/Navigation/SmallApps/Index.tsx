@@ -22,7 +22,6 @@ function SmallApps(oProps) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
   let iIndex = oProps.index ?? -1;
-  let cOnClickApp = oProps.onClickApp ?? (() => void 0);
 
   const oClasses = cStyle();
 
@@ -104,7 +103,6 @@ function SmallApps(oProps) {
             apps={aApps}
             anchor={oState.anchor}
             index={iIndex}
-            onClick={cOnClickApp}
             iconColors={aIconColors}
             onClickAway={cHandleClose}
             onMouseLeave={cHandleMouseLeave()}></Apps>

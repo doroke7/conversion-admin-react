@@ -39,7 +39,14 @@ function SecondMenus(oProps: any) {
 
   let oAnchor = oProps.anchor ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
-  let cOnClick = oProps.onClick ?? (() => void 0);
+
+  let cHandleClick = (sIndex) => {
+    return (oEvent) => {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a 取消 href
+      events.admin.emit('Navigation-onClickApp', sIndex);
+    };
+  };
 
   return (
     <Popper open={bOpen} anchorEl={oAnchor} role={undefined} placement={'right-start'}>
@@ -49,7 +56,7 @@ function SecondMenus(oProps: any) {
             <MenuList autoFocusItem={bOpen} id="app-list-grow">
               {aApps.map((oApp: any, iIndexOfApp: any) => (
                 <>
-                  <MenuItem key={oApp.id} onClick={cOnClick(iIndexOfApp)}>
+                  <MenuItem key={oApp.id} onClick={cHandleClick(iIndexOfApp)}>
                     <Icon
                       className={clsx(aBackgroundClasses[iIndexOfApp] || aBackgroundClasses[0])}
                       name={oApp.name}

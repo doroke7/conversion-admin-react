@@ -22,7 +22,6 @@ import Contexts from '@/Contexts';
 import events from '@/events';
 import utilities from '@/utilities';
 
-import Helpers from '@/Helpers';
 import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
@@ -82,7 +81,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickLink', cClickLink);
     };
-  }, [oState.tabs, oState.open]);
+  }, [oState.tabs, oState.open, oState.index]);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -103,7 +102,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [oState.tabs, oState.open]);
+  }, [oState.tabs, oState.open, oState.index]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
@@ -160,7 +159,19 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickMenu', cClickMenu);
     };
-  }, [oState.tabs, oState.open]); // tabs 数据，以及 简单menu 开关变动的时候 => 绑定函数要重新更新
+  }, [oState.tabs, oState.open, oState.index]);
+
+  useEffect(() => {
+    let cClickApp = (iIndex) => {
+      cSetState({ ...oState, index: iIndex });
+    };
+
+    let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.admin.removeListener('Navigation-onClickApp', cClickApp);
+    };
+  }, [oState.tabs, oState.open, oState.index]);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
@@ -170,60 +181,49 @@ function Navigation(oProps: any) {
     cSetState({ ...oState, open: false });
   };
 
-  let cHandleClickApp = (iIndexOfApp: any) => {
-    return (oEvent: any) => {
-      cSetState({ ...oState, index: iIndexOfApp });
-    };
-  };
   return (
-    <Contexts.Admin.TabsValue.Provider value={oState.value}>
-      <Contexts.Admin.Tabs.Provider value={oState.tabs}>
-        <div className={oClasses.root}>
-          <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
-          <Drawer
-            variant="permanent"
-            className={clsx(oClasses.drawer, {
-              [oClasses.drawerOpen]: oState.open,
-              [oClasses.drawerClose]: !oState.open
-            })}
-            classes={{
-              paper: clsx(oClasses.drawerPaper, {
+    <Contexts.Admin.AppsIndex.Provider value={oState.index}>
+      <Contexts.Admin.TabsValue.Provider value={oState.value}>
+        <Contexts.Admin.Tabs.Provider value={oState.tabs}>
+          <div className={oClasses.root}>
+            <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
+            <Drawer
+              variant="permanent"
+              className={clsx(oClasses.drawer, {
                 [oClasses.drawerOpen]: oState.open,
                 [oClasses.drawerClose]: !oState.open
-              })
-            }}
-            open={oState.open}>
-            <div className={oClasses.toolbar}>
-              <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
-              <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
-                <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
-                {/* 点击右边的 App-Icon */}
-              </IconButton>
-            </div>
-            <Divider className={oClasses.divider} />
-            <SmallApps
-              status={!oState.open}
-              apps={CONFIGS.APPS}
-              onClickApp={cHandleClickApp}
-              index={oState.index}></SmallApps>
-            <LargeApps
-              status={oState.open}
-              apps={CONFIGS.APPS}
-              onClickApp={cHandleClickApp}
-              index={oState.index}></LargeApps>
-            <Divider className={oClasses.divider} />
-            <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
-            <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
-            <Divider className={oClasses.divider} />
-            <List></List>
-          </Drawer>
-          <main className={oClasses.content}>
-            <div className={oClasses.toolbar}></div>
-            <Tabs></Tabs>
-          </main>
-        </div>
-      </Contexts.Admin.Tabs.Provider>
-    </Contexts.Admin.TabsValue.Provider>
+              })}
+              classes={{
+                paper: clsx(oClasses.drawerPaper, {
+                  [oClasses.drawerOpen]: oState.open,
+                  [oClasses.drawerClose]: !oState.open
+                })
+              }}
+              open={oState.open}>
+              <div className={oClasses.toolbar}>
+                <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
+                <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
+                  <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
+                  {/* 点击右边的 App-Icon */}
+                </IconButton>
+              </div>
+              <Divider className={oClasses.divider} />
+              <SmallApps status={!oState.open} apps={CONFIGS.APPS} index={oState.index}></SmallApps>
+              <LargeApps status={oState.open} apps={CONFIGS.APPS} index={oState.index}></LargeApps>
+              <Divider className={oClasses.divider} />
+              <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
+              <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
+              <Divider className={oClasses.divider} />
+              <List></List>
+            </Drawer>
+            <main className={oClasses.content}>
+              <div className={oClasses.toolbar}></div>
+              <Tabs></Tabs>
+            </main>
+          </div>
+        </Contexts.Admin.Tabs.Provider>
+      </Contexts.Admin.TabsValue.Provider>
+    </Contexts.Admin.AppsIndex.Provider>
   );
 }
 

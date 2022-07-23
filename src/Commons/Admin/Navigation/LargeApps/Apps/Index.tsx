@@ -25,8 +25,15 @@ function Apps(oProps: any) {
   let bIn = oProps.in ?? false;
   let iIndex = oProps.index ?? -1;
   let aApps = oProps.apps ?? [];
-  let cHandleClick = oProps.onClick ?? (() => void 0);
   let aBackgroundClasses = oProps.iconColors ?? [];
+
+  let cHandleClick = (sIndex) => {
+    return (oEvent) => {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a 取消 href
+      events.admin.emit('Navigation-onClickApp', sIndex);
+    };
+  };
 
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>

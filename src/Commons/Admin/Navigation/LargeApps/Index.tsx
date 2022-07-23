@@ -22,7 +22,6 @@ function LargeApps(oProps) {
   let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
   let iIndex = oProps.index ?? -1;
-  let cOnClickApp = oProps.onClickApp ?? (() => void 0);
 
   const oClasses = cStyle();
 
@@ -71,7 +70,7 @@ function LargeApps(oProps) {
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} onClick={cOnClickApp} iconColors={aIconColors}></Apps>
+        <Apps in={oState.open} apps={aApps} index={iIndex} iconColors={aIconColors}></Apps>
       </>
     </List>
   );
