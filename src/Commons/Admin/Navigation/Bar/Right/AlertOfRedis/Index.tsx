@@ -37,11 +37,11 @@ function AlertOfRedis(oProps: any) {
           <span>确定操作？</span>
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={cHandleClose} color="primary" autoFocus>
+      <DialogActions className={oClasses.dialogActions}>
+        <Button variant="contained" onClick={cHandleClose} color="primary" autoFocus>
           取消
         </Button>
-        <Button onClick={cHandleConfirm} color="default">
+        <Button className={oClasses.confirmButton} variant="contained" onClick={cHandleConfirm} color="default">
           确定
         </Button>
       </DialogActions>

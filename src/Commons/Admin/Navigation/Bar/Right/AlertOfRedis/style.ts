@@ -11,7 +11,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       width: oTheme.spacing(4.5),
       color: grey[500],
       borderRadius: oTheme.spacing(0.75)
-    }
+    },
+    dialogActions: {
+      padding: oTheme.spacing(2.5)
+    },
+    confirmButton: {}
   })
 );
 
