@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,6 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
 import Components from '@/Components';
 import events from '@/events';
+import Contexts from '@/Contexts';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -19,9 +20,10 @@ import cStyle from './style';
 import { isNullishCoalesce } from 'typescript';
 
 function SmallApps(oProps) {
+  const iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
-  let iIndex = oProps.index ?? -1;
 
   const oClasses = cStyle();
 
@@ -102,7 +104,6 @@ function SmallApps(oProps) {
             open={Boolean(oState.anchor)}
             apps={aApps}
             anchor={oState.anchor}
-            index={iIndex}
             iconColors={aIconColors}
             onClickAway={cHandleClose}
             onMouseLeave={cHandleMouseLeave()}></Apps>

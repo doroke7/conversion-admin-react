@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -7,8 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
-import Components from '@/Components';
-import events from '@/events';
+import Contexts from '@/Contexts';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -18,10 +17,11 @@ import Icon from './Icon/Index';
 import cStyle from './style';
 
 function LargeApps(oProps) {
+  const iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
-  let iIndex = oProps.index ?? -1;
 
   const oClasses = cStyle();
 
