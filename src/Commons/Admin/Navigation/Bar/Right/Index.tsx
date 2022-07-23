@@ -55,11 +55,11 @@ function Right(oProps: any) {
         <DialogTitle id="alert-dialog-title">{'警告:'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <span>清理缓存会造成数据库压力</span>
+            <span>清理缓存会造成数据库压力！我们不建议您如此操作。</span>
             <br></br>
             <br></br>
 
-            <span>确定清理？</span>
+            <span>确定操作？</span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
