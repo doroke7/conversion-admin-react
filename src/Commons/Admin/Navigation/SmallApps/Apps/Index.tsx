@@ -29,9 +29,6 @@ function SecondMenus(oProps: any) {
   let aBackgroundClasses = oProps.iconColors ?? [];
 
   let oHistory = useHistory();
-  let [oState, cSetState] = React.useState<any>({
-    menus: {}
-  });
 
   let aApps = oProps.apps ?? []; // 二级 menu
   let bOpen = oProps.open ?? false;
