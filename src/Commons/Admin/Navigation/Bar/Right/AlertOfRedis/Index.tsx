@@ -31,7 +31,9 @@ function AlertOfRedis(oProps: any) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          <span>清理缓存会造成数据库压力！我们不建议您如此操作。</span>
+          <span>清理缓存会造成数据库压力，我们不建议您如此操作！</span>
+          <br></br>
+          <br></br>
           <br></br>
           <br></br>
           <span>确定操作？</span>
