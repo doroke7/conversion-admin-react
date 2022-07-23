@@ -151,14 +151,7 @@ function Pannel(oProps: any): any {
       <Button onClick={SignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
         登入
       </Button>
-      <div className={oClasses.forgetPasswordAndSignup}>
-        {/* <Link href={SERVICE.HOST + SERVICE.PATH} className={oClasses.link}>
-          短管理
-        </Link>
-        <Link href={'/admin/sign-up'} className={oClasses.link}>
-          没有账号? 注冊
-        </Link> */}
-      </div>
+      <div className={oClasses.forgetPasswordAndSignup}></div>
 
       <div className={oClasses.decriptionAndVersion}>
         <span className={oClasses.decription}>{CONFIGS.APP.DESCRIPTION}</span>

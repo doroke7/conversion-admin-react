@@ -58,15 +58,14 @@ function Right(oProps: any) {
             <span>清理缓存会造成数据库压力！我们不建议您如此操作。</span>
             <br></br>
             <br></br>
-
             <span>确定操作？</span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={cHandleClose} color="primary">
+          <Button onClick={cHandleClose} color="primary" autoFocus>
             取消
           </Button>
-          <Button onClick={cHandleConfirm} color="default" autoFocus>
+          <Button onClick={cHandleConfirm} color="default">
             确定
           </Button>
         </DialogActions>
