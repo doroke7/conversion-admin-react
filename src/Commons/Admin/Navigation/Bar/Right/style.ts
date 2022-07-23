@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, grey, indigo, blue } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
@@ -7,7 +7,25 @@ const style = makeStyles((oTheme: Theme) =>
       position: 'absolute',
       right: oTheme.spacing(2)
     },
+    iconButton: {
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      height: oTheme.spacing(5),
+      width: oTheme.spacing(5),
+      padding: oTheme.spacing(0.75),
+      marginRight: oTheme.spacing(1),
+      backgroundColor: pink['A700'],
+      '&:hover': {
+        backgroundColor: pink['800']
+      }
+    },
+    icon: {
+      color: grey[50]
+    },
+
     avatarWrapper: {
+      display: 'inline-block',
+      verticalAlign: 'middle',
       cursor: 'pointer'
     },
     badge: {

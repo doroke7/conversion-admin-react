@@ -27,11 +27,6 @@ import administrator from '@/images/administrator.png';
 
 function Bar(oProps: any) {
   let oClasses = style(void 0);
-  const [sAppId, cSetAppId] = React.useState('');
-
-  const cHandleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
-    cSetAppId(oEvent.target.value as string);
-  };
 
   return (
     <AppBar
