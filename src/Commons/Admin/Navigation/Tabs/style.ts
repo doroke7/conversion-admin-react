@@ -36,7 +36,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       '& .MuiIconButton-root': {
         marginLeft: oTheme.spacing(1),
         opacity: 0,
-        borderRadius: '20%',
+        borderRadius: oTheme.spacing(0.75),
         color: grey[400]
       }
     },

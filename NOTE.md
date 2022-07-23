@@ -5,6 +5,10 @@
 
 ## 不使用 withStyles 这种函数建立 Element, 改用 makeStyles
 
+## REACT 使用内建 children 属性 表示 子元素，这是 react 内建，不需要另外引入
+  const { children, classes, onClose, ...other } = props;
+
+
 ## 权限表结构
 1. mac_administrator 
    id, name, password
