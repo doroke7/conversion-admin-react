@@ -5,14 +5,9 @@ import { Link, withRouter } from 'react-router-dom';
 import FlipCameraAndroidIcon from '@material-ui/icons/FlipCameraAndroid';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
+import AlertOfRedis from './AlertOfRedis/Index';
 import administrator from '@/images/administrator.png';
 
 import style from './style';
@@ -47,29 +42,7 @@ function Right(oProps: any) {
             [oClasses.iconAnimation]: oState.rotating
           })}></FlipCameraAndroidIcon>
       </IconButton>
-      <Dialog
-        open={oState.open}
-        onClose={cHandleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
-        <DialogTitle id="alert-dialog-title">{'警告:'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <span>清理缓存会造成数据库压力！我们不建议您如此操作。</span>
-            <br></br>
-            <br></br>
-            <span>确定操作？</span>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={cHandleClose} color="primary" autoFocus>
-            取消
-          </Button>
-          <Button onClick={cHandleConfirm} color="default">
-            确定
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleConfirm}></AlertOfRedis>
       <div className={oClasses.avatarWrapper}>
         <Badge
           overlap="circular"
