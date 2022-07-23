@@ -12,17 +12,29 @@ const style = makeStyles((oTheme: Theme) =>
       verticalAlign: 'middle',
       height: oTheme.spacing(5),
       width: oTheme.spacing(5),
-      padding: oTheme.spacing(0.75),
+      padding: oTheme.spacing(0),
       marginRight: oTheme.spacing(1),
       backgroundColor: pink['A700'],
       '&:hover': {
         backgroundColor: pink['800']
       }
     },
+
     icon: {
       color: grey[50]
     },
-
+    iconAnimation: {
+      animation:
+        '$rotation 0.5s 1 ease-in-out reverse, $rotation 0.2s 4 linear reverse, $rotation 0.5s 1 linear reverse'
+    },
+    '@keyframes rotation': {
+      '0%': {
+        transform: 'rotate(0deg)'
+      },
+      '100%': {
+        transform: 'rotate(360deg)'
+      }
+    },
     avatarWrapper: {
       display: 'inline-block',
       verticalAlign: 'middle',

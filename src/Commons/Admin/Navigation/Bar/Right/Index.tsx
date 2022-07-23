@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
+import clsx from 'clsx';
+
 import { Link, withRouter } from 'react-router-dom';
 import FlipCameraAndroidIcon from '@material-ui/icons/FlipCameraAndroid';
 import Badge from '@material-ui/core/Badge';
@@ -18,7 +20,8 @@ import style from './style';
 function Right(oProps: any) {
   let oClasses = style(void 0);
   let [oState, cSetState] = React.useState<any>({
-    open: false
+    open: false,
+    rotating: false
   });
 
   let cHandleClose = () => {
@@ -29,10 +32,20 @@ function Right(oProps: any) {
     cSetState({ ...oState, open: true });
   };
 
+  let cHandleConfirm = () => {
+    cSetState({ ...oState, rotating: true, open: false });
+    setTimeout(() => {
+      cSetState({ ...oState, rotating: false, open: false });
+    }, 2000);
+  };
+
   return (
     <div className={oClasses.right}>
       <IconButton className={oClasses.iconButton} onClick={cHandleOpen}>
-        <FlipCameraAndroidIcon className={oClasses.icon}></FlipCameraAndroidIcon>
+        <FlipCameraAndroidIcon
+          className={clsx(oClasses.icon, {
+            [oClasses.iconAnimation]: oState.rotating
+          })}></FlipCameraAndroidIcon>
       </IconButton>
       <Dialog
         open={oState.open}
@@ -42,18 +55,18 @@ function Right(oProps: any) {
         <DialogTitle id="alert-dialog-title">{'警告:'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <span>清理全局缓存会造成数据库压力</span>
+            <span>清理缓存会造成数据库压力</span>
             <br></br>
             <br></br>
 
-            <span>请问确定清理？</span>
+            <span>确定清理？</span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={cHandleClose} color="primary">
             取消
           </Button>
-          <Button onClick={cHandleClose} color="primary" autoFocus>
+          <Button onClick={cHandleConfirm} color="default" autoFocus>
             确定
           </Button>
         </DialogActions>
