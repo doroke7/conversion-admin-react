@@ -12,7 +12,8 @@ import style from './style';
 
 function Links(oProps: any) {
   let oClasses = style(void 0);
-  let iIndex = -1;
+  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let aApps = oProps.apps ?? [];
   let [oState, cSetState] = React.useState<any>({
     open: false,
     onConfirm: () => void 0
@@ -48,7 +49,7 @@ function Links(oProps: any) {
           </Tooltip>
         ))}
       </span>
-      <AlertOfApps open={oState.open} onClose={cHandleClose} onConfirm={oState.onConfirm}></AlertOfApps>
+      <AlertOfApps open={oState.open} onClose={cHandleClose} onConfirm={oState.onConfirm} apps={aApps}></AlertOfApps>
     </>
   );
 }

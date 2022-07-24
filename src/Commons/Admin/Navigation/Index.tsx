@@ -34,7 +34,7 @@ function Navigation(oProps: any) {
 
   let oClasses = style(void 0);
 
-  const [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab
     tabs: [], // Tab 列表
@@ -186,7 +186,7 @@ function Navigation(oProps: any) {
       <Contexts.Admin.TabsValue.Provider value={oState.value}>
         <Contexts.Admin.Tabs.Provider value={oState.tabs}>
           <div className={oClasses.root}>
-            <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open}></Bar>
+            <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={CONFIGS.APPS}></Bar>
             <Drawer
               variant="permanent"
               className={clsx(oClasses.drawer, {

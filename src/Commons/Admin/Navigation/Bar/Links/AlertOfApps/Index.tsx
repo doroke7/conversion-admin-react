@@ -9,15 +9,21 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Contexts from '@/Contexts';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
 
+import Contexts from '@/Contexts';
+import events from '@/events';
 import style from './style';
 
 function AlertOfApps(oProps: any) {
   let oClasses = style(void 0);
 
   let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
-
+  let aApps = oProps.apps ?? [];
   let [oState, cSetState] = React.useState<any>({
     shake: false
   });
@@ -34,6 +40,13 @@ function AlertOfApps(oProps: any) {
       return;
     }
     cHandleConfirm();
+  };
+
+  let cHandleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let iIndex = Number(oEvent.target.value) ?? -1;
+    oEvent.stopPropagation(); // 取消 link
+    oEvent.preventDefault(); // 取消 a 取消 href
+    events.admin.emit('Navigation-onClickApp', iIndex);
   };
 
   return (
@@ -57,6 +70,19 @@ function AlertOfApps(oProps: any) {
             请先选择 应用程序
           </span>
         </DialogContentText>
+        <FormControl className={oClasses.formControl}>
+          {/* <InputLabel htmlFor="demo-dialog-native">应用程序</InputLabel> */}
+          <Select value={iIndex} onChange={cHandleChange} input={<Input id="demo-dialog-native" />}>
+            <MenuItem value="-1">
+              <em>未选择</em>
+            </MenuItem>
+            {aApps.map((oApp: any, iIndexOfApp: any) => (
+              <MenuItem key={iIndexOfApp} value={iIndexOfApp}>
+                {oApp.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </DialogContent>
       <DialogActions className={oClasses.dialogActions}>
         <Button

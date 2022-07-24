@@ -28,7 +28,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
     dialogActions: {
       padding: oTheme.spacing(2.5)
     },
-    confirmButton: {}
+    confirmButton: {},
+    formControl: {
+      margin: oTheme.spacing(1),
+      minWidth: oTheme.spacing(15)
+    }
   })
 );
 

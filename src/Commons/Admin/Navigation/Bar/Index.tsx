@@ -27,7 +27,7 @@ import administrator from '@/images/administrator.png';
 
 function Bar(oProps: any) {
   let oClasses = style(void 0);
-
+  let aApps = oProps.apps ?? [];
   return (
     <AppBar
       position="fixed"
@@ -46,7 +46,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <Links links={CONFIGS.LINKS}></Links>
+        <Links links={CONFIGS.LINKS} apps={aApps}></Links>
         <Right></Right>
       </Toolbar>
     </AppBar>
