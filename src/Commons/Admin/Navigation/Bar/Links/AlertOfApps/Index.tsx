@@ -73,9 +73,14 @@ function AlertOfApps(oProps: any) {
         <FormControl className={oClasses.formControl}>
           {/* <InputLabel htmlFor="demo-dialog-native">应用程序</InputLabel> */}
           <Select value={iIndex} onChange={cHandleChange} input={<Input id="demo-dialog-native" />}>
-            <MenuItem value="-1">
-              <em>未选择</em>
-            </MenuItem>
+            {iIndex >= 0 ? (
+              ''
+            ) : (
+              <MenuItem value="-1">
+                <em>未选择</em>
+              </MenuItem>
+            )}{' '}
+            {/* 选了其中一个 APP 后，不不能再选空 APP了*/}
             {aApps.map((oApp: any, iIndexOfApp: any) => (
               <MenuItem key={iIndexOfApp} value={iIndexOfApp}>
                 {oApp.name}
