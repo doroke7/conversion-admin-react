@@ -25,6 +25,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
         left: +oTheme.spacing(0.5)
       }
     },
+    dialogContent: {
+      width: oTheme.spacing(26),
+      height: oTheme.spacing(21)
+    },
     dialogActions: {
       padding: oTheme.spacing(2.5)
     },

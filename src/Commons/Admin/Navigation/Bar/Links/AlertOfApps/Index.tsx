@@ -61,7 +61,7 @@ function AlertOfApps(oProps: any) {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={oClasses.dialogContent}>
         <DialogContentText id="alert-dialog-description">
           <span
             className={clsx({
