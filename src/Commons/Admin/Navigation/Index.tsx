@@ -118,15 +118,24 @@ function Navigation(oProps: any) {
   }, [oState.value, oState.open]);
 
   useEffect(() => {
-    let o = oState;
-    let cPreClick = (oLink: any) => {
+    let cPreClickLink = (oLink: any) => {
       cSetState({ ...oState, alert: true, link: oLink, menu: null });
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onPreClickLink', cPreClick);
+    let oEventEmitter: any = events.admin.addListener('Navigation-onPreClickLink', cPreClickLink);
     return () => {
-      events.admin.removeListener('Navigation-onPreClickLink', cPreClick);
+      events.admin.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
-  }, [oState.value, oState.open, oState.index]);
+  }, [);
+
+  useEffect(() => {
+    let cPreClicMenu = (oMenu: any) => {
+      cSetState({ ...oState, alert: true, link: null, menu: oMenu });
+    };
+    let oEventEmitter: any = events.admin.addListener('Navigation-onPreClickMenu', cPreClicMenu);
+    return () => {
+      events.admin.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
+    };
+  }, []);
 
   useEffect(() => {
     let cClickMenu = (oMenu) => {
@@ -237,6 +246,7 @@ function Navigation(oProps: any) {
             <AlertOfApps
               apps={CONFIGS.APPS}
               link={oState.link}
+              menu={oState.menu}
               open={oState.alert}
               onClose={cHandleClose}
               onConfirm={oState.onConfirm}></AlertOfApps>

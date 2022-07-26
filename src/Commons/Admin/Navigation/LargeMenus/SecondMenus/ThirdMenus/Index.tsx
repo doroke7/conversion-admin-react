@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'; // 点击事件是否发生在元素之外
@@ -7,12 +7,10 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/events';
-
+import Contexts from '@/Contexts';
 import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';
@@ -20,13 +18,13 @@ import CONFIGS from '@/CONFIGS/';
 import cStyle from './style';
 
 function ThirdMenus(oProps: any) {
-  const oClasses = cStyle();
-  let oHistory = useHistory();
+  let oClasses = cStyle();
 
-  let aMenus = oProps.menus || [];
-  let bOpen = oProps.open;
-  let oAnchor = oProps.anchor;
-  let cOnClickAway = oProps.onClickAway;
+  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let aMenus = oProps.menus ?? [];
+  let bOpen = oProps.open ?? false;
+  let oAnchor = oProps.anchor ?? null;
+  let cOnClickAway = oProps.onClickAway ?? (() => void 0);
 
   let cOnClick = (oMenu: any) => {
     return (oEvent: any) => {
@@ -38,6 +36,11 @@ function ThirdMenus(oProps: any) {
       };
 
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        if (-1 == iIndex) {
+          events.admin.emit('Navigation-onPreClickMenu', oMenu);
+
+          return;
+        }
         events.admin.emit('Navigation-onClickMenu', oMenu);
       }
     };

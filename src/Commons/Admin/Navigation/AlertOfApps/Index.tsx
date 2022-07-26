@@ -27,7 +27,8 @@ function AlertOfApps(oProps: any) {
   let [oState, cSetState] = React.useState<any>({
     shake: false
   });
-  let mLink = oProps.link ?? false;
+  let mLink = oProps.link ?? null;
+  let mMenu = oProps.menu ?? null;
   let bOpen = oProps.open ?? false;
   let cHandleClose = oProps.onClose ?? (() => void 0);
 
@@ -42,6 +43,9 @@ function AlertOfApps(oProps: any) {
 
     if (mLink) {
       events.admin.emit('Navigation-onClickLink', mLink);
+    }
+    if (mMenu) {
+      events.admin.emit('Navigation-onClickMenu', mMenu);
     }
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,6 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Components from '@/Components';
 import events from '@/events';
+import Contexts from '@/Contexts';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -16,16 +17,18 @@ import SecondMenus from './SecondMenus/Index';
 import cStyle from './style';
 
 function LargeMenus(oProps) {
+  let oClasses = cStyle();
+
+  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+
   let bStatus = oProps.status;
   let aMenus = oProps.menus || [];
-
-  const oClasses = cStyle();
 
   let [oState, cSetState] = React.useState<any>({
     menus: {}
   });
 
-  const cHandleClick = (oMenu) => {
+  let cHandleClick = (oMenu) => {
     return (oEvent) => {
       let oMenus = {};
 
@@ -35,6 +38,11 @@ function LargeMenus(oProps) {
         };
       }
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        if (-1 == iIndex) {
+          events.admin.emit('Navigation-onPreClickMenu', oMenu);
+
+          return;
+        }
         events.admin.emit('Navigation-onClickMenu', oMenu);
       }
 

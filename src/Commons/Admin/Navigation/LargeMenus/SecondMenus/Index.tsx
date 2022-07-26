@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import List from '@material-ui/core/List';
@@ -12,15 +12,17 @@ import Helpers from '@/Helpers';
 
 import Components from '@/Components';
 import events from '@/events';
+import Contexts from '@/Contexts';
 import ThirdMenus from './ThirdMenus/Index';
 
 import style from './style';
 
 function SecondMenus(oProps: any) {
-  const oClasses = style();
-  let oHistory = useHistory();
-  let bIn = oProps.in;
-  let aMenus = oProps.menus;
+  let oClasses = style();
+  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+
+  let bIn = oProps.in ?? false;
+  let aMenus = oProps.menus ?? [];
 
   let [oState, cSetState] = React.useState<any>({
     anchors: {}
@@ -34,6 +36,11 @@ function SecondMenus(oProps: any) {
       };
 
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        if (-1 == iIndex) {
+          events.admin.emit('Navigation-onPreClickMenu', oMenu);
+
+          return;
+        }
         events.admin.emit('Navigation-onClickMenu', oMenu);
       }
       cSetState({ ...oState, anchors: oAnchors });
