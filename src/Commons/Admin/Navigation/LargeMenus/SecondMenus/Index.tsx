@@ -14,10 +14,10 @@ import Components from '@/Components';
 import events from '@/events';
 import ThirdMenus from './ThirdMenus/Index';
 
-import cStyle from './style';
+import style from './style';
 
 function SecondMenus(oProps: any) {
-  const oClasses = cStyle();
+  const oClasses = style();
   let oHistory = useHistory();
   let bIn = oProps.in;
   let aMenus = oProps.menus;
