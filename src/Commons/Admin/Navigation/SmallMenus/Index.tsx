@@ -16,9 +16,11 @@ import SecondMenus from './SecondMenus/Index';
 import cStyle from './style';
 
 function SmallMenus(oProps) {
+  let oClasses = cStyle();
+
   let bStatus = oProps.status;
   let aMenus = oProps.menus || [];
-  const oClasses = cStyle();
+  let aApps = oProps.apps || [];
 
   let [oState, cSetState] = React.useState<any>({
     anchors: {}

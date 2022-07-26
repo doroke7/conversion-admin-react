@@ -211,8 +211,8 @@ function Navigation(oProps: any) {
               <SmallApps status={!oState.open} apps={CONFIGS.APPS}></SmallApps>
               <LargeApps status={oState.open} apps={CONFIGS.APPS} index={oState.index}></LargeApps>
               <Divider className={oClasses.divider} />
-              <LargeMenus status={oState.open} menus={CONFIGS.MENUS} />
-              <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} />
+              <LargeMenus status={oState.open} menus={CONFIGS.MENUS} apps={CONFIGS.APPS} />
+              <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} apps={CONFIGS.APPS} />
               <Divider className={oClasses.divider} />
               <List></List>
             </Drawer>
