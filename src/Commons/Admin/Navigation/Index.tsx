@@ -17,6 +17,7 @@ import LargeApps from './LargeApps/Index';
 import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
 import Tabs from './Tabs/Index';
+import AlertOfApps from './AlertOfApps/Index';
 
 import Contexts from '@/Contexts';
 import events from '@/events';
@@ -38,7 +39,10 @@ function Navigation(oProps: any) {
     open: true,
     value: 0, // 当下被 Selected 的 Tab
     tabs: [], // Tab 列表
-    index: -1 // 选中的 oApp
+    index: -1, // 选中的
+    onConfirm: () => void 0,
+    link: null,
+    menu: null
   });
 
   useEffect(() => {
@@ -73,7 +77,7 @@ function Navigation(oProps: any) {
         aTabs = aTabs.concat(oTabOfLink);
         iValue = aTabs.length - 1;
       }
-      cSetState({ ...oState, value: iValue, tabs: aTabs });
+      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
     };
 
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);
@@ -81,7 +85,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickLink', cClickLink);
     };
-  }, [oState.tabs, oState.open, oState.index]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -97,7 +101,6 @@ function Navigation(oProps: any) {
       iValue = iValue < 0 ? 0 : iValue;
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
-
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
       events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
@@ -108,12 +111,22 @@ function Navigation(oProps: any) {
     let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
     };
-
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickTab', cClickTab);
     return () => {
       events.admin.removeListener('Navigation-onClickTab', cClickTab);
     };
   }, [oState.value, oState.open]);
+
+  useEffect(() => {
+    let o = oState;
+    let cPreClick = (oLink: any) => {
+      cSetState({ ...oState, alert: true, link: oLink, menu: null });
+    };
+    let oEventEmitter: any = events.admin.addListener('Navigation-onPreClickLink', cPreClick);
+    return () => {
+      events.admin.removeListener('Navigation-onPreClickLink', cPreClick);
+    };
+  }, [oState.value, oState.open, oState.index]);
 
   useEffect(() => {
     let cClickMenu = (oMenu) => {
@@ -151,9 +164,8 @@ function Navigation(oProps: any) {
         iValue = aTabs.length - 1;
       }
 
-      cSetState({ ...oState, value: iValue, tabs: aTabs });
+      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
     };
-
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
     // 组件销毁前移除事件监听
     return () => {
@@ -165,13 +177,12 @@ function Navigation(oProps: any) {
     let cClickApp = (iIndex) => {
       cSetState({ ...oState, index: iIndex });
     };
-
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听
     return () => {
       events.admin.removeListener('Navigation-onClickApp', cClickApp);
     };
-  }, [oState.tabs, oState.open, oState.index]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
@@ -181,6 +192,9 @@ function Navigation(oProps: any) {
     cSetState({ ...oState, open: false });
   };
 
+  let cHandleClose = () => {
+    cSetState({ ...oState, alert: false });
+  };
   return (
     <Contexts.Admin.AppsIndex.Provider value={oState.index}>
       <Contexts.Admin.TabsValue.Provider value={oState.value}>
@@ -220,6 +234,12 @@ function Navigation(oProps: any) {
               <div className={oClasses.toolbar}></div>
               <Tabs></Tabs>
             </main>
+            <AlertOfApps
+              apps={CONFIGS.APPS}
+              link={oState.link}
+              open={oState.alert}
+              onClose={cHandleClose}
+              onConfirm={oState.onConfirm}></AlertOfApps>
           </div>
         </Contexts.Admin.Tabs.Provider>
       </Contexts.Admin.TabsValue.Provider>

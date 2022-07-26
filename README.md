@@ -42,8 +42,8 @@
 .
 ├── src                      
 │   ├── actions          Redux-action 定义处
-│   ├── Commons          基本公共组件, 如 Header, Footer
-│   ├── Components       一般公共组件
+│   ├── Commons          全局公共组件（在每个页面都会用到的组件）, 如 Header, Footer
+│   ├── Components       一般公共组件（自定义的最小可用组件）
 │   ├── CONFIGS          共用设定配置
 │   ├── Contexts         共用Context组件, 能处理复杂的共用数据, 可以接受嵌套 Context.Provider 语法
 │   ├── entries          Webpack 打包入口
@@ -68,6 +68,41 @@
 │   ├── actions                     Redux-action 定义处(包含 前台,后台,使用)
 │   │   ├── admin                   控制器(后台使用的 API)
 │   │   ├── service                 控制器(前台使用的 API)
+│   │   │   
+│   ├── Commons                     共用组件
+│   │   ├── admin                   控制器(后台使用的 API)
+│   │   ├── service                 控制器(前台使用的 API)
+
+
+```
+---------------------------------------
+
+
+##  四级目录结构
+```files
+.
+├── src                      
+│   ├── actions                                Redux-action 定义处(包含 前台,后台,使用)
+│   │   ├── admin                              
+│   │   │   ├───                               
+│   │   │     
+│   │   ├── service                            
+│   │   │   ├───                              
+│   │   │ 
+│   │   │   
+│   ├── Commons                                共用组件
+│   │   ├── Admin                              后台-共用组件
+│   │   │   ├── Navigation                     导览组件 (包含菜单组件，分页组件，快链接组件)
+│   │   │   │   ├── AlertOfApps                               
+│   │   │   │   ├── Bar                        上方的超链接       
+│   │   │   │   ├── LargeApps                  一般模式的 应用程序选择             
+│   │   │   │   ├── SmallApps                  简易模式的 应用程序选择 
+│   │   │   │   ├── LargeMenus                 一般模式的 菜单组件              
+│   │   │   │   ├── SmallMenus                 简易模式的 菜单组件              
+│   │   │   │   ├── Tabs                       分页组件        
+                             
+│   │   │  
+│   │   ├── Service                           
 
 
 ```

@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Components from '@/Components';
 import events from '@/events';
 import Contexts from '@/Contexts';
-import AlertOfApps from './AlertOfApps';
 
 import style from './style';
 
@@ -14,28 +13,17 @@ function Links(oProps: any) {
   let oClasses = style(void 0);
   let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
   let aApps = oProps.apps ?? [];
-  let [oState, cSetState] = React.useState<any>({
-    open: false,
-    onConfirm: () => void 0
-  });
 
   let aLinks = oProps.links;
   let cHandleClickLink = (oLink) => {
     return (oEvent) => {
       if (-1 == iIndex) {
-        let cHandleConfirm = () => {
-          events.admin.emit('Navigation-onClickLink', oLink);
-          cSetState({ ...oState, open: false });
-        };
-        cSetState({ ...oState, open: true, onConfirm: cHandleConfirm });
+        events.admin.emit('Navigation-onPreClickLink', oLink);
+
         return;
       }
       events.admin.emit('Navigation-onClickLink', oLink);
     };
-  };
-
-  let cHandleClose = () => {
-    cSetState({ ...oState, open: false });
   };
 
   return (
@@ -49,7 +37,6 @@ function Links(oProps: any) {
           </Tooltip>
         ))}
       </span>
-      <AlertOfApps open={oState.open} onClose={cHandleClose} onConfirm={oState.onConfirm} apps={aApps}></AlertOfApps>
     </>
   );
 }

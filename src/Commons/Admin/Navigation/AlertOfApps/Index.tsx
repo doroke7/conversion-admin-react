@@ -27,10 +27,10 @@ function AlertOfApps(oProps: any) {
   let [oState, cSetState] = React.useState<any>({
     shake: false
   });
-
+  let mLink = oProps.link ?? false;
   let bOpen = oProps.open ?? false;
   let cHandleClose = oProps.onClose ?? (() => void 0);
-  let cHandleConfirm = oProps.onConfirm ?? (() => void 0);
+
   let cWrapperHandleConfirm = () => {
     if (iIndex == -1) {
       cSetState({ ...oState, shake: true });
@@ -39,7 +39,10 @@ function AlertOfApps(oProps: any) {
       }, 100);
       return;
     }
-    cHandleConfirm();
+
+    if (mLink) {
+      events.admin.emit('Navigation-onClickLink', mLink);
+    }
   };
 
   let cHandleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
