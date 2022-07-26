@@ -93,7 +93,7 @@
 │   ├── Commons                                共用组件
 │   │   ├── Admin                              后台-共用组件
 │   │   │   ├── Navigation                     导览组件 (包含菜单组件，分页组件，快链接组件)
-│   │   │   │   ├── AlertOfApps                               
+│   │   │   │   ├── AlertOfApps                警告，在没有选择app 情况下点击 link 或 menu                
 │   │   │   │   ├── Bar                        上方的超链接       
 │   │   │   │   ├── LargeApps                  一般模式的 应用程序选择             
 │   │   │   │   ├── SmallApps                  简易模式的 应用程序选择 
