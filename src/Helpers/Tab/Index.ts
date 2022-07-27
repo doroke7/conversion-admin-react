@@ -2,16 +2,26 @@ class TabHelper {
   /**
    * getUsrId
    */
-  public static get(): [] {
-    let sTabs = window.localStorage.getItem('tabs') || JSON.stringify([]);
-    let aTabs = JSON.parse(sTabs);
+  public static getOnesByAppId(iAppId): any[] {
+    let aTabs = [];
+    if (iAppId >= 0) {
+      let sKey = 'tabs' + '-' + iAppId;
+
+      let sTabs = window.localStorage.getItem(sKey) || JSON.stringify([]);
+      aTabs = JSON.parse(sTabs);
+    }
+
     return aTabs;
   }
 
-  public static set(aTabs): [] {
-    let sTabs = JSON.stringify(aTabs);
-    window.localStorage.setItem('tabs', sTabs);
-    return aTabs;
+  public static setOnesByAppId(aTabs, iAppId): boolean {
+    if (iAppId >= 0) {
+      let sTabs = JSON.stringify(aTabs);
+      let sKey = 'tabs' + '-' + iAppId;
+      window.localStorage.setItem(sKey, sTabs);
+    }
+
+    return true;
   }
 }
 

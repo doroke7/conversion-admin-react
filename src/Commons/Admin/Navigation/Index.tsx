@@ -4,11 +4,9 @@ import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
 
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Paper from '@material-ui/core/Paper';
 
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Bar from './Bar/Index';
@@ -22,6 +20,7 @@ import AlertOfApps from './AlertOfApps/Index';
 import Contexts from '@/Contexts';
 import events from '@/events';
 import utilities from '@/utilities';
+import Helpers from '@/Helpers';
 
 import CONFIGS from '@/CONFIGS/';
 
@@ -77,6 +76,10 @@ function Navigation(oProps: any) {
         aTabs = aTabs.concat(oTabOfLink);
         iValue = aTabs.length - 1;
       }
+      let oApp = CONFIGS.APPS[oState.index];
+
+      Helpers.Tab.setOnesByAppId(aTabs, oApp.id);
+
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
     };
 
@@ -99,6 +102,10 @@ function Navigation(oProps: any) {
       let iValue = 0;
       iValue = iIndex > oState.value ? oState.value : oState.value - 1;
       iValue = iValue < 0 ? 0 : iValue;
+      let oApp = CONFIGS.APPS[oState.index];
+
+      Helpers.Tab.setOnesByAppId(aTabs, oApp.id);
+
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveTab', cRemoveTab);
@@ -172,7 +179,9 @@ function Navigation(oProps: any) {
         aTabs = aTabs.concat(oTabOfMenu);
         iValue = aTabs.length - 1;
       }
+      let oApp = CONFIGS.APPS[oState.index];
 
+      Helpers.Tab.setOnesByAppId(aTabs, oApp.id);
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
@@ -184,7 +193,9 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cClickApp = (iIndex) => {
-      cSetState({ ...oState, index: iIndex });
+      let oApp = CONFIGS.APPS[iIndex] ?? null;
+      let aTabs = Helpers.Tab.getOnesByAppId(oApp?.id ?? -1) ?? [];
+      cSetState({ ...oState, index: iIndex, tabs: aTabs, value: -1 });
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听
