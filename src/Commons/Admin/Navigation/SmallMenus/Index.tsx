@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,6 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Popover from '@material-ui/core/Popover';
 import Components from '@/Components';
 import events from '@/events';
+import Contexts from '@/Contexts';
 
 import CONFIGS from '@/CONFIGS/';
 import SecondMenus from './SecondMenus/Index';
@@ -18,9 +19,10 @@ import cStyle from './style';
 function SmallMenus(oProps) {
   let oClasses = cStyle();
 
+  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+
   let bStatus = oProps.status;
   let aMenus = oProps.menus || [];
-  let aApps = oProps.apps || [];
 
   let [oState, cSetState] = React.useState<any>({
     anchors: {}
@@ -36,6 +38,11 @@ function SmallMenus(oProps) {
         };
       }
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        if (-1 == iIndex) {
+          events.admin.emit('Navigation-onPreClickMenu', oMenu);
+
+          return;
+        }
         events.admin.emit('Navigation-onClickMenu', oMenu);
       }
       cSetState({ ...oState, anchors: oAnchors });

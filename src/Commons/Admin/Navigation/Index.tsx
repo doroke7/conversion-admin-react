@@ -125,7 +125,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
-  }, [);
+  }, [oState.tabs, oState.open, oState.index]);
 
   useEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
@@ -135,7 +135,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
     };
-  }, []);
+  }, [oState.tabs, oState.open, oState.index]);
 
   useEffect(() => {
     let cClickMenu = (oMenu) => {

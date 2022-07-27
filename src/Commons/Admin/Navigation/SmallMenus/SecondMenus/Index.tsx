@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'; // 点击事件是否发生在元素之外
@@ -9,11 +9,10 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/events';
+import Contexts from '@/Contexts';
 
 import Components from '@/Components';
 
@@ -24,15 +23,16 @@ import cStyle from './style';
 
 function SecondMenus(oProps: any) {
   const oClasses = cStyle();
-  let oHistory = useHistory();
-  let [oState, cSetState] = React.useState<any>({
-    menus: {}
-  });
+  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
 
   let aMenus = oProps.menus || []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
+
+  let [oState, cSetState] = React.useState<any>({
+    menus: {}
+  });
 
   let cOnClick = (oMenu: any) => {
     return (oEvent) => {
@@ -44,6 +44,11 @@ function SecondMenus(oProps: any) {
         };
       }
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+        if (-1 == iIndex) {
+          events.admin.emit('Navigation-onPreClickMenu', oMenu);
+
+          return;
+        }
         events.admin.emit('Navigation-onClickMenu', oMenu);
       }
       cSetState({ ...oState, menus: oMenus });
