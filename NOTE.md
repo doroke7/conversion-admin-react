@@ -1,3 +1,6 @@
+## 修改 VS-Code 左边导览文件夹的预设缩进大小
+   File > Preferences > Settings > Workbench > Appearance > Tree： Indent 24
+
 ## 覆写 Material UI 的方案
 (a) React 提供属性 className, 继承覆盖此 Element 的 类别来覆写 样式
 (b) React Material-UI 提供属性 classes, 可以继承覆盖该元素以及子元素的 类别来覆盖样式
