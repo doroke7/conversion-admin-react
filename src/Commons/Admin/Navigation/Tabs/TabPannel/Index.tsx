@@ -13,9 +13,9 @@ interface Props {
 }
 
 function TabPanel(props: Props) {
-  const oClasses: any = style(void 0);
+  let oClasses: any = style(void 0);
 
-  const { children, value, index, ...other } = props;
+  let { children, value, index, ...other } = props;
 
   return (
     <div

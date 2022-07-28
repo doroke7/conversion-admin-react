@@ -31,6 +31,12 @@ function ScrollableTabs(oProps: any) {
     events.admin.emit('Navigation-onClickTab', iValue);
   };
 
+  let cHandleContextmenu = (oEvent: any) => {
+    oEvent.stopPropagation(); // 取消 link
+    oEvent.preventDefault(); // 取消 a tag 取消 href
+
+  };
+
   return (
     <div className={oClasses.root}>
       {aTabs.length >= 1 ? (
@@ -39,6 +45,7 @@ function ScrollableTabs(oProps: any) {
           <AppBar position="static" color="default">
             <Tabs
               value={iTabsValue}
+              onContextMenu={cHandleContextmenu}
               onChange={cHandleChangeTab}
               indicatorColor="primary"
               textColor="primary"
