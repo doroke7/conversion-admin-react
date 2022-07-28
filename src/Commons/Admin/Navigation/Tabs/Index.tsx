@@ -34,7 +34,6 @@ function ScrollableTabs(oProps: any) {
   let cHandleContextmenu = (oEvent: any) => {
     oEvent.stopPropagation(); // 取消 link
     oEvent.preventDefault(); // 取消 a tag 取消 href
-
   };
 
   return (
