@@ -112,7 +112,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [oState.tabs, oState.open, oState.index]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
@@ -122,7 +122,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [oState.value, oState.open, oState.index]);
+  }, [oState.value, oState.open, oState.index, oState.alert]);
 
   useEffect(() => {
     let cPreClickLink = (oLink: any) => {
@@ -132,7 +132,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
-  }, [oState.tabs, oState.open, oState.index]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
   useEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
@@ -142,7 +142,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
     };
-  }, [oState.tabs, oState.open, oState.index]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
   useEffect(() => {
     let cClickMenu = (oMenu) => {

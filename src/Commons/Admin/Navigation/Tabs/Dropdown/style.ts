@@ -11,7 +11,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
     papper: {
       color: grey[100],
       background: 'linear-gradient(195deg, ' + grey[900] + ' 30%, ' + grey[800] + ' 90%)',
-      boxShadow: '2px 2px 2px 0px rgb(0 0 0 / 60%)'
+      boxShadow: '2px 2px 2px 0px rgb(45 45 45 / 50%)'
     }
   })
 );

@@ -45,6 +45,7 @@ function ScrollableTabs(oProps: any) {
     oEvent.stopPropagation(); // 取消 link
     oEvent.preventDefault(); // 取消 a tag 取消 href
     let oAnchor = oEvent.currentTarget;
+    cSetState({ anchor: oAnchor, contextMenu: false, tooltip: null });
     cSetState({ anchor: oAnchor, contextMenu: true, tooltip: null });
   };
 
