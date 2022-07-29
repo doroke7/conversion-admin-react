@@ -23,10 +23,10 @@ function AlertOfApps(oProps: any) {
   let oClasses = style(void 0);
 
   let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
-  let aApps = oProps.apps ?? [];
   let [oState, cSetState] = React.useState<any>({
     shake: false
   });
+  let aApps = oProps.apps ?? [];
   let mLink = oProps.link ?? null;
   let mMenu = oProps.menu ?? null;
   let bOpen = oProps.open ?? false;

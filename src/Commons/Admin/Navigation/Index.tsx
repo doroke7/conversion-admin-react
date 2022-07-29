@@ -39,7 +39,6 @@ function Navigation(oProps: any) {
     value: 0, // 当下被 Selected 的 Tab
     tabs: [], // Tab 列表
     index: -1, // 选中的
-    onConfirm: () => void 0,
     link: null,
     menu: null
   });
@@ -260,7 +259,7 @@ function Navigation(oProps: any) {
               menu={oState.menu}
               open={oState.alert}
               onClose={cHandleClose}
-              onConfirm={oState.onConfirm}></AlertOfApps>
+              ></AlertOfApps>
           </div>
         </Contexts.Admin.Tabs.Provider>
       </Contexts.Admin.TabsValue.Provider>
