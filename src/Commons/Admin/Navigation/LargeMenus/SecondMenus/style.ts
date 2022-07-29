@@ -3,7 +3,7 @@ import { pink, grey } from '@material-ui/core/colors';
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    nested: {
+    listItem: {
       paddingLeft: oTheme.spacing(4)
     },
     listItemIcon: {

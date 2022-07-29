@@ -66,7 +66,7 @@ function SecondMenus(oProps: any) {
           <ListItem
             button
             key={oMenu.id}
-            className={oClasses.nested}
+            className={oClasses.listItem}
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={cHandleToggle(oMenu)}>

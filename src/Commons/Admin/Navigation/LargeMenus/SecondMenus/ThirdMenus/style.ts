@@ -12,7 +12,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       color: grey[100],
       background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)',
       boxShadow: '0 8px 25px 4px rgb(33 203 243 / 60%)'
-    }
+    },
+    grow: { transformOrigin: 'left top' }
   })
 );
 

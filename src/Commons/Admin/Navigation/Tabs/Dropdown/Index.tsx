@@ -20,16 +20,13 @@ function Dropdown(oProps: any) {
   let oClasses = cStyle();
 
   let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
-  let aMenus = oProps.menus ?? [];
   let bOpen = oProps.open ?? false;
   let oAnchor = oProps.anchor ?? null;
   let oMenu = oProps.menu ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
 
   let cOnClick = (oMenu: any) => {
-    return (oEvent: any) => {
-
-    };
+    return (oEvent: any) => {};
   };
 
   {
@@ -37,11 +34,11 @@ function Dropdown(oProps: any) {
   }
 
   return (
-    <Popper open={bOpen} anchorEl={oAnchor} role={undefined} placement={'right-start'}>
+    <Popper open={bOpen} anchorEl={oAnchor} role={undefined} placement={'bottom-end'}>
       <Grow in={true} style={{ transformOrigin: 'left top' }}>
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>
-            <MenuList autoFocusItem={bOpen} id="menu-list-grow">
+            <MenuList id="menu-list-for-tab">
               <MenuItem onClick={cOnClick(oMenu)}>
                 <ListItemText primary={'关闭当前'} />
               </MenuItem>
