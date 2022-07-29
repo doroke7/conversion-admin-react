@@ -258,8 +258,7 @@ function Navigation(oProps: any) {
               link={oState.link}
               menu={oState.menu}
               open={oState.alert}
-              onClose={cHandleClose}
-              ></AlertOfApps>
+              onClose={cHandleClose}></AlertOfApps>
           </div>
         </Contexts.Admin.Tabs.Provider>
       </Contexts.Admin.TabsValue.Provider>
