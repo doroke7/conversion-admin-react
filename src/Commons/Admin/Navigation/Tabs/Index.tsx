@@ -45,14 +45,34 @@ function ScrollableTabs(oProps: any) {
     oEvent.stopPropagation(); // 取消 link
     oEvent.preventDefault(); // 取消 a tag 取消 href
     let oAnchor = oEvent.currentTarget;
-    cSetState({ anchor: oAnchor, contextMenu: false, tooltip: null });
-    cSetState({ anchor: oAnchor, contextMenu: true, tooltip: null });
+    cSetState({ anchor: oAnchor, contextMenu: false, tooltips: {} });
+    cSetState({ anchor: oAnchor, contextMenu: true, tooltips: {} });
   };
 
   let cHandleCloseContextmenu = (oEvent: any) => {
     // 如果 三级 菜单 有被锚点， 且 点击的 dom 包含 当下的 三级菜单就 不做事
 
-    cSetState({ ...oState, anchor: false, contextMenu: false, tooltip: null });
+    cSetState({ ...oState, anchor: false, contextMenu: false, tooltips: {} });
+  };
+
+  let cHandleMouseEnter = (iIndex: any) => {
+    return (oEvent: any) => {
+      if (!oState.contextMenu) {
+        setTimeout(() => {
+          let oTooltips = {
+            [iIndex]: true
+          };
+          cSetState({ ...oState, tooltips: oTooltips });
+        }, 100);
+      }
+    };
+  };
+
+  let cHandleMouseLeave = (iIndex: any) => {
+    return (oEvent: any) => {
+      let oTooltips = {};
+      cSetState({ ...oState, tooltips: oTooltips });
+    };
   };
 
   return (
@@ -71,16 +91,18 @@ function ScrollableTabs(oProps: any) {
               aria-label="scrollable auto tabs example">
               {aTabs.map((oTab, sIndex) => (
                 <Tooltip
+                  onMouseEnter={cHandleMouseEnter(sIndex)}
                   disableFocusListener
                   disableTouchListener
                   key={sIndex}
-                  // open={oState.tooltips[sIndex] !== undefined}
+                  open={oState.tooltips?.[sIndex] !== undefined}
                   className={oClasses.toolTip}
                   title={oTab.text}
                   placement="bottom"
                   arrow>
                   <Tab
                     onContextMenu={cHandleContextmenu}
+                    onMouseLeave={cHandleMouseLeave(sIndex)}
                     className={oClasses.tab}
                     key={sIndex}
                     label={

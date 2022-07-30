@@ -48,7 +48,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
     listITemText: {
       verticalAlign: 'middle'
     },
-    iconButton: {}
+    iconButton: {},
+    tooltip: {
+      background: 'linear-gradient(195deg, ' + grey[900] + ' 30%, ' + grey[800] + ' 90%)'
+    }
   })
 );
 
