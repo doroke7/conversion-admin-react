@@ -77,7 +77,7 @@ function Navigation(oProps: any) {
       }
       let oApp = CONFIGS.APPS[oState.index];
 
-      Helpers.Tab.setOnesByAppId(aTabs, oApp.id);
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
     };
@@ -103,7 +103,7 @@ function Navigation(oProps: any) {
       iValue = iValue < 0 ? 0 : iValue;
       let oApp = CONFIGS.APPS[oState.index];
 
-      Helpers.Tab.setOnesByAppId(aTabs, oApp.id);
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
     };
@@ -180,7 +180,7 @@ function Navigation(oProps: any) {
       }
       let oApp = CONFIGS.APPS[oState.index];
 
-      Helpers.Tab.setOnesByAppId(aTabs, oApp.id);
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, oApp.id);
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
@@ -193,7 +193,7 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cClickApp = (iIndex) => {
       let oApp = CONFIGS.APPS[iIndex] ?? null;
-      let aTabs = Helpers.Tab.getOnesByAppId(oApp?.id ?? -1) ?? [];
+      let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(oApp?.id ?? -1) ?? [];
       cSetState({ ...oState, index: iIndex, tabs: aTabs, value: -1 });
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
