@@ -33,9 +33,8 @@ function Dropdown(oProps: any) {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
-      if(sIndex> 0) {
+      if (sIndex > 0) {
         events.admin.emit('Navigation-onRemoveTab', sIndex);
-
       }
     };
   };
