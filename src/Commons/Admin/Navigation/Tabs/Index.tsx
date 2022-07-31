@@ -54,7 +54,6 @@ function ScrollableTabs(oProps: any) {
     oEvent.stopPropagation(); // 取消 link
     oEvent.preventDefault(); // 取消 a tag 取消 href
     cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: -1 });
-
     events.admin.emit('Navigation-onRemoveAllTabs', null);
   };
 
@@ -107,6 +106,7 @@ function ScrollableTabs(oProps: any) {
         <>
           <AppBar position="static" color="default">
             <Tabs
+              className={oClasses.tabs}
               value={iTabsValue}
               onChange={cHandleChangeTab}
               indicatorColor="primary"

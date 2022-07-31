@@ -16,6 +16,15 @@ let oStyle = makeStyles((oTheme: Theme) =>
         }
       }
     },
+    tabs: {
+      '& .MuiTabScrollButton-root': {
+        opacity: 1,
+        background: grey[200],
+        '&:hover': {
+          background: grey[300]
+        }
+      }
+    },
     tab: {
       position: 'relative',
       cursor: 'pointer',
@@ -46,7 +55,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       verticalAlign: 'middle'
     },
     listITemText: {
-      verticalAlign: 'middle'
+      verticalAlign: 'middle',
+      display: 'inline-block',
+      maxWidth: '64px',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden'
     },
     iconButton: {},
     tooltip: {
