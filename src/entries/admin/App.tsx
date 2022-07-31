@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-
 import { StoreContext } from 'redux-react-hook';
-import store from '@/store';
-
 import { renderRoutes } from 'react-router-config';
 
+import store from '@/store';
 import oRoutes from '@/routers';
+import CONFIGS from '@/CONFIGS';
 
 class App extends React.Component {
   public constructor(...oProps: any) {
@@ -19,8 +18,10 @@ class App extends React.Component {
   public chatroomUploader: any;
   public login: any;
   public handleContextmenu(oEvent: any) {
-    oEvent.stopPropagation(); // 取消 link
-    oEvent.preventDefault(); // 取消 a tag 取消 href
+    if (CONFIGS.APP.ENV == 'MASTER') {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+    }
   }
 
   public render() {
