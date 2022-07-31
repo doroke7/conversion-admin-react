@@ -82,23 +82,19 @@ function ScrollableTabs(oProps: any) {
   let cHandleMouseEnter = (iIndex: any) => {
     return (oEvent: any) => {
       if (!oState.contextMenu) {
-        setTimeout(() => {
-          let oTooltips = {
-            [iIndex]: true
-          };
-          cSetState({ ...oState, tooltips: oTooltips });
-        }, 100);
+        let oTooltips = {
+          [iIndex]: true
+        };
+        cSetState({ ...oState, tooltips: oTooltips });
       }
     };
   };
 
   let cHandleMouseLeave = (iIndex: any) => {
     return (oEvent: any) => {
-      setTimeout(() => {
-        let oTooltips = {};
+      let oTooltips = {};
 
-        cSetState({ ...oState, tooltips: oTooltips });
-      }, 101);
+      cSetState({ ...oState, tooltips: oTooltips });
     };
   };
 
@@ -139,11 +135,11 @@ function ScrollableTabs(oProps: any) {
                         </ListItemIcon>
                         <span
                           className={clsx(oClasses.listITemText, {
-                            [oClasses.listITemText4]: aTabs.length >= 8 && aTabs.length < 10,
-                            [oClasses.listITemText3]: aTabs.length >= 10 && aTabs.length < 12,
-                            [oClasses.listITemText2]: aTabs.length >= 12 && aTabs.length < 14,
-                            [oClasses.listITemText1]: aTabs.length >= 16 && aTabs.length < 18,
-                            [oClasses.listITemText0]: aTabs.length >= 18
+                            [oClasses.listITemText4]: aTabs.length >= 11 && aTabs.length < 12,
+                            [oClasses.listITemText3]: aTabs.length >= 12 && aTabs.length < 14,
+                            [oClasses.listITemText2]: aTabs.length >= 14 && aTabs.length < 15,
+                            [oClasses.listITemText1]: aTabs.length >= 15 && aTabs.length < 19,
+                            [oClasses.listITemText0]: aTabs.length >= 19
                           })}>
                           {oTab.text}
                         </span>

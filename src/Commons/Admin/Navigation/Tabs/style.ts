@@ -61,19 +61,19 @@ let oStyle = makeStyles((oTheme: Theme) =>
       overflow: 'hidden'
     },
     listITemText0: {
-      maxWidth: oTheme.spacing(0)
+      maxWidth: oTheme.spacing(0) * 0.92
     },
     listITemText1: {
-      maxWidth: oTheme.spacing(2)
+      maxWidth: oTheme.spacing(2) * 0.92
     },
     listITemText2: {
-      maxWidth: oTheme.spacing(4)
+      maxWidth: oTheme.spacing(4) * 0.92
     },
     listITemText3: {
-      maxWidth: oTheme.spacing(6)
+      maxWidth: oTheme.spacing(6) * 0.92
     },
     listITemText4: {
-      maxWidth: oTheme.spacing(8)
+      maxWidth: oTheme.spacing(8) * 0.92
     },
     iconButton: {},
     tooltip: {
