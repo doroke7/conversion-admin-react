@@ -27,7 +27,7 @@ function ScrollableTabs(oProps: any) {
     contextMenu: false,
     tooltip: null,
     tooltips: {},
-    index: -1 // 当下右键 选择 的  Tab of Dropdown UI
+    index: -1 // 当下右键 选择 的  Tab , 为了定位 Dropdown "关闭当下" 需要的是哪个
   });
 
   let cHandleRemoveTab = (sIndex) => {
