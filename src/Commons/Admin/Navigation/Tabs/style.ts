@@ -57,9 +57,23 @@ let oStyle = makeStyles((oTheme: Theme) =>
     listITemText: {
       verticalAlign: 'middle',
       display: 'inline-block',
-      maxWidth: '64px',
       whiteSpace: 'nowrap',
       overflow: 'hidden'
+    },
+    listITemText0: {
+      maxWidth: oTheme.spacing(0)
+    },
+    listITemText1: {
+      maxWidth: oTheme.spacing(2)
+    },
+    listITemText2: {
+      maxWidth: oTheme.spacing(4)
+    },
+    listITemText3: {
+      maxWidth: oTheme.spacing(6)
+    },
+    listITemText4: {
+      maxWidth: oTheme.spacing(8)
     },
     iconButton: {},
     tooltip: {

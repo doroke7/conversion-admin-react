@@ -1,4 +1,6 @@
 import React, { useState, createContext, useContext } from 'react';
+import clsx from 'clsx';
+
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -63,8 +65,8 @@ function ScrollableTabs(oProps: any) {
 
   let cHandleContextmenu = (iIndex: any) => {
     return (oEvent: any) => {
-      oEvent.stopPropagation(); // 取消 link
-      oEvent.preventDefault(); // 取消 a tag 取消 href
+      // oEvent.stopPropagation(); 改用 全局处理取消预设的 右键交互
+      // oEvent.preventDefault(); 改用 全局处理取消预设的 右键交互
       let oAnchor = oEvent.currentTarget;
       cSetState({ anchor: oAnchor, contextMenu: false, tooltips: {}, index: iIndex });
       cSetState({ anchor: oAnchor, contextMenu: true, tooltips: {}, index: iIndex });
@@ -135,7 +137,16 @@ function ScrollableTabs(oProps: any) {
                         <ListItemIcon className={oClasses.listItemIcon}>
                           <Components.Admin.Icon name={oTab.icon} />
                         </ListItemIcon>
-                        <span className={oClasses.listITemText}>{oTab.text}</span>
+                        <span
+                          className={clsx(oClasses.listITemText, {
+                            [oClasses.listITemText4]: aTabs.length >= 8 && aTabs.length < 10,
+                            [oClasses.listITemText3]: aTabs.length >= 10 && aTabs.length < 12,
+                            [oClasses.listITemText2]: aTabs.length >= 12 && aTabs.length < 14,
+                            [oClasses.listITemText1]: aTabs.length >= 16 && aTabs.length < 18,
+                            [oClasses.listITemText0]: aTabs.length >= 18
+                          })}>
+                          {oTab.text}
+                        </span>
                         {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
                         <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
                           <CloseIcon />
