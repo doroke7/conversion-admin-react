@@ -121,7 +121,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [oState.value, oState.open, oState.index, oState.alert]);
+  }, [oState.value, oState.open, oState.index, oState.alert, oState.tabs]);
 
   useEffect(() => {
     let cPreClickLink = (oLink: any) => {
