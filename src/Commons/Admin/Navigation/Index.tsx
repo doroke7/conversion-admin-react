@@ -30,7 +30,6 @@ let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
   let sPathname = oProps.location.pathname;
-  let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
   let oClasses = style(void 0);
 

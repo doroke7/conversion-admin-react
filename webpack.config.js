@@ -34,6 +34,8 @@ module.exports = (env, argvs) => {
     entry: {
       service: './src/entries/service/index.tsx', // 目前 webpack 多入口都会打包在一起
       admin: './src/entries/admin/index.tsx',     // 目前 webpack 多入口都会打包在一起
+      test: './src/entries/test/index.tsx', // 目前 webpack 多入口都会打包在一起
+
     },
     resolve: {
       // js > ts > tsx
@@ -62,6 +64,7 @@ module.exports = (env, argvs) => {
         rewrites: [
           { from: /^\/service\/.*/, to: '/service/index.html' },
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
+          { from: /^\/test\/.*/, to: '/test/index.html' },
           { from: /.*/, to: '/admin/index.html' },
         ],
         verbose: true,
@@ -163,8 +166,7 @@ module.exports = (env, argvs) => {
         template: './public/service.html',
         filename: 'service/index.html',
         favicon: './public/favicon.ico',
-        minify: {
-          //压缩HTML文件
+        minify: { //压缩HTML文件
           removeComments: true, //移除HTML中的注释
           collapseWhitespace: true, //删除空白符与换行符
         },
@@ -173,6 +175,17 @@ module.exports = (env, argvs) => {
         chunks: ['manifest', 'vendor', 'admin'],
         template: './public/admin.html',
         filename: 'admin/index.html',
+        favicon: './public/favicon.ico',
+        minify: {
+          //压缩HTML文件
+          removeComments: true, //移除HTML中的注释
+          collapseWhitespace: true, //删除空白符与换行符
+        },
+      }),
+      new HtmlWebpackPlugin({
+        chunks: ['manifest', 'vendor', 'test'],
+        template: './public/test.html',
+        filename: 'test/index.html',
         favicon: './public/favicon.ico',
         minify: {
           //压缩HTML文件
