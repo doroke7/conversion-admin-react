@@ -119,7 +119,7 @@ function ScrollableTabs(oProps: any) {
                   disableFocusListener
                   disableTouchListener
                   key={sIndex}
-                  open={oState.tooltips?.[sIndex] !== undefined}
+                  open={oState.tooltips?.[sIndex] !== undefined && iTabsLength >= 11}
                   className={oClasses.toolTip}
                   title={oTab.text + ''}
                   placement="bottom"
