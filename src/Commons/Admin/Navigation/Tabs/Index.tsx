@@ -65,8 +65,8 @@ function ScrollableTabs(oProps: any) {
 
   let cHandleContextmenu = (iIndex: any) => {
     return (oEvent: any) => {
-      // oEvent.stopPropagation(); 改用 全局处理取消预设的 右键交互
-      // oEvent.preventDefault(); 改用 全局处理取消预设的 右键交互
+      oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
+      oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
       let oAnchor = oEvent.currentTarget;
       cSetState({ anchor: oAnchor, contextMenu: false, tooltips: {}, index: iIndex });
       cSetState({ anchor: oAnchor, contextMenu: true, tooltips: {}, index: iIndex });
@@ -98,9 +98,10 @@ function ScrollableTabs(oProps: any) {
     };
   };
 
+  let iTabsLength = aTabs.length;
   return (
     <div className={oClasses.root}>
-      {aTabs.length >= 1 ? (
+      {iTabsLength >= 1 ? (
         <>
           <AppBar position="static" color="default">
             <Tabs
@@ -135,11 +136,11 @@ function ScrollableTabs(oProps: any) {
                         </ListItemIcon>
                         <span
                           className={clsx(oClasses.listITemText, {
-                            [oClasses.listITemText4]: aTabs.length >= 11 && aTabs.length < 12,
-                            [oClasses.listITemText3]: aTabs.length >= 12 && aTabs.length < 14,
-                            [oClasses.listITemText2]: aTabs.length >= 14 && aTabs.length < 15,
-                            [oClasses.listITemText1]: aTabs.length >= 15 && aTabs.length < 19,
-                            [oClasses.listITemText0]: aTabs.length >= 19
+                            [oClasses.listITemText4]: iTabsLength >= 11 && iTabsLength < 12,
+                            [oClasses.listITemText3]: iTabsLength >= 12 && iTabsLength < 14,
+                            [oClasses.listITemText2]: iTabsLength >= 14 && iTabsLength < 15,
+                            [oClasses.listITemText1]: iTabsLength >= 15 && iTabsLength < 19,
+                            [oClasses.listITemText0]: iTabsLength >= 19
                           })}>
                           {oTab.text}
                         </span>
