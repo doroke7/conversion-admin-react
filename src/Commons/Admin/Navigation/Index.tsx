@@ -114,6 +114,41 @@ function Navigation(oProps: any) {
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
   useEffect(() => {
+    let cRemoveOtherTabs = (iIndex: number) => {
+      let aTabs = [...oState.tabs];
+
+      let oTabRow = aTabs[iIndex] ?? null;
+      aTabs = oTabRow ? [oTabRow] : [];
+      let iValue = 0;
+      let oApp = CONFIGS.APPS[oState.index];
+
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
+
+      cSetState({ ...oState, value: iValue, tabs: aTabs });
+    };
+    let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
+    return () => {
+      events.admin.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
+    };
+  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
+
+  useEffect(() => {
+    let cRemoveAllTabs = (iIndex: number) => {
+      let aTabs = [];
+      let iValue = -1;
+      let oApp = CONFIGS.APPS[oState.index];
+
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
+
+      cSetState({ ...oState, value: iValue, tabs: aTabs });
+    };
+    let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
+    return () => {
+      events.admin.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
+    };
+  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
+
+  useEffect(() => {
     let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
     };

@@ -25,6 +25,8 @@ function Dropdown(oProps: any) {
   let oTab = oProps.tab ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
   let cHandleRemoveTab = oProps.onRemoveTab ?? (() => void 0);
+  let cHandleRemoveOtherTabs = oProps.onRemoveOtherTabs ?? (() => void 0);
+  let cHandleRemoveAllTabs = oProps.onRemoveAllTabs ?? (() => void 0);
 
   let cOnClick = (oTab: any) => {
     return (oTab: any) => {};
@@ -39,10 +41,10 @@ function Dropdown(oProps: any) {
               <MenuItem onClick={cHandleRemoveTab} className={oClasses.menuItem}>
                 <ListItemText primary={'关闭当前'} />
               </MenuItem>
-              <MenuItem onClick={cOnClick(oTab)}>
+              <MenuItem onClick={cHandleRemoveOtherTabs}>
                 <ListItemText primary={'关闭其他'} />
               </MenuItem>
-              <MenuItem onClick={cOnClick(oTab)}>
+              <MenuItem onClick={cHandleRemoveAllTabs}>
                 <ListItemText primary={'关闭全部'} />
               </MenuItem>
             </MenuList>

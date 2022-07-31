@@ -40,6 +40,24 @@ function ScrollableTabs(oProps: any) {
     };
   };
 
+  let cHandleRemoveOtherTabs = (sIndex) => {
+    return (oEvent) => {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+      cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: 0 });
+
+      events.admin.emit('Navigation-onRemoveOtherTabs', sIndex);
+    };
+  };
+
+  let cHandleRemoveAllTabs = (oEvent: React.MouseEvent) => {
+    oEvent.stopPropagation(); // 取消 link
+    oEvent.preventDefault(); // 取消 a tag 取消 href
+    cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: -1 });
+
+    events.admin.emit('Navigation-onRemoveAllTabs', null);
+  };
+
   let cHandleChangeTab = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
     events.admin.emit('Navigation-onClickTab', iValue);
   };
@@ -75,8 +93,11 @@ function ScrollableTabs(oProps: any) {
 
   let cHandleMouseLeave = (iIndex: any) => {
     return (oEvent: any) => {
-      let oTooltips = {};
-      cSetState({ ...oState, tooltips: oTooltips });
+      setTimeout(() => {
+        let oTooltips = {};
+
+        cSetState({ ...oState, tooltips: oTooltips });
+      }, 101);
     };
   };
 
@@ -131,7 +152,9 @@ function ScrollableTabs(oProps: any) {
               open={oState.contextMenu}
               anchor={oState.anchor}
               onClickAway={cHandleCloseContextmenu}
-              onRemoveTab={cHandleRemoveTab(oState.index)}></Dropdown>
+              onRemoveTab={cHandleRemoveTab(oState.index)}
+              onRemoveOtherTabs={cHandleRemoveOtherTabs(oState.index)}
+              onRemoveAllTabs={cHandleRemoveAllTabs}></Dropdown>
           </AppBar>
           {aTabs.map((oTab, sIndex) => (
             <TabPanel key={sIndex} value={iTabsValue} index={sIndex}>
