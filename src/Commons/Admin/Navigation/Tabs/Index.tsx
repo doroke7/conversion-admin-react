@@ -19,15 +19,15 @@ import style from './style';
 
 function ScrollableTabs(oProps: any) {
   let oClasses: any = style(void 0);
-  const aTabs = useContext(Contexts.Admin.Tabs);
-  const iTabsValue = useContext(Contexts.Admin.TabsValue);
+  let aTabs = useContext(Contexts.Admin.Tabs);
+  let iTabsValue = useContext(Contexts.Admin.TabsValue);
 
   let [oState, cSetState] = React.useState<any>({
     anchor: null,
     contextMenu: false,
     tooltip: null,
     tooltips: {},
-    index: -1 // 当下右键 选择 的  Dropdown UI
+    index: -1 // 当下右键 选择 的  Tab of Dropdown UI
   });
 
   let cHandleRemoveTab = (sIndex) => {

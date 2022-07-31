@@ -100,7 +100,7 @@ function Navigation(oProps: any) {
       // 如果当下关闭的 tab 小于等于 当下启用的 tab => 当下启用的 tab 往前移动一个
       let iValue = 0;
       iValue = iIndex > oState.value ? oState.value : oState.value - 1;
-      iValue = iValue < 0 ? 0 : iValue;
+      iValue = iValue < -1 ? -1 : iValue;
       let oApp = CONFIGS.APPS[oState.index];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
@@ -111,7 +111,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
