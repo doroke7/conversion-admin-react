@@ -26,7 +26,8 @@ function ScrollableTabs(oProps: any) {
     anchor: null,
     contextMenu: false,
     tooltip: null,
-    tooltips: {}
+    tooltips: {},
+    index: -1
   });
 
   let cHandleRemoveTab = (sIndex) => {
@@ -41,18 +42,20 @@ function ScrollableTabs(oProps: any) {
     events.admin.emit('Navigation-onClickTab', iValue);
   };
 
-  let cHandleContextmenu = (oEvent: any) => {
-    oEvent.stopPropagation(); // 取消 link
-    oEvent.preventDefault(); // 取消 a tag 取消 href
-    let oAnchor = oEvent.currentTarget;
-    cSetState({ anchor: oAnchor, contextMenu: false, tooltips: {} });
-    cSetState({ anchor: oAnchor, contextMenu: true, tooltips: {} });
+  let cHandleContextmenu = (iIndex: any) => {
+    return (oEvent: any) => {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+      let oAnchor = oEvent.currentTarget;
+      cSetState({ anchor: oAnchor, contextMenu: false, tooltips: {}, index: iIndex });
+      cSetState({ anchor: oAnchor, contextMenu: true, tooltips: {}, index: iIndex });
+    };
   };
 
   let cHandleCloseContextmenu = (oEvent: any) => {
     // 如果 三级 菜单 有被锚点， 且 点击的 dom 包含 当下的 三级菜单就 不做事
 
-    cSetState({ ...oState, anchor: false, contextMenu: false, tooltips: {} });
+    cSetState({ ...oState, anchor: false, contextMenu: false, tooltips: {}, index: -1 });
   };
 
   let cHandleMouseEnter = (iIndex: any) => {
@@ -97,11 +100,11 @@ function ScrollableTabs(oProps: any) {
                   key={sIndex}
                   open={oState.tooltips?.[sIndex] !== undefined}
                   className={oClasses.toolTip}
-                  title={oTab.text}
+                  title={oTab.text + ''}
                   placement="bottom"
                   arrow>
                   <Tab
-                    onContextMenu={cHandleContextmenu}
+                    onContextMenu={cHandleContextmenu(sIndex)}
                     onMouseLeave={cHandleMouseLeave(sIndex)}
                     className={oClasses.tab}
                     key={sIndex}
@@ -123,7 +126,11 @@ function ScrollableTabs(oProps: any) {
                 </Tooltip>
               ))}
             </Tabs>
-            <Dropdown open={oState.contextMenu} anchor={oState.anchor} onClickAway={cHandleCloseContextmenu}></Dropdown>
+            <Dropdown
+              index={oState.index}
+              open={oState.contextMenu}
+              anchor={oState.anchor}
+              onClickAway={cHandleCloseContextmenu}></Dropdown>
           </AppBar>
           {aTabs.map((oTab, sIndex) => (
             <TabPanel key={sIndex} value={iTabsValue} index={sIndex}>

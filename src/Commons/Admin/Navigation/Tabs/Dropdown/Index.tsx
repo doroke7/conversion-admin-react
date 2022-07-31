@@ -18,34 +18,41 @@ import cStyle from './style';
 
 function Dropdown(oProps: any) {
   let oClasses = cStyle();
+  let iIndex = oProps.index ?? -1;
 
-  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
   let bOpen = oProps.open ?? false;
   let oAnchor = oProps.anchor ?? null;
-  let oMenu = oProps.menu ?? null;
+  let oTab = oProps.tab ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
 
-  let cOnClick = (oMenu: any) => {
-    return (oEvent: any) => {};
+  let cOnClick = (oTab: any) => {
+    return (oTab: any) => {};
   };
 
-  {
-    /* NOTE: 如果位置太低， Popper.placement 改为 right end */
-  }
+  let cHandleRemoveTab = (sIndex) => {
+    return (oEvent) => {
+      oEvent.stopPropagation(); // 取消 link
+      oEvent.preventDefault(); // 取消 a tag 取消 href
+      if(sIndex> 0) {
+        events.admin.emit('Navigation-onRemoveTab', sIndex);
+
+      }
+    };
+  };
 
   return (
-    <Popper open={bOpen} anchorEl={oAnchor} role={undefined} placement={'bottom-end'}>
+    <Popper className={oClasses.root} open={bOpen} anchorEl={oAnchor} role={undefined} placement={'bottom-end'}>
       <Grow in={true} style={{ transformOrigin: 'left top' }}>
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>
             <MenuList id="menu-list-for-tab">
-              <MenuItem onClick={cOnClick(oMenu)}>
+              <MenuItem onClick={cHandleRemoveTab(iIndex)} className={oClasses.menuItem}>
                 <ListItemText primary={'关闭当前'} />
               </MenuItem>
-              <MenuItem onClick={cOnClick(oMenu)}>
+              <MenuItem onClick={cOnClick(oTab)}>
                 <ListItemText primary={'关闭其他'} />
               </MenuItem>
-              <MenuItem onClick={cOnClick(oMenu)}>
+              <MenuItem onClick={cOnClick(oTab)}>
                 <ListItemText primary={'关闭全部'} />
               </MenuItem>
             </MenuList>
