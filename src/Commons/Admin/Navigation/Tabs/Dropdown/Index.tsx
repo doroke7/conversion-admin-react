@@ -24,19 +24,10 @@ function Dropdown(oProps: any) {
   let oAnchor = oProps.anchor ?? null;
   let oTab = oProps.tab ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
+  let cHandleRemoveTab = oProps.onRemoveTab ?? (() => void 0);
 
   let cOnClick = (oTab: any) => {
     return (oTab: any) => {};
-  };
-
-  let cHandleRemoveTab = (sIndex) => {
-    return (oEvent) => {
-      oEvent.stopPropagation(); // 取消 link
-      oEvent.preventDefault(); // 取消 a tag 取消 href
-      if (sIndex > 0) {
-        events.admin.emit('Navigation-onRemoveTab', sIndex);
-      }
-    };
   };
 
   return (
@@ -45,7 +36,7 @@ function Dropdown(oProps: any) {
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>
             <MenuList id="menu-list-for-tab">
-              <MenuItem onClick={cHandleRemoveTab(iIndex)} className={oClasses.menuItem}>
+              <MenuItem onClick={cHandleRemoveTab} className={oClasses.menuItem}>
                 <ListItemText primary={'关闭当前'} />
               </MenuItem>
               <MenuItem onClick={cOnClick(oTab)}>

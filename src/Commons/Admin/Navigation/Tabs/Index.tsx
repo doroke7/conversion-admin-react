@@ -27,13 +27,15 @@ function ScrollableTabs(oProps: any) {
     contextMenu: false,
     tooltip: null,
     tooltips: {},
-    index: -1
+    index: -1 // 当下右键 选择 的  Dropdown UI
   });
 
   let cHandleRemoveTab = (sIndex) => {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
+      cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: -1 });
+
       events.admin.emit('Navigation-onRemoveTab', sIndex);
     };
   };
@@ -82,7 +84,6 @@ function ScrollableTabs(oProps: any) {
     <div className={oClasses.root}>
       {aTabs.length >= 1 ? (
         <>
-          {/* {'两个 elements 不能在 short if 里面'} */}
           <AppBar position="static" color="default">
             <Tabs
               value={iTabsValue}
@@ -127,10 +128,10 @@ function ScrollableTabs(oProps: any) {
               ))}
             </Tabs>
             <Dropdown
-              index={oState.index}
               open={oState.contextMenu}
               anchor={oState.anchor}
-              onClickAway={cHandleCloseContextmenu}></Dropdown>
+              onClickAway={cHandleCloseContextmenu}
+              onRemoveTab={cHandleRemoveTab(oState.index)}></Dropdown>
           </AppBar>
           {aTabs.map((oTab, sIndex) => (
             <TabPanel key={sIndex} value={iTabsValue} index={sIndex}>
