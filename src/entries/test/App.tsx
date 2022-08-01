@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter , Route, Link, Switch } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router';
 // About Page
 const About = () => {
@@ -28,7 +28,7 @@ const Shop = () => {
 };
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <main>
         <nav>
           <ul>
@@ -56,7 +56,7 @@ function App() {
         </Switch>
         {/* 使用 Link, Switch, Route 做前端路由 */}
       </main>
-    </Router>
+    </BrowserRouter>
   );
 }
 // Home Page
