@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
@@ -41,4 +41,4 @@ function Links(oProps: any) {
   );
 }
 
-export default withRouter(Links);
+export default Links;

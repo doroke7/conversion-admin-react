@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
@@ -29,8 +29,6 @@ import style from './style';
 let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
-  let sPathname = oProps.location.pathname;
-
   let oClasses = style(void 0);
 
   let [oState, cSetState] = React.useState<any>({
@@ -300,4 +298,4 @@ function Navigation(oProps: any) {
   );
 }
 
-export default withRouter(Navigation);
+export default Navigation;

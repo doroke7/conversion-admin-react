@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
@@ -53,4 +53,4 @@ function Bar(oProps: any) {
   );
 }
 
-export default withRouter(Bar);
+export default Bar;

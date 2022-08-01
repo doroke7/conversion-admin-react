@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -14,14 +14,14 @@ import style from './style';
 function Menu(oProps: any) {
   let classes = style(void 0);
 
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef<HTMLButtonElement>(null);
+  let [open, setOpen] = useState(false);
+  let anchorRef = useRef<HTMLButtonElement>(null);
 
-  const handleToggle = () => {
+  let handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+  let handleClose = (event: React.MouseEvent<EventTarget>) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
@@ -29,7 +29,7 @@ function Menu(oProps: any) {
     setOpen(false);
   };
 
-  function handleListKeyDown(event: React.KeyboardEvent) {
+  let handleListKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
@@ -37,7 +37,7 @@ function Menu(oProps: any) {
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
+  let prevOpen = React.useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
@@ -67,4 +67,4 @@ function Menu(oProps: any) {
   );
 }
 
-export default withRouter(Menu);
+export default Menu;

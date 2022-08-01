@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
@@ -124,4 +123,4 @@ class Login extends React.Component<IProps> {
   }
 }
 
-export default withRouter(PageHOC(Login));
+export default Login;

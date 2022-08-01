@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FlipCameraAndroidIcon from '@material-ui/icons/FlipCameraAndroid';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
@@ -59,4 +59,4 @@ function Right(oProps: any) {
   );
 }
 
-export default withRouter(Right);
+export default Right;

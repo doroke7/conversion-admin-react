@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter , Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router';
 // About Page
 const About = () => {

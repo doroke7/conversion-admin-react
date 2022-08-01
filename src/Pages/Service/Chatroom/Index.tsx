@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { Motion, spring, presets } from 'react-motion';
 // @ts-ignore
 import SocketIOFileClient from 'socket.io-file-client';
@@ -275,4 +274,4 @@ const Wrapper = (...oProps: any) => (
   <Service.Tool.Consumer>{(oContext) => <Chatroom context={oContext}>{...oProps}</Chatroom>}</Service.Tool.Consumer>
 );
 
-export default withRouter(Wrapper);
+export default Wrapper;
