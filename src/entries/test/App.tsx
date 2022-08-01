@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router';
 // About Page
 const About = () => {
@@ -43,17 +43,7 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/shop/:id">
-            <Shop />
-          </Route>
-        </Switch>
+
         {/* 使用 Link, Switch, Route 做前端路由 */}
       </main>
     </BrowserRouter>
