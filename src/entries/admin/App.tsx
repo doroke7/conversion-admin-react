@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
-import { renderRoutes } from 'react-router-config';
 
 import store from '@/store';
 import oRoutes from '@/routers';
@@ -28,7 +27,17 @@ class App extends React.Component {
     return (
       <StoreContext.Provider value={store}>
         <BrowserRouter>
-          <div onContextMenu={this.handleContextmenu}>{renderRoutes(oRoutes.admin)}</div>
+          <div onContextMenu={this.handleContextmenu}>
+            <Switch>
+              {oRoutes.admin.map((oRoute, sIndex) => (
+                <Route
+                  path={oRoute.path}
+                  key={sIndex}
+                  exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会混肴 **/
+                  render={(oProps) => <oRoute.component />}></Route>
+              ))}
+            </Switch>
+          </div>
         </BrowserRouter>
       </StoreContext.Provider>
     );

@@ -1,7 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-
-import { renderRoutes } from 'react-router-config';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import oIo from 'socket.io-client';
 // @ts-ignore
@@ -50,7 +48,17 @@ class App extends React.Component {
     return (
       <Service.Tool.Provider value={oValue}>
         <Service.Header></Service.Header>
-        <BrowserRouter>{renderRoutes(oRoutes.service)}</BrowserRouter>
+        <BrowserRouter>
+          <Switch>
+            {oRoutes.service.map((oRoute, sIndex) => (
+              <Route
+                path={oRoute.path}
+                key={sIndex}
+                exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会混肴 **/
+                render={(oProps) => <oRoute.component />}></Route>
+            ))}
+          </Switch>
+        </BrowserRouter>
       </Service.Tool.Provider>
     );
   }
