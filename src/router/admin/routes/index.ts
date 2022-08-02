@@ -4,7 +4,7 @@ let aRoutes1 = [
   {
     path: '/admin',
     component: Admin._,
-    exact: true
+    exact: true // 相同 父层路由会模糊匹配 如果 exact=false
   },
   {
     path: '/admin/authentication/authenticator/sign-in',
