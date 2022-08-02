@@ -6,10 +6,8 @@ import oIo from 'socket.io-client';
 import SocketIOFileClient from 'socket.io-file-client';
 import SocketIOFileUpload from 'socketio-file-upload';
 
-import oRoutes from '@/routers';
-
+import router from '@/router';
 import { Service } from '@/Commons';
-
 import CONFIGS from '@/CONFIGS/';
 
 const SOCKET = CONFIGS.SOCKET;
@@ -50,7 +48,7 @@ class App extends React.Component {
         <Service.Header></Service.Header>
         <BrowserRouter>
           <Switch>
-            {oRoutes.service.map((oRoute, sIndex) => (
+            {router.service.routes.map((oRoute, sIndex) => (
               <Route
                 path={oRoute.path}
                 key={sIndex}

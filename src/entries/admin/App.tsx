@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
 import store from '@/store';
-import oRoutes from '@/routers';
+import router from '@/router';
 import CONFIGS from '@/CONFIGS';
 
 class App extends React.Component {
@@ -29,7 +29,7 @@ class App extends React.Component {
         <BrowserRouter>
           <div onContextMenu={this.handleContextmenu}>
             <Switch>
-              {oRoutes.admin.map((oRoute, sIndex) => (
+              {router.admin.routes.map((oRoute, sIndex) => (
                 <Route
                   path={oRoute.path}
                   key={sIndex}
