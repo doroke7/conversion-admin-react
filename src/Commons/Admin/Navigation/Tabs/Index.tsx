@@ -21,8 +21,11 @@ import style from './style';
 
 function ScrollableTabs(oProps: any) {
   let oClasses: any = style(void 0);
+
   let aTabs = useContext(Contexts.Admin.Tabs);
   let iTabsValue = useContext(Contexts.Admin.TabsValue);
+
+  let children = oProps.children ?? <></>;
 
   let [oState, cSetState] = React.useState<any>({
     anchor: null,
@@ -169,6 +172,7 @@ function ScrollableTabs(oProps: any) {
               {'内容:' + oTab.content}
             </TabPanel>
           ))}
+          {children}
         </>
       ) : (
         <Empty></Empty>

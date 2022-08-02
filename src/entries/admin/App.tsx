@@ -34,7 +34,7 @@ class App extends React.Component {
                 <Route
                   path={oRoute.path}
                   key={sIndex}
-                  exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会混肴 **/
+                  exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
                 >
                   {oRoute?.nav ? (
                     <Admin.Navigation>

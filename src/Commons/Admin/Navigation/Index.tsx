@@ -30,6 +30,7 @@ let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
 function Navigation(oProps: any) {
   let oClasses = style(void 0);
+  let children = oProps.children ?? <></>;
 
   let [oState, cSetState] = React.useState<any>({
     open: true,
@@ -283,7 +284,7 @@ function Navigation(oProps: any) {
             </Drawer>
             <main className={oClasses.content}>
               <div className={oClasses.toolbar}></div>
-              <Tabs></Tabs>
+              <Tabs>{children}</Tabs>
             </main>
             <AlertOfApps
               apps={CONFIGS.APPS}
