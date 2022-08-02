@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
@@ -31,7 +31,7 @@ let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 function Navigation(oProps: any) {
   let oClasses = style(void 0);
   let children = oProps.children ?? <></>;
-
+  let oHistory = useHistory();
   let [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab
@@ -78,6 +78,7 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
+      oHistory.push(oTabOfLink.path);
     };
 
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);

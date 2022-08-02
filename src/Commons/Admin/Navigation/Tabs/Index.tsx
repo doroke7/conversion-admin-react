@@ -172,7 +172,6 @@ function ScrollableTabs(oProps: any) {
               {'内容:' + oTab.content}
             </TabPanel>
           ))}
-          {children}
         </>
       ) : (
         <Empty></Empty>
