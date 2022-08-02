@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
+import { Admin } from '@/Commons';
 import store from '@/store';
 import router from '@/router';
 import CONFIGS from '@/CONFIGS';
@@ -34,7 +35,9 @@ class App extends React.Component {
                   path={oRoute.path}
                   key={sIndex}
                   exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会混肴 **/
-                  render={(oProps) => <oRoute.component />}></Route>
+                >
+                  <oRoute.component />
+                </Route>
               ))}
             </Switch>
           </div>
