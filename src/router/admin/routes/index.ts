@@ -4,17 +4,20 @@ let aRoutes1 = [
   {
     path: '/admin',
     component: Admin._,
-    exact: true // 相同 父层路由会模糊匹配 如果 exact=false
+    exact: true, // 相同 父层路由会模糊匹配 如果 exact=false
+    nav: true
   },
   {
     path: '/admin/authentication/authenticator/sign-in',
     component: Admin.Authentication.Authenticator.SignIn,
-    exact: true
+    exact: true,
+    nav: false
   },
   {
     path: '/admin/resource/app-user/index',
     component: Admin.Resource.AppUser.Index,
-    exact: true
+    exact: true,
+    nav: false
   }
 ];
 

@@ -36,7 +36,13 @@ class App extends React.Component {
                   key={sIndex}
                   exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会混肴 **/
                 >
-                  <oRoute.component />
+                  {oRoute?.nav ? (
+                    <Admin.Navigation>
+                      <oRoute.component />
+                    </Admin.Navigation>
+                  ) : (
+                    <oRoute.component />
+                  )}
                 </Route>
               ))}
             </Switch>
