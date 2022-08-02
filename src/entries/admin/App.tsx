@@ -24,6 +24,9 @@ class App extends React.Component {
     }
   }
 
+  /*
+    NOTE: 
+  */
   public render() {
     return (
       <StoreContext.Provider value={store}>
@@ -36,9 +39,9 @@ class App extends React.Component {
                   key={sIndex}
                   exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
                 >
-                  {oRoute?.nav ? (
+                  {oRoute?.nav ? ( // 具有 nav 的设定值 才会用 Navigatiob 包起来
                     <Admin.Navigation>
-                      <oRoute.component />
+                      <oRoute.component /> {/* 把 page 丢人 Nav 的 children 中， 最后再由 tabs 解析*/}
                     </Admin.Navigation>
                   ) : (
                     <oRoute.component />
@@ -54,3 +57,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+// <Route exact path="/">
+//   {loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
+// </Route>

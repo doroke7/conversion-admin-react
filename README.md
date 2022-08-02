@@ -100,7 +100,7 @@
 │   │   │   │   ├── SmallApps                  简易模式的 应用程序选择 
 │   │   │   │   ├── LargeMenus                 一般模式的 菜单组件              
 │   │   │   │   ├── SmallMenus                 简易模式的 菜单组件              
-│   │   │   │   ├── Tabs                       分页组件        
+│   │   │   │   ├── Tabs                       分页组件 。把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析        
                              
 │   │   │  
 │   │   ├── Service                           

@@ -78,7 +78,7 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
-      oHistory.push(oTabOfLink.path);
+      oHistory.replace(oTabOfLink.path);
     };
 
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);

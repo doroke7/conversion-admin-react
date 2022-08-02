@@ -14,6 +14,12 @@ let aRoutes1 = [
     nav: true
   },
   {
+    path: '/admin/resource/order-info/index',
+    component: Admin.Resource.OrderInfo.Index,
+    exact: true,
+    nav: true
+  },
+  {
     path: '/admin/authentication/authenticator/sign-in',
     component: Admin.Authentication.Authenticator.SignIn,
     exact: true,
