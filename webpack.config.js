@@ -56,7 +56,7 @@ module.exports = (env, argvs) => {
       publicPath: '/',
       compress: true,
       host: '0.0.0.0',
-      port: process.env.WEBPACK_PORT || 3001,
+      port: process.env.WEBPACK_PORT ?? 3001,
       inline: true,
       hot: true,
       progress: true,
@@ -160,7 +160,7 @@ module.exports = (env, argvs) => {
       ],
     },
     plugins: [
-      ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: 8088 })]),
+      ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: process.env.ANALYZER_PORT ?? 8088 })]),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',
