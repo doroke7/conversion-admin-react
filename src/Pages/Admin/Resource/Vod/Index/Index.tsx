@@ -6,18 +6,8 @@ import Fade from '@material-ui/core/Fade';
 
 import style from './style';
 
-interface State {
-  name: string;
-  password: string;
-  open: boolean;
-  text: string;
-  error: boolean;
-  alertOpen: boolean;
-  alertMessage: string;
-}
-
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
-  return <div className={oClasses.root}>APP-USER</div>;
+  return <div className={oClasses.root}>VOD</div>;
 }
 export default Index;
