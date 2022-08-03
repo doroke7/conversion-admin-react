@@ -23,7 +23,9 @@ class App extends React.Component {
       oEvent.preventDefault(); // 取消 a tag 取消 href
     }
   }
-
+  /** 必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
+  // 具有 nav 的设定值 才会用 Navigatiob 包起来
+  /* 把 page 丢人 Nav 的 children 中， 最后再由 tabs 解析*/
   /*
     NOTE: 
   */
@@ -34,14 +36,10 @@ class App extends React.Component {
           <div onContextMenu={this.handleContextmenu}>
             <Switch>
               {router.admin.routes.map((oRoute, sIndex) => (
-                <Route
-                  path={oRoute.path}
-                  key={sIndex}
-                  exact={oRoute.exact} /** 必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
-                >
-                  {oRoute?.nav ? ( // 具有 nav 的设定值 才会用 Navigatiob 包起来
+                <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
+                  {oRoute?.nav ? (
                     <Admin.Navigation>
-                      <oRoute.component /> {/* 把 page 丢人 Nav 的 children 中， 最后再由 tabs 解析*/}
+                      <oRoute.component />
                     </Admin.Navigation>
                   ) : (
                     <oRoute.component />
