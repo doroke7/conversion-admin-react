@@ -160,7 +160,7 @@ module.exports = (env, argvs) => {
       ],
     },
     plugins: [
-      ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: 8081 })]),
+      ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: 8088 })]),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'service'],
         template: './public/service.html',

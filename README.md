@@ -5,12 +5,12 @@
 ### (壹) 架构图
 
 
-### TODO
+## TODO
 1. import { Link, useLocation } from 'react-router-dom';
    改用 useLocation 写法
 
 
-### NOTE
+## NOTE
 1. 复数 组合 <div> 时候， 自定义 Compoenent 里面 请不要 一个作为一个基础原件， 请把 多个组为 一种， 代码比较简单 
 
 2. typeof iNumber === 'undefined' ， 使用 typeof 为字串
@@ -22,6 +22,9 @@
 5. 路由规则，（为一级菜单）  /admin/{名称1}/index
 6. 路由规则，（为二级菜单）  /admin/{名称1}/{名称2}/index
 
+## JS function 的问题
+   避免函数跟 函数组件 混肴所以，函数 统一使用 let 宣告变量函数
+   避免函数跟 函数组件 混肴所以，函数组件 统一使用 function 宣告组件
 
 
 #  目录结构

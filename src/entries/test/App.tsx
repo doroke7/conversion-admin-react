@@ -1,52 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 
-export default function App() {
-  let oHistory = useHistory();
-  let [oState, cSetState] = React.useState<any>({
-    number: 0
-  });
-
-  let cHandleClick = (oEvent: React.MouseEvent) => {
-    cSetState({ number: oState.number + 1 });
-  };
-
-  let cHandleChangePage = (oEvent: React.MouseEvent) => {
-    oHistory.push('/test/topics');
-  };
-
-  return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/test">Home</Link>
-          </li>
-          <li>
-            <Link to="/test/about">About</Link>
-          </li>
-          <li>
-            <Link to="/test/topics">Topics</Link>
-          </li>
-        </ul>
-        <div onClick={cHandleClick}>number:{oState.number}</div>
-        <div onClick={cHandleChangePage}>CHANGE PAGE</div>
-        <Switch>
-          <Route path="/test/about">
-            <About />
-          </Route>
-          <Route path="/test/topics">
-            <Topics />
-          </Route>
-          <Route path="/test">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
 function Home() {
   return <h2>Home</h2>;
 }
@@ -91,3 +45,52 @@ function Topic() {
   let { topicId }: any = useParams();
   return <h3>Requested topic ID: {topicId}</h3>;
 }
+
+function App() {
+  let oHistory = useHistory();
+
+  let [oState, cSetState] = React.useState<any>({
+    number: 0
+  });
+
+  let cHandleClick = (oEvent: React.MouseEvent) => {
+    cSetState({ number: oState.number + 1 });
+  };
+
+  let cHandleChangePage = (oEvent: React.MouseEvent) => {
+    oHistory.push('/test/jjj');
+  };
+
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/test">Home</Link>
+          </li>
+          <li>
+            <Link to="/test/about">About</Link>
+          </li>
+          <li>
+            <Link to="/test/topics">Topics</Link>
+          </li>
+        </ul>
+        <div onClick={cHandleClick}>number:{oState.number}</div>
+        <div onClick={cHandleChangePage}>CHANGE PAGE</div>
+        <Switch>
+          <Route path="/test/about">
+            <About />
+          </Route>
+          <Route path="/test/topics">
+            <Topics />
+          </Route>
+          <Route path="/test">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
