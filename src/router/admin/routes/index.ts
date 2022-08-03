@@ -6,6 +6,7 @@ let aRoutes = [
     component: Admin._,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
     routes: [
+      // 嵌套路由必须 使用 exact=false
       {
         path: '/admin/resource/app-user/index',
         component: Admin.Resource.AppUser.Index,

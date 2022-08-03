@@ -3,5 +3,6 @@ import OrderInfo from './OrderInfo/Index';
 import Administrator from './Administrator/Index';
 import Config from './Config/Index';
 import Vod from './Vod/Index';
+import None from './None/Index';
 
-export default { AppUser, OrderInfo, Administrator, Config, Vod };
+export default { AppUser, OrderInfo, Administrator, Config, Vod, None };
