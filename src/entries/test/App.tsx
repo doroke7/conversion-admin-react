@@ -98,7 +98,7 @@ function App() {
   let cHandleChangePage = (oEvent: React.MouseEvent) => {
     cSetState({ number: oState.number - 1 });
 
-    oHistory.push('/test/jjj');
+    oHistory.push('/test/about');
   };
 
   return (

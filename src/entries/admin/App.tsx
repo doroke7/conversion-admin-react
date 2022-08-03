@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
-import { Admin } from '@/Commons';
 import store from '@/store';
 import router from '@/router';
 import CONFIGS from '@/CONFIGS';
@@ -39,15 +38,7 @@ class App extends React.Component {
                   path={oRoute.path}
                   key={sIndex}
                   exact={oRoute.exact}
-                  component={(oProps: any) =>
-                    oRoute?.nav ? (
-                      <Admin.Navigation>
-                        <oRoute.component />
-                      </Admin.Navigation>
-                    ) : (
-                      <oRoute.component />
-                    )
-                  }></Route>
+                  component={(oProps: any) => <oRoute.component routers={oRoute.routers} />}></Route>
               ))}
             </Switch>
           </div>
