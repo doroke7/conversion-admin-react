@@ -38,7 +38,7 @@ class App extends React.Component {
                   path={oRoute.path}
                   key={sIndex}
                   exact={oRoute.exact}
-                  component={(oProps: any) => <oRoute.component routers={oRoute.routers} />}></Route>
+                  component={(oProps: any) => <oRoute.component routes={oRoute.routes} />}></Route>
               ))}
             </Switch>
           </div>

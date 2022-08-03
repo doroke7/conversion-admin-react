@@ -8,18 +8,18 @@ import style from './style';
 function _(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let aRouters = oProps.routers ?? [];
+  let aRoutes = oProps.routes ?? [];
 
   return (
     <Fade in={true} timeout={1000}>
       <Admin.Navigation>
         <Switch>
-          {aRouters.map((oRoute, sIndex) => (
+          {aRoutes.map((oRoute, sIndex) => (
             <Route
               path={oRoute.path}
               key={sIndex}
               exact={oRoute.exact}
-              component={(oProps: any) => <oRoute.component routers={oRoute.routers} />}></Route>
+              component={(oProps: any) => <oRoute.component routes={oRoute.routes} />}></Route>
           ))}
         </Switch>
       </Admin.Navigation>
