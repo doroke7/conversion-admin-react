@@ -1,12 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 
 function Home() {
   return <h2>Home</h2>;
 }
 
 function About() {
-  return <h2>About</h2>;
+  let [oState, cSetState] = React.useState<any>({
+    index: 0
+  });
+
+  let cHandleClick = (oEvent: React.MouseEvent) => {
+    cSetState({ index: oState.index + 1 });
+  };
+
+  return (
+    <div>
+      <div onClick={cHandleClick}>
+        <h5>ABOUT</h5>
+      </div>
+      <div>index: {oState.index}</div>
+    </div>
+  );
 }
 
 function Topics() {
@@ -43,7 +58,23 @@ function Topics() {
 
 function Topic() {
   let { topicId }: any = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>;
+
+  let [oState, cSetState] = React.useState<any>({
+    index: 0
+  });
+
+  let cHandleClick = (oEvent: React.MouseEvent) => {
+    cSetState({ index: oState.index + 1 });
+  };
+
+  return (
+    <div>
+      <div onClick={cHandleClick}>
+        <h5>Requested topic ID: {topicId}</h5>
+      </div>
+      <div>index: {oState.index}</div>
+    </div>
+  );
 }
 
 function App() {
@@ -58,11 +89,13 @@ function App() {
   };
 
   let cHandleChangePage = (oEvent: React.MouseEvent) => {
+    cSetState({ number: oState.number - 1 });
+
     oHistory.push('/test/jjj');
   };
 
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <ul>
           <li>
@@ -89,7 +122,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
