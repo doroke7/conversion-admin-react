@@ -1,68 +1,93 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router';
-// About Page
-const About = () => {
-  const hist = useHistory();
-  return (
-    <div>
-      <h1>About</h1>
-      <button onClick={() => hist.goBack()}>Go Back</button>
-      <LoremText />
-    </div>
-  );
-};
-const Shop = () => {
-  const params: any = useParams();
-  const current = params.id;
-  const next = Number(current) + 1;
-  const hist = useHistory();
-  return (
-    <div>
-      <h1>Shop</h1>
-      <p>You requested item with ID: {current}</p>
-      <button onClick={() => hist.goBack()}>Go Back</button>
-      <button onClick={() => hist.push(`/shop/${next}`)}>Next product</button>
-    </div>
-  );
-};
-function App() {
-  return (
-    <BrowserRouter>
-      <main>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/shop/1">Shop</Link>
-            </li>
-          </ul>
-        </nav>
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 
-        {/* 使用 Link, Switch, Route 做前端路由 */}
-      </main>
-    </BrowserRouter>
+export default function App() {
+  let oHistory = useHistory();
+  let [oState, cSetState] = React.useState<any>({
+    number: 0
+  });
+
+  let cHandleClick = (oEvent: React.MouseEvent) => {
+    cSetState({ number: oState.number + 1 });
+  };
+
+  let cHandleChangePage = (oEvent: React.MouseEvent) => {
+    oHistory.push('/test/topics');
+  };
+
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/test">Home</Link>
+          </li>
+          <li>
+            <Link to="/test/about">About</Link>
+          </li>
+          <li>
+            <Link to="/test/topics">Topics</Link>
+          </li>
+        </ul>
+        <div onClick={cHandleClick}>number:{oState.number}</div>
+        <div onClick={cHandleChangePage}>CHANGE PAGE</div>
+        <Switch>
+          <Route path="/test/about">
+            <About />
+          </Route>
+          <Route path="/test/topics">
+            <Topics />
+          </Route>
+          <Route path="/test">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-// Home Page
-const Home = () => (
-  <Fragment>
-    <h1>Home</h1>
-    <LoremText />
-  </Fragment>
-);
-const LoremText = () => (
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-);
 
-export default App;
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Topics() {
+  let match = useRouteMatch();
+
+  return (
+    <div>
+      <h2>Topics</h2>
+
+      <ul>
+        <li>
+          <Link to={`${match.url}/components`}>Components</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
+        </li>
+      </ul>
+
+      {/* The Topics page has its own <Switch> with more routes
+          that build on the /topics URL path. You can think of the
+          2nd <Route> here as an "index" page for all topics, or
+          the page that is shown when no topic is selected */}
+      <Switch>
+        <Route path={`${match.path}/:topicId`}>
+          <Topic />
+        </Route>
+        <Route path={match.path}>
+          <h3>Please select a topic.</h3>
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+
+function Topic() {
+  let { topicId }: any = useParams();
+  return <h3>Requested topic ID: {topicId}</h3>;
+}
