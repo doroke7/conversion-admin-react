@@ -8,12 +8,12 @@ let aRoutes = [
     routes: [
       // 嵌套路由必须 使用 exact=false
       {
-        path: '/admin/resource/app-user/index',
+        path: '/resource/app-user/index',
         component: Admin.Resource.AppUser.Index,
         exact: false
       },
       {
-        path: '/admin/resource/order-info/index',
+        path: '/resource/order-info/index',
         component: Admin.Resource.OrderInfo.Index,
         exact: false
       }
