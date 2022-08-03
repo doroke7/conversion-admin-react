@@ -25,18 +25,22 @@ function About() {
 }
 
 function Topics() {
-  let match = useRouteMatch();
+  let oMatch = useRouteMatch();
 
   return (
     <div>
       <h2>Topics</h2>
+      <h3>oMatch = {JSON.stringify(oMatch)}</h3>
+      <h3>oMatch.path 为 当下组件外层 Route 所匹配的 虚拟路由</h3>
+      <h3>oMatch.url 为 当下组件外层 Route 所匹配的 真实地址</h3>
 
       <ul>
         <li>
-          <Link to={`${match.url}/components`}>Components</Link>
+          {/** oMatch 为 Topics 当下所在 路由， 为 oMatch.path="/test/topics" */}
+          <Link to={`${oMatch.url}/components`}>Components</Link>
         </li>
         <li>
-          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
+          <Link to={`${oMatch.url}/props-v-state`}>Props v. State</Link>
         </li>
       </ul>
 
@@ -45,11 +49,11 @@ function Topics() {
           2nd <Route> here as an "index" page for all topics, or
           the page that is shown when no topic is selected */}
       <Switch>
-        <Route path={`${match.path}/:topicId`}>
+        <Route path={`${oMatch.path}/:topicId`}>
           <Topic />
         </Route>
-        <Route path={match.path}>
-          <h3>Please select a topic.</h3>
+        <Route path={oMatch.path}>
+          <h4>Please select a topic.</h4>
         </Route>
       </Switch>
     </div>
@@ -58,6 +62,7 @@ function Topics() {
 
 function Topic() {
   let { topicId }: any = useParams();
+  let oMatch = useRouteMatch();
 
   let [oState, cSetState] = React.useState<any>({
     index: 0
@@ -69,6 +74,8 @@ function Topic() {
 
   return (
     <div>
+      <h4>Topic</h4>
+      <h4>oMatch = {JSON.stringify(oMatch)}</h4>
       <div onClick={cHandleClick}>
         <h5>Requested topic ID: {topicId}</h5>
       </div>
