@@ -1,6 +1,6 @@
 import { Admin } from '@/Pages';
 
-let aRoutes1 = [
+let aRoutes = [
   {
     path: '/admin',
     component: Admin._,
@@ -26,4 +26,4 @@ let aRoutes1 = [
     nav: false
   }
 ];
-export default aRoutes1;
+export default aRoutes;
