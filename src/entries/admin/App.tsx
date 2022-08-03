@@ -23,12 +23,11 @@ class App extends React.Component {
       oEvent.preventDefault(); // 取消 a tag 取消 href
     }
   }
-  /** 必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
-  // 具有 nav 的设定值 才会用 Navigatiob 包起来
-  /* 把 page 丢人 Nav 的 children 中， 最后再由 tabs 解析*/
-  /*
-    NOTE: 
-  */
+  /**  必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
+  /**  具有 nav 的设定值 才会用 Navigatiob 包起来 **/
+  /**  把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析 **/
+  /**  react-router-dom@5.0.0 <Route>比较麻烦 其下 组件是用 component={Componet} 而不是 component={<Component/>} */
+
   public render() {
     return (
       <StoreContext.Provider value={store}>
@@ -36,15 +35,19 @@ class App extends React.Component {
           <div onContextMenu={this.handleContextmenu}>
             <Switch>
               {router.admin.routes.map((oRoute, sIndex) => (
-                <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
-                  {oRoute?.nav ? (
-                    <Admin.Navigation>
+                <Route
+                  path={oRoute.path}
+                  key={sIndex}
+                  exact={oRoute.exact}
+                  component={(oProps: any) =>
+                    oRoute?.nav ? (
+                      <Admin.Navigation>
+                        <oRoute.component />
+                      </Admin.Navigation>
+                    ) : (
                       <oRoute.component />
-                    </Admin.Navigation>
-                  ) : (
-                    <oRoute.component />
-                  )}
-                </Route>
+                    )
+                  }></Route>
               ))}
             </Switch>
           </div>
