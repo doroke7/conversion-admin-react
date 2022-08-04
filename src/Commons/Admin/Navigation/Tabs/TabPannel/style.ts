@@ -17,6 +17,12 @@ let oStyle = makeStyles((oTheme: Theme) =>
       '100%': {
         opacity: 1
       }
+    },
+    box: {
+      position: 'absolute',
+      padding: oTheme.spacing(2),
+      height: 'calc( 100% - ' + oTheme.spacing(2) * 2 + 'px )',
+      width: 'calc( 100% - ' + oTheme.spacing(2) * 2 + 'px )'
     }
   })
 );
