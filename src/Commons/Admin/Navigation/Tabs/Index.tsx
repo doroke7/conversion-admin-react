@@ -169,7 +169,6 @@ function ScrollableTabs(oProps: any) {
           </AppBar>
           {aTabs.map((oTab, sIndex) => (
             <TabPanel key={sIndex} value={iTabsValue} index={sIndex}>
-              {'内容:' + oTab.content}
               {children}
             </TabPanel>
           ))}

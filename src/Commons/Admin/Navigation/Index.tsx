@@ -150,6 +150,10 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
+      let oTab = oState.tabs[iValue] ?? null;
+      if (oTab) {
+        oHistory.push(oTab.path);
+      }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickTab', cClickTab);
     return () => {
@@ -216,6 +220,10 @@ function Navigation(oProps: any) {
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
+
+      if (oTabOfMenu) {
+        oHistory.push(oTabOfMenu.path);
+      }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
     // 组件销毁前移除事件监听
