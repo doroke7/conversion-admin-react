@@ -32,6 +32,7 @@
 ```files
 .
 ├── dist...            前端服务 API 文档放的地方，由 JS 组成。
+├── etc                放在 Linux 主机需要的配置
 ├── node_modules...    前端 三方 NPM 组件库，请忽略
 ├── public...          Nginx 服务器 指向的 root 处，里面有 404
 ├── src...             项目代码主要处
