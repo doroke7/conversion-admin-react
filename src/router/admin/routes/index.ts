@@ -16,6 +16,11 @@ let aRoutes = [
         path: '/resource/order-info/index',
         component: Admin.Resource.OrderInfo.Index,
         exact: false
+      },
+      {
+        path: '/*',
+        component: Admin.Resource.None.Index,
+        exact: false
       }
     ]
   },
