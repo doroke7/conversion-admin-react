@@ -62,6 +62,10 @@ function Pannel(oProps: any): any {
     }
   };
 
+  let cRefresh = async () => {
+    let sJwt = Helpers.Authentication.getJwt();
+  };
+
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
     cSetState({ ...oState, name: sName });

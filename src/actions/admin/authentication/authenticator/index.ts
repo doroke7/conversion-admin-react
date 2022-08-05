@@ -27,12 +27,11 @@ let oAuthenticatorAction: any = {
   refresh: (oBody: any, oOption: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
-        let sJwt = Helpers.Authentication.getJwt();
-        // let sAccessToken = AuthenticationHelper.getAccessToken();
+        let sJwtOfStorage = Helpers.Authentication.getJwt();
 
         let oOptions = {
           headers: {
-            jwt: sJwt // 一定要 引号
+            jwt: sJwtOfStorage
           }
         };
         let oResponse = await Helpers.Axios.post({
@@ -40,16 +39,16 @@ let oAuthenticatorAction: any = {
           params: oBody,
           options: oOptions
         });
-        if (-1 === oResponse.jwt.result || !oResponse.jwt) {
+
+        let sJwtOfResponse = oResponse.headers?.authorization ?? '';
+
+        if (!sJwtOfResponse) {
           throw new Error('IT_FAILS_TO_REFRESH_JWT');
         }
-        sJwt = oResponse.jwt;
-        cDispatch(cRefresh(sJwt));
-        Helpers.Authentication.setJwt(sJwt);
-        let oPayLoad: any = jwtDecode(sJwt);
-        let iExp = oPayLoad.exp; // second
-        let iNow = new Date().getTime() / 1000; // second
-        let iSecond = iExp - iNow - 10 * 60 <= 0 ? 0 : iExp - iNow - 10 * 60;
+
+        cDispatch(cRefresh(sJwtOfResponse));
+        Helpers.Authentication.setJwt(sJwtOfResponse);
+        let iSecond = 10 * 60;
         setTimeout(async () => {
           await fNext();
         }, iSecond * 1000); // microsecond
@@ -58,12 +57,12 @@ let oAuthenticatorAction: any = {
     };
   },
 
-  signIn(oParams: any, oData: any) {
+  signIn: (oParams: any, oData: any) => {
     return async (cDispatch: any) => {
       let oResponse = await Helpers.Axios.post({
         path: '/Admin/Authentication/Authenticator/signIn',
-        params: oParams,
-        data: oData
+        params: oParams, // API 中，问号拼接的 参数。 如 ?option={}&query={}
+        data: oData // API 中，Body 传参
       });
 
       if (!oResponse) {
@@ -74,7 +73,7 @@ let oAuthenticatorAction: any = {
         throw new Error(oResponse.data.message);
       }
 
-      let sJwt = oResponse.headers['authorization'];
+      let sJwt = oResponse.headers?.authorization ?? '';
       if (sJwt) {
         Helpers.Authentication.setJwt(sJwt);
       }
