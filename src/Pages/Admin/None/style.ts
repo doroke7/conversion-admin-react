@@ -7,7 +7,18 @@ let oStyle = makeStyles((oTheme: Theme) =>
       width: '100vw',
       height: '100vh',
       position: 'relative',
-      backgroundImage: 'radial-gradient(' + grey[50] + ' 0%, ' + grey[200] + '90%, ' + grey[800] + ' 100%)'
+      backgroundImage:
+        'radial-gradient(' +
+        grey[50] +
+        ' 0%, ' +
+        grey[50] +
+        ' 10%, ' +
+        grey[200] +
+        ' 60%, ' +
+        grey[400] +
+        ' 90%, ' +
+        grey[500] +
+        ' 100%)'
     },
     wrapper: {
       position: 'absolute',
