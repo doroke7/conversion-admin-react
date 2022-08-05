@@ -9,14 +9,20 @@ import style from './style';
 
 function None(oProps: any): any {
   let oClasses: any = style(void 0);
+
   let oMatch = useRouteMatch();
+  let oHistory = useHistory();
+
+  let oHandleClick = (oEvent: React.MouseEvent) => {
+    oHistory.push('/admin/resource');
+  };
 
   return (
     <div className={oClasses.root}>
       <div className={oClasses.wrapper}>
         <Icon></Icon>
         <div>
-          <Button variant="outlined" color="primary">
+          <Button className={oClasses.button} variant="outlined" color="primary" onClick={oHandleClick}>
             回到主页
           </Button>
         </div>

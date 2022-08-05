@@ -13,12 +13,14 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, calc( -50% - 16px))'
     },
     button: {
+      width: oTheme.spacing(36),
       fontSize: oTheme.spacing(6),
       display: 'block',
-      margin: 'auto'
+      margin: -oTheme.spacing(6) + 'px' + ' auto 0px auto',
+      borderRadius: oTheme.spacing(6)
     }
   })
 );

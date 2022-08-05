@@ -8,11 +8,20 @@ let oStyle = makeStyles((oTheme: Theme) =>
       height: oTheme.spacing(90),
       verticalAlign: 'middle',
       fill: 'currentColor',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      transformOrigin: '50% 100%',
+      transform: 'rotate(-25deg)',
+      animation: '$wave 6s infinite ease-in-out alternate-reverse'
+    },
+    '@keyframes wave': {
+      '0%': {
+        transform: 'rotate(-6deg)'
+      },
+      '100%': {
+        transform: 'rotate(+5deg)'
+      }
     }
   })
 );
 
 export default oStyle;
-
-// csq
