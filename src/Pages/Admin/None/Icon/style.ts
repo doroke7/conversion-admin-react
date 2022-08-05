@@ -19,12 +19,12 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
 
       '100%': {
-        transform: 'rotate(-5deg)'
+        transform: 'rotate(-6deg)'
       }
     },
     '@keyframes wave2': {
       '0%': {
-        transform: 'rotate(-5deg)'
+        transform: 'rotate(-6deg)'
       },
 
       '100%': {
