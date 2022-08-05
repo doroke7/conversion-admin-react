@@ -64,7 +64,15 @@ function Pannel(oProps: any): any {
 
   let cRefresh = async () => {
     let sJwt = Helpers.Authentication.getJwt();
+    let oBody = {};
+    let oOption = {};
+    let oQuery = {};
+    if (sJwt) {
+      let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.refresh(oBody, oOption, oQuery));
+    }
   };
+
+  cRefresh();
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
@@ -162,7 +170,6 @@ function Pannel(oProps: any): any {
         <span className={oClasses.decription}>{CONFIGS.APP.DESCRIPTION}</span>
         <span className={oClasses.version}>Ver. ({CONFIGS.APP.VER})</span>
       </div>
-      <Components.Admin.Message open={oState.open} text={oState.text} onClose={onClose} />
     </div>
   );
 }

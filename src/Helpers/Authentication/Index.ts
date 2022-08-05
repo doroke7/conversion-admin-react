@@ -6,7 +6,7 @@ class AuthenticationHelper {
    */
   public static getUserId(): string | null {
     try {
-      let sJwt = window.localStorage.getItem('jwt') || '';
+      let sJwt = window.localStorage.getItem('jwt') ?? '';
       let oPayload: any = jwtDecode(sJwt);
       let sUserId = oPayload.uid;
       return sUserId;
@@ -16,13 +16,13 @@ class AuthenticationHelper {
   }
 
   public static getJwt(): string | null {
-    let sJwt = window.localStorage.getItem('jwt') || '';
+    let sJwt = window.localStorage.getItem('jwt') ?? '';
     return sJwt;
   }
 
   public static getExp(): number | null {
     try {
-      let sJwt = window.localStorage.getItem('jwt') || '';
+      let sJwt = window.localStorage.getItem('jwt') ?? '';
       let oPayload: any = jwtDecode(sJwt);
       let iExp = oPayload.exp;
       return iExp;
@@ -33,7 +33,7 @@ class AuthenticationHelper {
 
   public static isExpired(): boolean {
     try {
-      let sJwt = window.localStorage.getItem('jwt') || '';
+      let sJwt = window.localStorage.getItem('jwt') ?? '';
       let oPayload: any = jwtDecode(sJwt);
       let iExp = oPayload.exp;
       let iTime = new Date().getTime() / 1000;

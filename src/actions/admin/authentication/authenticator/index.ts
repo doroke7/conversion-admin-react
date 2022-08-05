@@ -24,7 +24,7 @@ let cSignIn: any = (oResponse: any) => {
 };
 
 let oAuthenticatorAction: any = {
-  refresh: (oBody: any, oOption: any) => {
+  refresh: (oBody: any, oOption: any, oQuery: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
         let sJwtOfStorage = Helpers.Authentication.getJwt();
@@ -35,9 +35,12 @@ let oAuthenticatorAction: any = {
           }
         };
         let oResponse = await Helpers.Axios.post({
-          path: '/admin/authentication/authenticator/refresh',
-          params: oBody,
-          options: oOptions
+          path: '/Admin/Authentication/Authenticator/refresh',
+          params: {
+            option: oOption, // API 中，问号拼接的 参数。 如 ?option={}&query={}
+            query: oQuery
+          },
+          data: oBody // API 中，Body 传参
         });
 
         let sJwtOfResponse = oResponse?.headers?.authorization ?? '';
@@ -48,10 +51,6 @@ let oAuthenticatorAction: any = {
 
         cDispatch(cRefresh(sJwtOfResponse));
         Helpers.Authentication.setJwt(sJwtOfResponse);
-        let iSecond = 10 * 60;
-        setTimeout(async () => {
-          await fNext();
-        }, iSecond * 1000); // microsecond
       };
       fNext();
     };
