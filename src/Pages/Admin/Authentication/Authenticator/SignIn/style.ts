@@ -1,10 +1,11 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { pink, grey } from '@material-ui/core/colors';
 
-const style = makeStyles((theme: Theme): any =>
+const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     root: {
       flexGrow: 1,
-      backgroundColor: 'rgb(250, 249, 249)',
+      backgroundColor: grey[50],
       height: '100vh',
       position: 'relative'
     },
@@ -15,9 +16,9 @@ const style = makeStyles((theme: Theme): any =>
       transform: 'translate(0%, -50%)'
     },
     paper: {
-      padding: theme.spacing(1),
+      padding: oTheme.spacing(1),
       textAlign: 'center',
-      color: theme.palette.text.secondary
+      color: oTheme.palette.text.secondary
     }
   })
 );
