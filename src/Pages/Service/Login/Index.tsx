@@ -7,8 +7,6 @@ import Divider from 'antd/es/divider';
 import Button from 'antd/es/button';
 import Modal from 'antd/es/modal';
 
-import { Page as PageHOC } from '@/HOCs/';
-
 import store from '@/store';
 
 import Top from './Top/Index';

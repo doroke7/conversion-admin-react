@@ -53,7 +53,7 @@
 │   ├── entries          Webpack 打包入口
 │   ├── events           跨组件事件, 能处理简单的共用数据
 │   ├── Helpers          类别形式的公用程序库
-│   ├── HOCs             目前无用
+│   ├── Wrappers         高阶组件，替代 Mixin
 │   ├── images           jpg, png, gif 资源处
 │   ├── Pages            页面组件
 │   ├── reducers         Redux-reducer 定义处
