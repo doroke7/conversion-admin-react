@@ -35,7 +35,7 @@ function Pannel(oProps: any): any {
 
   const jwt = useMappedState((state) => state.jwt);
 
-  let cDispatch = useDispatch();
+  let oDispatch = useDispatch();
   let oHistory = useHistory();
   let oLocation = useLocation();
 
@@ -61,18 +61,6 @@ function Pannel(oProps: any): any {
       return;
     }
   };
-
-  let cRefresh = async () => {
-    let sJwt = Helpers.Authentication.getJwt();
-    let oBody = {};
-    let oOption = {};
-    let oQuery = {};
-    if (sJwt) {
-      let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.refresh(oBody, oOption, oQuery));
-    }
-  };
-
-  cRefresh();
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
@@ -103,10 +91,9 @@ function Pannel(oProps: any): any {
       let oOption = {};
       let oQuery = {};
 
-      let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.signIn(oBody, oOption, oQuery));
+      let oPlayLoad = await oDispatch(actions.admin.authentication.authenticator.signIn(oBody, oOption, oQuery));
       if (oPlayLoad) {
         cSetState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
-        oProps.onSignInToggle();
         oHistory.push('/admin/resource');
       }
     } catch (oException) {
