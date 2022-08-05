@@ -4,8 +4,8 @@ import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      width: oTheme.spacing(100),
-      height: oTheme.spacing(100),
+      width: oTheme.spacing(90),
+      height: oTheme.spacing(90),
       verticalAlign: 'middle',
       fill: 'currentColor',
       overflow: 'hidden'

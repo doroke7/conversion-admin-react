@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
 import { Admin } from '@/Commons';
 
 import Icon from './Icon';
@@ -13,7 +15,11 @@ function None(oProps: any): any {
     <div className={oClasses.root}>
       <div className={oClasses.wrapper}>
         <Icon></Icon>
-        <div>按钮</div>
+        <div>
+          <Button variant="outlined" color="primary">
+            回到主页
+          </Button>
+        </div>
       </div>
     </div>
   );
