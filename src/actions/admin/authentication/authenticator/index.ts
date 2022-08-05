@@ -40,7 +40,7 @@ let oAuthenticatorAction: any = {
           options: oOptions
         });
 
-        let sJwtOfResponse = oResponse.headers?.authorization ?? '';
+        let sJwtOfResponse = oResponse?.headers?.authorization ?? '';
 
         if (!sJwtOfResponse) {
           throw new Error('IT_FAILS_TO_REFRESH_JWT');
@@ -69,11 +69,11 @@ let oAuthenticatorAction: any = {
         throw new Error('网络异常');
       }
 
-      if (-1 === oResponse.data.code || 200 != oResponse.status) {
+      if (-1 === oResponse?.data?.code || 200 != oResponse?.status) {
         throw new Error(oResponse.data.message);
       }
 
-      let sJwt = oResponse.headers?.authorization ?? '';
+      let sJwt = oResponse?.headers?.authorization ?? '';
       if (sJwt) {
         Helpers.Authentication.setJwt(sJwt);
       }
