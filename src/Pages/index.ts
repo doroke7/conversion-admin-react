@@ -1,4 +1,4 @@
-import Service from './Service';
-import Admin from './Admin';
+import Service from './Service/Index';
+import Admin from './Admin/Index';
 
 export { Service, Admin };
