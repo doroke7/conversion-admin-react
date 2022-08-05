@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Fade from '@material-ui/core/Fade';
 
 import { Admin } from '@/Commons';
 
@@ -18,16 +19,18 @@ function None(oProps: any): any {
   };
 
   return (
-    <div className={oClasses.root}>
-      <div className={oClasses.wrapper}>
-        <Icon></Icon>
-        <div>
-          <Button className={oClasses.button} variant="outlined" color="primary" onClick={oHandleClick}>
-            回到主页
-          </Button>
+    <Fade in={true} timeout={500}>
+      <div className={oClasses.root}>
+        <div className={oClasses.wrapper}>
+          <Icon></Icon>
+          <div>
+            <Button className={oClasses.button} variant="outlined" color="primary" onClick={oHandleClick}>
+              回到主页
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </Fade>
   );
 }
 export default None;
