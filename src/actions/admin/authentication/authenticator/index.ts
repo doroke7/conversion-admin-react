@@ -57,12 +57,15 @@ let oAuthenticatorAction: any = {
     };
   },
 
-  signIn: (oParams: any, oData: any) => {
+  signIn: (oBody: any, oOption: any, oQuery: any) => {
     return async (cDispatch: any) => {
       let oResponse = await Helpers.Axios.post({
         path: '/Admin/Authentication/Authenticator/signIn',
-        params: oParams, // API 中，问号拼接的 参数。 如 ?option={}&query={}
-        data: oData // API 中，Body 传参
+        params: {
+          option: oOption, // API 中，问号拼接的 参数。 如 ?option={}&query={}
+          query: oQuery
+        },
+        data: oBody // API 中，Body 传参
       });
 
       if (!oResponse) {

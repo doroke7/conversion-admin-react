@@ -86,15 +86,16 @@ function Pannel(oProps: any): any {
         throw new Error('请输入管理用户密码');
       }
 
-      let oParams = {};
-
-      let oData = {
+      let oBody = {
         param: {
           username: oState.name,
           password: oState.password
         }
       };
-      let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.signIn(oParams, oData));
+      let oOption = {};
+      let oQuery = {};
+
+      let oPlayLoad = await cDispatch(actions.admin.authentication.authenticator.signIn(oBody, oOption, oQuery));
       if (oPlayLoad) {
         cSetState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
         oProps.onSignInToggle();
