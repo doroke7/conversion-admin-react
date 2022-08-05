@@ -57,7 +57,7 @@ function Pannel(oProps: any): any {
     }
 
     if ('/admin/authentication/authenticator/sign-in' == oLocation.pathname) {
-      oHistory.push('/admin');
+      oHistory.push('/admin/resource');
       return;
     }
   };
@@ -94,7 +94,7 @@ function Pannel(oProps: any): any {
       if (oPlayLoad) {
         cSetState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
         oProps.onSignInToggle();
-        oHistory.push('/admin');
+        oHistory.push('/admin/resource');
       }
     } catch (oException) {
       let sKey = oException.message;
