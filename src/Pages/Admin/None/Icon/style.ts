@@ -10,15 +10,25 @@ let oStyle = makeStyles((oTheme: Theme) =>
       fill: 'currentColor',
       overflow: 'hidden',
       transformOrigin: '50% 100%',
-      transform: 'rotate(-25deg)',
-      animation: '$wave 6s infinite ease-in-out alternate-reverse'
+      transform: 'rotate(0deg)',
+      animation: '$wave1 3s ease-in-out 0s 1 alternate, $wave2 6s ease-in-out 3s infinite alternate'
     },
-    '@keyframes wave': {
+    '@keyframes wave1': {
       '0%': {
-        transform: 'rotate(-6deg)'
+        transform: 'rotate(0deg)'
       },
+
       '100%': {
-        transform: 'rotate(+5deg)'
+        transform: 'rotate(-5deg)'
+      }
+    },
+    '@keyframes wave2': {
+      '0%': {
+        transform: 'rotate(-5deg)'
+      },
+
+      '100%': {
+        transform: 'rotate(5deg)'
       }
     }
   })
