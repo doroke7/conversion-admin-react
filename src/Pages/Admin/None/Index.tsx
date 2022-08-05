@@ -9,12 +9,12 @@ function None(oProps: any): any {
   let oClasses: any = style(void 0);
   let oMatch = useRouteMatch();
 
-  let aRoutes = oProps.routes ?? [];
-
   return (
-    <div>
-      <Icon></Icon>
-      <div>按钮</div>
+    <div className={oClasses.root}>
+      <div className={oClasses.wrapper}>
+        <Icon></Icon>
+        <div>按钮</div>
+      </div>
     </div>
   );
 }
