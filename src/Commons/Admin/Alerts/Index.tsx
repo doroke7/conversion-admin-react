@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
+import Slide, { SlideProps } from '@material-ui/core/Slide';
 
 import Fade from '@material-ui/core/Fade';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -39,6 +40,7 @@ function Alerts(oProps: any): any {
       open={bOpen}
       autoHideDuration={40000}
       onClose={cHandleClose}
+      TransitionComponent={Slide}
       action={
         <>
           <Button color="secondary" size="small" onClick={cHandleClose}>
@@ -50,8 +52,8 @@ function Alerts(oProps: any): any {
         </>
       }>
       <Alert onClose={cHandleClose} severity={sSeverity} elevation={3} variant="filled">
-        <AlertTitle>{sTitle}</AlertTitle>
-        {sMessage}
+        <AlertTitle className={oClasses.alertTitle}>{sTitle}</AlertTitle>
+        <span className={oClasses.message}>{sMessage}</span>
       </Alert>
     </Snackbar>
   ) : (
@@ -59,3 +61,15 @@ function Alerts(oProps: any): any {
   );
 }
 export default Alerts;
+/**
+ * TransitionComponent={(oProps: any) => <Slide direction="down"></Slide>}>
+ * TransitionComponent={Slide}>
+ *
+ * 新版的 React 已经不倾向上述的写法
+ * 新版的 React 已经则倾向下述的写法
+ * 新式写法比较直觉，不过这写法无法向下兼容
+ *
+ * TransitionComponent={<Slide direction="down"></Slide>}>
+ * TransitionComponent={<Slide/>}>
+ *
+ */
