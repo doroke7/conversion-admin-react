@@ -6,8 +6,8 @@ const App = () => {
   const aUsers = useSelector((oState: any) => oState.users);
   return (
     <ul>
-      {aUsers.map((sUSer, iIndex) => (
-        <li key={iIndex}>{sUSer}</li>
+      {aUsers.map((sUser, iIndex) => (
+        <li key={iIndex}>{sUser}</li>
       ))}
     </ul>
   );
