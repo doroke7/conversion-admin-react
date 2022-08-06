@@ -15,11 +15,9 @@ function _(oProps: any): any {
     <Commons.Admin.Navigation>
       <Switch>
         {aRoutes.map((oRoute, sIndex) => (
-          <Route
-            path={oMatch.url + oRoute.path}
-            key={sIndex}
-            exact={oRoute.exact}
-            component={(oProps: any) => <oRoute.component routes={oRoute.routes} />}></Route>
+          <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
+            <oRoute.component routes={oRoute.routes} />
+          </Route>
         ))}
       </Switch>
     </Commons.Admin.Navigation>

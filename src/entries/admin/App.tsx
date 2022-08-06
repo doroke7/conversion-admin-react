@@ -6,6 +6,7 @@ import store from '@/store';
 import router from '@/router';
 import CONFIGS from '@/CONFIGS';
 import Commons from '@/Commons';
+import Components from '@/Components';
 import style from './style';
 
 function App(oProps: any) {
@@ -25,18 +26,32 @@ function App(oProps: any) {
   /**  具有 nav 的设定值 才会用 Navigatiob 包起来 **/
   /**  把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析 **/
   /**  react-router-dom@5.0.0 <Route>比较麻烦 其下 组件是用 component={Componet} 而不是 component={<Component/>} */
+  let cHandleClick = () => {
+    cSetState({ ...oState, open: true });
+  };
 
+  let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
+    if (sReason === 'clickaway') {
+      return;
+    }
+
+    cSetState({ ...oState, open: false });
+  };
   return (
     <StoreContext.Provider value={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
+        <Commons.Admin.Alerts
+          code="1"
+          message="OK"
+          open={oState.open}
+          onClose={cHandleClose}
+          onClick={cHandleClick}></Commons.Admin.Alerts>
         <BrowserRouter>
           <Switch>
             {oState.routes.map((oRoute, sIndex) => (
-              <Route
-                path={oRoute.path}
-                key={sIndex}
-                exact={oRoute.exact}
-                component={(oProps: any) => <oRoute.component routes={oRoute.routes} />}></Route>
+              <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
+                <oRoute.component routes={oRoute.routes} />
+              </Route>
             ))}
           </Switch>
         </BrowserRouter>

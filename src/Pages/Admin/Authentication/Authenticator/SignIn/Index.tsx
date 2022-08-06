@@ -47,12 +47,6 @@ function SignIn(): any {
 
   return (
     <div className={oClasses.root}>
-      <Components.Admin.Alerts
-        code="1"
-        message="OK"
-        open={oState.open}
-        onClose={cHandleClose}
-        onClick={cHandleClick}></Components.Admin.Alerts>
       <div className={oClasses.middle}>
         <Grid container spacing={0}>
           <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
