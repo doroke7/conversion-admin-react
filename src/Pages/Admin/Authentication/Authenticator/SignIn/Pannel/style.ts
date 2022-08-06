@@ -25,21 +25,22 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     '@keyframes slide1': {
       '0%': {
-        transform: 'translateY(-60%)'
+        transform: 'translateY(-60%) scale(1, 1)'
       },
       '100%': {
-        transform: 'translateY(+20%)'
+        transform: 'translateY(+20%) scale(1.1, 1)'
       }
     },
     '@keyframes slide2': {
       '0%': {
-        transform: 'translateY(+20%)'
+        transform: 'translateY(+20%) scale(1.1, 1)'
       },
 
       '100%': {
-        transform: 'translateY(0%)'
+        transform: 'translateY(0%) scale(1, 1)'
       }
     },
+
     lockIcon: {
       fontSize: oTheme.spacing(4)
     },
