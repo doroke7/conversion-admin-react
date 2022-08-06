@@ -50,16 +50,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     listItemIcon: {
       minWidth: oTheme.spacing(4),
-      color: grey[50]
+      color: oTheme.palette.background.paper,
     },
 
-    '@keyframes brighten': {
-      // '0%': {
-      //   background: grey[600],
-      // },
-      // '100%': {
-      //   background: grey[50],
-    }
+\
   })
 );
 

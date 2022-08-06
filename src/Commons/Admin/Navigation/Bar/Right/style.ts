@@ -21,7 +21,7 @@ const style = makeStyles((oTheme: Theme) =>
     },
 
     icon: {
-      color: grey[50]
+      color: oTheme.palette.background.paper
     },
     iconAnimation: {
       animation:

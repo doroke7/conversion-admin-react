@@ -14,27 +14,35 @@ import {
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    root: {
-      '& .MuiAlert-filledSuccess': {
-        // 2
-        backgroundColor: green[500]
-      },
-      '& .MuiAlert-filledInfo': {
-        // 1
-        backgroundColor: blue[500]
-      },
-      '& .MuiAlert-filledWarning': {
-        // -1
-        backgroundColor: orange[500]
-      },
-      '& .MuiAlert-filledError': {
-        // -2
-        backgroundColor: pink[300]
-      },
-      '& .MuiAlert-filledCritical': {
-        // -3
-        backgroundColor: red[500]
-      }
+    root: {},
+    success: {
+      // 2
+      color: oTheme.palette.background.paper,
+      backgroundColor: green[500]
+    },
+    info: {
+      // 1
+      color: oTheme.palette.background.paper,
+
+      backgroundColor: blue[500]
+    },
+    warning: {
+      // -1
+      color: oTheme.palette.background.paper,
+
+      backgroundColor: orange[500]
+    },
+    error: {
+      // -2
+      color: oTheme.palette.background.paper,
+
+      backgroundColor: pink[300]
+    },
+    critical: {
+      // -3
+      color: oTheme.palette.background.paper,
+
+      backgroundColor: red[500]
     },
     alertTitle: { fontWeight: 900 },
     message: { fontWeight: 100 }

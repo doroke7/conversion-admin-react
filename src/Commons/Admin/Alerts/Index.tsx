@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import clsx from 'clsx';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
@@ -82,7 +83,21 @@ function Alerts(oProps: any): any {
       onClose={cHandleClose}
       TransitionComponent={Slide}
       action={<></>}>
-      <Alert onClose={cHandleClose} severity={sSeverity} elevation={3} variant="filled">
+      <Alert
+        className={clsx(
+          {},
+          {
+            [oClasses.success]: oState.code == 2,
+            [oClasses.info]: oState.code == 1,
+            [oClasses.warning]: oState.code == -1,
+            [oClasses.error]: oState.code == -2,
+            [oClasses.critical]: oState.code == -3
+          }
+        )}
+        onClose={cHandleClose}
+        severity={sSeverity}
+        elevation={3}
+        variant="filled">
         <AlertTitle className={oClasses.alertTitle}>{sTitle}</AlertTitle>
         <span className={oClasses.message}>{oState.message}</span>
       </Alert>

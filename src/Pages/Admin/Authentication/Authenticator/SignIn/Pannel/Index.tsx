@@ -82,7 +82,7 @@ function Pannel(oProps: any): any {
       }
     } catch (oException) {
       let oMessage = {
-        code: -1,
+        code: -3,
         message: oException.message,
         time: 50 * 1000
       };
