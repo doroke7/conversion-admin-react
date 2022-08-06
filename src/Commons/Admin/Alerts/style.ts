@@ -15,19 +15,24 @@ import {
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      '& .MuiAlert-filledSuccess': {  // 2
+      '& .MuiAlert-filledSuccess': {
+        // 2
         backgroundColor: green[500]
       },
-      '& .MuiAlert-filledInfo': { // 1
+      '& .MuiAlert-filledInfo': {
+        // 1
         backgroundColor: blue[500]
       },
-      '& .MuiAlert-filledWarning': { // -1
+      '& .MuiAlert-filledWarning': {
+        // -1
         backgroundColor: orange[500]
       },
-      '& .MuiAlert-filledError': { // -2
+      '& .MuiAlert-filledError': {
+        // -2
         backgroundColor: pink[300]
       },
-      '& .MuiAlert-filledCritical': {  // -3
+      '& .MuiAlert-filledCritical': {
+        // -3
         backgroundColor: red[500]
       }
     },
