@@ -32,7 +32,7 @@ function SignIn(): any {
   cRefresh();
 
   return (
-    <Slide in={true} direction="down" timeout={500} mountOnEnter unmountOnExit>
+    <Slide in={true} direction="down" timeout={500}>
       <div className={oClasses.root}>
         <div className={oClasses.middle}>
           <Grid container spacing={0}>

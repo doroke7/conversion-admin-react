@@ -5,10 +5,14 @@ import { StoreContext } from 'redux-react-hook';
 import store from '@/store';
 import router from '@/router';
 import CONFIGS from '@/CONFIGS';
+import Commons from '@/Commons';
 import style from './style';
 
 function App(oProps: any) {
   let oClasses: any = style(void 0);
+  let [oState, cSetState] = React.useState({
+    open: true
+  });
 
   let cHandleContextmenu = (oEvent: any) => {
     if (CONFIGS.APP.ENV == 'MASTER') {
@@ -21,10 +25,28 @@ function App(oProps: any) {
   /**  把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析 **/
   /**  react-router-dom@5.0.0 <Route>比较麻烦 其下 组件是用 component={Componet} 而不是 component={<Component/>} */
 
+  let cHandleClick = () => {
+    cSetState({ open: true });
+  };
+
+  let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
+    if (sReason === 'clickaway') {
+      return;
+    }
+
+    cSetState({ open: false });
+  };
+
   return (
     <StoreContext.Provider value={store}>
-      <BrowserRouter>
-        <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
+      <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
+        <Commons.Admin.Alerts
+          code="1"
+          message="OK"
+          open={oState.open}
+          onClose={cHandleClose}
+          onClick={cHandleClick}></Commons.Admin.Alerts>
+        <BrowserRouter>
           <Switch>
             {router.admin.routes.map((oRoute, sIndex) => (
               <Route
@@ -34,8 +56,8 @@ function App(oProps: any) {
                 component={(oProps: any) => <oRoute.component routes={oRoute.routes} />}></Route>
             ))}
           </Switch>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </div>
     </StoreContext.Provider>
   );
 }
