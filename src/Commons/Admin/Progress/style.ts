@@ -14,32 +14,12 @@ import {
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    root: {},
-    alert: {
-      color: oTheme.palette.background.paper
-    },
-    successAlert: {
-      // 2
-      backgroundColor: green[500]
-    },
-    infoAlert: {
-      // 1
-      backgroundColor: blue[500]
-    },
-    warningAlert: {
-      // -1
-      backgroundColor: orange[500]
-    },
-    errorAlert: {
-      // -2
-      backgroundColor: pink[300]
-    },
-    criticalAlert: {
-      // -3
-      backgroundColor: red[500]
-    },
-    alertTitle: { fontWeight: 900 },
-    message: { fontWeight: 100 }
+    root: {
+      position: 'fixed',
+      top: 0,
+      width: '100vw',
+      zIndex: 1000
+    }
   })
 );
 

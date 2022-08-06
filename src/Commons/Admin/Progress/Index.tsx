@@ -22,18 +22,27 @@ function Progress(oProps: any): any {
         let oNewState = { value: 0 };
         if (oOldState.value === 100) {
           oNewState.value = 0;
+          return oNewState;
         }
-        let iDiffValue = Math.random() * 10;
-        oNewState.value = oOldState.value + iDiffValue;
+        if (oOldState.value < 100) {
+          let iDiffValue = Math.random() * 4;
+          oNewState.value = oOldState.value + iDiffValue;
+        }
+
+        oNewState.value = Math.min(oNewState.value, 100);
         return oNewState;
       });
-    }, 500);
+    }, 100);
 
     return () => {
       clearInterval(oInterval);
     };
   }, []);
 
-  return <LinearProgress variant="determinate" value={oState.value} />;
+  return oState.value > 0 ? (
+    <LinearProgress className={oClasses.root} variant="determinate" value={oState.value} />
+  ) : (
+    ''
+  );
 }
 export default Progress;

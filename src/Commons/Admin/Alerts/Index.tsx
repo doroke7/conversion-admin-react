@@ -11,6 +11,7 @@ import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
 import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
 import BackspaceTwoToneIcon from '@material-ui/icons/BackspaceTwoTone';
+import ReportOffTwoToneIcon from '@material-ui/icons/ReportOffTwoTone';
 import events from '@/events';
 
 import style from './style';
@@ -52,7 +53,7 @@ function Alerts(oProps: any): any {
     '0': '', //
     '-1': ReportProblemTwoToneIcon, // warning
     '-2': CancelTwoToneIcon, // error
-    '-3': BackspaceTwoToneIcon // critical
+    '-3': ReportOffTwoToneIcon // critical
   };
 
   let sTitle = dCodesToTitles[oState.code] ?? '';

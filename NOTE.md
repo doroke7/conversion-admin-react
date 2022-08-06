@@ -43,3 +43,9 @@
 7. route
    path, value, name
          GET,POST,PUT,DELETE
+
+
+## 修改  Admin API 
+1. code 系统错误改成 -3
+2. code 密码错误改成 -2
+3. code 长度够不够改成 -1
