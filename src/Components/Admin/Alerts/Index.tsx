@@ -32,7 +32,7 @@ function Alerts(oProps: any): any {
         horizontal: 'center'
       }}
       open={bOpen}
-      autoHideDuration={10000}
+      autoHideDuration={4000}
       onClose={cHandleClose}
       message="登入成功"
       action={
