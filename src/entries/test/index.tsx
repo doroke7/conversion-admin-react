@@ -7,25 +7,25 @@ import App from './App';
 
 const ADD_TODOLIST = 'ADD_TODOLIST';
 
-const initState = {
-  todoList: ['Tom', 'Mary', 'Josh']
+const oInitState = {
+  users: ['Tom', 'Mary', 'Josh']
 };
 
-const reducer = (state = initState, action) => {
+const oReducer = (oState = oInitState, action) => {
   switch (action.type) {
     case ADD_TODOLIST: {
-      const tempTodo = state.todoList.map((list) => list);
+      const tempTodo = oState.users.map((sUser) => sUser);
       tempTodo.push(action.payload.listName);
       return {
-        todoList: tempTodo
+        users: tempTodo
       };
     }
     default:
-      return state;
+      return oState;
   }
 };
 
-const store = createStore(reducer);
+const oStore = createStore(oReducer);
 
 /**
  * 1. 利用 createStore(), <Provider></Provider> 将 store 数据绑定在全局
@@ -33,7 +33,7 @@ const store = createStore(reducer);
  */
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={oStore}>
     <App />
   </Provider>,
   document.getElementById('root')

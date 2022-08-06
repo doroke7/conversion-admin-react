@@ -18,6 +18,9 @@ function Progress(oProps: any): any {
 
   React.useEffect(() => {
     let oInterval = setInterval(() => {
+      /**
+       * React setState Hook 可以输入 callback function， 能使用 oldState
+       */
       cSetState((oOldState) => {
         let oNewState = { value: 0 };
         if (oOldState.value === 100) {

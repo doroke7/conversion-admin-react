@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
   // 使用 useSelector 取出 Store 保管的 state
-  const todoList = useSelector((state: any) => state.todoList);
+  const aUsers = useSelector((oState: any) => oState.users);
   return (
     <ul>
-      {todoList.map((todo) => (
-        <li key={todo}>{todo}</li>
+      {aUsers.map((sUSer, iIndex) => (
+        <li key={iIndex}>{sUSer}</li>
       ))}
     </ul>
   );
