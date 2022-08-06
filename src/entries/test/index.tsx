@@ -5,15 +5,15 @@ import * as ReactDOM from 'react-dom';
 
 import App from './App';
 
-const ADD_TODOLIST = 'ADD_TODOLIST';
+const ADD_USER = 'ADD_USER';
 
 const oInitState = {
-  users: ['Tom', 'Mary', 'Josh']
+  users: ['Tom', 'Mary', 'Josh', 'Laplace']
 };
 
 const oReducer = (oState = oInitState, action) => {
   switch (action.type) {
-    case ADD_TODOLIST: {
+    case ADD_USER: {
       const tempTodo = oState.users.map((sUser) => sUser);
       tempTodo.push(action.payload.listName);
       return {
