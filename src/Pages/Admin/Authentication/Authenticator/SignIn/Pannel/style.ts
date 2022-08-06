@@ -12,7 +12,8 @@ const style = makeStyles((oTheme: Theme): any =>
       borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
       backgroundColor: 'rgb(255, 255, 255)',
-      animation: '$fade 0.7s linear 0s 1 normal, $slide 0.5s ease-out 0.2s 1 normal'
+      animation:
+        '$fade 0.7s linear 0s 1 normal, $slide1 0.4s ease-out 0.2s 1 normal, $slide2 0.2s ease-in-out 0.6s 1 normal'
     },
     '@keyframes fade': {
       '0%': {
@@ -22,10 +23,19 @@ const style = makeStyles((oTheme: Theme): any =>
         opacity: 1
       }
     },
-    '@keyframes slide': {
+    '@keyframes slide1': {
       '0%': {
         transform: 'translateY(-60%)'
       },
+      '100%': {
+        transform: 'translateY(+20%)'
+      }
+    },
+    '@keyframes slide2': {
+      '0%': {
+        transform: 'translateY(+20%)'
+      },
+
       '100%': {
         transform: 'translateY(0%)'
       }
