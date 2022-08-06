@@ -38,7 +38,7 @@ function Alerts(oProps: any): any {
         horizontal: 'center'
       }}
       open={bOpen}
-      autoHideDuration={40000}
+      autoHideDuration={3000}
       onClose={cHandleClose}
       TransitionComponent={Slide}
       action={

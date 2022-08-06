@@ -12,7 +12,7 @@ const style = makeStyles((oTheme: Theme): any =>
       borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
       backgroundColor: 'rgb(255, 255, 255)',
-      animation: '$fade 1s linear 0s 1 normal, $slide 0.5s ease-out 0.2s 1 normal'
+      animation: '$fade 0.7s linear 0s 1 normal, $slide 0.5s ease-out 0.2s 1 normal'
     },
     '@keyframes fade': {
       '0%': {
@@ -52,7 +52,8 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     button: {
       marginTop: oTheme.spacing(2),
-      fontSize: oTheme.spacing(2)
+      fontSize: oTheme.spacing(2),
+      height: oTheme.spacing(7)
     },
     forgetPasswordAndSignup: {
       marginTop: oTheme.spacing(1),
