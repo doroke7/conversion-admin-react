@@ -52,8 +52,6 @@ let oStyle = makeStyles((oTheme: Theme) =>
       minWidth: oTheme.spacing(4),
       color: oTheme.palette.background.paper,
     },
-
-\
   })
 );
 
