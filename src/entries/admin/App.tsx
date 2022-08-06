@@ -41,8 +41,9 @@ function App(oProps: any) {
     <StoreContext.Provider value={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
         <Commons.Admin.Alerts
-          code="1"
-          message="OK"
+          code="2"
+          message="即将登入后台"
+          title="成功"
           open={oState.open}
           onClose={cHandleClose}
           onClick={cHandleClick}></Commons.Admin.Alerts>
