@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
@@ -9,6 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
+import events from '@/events';
 
 import style from './style';
 
@@ -16,10 +17,10 @@ function Alerts(oProps: any): any {
   let oClasses: any = style(void 0);
 
   let [oState, cSetState] = React.useState<any>({
-    open: true,
+    open: false,
     code: 1,
     message: 'MESSAGE',
-    title: 'TITLE'
+    time: 2000
   });
 
   let cHandleClick = () => {
@@ -39,33 +40,50 @@ function Alerts(oProps: any): any {
     '1': 'info',
     '0': '',
     '-1': 'warning',
-    '-2': 'error'
+    '-2': 'error',
+    '-3': 'critical'
+  };
+
+  let dCodesToTitles = {
+    '2': '成功',
+    '1': '资讯',
+    '0': '',
+    '-1': '警告',
+    '-2': '错误',
+    '-3': '严重'
   };
 
   let sSeverity = dCodesToSeverities[oState.code] ?? '';
+  let sTitle = dCodesToTitles[oState.code] ?? '';
+  useEffect(() => {
+    let cAlert = (oMessage: any) => {
+      cSetState({
+        ...oState,
+        open: true,
+        code: oMessage?.code ?? 0,
+        message: oMessage?.message ?? '',
+        time: oMessage?.time ?? oState.time
+      });
+    };
+    let oEventEmitter: any = events.admin.addListener('Alerts-onAlert', cAlert);
+    return () => {
+      events.admin.removeListener('Alerts-onAlert', cAlert);
+    };
+  }, []);
 
-  return sSeverity && oState.title && oState.message ? (
+  return sSeverity && oState.message ? (
     <Snackbar
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center'
       }}
       open={oState.open}
-      autoHideDuration={3000}
+      autoHideDuration={oState.time}
       onClose={cHandleClose}
       TransitionComponent={Slide}
-      action={
-        <>
-          <Button color="secondary" size="small" onClick={cHandleClose}>
-            UNDO
-          </Button>
-          <IconButton size="small" aria-label="close" color="inherit" onClick={cHandleClose}>
-            <CloseIcon fontSize="small" />
-          </IconButton>
-        </>
-      }>
+      action={<></>}>
       <Alert onClose={cHandleClose} severity={sSeverity} elevation={3} variant="filled">
-        <AlertTitle className={oClasses.alertTitle}>{oState.title}</AlertTitle>
+        <AlertTitle className={oClasses.alertTitle}>{sTitle}</AlertTitle>
         <span className={oClasses.message}>{oState.message}</span>
       </Alert>
     </Snackbar>

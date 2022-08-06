@@ -11,21 +11,16 @@ import Link from '@material-ui/core/Link';
 import Components from '@/Components';
 import actions from '@/actions/';
 import Helpers from '@/Helpers/';
+import events from '@/events';
+import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
-
-import CONFIGS from '@/CONFIGS/';
 
 const MESSAGES = CONFIGS.MESSAGES;
 
 interface State {
   name: string;
   password: string;
-  open: boolean;
-  text: string;
-  error: boolean;
-  alertOpen: boolean;
-  alertMessage: string;
 }
 
 const ENTER_CODE = 13;
@@ -41,26 +36,8 @@ function Pannel(oProps: any): any {
 
   let [oState, cSetState] = React.useState<State>({
     name: '',
-    password: '',
-    open: false,
-    text: '',
-    error: true,
-    alertOpen: false,
-    alertMessage: ''
+    password: ''
   });
-
-  let redirect = async () => {
-    let sJwt = Helpers.Authentication.getJwt();
-
-    if (!sJwt) {
-      throw new Error('客户端登入异常');
-    }
-
-    if ('/admin/authentication/authenticator/sign-in' == oLocation.pathname) {
-      oHistory.push('/admin/resource');
-      return;
-    }
-  };
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
@@ -82,6 +59,14 @@ function Pannel(oProps: any): any {
         throw new Error('请输入管理用户密码');
       }
 
+      if (oState.name.length <= 3) {
+        throw new Error('请输入4 字元以上名称');
+      }
+
+      if (oState.password.length <= 5) {
+        throw new Error('请输入6 字以上元密码');
+      }
+
       let oBody = {
         param: {
           username: oState.name,
@@ -93,22 +78,16 @@ function Pannel(oProps: any): any {
 
       let oPlayLoad = await oDispatch(actions.admin.authentication.authenticator.signIn(oBody, oOption, oQuery));
       if (oPlayLoad) {
-        cSetState({ ...oState, alertOpen: true, alertMessage: '登入成功' });
         oHistory.push('/admin/resource');
       }
     } catch (oException) {
-      let sKey = oException.message;
-      let sMessage = MESSAGES[sKey] || sKey;
-      cSetState({ ...oState, open: true, text: sMessage });
+      let oMessage = {
+        code: -1,
+        message: oException.message,
+        time: 50 * 1000
+      };
+      events.admin.emit('Alerts-onAlert', oMessage);
     }
-  };
-
-  let onClose = () => {
-    cSetState({ ...oState, open: false });
-  };
-
-  let onAlertClose = () => {
-    cSetState({ ...oState, alertOpen: false });
   };
 
   let onKeyPress = (oEvent: any) => {
@@ -122,7 +101,6 @@ function Pannel(oProps: any): any {
   // w
   return (
     <div className={oClasses.pannel}>
-      <Components.Admin.Alert open={oState.alertOpen} message={oState.alertMessage} onClose={onAlertClose} />
       <Avatar className={oClasses.avatar}>
         <LockIcon />
       </Avatar>
