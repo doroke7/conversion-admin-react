@@ -30,7 +30,8 @@ function App(oProps: any) {
   return (
     <StoreContext.Provider value={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
-        <Commons.Admin.Alerts code="2" message="即将登入后台" title="成功"></Commons.Admin.Alerts>
+        <Commons.Admin.Progress></Commons.Admin.Progress>
+        <Commons.Admin.Alerts></Commons.Admin.Alerts>
         <BrowserRouter>
           <Switch>
             {oState.routes.map((oRoute, sIndex) => (
