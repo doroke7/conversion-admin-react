@@ -15,11 +15,24 @@ import style from './style';
 function Alerts(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let bOpen = oProps.open ?? false;
-  let iCode = oProps.code ?? 0;
-  let sMessage = oProps.message ?? '';
-  let sTitle = oProps.title ?? '';
-  let cHandleClose = oProps.onClose ?? (() => void 0);
+  let [oState, cSetState] = React.useState<any>({
+    open: true,
+    code: 1,
+    message: 'MESSAGE',
+    title: 'TITLE'
+  });
+
+  let cHandleClick = () => {
+    cSetState({ ...oState, open: true });
+  };
+
+  let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
+    if (sReason === 'clickaway') {
+      return;
+    }
+
+    cSetState({ ...oState, open: false });
+  };
 
   let dCodesToSeverities = {
     '2': 'success',
@@ -29,15 +42,15 @@ function Alerts(oProps: any): any {
     '-2': 'error'
   };
 
-  let sSeverity = dCodesToSeverities[iCode] ?? '';
+  let sSeverity = dCodesToSeverities[oState.code] ?? '';
 
-  return sSeverity && sTitle && sMessage ? (
+  return sSeverity && oState.title && oState.message ? (
     <Snackbar
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center'
       }}
-      open={bOpen}
+      open={oState.open}
       autoHideDuration={3000}
       onClose={cHandleClose}
       TransitionComponent={Slide}
@@ -52,8 +65,8 @@ function Alerts(oProps: any): any {
         </>
       }>
       <Alert onClose={cHandleClose} severity={sSeverity} elevation={3} variant="filled">
-        <AlertTitle className={oClasses.alertTitle}>{sTitle}</AlertTitle>
-        <span className={oClasses.message}>{sMessage}</span>
+        <AlertTitle className={oClasses.alertTitle}>{oState.title}</AlertTitle>
+        <span className={oClasses.message}>{oState.message}</span>
       </Alert>
     </Snackbar>
   ) : (

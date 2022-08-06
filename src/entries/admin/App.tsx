@@ -26,27 +26,11 @@ function App(oProps: any) {
   /**  具有 nav 的设定值 才会用 Navigatiob 包起来 **/
   /**  把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析 **/
   /**  react-router-dom@5.0.0 <Route>比较麻烦 其下 组件是用 component={Componet} 而不是 component={<Component/>} */
-  let cHandleClick = () => {
-    cSetState({ ...oState, open: true });
-  };
 
-  let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
-    if (sReason === 'clickaway') {
-      return;
-    }
-
-    cSetState({ ...oState, open: false });
-  };
   return (
     <StoreContext.Provider value={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
-        <Commons.Admin.Alerts
-          code="2"
-          message="即将登入后台"
-          title="成功"
-          open={oState.open}
-          onClose={cHandleClose}
-          onClick={cHandleClick}></Commons.Admin.Alerts>
+        <Commons.Admin.Alerts code="2" message="即将登入后台" title="成功"></Commons.Admin.Alerts>
         <BrowserRouter>
           <Switch>
             {oState.routes.map((oRoute, sIndex) => (
