@@ -11,7 +11,8 @@ import style from './style';
 function App(oProps: any) {
   let oClasses: any = style(void 0);
   let [oState, cSetState] = React.useState({
-    open: true
+    open: true,
+    routes: router.admin.routes
   });
 
   let cHandleContextmenu = (oEvent: any) => {
@@ -26,7 +27,7 @@ function App(oProps: any) {
   /**  react-router-dom@5.0.0 <Route>比较麻烦 其下 组件是用 component={Componet} 而不是 component={<Component/>} */
 
   let cHandleClick = () => {
-    cSetState({ open: true });
+    cSetState({ ...oState, open: true });
   };
 
   let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
@@ -34,7 +35,7 @@ function App(oProps: any) {
       return;
     }
 
-    cSetState({ open: false });
+    cSetState({ ...oState, open: false });
   };
 
   return (
@@ -48,7 +49,7 @@ function App(oProps: any) {
           onClick={cHandleClick}></Commons.Admin.Alerts>
         <BrowserRouter>
           <Switch>
-            {router.admin.routes.map((oRoute, sIndex) => (
+            {oState.routes.map((oRoute, sIndex) => (
               <Route
                 path={oRoute.path}
                 key={sIndex}

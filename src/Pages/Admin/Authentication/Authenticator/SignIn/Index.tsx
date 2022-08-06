@@ -32,19 +32,17 @@ function SignIn(): any {
   cRefresh();
 
   return (
-    <Slide in={true} direction="down" timeout={500}>
-      <div className={oClasses.root}>
-        <div className={oClasses.middle}>
-          <Grid container spacing={0}>
-            <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
-            <Grid container item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
-              <Pannel />
-            </Grid>
-            <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
+    <div className={oClasses.root}>
+      <div className={oClasses.middle}>
+        <Grid container spacing={0}>
+          <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
+          <Grid container item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
+            <Pannel />
           </Grid>
-        </div>
+          <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
+        </Grid>
       </div>
-    </Slide>
+    </div>
   );
 }
 export default SignIn;

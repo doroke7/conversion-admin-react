@@ -11,7 +11,16 @@ const style = makeStyles((oTheme: Theme): any =>
       paddingRight: oTheme.spacing(4),
       borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
-      backgroundColor: 'rgb(255, 255, 255)'
+      backgroundColor: 'rgb(255, 255, 255)',
+      animation: '$slide 0.5s ease-in-out 0.1s 1 normal'
+    },
+    '@keyframes slide': {
+      '0%': {
+        transform: 'translateY(-100%)'
+      },
+      '100%': {
+        transform: 'translateY(0%)'
+      }
     },
     lockIcon: {
       fontSize: oTheme.spacing(4)
