@@ -11,13 +11,13 @@ const oInitState = {
   users: ['Tom', 'Mary', 'Josh', 'Laplace']
 };
 
-const oReducer = (oState = oInitState, action) => {
-  switch (action.type) {
+const oReducer = (oState = oInitState, oAction) => {
+  switch (oAction.type) {
     case ADD_USER: {
-      const tempTodo = oState.users.map((sUser) => sUser);
-      tempTodo.push(action.payload.listName);
+      const aUSers = oState.users.map((sUser) => sUser);
+      aUSers.push(oAction.payload);
       return {
-        users: tempTodo
+        users: aUSers
       };
     }
     default:
