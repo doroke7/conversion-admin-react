@@ -12,7 +12,15 @@ const style = makeStyles((oTheme: Theme): any =>
       borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
       backgroundColor: 'rgb(255, 255, 255)',
-      animation: '$slide 0.5s ease-in-out 0.1s 1 normal'
+      animation: '$fade 1s linear 0s 1 normal, $slide 0.5s ease-out 0.2s 1 normal'
+    },
+    '@keyframes fade': {
+      '0%': {
+        opacity: 0
+      },
+      '100%': {
+        opacity: 1
+      }
     },
     '@keyframes slide': {
       '0%': {
