@@ -8,7 +8,7 @@ import App from './App';
 const ADD_TODOLIST = 'ADD_TODOLIST';
 
 const initState = {
-  todoList: ['first']
+  todoList: ['Tom', 'Mary', 'Josh']
 };
 
 const reducer = (state = initState, action) => {
