@@ -15,33 +15,27 @@ import {
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {},
-    success: {
+    alert: {
+      color: oTheme.palette.background.paper
+    },
+    successAlert: {
       // 2
-      color: oTheme.palette.background.paper,
       backgroundColor: green[500]
     },
-    info: {
+    infoAlert: {
       // 1
-      color: oTheme.palette.background.paper,
-
       backgroundColor: blue[500]
     },
-    warning: {
+    warningAlert: {
       // -1
-      color: oTheme.palette.background.paper,
-
       backgroundColor: orange[500]
     },
-    error: {
+    errorAlert: {
       // -2
-      color: oTheme.palette.background.paper,
-
       backgroundColor: pink[300]
     },
-    critical: {
+    criticalAlert: {
       // -3
-      color: oTheme.palette.background.paper,
-
       backgroundColor: red[500]
     },
     alertTitle: { fontWeight: 900 },

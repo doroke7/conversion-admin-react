@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 import Components from '@/Components';
+import Exception from '@/Exception/';
 import actions from '@/actions/';
 import Helpers from '@/Helpers/';
 import events from '@/events';
@@ -52,19 +53,19 @@ function Pannel(oProps: any): any {
   let SignIn = async () => {
     try {
       if (!oState.name) {
-        throw new Error('请输入管理用户名称');
+        throw new Exception('请输入管理用户名称', -1);
       }
 
       if (!oState.password) {
-        throw new Error('请输入管理用户密码');
+        throw new Exception('请输入管理用户密码', -1);
       }
 
       if (oState.name.length <= 3) {
-        throw new Error('请输入4 字元以上名称');
+        throw new Exception('请输入4 字元以上名称', -1);
       }
 
       if (oState.password.length <= 5) {
-        throw new Error('请输入6 字以上元密码');
+        throw new Exception('请输入6 字以上元密码', -1);
       }
 
       let oBody = {
@@ -82,9 +83,9 @@ function Pannel(oProps: any): any {
       }
     } catch (oException) {
       let oMessage = {
-        code: -3,
-        message: oException.message,
-        time: 50 * 1000
+        code: oException.code ?? 0,
+        message: oException.message ?? '',
+        time: 2 * 1000
       };
       events.admin.emit('Alerts-onAlert', oMessage);
     }

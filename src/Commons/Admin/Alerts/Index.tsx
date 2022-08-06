@@ -20,7 +20,7 @@ function Alerts(oProps: any): any {
 
   let [oState, cSetState] = React.useState<any>({
     open: false,
-    code: 1,
+    code: 0,
     message: 'MESSAGE',
     time: 2000
   });
@@ -85,16 +85,13 @@ function Alerts(oProps: any): any {
       TransitionComponent={Slide}
       action={<></>}>
       <Alert
-        className={clsx(
-          {},
-          {
-            [oClasses.success]: oState.code == 2,
-            [oClasses.info]: oState.code == 1,
-            [oClasses.warning]: oState.code == -1,
-            [oClasses.error]: oState.code == -2,
-            [oClasses.critical]: oState.code == -3
-          }
-        )}
+        className={clsx(oClasses.alert, {
+          [oClasses.successAlert]: oState.code == 2,
+          [oClasses.infoAlert]: oState.code == 1,
+          [oClasses.warningAlert]: oState.code == -1,
+          [oClasses.errorAlert]: oState.code == -2,
+          [oClasses.criticalAlert]: oState.code == -3
+        })}
         icon={<Icon />}
         onClose={cHandleClose}
         elevation={3}
