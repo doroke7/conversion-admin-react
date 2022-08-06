@@ -50,8 +50,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     listItemIcon: {
       minWidth: oTheme.spacing(4),
-      color: oTheme.palette.background.paper,
-    },
+      color: oTheme.palette.background.paper
+    }
   })
 );
 

@@ -4,12 +4,19 @@ import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistor
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
-
-import Fade from '@material-ui/core/Fade';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Button from '@material-ui/core/Button';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
+import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import NotInterestedOutlinedIcon from '@material-ui/icons/NotInterestedOutlined';
+import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
+import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
+import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
+import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone';
+import BackspaceTwoToneIcon from '@material-ui/icons/BackspaceTwoTone';
 import events from '@/events';
 
 import style from './style';
@@ -36,26 +43,26 @@ function Alerts(oProps: any): any {
     cSetState({ ...oState, open: false });
   };
 
-  let dCodesToSeverities = {
-    '2': 'success',
-    '1': 'info',
-    '0': '',
-    '-1': 'warning',
-    '-2': 'error',
-    '-3': 'critical'
-  };
-
   let dCodesToTitles = {
-    '2': '成功',
-    '1': '资讯',
-    '0': '',
-    '-1': '警告',
-    '-2': '错误',
-    '-3': '严重'
+    '2': '成功', // success
+    '1': '资讯', // info
+    '0': '', //
+    '-1': '警告', // warning
+    '-2': '错误', // error
+    '-3': '严重' // critical
   };
 
-  let sSeverity = dCodesToSeverities[oState.code] ?? '';
+  let dCodesToIcons = {
+    '2': CheckCircleTwoToneIcon, // success
+    '1': InfoTwoToneIcon, // info
+    '0': '', //
+    '-1': ReportProblemTwoToneIcon, // warning
+    '-2': CancelTwoToneIcon, // error
+    '-3': BackspaceTwoToneIcon // critical
+  };
+
   let sTitle = dCodesToTitles[oState.code] ?? '';
+  let Icon = dCodesToIcons[oState.code] ?? <></>;
   useEffect(() => {
     let cAlert = (oMessage: any) => {
       cSetState({
@@ -72,7 +79,7 @@ function Alerts(oProps: any): any {
     };
   }, []);
 
-  return sSeverity && oState.message ? (
+  return oState.code && oState.message ? (
     <Snackbar
       anchorOrigin={{
         vertical: 'top',
@@ -94,8 +101,8 @@ function Alerts(oProps: any): any {
             [oClasses.critical]: oState.code == -3
           }
         )}
+        icon={<Icon />}
         onClose={cHandleClose}
-        severity={sSeverity}
         elevation={3}
         variant="filled">
         <AlertTitle className={oClasses.alertTitle}>{sTitle}</AlertTitle>
