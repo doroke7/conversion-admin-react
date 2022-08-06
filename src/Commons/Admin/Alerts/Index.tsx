@@ -5,17 +5,11 @@ import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
-import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import NotInterestedOutlinedIcon from '@material-ui/icons/NotInterestedOutlined';
+
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
 import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
-import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone';
 import BackspaceTwoToneIcon from '@material-ui/icons/BackspaceTwoTone';
 import events from '@/events';
 
