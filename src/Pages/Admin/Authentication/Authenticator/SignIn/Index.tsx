@@ -2,21 +2,23 @@ import React from 'react';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 
 import Grid from '@material-ui/core/Grid';
-import Slide from '@material-ui/core/Slide';
 import Helpers from '@/Helpers/';
 import actions from '@/actions/';
+import Commons from '@/Commons';
 
 import Pannel from './Pannel/Index';
 
 import style from './style';
 
-interface State {}
+interface State {
+  open: boolean;
+}
 
 function SignIn(): any {
   let oClasses: any = style(void 0);
   let oDispatch = useDispatch();
 
-  let [oState, cSetState] = React.useState<State>({});
+  let [oState, cSetState] = React.useState<State>({ open: true });
 
   let cRefresh = async () => {
     let sJwt = Helpers.Authentication.getJwt();
@@ -31,8 +33,26 @@ function SignIn(): any {
 
   cRefresh();
 
+  let cHandleClick = () => {
+    cSetState({ ...oState, open: true });
+  };
+
+  let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
+    if (sReason === 'clickaway') {
+      return;
+    }
+
+    cSetState({ ...oState, open: false });
+  };
+
   return (
     <div className={oClasses.root}>
+      <Commons.Admin.Alerts
+        code="1"
+        message="OK"
+        open={oState.open}
+        onClose={cHandleClose}
+        onClick={cHandleClick}></Commons.Admin.Alerts>
       <div className={oClasses.middle}>
         <Grid container spacing={0}>
           <Grid container item xs={false} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
