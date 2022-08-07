@@ -94,8 +94,8 @@ function Pannel(oProps: any): any {
       }
     } catch (oException) {
       let oMessage = {
-        code: oException.code ?? 0,
-        message: oException.message ?? '',
+        code: oException.code ?? -9999,
+        message: oException.message ?? '未知错误',
         time: 3 * 1000
       };
       events.admin.emit('Alerts-onAlert', oMessage);

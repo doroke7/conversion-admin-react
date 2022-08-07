@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Helpers from '@/Helpers/';
 import actions from '@/actions/';
 import Components from '@/Components';
+import Sdks from '@/Sdks';
 
 import Pannel from './Pannel/Index';
 
@@ -26,8 +27,7 @@ function SignIn(): any {
     let oOption = {};
     let oQuery = {};
     if (sJwt) {
-      let oPlayLoad = await oDispatch(actions.admin.authentication.authenticator.refresh(oBody, oOption, oQuery));
-      let b = oPlayLoad;
+      let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
     }
   };
 

@@ -28,11 +28,6 @@ let oAuthenticatorAction: any = {
       let fNext = async () => {
         let sJwtOfStorage = Helpers.Authentication.getJwt();
 
-        let oOptions = {
-          headers: {
-            jwt: sJwtOfStorage
-          }
-        };
         let oResponse = await Helpers.Admin.post({
           path: '/Admin/Authentication/Authenticator/refresh',
           params: {

@@ -49,14 +49,16 @@ class AdminHelper {
     let sKeys = JSON.stringify(oKeys);
     sKeys = Helpers.Rsa.encode(sKeys);
 
-    oOptions = oOptions || {};
-    oOptions['params'] = oOptions['params'] || {};
+    let oHeaders = oOptions?.['headers'] ?? {};
+    oOptions = oOptions ?? {};
+    oOptions['params'] = oOptions?.['params'] ?? {};
     oOptions['headers'] = {
       Authorization: sJwt,
       Version: CONFIGS.APP.VERSION,
       Ver: CONFIGS.APP.VER,
       Keys: sKeys, // TODO
-      Time: iTime
+      Time: iTime,
+      ...oHeaders
     };
 
     return oOptions;
