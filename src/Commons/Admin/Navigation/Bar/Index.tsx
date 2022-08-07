@@ -31,7 +31,7 @@ function Bar(oProps: any) {
   return (
     <AppBar
       position="fixed"
-      className={clsx(oClasses.appBar, {
+      className={clsx(oClasses.root, {
         [oClasses.appBarShift]: oProps.open
       })}>
       <Toolbar className={clsx(oClasses.toolbar)}>

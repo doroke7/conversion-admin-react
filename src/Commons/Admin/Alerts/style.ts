@@ -38,6 +38,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       // -3
       backgroundColor: red[500]
     },
+    unknownAlert: {
+      // -9999
+      backgroundColor: grey[700]
+    },
     alertTitle: { fontWeight: 900 },
     message: { fontWeight: 100 }
   })

@@ -17,7 +17,9 @@ const style = makeStyles((oTheme: Theme) =>
       backgroundColor: pink['A700'],
       '&:hover': {
         backgroundColor: pink['800']
-      }
+      },
+      border: `1px solid ${oTheme.palette.background.paper}`,
+      boxSizing: 'border-box'
     },
 
     icon: {
@@ -40,11 +42,16 @@ const style = makeStyles((oTheme: Theme) =>
       verticalAlign: 'middle',
       cursor: 'pointer'
     },
+    avatar: {
+      border: `2px solid ${oTheme.palette.background.paper}`,
+      boxSizing: 'border-box'
+    },
     badge: {
       '& .MuiBadge-badge': {
         backgroundColor: '#44b700',
         color: '#44b700',
         boxShadow: `0 0 0 2px ${oTheme.palette.background.paper}`,
+
         '&::after': {
           top: 0,
           left: 0,

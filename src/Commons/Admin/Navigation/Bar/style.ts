@@ -3,14 +3,23 @@ import { pink, grey, purple, blue } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
-    appBar: {
+    root: {
       background: '#125489',
       boxShadow: '0px 0px 15px 0px rgb(33 203 243 / 60%)',
       zIndex: oTheme.zIndex.drawer + 1,
       transition: oTheme.transitions.create(['width', 'margin'], {
         easing: oTheme.transitions.easing.sharp,
         duration: oTheme.transitions.duration.leavingScreen
-      })
+      }),
+      animation: '$slideRight 0.4s ease-in 0.1s 1 normal'
+    },
+    '@keyframes slideRight': {
+      '0%': {
+        transform: 'translateX(-100%)'
+      },
+      '100%': {
+        transform: 'translateX(0%)'
+      }
     },
     appBarShift: {
       marginLeft: oTheme.spacing(25),

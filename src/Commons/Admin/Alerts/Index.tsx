@@ -12,6 +12,7 @@ import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
 import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
 import BackspaceTwoToneIcon from '@material-ui/icons/BackspaceTwoTone';
 import ReportOffTwoToneIcon from '@material-ui/icons/ReportOffTwoTone';
+import HelpTwoToneIcon from '@material-ui/icons/HelpTwoTone';
 import events from '@/events';
 
 import style from './style';
@@ -44,7 +45,8 @@ function Alerts(oProps: any): any {
     '0': '', //
     '-1': '警告', // warning
     '-2': '错误', // error
-    '-3': '严重' // critical
+    '-3': '严重', // critical
+    '-9999': '未知' // unknown
   };
 
   let dCodesToIcons = {
@@ -53,11 +55,12 @@ function Alerts(oProps: any): any {
     '0': '', //
     '-1': ReportProblemTwoToneIcon, // warning
     '-2': CancelTwoToneIcon, // error
-    '-3': ReportOffTwoToneIcon // critical
+    '-3': ReportOffTwoToneIcon, // critical
+    '-9999': HelpTwoToneIcon // unknown
   };
 
-  let sTitle = dCodesToTitles[oState.code] ?? '';
-  let Icon = dCodesToIcons[oState.code] ?? <></>;
+  let sTitle = dCodesToTitles[oState.code] ?? dCodesToTitles['-9999'];
+  let Icon = dCodesToIcons[oState.code] ?? dCodesToIcons['-9999'];
   useEffect(() => {
     let cAlert = (oMessage: any) => {
       cSetState({
@@ -91,7 +94,8 @@ function Alerts(oProps: any): any {
           [oClasses.infoAlert]: oState.code == 1,
           [oClasses.warningAlert]: oState.code == -1,
           [oClasses.errorAlert]: oState.code == -2,
-          [oClasses.criticalAlert]: oState.code == -3
+          [oClasses.criticalAlert]: oState.code == -3,
+          [oClasses.unknownAlert]: oState.code < -3 || oState.code > 2
         })}
         icon={<Icon />}
         onClose={cHandleClose}

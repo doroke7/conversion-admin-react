@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import { Link } from 'react-router-dom';
-import FlipCameraAndroidIcon from '@material-ui/icons/FlipCameraAndroid';
+import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -37,10 +37,10 @@ function Right(oProps: any) {
   return (
     <div className={oClasses.right}>
       <IconButton className={oClasses.iconButton} onClick={cHandleOpen}>
-        <FlipCameraAndroidIcon
+        <FlipCameraAndroidTwoToneIcon
           className={clsx(oClasses.icon, {
             [oClasses.iconAnimation]: oState.rotating
-          })}></FlipCameraAndroidIcon>
+          })}></FlipCameraAndroidTwoToneIcon>
       </IconButton>
       <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleConfirm}></AlertOfRedis>
       <div className={oClasses.avatarWrapper}>
@@ -52,7 +52,7 @@ function Right(oProps: any) {
           }}
           className={oClasses.badge}
           variant="dot">
-          <Avatar src={administrator}></Avatar>
+          <Avatar className={oClasses.avatar} src={administrator}></Avatar>
         </Badge>
       </div>
     </div>

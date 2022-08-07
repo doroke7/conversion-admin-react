@@ -15,7 +15,16 @@ const style = makeStyles((oTheme: Theme) =>
       flexShrink: 0,
       whiteSpace: 'nowrap',
       background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)',
-      boxShadow: '0 8px 25px 4px rgb(33 203 243 / 60%)'
+      boxShadow: '0 8px 25px 4px rgb(33 203 243 / 60%)',
+      animation: '$slideDown 0.5s ease-in 0s 1 normal'
+    },
+    '@keyframes slideDown': {
+      '0%': {
+        transform: 'translateY(-100%)'
+      },
+      '100%': {
+        transform: 'translateY(0%)'
+      }
     },
     drawerPaper: {
       background: 'linear-gradient(195deg, #125489 30%, #048bab 90%)'
