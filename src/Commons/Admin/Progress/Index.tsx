@@ -30,7 +30,7 @@ function Progress(oProps: any): any {
             return oNewState;
           }
           if (oOldState.value < 100) {
-            let iDiffValue = Math.random() * 10;
+            let iDiffValue = Math.random() * 40;
             oNewState.value = oOldState.value + iDiffValue;
           }
 
@@ -40,7 +40,7 @@ function Progress(oProps: any): any {
           return oNewState;
         });
       }
-    }, 500);
+    }, 50);
 
     return () => {
       clearInterval(oInterval);
@@ -48,9 +48,9 @@ function Progress(oProps: any): any {
   }, [oState.status]);
 
   useEffect(() => {
-    let cOnProgress = () => {
+    let cOnProgress = (oProgress) => {
       cSetState((oOldState) => {
-        let oNewState = { value: 0, status: true };
+        let oNewState = { value: oProgress.value, status: oProgress.status };
         return oNewState;
       });
     };
@@ -62,7 +62,7 @@ function Progress(oProps: any): any {
   }, []);
 
   return oState.value > 0 && oState.status ? (
-    <LinearProgress className={oClasses.root} variant="determinate" value={oState.value} color="secondary" />
+    <LinearProgress className={oClasses.root} variant="determinate" value={oState.value} />
   ) : (
     ''
   );

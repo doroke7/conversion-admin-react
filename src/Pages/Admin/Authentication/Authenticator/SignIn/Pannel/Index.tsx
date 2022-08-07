@@ -70,7 +70,7 @@ function Pannel(oProps: any): any {
       if (oState.password.length <= 5) {
         throw new Exception('请输入6 字以上元密码', -1);
       }
-      events.admin.emit('Progress-onProgress', true);
+      events.admin.emit('Progress-onProgress', { value: 0, status: true });
 
       cSetState({ ...oState, loading: true });
 
@@ -89,6 +89,7 @@ function Pannel(oProps: any): any {
         };
         events.admin.emit('Alerts-onAlert', oMessage);
       }
+      events.admin.emit('Progress-onProgress', { value: 98, status: true });
 
       if (oResponse) {
         oHistory.push('/admin/resource');
@@ -100,6 +101,7 @@ function Pannel(oProps: any): any {
         time: 3 * 1000
       };
       events.admin.emit('Alerts-onAlert', oMessage);
+      events.admin.emit('Progress-onProgress', { value: 0, status: false });
     } finally {
       cSetState({ ...oState, loading: false });
     }

@@ -8,6 +8,7 @@ import {
   indigo,
   pink,
   red,
+  purple,
   orange,
   green
 } from '@material-ui/core/colors';
@@ -18,7 +19,13 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'fixed',
       top: 0,
       width: '100vw',
-      zIndex: 1000
+      zIndex: 3000, // Material=UI 的 AppBar 为 zIndex: 1201,
+      '& .MuiLinearProgress-colorPrimary': {
+        backgroundColor: purple['200']
+      },
+      '& .MuiLinearProgress-barColorPrimary': {
+        backgroundColor: purple['900']
+      }
     }
   })
 );
