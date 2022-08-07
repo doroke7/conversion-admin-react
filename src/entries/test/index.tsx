@@ -14,10 +14,11 @@ const oInitState = {
 const oReducer = (oState = oInitState, oAction) => {
   switch (oAction.type) {
     case ADD_USER: {
-      const aUSers = oState.users.map((sUser) => sUser);
-      aUSers.push(oAction.payload);
+      const aUsers = oState.users.map((sUser) => sUser);
+      console.info(aUsers, 'users');
+      aUsers.push(oAction.payload);
       return {
-        users: aUSers
+        users: aUsers
       };
     }
     default:
