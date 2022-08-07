@@ -33,7 +33,7 @@ let oAuthenticatorAction: any = {
             jwt: sJwtOfStorage
           }
         };
-        let oResponse = await Helpers.Axios.post({
+        let oResponse = await Helpers.Admin.post({
           path: '/Admin/Authentication/Authenticator/refresh',
           params: {
             option: oOption, // API 中，问号拼接的 参数。 如 ?option={}&query={}
@@ -57,7 +57,7 @@ let oAuthenticatorAction: any = {
 
   signIn: (oBody: any, oOption: any, oQuery: any) => {
     return async (cDispatch: any) => {
-      let oResponse = await Helpers.Axios.post({
+      let oResponse = await Helpers.Admin.post({
         path: '/Admin/Authentication/Authenticator/signIn',
         params: {
           option: oOption, // API 中，问号拼接的 参数。 如 ?option={}&query={}
