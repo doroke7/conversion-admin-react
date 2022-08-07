@@ -70,6 +70,7 @@ function Pannel(oProps: any): any {
       if (oState.password.length <= 5) {
         throw new Exception('请输入6 字以上元密码', -1);
       }
+      events.admin.emit('Progress-onProgress', true);
 
       cSetState({ ...oState, loading: true });
 
@@ -137,13 +138,7 @@ function Pannel(oProps: any): any {
         variant="outlined"
         onKeyPress={onKeyPress}
       />
-      <Button
-        onClick={SignIn}
-        className={oClasses.button}
-        startIcon={oState.loading ? <AutorenewIcon className={oClasses.autorenewIcon} /> : ''}
-        variant="contained"
-        color="primary"
-        fullWidth>
+      <Button onClick={SignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
         登入
       </Button>
       <div className={oClasses.forgetPasswordAndSignup}></div>

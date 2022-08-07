@@ -61,6 +61,7 @@ function Alerts(oProps: any): any {
 
   let sTitle = dCodesToTitles[oState.code] ?? dCodesToTitles['-9999'];
   let Icon = dCodesToIcons[oState.code] ?? dCodesToIcons['-9999'];
+
   useEffect(() => {
     let cAlert = (oMessage: any) => {
       cSetState({
