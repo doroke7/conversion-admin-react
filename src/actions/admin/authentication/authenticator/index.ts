@@ -80,6 +80,12 @@ let oAuthenticatorAction: any = {
       }
       return cDispatch(cSignIn(oResponse));
     };
+  },
+  postSignIn: (oResponse: any) => {
+    return {
+      type: '/Admin/Authentication/Authenticator/postSignIn',
+      administratorId: oResponse.data.administrator_id
+    };
   }
 };
 

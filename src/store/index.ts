@@ -6,15 +6,8 @@ import reduxThunk from 'redux-thunk';
 import reducers from '@/reducers/';
 
 const oReducer = combineReducers({
-  jwt: reducers.jwt,
-  uploaders: reducers.uploader,
-  roomsMessages: reducers.roomMessage,
-  words: reducers.word,
-  users: reducers.user,
-  usersRooms: reducers.userRoom,
-  rooms: reducers.room,
-  roomId: reducers.roomId,
-  domain: reducers.domain
+  adminJwt: reducers.admin.jwt,
+  adminRoom: reducers.admin.room
 });
 
 const oStore: any = createStore(

@@ -6,8 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import LockIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 
+import Sdks from '@/Sdks';
 import Components from '@/Components';
 import Exception from '@/Exception/';
 import actions from '@/actions/';
@@ -68,24 +68,30 @@ function Pannel(oProps: any): any {
         throw new Exception('请输入6 字以上元密码', -1);
       }
 
-      let oBody = {
-        param: {
-          username: oState.name,
-          password: oState.password
-        }
-      };
-      let oOption = {};
-      let oQuery = {};
+      let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
+      oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
 
-      let oPlayLoad = await oDispatch(actions.admin.authentication.authenticator.signIn(oBody, oOption, oQuery));
-      if (oPlayLoad) {
+      if (oResponse && oResponse?.data?.code <= -1) {
+        throw new Exception(oResponse?.data?.message ?? '', oResponse?.data?.code ?? 0);
+      }
+
+      if (oResponse && oResponse?.data?.code >= 1) {
+        let oMessage = {
+          code: oResponse?.data?.code ?? 0,
+          message: oResponse?.data?.message ?? '',
+          time: 2 * 1000
+        };
+        events.admin.emit('Alerts-onAlert', oMessage);
+      }
+
+      if (oResponse) {
         oHistory.push('/admin/resource');
       }
     } catch (oException) {
       let oMessage = {
         code: oException.code ?? 0,
         message: oException.message ?? '',
-        time: 2 * 1000
+        time: 3 * 1000
       };
       events.admin.emit('Alerts-onAlert', oMessage);
     }
@@ -97,9 +103,6 @@ function Pannel(oProps: any): any {
     }
   };
 
-  // 全局跳转改写地方
-  // redirect();
-  // w
   return (
     <div className={oClasses.pannel}>
       <Avatar className={oClasses.avatar}>

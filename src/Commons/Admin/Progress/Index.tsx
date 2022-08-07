@@ -28,14 +28,14 @@ function Progress(oProps: any): any {
           return oNewState;
         }
         if (oOldState.value < 100) {
-          let iDiffValue = Math.random() * 4;
+          let iDiffValue = Math.random() * 10;
           oNewState.value = oOldState.value + iDiffValue;
         }
 
         oNewState.value = Math.min(oNewState.value, 100);
         return oNewState;
       });
-    }, 100);
+    }, 500);
 
     return () => {
       clearInterval(oInterval);
