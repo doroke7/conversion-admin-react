@@ -11,9 +11,9 @@ const style = makeStyles((oTheme: Theme): any =>
       paddingRight: oTheme.spacing(4),
       borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
-      backgroundColor: 'rgb(255, 255, 255)',
+      backgroundColor: oTheme.palette.background.paper,
       animation:
-        '$fade 0.7s linear 0s 1 normal, $slide1 0.4s ease-out 0.2s 1 normal, $slide2 0.2s ease-in-out 0.6s 1 normal'
+        '$fade 0.5s linear 0s 1 normal, $slide1 0.3s ease-out 0.1s 1 normal, $slide2 0.2s ease-in-out 0.4s 1 normal'
     },
     '@keyframes fade': {
       '0%': {
@@ -47,6 +47,18 @@ const style = makeStyles((oTheme: Theme): any =>
     container: {
       display: 'flex',
       flexWrap: 'wrap'
+    },
+    autorenewIcon: {
+      animation: '$rotation 0.8s linear 0s infinite normal'
+    },
+    '@keyframes rotation': {
+      '0%': {
+        transform: 'rotate(0deg)'
+      },
+
+      '100%': {
+        transform: 'rotate(360deg)'
+      }
     },
     textField: {},
     title: {

@@ -40,10 +40,10 @@ function AlertOfRedis(oProps: any) {
         </DialogContentText>
       </DialogContent>
       <DialogActions className={oClasses.dialogActions}>
-        <Button variant="contained" onClick={cHandleClose} color="primary" autoFocus>
+        <Button variant="outlined" onClick={cHandleClose} color="primary" autoFocus>
           取消
         </Button>
-        <Button className={oClasses.confirmButton} variant="contained" onClick={cHandleConfirm} color="default">
+        <Button className={oClasses.confirmButton} variant="outlined" onClick={cHandleConfirm} color="default">
           确定
         </Button>
       </DialogActions>

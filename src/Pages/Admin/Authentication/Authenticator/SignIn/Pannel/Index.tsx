@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import LockIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 import Sdks from '@/Sdks';
 import Components from '@/Components';
@@ -22,6 +23,7 @@ const MESSAGES = CONFIGS.MESSAGES;
 interface State {
   name: string;
   password: string;
+  loading: boolean;
 }
 
 const ENTER_CODE = 13;
@@ -37,7 +39,8 @@ function Pannel(oProps: any): any {
 
   let [oState, cSetState] = React.useState<State>({
     name: '',
-    password: ''
+    password: '',
+    loading: false
   });
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +71,8 @@ function Pannel(oProps: any): any {
         throw new Exception('请输入6 字以上元密码', -1);
       }
 
+      cSetState({ ...oState, loading: true });
+
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
 
@@ -94,6 +99,8 @@ function Pannel(oProps: any): any {
         time: 3 * 1000
       };
       events.admin.emit('Alerts-onAlert', oMessage);
+    } finally {
+      cSetState({ ...oState, loading: false });
     }
   };
 
@@ -130,7 +137,13 @@ function Pannel(oProps: any): any {
         variant="outlined"
         onKeyPress={onKeyPress}
       />
-      <Button onClick={SignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
+      <Button
+        onClick={SignIn}
+        className={oClasses.button}
+        startIcon={oState.loading ? <AutorenewIcon className={oClasses.autorenewIcon} /> : ''}
+        variant="contained"
+        color="primary"
+        fullWidth>
         登入
       </Button>
       <div className={oClasses.forgetPasswordAndSignup}></div>

@@ -100,9 +100,9 @@ function AlertOfApps(oProps: any) {
         <Button
           disabled={iIndex == -1}
           className={oClasses.confirmButton}
-          variant="contained"
-          onClick={cWrapperHandleConfirm}
-          color="default">
+          variant="outlined"
+          color="primary"
+          onClick={cWrapperHandleConfirm}>
           确定
         </Button>
       </DialogActions>
