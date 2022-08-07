@@ -10,8 +10,8 @@ const style = makeStyles((oTheme: Theme) =>
       transition: oTheme.transitions.create(['width', 'margin'], {
         easing: oTheme.transitions.easing.sharp,
         duration: oTheme.transitions.duration.leavingScreen
-      }),
-      animation: '$slideRight 0.4s ease-in 0.1s 1 normal'
+      })
+      // animation: '$slideRight 0.4s ease-in 0.1s 1 normal'
     },
     '@keyframes slideRight': {
       '0%': {
