@@ -1,4 +1,5 @@
 import Helpers from '@/Helpers/';
+import Exception from '@/Exception/';
 
 let cLogIn: any = (oRaw: any) => {
   return {
@@ -66,11 +67,11 @@ let oAuthenticatorAction: any = {
       });
 
       if (!oResponse) {
-        throw new Error('网络异常');
+        throw new Exception('网络异常', -3);
       }
 
-      if (-1 === oResponse?.data?.code || 200 != oResponse?.status) {
-        throw new Error(oResponse.data.message);
+      if (0 <= oResponse?.data?.code) {
+        throw new Exception(oResponse?.data?.message, oResponse?.data?.code);
       }
 
       let sJwt = oResponse?.headers?.authorization ?? '';
