@@ -1,4 +1,6 @@
 import React from 'react';
+import clsx from 'clsx';
+
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 
@@ -24,6 +26,7 @@ interface State {
   name: string;
   password: string;
   loading: boolean;
+  pannelAnimation: boolean;
 }
 
 const ENTER_CODE = 13;
@@ -40,7 +43,8 @@ function Pannel(oProps: any): any {
   let [oState, cSetState] = React.useState<State>({
     name: '',
     password: '',
-    loading: false
+    loading: false,
+    pannelAnimation: false
   });
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +76,7 @@ function Pannel(oProps: any): any {
       }
       events.admin.emit('Progress-onProgress', { value: 0, status: true });
 
-      cSetState({ ...oState, loading: true });
+      cSetState({ ...oState, loading: true, pannelAnimation: true });
 
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
@@ -114,7 +118,10 @@ function Pannel(oProps: any): any {
   };
 
   return (
-    <div className={oClasses.pannel}>
+    <div
+      className={clsx(oClasses.pannel, {
+        [oClasses.pannelAnimation]: oState.pannelAnimation
+      })}>
       <Avatar className={oClasses.avatar}>
         <LockIcon />
       </Avatar>

@@ -40,7 +40,35 @@ const style = makeStyles((oTheme: Theme): any =>
         transform: 'translateY(0%)'
       }
     },
-
+    pannelAnimation: {
+      animation:
+        '$fadeOut 0.5s linear 0s 1 normal, $slideOut1 0.3s ease-in 0s 1 normal, $slideOut2 0.3s ease-in .3s 1 normal !important',
+      transform: 'translateY(+200%) !important'
+    },
+    '@keyframes fadeOut': {
+      '0%': {
+        opacity: 1
+      },
+      '100%': {
+        opacity: 0
+      }
+    },
+    '@keyframes slideOut1': {
+      '0%': {
+        transform: 'translateY(0%)'
+      },
+      '100%': {
+        transform: 'translateY(+100%)'
+      }
+    },
+    '@keyframes slideOut2': {
+      '0%': {
+        transform: 'translateY(+100%)'
+      },
+      '100%': {
+        transform: 'translateY(+200%)'
+      }
+    },
     lockIcon: {
       fontSize: oTheme.spacing(4)
     },
