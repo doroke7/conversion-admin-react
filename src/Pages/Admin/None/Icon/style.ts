@@ -12,7 +12,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       transformOrigin: '50% 100%',
       transform: 'rotate(0deg)',
       animation:
-        '$zoom 1s ease-in-out 0s 1 alternate, $wave1 3s ease-in-out 1s 1 alternate, $wave2 6s ease-in-out 4s infinite alternate'
+        '$zoom 0.7s ease-in-out 0s 1 alternate, $wave1 3s ease-in-out 0.7s 1 alternate, $wave2 6s ease-in-out 3.7s infinite alternate'
     },
     '@keyframes zoom': {
       '0%': {
