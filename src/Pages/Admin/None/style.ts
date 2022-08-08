@@ -26,11 +26,14 @@ let oStyle = makeStyles((oTheme: Theme) =>
       left: '50%',
       transform: 'translate(-50%, calc( -50% - 16px))'
     },
+    buttonWrapper: {
+      overflow: 'hidden'
+    },
     button: {
       width: oTheme.spacing(36),
       fontSize: oTheme.spacing(6),
       display: 'block',
-      margin: -oTheme.spacing(6) + 'px' + ' auto 0px auto',
+      margin: '0px' + ' auto 0px auto',
       borderRadius: oTheme.spacing(6)
     }
   })
