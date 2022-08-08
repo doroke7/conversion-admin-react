@@ -26,15 +26,14 @@ const style = makeStyles((oTheme: Theme) =>
       color: oTheme.palette.background.paper
     },
     iconAnimation: {
-      animation:
-        '$rotation 0.5s 1 ease-in-out reverse, $rotation 0.2s 4 linear reverse, $rotation 0.5s 1 linear reverse'
+      animation: '$rotation 1.2s cubic-bezier(.78,.01,.01,.78) 0s 1 reverse'
     },
     '@keyframes rotation': {
       '0%': {
         transform: 'rotate(0deg)'
       },
       '100%': {
-        transform: 'rotate(360deg)'
+        transform: 'rotate(1440deg)'
       }
     },
     avatarWrapper: {

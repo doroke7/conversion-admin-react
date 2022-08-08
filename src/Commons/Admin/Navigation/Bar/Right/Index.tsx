@@ -31,7 +31,7 @@ function Right(oProps: any) {
     cSetState({ ...oState, rotating: true, open: false });
     setTimeout(() => {
       cSetState({ ...oState, rotating: false, open: false });
-    }, 1000);
+    }, 1200);
   };
 
   return (
