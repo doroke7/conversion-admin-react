@@ -5,6 +5,7 @@ let aRoutes = [
     path: '/admin/resource',
     component: Admin.Resource.Index,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
+    authenticator: true,
     routes: [
       // 嵌套路由必须 使用 exact=false
       {
@@ -28,12 +29,14 @@ let aRoutes = [
     path: '/admin/authentication/authenticator/sign-in',
     component: Admin.Authentication.Authenticator.SignIn,
     exact: false,
+    authenticator: false,
     routes: []
   },
   {
     path: '/admin/*',
     component: Admin.None,
     exact: false,
+    authenticator: false,
     routes: []
   }
 ];

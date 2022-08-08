@@ -1,4 +1,4 @@
-class Authenticator {
+function Authenticator (oProps: any) {
 
 }
 
