@@ -22,6 +22,10 @@ let cSignIn: any = (oResponse: any) => {
   };
 };
 
+/**
+ * TITLE: 放弃了 action 控制异步 API 请求的做法， 不好用
+ * DATE: 2022-0809
+ */
 let oAuthenticatorAction: any = {
   refresh: (oBody: any, oOption: any, oQuery: any) => {
     return async (cDispatch: any) => {
