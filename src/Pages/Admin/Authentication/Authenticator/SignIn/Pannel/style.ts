@@ -42,7 +42,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     pannelAnimation: {
       animation:
-        '$fadeOut 0.5s linear 0s 1 normal, $slideOut1 0.3s ease-in 0s 1 normal, $slideOut2 0.3s ease-in .3s 1 normal !important'
+        '$fadeOut 0.5s linear 0s 1 normal, $slideOut1 0.3s ease-in 0s 1 normal, $slideOut2 0.3s ease-in .3s 1 normal, $slideOut3 1s ease-in .6s infinite normal !important'
     },
     '@keyframes fadeOut': {
       '0%': {
@@ -63,6 +63,14 @@ const style = makeStyles((oTheme: Theme): any =>
     '@keyframes slideOut2': {
       '0%': {
         transform: 'translateY(+100%)'
+      },
+      '100%': {
+        transform: 'translateY(+200%)'
+      }
+    },
+    '@keyframes slideOut3': {
+      '0%': {
+        transform: 'translateY(+200%)'
       },
       '100%': {
         transform: 'translateY(+200%)'

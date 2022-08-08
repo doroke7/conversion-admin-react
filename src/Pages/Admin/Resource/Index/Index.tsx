@@ -5,22 +5,27 @@ import Commons from '@/Commons';
 
 import style from './style';
 
-function _(oProps: any): any {
+function Index(oProps: any): any {
   let oClasses: any = style(void 0);
   let oMatch = useRouteMatch();
 
   let aRoutes = oProps.routes ?? [];
 
   return (
-    <Commons.Admin.Navigation>
-      <Switch>
-        {aRoutes.map((oRoute, sIndex) => (
-          <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
-            <oRoute.component routes={oRoute.routes} />
-          </Route>
-        ))}
-      </Switch>
-    </Commons.Admin.Navigation>
+    // <Fade> 效果，必须字元素只有一个
+    <Fade in={true} timeout={2000}>
+      <div>
+        <Commons.Admin.Navigation>
+          <Switch>
+            {aRoutes.map((oRoute, sIndex) => (
+              <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
+                <oRoute.component routes={oRoute.routes} />
+              </Route>
+            ))}
+          </Switch>
+        </Commons.Admin.Navigation>
+      </div>
+    </Fade>
   );
 }
-export default _;
+export default Index;
