@@ -11,7 +11,17 @@ let oStyle = makeStyles((oTheme: Theme) =>
       overflow: 'hidden',
       transformOrigin: '50% 100%',
       transform: 'rotate(0deg)',
-      animation: '$wave1 3s ease-in-out 0s 1 alternate, $wave2 6s ease-in-out 3s infinite alternate'
+      animation:
+        '$zoom 1s ease-in-out 0s 1 alternate, $wave1 3s ease-in-out 1s 1 alternate, $wave2 6s ease-in-out 4s infinite alternate'
+    },
+    '@keyframes zoom': {
+      '0%': {
+        transform: 'scale(0)'
+      },
+
+      '100%': {
+        transform: 'scale(1)'
+      }
     },
     '@keyframes wave1': {
       '0%': {
