@@ -1,5 +1,3 @@
-function Authenticator (oProps: any) {
-
-}
+function Authenticator(oProps: any) {}
 
 export default Authenticator;

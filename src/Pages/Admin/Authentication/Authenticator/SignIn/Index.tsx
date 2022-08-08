@@ -6,6 +6,7 @@ import Helpers from '@/Helpers/';
 import actions from '@/actions/';
 import Components from '@/Components';
 import Sdks from '@/Sdks';
+import Wrappers from '@/Wrappers';
 
 import Pannel from './Pannel/Index';
 
@@ -59,4 +60,4 @@ function SignIn(): any {
     </div>
   );
 }
-export default SignIn;
+export default Wrappers.Admin.Authenticator(SignIn);
