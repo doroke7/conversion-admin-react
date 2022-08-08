@@ -23,11 +23,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       backgroundColor: green[500]
     },
     infoAlert: {
-      // 1, 后端-资讯讯息
+      // 1, 前端资讯讯息，后端-资讯讯息
       backgroundColor: blue[500]
     },
     warningAlert: {
-      // -1，前端后端-警告
+      // -1，前端-警告，后端警告
       backgroundColor: orange[500]
     },
     errorAlert: {
@@ -39,7 +39,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       backgroundColor: red[500]
     },
     unknownAlert: {
-      // -9999，前端后端-未知的错误
+      // -9999，前端-未知的错误，
       backgroundColor: grey[700]
     },
     alertTitle: { fontWeight: 900 },
