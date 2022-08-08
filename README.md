@@ -26,6 +26,13 @@
    避免函数跟 函数组件 混肴所以，函数 统一使用 let 宣告变量函数
    避免函数跟 函数组件 混肴所以，函数组件 统一使用 function 宣告组件
 
+## 常用的业务组件
+1. 全局组件
+2. 单元组件
+3. 高阶组件
+4. 页面组件
+5. Context 组件
+6. <App> SPA 组件
 
 #  目录结构
 ##  一级目录结构
@@ -53,7 +60,6 @@
 │   ├── entries          Webpack 打包入口
 │   ├── events           跨组件事件, 能处理简单的共用数据
 │   ├── Helpers          类别形式的公用程序库
-│   ├── Wrappers         高阶组件，替代 Mixin
 │   ├── images           jpg, png, gif 资源处
 │   ├── Pages            页面组件
 │   ├── reducers         Redux-reducer 定义处
@@ -61,7 +67,8 @@
 │   ├── source           mp3, mp4 资源
 │   ├── store            Redux-store 定义处, 能处理API来的共用数据
 │   ├── styles           基本样式
-│   └── utilities        函数型的自定义函式库
+│   ├── utilities        函数型的自定义函式库
+│   └── Wrappers         REACT 高阶组件，用于取代 Mixin 结构
 
 ```
 ---------------------------------------
