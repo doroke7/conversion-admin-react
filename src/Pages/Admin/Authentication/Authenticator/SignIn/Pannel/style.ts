@@ -43,7 +43,6 @@ const style = makeStyles((oTheme: Theme): any =>
     pannelAnimation: {
       animation:
         '$fadeOut 0.5s linear 0s 1 normal, $slideOut1 0.3s ease-in 0s 1 normal, $slideOut2 0.3s ease-in .3s 1 normal !important',
-      transform: 'translateY(+200%) !important'
     },
     '@keyframes fadeOut': {
       '0%': {
