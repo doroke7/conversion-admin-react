@@ -13,7 +13,7 @@ const style = makeStyles((oTheme: Theme): any =>
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
       backgroundColor: oTheme.palette.background.paper,
       animation:
-        '$fadeIn 0.5s linear 0s 1 normal, $slideIn1 0.3s ease-in-out 0.1s 1 normal, $slideIn2 0.3s ease-in-out 0.4s 1 normal'
+        '$fadeIn 0.5s linear 0s 1 normal, $slideIn1 0.6s ease-in-out 0s 1 normal, $slideIn2 0.3s ease-in-out 0.6s 1 normal'
     },
     '@keyframes fadeIn': {
       '0%': {
