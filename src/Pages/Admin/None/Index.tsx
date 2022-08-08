@@ -23,10 +23,12 @@ function None(oProps: any): any {
       <div className={oClasses.root}>
         <div className={oClasses.wrapper}>
           <Icon></Icon>
-          <div className={oClasses.buttonWrapper}>
-            <Button className={oClasses.button} variant="outlined" color="primary" onClick={oHandleClick}>
-              回到主页
-            </Button>
+          <div className={oClasses.buttonWrapperWrapper}>
+            <div className={oClasses.buttonWrapper}>
+              <Button className={oClasses.button} variant="outlined" color="primary" onClick={oHandleClick}>
+                回到主页
+              </Button>
+            </div>
           </div>
         </div>
       </div>
