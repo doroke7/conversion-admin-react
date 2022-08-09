@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Fade from '@material-ui/core/Fade';
 import Commons from '@/Commons';
+import wrappers from '@/wrappers';
 
 import style from './style';
 
@@ -28,4 +29,4 @@ function Index(oProps: any): any {
     </Fade>
   );
 }
-export default Index;
+export default wrappers.admin.title(Index);

@@ -6,7 +6,7 @@ import { Admin } from '@/Pages';
 let aRoutes = [
   {
     path: '/admin/resource',
-    title: '影视系',
+    title: '影视系后台系统',
     Icon: null,
     Component: Admin.Resource.Index,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMappedState, useDispatch } from 'redux-react-hook';
+import wrappers from '@/wrappers';
+
 import Icon from './Icon';
 import style from './style';
 
@@ -13,4 +15,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default Index;
+export default wrappers.admin.title(Index);

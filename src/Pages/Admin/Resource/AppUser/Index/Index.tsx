@@ -21,4 +21,4 @@ function Index(oProps: any): any {
 
   return <div className={oClasses.root}>APP-USER</div>;
 }
-export default wrappers.admin.tab(Index);
+export default wrappers.admin.tab(wrappers.admin.title(Index));
