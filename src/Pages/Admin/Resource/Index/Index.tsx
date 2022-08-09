@@ -19,7 +19,7 @@ function Index(oProps: any): any {
           <Switch>
             {aRoutes.map((oRoute, sIndex) => (
               <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
-                <oRoute.component routes={oRoute.routes} />
+                <oRoute.Component routes={oRoute.routes} Icon={oRoute.Icon} title={oRoute.title} />
               </Route>
             ))}
           </Switch>

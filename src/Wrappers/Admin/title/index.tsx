@@ -8,14 +8,11 @@ interface Props {
  * NOTE: 小写，这是函数
  */
 
-let tab = (Component: any): any => {
+let title = (Component: any): any => {
   function Wrapper(oProps: any) {
-    let Icon = oProps.Icon ?? <></>;
-    console.info('Tab-Index');
-
+    let sTitle = oProps.title ?? '';
     useEffect(() => {
-      console.info('Tab-useEffect');
-      return () => {};
+      document.title = sTitle;
     }, []);
     return <Component {...oProps}></Component>;
   }
@@ -23,4 +20,4 @@ let tab = (Component: any): any => {
   return Wrapper;
 };
 
-export default tab;
+export default title;

@@ -1,4 +1,5 @@
-import authenticator from './authenticator/Index';
-import tab from './tab/Index';
+import authenticator from './authenticator';
+import tab from './tab';
+import title from './title';
 
-export default { authenticator, tab };
+export default { authenticator, tab, title };

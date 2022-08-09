@@ -36,7 +36,7 @@ function App(oProps: any) {
           <Switch>
             {oState.routes.map((oRoute, sIndex) => (
               <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
-                <oRoute.component routes={oRoute.routes} />
+                <oRoute.Component routes={oRoute.routes} Icon={oRoute.Icon} title={oRoute.title} />
               </Route>
             ))}
           </Switch>
