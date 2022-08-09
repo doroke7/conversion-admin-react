@@ -29,7 +29,7 @@ let aRoutes = [
       },
       {
         path: '/*',
-        title: '未定义',
+        title: '分页未定义',
         Icon: ReportIcon,
         Component: Admin.Resource.None.Index,
         exact: false

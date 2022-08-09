@@ -11,7 +11,7 @@ function Index(oProps: any): any {
   return (
     <div className={oClasses.root}>
       <Icon></Icon>
-      <div className={oClasses.text}>-页面组件未定义-</div>
+      <div className={oClasses.text}>-分页组件未定义-</div>
     </div>
   );
 }
