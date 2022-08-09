@@ -7,7 +7,6 @@ import router from '@/router';
 import CONFIGS from '@/CONFIGS';
 import Commons from '@/Commons';
 import Components from '@/Components';
-import Wrappers from '@/wrappers';
 import style from './style';
 
 function App(oProps: any) {
