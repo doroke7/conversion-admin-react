@@ -4,6 +4,10 @@ interface Props {
   children?: any;
 }
 
+/*
+ * NOTE: 小写，这是函数
+ */
+
 let tab = (Component: any): any => {
   function Wrapper(oProps: any) {
     console.info('Tab-Index');

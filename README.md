@@ -69,7 +69,7 @@
 │   ├── store            Redux-store 定义处, 能处理API来的共用数据
 │   ├── styles           基本样式
 │   ├── utilities        函数型的自定义函式库
-│   └── Wrappers         REACT 高阶组件，用于取代 Mixin 结构
+│   └── wrappers         REACT 高阶组件 "函数"，用于取代 Mixin 结构
 
 ```
 ---------------------------------------
@@ -120,9 +120,20 @@
 
 ```
 ---------------------------------------
+##  类别使用大驼峰
+```files
+Helpers.Admin.Rsa.**;
 
 
-##  函数式 Compoent 内部的方法 使用 变量形式
+##  函数式组件使用大驼峰
+```files
+function Component() {
+   let cMethod = () => {};
+
+}
+
+
+##  一般函数使用变量形式
 ```files
 function Component() {
    let cMethod = () => {};

@@ -1,5 +1,5 @@
-import Page from './Page/Index';
-import Admin from './Admin/Index';
-import Service from './Service/Index';
+import page from './page/Index';
+import admin from './admin/Index';
+import service from './service/Index';
 
-export default { Page, Admin, Service };
+export default { page, admin, service };

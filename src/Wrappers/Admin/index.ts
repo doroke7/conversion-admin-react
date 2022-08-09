@@ -1,4 +1,4 @@
-import Authenticator from './Authenticator/Index';
-import Tab from './Tab/Index';
+import authenticator from './authenticator/Index';
+import tab from './tab/Index';
 
-export default { Authenticator, Tab };
+export default { authenticator, tab };

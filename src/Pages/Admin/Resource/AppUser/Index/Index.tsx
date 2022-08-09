@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMappedState, useDispatch } from 'redux-react-hook';
-import Wrappers from '@/Wrappers';
+import wrappers from '@/wrappers';
 import Fade from '@material-ui/core/Fade';
 
 import style from './style';
@@ -21,4 +21,4 @@ function Index(oProps: any): any {
 
   return <div className={oClasses.root}>APP-USER</div>;
 }
-export default Wrappers.Admin.Tab(Index);
+export default wrappers.admin.tab(Index);
