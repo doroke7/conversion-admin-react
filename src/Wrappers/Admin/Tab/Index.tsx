@@ -1,0 +1,21 @@
+import React, { useEffect } from 'react';
+
+interface Props {
+  children?: any;
+}
+
+let tab = (Component: any): any => {
+  function Wrapper(oProps: any) {
+    console.info('Tab-Index');
+
+    useEffect(() => {
+      console.info('Tab-useEffect');
+      return () => {};
+    }, []);
+    return <Component {...oProps}></Component>;
+  }
+
+  return Wrapper;
+};
+
+export default tab;

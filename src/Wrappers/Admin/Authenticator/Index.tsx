@@ -4,16 +4,18 @@ interface Props {
   children?: any;
 }
 
-function Authenticator(Component: any): any {
-  return function (oProps: any) {
+let authenticator = (Component: any): any => {
+  function Wrapper(oProps: any) {
     /**
      * HOC 就是把组件 重新包装一次
      */
     return <Component {...oProps}></Component>;
-  };
-}
+  }
 
-function Authenticator2(Component: any): any {
+  return Wrapper;
+};
+
+function authenticator2(Component: any): any {
   return (oProps: any) => {
     /**
      * HOC 就是把组件 重新包装一次
@@ -22,6 +24,6 @@ function Authenticator2(Component: any): any {
   };
 }
 
-let Authenticator3 = (Component: any) => (oProps: any) => <Component {...oProps}></Component>;
+let authenticator3 = (Component: any) => (oProps: any) => <Component {...oProps}></Component>;
 
-export default Authenticator;
+export default authenticator;
