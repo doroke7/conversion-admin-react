@@ -20,6 +20,9 @@ let aRoutes = [
         title: '影视系-用户列表',
         Icon: AccountCircleTwoToneIcon,
         Component: Admin.Resource.AppUser.Index,
+        // Component: React.lazy(() =>
+        //   import('@/Pages/Admin/Resource/AppUser/Index').then((oModule: any) => ({ default: oModule.Index }))
+        // ),
         exact: false
       },
       {
