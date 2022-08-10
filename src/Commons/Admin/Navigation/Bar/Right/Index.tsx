@@ -16,7 +16,8 @@ function Right(oProps: any) {
   let oClasses = style(void 0);
   let [oState, cSetState] = React.useState<any>({
     open: false,
-    rotating: false
+    rotating: false,
+    anchor: null
   });
 
   let cHandleClose = () => {
@@ -34,6 +35,12 @@ function Right(oProps: any) {
     }, 1200);
   };
 
+  let cHandleClick = (oEvent: any) => {
+    oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
+    oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
+    let oAnchor = oEvent.currentTarget;
+    cSetState({ ...oState, anchor: oAnchor });
+  };
   return (
     <div className={oClasses.right}>
       <IconButton className={oClasses.iconButton} onClick={cHandleOpen}>
@@ -43,7 +50,7 @@ function Right(oProps: any) {
           })}></FlipCameraAndroidTwoToneIcon>
       </IconButton>
       <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleConfirm}></AlertOfRedis>
-      <div className={oClasses.avatarWrapper}>
+      <div className={oClasses.avatarWrapper} onClick={cHandleClick}>
         <Badge
           overlap="circular"
           anchorOrigin={{
