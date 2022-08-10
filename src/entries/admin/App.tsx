@@ -36,7 +36,13 @@ function App(oProps: any) {
           <Switch>
             {oState.routes.map((oRoute, sIndex) => (
               <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
-                <oRoute.Component routes={oRoute.routes} Icon={oRoute.Icon} title={oRoute.title} />
+                <oRoute.Component
+                  routes={oRoute.routes}
+                  Icon={oRoute.Icon}
+                  title={oRoute.title}
+                  authenticator={oRoute.authenticator}
+                  redirections={oRoute.redirections}
+                />
               </Route>
             ))}
           </Switch>

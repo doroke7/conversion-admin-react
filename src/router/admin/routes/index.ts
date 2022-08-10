@@ -14,7 +14,8 @@ let aRoutes = [
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
     authenticator: true,
     redirections: [null, '/admin/authentication/authenticator/sign-in'],
-    // redirections[0]: authenticator 成功后
+    // redirections[0]: authenticator 成功后 重定向的页面，null 表示不重定向
+    // redirections[1]: authenticator 失败后 重定向的页面，null 表示不重定向
     routes: [
       // 嵌套路由必须 使用 exact=false
       {
@@ -49,7 +50,8 @@ let aRoutes = [
     Icon: null,
     Component: Admin.Authentication.Authenticator.SignIn,
     exact: false,
-    authenticator: false,
+    authenticator: true,
+    redirections: ['/admin/resource', null],
     routes: []
   },
   {
@@ -59,6 +61,7 @@ let aRoutes = [
     Component: Admin.None,
     exact: false,
     authenticator: false,
+    redirections: [null, null],
     routes: []
   }
 ];
