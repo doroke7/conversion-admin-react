@@ -13,6 +13,8 @@ let aRoutes = [
     Component: Admin.Resource.Index,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
     authenticator: true,
+    redirections: [null, '/admin/authentication/authenticator/sign-in'],
+    // redirections[0]: authenticator 成功后
     routes: [
       // 嵌套路由必须 使用 exact=false
       {
