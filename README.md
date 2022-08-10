@@ -64,7 +64,7 @@
 │   ├── images           jpg, png, gif 资源处
 │   ├── Pages            页面组件
 │   ├── reducers         Redux-reducer 定义处
-│   ├── router           路由配置定义处, 因为 router 太重要所以不放在 CONFIG 中
+│   ├── router           路由配置定义处, 因为 router 太重要所以不放在 CONFIG 中, 而是独立出来
 │   ├── source           mp3, mp4 资源
 │   ├── store            Redux-store 定义处, 能处理API来的共用数据
 │   ├── styles           基本样式
