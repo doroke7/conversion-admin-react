@@ -57,14 +57,17 @@ let authenticator = (Component: any): any => {
         cSetState({ status: true });
       };
       if (CONFIGS.APP.AUTHENTICATOR && bAuthenticator) {
+        events.admin.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
+        // events.admin.emit('Progress-onProgress', { value: 90, status: true });
       }
-    }, [oState.status]);
+    }, []);
 
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    return <Component {...oProps}></Component>;
+    console.info(oState);
+    return oState.status ? <Component {...oProps}></Component> : <></>;
   }
 
   return Wrapper;

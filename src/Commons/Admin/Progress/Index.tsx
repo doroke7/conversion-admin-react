@@ -30,7 +30,7 @@ function Progress(oProps: any): any {
             return oNewState;
           }
           if (oOldState.value < 100) {
-            let iDiffValue = Math.random() * 40;
+            let iDiffValue = Math.random() * 10;
             oNewState.value = oOldState.value + iDiffValue;
           }
 
@@ -40,7 +40,7 @@ function Progress(oProps: any): any {
           return oNewState;
         });
       }
-    }, 50);
+    }, 500);
 
     return () => {
       clearInterval(oInterval);

@@ -14,7 +14,7 @@ function Index(oProps: any): any {
 
   return (
     // <Fade> 效果，必须字元素只有一个
-    <Fade in={true} timeout={2000}>
+    <Fade in={true} timeout={300}>
       <div>
         <Commons.Admin.Navigation>
           <Switch>
