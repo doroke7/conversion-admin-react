@@ -38,6 +38,24 @@ class Authenticator {
 
     return oResponse;
   }
+
+  public static async postSignOut() {
+    let oResponse = await Helpers.Admin.post({
+      path: '/Admin/Authentication/Authenticator/signOut',
+      // API 中，问号拼接的 参数。 如 ?option={}&query={}
+      params: {
+        option: {},
+        query: {}
+      },
+      // API 中，以 Body 传参
+      data: {
+        param: {}
+      },
+      options: {}
+    });
+
+    return oResponse;
+  }
 }
 
 export default Authenticator;

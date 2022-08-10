@@ -34,7 +34,7 @@ function Dropdown(oProps: any) {
 
   return (
     <Popper className={oClasses.root} open={bOpen} anchorEl={oAnchor} role={undefined} placement={'bottom-end'}>
-      <Grow in={true} style={{ transformOrigin: 'left top' }}>
+      <Grow in={true} style={{ transformOrigin: 'right top' }}>
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>
             <MenuList id="menu-list-for-tab">

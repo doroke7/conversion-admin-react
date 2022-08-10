@@ -1,13 +1,17 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
+import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
-
-import { Link } from 'react-router-dom';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 
+import events from '@/events';
+import Sdks from '@/Sdks';
+import Helpers from '@/Helpers';
+
 import AlertOfRedis from './AlertOfRedis/Index';
+import Dropdown from './Dropdown/Index';
 import administrator from '@/images/administrator.png';
 
 import style from './style';
@@ -19,6 +23,7 @@ function Right(oProps: any) {
     rotating: false,
     anchor: null
   });
+  let oHistory = useHistory();
 
   let cHandleClose = () => {
     cSetState({ ...oState, open: false });
@@ -28,19 +33,59 @@ function Right(oProps: any) {
     cSetState({ ...oState, open: true });
   };
 
-  let cHandleConfirm = () => {
+  let cHandleAlertOfRedisConfirm = () => {
     cSetState({ ...oState, rotating: true, open: false });
     setTimeout(() => {
       cSetState({ ...oState, rotating: false, open: false });
     }, 1200);
   };
 
-  let cHandleClick = (oEvent: any) => {
+  let cHandleAvatarWrapperClick = (oEvent: any) => {
     oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
     oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
     let oAnchor = oEvent.currentTarget;
     cSetState({ ...oState, anchor: oAnchor });
   };
+
+  let cHandleAvatarWrapperContextMenu = (oEvent: any) => {
+    oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
+    oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
+    let oAnchor = oEvent.currentTarget;
+    cSetState({ ...oState, anchor: oAnchor });
+  };
+
+  let cHandleDropdownClickAway = (oEvent: any) => {
+    cSetState({ ...oState, anchor: false });
+  };
+
+  let cHandleDropdownClick = async (oEvent: any) => {
+    cSetState({ ...oState, anchor: false });
+    events.admin.emit('Progress-onProgress', { value: 0, status: true });
+
+    let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignOut();
+
+    if (oResponse?.data?.code <= -1) {
+      let oMessage = {
+        code: oResponse?.data?.code ?? 0,
+        message: oResponse?.data?.message ?? '',
+        time: 2 * 1000
+      };
+      events.admin.emit('Alerts-onAlert', oMessage);
+    }
+
+    Helpers.Authentication.removeJwt();
+    if (oResponse?.data?.code >= 0) {
+      let oMessage = {
+        code: oResponse?.data?.code,
+        message: oResponse?.data?.message ?? '登出成功',
+        time: 2 * 1000
+      };
+      events.admin.emit('Alerts-onAlert', oMessage);
+      oHistory.push('/admin/authentication/authenticator/sign-in');
+    }
+    events.admin.emit('Progress-onProgress', { value: 80, status: true });
+  };
+
   return (
     <div className={oClasses.right}>
       <IconButton className={oClasses.iconButton} onClick={cHandleOpen}>
@@ -49,8 +94,11 @@ function Right(oProps: any) {
             [oClasses.iconAnimation]: oState.rotating
           })}></FlipCameraAndroidTwoToneIcon>
       </IconButton>
-      <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleConfirm}></AlertOfRedis>
-      <div className={oClasses.avatarWrapper} onClick={cHandleClick}>
+      <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
+      <div
+        className={oClasses.avatarWrapper}
+        onClick={cHandleAvatarWrapperClick}
+        onContextMenu={cHandleAvatarWrapperContextMenu}>
         <Badge
           overlap="circular"
           anchorOrigin={{
@@ -62,6 +110,11 @@ function Right(oProps: any) {
           <Avatar className={oClasses.avatar} src={administrator}></Avatar>
         </Badge>
       </div>
+      <Dropdown
+        open={Boolean(oState.anchor)}
+        anchor={oState.anchor}
+        onClickAway={cHandleDropdownClickAway}
+        onClick={cHandleDropdownClick}></Dropdown>
     </div>
   );
 }
