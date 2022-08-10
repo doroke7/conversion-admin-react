@@ -16,19 +16,15 @@ let authenticator = (Component: any): any => {
 
     useEffect(() => {
       let cRefresh = async () => {
-        if (CONFIGS.APP.AUTHENTICATOR) {
-          if (bAuthenticator) {
-            let sJwt = Helpers.Authentication.getJwt() ?? '';
-            if (sJwt == '' && aRedirections[1]) {
-              oHistory.push(aRedirections[1]);
-            }
-            if (sJwt) {
-              let oResponse = Sdks.Admin.Authentication.Authenticator.postRefresh();
-            }
-          }
+        let sJwt = Helpers.Authentication.getJwt() ?? '';
+        if (sJwt == '' && aRedirections[1]) {
+          oHistory.push(aRedirections[1]);
+        }
+        if (sJwt) {
+          let oResponse = Sdks.Admin.Authentication.Authenticator.postRefresh();
         }
       };
-      if (CONFIGS.APP.AUTHENTICATOR) {
+      if (CONFIGS.APP.AUTHENTICATOR && bAuthenticator) {
         cRefresh();
       }
     }, []);
