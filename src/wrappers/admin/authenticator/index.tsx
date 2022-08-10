@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Sdks from '@/Sdks';
 import Helpers from '@/Helpers';
@@ -14,17 +14,24 @@ let authenticator = (Component: any): any => {
     let bAuthenticator = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
 
-    if (CONFIGS.APP.AUTHENTICATOR) {
-      if (bAuthenticator) {
-        let sJwt = Helpers.Authentication.getJwt() ?? '';
-        if (sJwt == '' && aRedirections[1]) {
-          oHistory.push(aRedirections[1]);
+    useEffect(() => {
+      let cRefresh = async () => {
+        if (CONFIGS.APP.AUTHENTICATOR) {
+          if (bAuthenticator) {
+            let sJwt = Helpers.Authentication.getJwt() ?? '';
+            if (sJwt == '' && aRedirections[1]) {
+              oHistory.push(aRedirections[1]);
+            }
+            if (sJwt) {
+              let oResponse = Sdks.Admin.Authentication.Authenticator.postRefresh();
+            }
+          }
         }
-        if (sJwt) {
-          let oResponse = Sdks.Admin.Authentication.Authenticator.postRefresh();
-        }
+      };
+      if (CONFIGS.APP.AUTHENTICATOR) {
+        cRefresh();
       }
-    }
+    }, []);
 
     return <Component {...oProps}></Component>;
   }
