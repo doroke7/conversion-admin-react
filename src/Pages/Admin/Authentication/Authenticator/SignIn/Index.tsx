@@ -22,18 +22,6 @@ function SignIn(): any {
 
   let [oState, cSetState] = React.useState<State>({ open: true });
 
-  let cRefresh = async () => {
-    let sJwt = Helpers.Authentication.getJwt();
-    let oBody = {};
-    let oOption = {};
-    let oQuery = {};
-    if (sJwt) {
-      let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
-    }
-  };
-
-  cRefresh();
-
   let cHandleClick = () => {
     cSetState({ ...oState, open: true });
   };

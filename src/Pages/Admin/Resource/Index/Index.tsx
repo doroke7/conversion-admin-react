@@ -29,4 +29,4 @@ function Index(oProps: any): any {
     </Fade>
   );
 }
-export default wrappers.admin.title(Index);
+export default wrappers.admin.authenticator(wrappers.admin.title(Index));

@@ -79,11 +79,17 @@ function Pannel(oProps: any): any {
       cSetState({ ...oState, loading: true, pannelAnimation: true });
 
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
-      oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
-
+      let sJwt = oResponse?.headers?.authorization ?? '';
       if (oResponse && oResponse?.data?.code <= -1) {
         throw new Exception(oResponse?.data?.message ?? '', oResponse?.data?.code ?? 0);
       }
+
+      if (!sJwt) {
+        throw new Exception('接口缺少令牌', -2);
+      }
+
+      Helpers.Authentication.setJwt(sJwt);
+      oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
 
       if (oResponse && oResponse?.data?.code >= 1) {
         let oMessage = {
