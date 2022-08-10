@@ -4,6 +4,7 @@ const APP: any = {
   VERSION: process.env.APP_VERSION,
   VER: process.env.APP_VER ?? '1.7.0',
   ENV: process.env.APP_ENV ?? 'MASTER',
+  AUTHENTICATOR: process.env.AUTHENTICATOR ?? true,
   APP_IDS: [
     {
       app_id: 1,

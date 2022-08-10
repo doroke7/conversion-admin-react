@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Sdks from '@/Sdks';
 import Helpers from '@/Helpers';
+import CONFIGS from '@/CONFIGS';
 
 interface Props {
   children?: any;
@@ -13,16 +14,18 @@ let authenticator = (Component: any): any => {
     let bAuthenticator = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
 
-    if (bAuthenticator) {
-      let sJwt = Helpers.Authentication.getJwt() ?? '';
-      if (sJwt == '' && aRedirections[1]) {
-        oHistory.push(aRedirections[1]);
-      }
-
-      if (sJwt) {
-        let oResponse = Sdks.Admin.Authentication.Authenticator.postRefresh();
+    if (CONFIGS.APP.AUTHENTICATOR) {
+      if (bAuthenticator) {
+        let sJwt = Helpers.Authentication.getJwt() ?? '';
+        if (sJwt == '' && aRedirections[1]) {
+          oHistory.push(aRedirections[1]);
+        }
+        if (sJwt) {
+          let oResponse = Sdks.Admin.Authentication.Authenticator.postRefresh();
+        }
       }
     }
+
     return <Component {...oProps}></Component>;
   }
 
