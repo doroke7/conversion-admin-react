@@ -100,6 +100,10 @@ function Pannel(oProps: any): any {
       }
 
       if (oResponse) {
+        /*
+         * NOTE: 把 setTimeout 写成 “同步函数” 做法
+           NOTE: await 只是语法糖，看起来像同步，事实上底层运作依然是异步
+        */
         await new Promise((cResolve) => setTimeout(cResolve, 300));
         oHistory.push('/admin/resource');
         events.admin.emit('Progress-onProgress', { value: 98, status: true });
