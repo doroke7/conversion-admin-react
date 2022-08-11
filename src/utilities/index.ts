@@ -1,3 +1,4 @@
+import appIdPageLimit from './appIdPageLimit/';
 import cCount from './count/';
 import cDetermineSequence from './determineSequence/';
 import cIsDragonOrTiger from './isDragonOrTiger/';
@@ -21,6 +22,7 @@ import cParNumber from './parNumber/';
 import cDeTree from './deTree/';
 import deTree from './deTree/';
 import randString from './randString/';
+import path from './path/';
 
 export {
   selectType,
@@ -47,6 +49,8 @@ export {
 };
 
 export default {
+  path,
+  appIdPageLimit,
   deTree,
   randString
 };

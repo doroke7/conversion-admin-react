@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRouteMatch, useParams } from 'react-router-dom';
+import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 interface Props {
   children?: any;
@@ -13,8 +13,13 @@ let tab = (Component: any): any => {
   function Wrapper(oProps: any) {
     let Icon = oProps.Icon ?? <></>;
     console.info('Tab-Index');
+    let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams = useParams();
+    console.info(oLocation);
+    console.info(oRouteMatch);
+    console.info(oParams);
+
     useEffect(() => {
       console.info('Tab-useEffect');
       return () => {};

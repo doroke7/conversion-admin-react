@@ -45,10 +45,14 @@ function Navigation(oProps: any) {
     let cClickLink = (oLink) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
-
+      let oParams = {
+        appId: CONFIGS.APPS[oState.index].id ?? '',
+        page: 1,
+        limit: 10
+      };
       let oTabOfLink = {
         id: oLink.id,
-        path: oLink.path,
+        path: utilities.path(oLink.path, oParams),
         query: '',
         text: oLink.text,
         icon: oLink.icon,
@@ -189,9 +193,15 @@ function Navigation(oProps: any) {
       if (Object.prototype.hasOwnProperty.call(oMenu, 'menus') && oMenu.menus.length >= 1) {
         return;
       }
+
+      let oParams = {
+        appId: CONFIGS.APPS[oState.index].id ?? '',
+        page: 1,
+        limit: 10
+      };
       let oTabOfMenu = {
         id: oMenu.id,
-        path: oMenu.path,
+        path: utilities.path(oMenu.path, oParams),
         query: '',
         text: oMenu.text,
         icon: oMenu.icon,

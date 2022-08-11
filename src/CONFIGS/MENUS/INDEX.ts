@@ -10,14 +10,14 @@ let MENUS: any = [
         id: 11,
         text: '会员列表',
         description: '会员列表',
-        path: '/admin/resource/app-user/index',
+        path: '/admin/resource/app-user/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'AssignmentIndOutlinedIcon'
       },
       {
         id: 12,
         text: '订单列表',
         description: '订单列表',
-        path: '/admin/resource/order-info/index',
+        path: '/admin/resource/order-info/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'PlaylistAddCheckOutlinedIcon'
       }
     ]
@@ -33,14 +33,14 @@ let MENUS: any = [
         id: 31,
         text: '平台配置',
         description: '平台配置',
-        path: '/admin/resource/config/index',
+        path: '/admin/resource/config/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'BorderAllOutlinedIcon'
       },
       {
         id: 32,
         text: '商品列表',
         description: '商品列表',
-        path: '/admin/resource/product-info/index',
+        path: '/admin/resource/product-info/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'LocalAtmOutlinedIcon'
       }
     ]
@@ -56,14 +56,14 @@ let MENUS: any = [
         id: 51,
         text: '剧集列表',
         description: '剧集列表',
-        path: '/admin/resource/vod/index',
+        path: '/admin/resource/vod/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'VideocamOutlinedIcon'
       },
       {
         id: 52,
         text: '域名列表',
         description: '域名列表',
-        path: '/admin/resource/domain-name/index',
+        path: '/admin/resource/domain-name/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'CloudDoneOutlinedIcon'
       }
     ]
@@ -79,35 +79,35 @@ let MENUS: any = [
         id: 21,
         text: '首页广告',
         description: '首页广告',
-        path: '/admin/resource/advertisement1/index',
+        path: '/admin/resource/advertisement1/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'DehazeIcon'
       },
       {
         id: 22,
         text: '跑马广告',
         description: '跑马广告',
-        path: '/admin/resource/advertisement2/index',
+        path: '/admin/resource/advertisement2/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'DehazeIcon'
       },
       {
         id: 23,
         text: '轮播广告',
         description: '轮播广告',
-        path: '/admin/resource/advertisement3/index',
+        path: '/admin/resource/advertisement3/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'DehazeIcon'
       },
       {
         id: 24,
         text: '公告广告',
         description: '公告广告',
-        path: '/admin/resource/advertisement4/index',
+        path: '/admin/resource/advertisement4/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'DehazeIcon'
       },
       {
         id: 26,
         text: '插屏广告',
         description: '插屏广告',
-        path: '/admin/resource/advertisement5/index',
+        path: '/admin/resource/advertisement5/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'DehazeIcon'
       }
     ]

@@ -19,7 +19,7 @@ let aRoutes = [
     routes: [
       // 嵌套路由必须 使用 exact=false
       {
-        path: '/app-user/index',
+        path: '/app-user/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-用户列表',
         Icon: AccountCircleTwoToneIcon,
         Component: Admin.Resource.AppUser.Index,
@@ -29,7 +29,7 @@ let aRoutes = [
         exact: false
       },
       {
-        path: '/order-info/index',
+        path: '/order-info/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-订单列表',
         Icon: ListAltTwoToneIcon,
         Component: Admin.Resource.OrderInfo.Index,
