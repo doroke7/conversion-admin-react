@@ -59,6 +59,10 @@ let authenticator = (Component: any): any => {
       if (CONFIGS.APP.AUTHENTICATOR && bAuthenticator) {
         events.admin.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
+        let oInterval = setInterval(cRefresh, 10 * 60 * 1000);
+        return () => {
+          clearInterval(oInterval);
+        };
         // events.admin.emit('Progress-onProgress', { value: 90, status: true });
       }
     }, []);
@@ -66,7 +70,6 @@ let authenticator = (Component: any): any => {
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    console.info(oState);
     return oState.status ? <Component {...oProps}></Component> : <></>;
   }
 
