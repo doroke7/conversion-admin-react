@@ -57,7 +57,7 @@ function Pannel(oProps: any): any {
     cSetState({ ...oState, password: sPassword });
   };
 
-  let SignIn = async () => {
+  let cSignIn = async () => {
     try {
       if (!oState.name) {
         throw new Exception('请输入管理用户名称', -1);
@@ -76,8 +76,6 @@ function Pannel(oProps: any): any {
       }
       events.admin.emit('Progress-onProgress', { value: 0, status: true });
 
-      cSetState({ ...oState, loading: true, pannelAnimation: true });
-
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       let sJwt = oResponse?.headers?.authorization ?? '';
       if (oResponse && oResponse?.data?.code <= -1) {
@@ -87,6 +85,7 @@ function Pannel(oProps: any): any {
       if (!sJwt) {
         throw new Exception('接口缺少令牌', -2);
       }
+      cSetState({ ...oState, loading: true, pannelAnimation: true });
 
       Helpers.Authentication.setJwt(sJwt);
       oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
@@ -99,10 +98,11 @@ function Pannel(oProps: any): any {
         };
         events.admin.emit('Alerts-onAlert', oMessage);
       }
-      events.admin.emit('Progress-onProgress', { value: 98, status: true });
 
       if (oResponse) {
+        await new Promise((cResolve) => setTimeout(cResolve, 300));
         oHistory.push('/admin/resource');
+        events.admin.emit('Progress-onProgress', { value: 98, status: true });
       }
     } catch (oException) {
       let oMessage = {
@@ -113,13 +113,16 @@ function Pannel(oProps: any): any {
       events.admin.emit('Alerts-onAlert', oMessage);
       events.admin.emit('Progress-onProgress', { value: 0, status: false });
     } finally {
-      cSetState({ ...oState, loading: false });
+      cSetState((oOldState) => {
+        let oNewState = { ...oOldState, loading: false };
+        return oNewState;
+      });
     }
   };
 
   let onKeyPress = (oEvent: any) => {
     if (ENTER_CODE === oEvent.charCode) {
-      SignIn();
+      cSignIn();
     }
   };
 
@@ -153,7 +156,7 @@ function Pannel(oProps: any): any {
         variant="outlined"
         onKeyPress={onKeyPress}
       />
-      <Button onClick={SignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
+      <Button onClick={cSignIn} className={oClasses.button} variant="contained" color="primary" fullWidth>
         登入
       </Button>
       <div className={oClasses.forgetPasswordAndSignup}></div>
