@@ -82,7 +82,7 @@
 ```files
 .
 ├── src                      
-│   ├── actions                     Redux-action 定义处(包含 前台,后台,使用)
+│   ├── actions                     Redux-action 定义处(包含 前台,后台,使用)， 早期把异步Axios 写在 action 里面
 │   │   ├── admin                   控制器(后台使用的 API)
 │   │   ├── service                 控制器(前台使用的 API)
 │   │   │   
