@@ -23,9 +23,11 @@ function AlertOfApps(oProps: any) {
   let oClasses = style(void 0);
 
   let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+
   let [oState, cSetState] = React.useState<any>({
     shake: false
   });
+
   let aApps = oProps.apps ?? [];
   let mLink = oProps.link ?? null;
   let mMenu = oProps.menu ?? null;
@@ -89,7 +91,7 @@ function AlertOfApps(oProps: any) {
             )}{' '}
             {/* 选了其中一个 APP 后，不不能再选空 APP了*/}
             {aApps.map((oApp: any, iIndexOfApp: any) => (
-              <MenuItem key={iIndexOfApp} value={iIndexOfApp}>
+              <MenuItem key={iIndexOfApp} value={oApp.id}>
                 {oApp.name}
               </MenuItem>
             ))}

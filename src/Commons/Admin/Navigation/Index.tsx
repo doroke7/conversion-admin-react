@@ -243,10 +243,18 @@ function Navigation(oProps: any) {
   }, [oState.tabs, oState.open, oState.index]);
 
   useEffect(() => {
-    let cClickApp = (iIndex) => {
-      let oApp = CONFIGS.APPS[iIndex] ?? null;
-      let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, oApp?.id ?? -1) ?? [];
-      cSetState({ ...oState, index: iIndex, tabs: aTabs, value: -1 });
+    let cClickApp = (iAppId) => {
+      let aApps = CONFIGS.APPS ?? [];
+      let iIndex = 0;
+      let iResultIndex = 0;
+      for (iIndex = 0; iIndex < aApps.length; iIndex++) {
+        if (aApps[iIndex].id == iAppId) {
+          iResultIndex = iIndex;
+          break;
+        }
+      }
+      let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
+      cSetState({ ...oState, index: iResultIndex, tabs: aTabs, value: -1 });
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听

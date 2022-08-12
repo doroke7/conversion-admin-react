@@ -24,11 +24,11 @@ function Apps(oProps: any) {
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.iconColors ?? [];
 
-  let cHandleClick = (sIndex) => {
+  let cHandleClick = (iAppId) => {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
-      events.admin.emit('Navigation-onClickApp', sIndex);
+      events.admin.emit('Navigation-onClickApp', iAppId);
     };
   };
 
@@ -42,7 +42,7 @@ function Apps(oProps: any) {
             className={oClasses.listItem}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleClick(iIndexOfApp)}>
+            onClick={cHandleClick(oApp.id)}>
             <Icon
               className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0])}
               name={oApp.name}
