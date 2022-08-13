@@ -26,7 +26,7 @@ const style = makeStyles((oTheme: Theme) =>
       color: oTheme.palette.background.paper
     },
     iconAnimation: {
-      animation: '$rotation 1.2s cubic-bezier(.78,.01,.01,.78) 0s 1 reverse'
+      animation: '$rotation 1.2s cubic-bezier(.78,.01,.01,.78) 0s 1'
     },
     '@keyframes rotation': {
       '0%': {
