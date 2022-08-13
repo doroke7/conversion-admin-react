@@ -110,8 +110,13 @@ function Navigation(oProps: any) {
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
 
-      let oTab = aTabs[iValue];
-      oHistory.push(oTab.path);
+      if (aTabs.length >= 1) {
+        let oTab = aTabs[iValue];
+        oHistory.push(oTab.path);
+      }
+      if (aTabs.length == 0) {
+        oHistory.push('/admin/resource');
+      }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {

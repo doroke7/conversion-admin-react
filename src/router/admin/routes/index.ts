@@ -7,6 +7,7 @@ import { Admin } from '@/Pages';
 
 let aRoutes = [
   {
+    id: '1-0-0',
     path: '/admin',
     title: '影视',
     Icon: null,
@@ -17,6 +18,7 @@ let aRoutes = [
     routes: []
   },
   {
+    id: '2-0-0',
     path: '/admin/resource',
     title: '影视系后台系统',
     Icon: null,
@@ -29,6 +31,7 @@ let aRoutes = [
     routes: [
       // 嵌套路由必须 使用 exact=false
       {
+        id: '2-1-0',
         path: '',
         title: '影视系',
         Icon: AccountCircleTwoToneIcon,
@@ -39,6 +42,7 @@ let aRoutes = [
         exact: true
       },
       {
+        id: '2-2-0',
         path: '/app-user/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-用户列表',
         Icon: AccountCircleTwoToneIcon,
@@ -49,6 +53,7 @@ let aRoutes = [
         exact: false
       },
       {
+        id: '2-3-0',
         path: '/order-info/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-订单列表',
         Icon: ListAltTwoToneIcon,
@@ -56,6 +61,7 @@ let aRoutes = [
         exact: false
       },
       {
+        id: '2-4-0',
         path: '/*/app-id/:appId/page/:page/limit/:limit',
         title: '分页未定义',
         Icon: ReportIcon,
@@ -63,6 +69,7 @@ let aRoutes = [
         exact: false
       },
       {
+        id: '2-5-0',
         path: '/*',
         title: '分页未定义',
         Icon: ReportIcon,
@@ -72,6 +79,7 @@ let aRoutes = [
     ]
   },
   {
+    id: '3-0-0',
     path: '/admin/authentication/authenticator/sign-in',
     title: '登入系统',
     Icon: null,
@@ -82,6 +90,7 @@ let aRoutes = [
     routes: []
   },
   {
+    id: '4-0-0',
     path: '/admin/*',
     title: '页面不存在',
     Icon: null,
