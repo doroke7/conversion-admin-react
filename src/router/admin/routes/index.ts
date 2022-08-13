@@ -56,6 +56,13 @@ let aRoutes = [
         exact: false
       },
       {
+        path: '/*/app-id/:appId/page/:page/limit/:limit',
+        title: '分页未定义',
+        Icon: ReportIcon,
+        Component: Admin.Resource.None.Index,
+        exact: false
+      },
+      {
         path: '/*',
         title: '分页未定义',
         Icon: ReportIcon,
