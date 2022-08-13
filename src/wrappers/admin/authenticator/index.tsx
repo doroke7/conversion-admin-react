@@ -56,10 +56,10 @@ let authenticator = (Component: any): any => {
         }
         cSetState({ status: true });
       };
-      if (CONFIGS.APP.AUTHENTICATOR && bAuthenticator) {
+      if (CONFIGS.JWT.AUTHENTICATOR && bAuthenticator) {
         events.admin.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
-        let oInterval = setInterval(cRefresh, 10 * 60 * 1000);
+        let oInterval = setInterval(cRefresh, CONFIGS.JWT.TIME ?? 60 * 1000);
         return () => {
           clearInterval(oInterval);
         };
