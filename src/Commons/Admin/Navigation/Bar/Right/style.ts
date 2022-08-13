@@ -14,16 +14,19 @@ const style = makeStyles((oTheme: Theme) =>
       width: oTheme.spacing(5),
       padding: oTheme.spacing(0),
       marginRight: oTheme.spacing(1),
-      backgroundColor: pink['A700'],
+      backgroundColor: oTheme.palette.background.paper,
       '&:hover': {
-        backgroundColor: pink['800']
+        backgroundColor: grey[300]
       },
-      border: `1px solid ${oTheme.palette.background.paper}`,
+      border: '1px solid ' + pink['A700'],
       boxSizing: 'border-box'
     },
 
     icon: {
-      color: oTheme.palette.background.paper
+      verticalAlign: 'middle',
+      fill: 'currentColor',
+      overflow: 'hidden',
+      color: pink['A700']
     },
     iconAnimation: {
       animation: '$rotation 1.2s cubic-bezier(.78,.01,.01,.78) 0s 1'
