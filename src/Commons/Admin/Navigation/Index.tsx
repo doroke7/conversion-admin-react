@@ -42,57 +42,6 @@ function Navigation(oProps: any) {
   });
 
   useEffect(() => {
-    let cClickLink = (oLink) => {
-      let aTabsOfStateRows = oState.tabs;
-      let aTabs = [...oState.tabs];
-      let oParams = {
-        appId: CONFIGS.APPS[oState.index].id ?? '',
-        page: 1,
-        limit: 10
-      };
-      let oTabOfLink = {
-        id: oLink.id,
-        path: utilities.path(oLink.path, oParams),
-        query: '',
-        text: oLink.text,
-        icon: oLink.icon,
-        content: oLink.description
-      };
-      let iValue = oState.value;
-      let bExist = false;
-      if (aTabsOfStateRows.length >= 1) {
-        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
-          if (aTabsOfStateRows[iIndex]['id'] == oTabOfLink['id']) {
-            iValue = iIndex;
-            bExist = true;
-            break;
-          }
-        }
-      }
-
-      if (bExist) {
-        // DO NOTHING
-      }
-      if (!bExist) {
-        aTabs = aTabs.concat(oTabOfLink);
-        iValue = aTabs.length - 1;
-      }
-      let oApp = CONFIGS.APPS[oState.index];
-
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
-
-      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
-      oHistory.push(oTabOfLink.path);
-    };
-
-    let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);
-    // 组件销毁前移除事件监听
-    return () => {
-      events.admin.removeListener('Navigation-onClickLink', cClickLink);
-    };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
-
-  useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
       let aTabs = [...oState.tabs];
 
@@ -197,12 +146,79 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useEffect(() => {
-    let cClickMenu = (oMenu) => {
+  useLayoutEffect(() => {
+    let cOnRoute = (oRoute: any) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
+      let oParams = {
+        appId: CONFIGS.APPS[oState.index].id ?? '',
+        page: 1,
+        limit: 10
+      };
+      let oTab = {
+        id: oRoute.id,
+        path: utilities.path(oRoute.path, oParams),
+        query: '',
+        text: oRoute.text ?? '',
+        icon: oRoute.icon ?? ''
+      };
+      let iValue = oState.value;
+      let bExist = false;
+      if (aTabsOfStateRows.length >= 1) {
+        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
+          if (aTabsOfStateRows[iIndex]['id'] == oTab.id) {
+            iValue = iIndex;
+            aTabsOfStateRows[iIndex]['text'] = oRoute.text;
+            aTabsOfStateRows[iIndex]['icon'] = oRoute.icon;
+            bExist = true;
+            break;
+          }
+        }
+      }
+
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs = aTabs.concat(oTab);
+        iValue = aTabs.length - 1;
+      }
+      let oApp = CONFIGS.APPS[oState.index];
+
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
+
+      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
+    };
+
+    let oEventEmitter: any = events.admin.addListener('Navigation-onRoute', cOnRoute);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.admin.removeListener('Navigation-onRoute', cOnRoute);
+    };
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+
+  useEffect(() => {
+    let cClickLink = (oLink) => {
+      let oParams = {
+        appId: CONFIGS.APPS[oState.index].id ?? '',
+        page: 1,
+        limit: 10
+      };
+
+      oHistory.push(utilities.path(oLink.path, oParams));
+    };
+
+    let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.admin.removeListener('Navigation-onClickLink', cClickLink);
+    };
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+
+  useEffect(() => {
+    let cClickMenu = (oMenu) => {
       // 如果 Menu 旗下还有子 menu 就不做事
-      if (Object.prototype.hasOwnProperty.call(oMenu, 'menus') && oMenu.menus.length >= 1) {
+      if (oMenu?.menus && Array.isArray(oMenu?.menus) && oMenu.menus.length >= 1) {
         return;
       }
 
@@ -219,29 +235,6 @@ function Navigation(oProps: any) {
         icon: oMenu.icon,
         content: oMenu.description
       };
-      let iValue = oState.value;
-      let bExist = false;
-      if (aTabsOfStateRows.length >= 1) {
-        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
-          if (aTabsOfStateRows[iIndex]['id'] == oTabOfMenu['id']) {
-            iValue = iIndex;
-            bExist = true;
-            break;
-          }
-        }
-      }
-
-      if (bExist) {
-        // DO NOTHING
-      }
-      if (!bExist) {
-        aTabs = aTabs.concat(oTabOfMenu);
-        iValue = aTabs.length - 1;
-      }
-      let oApp = CONFIGS.APPS[oState.index];
-
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
-      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
 
       if (oTabOfMenu) {
         oHistory.push(oTabOfMenu.path);

@@ -20,7 +20,14 @@ function Index(oProps: any): any {
           <Switch>
             {aRoutes.map((oRoute, sIndex) => (
               <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
-                <oRoute.Component routes={oRoute.routes} Icon={oRoute.Icon} title={oRoute.title} />
+                <oRoute.Component
+                  routes={oRoute.routes}
+                  icon={oRoute.icon}
+                  title={oRoute.title}
+                  id={oRoute.id}
+                  name={oRoute.name}
+                  path={oMatch.url + oRoute.path}
+                />
               </Route>
             ))}
           </Switch>
@@ -29,4 +36,4 @@ function Index(oProps: any): any {
     </Fade>
   );
 }
-export default wrappers.admin.authenticator(wrappers.admin.tab(Index));
+export default wrappers.admin.authenticator(Index);

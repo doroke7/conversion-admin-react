@@ -19,7 +19,10 @@ interface Params {
 
 let tab = (Component: any): any => {
   function Wrapper(oProps: any) {
-    let Icon = oProps.Icon ?? <></>;
+    let sIcon = oProps.icon ?? '';
+    let sId = oProps.id ?? '0-0-0';
+    let sName = oProps.name ?? '未定义';
+    let sPath = oProps.path ?? '';
     let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
@@ -29,6 +32,21 @@ let tab = (Component: any): any => {
       if (iIndex == -1 && parseInt(oParams?.appId) >= 1) {
         let iAppId = parseInt(oParams?.appId) ?? 0;
         events.admin.emit('Navigation-onClickApp', iAppId);
+      }
+      return () => {};
+    }, [iIndex, oParams.appId]);
+
+    useEffect(() => {
+      if (iIndex >= 0 && parseInt(oParams?.appId) >= 1) {
+        let iAppId = parseInt(oParams?.appId) ?? 0;
+        let oRoute = {
+          id: sId,
+          text: sName,
+          path: sPath,
+          icon: sIcon,
+          query: ''
+        };
+        events.admin.emit('Navigation-onRoute', oRoute);
       }
       return () => {};
     }, [iIndex, oParams.appId]);
