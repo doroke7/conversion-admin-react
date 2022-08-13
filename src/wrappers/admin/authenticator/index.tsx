@@ -23,6 +23,12 @@ let authenticator = (Component: any): any => {
       let cRefresh = async () => {
         let sJwt = Helpers.Authentication.getJwt() ?? '';
         if (sJwt == '' && aRedirections[0]) {
+          let oMessage = {
+            code: -1,
+            message: '令牌不存在, 即将跳转登入页面',
+            time: 3 * 1000
+          };
+          events.admin.emit('Alerts-onAlert', oMessage);
           oHistory.push(aRedirections[0]);
         }
         if (sJwt) {

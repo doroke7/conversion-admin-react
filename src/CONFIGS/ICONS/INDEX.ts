@@ -31,7 +31,17 @@ import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import PhonelinkIcon from '@material-ui/icons/Phonelink';
 import BuildIcon from '@material-ui/icons/Build';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import ErrorTwoToneIcon from '@material-ui/icons/ErrorTwoTone';
+import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
+import AccountBoxTwoToneIcon from '@material-ui/icons/AccountBoxTwoTone';
+import EventNoteTwoToneIcon from '@material-ui/icons/EventNoteTwoTone';
+import EventNoteIcon from '@material-ui/icons/EventNote';
 let ICONS: any = {
+  EventNoteIcon: EventNoteIcon,
+  EventNoteTwoToneIcon: EventNoteTwoToneIcon,
+  AccountBoxTwoToneIcon: AccountBoxTwoToneIcon,
+  AccountCircleTwoToneIcon: AccountCircleTwoToneIcon,
+  ErrorTwoToneIcon: ErrorTwoToneIcon,
   DraftsOutlinedIcon: DraftsOutlinedIcon,
   FilterDramaOutlinedIcon: FilterDramaOutlinedIcon,
   PersonOutlinedIcon: PersonOutlinedIcon,

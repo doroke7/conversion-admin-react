@@ -38,7 +38,7 @@ function App(oProps: any) {
               <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
                 <oRoute.Component
                   routes={oRoute.routes}
-                  Icon={oRoute.Icon}
+                  icon={oRoute.icon}
                   title={oRoute.title}
                   authenticator={oRoute.authenticator}
                   redirections={oRoute.redirections}
