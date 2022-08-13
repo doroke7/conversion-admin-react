@@ -10,7 +10,7 @@ let aRoutes = [
     path: '/admin/resource',
     title: '影视系后台系统',
     Icon: null,
-    Component: Admin.Resource.Index,
+    Component: Admin.Resource._,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
     authenticator: true,
     redirections: ['/admin/authentication/authenticator/sign-in', null],
@@ -18,6 +18,16 @@ let aRoutes = [
     // redirections[1]: authenticator success 后 重定向的页面，null 表示不重定向
     routes: [
       // 嵌套路由必须 使用 exact=false
+      {
+        path: '',
+        title: '影视系',
+        Icon: AccountCircleTwoToneIcon,
+        Component: Admin.Resource.Index,
+        // Component: React.lazy(() =>
+        //   import('@/Pages/Admin/Resource/AppUser/Index').then((oModule: any) => ({ default: oModule.Index }))
+        // ),
+        exact: true
+      },
       {
         path: '/app-user/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-用户列表',

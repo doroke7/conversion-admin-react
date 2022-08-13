@@ -15,8 +15,18 @@ function Index(oProps: any): any {
   return (
     // <Fade> 效果，必须字元素只有一个
     <Fade in={true} timeout={200}>
-      <div></div>
+      <div>
+        <Commons.Admin.Navigation>
+          <Switch>
+            {aRoutes.map((oRoute, sIndex) => (
+              <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
+                <oRoute.Component routes={oRoute.routes} Icon={oRoute.Icon} title={oRoute.title} />
+              </Route>
+            ))}
+          </Switch>
+        </Commons.Admin.Navigation>
+      </div>
     </Fade>
   );
 }
-export default wrappers.admin.tab(wrappers.admin.title(Index));
+export default wrappers.admin.authenticator(wrappers.admin.tab(wrappers.admin.title(Index)));

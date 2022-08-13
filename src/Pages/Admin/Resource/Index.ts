@@ -5,5 +5,6 @@ import Config from './Config/Index';
 import Vod from './Vod/Index';
 import None from './None/Index';
 import Index from './Index/Index';
+import _ from './_/Index';
 
-export default { AppUser, OrderInfo, Administrator, Config, Vod, None, Index };
+export default { AppUser, OrderInfo, Administrator, Config, Vod, None, Index, _ };
