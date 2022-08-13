@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -41,7 +41,7 @@ function Navigation(oProps: any) {
     menu: null
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cClickLink = (oLink) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
@@ -92,7 +92,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
       let aTabs = [...oState.tabs];
 
@@ -116,7 +116,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
       let aTabs = [...oState.tabs];
 
@@ -135,7 +135,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
       let aTabs = [];
       let iValue = -1;
@@ -151,7 +151,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
       let oTab = oState.tabs[iValue] ?? null;
@@ -165,7 +165,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.value, oState.open, oState.index, oState.alert, oState.tabs]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cPreClickLink = (oLink: any) => {
       cSetState({ ...oState, alert: true, link: oLink, menu: null });
     };
@@ -175,7 +175,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
       cSetState({ ...oState, alert: true, link: null, menu: oMenu });
     };
@@ -185,7 +185,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let cClickMenu = (oMenu) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
