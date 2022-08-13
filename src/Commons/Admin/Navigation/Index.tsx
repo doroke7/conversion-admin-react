@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useLayoutEffect, useLayoutEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -41,7 +41,7 @@ function Navigation(oProps: any) {
     menu: null
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cClickLink = (oLink) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
@@ -92,7 +92,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cRemoveTab = (iIndex: number) => {
       let aTabs = [...oState.tabs];
 
@@ -116,7 +116,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
       let aTabs = [...oState.tabs];
 
@@ -135,7 +135,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
       let aTabs = [];
       let iValue = -1;
@@ -151,7 +151,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
       let oTab = oState.tabs[iValue] ?? null;
@@ -165,7 +165,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.value, oState.open, oState.index, oState.alert, oState.tabs]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cPreClickLink = (oLink: any) => {
       cSetState({ ...oState, alert: true, link: oLink, menu: null });
     };
@@ -175,7 +175,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
       cSetState({ ...oState, alert: true, link: null, menu: oMenu });
     };
@@ -185,7 +185,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cClickMenu = (oMenu) => {
       let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
@@ -242,7 +242,7 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cClickApp = (iAppId) => {
       let aApps = CONFIGS.APPS ?? [];
       let iIndex = 0;
@@ -297,7 +297,6 @@ function Navigation(oProps: any) {
                 <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
                 <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
                   <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
-                  {/* 点击右边的 App-Icon */}
                 </IconButton>
               </div>
               <Divider className={oClasses.divider} />
