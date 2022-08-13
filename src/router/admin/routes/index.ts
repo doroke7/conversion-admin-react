@@ -7,6 +7,16 @@ import { Admin } from '@/Pages';
 
 let aRoutes = [
   {
+    path: '/admin',
+    title: '影视',
+    Icon: null,
+    Component: Admin._,
+    exact: true,
+    authenticator: false,
+    redirections: [null, null],
+    routes: []
+  },
+  {
     path: '/admin/resource',
     title: '影视系后台系统',
     Icon: null,
