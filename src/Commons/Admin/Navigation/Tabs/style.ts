@@ -16,6 +16,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
         }
       }
     },
+    mainNone: {
+      display: 'none'
+    },
     tabs: {
       '& .MuiTabScrollButton-root': {
         opacity: 1,
@@ -78,6 +81,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
     iconButton: {},
     tooltip: {
       background: 'linear-gradient(195deg, ' + grey[900] + ' 30%, ' + grey[800] + ' 90%)'
+    },
+    emptyNone: {
+      display: 'none'
     }
   })
 );

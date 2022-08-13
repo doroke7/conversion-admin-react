@@ -1,14 +1,16 @@
 import React from 'react';
+import clsx from 'clsx';
 import CONFIGS from '@/CONFIGS';
 
 import Icon from './Icon/Index';
 import style from './style';
 
-function Empty() {
-  const oClasses: any = style(void 0);
+function Empty(oProps: any) {
+  let oClasses: any = style(void 0);
+  let sClssName = oProps.className ?? '';
 
   return (
-    <div className={oClasses.root}>
+    <div className={clsx(oClasses.root, sClssName)}>
       <Icon></Icon>
       <div className={oClasses.text}>—{CONFIGS.APP.NAME}—</div>
     </div>

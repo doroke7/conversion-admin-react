@@ -8,24 +8,21 @@ import style from './style';
 
 interface Props {
   children?: React.ReactNode;
-  index: any;
-  value: any;
 }
 
 function TabPanel(props: Props) {
   let oClasses: any = style(void 0);
 
-  let { children, value, index, ...other } = props;
+  let { children, ...other } = props;
 
   return (
     <div
       role="tabpanel"
       className={oClasses.root}
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
+      id={'scrollable-auto-tabpanel-0'}
+      aria-labelledby={'scrollable-auto-tab-0'}
       {...other}>
-      {value === index && <Box className={oClasses.box}>{children}</Box>}
+      <Box className={oClasses.box}>{children}</Box>
     </div>
   );
 }
