@@ -16,7 +16,7 @@ function Icon(oProps: any) {
 
   return (
     <svg
-      className={clsx(oClasses.root, sClassName)}
+      className={clsx({}, sClassName)}
       viewBox="0 0 1024 1024"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

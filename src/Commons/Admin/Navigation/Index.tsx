@@ -109,6 +109,9 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
+
+      let oTab = aTabs[iValue];
+      oHistory.push(oTab.path);
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
@@ -128,6 +131,9 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
+      if (oTabRow) {
+        oHistory.push(oTabRow.path);
+      }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     return () => {
@@ -144,6 +150,7 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
+      oHistory.push('/admin/resource');
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     return () => {
