@@ -49,3 +49,13 @@
 1. code 系统错误改成 -3
 2. code 密码错误改成 -2
 3. code 长度够不够改成 -1
+
+
+/test            exact
+/test/a          .
+   /test/a       exact
+   /test/a/one   .
+   /test/a/two   .
+   /test/a/three .
+
+/test/b          .

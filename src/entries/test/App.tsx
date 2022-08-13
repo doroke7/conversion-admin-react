@@ -18,21 +18,39 @@ function Home() {
   );
 }
 
-function Topic() {
+function AA() {
   // The <Route> that rendered this component has a
   // path of `/topics/:topicId`. The `:topicId` portion
   // of the URL indicates a placeholder that we can
   // get from `useParams()`.
   let { topicId } = useParams();
+  let oRouteMatch = useRouteMatch();
 
   return (
     <div>
       <h3>{topicId}</h3>
+      <span>oRouteMatch={JSON.stringify(oRouteMatch)}</span>
     </div>
   );
 }
 
-function Topics() {
+function AB() {
+  // The <Route> that rendered this component has a
+  // path of `/topics/:topicId`. The `:topicId` portion
+  // of the URL indicates a placeholder that we can
+  // get from `useParams()`.
+  let { topicId } = useParams();
+  let oRouteMatch = useRouteMatch();
+
+  return (
+    <div>
+      <h3>{topicId}</h3>
+      <span>oRouteMatch={JSON.stringify(oRouteMatch)}</span>
+    </div>
+  );
+}
+
+function A() {
   // The `path` lets us build <Route> paths that are
   // relative to the parent route, while the `url` lets
   // us build relative links.
@@ -42,33 +60,49 @@ function Topics() {
 
   return (
     <div>
-      <h2>Topics</h2>
+      <h2>A</h2>
       <span>oRouteMatch={JSON.stringify(oRouteMatch)}</span>
       <ul>
         <li>
-          <Link to={`${url}/rendering`}>Rendering with React</Link>
+          <Link to={`${url}/one`}>1</Link>
         </li>
         <li>
-          <Link to={`${url}/components`}>Components</Link>
+          <Link to={`${url}/two`}>2</Link>
         </li>
         <li>
-          <Link to={`${url}/props-v-state`}>Props v. State</Link>
+          <Link to={`${url}/three`}>3</Link>
         </li>
       </ul>
 
       <Switch>
         <Route exact path={path}>
-          <h3>Please select a topic.</h3>
+          <h3>Please select a topic.{path}</h3>
         </Route>
-        <Route path={`${path}/:topicId`}>
-          <Topic />
+        <Route exact={false} path={`${path}/:topicId`}>
+          <AA />
         </Route>
       </Switch>
     </div>
   );
 }
 
-export default function App() {
+function B() {
+  // The `path` lets us build <Route> paths that are
+  // relative to the parent route, while the `url` lets
+  // us build relative links.
+  let oRouteMatch = useRouteMatch();
+  let path = oRouteMatch.path;
+  let url = oRouteMatch.url;
+
+  return (
+    <div>
+      <h2>B</h2>
+      <span>oRouteMatch={JSON.stringify(oRouteMatch)}</span>
+    </div>
+  );
+}
+
+function App() {
   return (
     <Router>
       <div>
@@ -77,7 +111,10 @@ export default function App() {
             <Link to="/test">Home</Link>
           </li>
           <li>
-            <Link to="/test/topics">Topics</Link>
+            <Link to="/test/a">A</Link>
+          </li>
+          <li>
+            <Link to="/test/b">B</Link>
           </li>
         </ul>
 
@@ -87,11 +124,16 @@ export default function App() {
           <Route exact path="/test">
             <Home />
           </Route>
-          <Route path="/test/topics">
-            <Topics />
+          <Route exact={false} path="/test/a">
+            <A />
+          </Route>
+          <Route exact={false} path="/test/b">
+            <B />
           </Route>
         </Switch>
       </div>
     </Router>
   );
 }
+
+export default App;
