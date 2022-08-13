@@ -104,78 +104,71 @@ function ScrollableTabs(oProps: any) {
   let iTabsLength = aTabs.length;
   return (
     <div className={oClasses.root}>
-      {iTabsLength >= 1 ? (
-        <>
-          <AppBar position="static" color="default">
-            <Tabs
-              className={oClasses.tabs}
-              value={iTabsValue}
-              onChange={cHandleChangeTab}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="scrollable"
-              scrollButtons="auto"
-              aria-label="scrollable auto tabs example">
-              {aTabs.map((oTab, sIndex) => (
-                <Tooltip
-                  onMouseEnter={cHandleMouseEnter(sIndex)}
-                  disableFocusListener
-                  disableTouchListener
+      <div className={clsx(null, { [oClasses.mainNone]: iTabsLength == 0 })}>
+        <AppBar position="static" color="default" component="div">
+          <Tabs
+            className={oClasses.tabs}
+            value={iTabsValue}
+            onChange={cHandleChangeTab}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example">
+            {aTabs.map((oTab, sIndex) => (
+              <Tooltip
+                onMouseEnter={cHandleMouseEnter(sIndex)}
+                disableFocusListener
+                disableTouchListener
+                key={sIndex}
+                open={oState.tooltips?.[sIndex] !== undefined && iTabsLength >= 11}
+                className={oClasses.toolTip}
+                title={oTab.text + ''}
+                placement="bottom"
+                arrow>
+                <Tab
+                  onContextMenu={cHandleContextmenu(sIndex)}
+                  onMouseLeave={cHandleMouseLeave(sIndex)}
+                  className={oClasses.tab}
                   key={sIndex}
-                  open={oState.tooltips?.[sIndex] !== undefined && iTabsLength >= 11}
-                  className={oClasses.toolTip}
-                  title={oTab.text + ''}
-                  placement="bottom"
-                  arrow>
-                  <Tab
-                    onContextMenu={cHandleContextmenu(sIndex)}
-                    onMouseLeave={cHandleMouseLeave(sIndex)}
-                    className={oClasses.tab}
-                    key={sIndex}
-                    label={
-                      <span>
-                        <ListItemIcon className={oClasses.listItemIcon}>
-                          <Components.Admin.Icon name={oTab.icon} />
-                        </ListItemIcon>
-                        <span
-                          className={clsx(oClasses.listITemText, {
-                            [oClasses.listITemText4]: iTabsLength >= 11 && iTabsLength < 12,
-                            [oClasses.listITemText3]: iTabsLength >= 12 && iTabsLength < 14,
-                            [oClasses.listITemText2]: iTabsLength >= 14 && iTabsLength < 15,
-                            [oClasses.listITemText1]: iTabsLength >= 15 && iTabsLength < 19,
-                            [oClasses.listITemText0]: iTabsLength >= 19
-                          })}>
-                          {oTab.text}
-                        </span>
-                        {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
-                        <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
-                          <CloseIcon />
-                        </IconButton>
+                  label={
+                    <span>
+                      <ListItemIcon className={oClasses.listItemIcon}>
+                        <Components.Admin.Icon name={oTab.icon} />
+                      </ListItemIcon>
+                      <span
+                        className={clsx(oClasses.listITemText, {
+                          [oClasses.listITemText4]: iTabsLength >= 11 && iTabsLength < 12,
+                          [oClasses.listITemText3]: iTabsLength >= 12 && iTabsLength < 14,
+                          [oClasses.listITemText2]: iTabsLength >= 14 && iTabsLength < 15,
+                          [oClasses.listITemText1]: iTabsLength >= 15 && iTabsLength < 19,
+                          [oClasses.listITemText0]: iTabsLength >= 19
+                        })}>
+                        {oTab.text}
                       </span>
-                    }
-                    id={'scrollable-auto-tab-' + sIndex}
-                    aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
-                  />
-                </Tooltip>
-              ))}
-            </Tabs>
-            <Dropdown
-              open={oState.contextMenu}
-              anchor={oState.anchor}
-              onClickAway={cHandleCloseContextmenu}
-              onRemoveTab={cHandleRemoveTab(oState.index)}
-              onRemoveOtherTabs={cHandleRemoveOtherTabs(oState.index)}
-              onRemoveAllTabs={cHandleRemoveAllTabs}></Dropdown>
-          </AppBar>
-          {aTabs.map((oTab, sIndex) => (
-            <TabPanel key={sIndex} value={iTabsValue} index={sIndex}>
-              {children}
-            </TabPanel>
-          ))}
-        </>
-      ) : (
-        <Empty></Empty>
-      )}
+                      {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
+                      <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
+                        <CloseIcon />
+                      </IconButton>
+                    </span>
+                  }
+                  id={'scrollable-auto-tab-' + sIndex}
+                  aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
+                />
+              </Tooltip>
+            ))}
+          </Tabs>
+          <Dropdown
+            open={oState.contextMenu}
+            anchor={oState.anchor}
+            onClickAway={cHandleCloseContextmenu}
+            onRemoveTab={cHandleRemoveTab(oState.index)}
+            onRemoveOtherTabs={cHandleRemoveOtherTabs(oState.index)}
+            onRemoveAllTabs={cHandleRemoveAllTabs}></Dropdown>
+        </AppBar>
+        <TabPanel>{children}</TabPanel>
+      </div>
+      <Empty className={clsx(null, { [oClasses.emptyNone]: iTabsLength >= 1 })}></Empty>
     </div>
   );
 }
