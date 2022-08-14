@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useLayoutEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -23,6 +23,7 @@ import Tabs from './Tabs/Index';
 import AlertOfApps from './AlertOfApps/Index';
 
 import style from './style';
+import { Params } from '@/types';
 
 let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
@@ -39,6 +40,8 @@ function Navigation(oProps: any) {
     menu: null,
     text: ''
   });
+
+  let oParams: Params = useParams();
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -262,16 +265,19 @@ function Navigation(oProps: any) {
   useLayoutEffect(() => {
     let cClickApp = (iAppId) => {
       let aApps = CONFIGS.APPS ?? [];
-      let iIndex = 0;
-      let iResultIndex = 0;
+      let iIndex;
+      let iResultIndex = -1;
       for (iIndex = 0; iIndex < aApps.length; iIndex++) {
         if (aApps[iIndex].id == iAppId) {
           iResultIndex = iIndex;
           break;
         }
       }
-      let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
-      cSetState({ ...oState, index: iResultIndex, tabs: aTabs, value: -1 });
+      if (iResultIndex != oState.index) {
+        let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
+        cSetState({ ...oState, index: iResultIndex, tabs: aTabs, value: -1 });
+        oHistory.push('/admin/resource');
+      }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听

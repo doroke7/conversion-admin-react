@@ -3,19 +3,7 @@ import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import Contexts from '@/Contexts';
 import events from '@/events';
-
-interface Props {
-  children?: any;
-}
-
-/*
- * NOTE: 小写，这是函数
- */
-interface Params {
-  appId: string;
-  page: string;
-  limit: string;
-}
+import { Params } from '@/types';
 
 let tab = (Component: any): any => {
   function Wrapper(oProps: any) {
@@ -52,7 +40,7 @@ let tab = (Component: any): any => {
         events.admin.emit('Navigation-onRoute', oRoute);
       }
       return () => {};
-    }, [oRouteMatch.url, iIndex]);
+    }, [oRouteMatch.url]);
     return <Component {...oProps}></Component>;
   }
 
