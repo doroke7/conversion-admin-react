@@ -12,7 +12,7 @@ import Helpers from '@/Helpers';
 
 import AlertOfRedis from './AlertOfRedis/Index';
 import Dropdown from './Dropdown/Index';
-import Icon from './Icon/Index';
+import RefreshIcon from './RefreshIcon/Index';
 import administrator from '@/images/administrator.png';
 
 import style from './style';
@@ -90,10 +90,10 @@ function Right(oProps: any) {
   return (
     <div className={oClasses.right}>
       <IconButton className={oClasses.iconButton} onClick={cHandleOpen}>
-        <Icon
+        <RefreshIcon
           className={clsx(oClasses.icon, {
             [oClasses.iconAnimation]: oState.rotating
-          })}></Icon>
+          })}></RefreshIcon>
       </IconButton>
       <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
       <div

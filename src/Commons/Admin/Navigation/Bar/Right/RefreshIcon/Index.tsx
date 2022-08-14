@@ -9,7 +9,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import cStyle from './style';
 
-function Icon(oProps: any) {
+function RefreshIcon(oProps: any) {
   let oClasses = cStyle();
 
   let sClassName = oProps.className ?? '';
@@ -28,4 +28,4 @@ function Icon(oProps: any) {
   );
 }
 
-export default Icon;
+export default RefreshIcon;
