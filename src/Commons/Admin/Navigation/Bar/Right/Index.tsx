@@ -13,6 +13,8 @@ import Helpers from '@/Helpers';
 import AlertOfRedis from './AlertOfRedis/Index';
 import Dropdown from './Dropdown/Index';
 import RefreshIcon from './RefreshIcon/Index';
+import AdministratorIcon from './AdministratorIcon/Index';
+
 import administrator from '@/images/administrator.png';
 
 import style from './style';
@@ -108,7 +110,9 @@ function Right(oProps: any) {
           }}
           className={oClasses.badge}
           variant="dot">
-          <Avatar className={oClasses.avatar} src={administrator}></Avatar>
+          <Avatar className={oClasses.avatar}>
+            <AdministratorIcon></AdministratorIcon>
+          </Avatar>
         </Badge>
       </div>
       <Dropdown
