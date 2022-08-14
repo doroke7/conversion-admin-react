@@ -25,7 +25,7 @@ function Index(oProps: any): any {
                   icon={oRoute.icon}
                   title={oRoute.title}
                   id={oRoute.id}
-                  name={oRoute.name}
+                  text={oRoute.text}
                   path={oMatch.url + oRoute.path}
                 />
               </Route>

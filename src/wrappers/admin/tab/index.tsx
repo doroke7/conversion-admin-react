@@ -21,7 +21,7 @@ let tab = (Component: any): any => {
   function Wrapper(oProps: any) {
     let sIcon = oProps.icon ?? '';
     let sId = oProps.id ?? '0-0-0';
-    let sName = oProps.name ?? '未定义';
+    let sText = oProps.text ?? '未定义';
     let sPath = oProps.path ?? '';
     let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
     let oLocation = useLocation();
@@ -41,7 +41,7 @@ let tab = (Component: any): any => {
         let iAppId = parseInt(oParams?.appId) ?? 0;
         let oRoute = {
           id: sId,
-          text: sName,
+          text: sText,
           path: sPath,
           icon: sIcon,
           query: ''
