@@ -160,7 +160,7 @@ function Navigation(oProps: any) {
         path: oRoute.path,
         url: oRoute.url,
         query: '',
-        text: (oRoute.text || oState.text) ?? '',
+        text: (oRoute.text ?? oState.text) || oState.text,
         icon: oRoute.icon ?? ''
       };
       if (oRoute.id == '2-4-0' || oRoute.id == '2-5-0') {
@@ -172,11 +172,12 @@ function Navigation(oProps: any) {
         for (let iIndex = 0; iIndex < aTabs.length; iIndex++) {
           if (aTabs[iIndex]['id'] == oTab.id) {
             iValue = iIndex;
-            aTabs[iIndex]['text'] = oTab.text;
-            aTabs[iIndex]['icon'] = oTab.icon;
-            aTabs[iIndex]['path'] = oTab.path;
-            if (aTabs[iIndex]['path'] == oTab) {
+            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+            if (aTabs[iIndex]['url'] != oTab.url) {
+              aTabs[iIndex]['text'] = oTab.text;
             }
+            aTabs[iIndex]['icon'] = oTab.icon;
+            aTabs[iIndex]['url'] = oTab.url;
 
             bExist = true;
             break;
