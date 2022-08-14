@@ -39,7 +39,11 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import HelpTwoToneIcon from '@material-ui/icons/HelpTwoTone';
 import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
+import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
+import WarningTwoToneIcon from '@material-ui/icons/WarningTwoTone';
 let ICONS: any = {
+  WarningTwoToneIcon: WarningTwoToneIcon,
+  ReportProblemTwoToneIcon: ReportProblemTwoToneIcon,
   ContactSupportTwoToneIcon: ContactSupportTwoToneIcon,
   HelpTwoToneIcon: HelpTwoToneIcon,
   ContactSupportIcon: ContactSupportIcon,
