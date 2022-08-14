@@ -118,7 +118,7 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue });
       let oTab = oState.tabs[iValue] ?? null;
       if (oTab) {
-        oHistory.push(oTab.path);
+        oHistory.push(oTab.url);
       }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickTab', cClickTab);
