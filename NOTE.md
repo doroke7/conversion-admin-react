@@ -50,3 +50,8 @@
 2. code 密码错误改成 -2
 3. code 长度够不够改成 -1
 
+
+## 初始REACT项目
+a. yarn create react-app frontend-react
+b. npx create-react-app frontend-react
+
