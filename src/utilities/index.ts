@@ -22,7 +22,6 @@ import cParNumber from './parNumber/';
 import cDeTree from './deTree/';
 import deTree from './deTree/';
 import randString from './randString/';
-import path from './path/';
 import url from './url/';
 
 export {
@@ -51,7 +50,6 @@ export {
 
 export default {
   url,
-  path,
   appIdPageLimit,
   deTree,
   randString
