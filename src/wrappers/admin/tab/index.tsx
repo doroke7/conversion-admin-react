@@ -53,7 +53,7 @@ let tab = (Component: any): any => {
         events.admin.emit('Navigation-onRoute', oRoute);
       }
       return () => {};
-    }, [iIndex, oParams.appId]);
+    }, []);
     return <Component {...oProps}></Component>;
   }
 

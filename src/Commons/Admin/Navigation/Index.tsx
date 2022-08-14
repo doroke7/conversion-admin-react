@@ -62,7 +62,7 @@ function Navigation(oProps: any) {
 
       if (aTabs.length >= 1) {
         let oTab = aTabs[iValue];
-        oHistory.push(oTab.path);
+        oHistory.push(oTab.url);
       }
       if (aTabs.length == 0) {
         oHistory.push('/admin/resource');
@@ -87,7 +87,7 @@ function Navigation(oProps: any) {
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
       if (oTabRow) {
-        oHistory.push(oTabRow.path);
+        oHistory.push(oTabRow.url);
       }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
@@ -157,7 +157,7 @@ function Navigation(oProps: any) {
       };
       let oTab = {
         id: oRoute.id,
-        path: utilities.path(oRoute.url, oParams),
+        path: oRoute.path,
         url: oRoute.url,
         query: '',
         text: (oRoute.text || oState.text) ?? '',
@@ -214,7 +214,8 @@ function Navigation(oProps: any) {
       };
       cSetState({ ...oState, text: oLink.text });
 
-      oHistory.push(utilities.path(oLink.path, oParams));
+      let sUrl = utilities.path(oLink.path, oParams);
+      oHistory.push(sUrl);
     };
 
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);
@@ -238,7 +239,7 @@ function Navigation(oProps: any) {
       };
       let oTabOfMenu = {
         id: oMenu.id,
-        path: utilities.path(oMenu.path, oParams),
+        path: oMenu.path,
         query: '',
         text: oMenu.text,
         icon: oMenu.icon,
@@ -247,8 +248,9 @@ function Navigation(oProps: any) {
 
       if (oTabOfMenu) {
         cSetState({ ...oState, text: oMenu.text });
+        let sUrl = utilities.path(oTabOfMenu.path, oParams);
 
-        oHistory.push(oTabOfMenu.path);
+        oHistory.push(sUrl);
       }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
