@@ -123,28 +123,28 @@ let MENUS: any = [
         id: 41,
         text: '权限管理',
         description: '权限管理',
-        path: '/admin/system/authroization/index',
+        path: '/admin/system/authroization/index/app-id/:appId/page/:page/limit/:limit',
         icon: 'SecurityOutlinedIcon',
         menus: [
           {
             id: 411,
             text: '管理员列表',
             description: '管理员列表',
-            path: '/admin/resource/administrator/index',
+            path: '/admin/resource/administrator/index/app-id/:appId/page/:page/limit/:limit',
             icon: 'SupervisorAccountOutlinedIcon'
           },
           {
             id: 412,
             text: '角色列表',
             description: '角色列表',
-            path: '/admin/resource/role/index',
+            path: '/admin/resource/role/index/app-id/:appId/page/:page/limit/:limit',
             icon: 'AccessibilityOutlinedIcon'
           },
           {
             id: 413,
             text: '权限配置',
             description: '权限配置',
-            path: '/admin/resource/authorization/index',
+            path: '/admin/resource/authorization/index/app-id/:appId/page/:page/limit/:limit',
             icon: 'LockOpenOutlinedIcon'
           }
         ]
