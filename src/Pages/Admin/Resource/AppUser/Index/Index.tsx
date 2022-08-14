@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 import wrappers from '@/wrappers';
 
@@ -55,14 +55,14 @@ function Index(oProps: any): any {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      {/* <DataGrid
+      <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
         disableSelectionOnClick
-      /> */}
+      />
     </div>
   );
 }
