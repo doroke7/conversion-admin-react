@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useLayoutEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import Contexts from '@/Contexts';
@@ -27,6 +27,9 @@ let tab = (Component: any): any => {
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams: Params = useParams();
+    console.info(oLocation);
+    console.info(oRouteMatch);
+    console.info(oParams);
 
     useEffect(() => {
       if (iIndex == -1 && parseInt(oParams?.appId) >= 1) {
@@ -38,7 +41,6 @@ let tab = (Component: any): any => {
 
     useEffect(() => {
       if (iIndex >= 0 && parseInt(oParams?.appId) >= 1) {
-        let iAppId = parseInt(oParams?.appId) ?? 0;
         let oRoute = {
           id: sId,
           text: sText,
@@ -50,7 +52,7 @@ let tab = (Component: any): any => {
         events.admin.emit('Navigation-onRoute', oRoute);
       }
       return () => {};
-    }, [oRouteMatch.url]);
+    }, [oRouteMatch.url, iIndex]);
     return <Component {...oProps}></Component>;
   }
 
