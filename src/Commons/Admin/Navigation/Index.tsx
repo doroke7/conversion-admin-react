@@ -1,14 +1,19 @@
 import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-
 import clsx from 'clsx';
+
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+
+import Contexts from '@/Contexts';
+import events from '@/events';
+import utilities from '@/utilities';
+import Helpers from '@/Helpers';
+import CONFIGS from '@/CONFIGS/';
+
 import Bar from './Bar/Index';
 import SmallApps from './SmallApps/Index';
 import LargeApps from './LargeApps/Index';
@@ -16,13 +21,6 @@ import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
 import Tabs from './Tabs/Index';
 import AlertOfApps from './AlertOfApps/Index';
-
-import Contexts from '@/Contexts';
-import events from '@/events';
-import utilities from '@/utilities';
-import Helpers from '@/Helpers';
-
-import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
 

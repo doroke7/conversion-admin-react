@@ -7,7 +7,9 @@ const style = makeStyles((oTheme: Theme): any =>
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%)',
+      transform: 'translate(-50%, -50%)'
+    },
+    rootAnimation: {
       animation: '$warn 0.1s ease-in-out 0.1s 3 alternate'
     },
     text: {
