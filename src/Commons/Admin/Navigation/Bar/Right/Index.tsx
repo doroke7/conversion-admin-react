@@ -15,8 +15,6 @@ import Dropdown from './Dropdown/Index';
 import RefreshIcon from './RefreshIcon/Index';
 import AdministratorIcon from './AdministratorIcon/Index';
 
-import administrator from '@/images/administrator.png';
-
 import style from './style';
 
 function Right(oProps: any) {
