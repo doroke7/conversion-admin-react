@@ -10,7 +10,7 @@ let aRoutes = [
     id: '1-0-0',
     path: '/admin',
     title: '影视',
-    name: '',
+    text: '',
     icon: null, // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Admin._,
     exact: true,
@@ -22,7 +22,7 @@ let aRoutes = [
     id: '2-0-0',
     path: '/admin/resource',
     title: '影视系后台系统',
-    name: '',
+    text: '',
     icon: '',
     Component: Admin.Resource._,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
@@ -36,7 +36,7 @@ let aRoutes = [
         id: '2-1-0',
         path: '',
         title: '影视系',
-        name: '',
+        text: '',
         icon: '',
         Component: Admin.Resource.Index,
         // Component: React.lazy(() =>
@@ -48,7 +48,7 @@ let aRoutes = [
         id: '2-2-0',
         path: '/app-user/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-用户列表',
-        name: '用户列表',
+        text: '用户列表',
         icon: 'AccountBoxTwoToneIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
         Component: Admin.Resource.AppUser.Index,
         // Component: React.lazy(() =>
@@ -60,7 +60,7 @@ let aRoutes = [
         id: '2-3-0',
         path: '/order-info/index/app-id/:appId/page/:page/limit/:limit',
         title: '影视系-订单列表',
-        name: '订单列表',
+        text: '订单列表',
         icon: 'EventNoteTwoToneIcon',
         Component: Admin.Resource.OrderInfo.Index,
         exact: false
@@ -69,7 +69,7 @@ let aRoutes = [
         id: '2-4-0',
         path: '/*/app-id/:appId/page/:page/limit/:limit',
         title: '分页未定义',
-        name: '分页未定义',
+        text: '分页未定义',
         icon: 'ContactSupportIcon',
         Component: Admin.Resource.None.Index,
         exact: false
@@ -78,7 +78,7 @@ let aRoutes = [
         id: '2-5-0',
         path: '/*',
         title: '分页未定义',
-        name: '分页未定义',
+        text: '分页未定义',
         icon: 'ContactSupportIcon',
         Component: Admin.Resource.None.Index,
         exact: false
@@ -89,7 +89,7 @@ let aRoutes = [
     id: '3-0-0',
     path: '/admin/authentication/authenticator/sign-in',
     title: '登入系统',
-    name: '',
+    text: '',
     icon: null,
     Component: Admin.Authentication.Authenticator.SignIn,
     exact: false,
@@ -101,7 +101,7 @@ let aRoutes = [
     id: '4-0-0',
     path: '/admin/*',
     title: '页面不存在',
-    name: '',
+    text: '',
     icon: null,
     Component: Admin.None,
     exact: false,
