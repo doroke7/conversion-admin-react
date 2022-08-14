@@ -28,6 +28,9 @@ let tab = (Component: any): any => {
     let oRouteMatch = useRouteMatch();
     let oParams: Params = useParams();
 
+    console.info(oLocation);
+    console.info(oRouteMatch);
+
     useEffect(() => {
       if (iIndex == -1 && parseInt(oParams?.appId) >= 1) {
         let iAppId = parseInt(oParams?.appId) ?? 0;
@@ -42,6 +45,7 @@ let tab = (Component: any): any => {
         let oRoute = {
           id: sId,
           text: sText,
+          url: oRouteMatch.url,
           path: sPath,
           icon: sIcon,
           query: ''

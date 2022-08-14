@@ -34,11 +34,12 @@ function Navigation(oProps: any) {
   let oHistory = useHistory();
   let [oState, cSetState] = React.useState<any>({
     open: true,
-    value: 0, // 当下被 Selected 的 Tab
+    value: 0, // 当下被 Selected 的 Tab 位置
     tabs: [], // Tab 列表
-    index: -1, // 选中的
+    index: -1, // 选中的 Selectd APP位置
     link: null,
-    menu: null
+    menu: null,
+    text: ''
   });
 
   useEffect(() => {
@@ -148,7 +149,6 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cOnRoute = (oRoute: any) => {
-      let aTabsOfStateRows = oState.tabs;
       let aTabs = [...oState.tabs];
       let oParams = {
         appId: CONFIGS.APPS[oState.index].id ?? '',
@@ -157,19 +157,27 @@ function Navigation(oProps: any) {
       };
       let oTab = {
         id: oRoute.id,
-        path: utilities.path(oRoute.path, oParams),
+        path: utilities.path(oRoute.url, oParams),
+        url: oRoute.url,
         query: '',
-        text: oRoute.text ?? '',
+        text: (oRoute.text || oState.text) ?? '',
         icon: oRoute.icon ?? ''
       };
+      if (oRoute.id == '2-4-0' || oRoute.id == '2-5-0') {
+        oTab.text = oState.text || '未定义';
+      }
       let iValue = oState.value;
       let bExist = false;
-      if (aTabsOfStateRows.length >= 1) {
-        for (let iIndex = 0; iIndex < aTabsOfStateRows.length; iIndex++) {
-          if (aTabsOfStateRows[iIndex]['id'] == oTab.id) {
+      if (aTabs.length >= 1) {
+        for (let iIndex = 0; iIndex < aTabs.length; iIndex++) {
+          if (aTabs[iIndex]['id'] == oTab.id) {
             iValue = iIndex;
-            aTabsOfStateRows[iIndex]['text'] = oRoute.text;
-            aTabsOfStateRows[iIndex]['icon'] = oRoute.icon;
+            aTabs[iIndex]['text'] = oTab.text;
+            aTabs[iIndex]['icon'] = oTab.icon;
+            aTabs[iIndex]['path'] = oTab.path;
+            if (aTabs[iIndex]['path'] == oTab) {
+            }
+
             bExist = true;
             break;
           }
@@ -195,7 +203,7 @@ function Navigation(oProps: any) {
     return () => {
       events.admin.removeListener('Navigation-onRoute', cOnRoute);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.text]);
 
   useEffect(() => {
     let cClickLink = (oLink) => {
@@ -204,6 +212,7 @@ function Navigation(oProps: any) {
         page: 1,
         limit: 10
       };
+      cSetState({ ...oState, text: oLink.text });
 
       oHistory.push(utilities.path(oLink.path, oParams));
     };
@@ -237,6 +246,8 @@ function Navigation(oProps: any) {
       };
 
       if (oTabOfMenu) {
+        cSetState({ ...oState, text: oMenu.text });
+
         oHistory.push(oTabOfMenu.path);
       }
     };

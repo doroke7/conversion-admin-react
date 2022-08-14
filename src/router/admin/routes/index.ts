@@ -69,7 +69,7 @@ let aRoutes = [
         id: '2-4-0',
         path: '/*/app-id/:appId/page/:page/limit/:limit',
         title: '分页未定义',
-        text: '分页未定义',
+        text: '',
         icon: 'ContactSupportIcon',
         Component: Admin.Resource.None.Index,
         exact: false
@@ -78,7 +78,7 @@ let aRoutes = [
         id: '2-5-0',
         path: '/*',
         title: '分页未定义',
-        text: '分页未定义',
+        text: '',
         icon: 'ContactSupportIcon',
         Component: Admin.Resource.None.Index,
         exact: false
