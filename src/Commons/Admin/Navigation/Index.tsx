@@ -214,7 +214,7 @@ function Navigation(oProps: any) {
       };
       cSetState({ ...oState, text: oLink.text });
 
-      let sUrl = utilities.path(oLink.path, oParams);
+      let sUrl = utilities.url(oLink.path, oParams);
       oHistory.push(sUrl);
     };
 
@@ -248,7 +248,7 @@ function Navigation(oProps: any) {
 
       if (oTabOfMenu) {
         cSetState({ ...oState, text: oMenu.text });
-        let sUrl = utilities.path(oTabOfMenu.path, oParams);
+        let sUrl = utilities.url(oTabOfMenu.path, oParams);
 
         oHistory.push(sUrl);
       }
