@@ -3,7 +3,7 @@
 # 前端
 
 ##
-1. 安装 node v14 版本 (v16 版本会造成 node-sass 运行错误)
+1. 安装 node v16 版本
 
 ## TODO
 1. import { Link, useLocation } from 'react-router-dom';
