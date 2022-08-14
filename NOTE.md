@@ -55,3 +55,6 @@
 a. yarn create react-app frontend-react
 b. npx create-react-app frontend-react
 
+## react-scripts
+1. v^5.0.0 以上版本 react script 直接内嵌 webpack
+
