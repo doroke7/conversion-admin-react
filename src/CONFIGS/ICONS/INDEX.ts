@@ -37,8 +37,11 @@ import AccountBoxTwoToneIcon from '@material-ui/icons/AccountBoxTwoTone';
 import EventNoteTwoToneIcon from '@material-ui/icons/EventNoteTwoTone';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-
+import HelpTwoToneIcon from '@material-ui/icons/HelpTwoTone';
+import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
 let ICONS: any = {
+  ContactSupportTwoToneIcon: ContactSupportTwoToneIcon,
+  HelpTwoToneIcon: HelpTwoToneIcon,
   ContactSupportIcon: ContactSupportIcon,
   EventNoteIcon: EventNoteIcon,
   EventNoteTwoToneIcon: EventNoteTwoToneIcon,
