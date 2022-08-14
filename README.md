@@ -114,10 +114,9 @@
 │   │   │   │   ├── Bar                        上方的超链接       
 │   │   │   │   ├── LargeApps                  一般模式的 应用程序选择             
 │   │   │   │   ├── SmallApps                  简易模式的 应用程序选择 
-│   │   │   │   ├── LargeMenus                 一般模式的 菜单组件              
-│   │   │   │   ├── SmallMenus                 简易模式的 菜单组件              
-│   │   │   │   ├── Tabs                       分页组件 。把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析        
-                             
+│   │   │   │   ├── LargeMenus                 一般模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制             
+│   │   │   │   ├── SmallMenus                 简易模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制                   
+│   │   │   │   ├── Tabs                       分页组件 。 Tab 的 Icon 由 Router 配置控制                                  
 │   │   │  
 │   │   ├── Service                           
 
