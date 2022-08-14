@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, indigo, blue } from '@material-ui/core/colors';
+import { pink, grey, lightGreen, indigo, blue } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
@@ -46,12 +46,13 @@ const style = makeStyles((oTheme: Theme) =>
     },
     avatar: {
       border: `2px solid ${oTheme.palette.background.paper}`,
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      backgroundColor: grey[700]
     },
     badge: {
       '& .MuiBadge-badge': {
-        backgroundColor: '#44b700',
-        color: '#44b700',
+        backgroundColor: lightGreen['A200'],
+        color: lightGreen['A200'],
         boxShadow: `0 0 0 2px ${oTheme.palette.background.paper}`,
 
         '&::after': {
