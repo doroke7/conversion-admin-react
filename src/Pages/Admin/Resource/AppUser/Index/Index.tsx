@@ -18,7 +18,9 @@ function Index(oProps: any): any {
     { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
     { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
+    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
   ];
 
   const columns: any[] = [
@@ -54,12 +56,12 @@ function Index(oProps: any): any {
   ];
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 800, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[2]}
         checkboxSelection
         disableSelectionOnClick
       />
