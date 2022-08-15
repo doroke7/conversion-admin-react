@@ -23,7 +23,6 @@ import Tabs from './Tabs/Index';
 import AlertOfApps from './AlertOfApps/Index';
 
 import style from './style';
-import { Params } from '@/types';
 
 let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
 
@@ -41,7 +40,7 @@ function Navigation(oProps: any) {
     text: ''
   });
 
-  let oParams: Params = useParams();
+  let oParams: any = useParams();
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
