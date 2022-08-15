@@ -3,7 +3,6 @@ import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import Contexts from '@/Contexts';
 import events from '@/events';
-import { Params } from '@/types';
 
 let tab = (Component: any): any => {
   function Wrapper(oProps: any) {
@@ -14,7 +13,7 @@ let tab = (Component: any): any => {
     let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
-    let oParams: Params = useParams();
+    let oParams: any = useParams();
     // console.info(oLocation);
     // console.info(oRouteMatch);
     // console.info(oParams);

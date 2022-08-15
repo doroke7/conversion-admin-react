@@ -23,8 +23,6 @@ import Right from './Right/Index';
 
 import style from './style';
 
-import administrator from '@/images/administrator.png';
-
 function Bar(oProps: any) {
   let oClasses = style(void 0);
   let aApps = oProps.apps ?? [];
