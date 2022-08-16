@@ -3,12 +3,9 @@
 # 前端
 
 ##
+```
 1. 安装 node v16 版本
-
-## TODO
-1. import { Link, useLocation } from 'react-router-dom';
-   改用 useLocation 写法
-
+```
 
 ## NOTE
 ```
@@ -17,7 +14,10 @@
 2. typeof iNumber === 'undefined' ， 使用 typeof 为字串
 
 
-3. 网页路由上 使用 ?query={urlencode}&option={urlencode} 或 ?query={AESencode}&option={AESencode}
+3. 网页路由上 使用 /app-id/:appId/page/:page/limit/:limit?a=1&b=2
+   其中 :appId, :page, :limit 对应到 后端 API 的 option of HTTP params 参数
+   其中 a, b 对应到 后端 API 的 param of HTTP Body 参数
+
 
 4. 路由规则，（为最终菜单，可能为2，3级菜单）  /admin/resource/{数据表名}/index
 5. 路由规则，（为一级菜单）  /admin/{名称1}/index
@@ -31,13 +31,13 @@
 ```
 ## 常用的业务组件
 ```
-1. 全局组件: 全局公共组件（在每个页面都会用到的组件）, 如 Header, Footer
-2. 单元组件：一般单元组件（自定义的最小可用组件）
-3. 高阶组件：REACT 高阶组件 "函数"，用于取代 Mixin 结构
-4. 页面组件：页面组件，依照路由设定匹配的页面组件
-5. 部分组件：在一个组件里面的子组件，为了有效的解耦代码，分散代码，一个代码档案尽量各任其职，一个 ts 尽量不要超过300 行， 一个function 尽量不要超过 100 行，不要有一个档案 巨大到不可控的地步
-6. Context 组件：用来全局(或半全局)共享数据的组件
-7. <App> SPA 组件：定义整个 React 包的SPA组件
+1. 全域公共组件: 全局公共组件（在每个页面都会用到的组件）, 如 Header, Footer
+2. 私有单元组件：一般单元组件（自定义的最小可用组件）
+3. 特殊高阶组件：REACT 高阶组件 "函数"，用于取代 Mixin 结构
+4. 基本页面组件：页面组件，依照路由设定匹配的页面组件
+5. 部分区块组件：在一个组件里面的子组件，为了有效的解耦代码，分散代码，一个代码档案尽量各任其职，一个 ts 尽量不要超过300 行， 一个function 尽量不要超过 100 行，不要有一个档案 巨大到不可控的地步
+6. 数据 Context 组件：用来全局(或半全局)共享数据的组件
+7. <App> SPA 全局组件：定义整个 React 包的SPA组件
 ```
 #  目录结构
 ##  一级目录结构
