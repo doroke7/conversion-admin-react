@@ -86,15 +86,15 @@
 ├── src                      
 │   ├── actions                     Redux-action 定义处(包含 前台,后台,使用)， 早期把异步Axios 写在 action 里面
 │   │   ├── admin                   控制器(后台使用的 API)
-│   │   ├── service                 控制器(前台使用的 API)
-│   │   │   
+│   │   └── service                 控制器(前台使用的 API)
+│   │      
 │   ├── Commons                     共用组件
 │   │   ├── admin                   控制器(后台使用的 API)
-│   │   ├── service                 控制器(前台使用的 API)
-│   │   │   
+│   │   └── service                 控制器(前台使用的 API)
+│   │     
 │   ├── Sdks                        实际呼叫 API 的地方
 │   │   ├── Admin                   集成呼叫后台接口的模组
-│   │   ├── Service                 集成呼叫前台台接口的模组
+│   │   └── Service                 集成呼叫前台台接口的模组
 ```
 
 
@@ -104,22 +104,22 @@
 ├── src                      
 │   ├── actions                                Redux-action 定义处(包含 前台,后台,使用)
 │   │   ├── admin                              
-│   │   │   ├───                               
+│   │   │   └───                               
 │   │   │     
-│   │   ├── service                            
-│   │   │   ├───                              
-│   │   │ 
-│   │   │   
+│   │   └── service                            
+│   │       └───                              
+│   │   
+│   │      
 │   ├── Commons                                共用组件
 │   │   ├── Admin                              后台-共用组件
-│   │   │   ├── Navigation                     导览组件 (包含菜单组件，分页组件，快链接组件)
-│   │   │   │   ├── AlertOfApps                警告，在没有选择app 情况下点击 link 或 menu                
-│   │   │   │   ├── Bar                        上方的超链接       
-│   │   │   │   ├── LargeApps                  一般模式的 应用程序选择             
-│   │   │   │   ├── SmallApps                  简易模式的 应用程序选择 
-│   │   │   │   ├── LargeMenus                 一般模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制             
-│   │   │   │   ├── SmallMenus                 简易模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制                   
-│   │   │   │   ├── Tabs                       分页组件 。 Tab 的 Icon 由 Router 配置控制                                  
+│   │   │   └── Navigation                     导览组件 (包含菜单组件，分页组件，快链接组件)
+│   │   │       ├── AlertOfApps                警告，在没有选择app 情况下点击 link 或 menu                
+│   │   │       ├── Bar                        上方的超链接       
+│   │   │       ├── LargeApps                  一般模式的 应用程序选择             
+│   │   │       ├── SmallApps                  简易模式的 应用程序选择 
+│   │   │       ├── LargeMenus                 一般模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制             
+│   │   │       ├── SmallMenus                 简易模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制                   
+│   │   │       └── Tabs                       分页组件 。 Tab 的 Icon 由 Router 配置控制                                  
 │   │   │  
 │   │   ├── Service                           
 
