@@ -70,6 +70,7 @@
 │   ├── images           jpg, png, gif 资源处
 │   ├── Pages            页面组件，依照路由设定匹配的页面组件
 │   ├── reducers         Redux-reducer 定义处
+│   ├── Sdks             Sdk 定义处，呼叫外面API的地方
 │   ├── router           路由配置定义处, 因为 router 太重要所以不放在 CONFIG 中, 而是独立出来
 │   ├── source           mp3, mp4 资源
 │   ├── store            Redux-store 定义处, 能处理API来的共用数据
@@ -90,8 +91,10 @@
 │   ├── Commons                     共用组件
 │   │   ├── admin                   控制器(后台使用的 API)
 │   │   ├── service                 控制器(前台使用的 API)
-
-
+│   │   │   
+│   ├── Sdks                        实际呼叫 API 的地方
+│   │   ├── Admin                   集成呼叫后台接口的模组
+│   │   ├── Service                 集成呼叫前台台接口的模组
 ```
 
 
