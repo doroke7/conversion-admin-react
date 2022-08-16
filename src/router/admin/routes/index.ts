@@ -11,7 +11,7 @@ let aRoutes = [
     path: '/admin',
     title: '影视',
     text: '',
-    icon: null, // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
+    icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Admin._,
     exact: true,
     authenticator: false,
@@ -90,7 +90,7 @@ let aRoutes = [
     path: '/admin/authentication/authenticator/sign-in',
     title: '登入系统',
     text: '',
-    icon: null,
+    icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Admin.Authentication.Authenticator.SignIn,
     exact: false,
     authenticator: true,
@@ -102,7 +102,7 @@ let aRoutes = [
     path: '/admin/*',
     title: '页面不存在',
     text: '',
-    icon: null,
+    icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Admin.None,
     exact: false,
     authenticator: false,
