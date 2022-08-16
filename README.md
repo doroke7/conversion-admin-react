@@ -65,6 +65,7 @@
 │   ├── Contexts         共用Context组件, 能处理复杂的共用数据, 可以接受嵌套 Context.Provider 语法
 │   ├── entries          Webpack 打包入口
 │   ├── events           跨组件事件, 能处理简单的共用数据
+│   ├── Exception        项目自定义的 例外 结构, 弥补 JavaScript Error 缺少 code 变数
 │   ├── Helpers          类别形式的公用程序库
 │   ├── images           jpg, png, gif 资源处
 │   ├── Pages            页面组件，依照路由设定匹配的页面组件

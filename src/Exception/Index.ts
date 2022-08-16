@@ -2,7 +2,7 @@ class Exception {
   public code: number;
   public message: string;
 
-  constructor(sMessage, iCode = 1) {
+  constructor(sMessage, iCode = -1) {
     this.message = sMessage;
     this.code = iCode;
   }
