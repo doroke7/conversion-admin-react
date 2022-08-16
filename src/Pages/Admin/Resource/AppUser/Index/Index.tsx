@@ -9,7 +9,7 @@ import style from './style';
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  const rows = [
+  let aRows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
@@ -23,30 +23,30 @@ function Index(oProps: any): any {
     { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
   ];
 
-  const columns: any[] = [
+  let aColumns: any[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'firstName',
-      headerName: 'First name',
+      headerName: '姓',
       width: 150,
       editable: true
     },
     {
       field: 'lastName',
-      headerName: 'Last name',
+      headerName: '名',
       width: 150,
       editable: true
     },
     {
       field: 'age',
-      headerName: 'Age',
+      headerName: '年龄',
       type: 'number',
       width: 110,
       editable: true
     },
     {
       field: 'fullName',
-      headerName: 'Full name',
+      headerName: '名称',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
@@ -58,8 +58,8 @@ function Index(oProps: any): any {
   return (
     <div style={{ height: 800, width: '100%' }}>
       <DataGrid
-        rows={rows}
-        columns={columns}
+        rows={aRows}
+        columns={aColumns}
         pageSize={10}
         rowsPerPageOptions={[2]}
         checkboxSelection
