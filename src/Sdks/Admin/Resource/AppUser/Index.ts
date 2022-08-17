@@ -7,10 +7,9 @@ class AppUser {
       // API 中，问号拼接的 参数。 如 ?option={}&query={}
       params: {
         option: {
-          app_id : oOption?.app_id,
-          page : (oOption?.page ?? 1) || 1,
-          limit : (oOption?.limit ?? 10) || 10
-
+          app_id: oOption?.app_id,
+          page: (oOption?.page ?? 1) || 1,
+          limit: (oOption?.limit ?? 10) || 10
         },
         query: {}
       },
@@ -22,7 +21,6 @@ class AppUser {
 
     return oResponse;
   }
-
 }
 
 export default AppUser;

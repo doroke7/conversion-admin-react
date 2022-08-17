@@ -65,6 +65,7 @@ function Index(oProps: any): any {
         pageSize={10}
         checkboxSelection
         disableSelectionOnClick
+        loading={true}
       />
     </div>
   );
