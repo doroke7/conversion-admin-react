@@ -60,8 +60,9 @@ function Index(oProps: any): any {
       <DataGrid
         rows={aRows}
         columns={aColumns}
+        rowCount={999}
+        page={0}
         pageSize={10}
-        rowsPerPageOptions={[2]}
         checkboxSelection
         disableSelectionOnClick
       />

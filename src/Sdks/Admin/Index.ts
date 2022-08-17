@@ -1,2 +1,4 @@
 import Authentication from './Authentication/Index';
-export default { Authentication };
+import Resource from './Resource/Index';
+
+export default { Authentication, Resource };
