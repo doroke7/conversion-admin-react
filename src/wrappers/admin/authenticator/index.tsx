@@ -76,7 +76,7 @@ let authenticator = (Component: any): any => {
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    return oState.status ? <Component {...oProps}></Component> : <></>;
+    return oState.status || !CONFIGS.JWT.AUTHENTICATOR ? <Component {...oProps}></Component> : <></>;
   }
 
   return Wrapper;

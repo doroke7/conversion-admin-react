@@ -1,6 +1,6 @@
 const JWT: any = {
-  AUTHENTICATOR: process.env.AUTHENTICATOR ?? true,
-  TIME: process.env.TIME ?? 60 * 1000
+  AUTHENTICATOR: JSON.parse(process.env.JWT_AUTHENTICATOR.toLocaleLowerCase()) ?? true,
+  TIME: process.env.JWT_TIME ?? 60 * 1000
 };
 
 export default JWT;
