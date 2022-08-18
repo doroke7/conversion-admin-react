@@ -16,7 +16,7 @@ import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Contexts from '@/Contexts/Index';
-import events from '@/events';
+import events from '@/events/index';
 import style from './style';
 
 function AlertOfApps(oProps: any) {

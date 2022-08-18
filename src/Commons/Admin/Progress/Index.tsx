@@ -5,7 +5,7 @@ import AlertTitle from '@material-ui/lab/AlertTitle';
 import Slide, { SlideProps } from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import events from '@/events';
+import events from '@/events/index';
 
 import style from './style';
 

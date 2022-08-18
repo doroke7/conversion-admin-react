@@ -11,7 +11,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import Contexts from '@/Contexts/Index';
 import Components from '@/Components';
-import events from '@/events';
+import events from '@/events/index';
 
 import TabPanel from './TabPannel/Index';
 import Empty from './Empty/Index';

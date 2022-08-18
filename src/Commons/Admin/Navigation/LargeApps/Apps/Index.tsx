@@ -10,7 +10,7 @@ import Contexts from '@/Contexts/Index';
 
 import Helpers from '@/Helpers/Index';
 import Components from '@/Components';
-import events from '@/events';
+import events from '@/events/index';
 
 import Icon from './Icon/Index';
 

@@ -9,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 import Contexts from '@/Contexts/Index';
-import events from '@/events';
-import utilities from '@/utilities';
+import events from '@/events/index';
+import utilities from '@/utilities/index';
 import Helpers from '@/Helpers/Index';
 import CONFIGS from '@/CONFIGS/';
 

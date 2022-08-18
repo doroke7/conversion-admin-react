@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import Contexts from '@/Contexts/Index';
-import events from '@/events';
+import events from '@/events/index';
 
 let tab = (Component: any): any => {
   function Wrapper(oProps: any) {

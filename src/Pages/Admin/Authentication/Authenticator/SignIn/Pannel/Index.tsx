@@ -15,7 +15,7 @@ import Components from '@/Components';
 import Exception from '@/Exception/Index';
 import actions from '@/actions/';
 import Helpers from '@/Helpers/Index';
-import events from '@/events';
+import events from '@/events/index';
 import CONFIGS from '@/CONFIGS/';
 
 import style from './style';

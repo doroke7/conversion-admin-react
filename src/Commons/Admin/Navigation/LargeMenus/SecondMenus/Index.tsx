@@ -11,7 +11,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Helpers from '@/Helpers/Index';
 
 import Components from '@/Components';
-import events from '@/events';
+import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 import ThirdMenus from './ThirdMenus/Index';
 

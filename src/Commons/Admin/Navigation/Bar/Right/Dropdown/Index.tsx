@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import events from '@/events';
+import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 import Components from '@/Components';
 

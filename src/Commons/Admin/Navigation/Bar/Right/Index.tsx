@@ -6,7 +6,7 @@ import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 
-import events from '@/events';
+import events from '@/events/index';
 import Sdks from '@/Sdks/Index';
 import Helpers from '@/Helpers/Index';
 

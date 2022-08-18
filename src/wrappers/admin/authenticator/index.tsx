@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Sdks from '@/Sdks/Index';
 import Helpers from '@/Helpers/Index';
-import events from '@/events';
+import events from '@/events/index';
 import CONFIGS from '@/CONFIGS';
 
 interface Props {

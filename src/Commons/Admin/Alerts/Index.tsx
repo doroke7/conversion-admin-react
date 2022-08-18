@@ -13,7 +13,7 @@ import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
 import BackspaceTwoToneIcon from '@material-ui/icons/BackspaceTwoTone';
 import ReportOffTwoToneIcon from '@material-ui/icons/ReportOffTwoTone';
 import HelpTwoToneIcon from '@material-ui/icons/HelpTwoTone';
-import events from '@/events';
+import events from '@/events/index';
 
 import style from './style';
 

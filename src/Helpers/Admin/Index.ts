@@ -3,7 +3,7 @@ import CryptoJS from 'crypto-js';
 
 import Helpers from '@/Helpers/Index';
 import CONFIGS from '@/CONFIGS/';
-import utilities from '@/utilities';
+import utilities from '@/utilities/index';
 
 const API = CONFIGS.API;
 

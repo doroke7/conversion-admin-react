@@ -10,7 +10,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ListItemText from '@material-ui/core/ListItemText';
-import events from '@/events';
+import events from '@/events/index';
 
 import Components from '@/Components';
 import Contexts from '@/Contexts/Index';

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Components from '@/Components';
-import events from '@/events';
+import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 
 import style from './style';
