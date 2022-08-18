@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { DataGrid } from '@mui/x-data-grid';
+import Pagination from '@material-ui/lab/Pagination';
 
 import wrappers from '@/wrappers';
 
@@ -8,6 +9,9 @@ import style from './style';
 
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
+  let [oState, cSetState] = React.useState<any>({
+    page: 11
+  });
 
   let aRows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -29,20 +33,20 @@ function Index(oProps: any): any {
       field: 'firstName',
       headerName: '姓',
       width: 150,
-      editable: true
+      editable: false
     },
     {
       field: 'lastName',
       headerName: '名',
       width: 150,
-      editable: true
+      editable: false
     },
     {
       field: 'age',
       headerName: '年龄',
       type: 'number',
       width: 110,
-      editable: true
+      editable: false
     },
     {
       field: 'fullName',
@@ -55,8 +59,12 @@ function Index(oProps: any): any {
     }
   ];
 
+  let cHandleChange = (event: React.ChangeEvent<unknown>, iPage: number) => {
+    cSetState({ page: iPage });
+  };
+
   return (
-    <div style={{ height: 800, width: '100%' }}>
+    <div style={{ height: 650, width: '100%' }}>
       <DataGrid
         rows={aRows}
         columns={aColumns}
@@ -66,6 +74,18 @@ function Index(oProps: any): any {
         checkboxSelection
         disableSelectionOnClick
         loading={true}
+      />
+      <Pagination
+        count={48}
+        variant="outlined"
+        shape="rounded"
+        color="primary"
+        siblingCount={0}
+        boundaryCount={2}
+        showFirstButton
+        showLastButton
+        page={oState.page}
+        onChange={cHandleChange}
       />
     </div>
   );
