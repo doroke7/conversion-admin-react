@@ -14,7 +14,7 @@ import store from '@/store';
 
 import { Service } from '@/Commons';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 import actions from '@/actions/';
 

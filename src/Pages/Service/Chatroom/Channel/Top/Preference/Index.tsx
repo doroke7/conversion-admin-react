@@ -2,7 +2,7 @@ import React from 'react';
 
 import store from '@/store';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 import CONFIGS from '@/CONFIGS/';
 

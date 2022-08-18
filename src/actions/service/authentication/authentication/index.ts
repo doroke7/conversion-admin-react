@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 let cLogIn: any = (sJwt: any) => {
   return {

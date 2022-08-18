@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 import CONFIGS from '@/CONFIGS/';
 import utilities from '@/utilities';
 

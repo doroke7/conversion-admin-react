@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 let cShow: any = (oRaw: any) => {
   return {

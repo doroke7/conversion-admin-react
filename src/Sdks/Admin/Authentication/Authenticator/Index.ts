@@ -1,4 +1,4 @@
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 class Authenticator {
   public static async postSignIn(sUsername, sPassword) {

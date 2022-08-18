@@ -1,4 +1,4 @@
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 let cShow: any = (aWords: any) => {
   return {

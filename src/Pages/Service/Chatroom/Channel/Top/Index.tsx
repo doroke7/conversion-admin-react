@@ -13,7 +13,7 @@ import store from '@/store';
 
 import actions from '@/actions/';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 import './Index.scss';
 

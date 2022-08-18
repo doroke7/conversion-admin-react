@@ -19,7 +19,7 @@ import CONFIGS from '@/CONFIGS/';
 
 import { Service } from '@/Commons';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 import store from '@/store';
 

@@ -4,7 +4,7 @@ import { EventEmitter } from 'events';
 import { Service } from '@/Commons';
 import store from '@/store';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 import CONFIGS from '@/CONFIGS/';
 

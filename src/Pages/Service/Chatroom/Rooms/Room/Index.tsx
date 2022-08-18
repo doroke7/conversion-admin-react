@@ -4,7 +4,7 @@ import store from '@/store';
 
 import CONFIGS from '@/CONFIGS/';
 
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 import { Badge } from 'antd';
 
 import './Index.scss';

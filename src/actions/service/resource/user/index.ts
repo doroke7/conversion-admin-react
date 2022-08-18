@@ -1,4 +1,4 @@
-import Helpers from '@/Helpers/';
+import Helpers from '@/Helpers/Index';
 
 let cShow: any = (aUsers: any, oResponse: any) => {
   return {
