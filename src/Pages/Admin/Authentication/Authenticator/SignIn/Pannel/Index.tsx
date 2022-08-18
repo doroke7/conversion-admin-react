@@ -78,6 +78,10 @@ function Pannel(oProps: any): any {
 
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       let sJwt = oResponse?.headers?.authorization ?? '';
+      if (oResponse?.data?.code === undefined) {
+        throw new Exception('服务器异常', -3);
+      }
+
       if (oResponse && oResponse?.data?.code <= -1) {
         throw new Exception(oResponse?.data?.message ?? '', oResponse?.data?.code ?? 0);
       }
