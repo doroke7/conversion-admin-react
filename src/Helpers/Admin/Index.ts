@@ -2,7 +2,7 @@ import axios from 'axios';
 import CryptoJS from 'crypto-js';
 
 import Helpers from '@/Helpers/Index';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 import utilities from '@/utilities/index';
 
 const API = CONFIGS.API;

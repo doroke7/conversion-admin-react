@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import store from '@/store';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Helpers from '@/Helpers/Index';
 import { Badge } from 'antd';

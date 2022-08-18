@@ -6,7 +6,7 @@ import store from '@/store';
 
 import Helpers from '@/Helpers/Index';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Message from './Message/Index';
 import ScrollButton from './ScrollButton/Index';

@@ -4,7 +4,7 @@ import store from '@/store';
 
 import Helpers from '@/Helpers/Index';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Divider from 'antd/es/divider';
 import Avatar from 'antd/es/avatar';

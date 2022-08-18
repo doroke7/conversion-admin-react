@@ -12,7 +12,7 @@ import Contexts from '@/Contexts/Index';
 import events from '@/events/index';
 import utilities from '@/utilities/index';
 import Helpers from '@/Helpers/Index';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Bar from './Bar/Index';
 import SmallApps from './SmallApps/Index';

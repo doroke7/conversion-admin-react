@@ -13,7 +13,7 @@ import Top from './Top/Index';
 import './Index.scss';
 
 import actions from '@/actions/';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 const MODALS = CONFIGS.MODALS;
 

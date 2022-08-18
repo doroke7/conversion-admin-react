@@ -1,5 +1,5 @@
 import oIo from 'socket.io-client';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 const SOCKET = CONFIGS.SOCKET;
 

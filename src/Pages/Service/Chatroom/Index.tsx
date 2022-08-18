@@ -15,7 +15,7 @@ import Channel from './Channel/Index';
 
 import './Index.scss';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import { Service } from '@/Commons';
 

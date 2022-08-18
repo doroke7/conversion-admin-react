@@ -20,7 +20,7 @@ import actions from '@/actions/';
 
 import './Index.scss';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 const MOMENT = CONFIGS.MOMENT;
 const MESSAGES = CONFIGS.MESSAGES;

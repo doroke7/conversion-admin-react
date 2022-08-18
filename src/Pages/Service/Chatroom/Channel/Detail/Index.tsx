@@ -1,7 +1,7 @@
 import React from 'react';
 
 import store from '@/store';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import './Index.scss';
 

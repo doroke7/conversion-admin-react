@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 const API = CONFIGS.API;
 

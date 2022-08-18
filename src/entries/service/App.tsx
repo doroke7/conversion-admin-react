@@ -8,7 +8,7 @@ import SocketIOFileUpload from 'socketio-file-upload';
 
 import router from '@/router';
 import { Service } from '@/Commons';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 const SOCKET = CONFIGS.SOCKET;
 

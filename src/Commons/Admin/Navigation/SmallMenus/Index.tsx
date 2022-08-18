@@ -11,7 +11,7 @@ import Components from '@/Components';
 import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';

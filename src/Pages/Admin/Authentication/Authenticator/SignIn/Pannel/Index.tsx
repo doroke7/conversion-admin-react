@@ -16,7 +16,7 @@ import Exception from '@/Exception/Index';
 import actions from '@/actions/';
 import Helpers from '@/Helpers/Index';
 import events from '@/events/index';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import style from './style';
 

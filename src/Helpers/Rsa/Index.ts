@@ -1,6 +1,6 @@
 import JSEncrypt from 'jsencrypt';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 class RsaHelper {
   public static encode(sString: string): string {

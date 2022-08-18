@@ -12,7 +12,7 @@ import Helpers from '@/Helpers/Index';
 
 import './Index.scss';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 const STORAGE = CONFIGS.STORAGE;
 const SOCKET = CONFIGS.SOCKET;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 import style from './style';
 
 function Icon(oProps: any) {

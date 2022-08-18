@@ -13,7 +13,7 @@ import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 import Components from '@/Components';
 
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import cStyle from './style';
 
