@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 import events from '@/events';
 
 let tab = (Component: any): any => {

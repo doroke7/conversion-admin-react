@@ -13,7 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/events';
 
 import Components from '@/Components';
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 
 import CONFIGS from '@/CONFIGS/';
 

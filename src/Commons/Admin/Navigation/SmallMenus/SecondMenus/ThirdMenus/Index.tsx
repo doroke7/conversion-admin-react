@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 
 import Helpers from '@/Helpers';
 import events from '@/events';

@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 import events from '@/events';
 import utilities from '@/utilities';
 import Helpers from '@/Helpers';

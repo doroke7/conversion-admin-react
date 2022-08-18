@@ -8,7 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Components from '@/Components';
 import events from '@/events';
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 
 import CONFIGS from '@/CONFIGS/';
 

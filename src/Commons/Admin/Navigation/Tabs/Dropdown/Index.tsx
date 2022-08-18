@@ -9,7 +9,7 @@ import MenuList from '@material-ui/core/MenuList';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/events';
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 import Components from '@/Components';
 
 import CONFIGS from '@/CONFIGS/';

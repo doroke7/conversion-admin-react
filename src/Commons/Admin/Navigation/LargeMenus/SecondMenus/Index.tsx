@@ -12,7 +12,7 @@ import Helpers from '@/Helpers';
 
 import Components from '@/Components';
 import events from '@/events';
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 import ThirdMenus from './ThirdMenus/Index';
 
 import style from './style';

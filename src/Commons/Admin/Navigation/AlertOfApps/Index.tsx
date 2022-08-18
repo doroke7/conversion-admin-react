@@ -15,7 +15,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 import events from '@/events';
 import style from './style';
 

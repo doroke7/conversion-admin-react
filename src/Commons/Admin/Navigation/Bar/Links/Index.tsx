@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Components from '@/Components';
 import events from '@/events';
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 
 import style from './style';
 

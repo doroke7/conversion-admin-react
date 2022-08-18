@@ -9,7 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import Contexts from '@/Contexts';
+import Contexts from '@/Contexts/Index';
 import Components from '@/Components';
 import events from '@/events';
 
