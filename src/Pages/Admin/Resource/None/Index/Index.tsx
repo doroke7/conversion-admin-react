@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import wrappers from '@/wrappers';
 
-import Icon from './Icon';
+import Icon from './Icon/Index';
 import style from './style';
 
 function Index(oProps: any): any {

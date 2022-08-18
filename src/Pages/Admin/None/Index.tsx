@@ -3,9 +3,7 @@ import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistor
 import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 
-import { Admin } from '@/Commons';
-
-import Icon from './Icon';
+import Icon from './Icon/Index';
 import style from './style';
 
 function None(oProps: any): any {
