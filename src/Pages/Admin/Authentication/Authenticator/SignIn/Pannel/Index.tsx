@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 import Sdks from '@/Sdks/Index';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import Exception from '@/Exception/Index';
 import actions from '@/actions/';
 import Helpers from '@/Helpers/Index';

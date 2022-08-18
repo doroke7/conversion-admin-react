@@ -12,7 +12,7 @@ import MenuList from '@material-ui/core/MenuList';
 import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/events/index';
 
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import Contexts from '@/Contexts/Index';
 
 import CONFIGS from '@/CONFIGS/INDEX';

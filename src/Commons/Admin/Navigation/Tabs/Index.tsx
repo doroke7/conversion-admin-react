@@ -10,7 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import Contexts from '@/Contexts/Index';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import events from '@/events/index';
 
 import TabPanel from './TabPannel/Index';

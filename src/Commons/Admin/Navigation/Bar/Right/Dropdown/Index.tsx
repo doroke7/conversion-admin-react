@@ -10,7 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 

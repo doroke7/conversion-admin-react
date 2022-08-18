@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 

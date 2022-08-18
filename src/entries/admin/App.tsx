@@ -6,7 +6,7 @@ import store from '@/store';
 import router from '@/router';
 import CONFIGS from '@/CONFIGS/INDEX';
 import Commons from '@/Commons';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import style from './style';
 
 function App(oProps: any) {

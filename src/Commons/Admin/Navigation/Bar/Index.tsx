@@ -15,7 +15,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Badge from '@material-ui/core/Badge';
 
 import Avatar from '@material-ui/core/Avatar';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 import Links from './Links/Index';

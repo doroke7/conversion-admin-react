@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import events from '@/events/index';
 import Contexts from '@/Contexts/Index';
 

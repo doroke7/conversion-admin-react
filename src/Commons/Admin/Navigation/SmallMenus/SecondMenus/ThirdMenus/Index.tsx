@@ -11,7 +11,7 @@ import Contexts from '@/Contexts/Index';
 import Helpers from '@/Helpers/Index';
 import events from '@/events/index';
 
-import Components from '@/Components';
+import Components from '@/Components/Index';
 
 import cStyle from './style';
 

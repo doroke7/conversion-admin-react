@@ -4,7 +4,7 @@ import { useMappedState, useDispatch } from 'redux-react-hook';
 import Grid from '@material-ui/core/Grid';
 import Helpers from '@/Helpers/Index';
 import actions from '@/actions/';
-import Components from '@/Components';
+import Components from '@/Components/Index';
 import Sdks from '@/Sdks/Index';
 import wrappers from '@/wrappers';
 
