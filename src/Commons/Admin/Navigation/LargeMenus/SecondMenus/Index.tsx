@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import Helpers from '@/Helpers';
+import Helpers from '@/Helpers/Index';
 
 import Components from '@/Components';
 import events from '@/events';

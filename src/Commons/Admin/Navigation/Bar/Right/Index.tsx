@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import events from '@/events';
 import Sdks from '@/Sdks/Index';
-import Helpers from '@/Helpers';
+import Helpers from '@/Helpers/Index';
 
 import AlertOfRedis from './AlertOfRedis/Index';
 import Dropdown from './Dropdown/Index';

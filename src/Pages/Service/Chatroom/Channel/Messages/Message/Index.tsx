@@ -8,7 +8,7 @@ import Progress from 'antd/es/progress';
 
 import store from '@/store';
 
-import Helpers from '@/Helpers';
+import Helpers from '@/Helpers/Index';
 
 import './Index.scss';
 

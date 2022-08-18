@@ -11,7 +11,7 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Contexts from '@/Contexts/Index';
 import events from '@/events';
 import utilities from '@/utilities';
-import Helpers from '@/Helpers';
+import Helpers from '@/Helpers/Index';
 import CONFIGS from '@/CONFIGS/';
 
 import Bar from './Bar/Index';
