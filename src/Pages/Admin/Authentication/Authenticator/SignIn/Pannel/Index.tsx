@@ -12,7 +12,7 @@ import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 import Sdks from '@/Sdks/Index';
 import Components from '@/Components';
-import Exception from '@/Exception/';
+import Exception from '@/Exception/Index';
 import actions from '@/actions/';
 import Helpers from '@/Helpers/';
 import events from '@/events';
