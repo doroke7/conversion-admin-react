@@ -1,5 +1,5 @@
 import Helpers from '@/Helpers/';
-import Exception from '@/Exception/';
+import Exception from '@/Exception/Index';
 
 let cLogIn: any = (oRaw: any) => {
   return {
