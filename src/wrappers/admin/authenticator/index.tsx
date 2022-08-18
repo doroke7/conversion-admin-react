@@ -33,12 +33,12 @@ let authenticator = (Component: any): any => {
         }
         if (sJwt) {
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
-          let sJwt = oResponse?.headers?.authorization ?? '';
+          sJwt = oResponse?.headers?.authorization ?? '';
 
-          if (oResponse?.data?.code <= -1 || !sJwt) {
+          if (oResponse?.data?.code === undefined || !sJwt) {
             if (aRedirections[0]) {
               let oMessage = {
-                code: oResponse?.data?.code ?? -9999,
+                code: -9999,
                 message: oResponse?.data?.message ?? '未知错误',
                 time: 3 * 1000
               };

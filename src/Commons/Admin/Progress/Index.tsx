@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import clsx from 'clsx';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
@@ -17,7 +17,7 @@ function Progress(oProps: any): any {
     status: false
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     let oInterval = setInterval(() => {
       /**
        * React setState Hook 可以输入 callback function， 能使用 oldState

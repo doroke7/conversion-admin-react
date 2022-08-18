@@ -85,6 +85,7 @@ class AdminHelper {
   }
 
   public static response(oResponse: any): any {
+    let oRaw = {};
     let sKeys = oResponse.headers['keys'] || '';
     sKeys = sKeys == '' ? sKeys : Helpers.Rsa.decode(sKeys);
 
@@ -92,10 +93,13 @@ class AdminHelper {
     let sKey = oKeys['key'] || '';
     let sIv = oKeys['iv'] || '';
 
-    let sResult = oResponse.data.result;
-    let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
-    let oRaw = JSON.parse(sRaw);
-    oResponse.data.raw = oRaw;
+    let sResult = oResponse.data?.result ?? '';
+
+    if (sResult && sKey && sIv) {
+      let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
+      oRaw = JSON.parse(sRaw);
+      oResponse.data.raw = oRaw;
+    }
 
     return oResponse;
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import clsx from 'clsx';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
@@ -62,7 +62,7 @@ function Alerts(oProps: any): any {
   let sTitle = dCodesToTitles[oState.code] ?? dCodesToTitles['-9999'];
   let Icon = dCodesToIcons[oState.code] ?? dCodesToIcons['-9999'];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cAlert = (oMessage: any) => {
       cSetState({
         ...oState,
