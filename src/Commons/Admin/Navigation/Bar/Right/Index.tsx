@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 
 import events from '@/events';
-import Sdks from '@/Sdks';
+import Sdks from '@/Sdks/Index';
 import Helpers from '@/Helpers';
 
 import AlertOfRedis from './AlertOfRedis/Index';

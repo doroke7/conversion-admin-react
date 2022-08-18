@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Helpers from '@/Helpers/';
 import actions from '@/actions/';
 import Components from '@/Components';
-import Sdks from '@/Sdks';
+import Sdks from '@/Sdks/Index';
 import wrappers from '@/wrappers';
 
 import Pannel from './Pannel/Index';

@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import Sdks from '@/Sdks';
+import Sdks from '@/Sdks/Index';
 import Helpers from '@/Helpers';
 import events from '@/events';
 import CONFIGS from '@/CONFIGS';
