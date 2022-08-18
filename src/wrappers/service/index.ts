@@ -1,3 +1,3 @@
-import Authenticator from './Authenticator/Index';
+import title from './title/index';
 
-export default { Authenticator };
+export default { title };
