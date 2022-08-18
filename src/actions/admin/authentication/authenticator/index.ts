@@ -30,7 +30,7 @@ let oAuthenticatorAction: any = {
   refresh: (oBody: any, oOption: any, oQuery: any) => {
     return async (cDispatch: any) => {
       let fNext = async () => {
-        let sJwtOfStorage = Helpers.Authentication.getJwt();
+        let sJwt = Helpers.Authentication.getJwt();
 
         let oResponse = await Helpers.Admin.post({
           path: '/Admin/Authentication/Authenticator/refresh',
