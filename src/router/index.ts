@@ -1,5 +1,5 @@
-import aService from './service';
-import aAdmin from './admin';
+import aService from './service/index';
+import aAdmin from './admin/index';
 
 let oRouter = {
   service: aService,
