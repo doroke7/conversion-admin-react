@@ -8,7 +8,7 @@ function Icon(oProps: any) {
   let oClassName = oProps.className;
 
   let oClasses: any = style(void 0);
-  let Result = CONFIGS.ICONS[sName || 'AppsRoundedIcon'];
-  return <Result className={oClassName} />;
+  let Component = CONFIGS.ICONS[sName ?? 'AppsRoundedIcon'];
+  return <Component className={oClassName} />;
 }
 export default Icon;

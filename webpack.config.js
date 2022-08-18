@@ -206,6 +206,7 @@ module.exports = (env, argvs) => {
             'socket.io-client',
             'socket.io-file-client',
             'jwt-decode',
+            'jsencrypt',
             'axios',
             'moment',
             'react',
@@ -216,12 +217,12 @@ module.exports = (env, argvs) => {
             'redux-react-hook',
             'antd',
             'emoji-mart',
-            '@material-ui/core', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
           ],
           'admin': [
             'socket.io-client',
             'socket.io-file-client',
             'jwt-decode',
+            'jsencrypt',
             'axios',
             'moment',
             'react',
@@ -230,7 +231,6 @@ module.exports = (env, argvs) => {
             'redux',
             'redux-thunk',
             'redux-react-hook',
-            'antd',
             '@material-ui/core', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
             '@mui/x-data-grid', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
 

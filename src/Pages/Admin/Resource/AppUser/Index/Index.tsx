@@ -59,8 +59,8 @@ function Index(oProps: any): any {
     }
   ];
 
-  let cHandleChange = (event: React.ChangeEvent<unknown>, iPage: number) => {
-    cSetState({ page: iPage });
+  let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+    cSetState({ page: iPage + 1 });
   };
 
   return (
@@ -75,18 +75,20 @@ function Index(oProps: any): any {
         disableSelectionOnClick
         loading={true}
       />
-      <Pagination
-        count={48}
-        variant="outlined"
-        shape="rounded"
-        color="primary"
-        siblingCount={0}
-        boundaryCount={2}
-        showFirstButton
-        showLastButton
-        page={oState.page}
-        onChange={cHandleChange}
-      />
+      <div>
+        <Pagination
+          count={48}
+          variant="outlined"
+          shape="rounded"
+          color="primary"
+          siblingCount={1}
+          boundaryCount={1}
+          showFirstButton
+          showLastButton
+          page={oState.page}
+          onChange={cHandleChange}
+        />
+      </div>
     </div>
   );
 }
