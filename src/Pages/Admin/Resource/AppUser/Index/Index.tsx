@@ -1,17 +1,24 @@
 import React from 'react';
+import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import { DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
 
-import wrappers from '@/wrappers';
+import wrappers from '@/wrappers/index';
+import utilities from '@/utilities/index';
 
 import style from './style';
 
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
-  let [oState, cSetState] = React.useState<any>({
-    page: 11
-  });
+  let oHistory = useHistory();
+
+  let oParams: any = useParams();
+  let oRouteMatch = useRouteMatch();
+
+  // let [oState, cSetState] = React.useState<any>({
+  //   page: oParams.page ?? 1
+  // });
 
   let aRows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -60,7 +67,12 @@ function Index(oProps: any): any {
   ];
 
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
-    cSetState({ page: iPage + 1 });
+    let oNextPageParams = {
+      ...oParams,
+      page: iPage
+    };
+    let sUrl = utilities.url(oRouteMatch.path, oNextPageParams);
+    oHistory.push(sUrl);
   };
 
   return (
@@ -76,6 +88,7 @@ function Index(oProps: any): any {
         loading={true}
       />
       <div>
+        {oParams.page}
         <Pagination
           count={48}
           variant="outlined"
@@ -85,7 +98,7 @@ function Index(oProps: any): any {
           boundaryCount={1}
           showFirstButton
           showLastButton
-          page={oState.page}
+          page={Number(oParams.page) ?? 1}
           onChange={cHandleChange}
         />
       </div>
