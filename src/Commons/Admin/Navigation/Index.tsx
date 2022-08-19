@@ -169,15 +169,15 @@ function Navigation(oProps: any) {
       let iValue = oState.value;
       let bExist = false;
       if (aTabs.length >= 1) {
-        for (let iIndex = 0; iIndex < aTabs.length; iIndex++) {
-          if (aTabs[iIndex]['id'] == oTab.id) {
-            iValue = iIndex;
+        for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
+          if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
+            iValue = iIndexOfTabs;
             // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-            if (aTabs[iIndex]['path'] != oTab.path) {
-              aTabs[iIndex]['text'] = oTab.text;
+            if (aTabs[iIndexOfTabs]['path'] != oTab.path) {
+              aTabs[iIndexOfTabs]['text'] = oTab.text;
             }
-            aTabs[iIndex]['icon'] = oTab.icon;
-            aTabs[iIndex]['url'] = oTab.url;
+            aTabs[iIndexOfTabs]['icon'] = oTab.icon;
+            aTabs[iIndexOfTabs]['url'] = oTab.url;
 
             bExist = true;
             break;
