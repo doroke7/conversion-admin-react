@@ -173,7 +173,7 @@ function Navigation(oProps: any) {
           if (aTabs[iIndex]['id'] == oTab.id) {
             iValue = iIndex;
             // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-            if (aTabs[iIndex]['url'] != oTab.url) {
+            if (aTabs[iIndex]['path'] != oTab.path) {
               aTabs[iIndex]['text'] = oTab.text;
             }
             aTabs[iIndex]['icon'] = oTab.icon;
@@ -189,7 +189,7 @@ function Navigation(oProps: any) {
         // DO NOTHING
       }
       if (!bExist) {
-        aTabs = aTabs.concat(oTab);
+        aTabs = [...aTabs, oTab];
         iValue = aTabs.length - 1;
       }
       let oApp = CONFIGS.APPS[oState.index];
