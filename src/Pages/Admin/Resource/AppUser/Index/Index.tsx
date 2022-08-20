@@ -27,15 +27,62 @@ function Index(oProps: any): any {
   });
 
   let aColumns: any[] = [
-    { field: 'id', headerName: 'ID', description: '流水号', width: 100, editable: false }
-    // {
-    //   field: 'add_datetime',
-    //   headerName: '注册时间',
-    //   description: '初始应用程序的时间',
-    //   sortable: false,
-    //   width: 160,
-    //   valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
-    // }
+    { field: 'id', headerName: 'ID', description: '流水号', width: 100, editable: false },
+    { field: 'username', headerName: '昵称', description: '昵称', width: 160, editable: false },
+
+    {
+      field: 'vip_datetime',
+      headerName: 'VIP时间',
+      description: 'VIP的时间',
+      sortable: false,
+      width: 200
+      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
+    },
+    {
+      field: 'code_number',
+      headerName: '手机号',
+      description: '手机号',
+      sortable: false,
+      width: 140
+    },
+    {
+      field: 'phone_type_icon',
+      headerName: '设备',
+      description: '设备',
+      sortable: false,
+      width: 90,
+      valueGetter: (oParams: any) => {
+        let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
+        let sResult = '未知';
+        sResult = iPhoneType == 1 ? '安卓' : sResult;
+        sResult = iPhoneType == 2 ? 'iOS' : sResult;
+        return sResult;
+      }
+    },
+    {
+      field: 'login_ip',
+      headerName: 'IP',
+      description: 'IP',
+      sortable: false,
+      width: 150
+      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
+    },
+    {
+      field: 'login_datetime',
+      headerName: '登入时间',
+      description: '上次登入应用程序的时间',
+      sortable: false,
+      width: 200
+      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
+    },
+    {
+      field: 'add_datetime',
+      headerName: '注册时间',
+      description: '初始应用程序的时间',
+      sortable: false,
+      width: 200
+      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
+    }
   ];
 
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
@@ -49,6 +96,14 @@ function Index(oProps: any): any {
 
   useEffect(() => {
     (async () => {
+      cSetState((oOldState) => {
+        let oNewState = {
+          ...oOldState,
+          loading: true,
+          rows: []
+        };
+        return oNewState;
+      });
       let oOption = {
         app_id: oParams.appId,
         page: oParams.page,
@@ -65,13 +120,21 @@ function Index(oProps: any): any {
     })();
   }, [oParams.appId, oParams.page, oParams.limit]);
 
+  /*
+   * NOTE: 一般使用者 习惯从 1 开始标记为第一页
+   * NOTE: API 接口服务 1 开始标记为第一页
+   * NOTE: <DataGrid>  0 开始标记为第一页
+   * NOTE: MYSQL  0 开始标记为第一页
+
+   */
+
   return (
     <div style={{ height: 650, width: '100%' }}>
       <DataGrid
         rows={oState.rows}
         columns={aColumns}
         rowCount={oState.count}
-        page={1}
+        page={0}
         pageSize={oParams.limit}
         checkboxSelection
         disableSelectionOnClick
@@ -90,7 +153,6 @@ function Index(oProps: any): any {
           page={Number(oParams.page ?? 1)}
           onChange={cHandleChange}
         />
-        {JSON.stringify(oState)}
       </div>
     </div>
   );
