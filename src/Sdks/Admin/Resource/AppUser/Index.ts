@@ -1,7 +1,7 @@
 import Helpers from '@/Helpers/Index';
 
 class AppUser {
-  public static async getShow(oOption, oQuery) {
+  public static async getShow(oOption, oQuery = null) {
     let oResponse = await Helpers.Admin.get({
       path: '/Admin/Resource/AppUser/show',
       // API 中，问号拼接的 参数。 如 ?option={}&query={}

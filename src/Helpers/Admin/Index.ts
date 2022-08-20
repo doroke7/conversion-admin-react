@@ -168,9 +168,27 @@ class AdminHelper {
           return oResponse;
         })
       );
-
       return aResponses;
     }
+
+    let sUrl: string = (oRequest.url || sHost) + oRequest.path;
+    let sKey = utilities.randString(16);
+    let sIv = utilities.randString(16);
+
+    oParams = AdminHelper.params(oRequest.params, sKey, sIv);
+    oData = AdminHelper.data(oRequest.data, sKey, sIv);
+    oOptions = AdminHelper.options(oRequest.options, sKey, sIv);
+    oOptions['params'] = oParams;
+    oOptions['headers']['Signature'] = AdminHelper.sign(oParams, oData, oOptions);
+
+    let oAxiosResponse;
+    try {
+      oAxiosResponse = await axios.get(sUrl, oOptions);
+    } catch (oExcepiton) {
+      oAxiosResponse = oExcepiton.response;
+    }
+    let oResponse = AdminHelper.response(oAxiosResponse);
+    return oResponse;
   }
 
   public static async post(oRequest: any | any[], oConfigs: any = {}): Promise<any> {

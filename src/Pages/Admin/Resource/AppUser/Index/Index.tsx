@@ -5,6 +5,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
 
 import wrappers from '@/wrappers/index';
+import Sdks from '@/Sdks/Index';
+import events from '@/events/index';
+
 import utilities from '@/utilities/index';
 
 import style from './style';
@@ -16,9 +19,10 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  // let [oState, cSetState] = React.useState<any>({
-  //   page: oParams.page ?? 1
-  // });
+  let [oState, cSetState] = React.useState<any>({
+    number: 0,
+    loading: true
+  });
 
   let aRows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -75,22 +79,45 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
+  let cRequst = async () => {
+    let oOption = {
+      app_id: oParams.appId,
+      page: oParams.page,
+      limit: oParams.limit
+    };
+    let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
+    console.info(oResponse);
+    // if (oResponse?.data?.code != 0) {
+    //   let oMessage = {
+    //     code: oResponse?.data?.code ?? 0,
+    //     message: oResponse?.data?.message ?? '',
+    //     time: 2 * 1000
+    //   };
+    //   events.admin.emit('Alerts-onAlert', oMessage);
+    // }
+    // let iNumber = oResponse?.data?.raw?.number ?? 0;
+    // cSetState({
+    //   ...oState,
+    //   number: iNumber,
+    //   loading: false
+    // });
+  };
+  cRequst();
   return (
     <div style={{ height: 650, width: '100%' }}>
       <DataGrid
         rows={aRows}
         columns={aColumns}
-        rowCount={999}
-        page={0}
+        rowCount={oState.number}
+        page={Number(oParams.page ?? 1)}
         pageSize={10}
         checkboxSelection
         disableSelectionOnClick
-        loading={true}
+        loading={oState.loading}
       />
       <div>
-        {oParams.page}
         <Pagination
-          count={48}
+          count={oState.number}
           variant="outlined"
           shape="rounded"
           color="primary"
@@ -98,7 +125,7 @@ function Index(oProps: any): any {
           boundaryCount={1}
           showFirstButton
           showLastButton
-          page={Number(oParams.page) ?? 1}
+          page={Number(oParams.page ?? 1)}
           onChange={cHandleChange}
         />
       </div>
