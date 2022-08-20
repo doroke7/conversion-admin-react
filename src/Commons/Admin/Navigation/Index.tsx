@@ -173,7 +173,7 @@ function Navigation(oProps: any) {
           if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
             iValue = iIndexOfTabs;
             // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-            if (aTabs[iIndexOfTabs]['path'] != oTab.path) {
+            if (aTabs[iIndexOfTabs]['url'] != oTab.url) {
               aTabs[iIndexOfTabs]['text'] = oTab.text;
             }
             aTabs[iIndexOfTabs]['icon'] = oTab.icon;
