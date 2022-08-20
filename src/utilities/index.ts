@@ -23,6 +23,7 @@ import cDeTree from './deTree/';
 import deTree from './deTree/';
 import randString from './randString/';
 import url from './url/';
+import dateTime from './dateTime/';
 
 export {
   selectType,
@@ -49,6 +50,7 @@ export {
 };
 
 export default {
+  dateTime,
   url,
   appIdPageLimit,
   deTree,

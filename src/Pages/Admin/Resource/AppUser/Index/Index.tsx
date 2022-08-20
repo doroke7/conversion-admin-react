@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import { DataGrid } from '@mui/x-data-grid';
@@ -21,53 +21,21 @@ function Index(oProps: any): any {
 
   let [oState, cSetState] = React.useState<any>({
     number: 0,
-    loading: true
+    count: 0,
+    loading: true,
+    rows: []
   });
 
-  let aRows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
-  ];
-
   let aColumns: any[] = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    {
-      field: 'firstName',
-      headerName: '姓',
-      width: 150,
-      editable: false
-    },
-    {
-      field: 'lastName',
-      headerName: '名',
-      width: 150,
-      editable: false
-    },
-    {
-      field: 'age',
-      headerName: '年龄',
-      type: 'number',
-      width: 110,
-      editable: false
-    },
-    {
-      field: 'fullName',
-      headerName: '名称',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params: any) =>
-        `${params.getValue(params.id, 'firstName') || ''} ${params.getValue(params.id, 'lastName') || ''}`
-    }
+    { field: 'id', headerName: 'ID', description: '流水号', width: 100, editable: false }
+    // {
+    //   field: 'add_datetime',
+    //   headerName: '注册时间',
+    //   description: '初始应用程序的时间',
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
+    // }
   ];
 
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
@@ -79,45 +47,39 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cRequst = async () => {
-    let oOption = {
-      app_id: oParams.appId,
-      page: oParams.page,
-      limit: oParams.limit
-    };
-    let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
-    console.info(oResponse);
-    // if (oResponse?.data?.code != 0) {
-    //   let oMessage = {
-    //     code: oResponse?.data?.code ?? 0,
-    //     message: oResponse?.data?.message ?? '',
-    //     time: 2 * 1000
-    //   };
-    //   events.admin.emit('Alerts-onAlert', oMessage);
-    // }
-    // let iNumber = oResponse?.data?.raw?.number ?? 0;
-    // cSetState({
-    //   ...oState,
-    //   number: iNumber,
-    //   loading: false
-    // });
-  };
-  cRequst();
+  useEffect(() => {
+    (async () => {
+      let oOption = {
+        app_id: oParams.appId,
+        page: oParams.page,
+        limit: oParams.limit
+      };
+      let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
+      cSetState({
+        number: oResponse?.data?.raw?.number ?? 0,
+        rows: oResponse?.data?.raw?.list ?? [],
+        count: Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.limit ?? 10) || 10)),
+        loading: false
+      });
+      console.info(oResponse);
+    })();
+  }, [oParams.appId, oParams.page, oParams.limit]);
+
   return (
     <div style={{ height: 650, width: '100%' }}>
       <DataGrid
-        rows={aRows}
+        rows={oState.rows}
         columns={aColumns}
-        rowCount={oState.number}
-        page={Number(oParams.page ?? 1)}
-        pageSize={10}
+        rowCount={oState.count}
+        page={1}
+        pageSize={oParams.limit}
         checkboxSelection
         disableSelectionOnClick
         loading={oState.loading}
       />
       <div>
         <Pagination
-          count={oState.number}
+          count={oState.count}
           variant="outlined"
           shape="rounded"
           color="primary"
@@ -128,6 +90,7 @@ function Index(oProps: any): any {
           page={Number(oParams.page ?? 1)}
           onChange={cHandleChange}
         />
+        {JSON.stringify(oState)}
       </div>
     </div>
   );
