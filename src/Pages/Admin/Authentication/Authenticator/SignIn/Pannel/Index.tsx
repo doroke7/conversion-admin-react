@@ -27,6 +27,8 @@ interface State {
   password: string;
   loading: boolean;
   pannelAnimation: boolean;
+  usernameError: boolean;
+  passwordError: boolean;
 }
 
 const ENTER_CODE = 13;
@@ -44,7 +46,9 @@ function Pannel(oProps: any): any {
     name: '',
     password: '',
     loading: false,
-    pannelAnimation: false
+    pannelAnimation: false,
+    usernameError: false,
+    passwordError: false
   });
 
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,18 +64,24 @@ function Pannel(oProps: any): any {
   let cSignIn = async () => {
     try {
       if (!oState.name) {
+        cSetState({ ...oState, usernameError: true });
         throw new Exception('请输入管理用户名称', -1);
       }
 
       if (!oState.password) {
+        cSetState({ ...oState, passwordError: true });
         throw new Exception('请输入管理用户密码', -1);
       }
 
       if (oState.name.length <= 3) {
+        cSetState({ ...oState, usernameError: true });
+
         throw new Exception('请输入4 字元以上名称', -1);
       }
 
       if (oState.password.length <= 5) {
+        cSetState({ ...oState, passwordError: true });
+
         throw new Exception('请输入6 字以上元密码', -1);
       }
       events.admin.emit('Progress-onProgress', { value: 0, status: true });
@@ -129,6 +139,8 @@ function Pannel(oProps: any): any {
   };
 
   let onKeyPress = (oEvent: any) => {
+    cSetState({ ...oState, passwordError: false, usernameError: false });
+
     if (ENTER_CODE === oEvent.charCode) {
       cSignIn();
     }
@@ -144,6 +156,7 @@ function Pannel(oProps: any): any {
       </Avatar>
       <h2 className={oClasses.title}>{CONFIGS.APP.NAME}</h2>
       <TextField
+        error={oState.usernameError}
         id="user-name"
         label="名称"
         className={oClasses.textField}
@@ -154,6 +167,7 @@ function Pannel(oProps: any): any {
         onKeyPress={onKeyPress}
       />
       <TextField
+        error={oState.passwordError}
         id="user-password"
         label="密码"
         type="password"

@@ -4,7 +4,7 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-
+      marginBottom: oTheme.spacing(1)
     }
   })
 );

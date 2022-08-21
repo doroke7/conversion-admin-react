@@ -1,24 +1,27 @@
 import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { useHistory, useLocation } from 'react-router-dom';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import cStyle from './style';
 
-function UnknownIcon(oProps: any) {
+function Pannel(oProps: any) {
   let oClasses = cStyle();
 
   let sClassName = oProps.className ?? '';
 
   return (
-    <div>
-      
-    </div>
+    <FormControl>
+      <TextField id="filled-helperText" label="用户ID" defaultValue="" helperText="请输入数字" variant="outlined" />
+    </FormControl>
   );
 }
 
-export default UnknownIcon;
+export default Pannel;

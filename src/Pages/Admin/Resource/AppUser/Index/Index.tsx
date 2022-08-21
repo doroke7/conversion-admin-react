@@ -154,6 +154,7 @@ function Index(oProps: any): any {
 
   return (
     <div>
+      <Pannel></Pannel>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={oClasses.dataGrid}

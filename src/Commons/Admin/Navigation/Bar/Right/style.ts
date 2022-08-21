@@ -51,8 +51,8 @@ const style = makeStyles((oTheme: Theme) =>
     },
     badge: {
       '& .MuiBadge-badge': {
-        backgroundColor: lightGreen['A200'],
-        color: lightGreen['A200'],
+        backgroundColor: lightGreen['A700'],
+        color: lightGreen['A700'],
         boxShadow: `0 0 0 2px ${oTheme.palette.background.paper}`,
 
         '&::after': {
