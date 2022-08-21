@@ -7,8 +7,12 @@ import Pagination from '@material-ui/lab/Pagination';
 import wrappers from '@/wrappers/index';
 import Sdks from '@/Sdks/Index';
 import events from '@/events/index';
-
+import Components from '@/Components/Index';
 import utilities from '@/utilities/index';
+
+import AppleIcon from './AppleIcon/Index';
+import AndroidIcon from './AndroidIcon/Index';
+import UnknownIcon from './UnknownIcon/Index';
 
 import style from './style';
 
@@ -28,6 +32,17 @@ function Index(oProps: any): any {
 
   let aColumns: any[] = [
     { field: 'id', headerName: 'ID', description: '流水号', width: 100, editable: false },
+    {
+      field: 'avatar',
+      headerName: '头像',
+      description: '头像',
+      sortable: false,
+      width: 85,
+      renderCell: (oParams: any) => {
+        let sPic = oParams.getValue(oParams.id, 'pic') || '';
+        return <Components.Admin.Img src={sPic}></Components.Admin.Img>;
+      }
+    },
     { field: 'username', headerName: '昵称', description: '昵称', width: 160, editable: false },
 
     {
@@ -57,6 +72,14 @@ function Index(oProps: any): any {
         sResult = iPhoneType == 1 ? '安卓' : sResult;
         sResult = iPhoneType == 2 ? 'iOS' : sResult;
         return sResult;
+      },
+      renderCell: (oParams: any) => {
+        let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
+        let Component = UnknownIcon;
+        Component = iPhoneType == 1 ? AndroidIcon : Component;
+        Component = iPhoneType == 2 ? AppleIcon : Component;
+
+        return <Component></Component>;
       }
     },
     {

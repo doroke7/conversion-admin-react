@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 
 import { useHistory, useLocation } from 'react-router-dom';
@@ -40,7 +40,7 @@ function Pannel(oProps: any): any {
   let oHistory = useHistory();
   let oLocation = useLocation();
 
-  let [oState, cSetState] = React.useState<State>({
+  let [oState, cSetState] = useState<State>({
     name: '',
     password: '',
     loading: false,
