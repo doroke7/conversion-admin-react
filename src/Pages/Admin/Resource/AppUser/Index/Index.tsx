@@ -161,6 +161,7 @@ function Index(oProps: any): any {
         pageSize={oParams.limit}
         checkboxSelection
         disableSelectionOnClick
+        hideFooterPagination
         loading={oState.loading}
       />
       <div>
