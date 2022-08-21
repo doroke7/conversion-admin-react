@@ -5,7 +5,12 @@ const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     dataGridWrapper: {
       width: '100%',
-      height: '578px'
+      height: '578px',
+      '& .MuiDataGrid-root': {
+        '& .MuiDataGrid-overlay': {
+          background: grey[50]
+        }
+      }
     },
     dataGrid: {
       borderBottom: '0px solid #fff'

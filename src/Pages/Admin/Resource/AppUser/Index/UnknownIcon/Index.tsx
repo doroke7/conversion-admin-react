@@ -14,9 +14,7 @@ function UnknownIcon(oProps: any) {
 
   let sClassName = oProps.className ?? '';
 
-  return (
-    <div>-</div>
-  );
+  return <div>-</div>;
 }
 
 export default UnknownIcon;
