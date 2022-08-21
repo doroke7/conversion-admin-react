@@ -147,65 +147,6 @@ function Navigation(oProps: any) {
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
-  useLayoutEffect(() => {
-    let cOnRoute = (oRoute: any) => {
-      let aTabs = [...oState.tabs];
-      let oParams = {
-        appId: CONFIGS.APPS[oState.index].id ?? '',
-        page: 1,
-        limit: 10
-      };
-      let oTab = {
-        id: oRoute.id,
-        path: oRoute.path,
-        url: oRoute.url,
-        query: '',
-        text: (oRoute.text ?? oState.text) || oState.text,
-        icon: oRoute.icon ?? ''
-      };
-      if (oRoute.id == '2-4-0' || oRoute.id == '2-5-0') {
-        oTab.text = oState.text || '未定义';
-      }
-      let iValue = oState.value;
-      let bExist = false;
-      if (aTabs.length >= 1) {
-        for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
-          if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
-            iValue = iIndexOfTabs;
-            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-            if (aTabs[iIndexOfTabs]['url'] != oTab.url) {
-              aTabs[iIndexOfTabs]['text'] = oTab.text;
-            }
-            aTabs[iIndexOfTabs]['icon'] = oTab.icon;
-            aTabs[iIndexOfTabs]['url'] = oTab.url;
-
-            bExist = true;
-            break;
-          }
-        }
-      }
-
-      if (bExist) {
-        // DO NOTHING
-      }
-      if (!bExist) {
-        aTabs = [...aTabs, oTab];
-        iValue = aTabs.length - 1;
-      }
-      let oApp = CONFIGS.APPS[oState.index];
-
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
-
-      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false });
-    };
-
-    let oEventEmitter: any = events.admin.addListener('Navigation-onRoute', cOnRoute);
-    // 组件销毁前移除事件监听
-    return () => {
-      events.admin.removeListener('Navigation-onRoute', cOnRoute);
-    };
-  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.text]);
-
   useEffect(() => {
     let cClickLink = (oLink) => {
       let oParams = {
@@ -286,6 +227,78 @@ function Navigation(oProps: any) {
       events.admin.removeListener('Navigation-onClickApp', cClickApp);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
+
+  useLayoutEffect(() => {
+    let cOnTab = (oRoute: any) => {
+      let aTabs =
+        oRoute?.params?.appId >= 0 && oState.index == -1
+          ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
+          : [...oState.tabs];
+      let aApps = CONFIGS.APPS ?? [];
+      let iIndex;
+      let iResultIndex = -1;
+      for (iIndex = 0; iIndex < aApps.length; iIndex++) {
+        if (aApps[iIndex].id == oRoute?.params?.appId) {
+          iResultIndex = iIndex;
+          break;
+        }
+      }
+
+      let oParams = {
+        appId: oRoute.params.appId ?? '',
+        page: 1,
+        limit: 10
+      };
+      let oTab = {
+        id: oRoute.id,
+        path: oRoute.path,
+        url: oRoute.url,
+        query: '',
+        text: (oRoute.text ?? oState.text) || oState.text,
+        icon: oRoute.icon ?? ''
+      };
+      if (oRoute.id == '2-4-0' || oRoute.id == '2-5-0') {
+        oTab.text = oState.text || '未定义';
+      }
+      let iValue = oState.value;
+      let bExist = false;
+      if (aTabs.length >= 1) {
+        for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
+          if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
+            iValue = iIndexOfTabs;
+            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+            if (aTabs[iIndexOfTabs]['url'] != oTab.url) {
+              aTabs[iIndexOfTabs]['text'] = oTab.text;
+            }
+            aTabs[iIndexOfTabs]['icon'] = oTab.icon;
+            aTabs[iIndexOfTabs]['url'] = oTab.url;
+
+            bExist = true;
+            break;
+          }
+        }
+      }
+
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs = [...aTabs, oTab];
+        iValue = aTabs.length - 1;
+      }
+      let oApp = CONFIGS.APPS[oState.index];
+
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
+
+      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false, index: iResultIndex });
+    };
+
+    let oEventEmitter: any = events.admin.addListener('Navigation-onTab', cOnTab);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.admin.removeListener('Navigation-onTab', cOnTab);
+    };
+  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.text]);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });

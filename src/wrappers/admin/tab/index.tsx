@@ -15,25 +15,26 @@ let tab = (Component: any): any => {
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
 
-    useEffect(() => {
-      if (iIndex == -1 && parseInt(oParams?.appId) >= 1) {
-        let iAppId = parseInt(oParams?.appId) ?? 0;
-        events.admin.emit('Navigation-onClickApp', iAppId);
-      }
-      return () => {};
-    }, [iIndex, oParams.appId]);
+    // useEffect(() => {
+    //   if (iIndex == -1 && parseInt(oParams?.appId) >= 1) {
+    //     let iAppId = parseInt(oParams?.appId) ?? 0;
+    //     events.admin.emit('Navigation-onClickApp', iAppId);
+    //   }
+    //   return () => {};
+    // }, [iIndex, oParams.appId]);
 
     useEffect(() => {
-      if (iIndex >= 0 && parseInt(oParams?.appId) >= 1) {
+      if (parseInt(oParams?.appId) >= 1) {
         let oRoute = {
           id: sId,
           text: sText,
           url: oRouteMatch.url,
+          params: oParams,
           path: sPath,
           icon: sIcon,
           query: ''
         };
-        events.admin.emit('Navigation-onRoute', oRoute);
+        events.admin.emit('Navigation-onTab', oRoute);
       }
       return () => {};
     }, [oRouteMatch.url]);
