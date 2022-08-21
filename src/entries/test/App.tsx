@@ -47,15 +47,20 @@ const rows = [
 
 export default function DataGridDemo() {
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
+    <div>
+      <div style={{ height: 318, width: '100%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          hideFooter={true}
+          disableColumnMenu={true}
+        />
+      </div>
+      <div>DDDDDDDDDDDDDDDDDDDDDDDDDDDDD</div>
     </div>
   );
 }

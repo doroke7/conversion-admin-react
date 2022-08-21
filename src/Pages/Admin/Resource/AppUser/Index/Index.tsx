@@ -154,8 +154,9 @@ function Index(oProps: any): any {
 
   return (
     <div>
-      <div style={{ height: 632, width: '100%' }}>
+      <div className={oClasses.dataGridWrapper}>
         <DataGrid
+          className={oClasses.dataGrid}
           rows={oState.rows}
           columns={aColumns}
           rowCount={oState.count}
@@ -169,18 +170,24 @@ function Index(oProps: any): any {
           disableColumnMenu={true}
         />
       </div>
-      <Pagination
-        count={oState.count}
-        variant="outlined"
-        shape="rounded"
-        color="primary"
-        siblingCount={1}
-        boundaryCount={1}
-        showFirstButton
-        showLastButton
-        page={Number(oParams.page ?? 1)}
-        onChange={cHandleChange}
-      />
+      <div className={oClasses.paginationWrapper}>
+        {oState.count >= 1 ? (
+          <Pagination
+            count={oState.count}
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+            siblingCount={1}
+            boundaryCount={1}
+            showFirstButton
+            showLastButton
+            page={Number(oParams.page ?? 1)}
+            onChange={cHandleChange}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }
