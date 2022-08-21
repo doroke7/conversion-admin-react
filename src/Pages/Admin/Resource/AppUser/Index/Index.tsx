@@ -13,6 +13,7 @@ import utilities from '@/utilities/index';
 import AppleIcon from './AppleIcon/Index';
 import AndroidIcon from './AndroidIcon/Index';
 import UnknownIcon from './UnknownIcon/Index';
+import Pannel from './Pannel/Index';
 
 import style from './style';
 
@@ -152,32 +153,34 @@ function Index(oProps: any): any {
    */
 
   return (
-    <div style={{ height: 650, width: '100%' }}>
-      <DataGrid
-        rows={oState.rows}
-        columns={aColumns}
-        rowCount={oState.count}
-        page={0}
-        pageSize={oParams.limit}
-        checkboxSelection
-        disableSelectionOnClick
-        hideFooterPagination
-        loading={oState.loading}
-      />
-      <div>
-        <Pagination
-          count={oState.count}
-          variant="outlined"
-          shape="rounded"
-          color="primary"
-          siblingCount={1}
-          boundaryCount={1}
-          showFirstButton
-          showLastButton
-          page={Number(oParams.page ?? 1)}
-          onChange={cHandleChange}
+    <div>
+      <div style={{ height: 632, width: '100%' }}>
+        <DataGrid
+          rows={oState.rows}
+          columns={aColumns}
+          rowCount={oState.count}
+          page={0}
+          pageSize={oParams.limit}
+          checkboxSelection
+          disableSelectionOnClick
+          hideFooterPagination={true}
+          hideFooter={true}
+          loading={oState.loading}
+          disableColumnMenu={true}
         />
       </div>
+      <Pagination
+        count={oState.count}
+        variant="outlined"
+        shape="rounded"
+        color="primary"
+        siblingCount={1}
+        boundaryCount={1}
+        showFirstButton
+        showLastButton
+        page={Number(oParams.page ?? 1)}
+        onChange={cHandleChange}
+      />
     </div>
   );
 }
