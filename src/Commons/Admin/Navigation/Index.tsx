@@ -275,7 +275,9 @@ function Navigation(oProps: any) {
       if (iResultIndex != oState.index) {
         let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
         cSetState({ ...oState, index: iResultIndex, tabs: aTabs, value: -1 });
-        oHistory.push('/admin/resource');
+        if (oState.index >= 0) {
+          oHistory.push('/admin/resource');
+        }
       }
     };
     let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
