@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 
 import cStyle from './style';
 
@@ -18,9 +19,10 @@ function Pannel(oProps: any) {
   let sClassName = oProps.className ?? '';
 
   return (
-    <FormControl>
-      <TextField id="filled-helperText" label="用户ID" defaultValue="" helperText="请输入数字" variant="outlined" />
-    </FormControl>
+    <FormGroup className={oClasses.root} row={true}>
+      <TextField className={oClasses.id} id="id" label="用户ID" variant="filled" size="small" />
+      <TextField className={oClasses.username} id="username" label="用户昵称" variant="filled" size="small" />
+    </FormGroup>
   );
 }
 

@@ -32,7 +32,7 @@ function Index(oProps: any): any {
   });
 
   let aColumns: any[] = [
-    { field: 'id', headerName: 'ID', description: '流水号', width: 100, editable: false },
+    { field: 'id', headerName: 'ID', description: '流水号', width: 100, sortable: false, editable: false },
     {
       field: 'avatar',
       headerName: '头像',
@@ -44,7 +44,7 @@ function Index(oProps: any): any {
         return <Components.Admin.Img src={sPic}></Components.Admin.Img>;
       }
     },
-    { field: 'username', headerName: '昵称', description: '昵称', width: 160, editable: false },
+    { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
 
     {
       field: 'vip_datetime',
