@@ -10,18 +10,12 @@ let tab = (Component: any): any => {
     let sId = oProps.id ?? '0-0-0';
     let sText = oProps.text ?? '未定义';
     let sPath = oProps.path ?? '';
-    let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
 
-    // useEffect(() => {
-    //   if (iIndex == -1 && parseInt(oParams?.appId) >= 1) {
-    //     let iAppId = parseInt(oParams?.appId) ?? 0;
-    //     events.admin.emit('Navigation-onClickApp', iAppId);
-    //   }
-    //   return () => {};
-    // }, [iIndex, oParams.appId]);
+    console.info(oRouteMatch);
+    console.info(oParams);
 
     useEffect(() => {
       if (parseInt(oParams?.appId) >= 1) {

@@ -15,7 +15,6 @@ const oReducer = (oState = oInitState, oAction) => {
   switch (oAction.type) {
     case ADD_USER: {
       const aUsers = oState.users.map((sUser) => sUser);
-      console.info(aUsers, 'users');
       aUsers.push(oAction.payload);
       return {
         users: aUsers

@@ -133,7 +133,6 @@ function Index(oProps: any): any {
         count: Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.limit ?? 10) || 10)),
         loading: false
       });
-      console.info(oResponse);
     })();
   }, [oParams.appId, oParams.page, oParams.limit]);
 

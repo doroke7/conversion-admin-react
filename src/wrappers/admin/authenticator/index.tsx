@@ -21,8 +21,6 @@ let authenticator = (Component: any): any => {
 
     useEffect(() => {
       let cRefresh = async () => {
-        let b = oProps;
-        console.info(b);
         let sJwt = Helpers.Authentication.getJwt() ?? '';
         if (sJwt == '' && aRedirections[0]) {
           let oMessage = {
