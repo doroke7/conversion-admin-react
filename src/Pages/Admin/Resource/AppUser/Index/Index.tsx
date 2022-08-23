@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import { DataGrid } from '@mui/x-data-grid';
@@ -24,7 +24,8 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  let [oState, cSetState] = React.useState<any>({
+  let cSetPageCount = oProps.setPagecount ?? (() => void 0);
+  let [oState, cSetState] = useState<any>({
     number: 0,
     count: 0,
     loading: true,
@@ -127,12 +128,14 @@ function Index(oProps: any): any {
         limit: oParams.limit
       };
       let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
+      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.limit ?? 10) || 10));
       cSetState({
         number: oResponse?.data?.raw?.number ?? 0,
         rows: oResponse?.data?.raw?.list ?? [],
-        count: Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.limit ?? 10) || 10)),
+        count: iCount,
         loading: false
       });
+      cSetPageCount(iCount);
     })();
   }, [oParams.appId, oParams.page, oParams.limit]);
 
@@ -184,4 +187,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default wrappers.admin.tab(wrappers.admin.title(Index));
+export default wrappers.admin.tab(wrappers.admin.page(wrappers.admin.title(Index)));
