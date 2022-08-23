@@ -10,6 +10,7 @@ let page = (Component: any): any => {
 
     useEffect(() => {
       if (oParams.page <= 0) {
+        // DO NOTHING
       }
       return () => {};
     }, [oParams.page]);
