@@ -67,13 +67,6 @@ function Index(oProps: any): any {
       description: '设备',
       sortable: false,
       width: 90,
-      valueGetter: (oParams: any) => {
-        let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
-        let sResult = '未知';
-        sResult = iPhoneType == 1 ? '安卓' : sResult;
-        sResult = iPhoneType == 2 ? 'iOS' : sResult;
-        return sResult;
-      },
       renderCell: (oParams: any) => {
         let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
         let Component = UnknownIcon;
