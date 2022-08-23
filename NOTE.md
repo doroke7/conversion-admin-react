@@ -1,21 +1,4 @@
-## 修改 VS-Code 左边导览文件夹的预设缩进大小
-   File > Preferences > Settings > Workbench > Appearance > Tree： Indent 24
 
-## 覆写 Material UI 的方案
-(a) React 提供属性 className, 继承覆盖此 Element 的 类别来覆写 样式
-(b) React Material-UI 提供属性 classes, 可以继承覆盖该元素以及子元素的 类别来覆盖样式
-(c) 使用 Material-UI 的 root 以及 makeStyle 里面  类似 scss 的 '& Muixxx-yyyy' 覆写样式 
-
-## 不要使用 react-router-config
- 1. 类似 vue 配置式路由写法
- 2. 其实只是用 map 很简单的微调
- 3. 兼容性差， 已经停止维护 ，尤其对 react-router-dom@6 以上版本不兼容
-
-## 不使用 withStyles 这种函数建立 Element, 改用 makeStyles
-1. 弹性较高
-
-## REACT 使用内建 children 属性 表示 子元素，这是 react 内建，不需要另外引入
-  const { children, classes, onClose, ...other } = props;
 
 
 ## 权限表结构
