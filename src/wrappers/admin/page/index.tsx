@@ -11,18 +11,20 @@ let page = (Component: any): any => {
     let oHistory = useHistory();
 
     let [oState, cSetState] = useState<any>({
-      count: Number.MAX_VALUE,
       min: 1,
       max: Number.MAX_VALUE
     });
 
-    let cSetPageCount = (iCount) => {
-      cSetState({ count: iCount });
+    let cSetPageMax = (iCount) => {
+      cSetState((oOldState) => {
+        let oNewState = { ...oOldState, max: iCount };
+        return oNewState;
+      });
     };
 
     useEffect(() => {
       let iPage = oParams.page || 0;
-      if (iPage <= 0) {
+      if (iPage < oState.min) {
         let oMessage = {
           code: -1,
           message: '页数1, 已为第一首页',
@@ -32,19 +34,19 @@ let page = (Component: any): any => {
         let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: 1 });
         oHistory.push(sUrl);
       }
-      if (iPage > oState.count) {
+      if (iPage > oState.max) {
         let oMessage = {
           code: -1,
-          message: '页数' + oState.count + ', 已为最后末页',
+          message: '页数' + oState.max + ', 已为最后末页',
           time: 3 * 1000
         };
         events.admin.emit('Alerts-onAlert', oMessage);
-        let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: oState.count });
+        let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: oState.max });
         oHistory.push(sUrl);
       }
       return () => {};
-    }, [oParams.page, oState.count]);
-    return <Component setPageCount={cSetPageCount} {...oProps}></Component>;
+    }, [oParams.page, oState.max]);
+    return <Component setPageMax={cSetPageMax} {...oProps}></Component>;
   }
 
   return Wrapper;

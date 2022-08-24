@@ -24,7 +24,7 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  let cSetPageCount = oProps.setPageCount ?? (() => void 0);
+  let cSetPageMax = oProps.setPageMax ?? (() => void 0);
   let [oState, cSetState] = useState<any>({
     number: 0,
     count: 0,
@@ -135,7 +135,7 @@ function Index(oProps: any): any {
         count: iCount,
         loading: false
       });
-      cSetPageCount(iCount);
+      cSetPageMax(iCount);
     })();
   }, [oParams.appId, oParams.page, oParams.limit]);
 
