@@ -17,7 +17,12 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     paginationWrapper: {
       marginTop: oTheme.spacing(1)
-    }
+    },
+    avatar: {
+      background: grey[100],
+      border: '1px ' + grey[300] + ' solid'
+    },
+    vipIcon: {}
   })
 );
 

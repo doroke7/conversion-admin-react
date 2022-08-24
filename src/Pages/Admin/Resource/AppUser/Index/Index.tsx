@@ -3,6 +3,8 @@ import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-
 
 import { DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
+import Avatar from '@material-ui/core/Avatar';
+import Badge from '@material-ui/core/Badge';
 
 import wrappers from '@/wrappers/index';
 import Sdks from '@/Sdks/Index';
@@ -13,6 +15,7 @@ import utilities from '@/utilities/index';
 import AppleIcon from './AppleIcon/Index';
 import AndroidIcon from './AndroidIcon/Index';
 import UnknownIcon from './UnknownIcon/Index';
+import VipIcon from './VipIcon/Index';
 import Pannel from './Pannel/Index';
 
 import style from './style';
@@ -42,7 +45,19 @@ function Index(oProps: any): any {
       width: 85,
       renderCell: (oParams: any) => {
         let sPic = oParams.getValue(oParams.id, 'pic') || '';
-        return <Components.Admin.Img src={sPic}></Components.Admin.Img>;
+        return (
+          <Badge
+            overlap="circular"
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right'
+            }}
+            badgeContent={<VipIcon></VipIcon>}>
+            <Avatar className={oClasses.avatar}>
+              <Components.Admin.Img src={sPic}></Components.Admin.Img>
+            </Avatar>
+          </Badge>
+        );
       }
     },
     { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
@@ -127,6 +142,7 @@ function Index(oProps: any): any {
         page: oParams.page,
         limit: oParams.limit
       };
+
       let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.limit ?? 10) || 10));
       cSetState({
