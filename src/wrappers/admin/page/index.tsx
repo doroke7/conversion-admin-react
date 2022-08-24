@@ -11,7 +11,9 @@ let page = (Component: any): any => {
     let oHistory = useHistory();
 
     let [oState, cSetState] = useState<any>({
-      count: Number.MAX_VALUE
+      count: Number.MAX_VALUE,
+      min: 1,
+      max: Number.MAX_VALUE
     });
 
     let cSetPageCount = (iCount) => {
@@ -23,7 +25,7 @@ let page = (Component: any): any => {
       if (iPage <= 0) {
         let oMessage = {
           code: -1,
-          message: '页数1, 已为最前一页',
+          message: '页数1, 已为第一首页',
           time: 3 * 1000
         };
         events.admin.emit('Alerts-onAlert', oMessage);
@@ -33,7 +35,7 @@ let page = (Component: any): any => {
       if (iPage > oState.count) {
         let oMessage = {
           code: -1,
-          message: '页数' + oState.count + '，已为最后一页',
+          message: '页数' + oState.count + ', 已为最后末页',
           time: 3 * 1000
         };
         events.admin.emit('Alerts-onAlert', oMessage);
