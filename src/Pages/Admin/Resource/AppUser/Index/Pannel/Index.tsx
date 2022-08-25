@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -18,10 +18,53 @@ function Pannel(oProps: any) {
 
   let sClassName = oProps.className ?? '';
 
+  let [oState, cSetState] = useState<any>({
+    number: 0,
+    count: 0,
+    loading: true,
+    rows: []
+  });
+
+  let cHandleChange = () => {};
+
   return (
     <FormGroup className={oClasses.root} row={true}>
-      <TextField className={oClasses.id} id="id" label="用户ID" variant="filled" size="small" />
-      <TextField className={oClasses.username} id="username" label="用户昵称" variant="filled" size="small" />
+      <TextField
+        className={oClasses.id}
+        id="id"
+        label="用户ID"
+        placeholder="请输入数字"
+        InputLabelProps={{
+          shrink: true
+        }}
+        variant="outlined"
+      />
+      <TextField
+        className={oClasses.username}
+        id="username"
+        label="用户昵称"
+        placeholder="请输入文字"
+        InputLabelProps={{
+          shrink: true
+        }}
+        variant="outlined"
+      />
+      <FormControl variant="outlined" className={oClasses.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={age}
+          onChange={handleChange}
+          label="Age">
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
     </FormGroup>
   );
 }
