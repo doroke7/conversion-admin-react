@@ -13,6 +13,26 @@ let oStyle = makeStyles((oTheme: Theme) =>
     username: {
       width: oTheme.spacing(16),
       marginRight: oTheme.spacing(2)
+    },
+    formControl: {
+      '& fieldset': {
+        '& > legend': {
+          maxWidth: oTheme.spacing(250)
+        }
+      },
+      marginRight: oTheme.spacing(2)
+    },
+    select: {
+      width: oTheme.spacing(16)
+    },
+    selectEmpty: {
+      color: grey[400]
+    },
+    startDate: {
+      marginRight: oTheme.spacing(2)
+    },
+    endDate: {
+      marginRight: oTheme.spacing(2)
     }
   })
 );

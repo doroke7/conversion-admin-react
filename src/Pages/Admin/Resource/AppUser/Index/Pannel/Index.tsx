@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 
+import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
 function Pannel(oProps: any) {
@@ -22,10 +23,16 @@ function Pannel(oProps: any) {
     number: 0,
     count: 0,
     loading: true,
-    rows: []
+    rows: [],
+    code: ''
   });
 
-  let cHandleChange = () => {};
+  let cHandleChange = (sCode) => {
+    return (oEvent: any) => {
+      console.info(sCode);
+      cSetState({ ...oState, code: sCode });
+    };
+  };
 
   return (
     <FormGroup className={oClasses.root} row={true}>
@@ -50,21 +57,51 @@ function Pannel(oProps: any) {
         variant="outlined"
       />
       <FormControl variant="outlined" className={oClasses.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label" shrink={true}>
+          国家
+        </InputLabel>
         <Select
+          className={oClasses.select}
           labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={age}
-          onChange={handleChange}
-          label="Age">
+          id="code"
+          value={oState.code}
+          onChange={cHandleChange}
+          autoWidth={true}
+          variant="outlined"
+          displayEmpty={true}
+          label="code">
           <MenuItem value="">
-            <em>None</em>
+            <span className={oClasses.selectEmpty}>请选择国家</span>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {CONFIGS.APP.CODES.map((oCode: any, sKey) => (
+            <MenuItem key={sKey} value={oCode.code}>
+              {oCode.cn + ' (' + oCode.code + ')'}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
+      <TextField
+        className={oClasses.startDate}
+        id="start_datetime"
+        label="开始时间"
+        type="datetime-local"
+        defaultValue=""
+        InputLabelProps={{
+          shrink: true
+        }}
+        variant="outlined"
+      />
+      <TextField
+        className={oClasses.endDate}
+        id="end_datetime"
+        label="结束时间"
+        type="datetime-local"
+        defaultValue=""
+        InputLabelProps={{
+          shrink: true
+        }}
+        variant="outlined"
+      />
     </FormGroup>
   );
 }
