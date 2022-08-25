@@ -27,11 +27,8 @@ function Pannel(oProps: any) {
     code: ''
   });
 
-  let cHandleChange = (sCode) => {
-    return (oEvent: any) => {
-      console.info(sCode);
-      cSetState({ ...oState, code: sCode });
-    };
+  let cHandleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    cSetState({ ...oState, code: oEvent.target.value as string });
   };
 
   return (
