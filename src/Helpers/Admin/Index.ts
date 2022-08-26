@@ -20,13 +20,13 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 class AdminHelper {
   public static params(oParams: any, sKey: string, sIv: string): any {
     oParams = oParams || {};
-    oParams.query = oParams.query || {};
+    oParams.search = oParams.search || {};
     oParams.option = oParams.option || {};
 
-    let sQuery = JSON.stringify(oParams.query);
+    let sSearch = JSON.stringify(oParams.search);
     let sOption = JSON.stringify(oParams.option);
 
-    oParams.query = Helpers.Aes.encrypt(sQuery, sKey, sIv);
+    oParams.search = Helpers.Aes.encrypt(sSearch, sKey, sIv);
     oParams.option = Helpers.Aes.encrypt(sOption, sKey, sIv);
 
     return oParams;
@@ -71,13 +71,13 @@ class AdminHelper {
     let sKeys = oOptions['headers']['Keys'] ?? '';
     let sTime = oOptions['headers']['Time'] ?? '0';
 
-    let sQuery = oParams.query;
+    let sSearch = oParams.search;
     let sOption = oParams.option;
     let sParam = oData.param;
     let sSalt = CONFIGS.API.SALT;
 
     let sSignature1 = CryptoJS.MD5(sJwt + ';' + sVersion + ';' + sVer + ';' + sKeys + ';' + sTime).toString();
-    let sSignature2 = CryptoJS.MD5(sQuery + '&' + sOption).toString();
+    let sSignature2 = CryptoJS.MD5(sSearch + '&' + sOption).toString();
     let sSignature3 = CryptoJS.MD5(sParam).toString();
     let sSignature = CryptoJS.MD5(sSignature1 + '+' + sSignature2 + '+' + sSignature3 + '+' + sSalt).toString();
 

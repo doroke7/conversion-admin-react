@@ -11,7 +11,7 @@ class AppUser {
           page: (oOption?.page ?? 1) || 1,
           limit: (oOption?.limit ?? 10) || 10
         },
-        query: {}
+        search: {}
       },
       // API 中，以 Body 传参
       data: {

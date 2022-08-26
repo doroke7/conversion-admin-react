@@ -7,7 +7,7 @@ class Authenticator {
       // API 中，问号拼接的 参数。 如 ?option={}&query={}
       params: {
         option: {},
-        query: {}
+        search: {}
       },
       // API 中，以 Body 传参
       data: {
@@ -27,7 +27,7 @@ class Authenticator {
       // API 中，问号拼接的 参数。 如 ?option={}&query={}
       params: {
         option: {},
-        query: {}
+        search: {}
       },
       // API 中，以 Body 传参
       data: {
