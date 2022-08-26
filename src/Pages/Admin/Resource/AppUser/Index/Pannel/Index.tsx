@@ -24,11 +24,21 @@ function Pannel(oProps: any) {
     count: 0,
     loading: true,
     rows: [],
-    code: ''
+    code: '',
+    phoneType: '',
+    vip: ''
   });
 
-  let cHandleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+  let cHandleChangeCode = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     cSetState({ ...oState, code: oEvent.target.value as string });
+  };
+
+  let cHandleChangePhoneType = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    cSetState({ ...oState, phoneType: oEvent.target.value as string });
+  };
+
+  let cHandleChangeVip = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    cSetState({ ...oState, vip: oEvent.target.value as string });
   };
 
   return (
@@ -62,7 +72,7 @@ function Pannel(oProps: any) {
           labelId="demo-simple-select-outlined-label"
           id="code"
           value={oState.code}
-          onChange={cHandleChange}
+          onChange={cHandleChangeCode}
           autoWidth={true}
           variant="outlined"
           displayEmpty={true}
@@ -99,6 +109,57 @@ function Pannel(oProps: any) {
         }}
         variant="outlined"
       />
+      <FormControl variant="outlined" className={clsx([oClasses.formControl, oClasses.formControlPhoneType])}>
+        <InputLabel id="select-outlined-label" shrink={true}>
+          设备
+        </InputLabel>
+        <Select
+          className={oClasses.select}
+          labelId="select-outlined-label"
+          id="phone_type"
+          value={oState.phoneType}
+          onChange={cHandleChangePhoneType}
+          autoWidth={true}
+          variant="outlined"
+          displayEmpty={true}
+          label="phone_type">
+          <MenuItem value="">
+            <span className={oClasses.selectEmpty}>请选择设备</span>
+          </MenuItem>
+          <MenuItem value="1">
+            <span>Android 设备</span>
+          </MenuItem>
+          <MenuItem value="2">
+            <span>iOS 设备</span>
+          </MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl variant="outlined" className={clsx([oClasses.formControl, oClasses.formControlVip])}>
+        <InputLabel id="select-outlined-label" shrink={true}>
+          用户特权
+        </InputLabel>
+        <Select
+          className={oClasses.select}
+          labelId="select-outlined-label"
+          id="vip"
+          value={oState.vip}
+          onChange={cHandleChangeVip}
+          autoWidth={true}
+          variant="outlined"
+          displayEmpty={true}
+          label="vip">
+          <MenuItem value="">
+            <span className={oClasses.selectEmpty}>请选择特权</span>
+          </MenuItem>
+          <MenuItem value="1">
+            <span>一般</span>
+          </MenuItem>
+          <MenuItem value="2">
+            <span>貴賓</span>
+          </MenuItem>
+        </Select>
+      </FormControl>
     </FormGroup>
   );
 }

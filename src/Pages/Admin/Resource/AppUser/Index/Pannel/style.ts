@@ -22,8 +22,22 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       marginRight: oTheme.spacing(2)
     },
+    formControlPhoneType: {
+      '& fieldset': {
+        '& > legend': {
+          width: oTheme.spacing(4)
+        }
+      }
+    },
+    formControlVip: {
+      '& fieldset': {
+        '& > legend': {
+          width: oTheme.spacing(8)
+        }
+      }
+    },
     select: {
-      width: oTheme.spacing(16)
+      width: oTheme.spacing(20)
     },
     selectEmpty: {
       color: grey[400]

@@ -128,23 +128,38 @@ let MENUS: any = [
         menus: [
           {
             id: 411,
-            text: '管理员列表',
-            description: '管理员列表',
-            path: '/admin/resource/administrator/index/app-id/:appId/page/:page/limit/:limit',
+            text: '管理列表',
+            description: '管理列表',
+            path: '/admin/resource/admin-administrator/index/app-id/:appId/page/:page/limit/:limit',
             icon: 'SupervisorAccountOutlinedIcon'
           },
           {
             id: 412,
             text: '角色列表',
             description: '角色列表',
-            path: '/admin/resource/role/index/app-id/:appId/page/:page/limit/:limit',
+            path: '/admin/resource/admin-role/index/app-id/:appId/page/:page/limit/:limit',
             icon: 'AccessibilityOutlinedIcon'
           },
           {
+            id: 414,
+            text: '接口列表',
+            description: '接口列表',
+            path: '/admin/resource/admin-api/index/app-id/:appId/page/:page/limit/:limit',
+            icon: 'LockOpenOutlinedIcon'
+          },
+          {
             id: 413,
-            text: '权限配置',
-            description: '权限配置',
-            path: '/admin/resource/authorization/index/app-id/:appId/page/:page/limit/:limit',
+            text: '路由列表',
+            description: '路由列表',
+            path: '/admin/resource/admin-route/index/app-id/:appId/page/:page/limit/:limit',
+            icon: 'LockOpenOutlinedIcon'
+          },
+
+          {
+            id: 415,
+            text: '菜单结构',
+            description: '菜单结构',
+            path: '/admin/resource/admin-menu/index/app-id/:appId/page/:page/limit/:limit',
             icon: 'LockOpenOutlinedIcon'
           }
         ]
