@@ -16,10 +16,6 @@ import utilities from '@/utilities/index';
 import AppleIcon from './AppleIcon/Index';
 import AndroidIcon from './AndroidIcon/Index';
 import UnknownIcon from './UnknownIcon/Index';
-import VipIcon0 from './VipIcon0/Index';
-import VipIcon1 from './VipIcon1/Index';
-import VipIcon2 from './VipIcon2/Index';
-import VipIcon3 from './VipIcon3/Index';
 import Pannel from './Pannel/Index';
 
 import style from './style';
@@ -51,10 +47,10 @@ function Index(oProps: any): any {
         let sVip = oParams.getValue(oParams.id, 'vip') || '';
         let sSrc = oParams.getValue(oParams.id, 'pic') || '';
         let sVipDatetime = oParams.getValue(oParams.id, 'vip_datetime') || '';
-        let Icon = VipIcon0;
-        Icon = sVip == 1 ? VipIcon1 : Icon;
-        Icon = sVip == 2 ? VipIcon2 : Icon;
-        Icon = sVip == 3 ? VipIcon3 : Icon;
+        let Icon = Components.Admin.vipIcon0;
+        Icon = sVip == 1 ? Components.Admin.vipIcon1 : Icon;
+        Icon = sVip == 2 ? Components.Admin.vipIcon2 : Icon;
+        Icon = sVip == 3 ? Components.Admin.vipIcon3 : Icon;
 
         let sTitle = '特权一般';
         sTitle = sVip == 1 ? '特权已过期' : sTitle;
@@ -69,7 +65,7 @@ function Index(oProps: any): any {
                 vertical: 'top',
                 horizontal: 'right'
               }}
-              badgeContent={<Icon></Icon>}>
+              badgeContent={<Icon className={oClasses.vipIcon}></Icon>}>
               <Avatar className={oClasses.avatar}>
                 <Components.Admin.Img src={sSrc}></Components.Admin.Img>
               </Avatar>

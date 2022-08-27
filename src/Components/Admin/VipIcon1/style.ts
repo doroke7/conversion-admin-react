@@ -7,9 +7,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       width: oTheme.spacing(3),
       height: oTheme.spacing(3),
       verticalAlign: 'middle',
-      overflow: 'hidden',
-      transform: ' rotate(45deg)',
-      filter: 'drop-shadow( 0px 2px 2px rgba(0, 0, 0, .3))'
+      overflow: 'hidden'
     }
   })
 );

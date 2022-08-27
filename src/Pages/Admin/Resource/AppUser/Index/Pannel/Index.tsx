@@ -152,11 +152,17 @@ function Pannel(oProps: any) {
           <MenuItem value="">
             <span className={oClasses.selectEmpty}>请选择特权</span>
           </MenuItem>
+          <MenuItem value="0">
+            <span>特权一般</span>
+          </MenuItem>
           <MenuItem value="1">
-            <span>一般</span>
+            <span>特权过期</span>
           </MenuItem>
           <MenuItem value="2">
-            <span>貴賓</span>
+            <span>特权限时</span>
+          </MenuItem>
+          <MenuItem value="3">
+            <span>特权永久</span>
           </MenuItem>
         </Select>
       </FormControl>

@@ -4,8 +4,8 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      marginTop: oTheme.spacing(2),
-      marginBottom: oTheme.spacing(4)
+      marginTop: oTheme.spacing(1),
+      marginBottom: oTheme.spacing(3)
     },
     id: {
       width: oTheme.spacing(16),
@@ -27,7 +27,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
     formControlPhoneType: {
       '& fieldset': {
         '& > legend': {
-          width: oTheme.spacing(4)
+          width: oTheme.spacing(6)
         }
       }
     },

@@ -15,13 +15,16 @@ const style = makeStyles((oTheme: Theme): any =>
       borderBottom: '0px solid #fff'
     },
     paginationWrapper: {
-      marginTop: oTheme.spacing(2)
+      marginTop: oTheme.spacing(4)
     },
     avatar: {
       background: grey[50],
       border: '1px ' + grey[400] + ' solid'
     },
-    vipIcon: {}
+    vipIcon: {
+      transform: ' rotate(45deg)',
+      filter: 'drop-shadow( 0px 2px 2px rgba(0, 0, 0, .7))'
+    }
   })
 );
 

@@ -8,8 +8,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       height: oTheme.spacing(3),
       verticalAlign: 'middle',
       fill: 'currentColor',
-      overflow: 'hidden',
-      transform: ' rotate(45deg)'
+      overflow: 'hidden'
     }
   })
 );
