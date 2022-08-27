@@ -4,13 +4,12 @@ import clsx from 'clsx';
 
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
-import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 
+import Components from '@/Components/Index';
 import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
@@ -153,15 +152,23 @@ function Pannel(oProps: any) {
             <span className={oClasses.selectEmpty}>请选择特权</span>
           </MenuItem>
           <MenuItem value="0">
+            <Components.Admin.vipIcon0></Components.Admin.vipIcon0>
+            &ensp;
             <span>特权一般</span>
           </MenuItem>
           <MenuItem value="1">
+            <Components.Admin.vipIcon1></Components.Admin.vipIcon1>
+            &ensp;
             <span>特权过期</span>
           </MenuItem>
           <MenuItem value="2">
+            <Components.Admin.vipIcon2></Components.Admin.vipIcon2>
+            &ensp;
             <span>特权限时</span>
           </MenuItem>
           <MenuItem value="3">
+            <Components.Admin.vipIcon3></Components.Admin.vipIcon3>
+            &ensp;
             <span>特权永久</span>
           </MenuItem>
         </Select>

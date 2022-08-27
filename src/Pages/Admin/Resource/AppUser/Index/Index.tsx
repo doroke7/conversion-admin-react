@@ -47,7 +47,7 @@ function Index(oProps: any): any {
         let sVip = oParams.getValue(oParams.id, 'vip') || '';
         let sSrc = oParams.getValue(oParams.id, 'pic') || '';
         let sVipDatetime = oParams.getValue(oParams.id, 'vip_datetime') || '';
-        let Icon = Components.Admin.vipIcon0;
+        let Icon = () => <></>;
         Icon = sVip == 1 ? Components.Admin.vipIcon1 : Icon;
         Icon = sVip == 2 ? Components.Admin.vipIcon2 : Icon;
         Icon = sVip == 3 ? Components.Admin.vipIcon3 : Icon;
