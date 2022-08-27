@@ -7,6 +7,7 @@ import Emitter from './Emitter/Index';
 import Tab from './Tab/Index';
 import Rsa from './Rsa/Index';
 import History from './History/Index';
+import Ver from './Ver/Index';
 
 export default {
   Admin,
@@ -17,5 +18,6 @@ export default {
   Tab,
   Aes,
   Rsa,
-  History
+  History,
+  Ver
 };

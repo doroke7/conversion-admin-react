@@ -43,7 +43,7 @@ let aRoutes = [
       },
       {
         id: '2-2-0',
-        path: '/app-user/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/app-user/index/app-id/:appId/page/:page/size/:size',
         title: '影视系-用户列表',
         text: '用户列表',
         icon: 'AccountBoxTwoToneIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
@@ -55,7 +55,7 @@ let aRoutes = [
       },
       {
         id: '2-3-0',
-        path: '/order-info/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/order-info/index/app-id/:appId/page/:page/size/:size',
         title: '影视系-订单列表',
         text: '订单列表',
         icon: 'EventNoteTwoToneIcon',
@@ -64,7 +64,7 @@ let aRoutes = [
       },
       {
         id: '2-4-0',
-        path: '/*/app-id/:appId/page/:page/limit/:limit',
+        path: '/*/app-id/:appId/page/:page/size/:size',
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',

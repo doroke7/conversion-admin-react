@@ -4,7 +4,7 @@ const APP: any = {
   VERSION: process.env.APP_VERSION,
   VER: process.env.APP_VER ?? '1.7.0',
   ENV: process.env.APP_ENV ?? 'MASTER',
-  AUTHENTICATOR: process.env.AUTHENTICATOR ?? true,
+  STORAGE: process.env.APP_STORAGE ?? true, // 是否需要清理客户端缓存
   APP_IDS: [
     {
       app_id: 1,

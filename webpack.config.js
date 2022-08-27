@@ -225,6 +225,7 @@ module.exports = (env, argvs) => {
             'jsencrypt',
             'axios',
             'moment',
+            'semver',
             'react',
             'react-dom',
             'react-router-dom',

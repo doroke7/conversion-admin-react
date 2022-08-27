@@ -9,7 +9,7 @@ class AppUser {
         option: {
           app_id: oOption?.app_id,
           page: (oOption?.page ?? 1) || 1,
-          limit: (oOption?.limit ?? 10) || 10
+          size: (oOption?.size ?? 10) || 10
         },
         search: {}
       },

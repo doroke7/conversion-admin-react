@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
@@ -7,7 +7,9 @@ import router from '@/router';
 import CONFIGS from '@/CONFIGS/INDEX';
 import Commons from '@/Commons';
 import Components from '@/Components/Index';
+import Helpers from '@/Helpers/Index';
 import style from './style';
+import APP from '@/CONFIGS/APP/INDEX';
 
 function App(oProps: any) {
   let oClasses: any = style(void 0);
@@ -22,6 +24,27 @@ function App(oProps: any) {
       oEvent.preventDefault(); // 取消 a tag 取消 href
     }
   };
+  useEffect(() => {
+    let sVerKey = 'Ver';
+    let sJwtKey = 'jwt';
+    /*
+     * sVer: 客户端当前版本号
+     */
+    let sVer = Helpers.Ver.get();
+    let sJwt = Helpers.Authentication.getJwt();
+
+    /**
+     * TITLE: 开启清理 window.storage 开关， 且 客户端版本提高的情况下 => 清理 window.storage
+     */
+    if (CONFIGS.APP.STORAGE) {
+      if ((Helpers.Ver.valid(sVer) && Helpers.Ver.compare(CONFIGS.APP.VER, sVer)) || !Helpers.Ver.valid(sVer)) {
+        window.localStorage.clear();
+        Helpers.Authentication.setJwt(sJwt);
+      }
+    }
+
+    Helpers.Ver.set(CONFIGS.APP.VER);
+  });
   /**  必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
   /**  具有 nav 的设定值 才会用 Navigatiob 包起来 **/
   /**  把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析 **/

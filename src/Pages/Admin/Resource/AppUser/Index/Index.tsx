@@ -158,11 +158,11 @@ function Index(oProps: any): any {
       let oOption = {
         app_id: oParams.appId,
         page: oParams.page,
-        limit: oParams.limit
+        size: oParams.size
       };
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
-      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.limit ?? 10) || 10));
+      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10));
       cSetState({
         number: oResponse?.data?.raw?.number ?? 0,
         rows: oResponse?.data?.raw?.list ?? [],
@@ -171,7 +171,7 @@ function Index(oProps: any): any {
       });
       cSetPageMax(iCount);
     })();
-  }, [oParams.appId, oParams.page, oParams.limit]);
+  }, [oParams.appId, oParams.page, oParams.size]);
 
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
@@ -191,7 +191,7 @@ function Index(oProps: any): any {
           columns={aColumns}
           rowCount={oState.count}
           page={0}
-          pageSize={oParams.limit}
+          pageSize={oParams.size}
           loading={oState.loading}
           checkboxSelection={true}
           disableSelectionOnClick={true}

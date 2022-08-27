@@ -152,7 +152,7 @@ function Navigation(oProps: any) {
       let oParams = {
         appId: CONFIGS.APPS[oState.index].id ?? '',
         page: 1,
-        limit: 10
+        size: 10
       };
       cSetState({ ...oState, text: oLink.text });
 
@@ -177,7 +177,7 @@ function Navigation(oProps: any) {
       let oParams = {
         appId: CONFIGS.APPS[oState.index].id ?? '',
         page: 1,
-        limit: 10
+        size: 10
       };
       let oTabOfMenu = {
         id: oMenu.id,
@@ -247,7 +247,7 @@ function Navigation(oProps: any) {
       let oParams = {
         appId: oRoute.params.appId ?? '',
         page: 1,
-        limit: 10
+        size: 10
       };
       let oTab = {
         id: oRoute.id,

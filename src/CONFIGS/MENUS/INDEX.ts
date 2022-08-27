@@ -10,14 +10,14 @@ let MENUS: any = [
         id: 11,
         text: '会员列表',
         description: '会员列表',
-        path: '/admin/resource/app-user/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/app-user/index/app-id/:appId/page/:page/size/:size',
         icon: 'AssignmentIndOutlinedIcon'
       },
       {
         id: 12,
         text: '订单列表',
         description: '订单列表',
-        path: '/admin/resource/order-info/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/order-info/index/app-id/:appId/page/:page/size/:size',
         icon: 'EventNoteIcon'
       }
     ]
@@ -33,14 +33,14 @@ let MENUS: any = [
         id: 31,
         text: '平台配置',
         description: '平台配置',
-        path: '/admin/resource/config/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/config/index/app-id/:appId',
         icon: 'BorderAllOutlinedIcon'
       },
       {
         id: 32,
         text: '商品列表',
         description: '商品列表',
-        path: '/admin/resource/product-info/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/product-info/index/app-id/:appId/page/:page/size/:size',
         icon: 'LocalAtmOutlinedIcon'
       }
     ]
@@ -56,14 +56,14 @@ let MENUS: any = [
         id: 51,
         text: '剧集列表',
         description: '剧集列表',
-        path: '/admin/resource/vod/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/vod/index/app-id/:appId/page/:page/size/:size',
         icon: 'VideocamOutlinedIcon'
       },
       {
         id: 52,
         text: '域名列表',
         description: '域名列表',
-        path: '/admin/resource/domain-name/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/domain-name/index/app-id/:appId/page/:page/size/:size',
         icon: 'CloudDoneOutlinedIcon'
       }
     ]
@@ -79,35 +79,35 @@ let MENUS: any = [
         id: 21,
         text: '首页广告',
         description: '首页广告',
-        path: '/admin/resource/advertisement1/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/advertisement1/index/app-id/:appId/page/:page/size/:size',
         icon: 'DehazeIcon'
       },
       {
         id: 22,
         text: '跑马广告',
         description: '跑马广告',
-        path: '/admin/resource/advertisement2/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/advertisement2/index/app-id/:appId/page/:page/size/:size',
         icon: 'DehazeIcon'
       },
       {
         id: 23,
         text: '轮播广告',
         description: '轮播广告',
-        path: '/admin/resource/advertisement3/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/advertisement3/index/app-id/:appId/page/:page/size/:size',
         icon: 'DehazeIcon'
       },
       {
         id: 24,
         text: '公告广告',
         description: '公告广告',
-        path: '/admin/resource/advertisement4/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/advertisement4/index/app-id/:appId/page/:page/size/:size',
         icon: 'DehazeIcon'
       },
       {
         id: 26,
         text: '插屏广告',
         description: '插屏广告',
-        path: '/admin/resource/advertisement5/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/resource/advertisement5/index/app-id/:appId/page/:page/size/:size',
         icon: 'DehazeIcon'
       }
     ]
@@ -123,43 +123,59 @@ let MENUS: any = [
         id: 41,
         text: '权限管理',
         description: '权限管理',
-        path: '/admin/system/authroization/index/app-id/:appId/page/:page/limit/:limit',
+        path: '/admin/system/authroization/index/app-id/:appId/page/:page/size/:size',
         icon: 'SecurityOutlinedIcon',
         menus: [
           {
             id: 411,
             text: '管理列表',
             description: '管理列表',
-            path: '/admin/resource/admin-administrator/index/app-id/:appId/page/:page/limit/:limit',
+            path: '/admin/resource/admin-administrator/index/app-id/:appId/page/:page/size/:size',
             icon: 'SupervisorAccountOutlinedIcon'
           },
           {
             id: 412,
             text: '角色列表',
             description: '角色列表',
-            path: '/admin/resource/admin-role/index/app-id/:appId/page/:page/limit/:limit',
+            path: '/admin/resource/admin-role/index/app-id/:appId/page/:page/size/:size',
             icon: 'AccessibilityOutlinedIcon'
-          },
+          }
+        ]
+      },
+      {
+        id: 42,
+        text: '后台管理',
+        description: '后台管理',
+        path: '/admin/system/authroization/index/app-id/:appId/page/:page/size/:size',
+        icon: 'SecurityOutlinedIcon',
+        menus: [
           {
-            id: 414,
+            id: 424,
             text: '接口列表',
             description: '接口列表',
-            path: '/admin/resource/admin-api/index/app-id/:appId/page/:page/limit/:limit',
+            path: '/admin/resource/admin-api/index/app-id/:appId/page/:page/size/:size',
             icon: 'LockOpenOutlinedIcon'
           },
           {
-            id: 413,
+            id: 423,
             text: '路由列表',
             description: '路由列表',
-            path: '/admin/resource/admin-route/index/app-id/:appId/page/:page/limit/:limit',
+            path: '/admin/resource/admin-route/index/app-id/:appId/page/:page/size/:size',
             icon: 'LockOpenOutlinedIcon'
           },
 
           {
-            id: 415,
-            text: '菜单结构',
-            description: '菜单结构',
-            path: '/admin/resource/admin-menu/index/app-id/:appId/page/:page/limit/:limit',
+            id: 425,
+            text: '菜单配置',
+            description: '菜单配置',
+            path: '/admin/resource/admin-link/index',
+            icon: 'LockOpenOutlinedIcon'
+          },
+          {
+            id: 426,
+            text: '快捷配置',
+            description: '快捷配置',
+            path: '/admin/resource/admin-link/index',
             icon: 'LockOpenOutlinedIcon'
           }
         ]
