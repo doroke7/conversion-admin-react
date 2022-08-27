@@ -4,6 +4,7 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
+      marginTop: oTheme.spacing(2),
       marginBottom: oTheme.spacing(4)
     },
     id: {
@@ -20,6 +21,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
           maxWidth: oTheme.spacing(250)
         }
       },
+
       marginRight: oTheme.spacing(2)
     },
     formControlPhoneType: {
@@ -43,10 +45,26 @@ let oStyle = makeStyles((oTheme: Theme) =>
       color: grey[400]
     },
     startDate: {
-      marginRight: oTheme.spacing(2)
+      marginRight: oTheme.spacing(2),
+      '& .MuiFormLabel-filled': {
+        '& + .MuiInputBase-root': {
+          color: 'rgba(0, 0, 0, 0.87)'
+        }
+      },
+      '& .MuiInputBase-root': {
+        color: grey[400]
+      }
     },
     endDate: {
-      marginRight: oTheme.spacing(2)
+      marginRight: oTheme.spacing(2),
+      '& .MuiFormLabel-filled': {
+        '& + .MuiInputBase-root': {
+          color: 'rgba(0, 0, 0, 0.87)'
+        }
+      },
+      '& .MuiInputBase-root': {
+        color: grey[400] // 时间选择器：未选择时候是暗灰色
+      }
     }
   })
 );

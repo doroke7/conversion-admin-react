@@ -5,7 +5,6 @@ const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     dataGridWrapper: {
       width: '100%',
-      height: '578px',
       '& .MuiDataGrid-root': {
         '& .MuiDataGrid-overlay': {
           background: grey[50]
@@ -16,7 +15,7 @@ const style = makeStyles((oTheme: Theme): any =>
       borderBottom: '0px solid #fff'
     },
     paginationWrapper: {
-      marginTop: oTheme.spacing(1)
+      marginTop: oTheme.spacing(2)
     },
     avatar: {
       background: grey[50],

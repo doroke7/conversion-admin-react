@@ -56,10 +56,10 @@ function Index(oProps: any): any {
         Icon = sVip == 2 ? VipIcon2 : Icon;
         Icon = sVip == 3 ? VipIcon3 : Icon;
 
-        let sTitle = '一般用户';
-        sTitle = sVip == 1 ? '会员已过期' : sTitle;
-        sTitle = sVip == 2 ? '会员直到 ' + sVipDatetime.substring(0, 10) : sTitle;
-        sTitle = sVip == 3 ? '会员永久' : sTitle;
+        let sTitle = '特权一般';
+        sTitle = sVip == 1 ? '特权已过期' : sTitle;
+        sTitle = sVip == 2 ? '特权直到 ' + sVipDatetime.substring(0, 10) : sTitle;
+        sTitle = sVip == 3 ? '特权永久' : sTitle;
 
         return (
           <Tooltip title={sTitle} placement="right-end">
@@ -192,12 +192,14 @@ function Index(oProps: any): any {
           rowCount={oState.count}
           page={0}
           pageSize={oParams.limit}
-          checkboxSelection
-          disableSelectionOnClick
+          loading={oState.loading}
+          checkboxSelection={true}
+          disableSelectionOnClick={true}
           hideFooterPagination={true}
           hideFooter={true}
-          loading={oState.loading}
+          autoHeight={true}
           disableColumnMenu={true}
+          rowHeight={58}
         />
       </div>
       <div className={oClasses.paginationWrapper}>
