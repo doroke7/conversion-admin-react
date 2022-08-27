@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import wrappers from '@/wrappers/index';
 import Sdks from '@/Sdks/Index';
@@ -49,23 +50,31 @@ function Index(oProps: any): any {
       renderCell: (oParams: any) => {
         let sVip = oParams.getValue(oParams.id, 'vip') || '';
         let sSrc = oParams.getValue(oParams.id, 'pic') || '';
+        let sVipDatetime = oParams.getValue(oParams.id, 'vip_datetime') || '';
         let Icon = VipIcon0;
         Icon = sVip == 1 ? VipIcon1 : Icon;
         Icon = sVip == 2 ? VipIcon2 : Icon;
         Icon = sVip == 3 ? VipIcon3 : Icon;
 
+        let sTitle = '一般用户';
+        sTitle = sVip == 1 ? '会员已过期' : sTitle;
+        sTitle = sVip == 2 ? '会员直到 ' + sVipDatetime.substring(0, 10) : sTitle;
+        sTitle = sVip == 3 ? '会员永久' : sTitle;
+
         return (
-          <Badge
-            overlap="circular"
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right'
-            }}
-            badgeContent={<Icon></Icon>}>
-            <Avatar className={oClasses.avatar}>
-              <Components.Admin.Img src={sSrc}></Components.Admin.Img>
-            </Avatar>
-          </Badge>
+          <Tooltip title={sTitle} placement="right-end">
+            <Badge
+              overlap="circular"
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+              badgeContent={<Icon></Icon>}>
+              <Avatar className={oClasses.avatar}>
+                <Components.Admin.Img src={sSrc}></Components.Admin.Img>
+              </Avatar>
+            </Badge>
+          </Tooltip>
         );
       }
     },
