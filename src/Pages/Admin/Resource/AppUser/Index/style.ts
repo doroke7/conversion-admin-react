@@ -19,8 +19,8 @@ const style = makeStyles((oTheme: Theme): any =>
       marginTop: oTheme.spacing(1)
     },
     avatar: {
-      background: grey[100],
-      border: '1px ' + grey[300] + ' solid'
+      background: grey[50],
+      border: '1px ' + grey[400] + ' solid'
     },
     vipIcon: {}
   })

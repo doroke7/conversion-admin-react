@@ -15,7 +15,10 @@ import utilities from '@/utilities/index';
 import AppleIcon from './AppleIcon/Index';
 import AndroidIcon from './AndroidIcon/Index';
 import UnknownIcon from './UnknownIcon/Index';
-import VipIcon from './VipIcon/Index';
+import VipIcon0 from './VipIcon0/Index';
+import VipIcon1 from './VipIcon1/Index';
+import VipIcon2 from './VipIcon2/Index';
+import VipIcon3 from './VipIcon3/Index';
 import Pannel from './Pannel/Index';
 
 import style from './style';
@@ -44,7 +47,13 @@ function Index(oProps: any): any {
       sortable: false,
       width: 85,
       renderCell: (oParams: any) => {
-        let sPic = oParams.getValue(oParams.id, 'pic') || '';
+        let sVip = oParams.getValue(oParams.id, 'vip') || '';
+        let sSrc = oParams.getValue(oParams.id, 'pic') || '';
+        let Icon = VipIcon0;
+        Icon = sVip == 1 ? VipIcon1 : Icon;
+        Icon = sVip == 2 ? VipIcon2 : Icon;
+        Icon = sVip == 3 ? VipIcon3 : Icon;
+
         return (
           <Badge
             overlap="circular"
@@ -52,9 +61,9 @@ function Index(oProps: any): any {
               vertical: 'top',
               horizontal: 'right'
             }}
-            badgeContent={<VipIcon></VipIcon>}>
+            badgeContent={<Icon></Icon>}>
             <Avatar className={oClasses.avatar}>
-              <Components.Admin.Img src={sPic}></Components.Admin.Img>
+              <Components.Admin.Img src={sSrc}></Components.Admin.Img>
             </Avatar>
           </Badge>
         );
