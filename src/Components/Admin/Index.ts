@@ -9,6 +9,9 @@ import VipIcon3 from './VipIcon3/Index';
 import VoidElement from './VoidElement/Index';
 import LoadingIcon from './LoadingIcon/Index';
 import BoxIcon from './BoxIcon/Index';
+import InIcon from './InIcon/Index';
+import AndroidIcon from './AndroidIcon/Index';
+import AppleIcon from './AppleIcon/Index';
 
 export default {
   Message,
@@ -21,5 +24,8 @@ export default {
   VipIcon3,
   VoidElement,
   LoadingIcon,
-  BoxIcon
+  BoxIcon,
+  InIcon,
+  AndroidIcon,
+  AppleIcon
 };

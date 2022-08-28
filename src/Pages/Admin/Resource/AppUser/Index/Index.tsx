@@ -13,9 +13,6 @@ import events from '@/events/index';
 import Components from '@/Components/Index';
 import utilities from '@/utilities/index';
 
-import AppleIcon from './AppleIcon/Index';
-import AndroidIcon from './AndroidIcon/Index';
-import UnknownIcon from './UnknownIcon/Index';
 import Pannel from './Pannel/Index';
 import NoRowsOverlay from './NoRowsOverlay/Index';
 import LoadingOverlay from './LoadingOverlay/Index';
@@ -100,9 +97,9 @@ function Index(oProps: any): any {
       width: 90,
       renderCell: (oParams: any) => {
         let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
-        let Component = UnknownIcon;
-        Component = iPhoneType == 1 ? AndroidIcon : Component;
-        Component = iPhoneType == 2 ? AppleIcon : Component;
+        let Component = Components.Admin.VoidElement;
+        Component = iPhoneType == 1 ? Components.Admin.AndroidIcon : Component;
+        Component = iPhoneType == 2 ? Components.Admin.AppleIcon : Component;
 
         return <Component></Component>;
       }

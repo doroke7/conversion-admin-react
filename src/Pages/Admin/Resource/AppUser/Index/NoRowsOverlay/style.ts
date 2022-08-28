@@ -7,8 +7,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       flexDirection: 'column'
     },
     icon: {
-      width: oTheme.spacing(40),
-      height: oTheme.spacing(40)
+      width: oTheme.spacing(24),
+      height: oTheme.spacing(24)
     },
     text: {
       color: grey[400],
