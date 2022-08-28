@@ -152,22 +152,22 @@ function Pannel(oProps: any) {
             <span className={oClasses.selectEmpty}>请选择特权</span>
           </MenuItem>
           <MenuItem value="0">
-            <Components.Admin.vipIcon0></Components.Admin.vipIcon0>
+            <Components.Admin.VipIcon0></Components.Admin.VipIcon0>
             &ensp;
             <span>特权一般</span>
           </MenuItem>
           <MenuItem value="1">
-            <Components.Admin.vipIcon1></Components.Admin.vipIcon1>
+            <Components.Admin.VipIcon1></Components.Admin.VipIcon1>
             &ensp;
             <span>特权过期</span>
           </MenuItem>
           <MenuItem value="2">
-            <Components.Admin.vipIcon2></Components.Admin.vipIcon2>
+            <Components.Admin.VipIcon2></Components.Admin.VipIcon2>
             &ensp;
             <span>特权限时</span>
           </MenuItem>
           <MenuItem value="3">
-            <Components.Admin.vipIcon3></Components.Admin.vipIcon3>
+            <Components.Admin.VipIcon3></Components.Admin.VipIcon3>
             &ensp;
             <span>特权永久</span>
           </MenuItem>

@@ -48,9 +48,9 @@ function Index(oProps: any): any {
         let sSrc = oParams.getValue(oParams.id, 'pic') || '';
         let sVipDatetime = oParams.getValue(oParams.id, 'vip_datetime') || '';
         let Icon = Components.Admin.VoidElement;
-        Icon = sVip == 1 ? Components.Admin.vipIcon1 : Icon;
-        Icon = sVip == 2 ? Components.Admin.vipIcon2 : Icon;
-        Icon = sVip == 3 ? Components.Admin.vipIcon3 : Icon;
+        Icon = sVip == 1 ? Components.Admin.VipIcon1 : Icon;
+        Icon = sVip == 2 ? Components.Admin.VipIcon2 : Icon;
+        Icon = sVip == 3 ? Components.Admin.VipIcon3 : Icon;
 
         let sTitle = '特权一般';
         sTitle = sVip == 1 ? '特权已过期' : sTitle;
