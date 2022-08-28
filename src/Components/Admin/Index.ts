@@ -7,8 +7,8 @@ import VipIcon1 from './VipIcon1/Index';
 import VipIcon2 from './VipIcon2/Index';
 import VipIcon3 from './VipIcon3/Index';
 import VoidElement from './VoidElement/Index';
-import NoDataIcon from './NoDataIcon/Index';
 import LoadingIcon from './LoadingIcon/Index';
+import BoxIcon from './BoxIcon/Index';
 
 export default {
   Message,
@@ -20,6 +20,6 @@ export default {
   VipIcon2,
   VipIcon3,
   VoidElement,
-  NoDataIcon,
-  LoadingIcon
+  LoadingIcon,
+  BoxIcon
 };
