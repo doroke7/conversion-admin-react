@@ -189,11 +189,11 @@ function Index(oProps: any): any {
           loading={oState.loading}
           checkboxSelection={true}
           disableSelectionOnClick={true}
-          hideFooterPagination={true}
-          hideFooter={true}
+          hideFooterPagination={false}
+          hideFooter={false}
           autoHeight={true}
           disableColumnMenu={true}
-          rowHeight={58}
+          rowHeight={38}
           components={{ NoRowsOverlay: NoRowsOverlay, LoadingOverlay: LoadingOverlay }}
         />
       </div>
