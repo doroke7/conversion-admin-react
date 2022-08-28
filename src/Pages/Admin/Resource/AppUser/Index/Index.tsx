@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect, Component } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
-import { DataGrid } from '@mui/x-data-grid';
+import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
@@ -17,6 +17,7 @@ import AppleIcon from './AppleIcon/Index';
 import AndroidIcon from './AndroidIcon/Index';
 import UnknownIcon from './UnknownIcon/Index';
 import Pannel from './Pannel/Index';
+import NoRowsOverlay from './NoRowsOverlay/Index';
 
 import style from './style';
 
@@ -183,9 +184,9 @@ function Index(oProps: any): any {
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={oClasses.dataGrid}
-          rows={oState.rows}
+          rows={[]}
           columns={aColumns}
-          rowCount={oState.count}
+          rowCount={0}
           page={0}
           pageSize={oParams.size}
           loading={oState.loading}
@@ -196,6 +197,7 @@ function Index(oProps: any): any {
           autoHeight={true}
           disableColumnMenu={true}
           rowHeight={58}
+          components={{ NoRowsOverlay: NoRowsOverlay }}
         />
       </div>
       <div className={oClasses.paginationWrapper}>

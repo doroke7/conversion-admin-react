@@ -12,6 +12,7 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     dataGrid: {
+      minHeight: oTheme.spacing(7.25) * 11,
       borderBottom: '0px solid #fff'
     },
     paginationWrapper: {
