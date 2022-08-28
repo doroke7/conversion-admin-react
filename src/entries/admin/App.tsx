@@ -25,10 +25,8 @@ function App(oProps: any) {
     }
   };
   useEffect(() => {
-    let sVerKey = 'Ver';
-    let sJwtKey = 'jwt';
     /*
-     * sVer: 客户端当前版本号
+     * sVer: 客户端上次打开时候 浏览器的版本号
      */
     let sVer = Helpers.Ver.get();
     let sJwt = Helpers.Authentication.getJwt();

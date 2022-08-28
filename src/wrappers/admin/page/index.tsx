@@ -17,6 +17,7 @@ let page = (Component: any): any => {
 
     let cSetPageMax = (iCount) => {
       cSetState((oOldState) => {
+        iCount = iCount <= 0 ? 1 : iCount;
         let oNewState = { ...oOldState, max: iCount };
         return oNewState;
       });
