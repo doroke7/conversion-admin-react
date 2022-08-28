@@ -4,8 +4,8 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
+      width: oTheme.spacing(2),
+      height: oTheme.spacing(2),
       verticalAlign: 'middle',
       fill: 'currentColor',
       overflow: 'hidden'

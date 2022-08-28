@@ -25,6 +25,10 @@ const style = makeStyles((oTheme: Theme): any =>
     vipIcon: {
       transform: ' rotate(45deg)',
       filter: 'drop-shadow( 0px 2px 2px rgba(0, 0, 0, .7))'
+    },
+    phoneTypeIcon: {
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4)
     }
   })
 );

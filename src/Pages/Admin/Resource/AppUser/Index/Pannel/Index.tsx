@@ -67,7 +67,7 @@ function Pannel(oProps: any) {
           国家
         </InputLabel>
         <Select
-          className={oClasses.select}
+          className={oClasses.selectCode}
           labelId="demo-simple-select-outlined-label"
           id="code"
           value={oState.code}
@@ -113,7 +113,7 @@ function Pannel(oProps: any) {
           设备
         </InputLabel>
         <Select
-          className={oClasses.select}
+          className={oClasses.selectPhoneType}
           labelId="select-outlined-label"
           id="phone_type"
           value={oState.phoneType}
@@ -126,10 +126,14 @@ function Pannel(oProps: any) {
             <span className={oClasses.selectEmpty}>请选择设备</span>
           </MenuItem>
           <MenuItem value="1">
-            <span>Android 设备</span>
+            <Components.Admin.AndroidIcon className={oClasses.icon}></Components.Admin.AndroidIcon>
+            &ensp;
+            <span>安卓设备</span>
           </MenuItem>
           <MenuItem value="2">
-            <span>iOS 设备</span>
+            <Components.Admin.AppleIcon className={oClasses.icon}></Components.Admin.AppleIcon>
+            &ensp;
+            <span>苹果设备</span>
           </MenuItem>
         </Select>
       </FormControl>
@@ -139,7 +143,7 @@ function Pannel(oProps: any) {
           用户特权
         </InputLabel>
         <Select
-          className={oClasses.select}
+          className={oClasses.selectVip}
           labelId="select-outlined-label"
           id="vip"
           value={oState.vip}
@@ -152,22 +156,22 @@ function Pannel(oProps: any) {
             <span className={oClasses.selectEmpty}>请选择特权</span>
           </MenuItem>
           <MenuItem value="0">
-            <Components.Admin.VipIcon0></Components.Admin.VipIcon0>
+            <Components.Admin.VipIcon0 className={oClasses.icon}></Components.Admin.VipIcon0>
             &ensp;
             <span>特权一般</span>
           </MenuItem>
           <MenuItem value="1">
-            <Components.Admin.VipIcon1></Components.Admin.VipIcon1>
+            <Components.Admin.VipIcon1 className={oClasses.icon}></Components.Admin.VipIcon1>
             &ensp;
             <span>特权过期</span>
           </MenuItem>
           <MenuItem value="2">
-            <Components.Admin.VipIcon2></Components.Admin.VipIcon2>
+            <Components.Admin.VipIcon2 className={oClasses.icon}></Components.Admin.VipIcon2>
             &ensp;
             <span>特权限时</span>
           </MenuItem>
           <MenuItem value="3">
-            <Components.Admin.VipIcon3></Components.Admin.VipIcon3>
+            <Components.Admin.VipIcon3 className={oClasses.icon}></Components.Admin.VipIcon3>
             &ensp;
             <span>特权永久</span>
           </MenuItem>

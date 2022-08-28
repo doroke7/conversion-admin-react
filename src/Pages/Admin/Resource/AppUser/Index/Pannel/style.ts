@@ -38,8 +38,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
         }
       }
     },
-    select: {
-      width: oTheme.spacing(20)
+    selectCode: {
+      width: oTheme.spacing(30)
     },
     selectEmpty: {
       color: grey[400]
@@ -65,6 +65,16 @@ let oStyle = makeStyles((oTheme: Theme) =>
       '& .MuiInputBase-root': {
         color: grey[400] // 时间选择器：未选择时候是暗灰色
       }
+    },
+    selectPhoneType: {
+      width: oTheme.spacing(20)
+    },
+    selectVip: {
+      width: oTheme.spacing(20)
+    },
+    icon: {
+      maxWidth: oTheme.spacing(2),
+      maxHeight: oTheme.spacing(2)
     }
   })
 );

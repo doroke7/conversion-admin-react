@@ -101,7 +101,7 @@ function Index(oProps: any): any {
         Component = iPhoneType == 1 ? Components.Admin.AndroidIcon : Component;
         Component = iPhoneType == 2 ? Components.Admin.AppleIcon : Component;
 
-        return <Component></Component>;
+        return <Component className={oClasses.phoneTypeIcon}></Component>;
       }
     },
     {
