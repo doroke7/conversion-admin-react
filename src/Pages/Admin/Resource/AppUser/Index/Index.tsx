@@ -18,7 +18,7 @@ import AndroidIcon from './AndroidIcon/Index';
 import UnknownIcon from './UnknownIcon/Index';
 import Pannel from './Pannel/Index';
 import NoRowsOverlay from './NoRowsOverlay/Index';
-
+import LoadingOverlay from './LoadingOverlay/Index';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -159,7 +159,7 @@ function Index(oProps: any): any {
       };
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
-      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10));
+      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10)) || 1;
       cSetState({
         number: oResponse?.data?.raw?.number ?? 0,
         rows: oResponse?.data?.raw?.list ?? [],
@@ -184,9 +184,9 @@ function Index(oProps: any): any {
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={oClasses.dataGrid}
-          rows={[]}
+          rows={oState.rows}
           columns={aColumns}
-          rowCount={0}
+          rowCount={oState.count}
           page={0}
           pageSize={oParams.size}
           loading={oState.loading}
@@ -197,7 +197,7 @@ function Index(oProps: any): any {
           autoHeight={true}
           disableColumnMenu={true}
           rowHeight={58}
-          components={{ NoRowsOverlay: NoRowsOverlay }}
+          components={{ NoRowsOverlay: NoRowsOverlay, LoadingOverlay: LoadingOverlay }}
         />
       </div>
       <div className={oClasses.paginationWrapper}>

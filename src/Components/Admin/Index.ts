@@ -8,5 +8,18 @@ import VipIcon2 from './VipIcon2/Index';
 import VipIcon3 from './VipIcon3/Index';
 import VoidElement from './VoidElement/Index';
 import NoDataIcon from './NoDataIcon/Index';
+import LoadingIcon from './LoadingIcon/Index';
 
-export default { Message, Table, Icon, Img, VipIcon0, VipIcon1, VipIcon2, VipIcon3, VoidElement, NoDataIcon };
+export default {
+  Message,
+  Table,
+  Icon,
+  Img,
+  VipIcon0,
+  VipIcon1,
+  VipIcon2,
+  VipIcon3,
+  VoidElement,
+  NoDataIcon,
+  LoadingIcon
+};
