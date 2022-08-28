@@ -27,7 +27,7 @@ let page = (Component: any): any => {
       if (iPage < oState.min) {
         let oMessage = {
           code: -1,
-          message: '页数1, 已为第一首页',
+          message: '页数1, 已为第一首页, 即将从 第' + iPage + '页 跳转到 第' + oState.min + '页',
           time: 3 * 1000
         };
         events.admin.emit('Alerts-onAlert', oMessage);
@@ -37,7 +37,7 @@ let page = (Component: any): any => {
       if (iPage > oState.max) {
         let oMessage = {
           code: -1,
-          message: '页数' + oState.max + ', 已为最后末页',
+          message: '页数' + oState.max + ', 已为最后末页, 即将从 第' + iPage + '页 跳转到 第' + oState.max + '页',
           time: 3 * 1000
         };
         events.admin.emit('Alerts-onAlert', oMessage);
