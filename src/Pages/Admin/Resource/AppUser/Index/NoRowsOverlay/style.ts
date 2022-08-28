@@ -11,7 +11,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
       height: oTheme.spacing(40)
     },
     text: {
-      color: grey[600]
+      color: grey[400],
+      fontSize: oTheme.spacing(4),
+      fontWeight: 900
     }
   })
 );
