@@ -186,7 +186,7 @@ function Index(oProps: any): any {
           className={oClasses.dataGrid}
           rows={oState.rows}
           columns={aColumns}
-          rowCount={oState.count}
+          rowCount={oState.rows.length == 0 ? 0 : oState.count}
           page={0}
           pageSize={oParams.size}
           loading={oState.loading}

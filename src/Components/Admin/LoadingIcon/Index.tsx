@@ -11,68 +11,54 @@ function LoadingIcon(oProps: any) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={oClasses.root}
+      className={clsx([oClasses.root, sClassName])}
       width="200px"
       height="200px"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid">
-      <rect x="17.5" y="30" width="15" height="40" className={oClasses.fill1}>
+      <rect x="15" y="30" width="10" height="40" fill="#0051a2">
         <animate
-          attributeName="y"
+          attributeName="opacity"
+          dur="1.1111111111111112s"
           repeatCount="indefinite"
-          dur="1s"
           calcMode="spline"
           keyTimes="0;0.5;1"
-          values="18;30;30"
-          keySplines="0 0.5 0.5 1;0 0.5 0.5 1"
-          begin="-0.2s"></animate>
-        <animate
-          attributeName="height"
-          repeatCount="indefinite"
-          dur="1s"
-          calcMode="spline"
-          keyTimes="0;0.5;1"
-          values="64;40;40"
-          keySplines="0 0.5 0.5 1;0 0.5 0.5 1"
-          begin="-0.2s"></animate>
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-0.6666666666666666"></animate>
       </rect>
-      <rect x="42.5" y="30" width="15" height="40" className={oClasses.fill2}>
+      <rect x="35" y="30" width="10" height="40" fill="#1b75be">
         <animate
-          attributeName="y"
+          attributeName="opacity"
+          dur="1.1111111111111112s"
           repeatCount="indefinite"
-          dur="1s"
           calcMode="spline"
           keyTimes="0;0.5;1"
-          values="20.999999999999996;30;30"
-          keySplines="0 0.5 0.5 1;0 0.5 0.5 1"
-          begin="-0.1s"></animate>
-        <animate
-          attributeName="height"
-          repeatCount="indefinite"
-          dur="1s"
-          calcMode="spline"
-          keyTimes="0;0.5;1"
-          values="58.00000000000001;40;40"
-          keySplines="0 0.5 0.5 1;0 0.5 0.5 1"
-          begin="-0.1s"></animate>
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-0.4444444444444445"></animate>
       </rect>
-      <rect x="67.5" y="30" width="15" height="40" className={oClasses.fill3}>
+      <rect x="55" y="30" width="10" height="40" fill="#408ee0">
         <animate
-          attributeName="y"
+          attributeName="opacity"
+          dur="1.1111111111111112s"
           repeatCount="indefinite"
-          dur="1s"
           calcMode="spline"
           keyTimes="0;0.5;1"
-          values="20.999999999999996;30;30"
-          keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-0.22222222222222224"></animate>
+      </rect>
+      <rect x="75" y="30" width="10" height="40" fill="#89bff8">
         <animate
-          attributeName="height"
+          attributeName="opacity"
+          dur="1.1111111111111112s"
           repeatCount="indefinite"
-          dur="1s"
           calcMode="spline"
           keyTimes="0;0.5;1"
-          values="58.00000000000001;40;40"
-          keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-1.1111111111111112"></animate>
       </rect>
     </svg>
   );
