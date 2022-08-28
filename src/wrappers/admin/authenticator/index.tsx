@@ -35,11 +35,21 @@ let authenticator = (Component: any): any => {
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
           sJwt = oResponse?.headers?.authorization ?? '';
 
-          if (oResponse?.data?.code === undefined || !sJwt) {
+          if (
+            oResponse?.data?.code === undefined ||
+            (oResponse?.data?.code >= 0 && !sJwt) ||
+            oResponse?.data?.code <= -1
+          ) {
+            let sMessage = '未知错误';
+
+            sMessage = oResponse?.data?.code === undefined ? '服务器未定义 code 错误' : sMessage;
+            sMessage = oResponse?.data?.code >= 0 && !sJwt ? '服务器未定义 authorization 错误' : sMessage;
+            sMessage = oResponse?.data?.code <= -1 ? '错误' : sMessage;
+
             if (aRedirections[0]) {
               let oMessage = {
-                code: -9999,
-                message: oResponse?.data?.message ?? '未知错误',
+                code: oResponse?.data?.code ?? -9999,
+                message: oResponse?.data?.message ?? sMessage,
                 time: 3 * 1000
               };
               events.admin.emit('Alerts-onAlert', oMessage);
