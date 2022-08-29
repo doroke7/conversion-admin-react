@@ -9,10 +9,14 @@ const style = makeStyles((oTheme: Theme): any =>
         '& .MuiDataGrid-overlay': {
           background: grey[50]
         }
+      },
+      '& .MuiDataGrid-footerContainer': {
+        background: grey[50]
       }
     },
     dataGrid: {
-      minHeight: oTheme.spacing(7.25) * 11
+      minHeight: oTheme.spacing(8) * 11,
+      maxHeight: oTheme.spacing(8) * 11
     },
     paginationWrapper: {
       display: 'flex',

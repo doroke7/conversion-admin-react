@@ -214,7 +214,7 @@ function Index(oProps: any): any {
           disableSelectionOnClick={true}
           hideFooterPagination={false}
           hideFooter={false}
-          autoHeight={true}
+          autoHeight={false}
           disableColumnMenu={true}
           rowHeight={38}
           components={{
