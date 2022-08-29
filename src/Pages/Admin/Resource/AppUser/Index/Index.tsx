@@ -39,6 +39,13 @@ function Index(oProps: any): any {
     size: 10
   });
 
+  let dSizesToHeight = {
+    '10': 59.448,
+    '20': 29.724,
+    '50': 29.724,
+    '100': 29.724
+  };
+
   let aColumns: any[] = [
     { field: 'id', headerName: 'ID', description: '流水号', width: 100, sortable: false, editable: false },
     {
@@ -216,7 +223,7 @@ function Index(oProps: any): any {
           hideFooter={false}
           autoHeight={false}
           disableColumnMenu={true}
-          rowHeight={38}
+          rowHeight={dSizesToHeight[oState.size] ?? dSizesToHeight[10]}
           components={{
             NoRowsOverlay: NoRowsOverlay,
             LoadingOverlay: LoadingOverlay,
