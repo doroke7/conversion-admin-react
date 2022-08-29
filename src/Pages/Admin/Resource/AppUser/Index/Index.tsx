@@ -177,7 +177,7 @@ function Index(oProps: any): any {
   let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iSize = oEvent.target.value;
     // cSetState({ ...oState, size: iSize });
-    cSetState({ ...oState, size: iSize });
+    cSetState({ ...oState, size: iSize, loading: true, rows: [] });
 
     let oSizeParams = {
       ...oParams,
@@ -188,7 +188,7 @@ function Index(oProps: any): any {
   };
 
   useEffect(() => {
-    cSetState({ ...oState, size: oParams.size });
+    cSetState({ ...oState, size: oParams.size, loading: true });
   }, [oParams.size]);
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
