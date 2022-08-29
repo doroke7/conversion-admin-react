@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 
 import wrappers from '@/wrappers/index';
 import Sdks from '@/Sdks/Index';
@@ -182,13 +183,13 @@ function Index(oProps: any): any {
   }, [oParams.appId, oParams.page, oParams.size]);
 
   let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
-    let iSize = oEvent.target.value;
+    let iSize = Number(oEvent.target.value);
     // cSetState({ ...oState, size: iSize });
     cSetState({ ...oState, size: iSize, loading: true, rows: [] });
 
     let oSizeParams = {
       ...oParams,
-      size: Number(iSize)
+      size: iSize
     };
     let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
     oHistory.push(sUrl);
@@ -197,6 +198,19 @@ function Index(oProps: any): any {
   useEffect(() => {
     cSetState({ ...oState, size: oParams.size, loading: true });
   }, [oParams.size]);
+
+  let cHandlePage = (oEvent: any) => {
+    console.info(oEvent);
+    //  let iPage = Number(oEvent.target.value);
+    // if (oEvent.charCode == 13) {
+    // }
+    // let oPageParams = {
+    //   ...oParams,
+    //   page: iPage
+    // };
+    // let sUrl = utilities.url(oRouteMatch.path, oPageParams);
+    // oHistory.push(sUrl);
+  };
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
    * NOTE: API 接口服务 1 开始标记为第一页
@@ -243,17 +257,18 @@ function Index(oProps: any): any {
                   onChange={cHandleChange}
                 />
                 <FormControl className={oClasses.formControl}>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="select-size"
-                    value={oState.size}
-                    onChange={cHandleChangeSize}>
+                  <Select labelId="demo-simple-select-label" id="size" value={oState.size} onChange={cHandleChangeSize}>
                     <MenuItem value={10}>10条/页</MenuItem>
                     <MenuItem value={20}>20条/页</MenuItem>
                     <MenuItem value={50}>50条/页</MenuItem>
                     <MenuItem value={100}>100条/页</MenuItem>
                   </Select>
                 </FormControl>
+                <span className={oClasses.page}>
+                  <span className="pre">跳转到第&ensp;</span>
+                  <TextField id="page" type="text" autoComplete="off" onKeyPress={cHandlePage} />
+                  <span className="next">&ensp;页</span>
+                </span>
               </div>
             )
           }}

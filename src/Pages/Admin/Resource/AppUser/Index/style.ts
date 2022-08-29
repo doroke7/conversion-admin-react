@@ -36,10 +36,29 @@ const style = makeStyles((oTheme: Theme): any =>
       height: oTheme.spacing(4)
     },
     pagination: {
-      marginRight: oTheme.spacing(1)
+      marginRight: oTheme.spacing(4)
     },
     formControl: {
-      width: oTheme.spacing(12)
+      width: oTheme.spacing(12),
+      marginRight: oTheme.spacing(4)
+    },
+    page: {
+      // width: oTheme.spacing(4)
+      '& .pre': {
+        color: grey['600'],
+        verticalAlign: 'middle'
+      },
+      '& .MuiTextField-root': {
+        width: oTheme.spacing(6),
+        verticalAlign: 'middle',
+        '& input': {
+          textAlign: 'right'
+        }
+      },
+      '& .next': {
+        color: grey['600'],
+        verticalAlign: 'middle'
+      }
     }
   })
 );
