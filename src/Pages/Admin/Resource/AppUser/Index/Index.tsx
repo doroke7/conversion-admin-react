@@ -298,7 +298,7 @@ function Index(oProps: any): any {
                   <span className="pre">跳转到第&ensp;</span>
                   <TextField
                     id="page"
-                    value={oState.page}  // oState.page 改成局部 component state.page
+                    value={oState.page} // oState.page 改成局部 component state.page
                     onChange={cHandleChangePage}
                     // onKeyPress={cHandleKeyPressPage}
                   />
