@@ -298,11 +298,9 @@ function Index(oProps: any): any {
                   <span className="pre">跳转到第&ensp;</span>
                   <TextField
                     id="page"
-                    type="text"
-                    autoComplete="off"
                     value={oState.page}
                     onChange={cHandleChangePage}
-                    onKeyPress={cHandleKeyPressPage}
+                    // onKeyPress={cHandleKeyPressPage}
                   />
                   <span className="next">&ensp;页</span>
                 </span>
