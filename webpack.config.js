@@ -226,6 +226,7 @@ module.exports = (env, argvs) => {
             'axios',
             'moment',
             'semver',
+            'react-country-flag',
             'react',
             'react-dom',
             'react-router-dom',

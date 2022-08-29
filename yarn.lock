@@ -7292,6 +7292,11 @@ react-addons-shallow-compare@>=0.14.0:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
+react-country-flag@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-country-flag/-/react-country-flag-3.0.2.tgz#54c37abe2c87251e95b0f40bb4c09b000f4669e7"
+  integrity sha512-JPaz+q3QD0/nZtHBKj5x3O7r/SgSG9kxbymdaIU0RqlDAcorJIe4KV0DFhWIdKh69q5cPVkIVERcMYGZdvXgAA==
+
 react-dom@^17.0.1:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
+import ReactCountryFlag from 'react-country-flag';
 
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -81,6 +82,8 @@ function Pannel(oProps: any) {
           </MenuItem>
           {CONFIGS.APP.CODES.map((oCode: any, sKey) => (
             <MenuItem key={sKey} value={oCode.code}>
+              <ReactCountryFlag countryCode={oCode.name ?? 'US'} svg></ReactCountryFlag>
+              &ensp;
               {oCode.cn + ' (' + oCode.code + ')'}
             </MenuItem>
           ))}
