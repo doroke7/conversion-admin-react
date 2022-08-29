@@ -43,9 +43,8 @@ const style = makeStyles((oTheme: Theme): any =>
       marginRight: oTheme.spacing(4)
     },
     page: {
-      // width: oTheme.spacing(4)
+      color: grey['600'],
       '& .pre': {
-        color: grey['600'],
         verticalAlign: 'middle'
       },
       '& .MuiTextField-root': {
@@ -56,7 +55,6 @@ const style = makeStyles((oTheme: Theme): any =>
         }
       },
       '& .next': {
-        color: grey['600'],
         verticalAlign: 'middle'
       }
     }
