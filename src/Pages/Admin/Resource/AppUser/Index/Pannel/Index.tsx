@@ -84,11 +84,21 @@ function Pannel(oProps: any) {
             <MenuItem key={sKey} value={oCode.code}>
               <ReactCountryFlag countryCode={oCode.name ?? 'US'} svg></ReactCountryFlag>
               &ensp;
-              {oCode.cn + ' (' + oCode.code + ')'}
+              {oCode.cn + ' (+' + oCode.code + ')'}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
+      <TextField
+        className={oClasses.number}
+        id="number"
+        label="号码"
+        placeholder="请输入文字"
+        InputLabelProps={{
+          shrink: true
+        }}
+        variant="outlined"
+      />
       <TextField
         className={oClasses.startDate}
         id="start_datetime"

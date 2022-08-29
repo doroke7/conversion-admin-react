@@ -39,10 +39,14 @@ let oStyle = makeStyles((oTheme: Theme) =>
       }
     },
     selectCode: {
-      width: oTheme.spacing(30)
+      width: oTheme.spacing(24)
     },
     selectEmpty: {
       color: grey[400]
+    },
+    number: {
+      width: oTheme.spacing(16),
+      marginRight: oTheme.spacing(2)
     },
     startDate: {
       marginRight: oTheme.spacing(2),

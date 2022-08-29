@@ -123,10 +123,14 @@ function Index(oProps: any): any {
 
         return iPhoneType == 1 || iPhoneType == 2 ? (
           <Tooltip title={sTitle} placement="right-end">
-            <Component></Component>
+            <div>
+              <Component></Component>
+            </div>
           </Tooltip>
         ) : (
-          <Component></Component>
+          <div>
+            <Component></Component>
+          </div>
         );
       }
     },
