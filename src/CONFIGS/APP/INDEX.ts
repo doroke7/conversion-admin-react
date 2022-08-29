@@ -73,7 +73,7 @@ const APP: any = {
     { cn: '智利', en: 'Chile', code: '+56', name: 'CL' },
     { cn: '圣诞岛', en: 'Christmas Island', code: '+61', name: 'CX' },
     { cn: '科科斯基林群岛', en: 'Cocos (Keeling) Islands', code: '+61', name: 'CC' },
-    { cn: '哥伦比亚', en: 'Colombia', code: '+57', name: '' },
+    { cn: '哥伦比亚', en: 'Colombia', code: '+57', name: 'CO' },
     { cn: '科摩罗', en: 'Comoros', code: '+269', name: 'KM' },
     { cn: '刚果-金', en: 'Democratic Republic of the Congo', code: '+243', name: 'CD' },
     { cn: '刚果-布', en: 'Republic of the Congo', code: '+242', name: 'CG' },
