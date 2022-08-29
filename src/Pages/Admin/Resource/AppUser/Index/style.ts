@@ -12,10 +12,12 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     dataGrid: {
-      // minHeight: oTheme.spacing(7.25) * 11
+      minHeight: oTheme.spacing(7.25) * 11
     },
     paginationWrapper: {
-      marginTop: oTheme.spacing(4)
+      display: 'flex',
+      flexDirection: 'row',
+      marginRight: oTheme.spacing(1)
     },
     avatar: {
       background: grey[50],
@@ -28,6 +30,12 @@ const style = makeStyles((oTheme: Theme): any =>
     phoneTypeIcon: {
       width: oTheme.spacing(4),
       height: oTheme.spacing(4)
+    },
+    pagination: {
+      marginRight: oTheme.spacing(1)
+    },
+    formControl: {
+      width: oTheme.spacing(12)
     }
   })
 );

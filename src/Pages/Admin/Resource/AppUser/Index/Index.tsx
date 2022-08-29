@@ -6,6 +6,11 @@ import Pagination from '@material-ui/lab/Pagination';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import wrappers from '@/wrappers/index';
 import Sdks from '@/Sdks/Index';
@@ -30,7 +35,8 @@ function Index(oProps: any): any {
     number: 0,
     count: 0,
     loading: true,
-    rows: []
+    rows: [],
+    size: 10
   });
 
   let aColumns: any[] = [
@@ -161,12 +167,29 @@ function Index(oProps: any): any {
         number: oResponse?.data?.raw?.number ?? 0,
         rows: oResponse?.data?.raw?.list ?? [],
         count: iCount,
-        loading: false
+        loading: false,
+        size: oParams.size
       });
       cSetPageMax(iCount);
     })();
   }, [oParams.appId, oParams.page, oParams.size]);
 
+  let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let iSize = oEvent.target.value;
+    // cSetState({ ...oState, size: iSize });
+    cSetState({ ...oState, size: iSize });
+
+    let oSizeParams = {
+      ...oParams,
+      size: Number(iSize)
+    };
+    let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
+    oHistory.push(sUrl);
+  };
+
+  useEffect(() => {
+    cSetState({ ...oState, size: oParams.size });
+  }, [oParams.size]);
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
    * NOTE: API 接口服务 1 开始标记为第一页
@@ -194,26 +217,40 @@ function Index(oProps: any): any {
           autoHeight={true}
           disableColumnMenu={true}
           rowHeight={38}
-          components={{ NoRowsOverlay: NoRowsOverlay, LoadingOverlay: LoadingOverlay }}
+          components={{
+            NoRowsOverlay: NoRowsOverlay,
+            LoadingOverlay: LoadingOverlay,
+            Pagination: (oProps: any) => (
+              <div className={oClasses.paginationWrapper}>
+                <Pagination
+                  className={oClasses.pagination}
+                  count={oState.count}
+                  variant="outlined"
+                  shape="rounded"
+                  color="primary"
+                  siblingCount={1}
+                  boundaryCount={1}
+                  showFirstButton
+                  showLastButton
+                  page={Number(oParams.page ?? 1)}
+                  onChange={cHandleChange}
+                />
+                <FormControl className={oClasses.formControl}>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="select-size"
+                    value={oState.size}
+                    onChange={cHandleChangeSize}>
+                    <MenuItem value={10}>10条/页</MenuItem>
+                    <MenuItem value={20}>20条/页</MenuItem>
+                    <MenuItem value={50}>50条/页</MenuItem>
+                    <MenuItem value={100}>100条/页</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            )
+          }}
         />
-      </div>
-      <div className={oClasses.paginationWrapper}>
-        {oState.count >= 1 ? (
-          <Pagination
-            count={oState.count}
-            variant="outlined"
-            shape="rounded"
-            color="primary"
-            siblingCount={1}
-            boundaryCount={1}
-            showFirstButton
-            showLastButton
-            page={Number(oParams.page ?? 1)}
-            onChange={cHandleChange}
-          />
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );
