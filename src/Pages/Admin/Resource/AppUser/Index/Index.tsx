@@ -111,11 +111,26 @@ function Index(oProps: any): any {
       width: 90,
       renderCell: (oParams: any) => {
         let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
-        let Component = Components.Admin.VoidElement;
-        Component = iPhoneType == 1 ? Components.Admin.AndroidIcon : Component;
-        Component = iPhoneType == 2 ? Components.Admin.AppleIcon : Component;
+        let Component = () => <Components.Admin.VoidElement className={oClasses.phoneTypeIcon} />;
+        Component =
+          iPhoneType == 1
+            ? () => (
+                <Tooltip title={'安卓设备'} placement="right-end">
+                  <Components.Admin.AndroidIcon className={oClasses.phoneTypeIcon} />
+                </Tooltip>
+              )
+            : Component;
 
-        return <Component className={oClasses.phoneTypeIcon}></Component>;
+        Component =
+          iPhoneType == 2
+            ? () => (
+                <Tooltip title={'苹果设备'} placement="right-end">
+                  <Components.Admin.AppleIcon className={oClasses.phoneTypeIcon} />
+                </Tooltip>
+              )
+            : Component;
+
+        return <Component></Component>;
       }
     },
     {
