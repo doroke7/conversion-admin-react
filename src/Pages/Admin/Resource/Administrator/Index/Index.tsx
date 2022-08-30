@@ -11,4 +11,4 @@ function Index(oProps: any): any {
   let oClasses: any = style(void 0);
   return <div className={oClasses.root}>ADMINISTRATOR</div>;
 }
-export default wrappers.admin.tab(wrappers.admin.title(Index));
+export default wrappers.tab(wrappers.title(Index));

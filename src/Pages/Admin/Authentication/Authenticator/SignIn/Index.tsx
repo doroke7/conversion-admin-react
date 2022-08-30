@@ -47,4 +47,4 @@ function SignIn(): any {
     </div>
   );
 }
-export default wrappers.admin.authenticator(wrappers.admin.title(SignIn));
+export default wrappers.authenticator(wrappers.title(SignIn));

@@ -310,4 +310,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default wrappers.admin.tab(wrappers.admin.page(wrappers.admin.title(Index)));
+export default wrappers.tab(wrappers.page(wrappers.title(Index)));
