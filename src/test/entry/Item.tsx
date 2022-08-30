@@ -2,21 +2,15 @@ import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
-import Item from './Item';
 import style from './style';
 
-function App(oProps: any) {
+function Item(oProps: any) {
   let oClasses: any = style(void 0);
   let [oState, cSetState] = React.useState({
-    name: 'test 服务'
+    name: 'item '
   });
 
-  return (
-    <div>
-      <div>{oState.name}</div>
-      <Item></Item>
-    </div>
-  );
+  return <div>{oState.name}</div>;
 }
 
-export default App;
+export default Item;

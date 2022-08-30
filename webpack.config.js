@@ -65,7 +65,7 @@ module.exports = (env, argvs) => {
           // { from: /^\/service\/.*/, to: '/service/index.html' },
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
           { from: /^\/test\/.*/, to: '/test/index.html' },
-          { from: /.*/, to: '/admin/index.html' },
+          // { from: /.*/, to: '/admin/index.html' },
         ],
         verbose: true,
       },
@@ -182,17 +182,17 @@ module.exports = (env, argvs) => {
           collapseWhitespace: true, //删除空白符与换行符
         },
       }),
-      // new HtmlWebpackPlugin({
-      //   chunks: ['manifest', 'vendor', 'test'],
-      //   template: './public/test.html',
-      //   filename: 'test/index.html',
-      //   favicon: './public/favicon.ico',
-      //   minify: {
-      //     //压缩HTML文件
-      //     removeComments: true, //移除HTML中的注释
-      //     collapseWhitespace: true, //删除空白符与换行符
-      //   },
-      // }),
+      new HtmlWebpackPlugin({
+        chunks: ['manifest', 'vendor', 'test'],
+        template: './public/test.html',
+        filename: 'test/index.html',
+        favicon: './public/favicon.ico',
+        minify: {
+          //压缩HTML文件
+          removeComments: true, //移除HTML中的注释
+          collapseWhitespace: true, //删除空白符与换行符
+        },
+      }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
@@ -200,23 +200,14 @@ module.exports = (env, argvs) => {
         chunkFilename: '[id].css',
       }),
       new AutoDllPlugin({
-        filename: '[name].dll.js',
+        filename: '[name].dll.js', // 所有的 AutoDll 都会加入到各自的分包中
         entry: {
           // 'service': [
-          //   'socket.io-client',
-          //   'socket.io-file-client',
-          //   'jwt-decode',
-          //   'jsencrypt',
-          //   'axios',
-          //   'moment',
+          //   'react-country-flag',
           //   'react',
           //   'react-dom',
           //   'react-router-dom',
           //   'redux',
-          //   'redux-thunk',
-          //   'redux-react-hook',
-          //   'antd',
-          //   'emoji-mart',
           // ],
           'admin': [
             'socket.io-client',
@@ -233,10 +224,14 @@ module.exports = (env, argvs) => {
             'redux',
             'redux-thunk',
             'redux-react-hook',
-            '@material-ui/core', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
-            '@mui/x-data-grid', // 把两个 entry 共用的 代码都丢在 dll.js 减少 套件重复打包的问题， 但是 src 内部重复打包还是没有解决
+            '@material-ui/core', 
+            '@mui/x-data-grid', 
 
           ],
+          'test': [
+            'socket.io-client',
+            'socket.io-file-client',
+          ]
         },
       }),
       new Dotenv({
