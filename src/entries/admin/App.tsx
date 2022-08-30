@@ -51,8 +51,8 @@ function App(oProps: any) {
   return (
     <StoreContext.Provider value={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
-        <Commons.Admin.Progress></Commons.Admin.Progress>
-        <Commons.Admin.Alerts></Commons.Admin.Alerts>
+        <Commons.Progress></Commons.Progress>
+        <Commons.Alerts></Commons.Alerts>
         <BrowserRouter>
           <Switch>
             {oState.routes.map((oRoute, sIndex) => (

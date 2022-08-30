@@ -1,3 +1,5 @@
-import Admin from './Admin/Index';
+import Navigation from './Navigation/Index';
+import Alerts from './Alerts/Index';
+import Progress from './Progress/Index';
 
-export default { Admin };
+export default { Navigation, Alerts, Progress };

@@ -16,7 +16,7 @@ function Index(oProps: any): any {
     // <Fade> 效果，必须字元素只有一个 DIV
     <Fade in={true} timeout={1000}>
       <div>
-        <Commons.Admin.Navigation>
+        <Commons.Navigation>
           <Switch>
             {aRoutes.map((oRoute, sIndex) => (
               <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
@@ -31,7 +31,7 @@ function Index(oProps: any): any {
               </Route>
             ))}
           </Switch>
-        </Commons.Admin.Navigation>
+        </Commons.Navigation>
       </div>
     </Fade>
   );
