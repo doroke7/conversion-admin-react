@@ -34,7 +34,7 @@ module.exports = (env, argvs) => {
     entry: {
       service: './src/entries/service/index.ts', // 目前 webpack 多入口都会打包在一起
       admin: './src/entries/admin/index.ts',     // 目前 webpack 多入口都会打包在一起
-      test: './src/entries/test/index.tsx', // 目前 webpack 多入口都会打包在一起
+      // test: './src/entries/test/index.tsx', // 目前 webpack 多入口都会打包在一起
 
     },
     resolve: {
