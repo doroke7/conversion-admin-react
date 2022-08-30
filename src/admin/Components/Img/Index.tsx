@@ -11,7 +11,7 @@ function Img(oProps: any): any {
     src: sSrc
   });
   let cHandleError = () => {
-    cSetState({ src: CONFIGS.APP.SRC });
+    cSetState({ src: CONFIGS.ADMIN.SRC });
   };
 
   return <img className={oClasses.root} src={oState.src} onError={cHandleError}></img>;

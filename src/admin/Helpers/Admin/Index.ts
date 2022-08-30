@@ -54,8 +54,8 @@ class AdminHelper {
     oOptions['params'] = oOptions?.['params'] ?? {};
     oOptions['headers'] = {
       Authorization: sJwt,
-      Version: CONFIGS.APP.VERSION,
-      Ver: CONFIGS.APP.VER,
+      Version: CONFIGS.ADMIN.VERSION,
+      Ver: CONFIGS.ADMIN.VER,
       Keys: sKeys, // TODO
       Time: iTime,
       ...oHeaders
