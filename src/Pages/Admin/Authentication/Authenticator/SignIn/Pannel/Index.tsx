@@ -102,7 +102,7 @@ function Pannel(oProps: any): any {
       cSetState({ ...oState, loading: true, pannelAnimation: true });
 
       Helpers.Authentication.setJwt(sJwt);
-      oDispatch(actions.admin.authentication.authenticator.postSignIn(oResponse));
+      oDispatch(actions.authentication.authenticator.postSignIn(oResponse));
 
       if (oResponse && oResponse?.data?.code >= 1) {
         let oMessage = {

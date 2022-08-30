@@ -1,5 +1,9 @@
-import admin from './admin/';
+import authentication from './authentication';
+import resource from './resource';
+import system from './system';
 
 export default {
-  admin
+  authentication,
+  resource,
+  system
 };
