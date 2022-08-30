@@ -1,0 +1,116 @@
+import React, { useContext } from 'react';
+import clsx from 'clsx';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Avatar from '@material-ui/core/Avatar';
+import Components from '@/admin/Components/Index';
+import events from '@/admin/events/index';
+import Contexts from '@/admin/Contexts/Index';
+
+import CONFIGS from '@/admin/CONFIGS/INDEX';
+
+import Apps from './Apps/Index';
+import Icon from './Icon/Index';
+
+import cStyle from './style';
+import { isNullishCoalesce } from 'typescript';
+
+function SmallApps(oProps) {
+  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
+
+  let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
+  let aApps = oProps.apps ?? [];
+
+  const oClasses = cStyle();
+
+  let [oState, cSetState] = React.useState<any>({
+    open: false,
+    anchor: null
+  });
+
+  let oApp = aApps[iIndex] ?? {};
+  let sName = oApp.name ?? '';
+  let cHandleToggle = (oEvent) => {
+    let bOpen = !oState.open;
+    cSetState({ ...oState, open: bOpen });
+  };
+
+  let aIconColors = [
+    oClasses.backgroundColor1,
+    oClasses.backgroundColor2,
+    oClasses.backgroundColor3,
+    oClasses.backgroundColor4,
+    oClasses.backgroundColor5,
+    oClasses.backgroundColor6,
+    oClasses.backgroundColor7,
+    oClasses.backgroundColor8,
+    oClasses.backgroundColor9,
+    oClasses.backgroundColor10,
+    oClasses.backgroundColor11,
+    oClasses.backgroundColor12,
+    oClasses.backgroundColor13,
+    oClasses.backgroundColor14,
+    oClasses.backgroundColor15
+  ];
+
+  let cHandleMouseEnter = () => {
+    return (oEvent) => {
+      let oAnchor = oEvent.currentTarget;
+
+      cSetState({ ...oState, anchor: oAnchor });
+    };
+  };
+
+  let cHandleMouseLeave = () => {
+    return (oEvent) => {
+      let oAnchor = null;
+
+      cSetState({ ...oState, anchor: oAnchor });
+    };
+  };
+
+  let cHandleClose = (oEvent: any) => {
+    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
+      return;
+    }
+    let oAnchor = null;
+
+    cSetState({ ...oState, anchor: oAnchor });
+  };
+
+  return (
+    <List
+      component="div"
+      aria-labelledby="nested-list-subheader"
+      className={clsx(oClasses.root, {
+        [oClasses.hidden]: !bStatus
+      })}>
+      <>
+        <ListItem
+          className={oClasses.listItem}
+          button
+          onMouseEnter={cHandleMouseEnter()}
+          onMouseLeave={cHandleMouseLeave()}>
+          <Icon
+            className={clsx(aIconColors[iIndex] ?? aIconColors[14])}
+            name={oApp['name'] ?? ''}
+            status={iIndex >= 0}></Icon>
+          <ListItemText primary={''} />
+          <Apps
+            open={Boolean(oState.anchor)}
+            apps={aApps}
+            anchor={oState.anchor}
+            iconColors={aIconColors}
+            onClickAway={cHandleClose}
+            onMouseLeave={cHandleMouseLeave()}></Apps>
+        </ListItem>
+      </>
+    </List>
+  );
+}
+
+export default SmallApps;
