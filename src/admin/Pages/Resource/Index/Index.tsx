@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Fade from '@material-ui/core/Fade';
-import Commons from '@/admin/Commons';
+import Commons from '@/admin/Commons/Index';
 import wrappers from '@/admin/wrappers';
 
 import style from './style';

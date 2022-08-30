@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
-import store from '@/admin/store';
-import router from '@/admin/router';
+import store from '@/admin/store/index';
+import router from '@/admin/router/index';
 import CONFIGS from '@/admin/CONFIGS/INDEX';
-import Commons from '@/admin/Commons';
+import Commons from '@/admin/Commons/Index';
 import Components from '@/admin/Components/Index';
 import Helpers from '@/admin/Helpers/Index';
 import style from './style';
-import APP from '@/admin/CONFIGS/APP/INDEX';
 
 function App(oProps: any) {
   let oClasses: any = style(void 0);
