@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Icon from './Icon/Index';
 import style from './style';

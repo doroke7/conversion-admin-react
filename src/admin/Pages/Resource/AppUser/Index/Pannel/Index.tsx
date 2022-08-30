@@ -11,7 +11,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 
 import Components from '@/admin/Components/Index';
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
 function Pannel(oProps: any) {

@@ -11,7 +11,7 @@ import Components from '@/admin/Components/Index';
 import events from '@/admin/events/index';
 import Contexts from '@/admin/Contexts/Index';
 
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Apps from './Apps/Index';
 import Icon from './Icon/Index';

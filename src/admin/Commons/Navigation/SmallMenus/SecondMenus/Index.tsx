@@ -16,7 +16,7 @@ import Contexts from '@/admin/Contexts/Index';
 
 import Components from '@/admin/Components/Index';
 
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 import ThirddMenus from './ThirdMenus/Index';
 
 import cStyle from './style';

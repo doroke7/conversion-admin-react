@@ -4,7 +4,7 @@ import { StoreContext } from 'redux-react-hook';
 
 import store from '@/admin/store/index';
 import router from '@/admin/router/index';
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 import Commons from '@/admin/Commons/Index';
 import Components from '@/admin/Components/Index';
 import Helpers from '@/admin/Helpers/Index';

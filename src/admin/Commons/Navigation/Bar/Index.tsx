@@ -17,7 +17,7 @@ import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import Components from '@/admin/Components/Index';
 
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 import Links from './Links/Index';
 import Right from './Right/Index';
 

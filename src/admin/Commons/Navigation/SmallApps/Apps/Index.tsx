@@ -15,7 +15,7 @@ import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
 import Contexts from '@/admin/Contexts/Index';
 
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Icon from './Icon/Index';
 import cStyle from './style';

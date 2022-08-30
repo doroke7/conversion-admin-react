@@ -3,7 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Sdks from '@/admin/Sdks/Index';
 import Helpers from '@/admin/Helpers/Index';
 import events from '@/admin/events/index';
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 interface Props {
   children?: any;

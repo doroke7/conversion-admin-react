@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 class AesHelper {
   public static encode(sString: string): string {

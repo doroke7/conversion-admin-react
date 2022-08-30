@@ -9,7 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
 import Contexts from '@/admin/Contexts/Index';
 
-import CONFIGS from '@/admin/CONFIGS/INDEX';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import Apps from './Apps/Index';
 import Icon from './Icon/Index';
