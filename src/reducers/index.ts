@@ -1,5 +1,7 @@
-import admin from './admin/index';
+import jwt from './jwt/index';
+import room from './room/index';
 
 export default {
-  admin
+  jwt,
+  room
 };
