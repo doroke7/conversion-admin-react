@@ -34,6 +34,7 @@ module.exports = (env, argvs) => {
     entry: {
       admin: './src/admin/entry/index.ts',     
       service: './src/service/entry/index.ts', 
+      test: './src/test/entry/index.ts', 
 
     },
     resolve: {
@@ -63,7 +64,7 @@ module.exports = (env, argvs) => {
         rewrites: [
           // { from: /^\/service\/.*/, to: '/service/index.html' },
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
-          // { from: /^\/test\/.*/, to: '/test/index.html' },
+          { from: /^\/test\/.*/, to: '/test/index.html' },
           { from: /.*/, to: '/admin/index.html' },
         ],
         verbose: true,

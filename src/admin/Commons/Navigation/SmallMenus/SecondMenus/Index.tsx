@@ -25,7 +25,7 @@ function SecondMenus(oProps: any) {
   const oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let aMenus = oProps.menus || []; // 二级 menu
+  let aMenus = oProps.menus ?? []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;

@@ -7,7 +7,7 @@ let cRandString = (iLength = 8, iType = 0): string => {
     4: '~@#$%^&*(){}[]|'
   };
 
-  let sStrings = oTypesToStrings[iType] || '';
+  let sStrings = oTypesToStrings[iType] ?? '';
   if (iType == 0) {
     sStrings = oTypesToStrings[1] + oTypesToStrings[2] + oTypesToStrings[3];
   }

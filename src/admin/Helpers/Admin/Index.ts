@@ -33,8 +33,8 @@ class AdminHelper {
   }
 
   public static data(oData: any, sKey: string, sIv: string): any {
-    oData = oData || {};
-    oData.param = oData.param || {};
+    oData = oData ?? {};
+    oData.param = oData.param ?? {};
 
     let sParam = JSON.stringify(oData.param);
     oData.param = Helpers.Aes.encrypt(sParam, sKey, sIv);
@@ -65,11 +65,11 @@ class AdminHelper {
   }
 
   public static sign(oParams: any, oData: any = {}, oOptions: any = {}): any {
-    let sJwt = oOptions['headers']['Authorization'] ?? '';
-    let sVersion = oOptions['headers']['Version'] ?? '';
-    let sVer = oOptions['headers']['Ver'] ?? '';
-    let sKeys = oOptions['headers']['Keys'] ?? '';
-    let sTime = oOptions['headers']['Time'] ?? '0';
+    let sJwt = oOptions?.['headers']?.['Authorization'] ?? '';
+    let sVersion = oOptions?.['headers']?.['Version'] ?? '';
+    let sVer = oOptions?.['headers']?.['Ver'] ?? '';
+    let sKeys = oOptions?.['headers']?.['Keys'] ?? '';
+    let sTime = oOptions?.['headers']?.['Time'] ?? '0';
 
     let sSearch = oParams.search;
     let sOption = oParams.option;
@@ -86,14 +86,14 @@ class AdminHelper {
 
   public static response(oResponse: any): any {
     let oRaw = {};
-    let sKeys = oResponse.headers['keys'] || '';
+    let sKeys = oResponse?.headers?.['keys'] ?? '';
     sKeys = sKeys == '' ? sKeys : Helpers.Rsa.decode(sKeys);
 
     let oKeys = sKeys == '' ? {} : JSON.parse(sKeys);
-    let sKey = oKeys['key'] || '';
-    let sIv = oKeys['iv'] || '';
+    let sKey = oKeys?.['key'] ?? '';
+    let sIv = oKeys?.['iv'] ?? '';
 
-    let sResult = oResponse.data?.result ?? '';
+    let sResult = oResponse?.data?.result ?? '';
 
     if (sResult && sKey && sIv) {
       let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
