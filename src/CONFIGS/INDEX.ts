@@ -9,6 +9,7 @@ import ICONS from './ICONS/INDEX';
 import SERVICE from './SERVICE/INDEX';
 import API from './API/INDEX';
 import APP from './APP/INDEX';
+import ADMIN from './ADMIN/INDEX';
 import AES from './AES/INDEX';
 import RSA from './RSA/INDEX';
 import LINKS from './LINKS/INDEX';
@@ -17,6 +18,7 @@ import JWT from './JWT/INDEX';
 
 export default {
   APP,
+  ADMIN,
   API,
   AES,
   RSA,

@@ -154,7 +154,7 @@ function Pannel(oProps: any): any {
       <Avatar className={oClasses.avatar}>
         <LockIcon />
       </Avatar>
-      <h2 className={oClasses.title}>{CONFIGS.APP.NAME}</h2>
+      <h2 className={oClasses.title}>{CONFIGS.ADMIN.NAME}</h2>
       <TextField
         error={oState.usernameError}
         id="user-name"
@@ -184,8 +184,8 @@ function Pannel(oProps: any): any {
       <div className={oClasses.forgetPasswordAndSignup}></div>
 
       <div className={oClasses.decriptionAndVersion}>
-        <span className={oClasses.decription}>{CONFIGS.APP.DESCRIPTION}</span>
-        <span className={oClasses.version}>Ver. ({CONFIGS.APP.VER})</span>
+        <span className={oClasses.decription}>{CONFIGS.ADMIN.DESCRIPTION}</span>
+        <span className={oClasses.version}>Ver. ({CONFIGS.ADMIN.VER})</span>
       </div>
     </div>
   );
