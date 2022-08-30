@@ -57,71 +57,58 @@
 ##  二级目录结构
 ```files
 .
-├── src                      
-│   ├── actions          Redux-action 定义处
-│   ├── Commons          全局公共组件（在每个页面都会用到的组件）, 如 Header, Footer
-│   ├── Components       一般单元组件（自定义的最小可用组件）
-│   ├── CONFIGS          共用设定配置
-│   ├── Contexts         共用Context组件, 能处理复杂的共用数据, 可以接受嵌套 Context.Provider 语法
-│   ├── entries          Webpack 打包入口
-│   ├── events           跨组件事件, 能处理简单的共用数据
-│   ├── Exception        项目自定义的 例外 结构, 弥补 JavaScript Error 缺少 code 变数
-│   ├── Helpers          类别形式的公用程序库
-│   ├── images           jpg, png, gif 资源处
-│   ├── Pages            页面组件，依照路由设定匹配的页面组件
-│   ├── reducers         Redux-reducer 定义处
-│   ├── Sdks             Sdk 定义处，呼叫外面API的地方
-│   ├── router           路由配置定义处, 因为 router 太重要所以不放在 CONFIG 中, 而是独立出来
-│   ├── source           mp3, mp4 资源
-│   ├── store            Redux-store 定义处, 能处理API来的共用数据
-│   ├── styles           基本样式
-│   ├── utilities        函数型的自定义函式库
-│   └── wrappers         REACT 高阶组件 "函数"，用于取代 Mixin 结构
+├── src     
+│   ├── admin                后台前端项目使用目录
+│   └── service              前台前端项目使用目录
+│      
+│     
+   
 
 ```
 
 ##  三级目录结构
 ```files
 .
-├── src                      
-│   ├── actions                     Redux-action 定义处(包含 前台,后台,使用)， 早期把异步Axios 写在 action 里面
-│   │   ├── admin                   控制器(后台使用的 API)
-│   │   └── service                 控制器(前台使用的 API)
-│   │      
-│   ├── Commons                     共用组件
-│   │   ├── admin                   控制器(后台使用的 API)
-│   │   └── service                 控制器(前台使用的 API)
-│   │     
-│   ├── Sdks                        实际呼叫 API 的地方
-│   │   ├── Admin                   集成呼叫后台接口的模组
-│   │   └── Service                 集成呼叫前台台接口的模组
+├── src     
+│   └── admin            
+│       ├── actions          Redux-action 定义处
+│       ├── Commons          全局公共组件（在每个页面都会用到的组件）, 如 Header, Footer
+│       ├── Components       一般单元组件（自定义的最小可用组件）
+│       ├── CONFIGS          共用设定配置
+│       ├── Contexts         共用Context组件, 能处理复杂的共用数据, 可以接受嵌套 Context.Provider 语法
+│       ├── entries          Webpack 打包入口
+│       ├── events           跨组件事件, 能处理简单的共用数据
+│       ├── Exception        项目自定义的 例外 结构, 弥补 JavaScript Error 缺少 code 变数
+│       ├── Helpers          类别形式的公用程序库
+│       ├── images           jpg, png, gif 资源处
+│       ├── Pages            页面组件，依照路由设定匹配的页面组件
+│       ├── reducers         Redux-reducer 定义处
+│       ├── Sdks             Sdk 定义处，呼叫外面API的地方
+│       ├── router           路由配置定义处, 因为 router 太重要所以不放在 CONFIG 中, 而是独立出来
+│       ├── source           mp3, mp4 资源
+│       ├── store            Redux-store 定义处, 能处理API来的共用数据
+│       ├── styles           基本样式
+│       ├── utilities        函数型的自定义函式库
+│       └── wrappers         REACT 高阶组件 "函数"，用于取代 Mixin 结构
+
 ```
 
 
 ##  四级 以及四级以上的目录结构
 ```files
 .
-├── src                      
-│   ├── actions                                Redux-action 定义处(包含 前台,后台,使用)
-│   │   ├── admin                              
-│   │   │   └───                               
-│   │   │     
-│   │   └── service                            
-│   │       └───                              
-│   │   
-│   │      
-│   ├── Commons                                共用组件
-│   │   ├── Admin                              后台-共用组件
-│   │   │   └── Navigation                     导览组件 (包含菜单组件，分页组件，快链接组件)
-│   │   │       ├── AlertOfApps                警告，在没有选择app 情况下点击 link 或 menu                
-│   │   │       ├── Bar                        上方的超链接       
-│   │   │       ├── LargeApps                  一般模式的 应用程序选择             
-│   │   │       ├── SmallApps                  简易模式的 应用程序选择 
-│   │   │       ├── LargeMenus                 一般模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制             
-│   │   │       ├── SmallMenus                 简易模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制                   
-│   │   │       └── Tabs                       分页组件 。 Tab 的 Icon 由 Router 配置控制                                  
-│   │   │  
-│   │   ├── Service                           
+├── src     
+│   └── admin            
+│       └── Commons                            全局公共组件（在每个页面都会用到的组件）, 如 Header, Footer
+│           └── Navigation                     导览组件 (包含菜单组件，分页组件，快链接组件)
+│               ├── AlertOfApps                警告，在没有选择app 情况下点击 link 或 menu                
+│               ├── Bar                        上方的超链接       
+│               ├── LargeApps                  一般模式的 应用程序选择             
+│               ├── SmallApps                  简易模式的 应用程序选择 
+│               ├── LargeMenus                 一般模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制             
+│               ├── SmallMenus                 简易模式的 菜单组件 。 Menu 的 Icon 由 Menu 自己控制                   
+│               └── Tabs                       分页组件 。 Tab 的 Icon 由 Router 配置控制          
+
 
 
 ```

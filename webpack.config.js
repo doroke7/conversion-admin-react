@@ -32,8 +32,8 @@ module.exports = (env, argvs) => {
   return {
     mode: 'production',
     entry: {
-      admin: './src/admin/entry/index.ts',     // 目前 webpack 多入口都会打包在一起
-      // test: './src/entries/test/index.tsx', // 目前 webpack 多入口都会打包在一起
+      admin: './src/admin/entry/index.ts',     
+      service: './src/service/entry/index.ts', 
 
     },
     resolve: {
