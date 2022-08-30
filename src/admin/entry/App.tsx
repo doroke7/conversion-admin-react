@@ -18,7 +18,7 @@ function App(oProps: any) {
   });
 
   let cHandleContextmenu = (oEvent: any) => {
-    if (CONFIGS.ADMIN.ENV == 'MASTER') {
+    if (CONFIGS.APP.ENV == 'MASTER') {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
     }
@@ -33,14 +33,14 @@ function App(oProps: any) {
     /**
      * TITLE: 开启清理 window.storage 开关， 且 客户端版本提高的情况下 => 清理 window.storage
      */
-    if (CONFIGS.ADMIN.STORAGE) {
-      if ((Helpers.Ver.valid(sVer) && Helpers.Ver.compare(CONFIGS.ADMIN.VER, sVer)) || !Helpers.Ver.valid(sVer)) {
+    if (CONFIGS.APP.STORAGE) {
+      if ((Helpers.Ver.valid(sVer) && Helpers.Ver.compare(CONFIGS.APP.VER, sVer)) || !Helpers.Ver.valid(sVer)) {
         window.localStorage.clear();
         Helpers.Authentication.setJwt(sJwt);
       }
     }
 
-    Helpers.Ver.set(CONFIGS.ADMIN.VER);
+    Helpers.Ver.set(CONFIGS.APP.VER);
   });
   /**  必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
   /**  具有 nav 的设定值 才会用 Navigatiob 包起来 **/

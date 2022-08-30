@@ -331,7 +331,7 @@ function Navigation(oProps: any) {
               }}
               open={oState.open}>
               <div className={oClasses.toolbar}>
-                <span className={oClasses.appName}>{CONFIGS.ADMIN.NAME}</span>
+                <span className={oClasses.appName}>{CONFIGS.APP.NAME}</span>
                 <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
                   <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
                 </IconButton>
