@@ -58,9 +58,9 @@ function Progress(oProps: any): any {
       });
     };
 
-    let oEventEmitter: any = events.admin.addListener('Progress-onProgress', cOnProgress);
+    let oEventEmitter: any = events.addListener('Progress-onProgress', cOnProgress);
     return () => {
-      events.admin.removeListener('Progress-onProgress', cOnProgress);
+      events.removeListener('Progress-onProgress', cOnProgress);
     };
   }, []);
 

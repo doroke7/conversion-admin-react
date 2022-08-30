@@ -227,7 +227,7 @@ function Index(oProps: any): any {
           message: '请输入数字页数',
           time: 3 * 1000
         };
-        events.admin.emit('Alerts-onAlert', oMessage);
+        events.emit('Alerts-onAlert', oMessage);
       }
       if (Number.isInteger(iPage)) {
         let oPageParams = {

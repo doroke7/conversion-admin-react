@@ -44,10 +44,10 @@ function AlertOfApps(oProps: any) {
     }
 
     if (mLink) {
-      events.admin.emit('Navigation-onClickLink', mLink);
+      events.emit('Navigation-onClickLink', mLink);
     }
     if (mMenu) {
-      events.admin.emit('Navigation-onClickMenu', mMenu);
+      events.emit('Navigation-onClickMenu', mMenu);
     }
   };
 
@@ -55,7 +55,7 @@ function AlertOfApps(oProps: any) {
     let iIndex = Number(oEvent.target.value) ?? -1;
     oEvent.stopPropagation(); // 取消 link
     oEvent.preventDefault(); // 取消 a 取消 href
-    events.admin.emit('Navigation-onClickApp', iIndex);
+    events.emit('Navigation-onClickApp', iIndex);
   };
 
   return (

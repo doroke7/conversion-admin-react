@@ -43,11 +43,11 @@ function SecondMenus(oProps: any) {
 
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
         if (-1 == iIndex) {
-          events.admin.emit('Navigation-onPreClickMenu', oMenu);
+          events.emit('Navigation-onPreClickMenu', oMenu);
 
           return;
         }
-        events.admin.emit('Navigation-onClickMenu', oMenu);
+        events.emit('Navigation-onClickMenu', oMenu);
       }
     };
   };

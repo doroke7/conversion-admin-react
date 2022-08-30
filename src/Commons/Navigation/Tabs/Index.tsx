@@ -41,7 +41,7 @@ function ScrollableTabs(oProps: any) {
       oEvent.preventDefault(); // 取消 a tag 取消 href
       cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: -1 });
 
-      events.admin.emit('Navigation-onRemoveTab', sIndex);
+      events.emit('Navigation-onRemoveTab', sIndex);
     };
   };
 
@@ -51,7 +51,7 @@ function ScrollableTabs(oProps: any) {
       oEvent.preventDefault(); // 取消 a tag 取消 href
       cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: 0 });
 
-      events.admin.emit('Navigation-onRemoveOtherTabs', sIndex);
+      events.emit('Navigation-onRemoveOtherTabs', sIndex);
     };
   };
 
@@ -59,11 +59,11 @@ function ScrollableTabs(oProps: any) {
     oEvent.stopPropagation(); // 取消 link
     oEvent.preventDefault(); // 取消 a tag 取消 href
     cSetState({ anchor: null, contextMenu: false, tooltips: {}, index: -1 });
-    events.admin.emit('Navigation-onRemoveAllTabs', null);
+    events.emit('Navigation-onRemoveAllTabs', null);
   };
 
   let cHandleChangeTab = (oEvent: React.ChangeEvent<{}>, iValue: number) => {
-    events.admin.emit('Navigation-onClickTab', iValue);
+    events.emit('Navigation-onClickTab', iValue);
   };
 
   let cHandleContextmenu = (iIndex: any) => {

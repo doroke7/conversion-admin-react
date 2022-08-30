@@ -31,7 +31,7 @@ let page = (Component: any): any => {
           message: '页数1, 已为第一首页, 即将从 第' + iPage + '页 跳转到 第' + oState.min + '页',
           time: 3 * 1000
         };
-        events.admin.emit('Alerts-onAlert', oMessage);
+        events.emit('Alerts-onAlert', oMessage);
         let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: 1 });
         oHistory.push(sUrl);
       }
@@ -41,7 +41,7 @@ let page = (Component: any): any => {
           message: '页数' + oState.max + ', 已为最后末页, 即将从 第' + iPage + '页 跳转到 第' + oState.max + '页',
           time: 3 * 1000
         };
-        events.admin.emit('Alerts-onAlert', oMessage);
+        events.emit('Alerts-onAlert', oMessage);
         let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: oState.max });
         oHistory.push(sUrl);
       }

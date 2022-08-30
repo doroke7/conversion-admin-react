@@ -84,7 +84,7 @@ function Pannel(oProps: any): any {
 
         throw new Exception('请输入6 字以上元密码', -1);
       }
-      events.admin.emit('Progress-onProgress', { value: 0, status: true });
+      events.emit('Progress-onProgress', { value: 0, status: true });
 
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       let sJwt = oResponse?.headers?.authorization ?? '';
@@ -110,7 +110,7 @@ function Pannel(oProps: any): any {
           message: oResponse?.data?.message ?? '',
           time: 2 * 1000
         };
-        events.admin.emit('Alerts-onAlert', oMessage);
+        events.emit('Alerts-onAlert', oMessage);
       }
 
       if (oResponse) {
@@ -120,7 +120,7 @@ function Pannel(oProps: any): any {
         */
         await new Promise((cResolve) => setTimeout(cResolve, 300));
         oHistory.push('/admin/resource');
-        events.admin.emit('Progress-onProgress', { value: 98, status: true });
+        events.emit('Progress-onProgress', { value: 98, status: true });
       }
     } catch (oException) {
       let oMessage = {
@@ -128,8 +128,8 @@ function Pannel(oProps: any): any {
         message: oException.message ?? '未知错误',
         time: 3 * 1000
       };
-      events.admin.emit('Alerts-onAlert', oMessage);
-      events.admin.emit('Progress-onProgress', { value: 0, status: false });
+      events.emit('Alerts-onAlert', oMessage);
+      events.emit('Progress-onProgress', { value: 0, status: false });
     } finally {
       cSetState((oOldState) => {
         let oNewState = { ...oOldState, loading: false };

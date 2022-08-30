@@ -25,7 +25,7 @@ let tab = (Component: any): any => {
           icon: sIcon,
           query: ''
         };
-        events.admin.emit('Navigation-onTab', oRoute);
+        events.emit('Navigation-onTab', oRoute);
       }
       return () => {};
     }, [oRouteMatch.url]);

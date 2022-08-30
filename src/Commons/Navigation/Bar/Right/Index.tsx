@@ -61,7 +61,7 @@ function Right(oProps: any) {
 
   let cHandleDropdownClick = async (oEvent: any) => {
     cSetState({ ...oState, anchor: false });
-    events.admin.emit('Progress-onProgress', { value: 0, status: true });
+    events.emit('Progress-onProgress', { value: 0, status: true });
 
     let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignOut();
 
@@ -71,7 +71,7 @@ function Right(oProps: any) {
         message: oResponse?.data?.message ?? '',
         time: 2 * 1000
       };
-      events.admin.emit('Alerts-onAlert', oMessage);
+      events.emit('Alerts-onAlert', oMessage);
     }
 
     Helpers.Authentication.removeJwt();
@@ -81,10 +81,10 @@ function Right(oProps: any) {
         message: oResponse?.data?.message ?? '登出成功',
         time: 2 * 1000
       };
-      events.admin.emit('Alerts-onAlert', oMessage);
+      events.emit('Alerts-onAlert', oMessage);
       oHistory.push('/admin/authentication/authenticator/sign-in');
     }
-    events.admin.emit('Progress-onProgress', { value: 80, status: true });
+    events.emit('Progress-onProgress', { value: 80, status: true });
   };
 
   return (

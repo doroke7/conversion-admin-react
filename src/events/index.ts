@@ -1,3 +1,2 @@
-import admin from './admin/index';
-
-export default { admin };
+import { EventEmitter } from 'events';
+export default new EventEmitter();

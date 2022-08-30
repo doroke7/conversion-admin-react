@@ -38,7 +38,7 @@ function Apps(oProps: any) {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
-      events.admin.emit('Navigation-onClickApp', iAppId);
+      events.emit('Navigation-onClickApp', iAppId);
     };
   };
 

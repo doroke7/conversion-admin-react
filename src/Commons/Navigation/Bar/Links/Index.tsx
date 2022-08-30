@@ -18,11 +18,11 @@ function Links(oProps: any) {
   let cHandleClickLink = (oLink) => {
     return (oEvent) => {
       if (-1 == iIndex) {
-        events.admin.emit('Navigation-onPreClickLink', oLink);
+        events.emit('Navigation-onPreClickLink', oLink);
 
         return;
       }
-      events.admin.emit('Navigation-onClickLink', oLink);
+      events.emit('Navigation-onClickLink', oLink);
     };
   };
 

@@ -72,9 +72,9 @@ function Alerts(oProps: any): any {
         time: oMessage?.time ?? oState.time
       });
     };
-    let oEventEmitter: any = events.admin.addListener('Alerts-onAlert', cAlert);
+    let oEventEmitter: any = events.addListener('Alerts-onAlert', cAlert);
     return () => {
-      events.admin.removeListener('Alerts-onAlert', cAlert);
+      events.removeListener('Alerts-onAlert', cAlert);
     };
   }, []);
 

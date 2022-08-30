@@ -28,7 +28,7 @@ let authenticator = (Component: any): any => {
             message: '令牌不存在, 即将跳转登入页面',
             time: 3 * 1000
           };
-          events.admin.emit('Alerts-onAlert', oMessage);
+          events.emit('Alerts-onAlert', oMessage);
           oHistory.push(aRedirections[0]);
         }
         if (sJwt) {
@@ -52,7 +52,7 @@ let authenticator = (Component: any): any => {
                 message: oResponse?.data?.message ?? sMessage,
                 time: 3 * 1000
               };
-              events.admin.emit('Alerts-onAlert', oMessage);
+              events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[0]);
             }
           }
@@ -65,7 +65,7 @@ let authenticator = (Component: any): any => {
                 message: '令牌持续有效, 即将跳转主页',
                 time: 3 * 1000
               };
-              events.admin.emit('Alerts-onAlert', oMessage);
+              events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[1]);
             }
           }
@@ -73,13 +73,13 @@ let authenticator = (Component: any): any => {
         cSetState({ status: true });
       };
       if (CONFIGS.JWT.AUTHENTICATOR && bAuthenticator) {
-        events.admin.emit('Progress-onProgress', { value: 0, status: true });
+        events.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
         let oInterval = setInterval(cRefresh, CONFIGS.JWT.TIME ?? 60 * 1000);
         return () => {
           clearInterval(oInterval);
         };
-        // events.admin.emit('Progress-onProgress', { value: 90, status: true });
+        // events.emit('Progress-onProgress', { value: 90, status: true });
       }
     }, []);
 

@@ -68,9 +68,9 @@ function Navigation(oProps: any) {
         oHistory.push('/admin/resource');
       }
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveTab', cRemoveTab);
+    let oEventEmitter: any = events.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
-      events.admin.removeListener('Navigation-onRemoveTab', cRemoveTab);
+      events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
@@ -90,9 +90,9 @@ function Navigation(oProps: any) {
         oHistory.push(oTabRow.url);
       }
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
+    let oEventEmitter: any = events.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     return () => {
-      events.admin.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
+      events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
@@ -107,9 +107,9 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue, tabs: aTabs });
       oHistory.push('/admin/resource');
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
+    let oEventEmitter: any = events.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     return () => {
-      events.admin.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
+      events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
 
@@ -121,9 +121,9 @@ function Navigation(oProps: any) {
         oHistory.push(oTab.url);
       }
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onClickTab', cClickTab);
+    let oEventEmitter: any = events.addListener('Navigation-onClickTab', cClickTab);
     return () => {
-      events.admin.removeListener('Navigation-onClickTab', cClickTab);
+      events.removeListener('Navigation-onClickTab', cClickTab);
     };
   }, [oState.value, oState.open, oState.index, oState.alert, oState.tabs]);
 
@@ -131,9 +131,9 @@ function Navigation(oProps: any) {
     let cPreClickLink = (oLink: any) => {
       cSetState({ ...oState, alert: true, link: oLink, menu: null });
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onPreClickLink', cPreClickLink);
+    let oEventEmitter: any = events.addListener('Navigation-onPreClickLink', cPreClickLink);
     return () => {
-      events.admin.removeListener('Navigation-onPreClickLink', cPreClickLink);
+      events.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
@@ -141,9 +141,9 @@ function Navigation(oProps: any) {
     let cPreClicMenu = (oMenu: any) => {
       cSetState({ ...oState, alert: true, link: null, menu: oMenu });
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onPreClickMenu', cPreClicMenu);
+    let oEventEmitter: any = events.addListener('Navigation-onPreClickMenu', cPreClicMenu);
     return () => {
-      events.admin.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
+      events.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
@@ -160,10 +160,10 @@ function Navigation(oProps: any) {
       oHistory.push(sUrl);
     };
 
-    let oEventEmitter: any = events.admin.addListener('Navigation-onClickLink', cClickLink);
+    let oEventEmitter: any = events.addListener('Navigation-onClickLink', cClickLink);
     // 组件销毁前移除事件监听
     return () => {
-      events.admin.removeListener('Navigation-onClickLink', cClickLink);
+      events.removeListener('Navigation-onClickLink', cClickLink);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
@@ -195,10 +195,10 @@ function Navigation(oProps: any) {
         oHistory.push(sUrl);
       }
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onClickMenu', cClickMenu);
+    let oEventEmitter: any = events.addListener('Navigation-onClickMenu', cClickMenu);
     // 组件销毁前移除事件监听
     return () => {
-      events.admin.removeListener('Navigation-onClickMenu', cClickMenu);
+      events.removeListener('Navigation-onClickMenu', cClickMenu);
     };
   }, [oState.tabs, oState.open, oState.index]);
 
@@ -221,10 +221,10 @@ function Navigation(oProps: any) {
         }
       }
     };
-    let oEventEmitter: any = events.admin.addListener('Navigation-onClickApp', cClickApp);
+    let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听
     return () => {
-      events.admin.removeListener('Navigation-onClickApp', cClickApp);
+      events.removeListener('Navigation-onClickApp', cClickApp);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
@@ -293,10 +293,10 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false, index: iResultIndex });
     };
 
-    let oEventEmitter: any = events.admin.addListener('Navigation-onTab', cOnTab);
+    let oEventEmitter: any = events.addListener('Navigation-onTab', cOnTab);
     // 组件销毁前移除事件监听
     return () => {
-      events.admin.removeListener('Navigation-onTab', cOnTab);
+      events.removeListener('Navigation-onTab', cOnTab);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.text]);
 
