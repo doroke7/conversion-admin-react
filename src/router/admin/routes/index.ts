@@ -9,7 +9,7 @@ let aRoutes = [
     title: '影视',
     text: '',
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-    Component: Pages.Admin._,
+    Component: Pages._,
     exact: true,
     authenticator: false,
     redirections: [null, null],
@@ -21,7 +21,7 @@ let aRoutes = [
     title: '影视系后台系统',
     text: '',
     icon: '',
-    Component: Pages.Admin.Resource._,
+    Component: Pages.Resource._,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
     authenticator: true,
     redirections: ['/admin/authentication/authenticator/sign-in', null],
@@ -35,7 +35,7 @@ let aRoutes = [
         title: '影视系',
         text: '',
         icon: '',
-        Component: Pages.Admin.Resource.Index,
+        Component: Pages.Resource.Index,
         // Component: React.lazy(() =>
         //   import('@/Pages/Admin/Resource/AppUser/Index').then((oModule: any) => ({ default: oModule.Index }))
         // ),
@@ -47,7 +47,7 @@ let aRoutes = [
         title: '影视系-用户列表',
         text: '用户列表',
         icon: 'AccountBoxTwoToneIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-        Component: Pages.Admin.Resource.AppUser.Index,
+        Component: Pages.Resource.AppUser.Index,
         // Component: React.lazy(() =>
         //   import('@/Pages/Admin/Resource/AppUser/Index').then((oModule: any) => ({ default: oModule.Index }))
         // ),
@@ -59,7 +59,7 @@ let aRoutes = [
         title: '影视系-订单列表',
         text: '订单列表',
         icon: 'EventNoteTwoToneIcon',
-        Component: Pages.Admin.Resource.OrderInfo.Index,
+        Component: Pages.Resource.OrderInfo.Index,
         exact: false
       },
       {
@@ -68,7 +68,7 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
-        Component: Pages.Admin.Resource.None.Index,
+        Component: Pages.Resource.None.Index,
         exact: false
       },
       {
@@ -77,7 +77,7 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
-        Component: Pages.Admin.Resource.None.Index,
+        Component: Pages.Resource.None.Index,
         exact: false
       }
     ]
@@ -88,7 +88,7 @@ let aRoutes = [
     title: '登入系统',
     text: '',
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-    Component: Pages.Admin.Authentication.Authenticator.SignIn,
+    Component: Pages.Authentication.Authenticator.SignIn,
     exact: false,
     authenticator: true,
     redirections: [null, '/admin/resource'],
@@ -100,7 +100,7 @@ let aRoutes = [
     title: '页面不存在',
     text: '',
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-    Component: Pages.Admin.None,
+    Component: Pages.None,
     exact: false,
     authenticator: false,
     redirections: [null, null],

@@ -1,3 +1,11 @@
-import Admin from './Admin/Index';
+import Authentication from './Authentication/Index';
+import Resource from './Resource/Index';
+import None from './None/Index';
+import _ from './_/Index';
 
-export default { Admin };
+export default {
+  Authentication,
+  Resource,
+  None,
+  _
+};
