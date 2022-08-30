@@ -61,7 +61,7 @@ function LargeMenus(oProps) {
         <>
           <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
+              <Components.Icon name={oMenu.icon}></Components.Icon>
             </ListItemIcon>
             <ListItemText primary={oMenu.text} />
             {oMenu.menus === undefined ? (

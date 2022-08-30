@@ -13,7 +13,7 @@ function NoRowsOverlay(oProps: any) {
 
   return (
     <GridOverlay className={oClasses.root}>
-      <Components.Admin.LoadingIcon className={oClasses.icon}></Components.Admin.LoadingIcon>
+      <Components.LoadingIcon className={oClasses.icon}></Components.LoadingIcon>
     </GridOverlay>
   );
 }

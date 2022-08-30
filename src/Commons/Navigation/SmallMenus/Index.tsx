@@ -80,7 +80,7 @@ function SmallMenus(oProps) {
             onMouseEnter={cHandleMouseEnter(oMenu)}
             onMouseLeave={cHandleMouseLeave(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={oMenu.icon}></Components.Admin.Icon>
+              <Components.Icon name={oMenu.icon}></Components.Icon>
             </ListItemIcon>
             <SecondMenus
               open={oState.anchors[oMenu.id] !== undefined}

@@ -134,7 +134,7 @@ function ScrollableTabs(oProps: any) {
                   label={
                     <span>
                       <ListItemIcon className={oClasses.listItemIcon}>
-                        <Components.Admin.Icon name={oTab.icon} />
+                        <Components.Icon name={oTab.icon} />
                       </ListItemIcon>
                       <span
                         className={clsx(oClasses.listITemText, {

@@ -60,10 +60,10 @@ function Index(oProps: any): any {
         let sVip = oParams.getValue(oParams.id, 'vip') || '';
         let sSrc = oParams.getValue(oParams.id, 'pic') || '';
         let sVipDatetime = oParams.getValue(oParams.id, 'vip_datetime') || '';
-        let Icon = Components.Admin.VoidElement;
-        Icon = sVip == 1 ? Components.Admin.VipIcon1 : Icon;
-        Icon = sVip == 2 ? Components.Admin.VipIcon2 : Icon;
-        Icon = sVip == 3 ? Components.Admin.VipIcon3 : Icon;
+        let Icon = Components.VoidElement;
+        Icon = sVip == 1 ? Components.VipIcon1 : Icon;
+        Icon = sVip == 2 ? Components.VipIcon2 : Icon;
+        Icon = sVip == 3 ? Components.VipIcon3 : Icon;
 
         let sTitle = '特权一般';
         sTitle = sVip == 1 ? '特权已过期' : sTitle;
@@ -80,7 +80,7 @@ function Index(oProps: any): any {
               }}
               badgeContent={<Icon className={oClasses.vipIcon}></Icon>}>
               <Avatar className={oClasses.avatar}>
-                <Components.Admin.Img src={sSrc}></Components.Admin.Img>
+                <Components.Img src={sSrc}></Components.Img>
               </Avatar>
             </Badge>
           </Tooltip>
@@ -112,12 +112,10 @@ function Index(oProps: any): any {
       width: 90,
       renderCell: (oParams: any) => {
         let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
-        let Component = () => <Components.Admin.VoidElement className={oClasses.phoneTypeIcon} />;
-        Component =
-          iPhoneType == 1 ? () => <Components.Admin.AndroidIcon className={oClasses.phoneTypeIcon} /> : Component;
+        let Component = () => <Components.VoidElement className={oClasses.phoneTypeIcon} />;
+        Component = iPhoneType == 1 ? () => <Components.AndroidIcon className={oClasses.phoneTypeIcon} /> : Component;
 
-        Component =
-          iPhoneType == 2 ? () => <Components.Admin.AppleIcon className={oClasses.phoneTypeIcon} /> : Component;
+        Component = iPhoneType == 2 ? () => <Components.AppleIcon className={oClasses.phoneTypeIcon} /> : Component;
         let sTitle = '';
         sTitle = iPhoneType == 1 ? '安卓设备' : sTitle;
         sTitle = iPhoneType == 2 ? '苹果设备' : sTitle;

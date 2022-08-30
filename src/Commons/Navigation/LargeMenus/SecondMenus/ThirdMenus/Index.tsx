@@ -59,7 +59,7 @@ function ThirdMenus(oProps: any) {
               {aMenus.map((oMenu: any, iIndex: any) => (
                 <MenuItem key={oMenu.id} onClick={cOnClick(oMenu)}>
                   <ListItemIcon className={oClasses.listItemIcon}>
-                    <Components.Admin.Icon name={oMenu.icon} />
+                    <Components.Icon name={oMenu.icon} />
                   </ListItemIcon>
                   <ListItemText primary={oMenu.text} />
                 </MenuItem>

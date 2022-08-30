@@ -72,7 +72,7 @@ function SecondMenus(oProps: any) {
                 <>
                   <MenuItem key={oMenu.id} onClick={cOnClick(oMenu)}>
                     <ListItemIcon className={oClasses.listItemIcon}>
-                      <Components.Admin.Icon name={oMenu.icon} />
+                      <Components.Icon name={oMenu.icon} />
                     </ListItemIcon>
                     <ListItemText primary={oMenu.text} />
                     {oMenu.menus === undefined ? (

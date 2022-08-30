@@ -65,7 +65,7 @@ function SecondMenus(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleClick(oMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Admin.Icon name={oMenu.icon} />
+              <Components.Icon name={oMenu.icon} />
             </ListItemIcon>
             <ListItemText primary={oMenu.text} />
           </ListItem>
