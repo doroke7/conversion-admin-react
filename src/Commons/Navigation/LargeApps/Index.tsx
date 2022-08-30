@@ -17,7 +17,7 @@ import Icon from './Icon/Index';
 import cStyle from './style';
 
 function LargeApps(oProps) {
-  const iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aMenus = oProps.menus ?? [];

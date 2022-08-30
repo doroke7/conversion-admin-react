@@ -22,8 +22,8 @@ import style from './style';
 function ScrollableTabs(oProps: any) {
   let oClasses: any = style(void 0);
 
-  let aTabs = useContext(Contexts.Admin.Tabs);
-  let iTabsValue = useContext(Contexts.Admin.TabsValue);
+  let aTabs = useContext(Contexts.Tabs);
+  let iTabsValue = useContext(Contexts.TabsValue);
 
   let children = oProps.children ?? <></>;
 

@@ -19,7 +19,7 @@ import cStyle from './style';
 function SmallMenus(oProps) {
   let oClasses = cStyle();
 
-  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bStatus = oProps.status;
   let aMenus = oProps.menus || [];

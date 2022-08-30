@@ -22,7 +22,7 @@ import style from './style';
 function AlertOfApps(oProps: any) {
   let oClasses = style(void 0);
 
-  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let [oState, cSetState] = React.useState<any>({
     shake: false

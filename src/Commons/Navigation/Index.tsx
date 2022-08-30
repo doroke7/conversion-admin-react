@@ -312,9 +312,9 @@ function Navigation(oProps: any) {
     cSetState({ ...oState, alert: false });
   };
   return (
-    <Contexts.Admin.AppsIndex.Provider value={oState.index}>
-      <Contexts.Admin.TabsValue.Provider value={oState.value}>
-        <Contexts.Admin.Tabs.Provider value={oState.tabs}>
+    <Contexts.AppsIndex.Provider value={oState.index}>
+      <Contexts.TabsValue.Provider value={oState.value}>
+        <Contexts.Tabs.Provider value={oState.tabs}>
           <div className={oClasses.root}>
             <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={CONFIGS.APPS}></Bar>
             <Drawer
@@ -356,9 +356,9 @@ function Navigation(oProps: any) {
               open={oState.alert}
               onClose={cHandleClose}></AlertOfApps>
           </div>
-        </Contexts.Admin.Tabs.Provider>
-      </Contexts.Admin.TabsValue.Provider>
-    </Contexts.Admin.AppsIndex.Provider>
+        </Contexts.Tabs.Provider>
+      </Contexts.TabsValue.Provider>
+    </Contexts.AppsIndex.Provider>
   );
 }
 

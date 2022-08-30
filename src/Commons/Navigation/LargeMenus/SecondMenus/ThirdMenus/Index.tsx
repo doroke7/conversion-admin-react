@@ -20,7 +20,7 @@ import cStyle from './style';
 function ThirdMenus(oProps: any) {
   let oClasses = cStyle();
 
-  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let aMenus = oProps.menus ?? [];
   let bOpen = oProps.open ?? false;
   let oAnchor = oProps.anchor ?? null;

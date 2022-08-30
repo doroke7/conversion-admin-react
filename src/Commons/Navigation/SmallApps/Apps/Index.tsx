@@ -21,7 +21,7 @@ import Icon from './Icon/Index';
 import cStyle from './style';
 
 function Apps(oProps: any) {
-  const iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   const oClasses = cStyle();
   let aBackgroundClasses = oProps.iconColors ?? [];

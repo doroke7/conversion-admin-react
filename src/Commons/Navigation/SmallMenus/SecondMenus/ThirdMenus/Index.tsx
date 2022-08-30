@@ -18,7 +18,7 @@ import cStyle from './style';
 function SecondMenus(oProps: any) {
   const oClasses = cStyle();
   let oHistory = useHistory();
-  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let bIn = oProps.in ?? false;
   let aMenus = oProps.menus ?? [];
 

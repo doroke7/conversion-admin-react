@@ -11,7 +11,7 @@ import style from './style';
 
 function Links(oProps: any) {
   let oClasses = style(void 0);
-  let iIndex = useContext(Contexts.Admin.AppsIndex) ?? -1;
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let aApps = oProps.apps ?? [];
 
   let aLinks = oProps.links;
