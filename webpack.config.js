@@ -61,9 +61,9 @@ module.exports = (env, argvs) => {
       progress: true,
       historyApiFallback: {
         rewrites: [
-          { from: /^\/service\/.*/, to: '/service/index.html' },
+          // { from: /^\/service\/.*/, to: '/service/index.html' },
           { from: /^\/admin\/.*/, to: '/admin/index.html' },
-          { from: /^\/test\/.*/, to: '/test/index.html' },
+          // { from: /^\/test\/.*/, to: '/test/index.html' },
           { from: /.*/, to: '/admin/index.html' },
         ],
         verbose: true,
@@ -160,16 +160,16 @@ module.exports = (env, argvs) => {
     },
     plugins: [
       ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: process.env.ANALYZER_PORT ?? 8088 })]),
-      new HtmlWebpackPlugin({
-        chunks: ['manifest', 'vendor', 'service'],
-        template: './public/service.html',
-        filename: 'service/index.html',
-        favicon: './public/favicon.ico',
-        minify: { //压缩HTML文件
-          removeComments: true, //移除HTML中的注释
-          collapseWhitespace: true, //删除空白符与换行符
-        },
-      }),
+      // new HtmlWebpackPlugin({
+      //   chunks: ['manifest', 'vendor', 'service'],
+      //   template: './public/service.html',
+      //   filename: 'service/index.html',
+      //   favicon: './public/favicon.ico',
+      //   minify: { //压缩HTML文件
+      //     removeComments: true, //移除HTML中的注释
+      //     collapseWhitespace: true, //删除空白符与换行符
+      //   },
+      // }),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'admin'],
         template: './public/admin.html',
@@ -181,17 +181,17 @@ module.exports = (env, argvs) => {
           collapseWhitespace: true, //删除空白符与换行符
         },
       }),
-      new HtmlWebpackPlugin({
-        chunks: ['manifest', 'vendor', 'test'],
-        template: './public/test.html',
-        filename: 'test/index.html',
-        favicon: './public/favicon.ico',
-        minify: {
-          //压缩HTML文件
-          removeComments: true, //移除HTML中的注释
-          collapseWhitespace: true, //删除空白符与换行符
-        },
-      }),
+      // new HtmlWebpackPlugin({
+      //   chunks: ['manifest', 'vendor', 'test'],
+      //   template: './public/test.html',
+      //   filename: 'test/index.html',
+      //   favicon: './public/favicon.ico',
+      //   minify: {
+      //     //压缩HTML文件
+      //     removeComments: true, //移除HTML中的注释
+      //     collapseWhitespace: true, //删除空白符与换行符
+      //   },
+      // }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
@@ -201,22 +201,22 @@ module.exports = (env, argvs) => {
       new AutoDllPlugin({
         filename: '[name].dll.js',
         entry: {
-          'service': [
-            'socket.io-client',
-            'socket.io-file-client',
-            'jwt-decode',
-            'jsencrypt',
-            'axios',
-            'moment',
-            'react',
-            'react-dom',
-            'react-router-dom',
-            'redux',
-            'redux-thunk',
-            'redux-react-hook',
-            'antd',
-            'emoji-mart',
-          ],
+          // 'service': [
+          //   'socket.io-client',
+          //   'socket.io-file-client',
+          //   'jwt-decode',
+          //   'jsencrypt',
+          //   'axios',
+          //   'moment',
+          //   'react',
+          //   'react-dom',
+          //   'react-router-dom',
+          //   'redux',
+          //   'redux-thunk',
+          //   'redux-react-hook',
+          //   'antd',
+          //   'emoji-mart',
+          // ],
           'admin': [
             'socket.io-client',
             'socket.io-file-client',
