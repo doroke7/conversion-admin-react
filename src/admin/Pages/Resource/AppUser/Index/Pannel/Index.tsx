@@ -80,7 +80,7 @@ function Pannel(oProps: any) {
           <MenuItem value="">
             <span className={oClasses.selectEmpty}>请选择国家</span>
           </MenuItem>
-          {CONFIGS.ADMIN.CODES.map((oCode: any, sKey) => (
+          {CONFIGS.CODES.map((oCode: any, sKey) => (
             <MenuItem key={sKey} value={oCode.code}>
               <ReactCountryFlag countryCode={oCode.name ?? 'US'} svg></ReactCountryFlag>
               &ensp;

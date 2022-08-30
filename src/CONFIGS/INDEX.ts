@@ -15,6 +15,7 @@ import RSA from './RSA/INDEX';
 import LINKS from './LINKS/INDEX';
 import APPS from './APPS/INDEX';
 import JWT from './JWT/INDEX';
+import CODES from './CODES/INDEX';
 
 export default {
   APP,
@@ -33,5 +34,6 @@ export default {
   ICONS,
   LINKS,
   APPS,
-  JWT
+  JWT,
+  CODES
 };
