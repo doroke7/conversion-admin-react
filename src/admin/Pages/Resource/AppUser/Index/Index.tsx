@@ -12,6 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import Hidden from '@material-ui/core/Hidden';
 
 import wrappers from '@/admin/wrappers/index';
 import Sdks from '@/admin/Sdks/Index';
@@ -271,19 +272,37 @@ function Index(oProps: any): any {
             LoadingOverlay: LoadingOverlay,
             Pagination: (oProps: any) => (
               <div className={oClasses.paginationWrapper}>
-                <Pagination
-                  className={oClasses.pagination}
-                  count={oState.count}
-                  variant="outlined"
-                  shape="rounded"
-                  color="primary"
-                  siblingCount={1}
-                  boundaryCount={1}
-                  showFirstButton
-                  showLastButton
-                  page={Number(oParams.page ?? 1)}
-                  onChange={cHandleChange}
-                />
+                <Hidden lgUp={true}>
+                  <Pagination
+                    className={oClasses.pagination}
+                    count={oState.count}
+                    variant="outlined"
+                    shape="rounded"
+                    color="primary"
+                    siblingCount={1}
+                    boundaryCount={0}
+                    showFirstButton
+                    showLastButton
+                    page={Number(oParams.page ?? 1)}
+                    onChange={cHandleChange}
+                  />
+                </Hidden>
+                <Hidden mdDown={true}>
+                  <Pagination
+                    className={oClasses.pagination}
+                    count={oState.count}
+                    variant="outlined"
+                    shape="rounded"
+                    color="primary"
+                    siblingCount={1}
+                    boundaryCount={1}
+                    showFirstButton
+                    showLastButton
+                    page={Number(oParams.page ?? 1)}
+                    onChange={cHandleChange}
+                  />
+                </Hidden>
+
                 <FormControl className={oClasses.formControl}>
                   <Select labelId="demo-simple-select-label" id="size" value={oState.size} onChange={cHandleChangeSize}>
                     <MenuItem value={10}>10条/页</MenuItem>
