@@ -31,7 +31,10 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       [oTheme.breakpoints.down('xs')]: {
         paddingLeft: oTheme.spacing(1),
-        paddingRight: oTheme.spacing(1)
+        paddingRight: oTheme.spacing(1),
+        marginLeft: oTheme.spacing(1), // NOTE: Grid 宽度 xs=0 , space 间距会失效
+        marginRight: oTheme.spacing(1),
+        borderRadius: oTheme.spacing(1)
       }
     },
     '@keyframes fadeIn': {

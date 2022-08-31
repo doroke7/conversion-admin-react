@@ -36,15 +36,25 @@ function SignIn(): any {
   return (
     <div className={oClasses.root}>
       <div className={oClasses.middle}>
-        <Grid container spacing={4}>
-          <Grid item xs={true} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
-          <Grid item xs={12} sm={12} md={8} lg={6} xl={4} spacing={0}>
+        <Grid container spacing={0}>
+          <Grid item xs={'auto'} sm={1} md={2} lg={3} xl={4} spacing={0}></Grid>
+          <Grid item xs={12} sm={10} md={8} lg={6} xl={4} spacing={0}>
             <Pannel />
           </Grid>
-          <Grid item xs={true} sm={false} md={2} lg={3} xl={4} spacing={0}></Grid>
+          <Grid item xs={'auto'} sm={1} md={2} lg={3} xl={4} spacing={0}></Grid>
         </Grid>
       </div>
     </div>
   );
 }
 export default wrappers.authenticator(wrappers.title(SignIn));
+
+/**
+ * 
+
+NOTE： 这种 宽度设计是为了去除 子元素间距， 最左区块左边的间距 最右区块右边的间距
+.MuiGrid-spacing-xs-4 {
+    width: calc(100% + 32px);
+    margin: -16px;
+}
+**/
