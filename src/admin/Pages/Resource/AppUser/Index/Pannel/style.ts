@@ -68,10 +68,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       }
     },
     startDate: {
-      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
+      width: 'calc( 14% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('lg')]: {
-        width: 'calc( 10% ' + '- ' + oTheme.spacing(1) + 'px )',
+        width: 'calc( 14% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
       },
       '& .MuiFormLabel-filled': {
@@ -84,10 +84,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       }
     },
     endDate: {
-      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
+      width: 'calc( 14% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('lg')]: {
-        width: 'calc( 10% ' + '- ' + oTheme.spacing(1) + 'px )',
+        width: 'calc( 14% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
       },
       '& .MuiFormLabel-filled': {
