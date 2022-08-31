@@ -4,16 +4,35 @@ import { pink, grey } from '@material-ui/core/colors';
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     pannel: {
-      width: '100%',
       paddingBottom: oTheme.spacing(10),
       paddingTop: oTheme.spacing(6),
+      borderRadius: oTheme.spacing(2),
       paddingLeft: oTheme.spacing(4),
       paddingRight: oTheme.spacing(4),
-      borderRadius: oTheme.spacing(2),
       boxShadow: 'rgb(100 116 139 / 34%) 0px 10px 22px',
       backgroundColor: oTheme.palette.background.paper,
       animation:
-        '$fadeIn 0.5s linear 0s 1 normal, $slideIn1 0.6s ease-in-out 0s 1 normal, $slideIn2 0.3s ease-in-out 0.6s 1 normal'
+        '$fadeIn 0.5s linear 0s 1 normal, $slideIn1 0.6s ease-in-out 0s 1 normal, $slideIn2 0.3s ease-in-out 0.6s 1 normal',
+      [oTheme.breakpoints.down('xl')]: {
+        paddingLeft: oTheme.spacing(4),
+        paddingRight: oTheme.spacing(4)
+      },
+      [oTheme.breakpoints.down('lg')]: {
+        paddingLeft: oTheme.spacing(8),
+        paddingRight: oTheme.spacing(8)
+      },
+      [oTheme.breakpoints.down('md')]: {
+        paddingLeft: oTheme.spacing(4),
+        paddingRight: oTheme.spacing(4)
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        paddingLeft: oTheme.spacing(4),
+        paddingRight: oTheme.spacing(4)
+      },
+      [oTheme.breakpoints.down('xs')]: {
+        paddingLeft: oTheme.spacing(1),
+        paddingRight: oTheme.spacing(1)
+      }
     },
     '@keyframes fadeIn': {
       '0%': {
