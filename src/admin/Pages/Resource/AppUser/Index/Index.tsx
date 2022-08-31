@@ -160,15 +160,6 @@ function Index(oProps: any): any {
     }
   ];
 
-  let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
-    let oNextPageParams = {
-      ...oParams,
-      page: iPage
-    };
-    let sUrl = utilities.url(oRouteMatch.path, oNextPageParams);
-    oHistory.push(sUrl);
-  };
-
   useEffect(() => {
     (async () => {
       cSetState((oOldState) => {
@@ -198,27 +189,10 @@ function Index(oProps: any): any {
     })();
   }, [oParams.appId, oParams.page, oParams.size]);
 
-  let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
-    let iSize = Number(oEvent.target.value);
-    // cSetState({ ...oState, size: iSize });
-    cSetState({ ...oState, size: iSize, loading: true, rows: [] });
-
-    let oSizeParams = {
-      ...oParams,
-      size: iSize
-    };
-    let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
-    oHistory.push(sUrl);
-  };
-
   useEffect(() => {
     cSetState({ ...oState, size: oParams.size, loading: true });
   }, [oParams.size]);
 
-  let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-    let sPage = oEvent.target.value;
-    cSetState({ ...oState, page: sPage });
-  };
   let cHandleKeyPressPage = (oEvent: any) => {
     if (oEvent.charCode == 13) {
       let iPage = Number(oState.page);
@@ -270,61 +244,101 @@ function Index(oProps: any): any {
           components={{
             NoRowsOverlay: NoRowsOverlay,
             LoadingOverlay: LoadingOverlay,
-            Pagination: (oProps: any) => (
-              <div className={oClasses.paginationWrapper}>
-                <Hidden lgUp={true}>
-                  <Pagination
-                    className={oClasses.pagination}
-                    count={oState.count}
-                    variant="outlined"
-                    shape="rounded"
-                    color="primary"
-                    siblingCount={0}
-                    boundaryCount={1}
-                    showFirstButton={true}
-                    showLastButton
-                    page={Number(oParams.page ?? 1)}
-                    onChange={cHandleChange}
-                    size="small"
-                  />
-                </Hidden>
-                <Hidden mdDown={true}>
-                  <Pagination
-                    className={oClasses.pagination}
-                    count={oState.count}
-                    variant="outlined"
-                    shape="rounded"
-                    color="primary"
-                    siblingCount={1}
-                    boundaryCount={1}
-                    showFirstButton
-                    showLastButton
-                    page={Number(oParams.page ?? 1)}
-                    onChange={cHandleChange}
-                  />
-                </Hidden>
-                <FormControl className={oClasses.formControl}>
-                  <Select labelId="demo-simple-select-label" id="size" value={oState.size} onChange={cHandleChangeSize}>
-                    <MenuItem value={10}>10条/页</MenuItem>
-                    <MenuItem value={20}>20条/页</MenuItem>
-                    <MenuItem value={50}>50条/页</MenuItem>
-                    <MenuItem value={100}>100条/页</MenuItem>
-                  </Select>
-                </FormControl>
-                <Hidden mdDown={true}>
-                  <span className={oClasses.page}>
-                    <span className="pre">跳转到第&ensp;</span>
-                    <TextField
-                      id="page"
-                      value={oState.page} // oState.page 改成局部 component state.page
-                      onChange={cHandleChangePage}
-                      // onKeyPress={cHandleKeyPressPage}
+            Pagination: (oProps: any) => {
+              let oParams: any = useParams();
+              let oRouteMatch = useRouteMatch();
+
+              let [oInState, cSetInState] = useState<any>({
+                size: 10,
+                page: ''
+              });
+
+              let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+                let oNextPageParams = {
+                  ...oParams,
+                  page: iPage
+                };
+                let sUrl = utilities.url(oRouteMatch.path, oNextPageParams);
+                oHistory.push(sUrl);
+              };
+
+              let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+                let iSize = Number(oEvent.target.value);
+                // cSetState({ ...oState, size: iSize });
+                cSetInState({ ...oState, size: iSize });
+
+                let oSizeParams = {
+                  ...oParams,
+                  size: iSize
+                };
+                let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
+                oHistory.push(sUrl);
+              };
+
+              let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+                let sPage = oEvent.target.value;
+                cSetState({ ...oState, page: sPage });
+              };
+              return (
+                <div className={oClasses.paginationWrapper}>
+                  <Hidden lgUp={true}>
+                    <Pagination
+                      className={oClasses.pagination}
+                      count={oState.count}
+                      variant="outlined"
+                      shape="rounded"
+                      color="primary"
+                      siblingCount={0}
+                      boundaryCount={1}
+                      showFirstButton={true}
+                      showLastButton
+                      page={Number(oParams.page ?? 1)}
+                      onChange={cHandleChange}
+                      size="small"
                     />
-                    <span className="next">&ensp;页</span>
-                  </span>
-                </Hidden>
-              </div>
-            )
+                  </Hidden>
+                  <Hidden mdDown={true}>
+                    <Pagination
+                      className={oClasses.pagination}
+                      count={oState.count}
+                      variant="outlined"
+                      shape="rounded"
+                      color="primary"
+                      siblingCount={1}
+                      boundaryCount={1}
+                      showFirstButton
+                      showLastButton
+                      page={Number(oParams.page ?? 1)}
+                      onChange={cHandleChange}
+                    />
+                  </Hidden>
+                  <FormControl className={oClasses.formControl}>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="size"
+                      value={oInState.size}
+                      onChange={cHandleChangeSize}>
+                      <MenuItem value={10}>10条/页</MenuItem>
+                      <MenuItem value={20}>20条/页</MenuItem>
+                      <MenuItem value={50}>50条/页</MenuItem>
+                      <MenuItem value={100}>100条/页</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <Hidden mdDown={true}>
+                    <span className={oClasses.page}>
+                      <span className="pre">跳转到第&ensp;</span>
+                      <TextField
+                        id="page"
+                        value={oInState.page}
+                        onChange={cHandleChangePage}
+                        // onKeyPress={cHandleKeyPressPage}
+                      />
+                      <span className="next">&ensp;页</span>
+                    </span>
+                  </Hidden>
+                </div>
+              );
+            }
           }}
         />
       </div>
