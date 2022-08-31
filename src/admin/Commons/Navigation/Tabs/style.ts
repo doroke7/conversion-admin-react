@@ -28,7 +28,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
         }
       },
       [oTheme.breakpoints.down('sm')]: {
-        // display: 'none'
+        display: 'none'
       },
       [oTheme.breakpoints.down('xs')]: {
         display: 'none'
