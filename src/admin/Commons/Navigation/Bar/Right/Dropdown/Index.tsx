@@ -14,6 +14,7 @@ import Components from '@/admin/Components/Index';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 
+import SignOutIcon from './SignOutIcon/Index';
 import cStyle from './style';
 
 function Dropdown(oProps: any) {
@@ -31,6 +32,9 @@ function Dropdown(oProps: any) {
           <ClickAwayListener onClickAway={cOnClickAway}>
             <MenuList id="menu-list-for-tab" className={oClasses.menuList}>
               <MenuItem onClick={cOnClick} className={oClasses.menuItem}>
+                <ListItemIcon className={oClasses.listItemIcon}>
+                  <Components.Icon name={'ExitToAppIcon'}></Components.Icon>
+                </ListItemIcon>
                 <ListItemText primary={'登出系统'} />
               </MenuItem>
             </MenuList>

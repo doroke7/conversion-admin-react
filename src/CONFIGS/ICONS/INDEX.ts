@@ -41,7 +41,9 @@ import HelpTwoToneIcon from '@material-ui/icons/HelpTwoTone';
 import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
 import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
 import WarningTwoToneIcon from '@material-ui/icons/WarningTwoTone';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 let ICONS: any = {
+  ExitToAppIcon: ExitToAppIcon,
   WarningTwoToneIcon: WarningTwoToneIcon,
   ReportProblemTwoToneIcon: ReportProblemTwoToneIcon,
   ContactSupportTwoToneIcon: ContactSupportTwoToneIcon,
