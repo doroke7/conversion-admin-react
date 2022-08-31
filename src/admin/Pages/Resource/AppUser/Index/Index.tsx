@@ -279,12 +279,13 @@ function Index(oProps: any): any {
                     variant="outlined"
                     shape="rounded"
                     color="primary"
-                    siblingCount={1}
-                    boundaryCount={0}
-                    showFirstButton
+                    siblingCount={0}
+                    boundaryCount={1}
+                    showFirstButton={true}
                     showLastButton
                     page={Number(oParams.page ?? 1)}
                     onChange={cHandleChange}
+                    size="small"
                   />
                 </Hidden>
                 <Hidden mdDown={true}>
