@@ -253,6 +253,10 @@ function Index(oProps: any): any {
                 page: ''
               });
 
+              useEffect(() => {
+                cSetInState({ ...oInState, size: oParams.size });
+              }, [oParams.size]);
+
               let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
                 let oNextPageParams = {
                   ...oParams,
@@ -265,7 +269,7 @@ function Index(oProps: any): any {
               let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
                 let iSize = Number(oEvent.target.value);
                 // cSetState({ ...oState, size: iSize });
-                cSetInState({ ...oState, size: iSize });
+                cSetInState({ ...oInState, size: iSize });
 
                 let oSizeParams = {
                   ...oParams,
@@ -277,7 +281,7 @@ function Index(oProps: any): any {
 
               let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
                 let sPage = oEvent.target.value;
-                cSetState({ ...oState, page: sPage });
+                cSetInState({ ...oInState, page: sPage });
               };
               return (
                 <div className={oClasses.paginationWrapper}>
