@@ -303,7 +303,6 @@ function Index(oProps: any): any {
                     onChange={cHandleChange}
                   />
                 </Hidden>
-
                 <FormControl className={oClasses.formControl}>
                   <Select labelId="demo-simple-select-label" id="size" value={oState.size} onChange={cHandleChangeSize}>
                     <MenuItem value={10}>10条/页</MenuItem>
@@ -312,16 +311,18 @@ function Index(oProps: any): any {
                     <MenuItem value={100}>100条/页</MenuItem>
                   </Select>
                 </FormControl>
-                <span className={oClasses.page}>
-                  <span className="pre">跳转到第&ensp;</span>
-                  <TextField
-                    id="page"
-                    value={oState.page} // oState.page 改成局部 component state.page
-                    onChange={cHandleChangePage}
-                    // onKeyPress={cHandleKeyPressPage}
-                  />
-                  <span className="next">&ensp;页</span>
-                </span>
+                <Hidden mdDown={true}>
+                  <span className={oClasses.page}>
+                    <span className="pre">跳转到第&ensp;</span>
+                    <TextField
+                      id="page"
+                      value={oState.page} // oState.page 改成局部 component state.page
+                      onChange={cHandleChangePage}
+                      // onKeyPress={cHandleKeyPressPage}
+                    />
+                    <span className="next">&ensp;页</span>
+                  </span>
+                </Hidden>
               </div>
             )
           }}
