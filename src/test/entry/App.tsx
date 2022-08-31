@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
@@ -11,10 +11,14 @@ function App(oProps: any) {
     name: 'test 服务'
   });
 
+  let C = React.lazy(() => import('./Item'));
+
   return (
     <div>
       <div>{oState.name}</div>
-      <Item></Item>
+      <Suspense fallback={<div>LOADING</div>}>
+        <C></C>
+      </Suspense>
     </div>
   );
 }
