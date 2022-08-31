@@ -26,6 +26,12 @@ let oStyle = makeStyles((oTheme: Theme) =>
         '&:hover': {
           background: grey[300]
         }
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        // display: 'none'
+      },
+      [oTheme.breakpoints.down('xs')]: {
+        display: 'none'
       }
     },
     tab: {

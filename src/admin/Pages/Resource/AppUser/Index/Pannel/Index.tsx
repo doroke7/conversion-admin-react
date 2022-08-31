@@ -63,7 +63,7 @@ function Pannel(oProps: any) {
         }}
         variant="outlined"
       />
-      <FormControl variant="outlined" className={oClasses.formControl}>
+      <FormControl variant="outlined" className={clsx([oClasses.formControl, oClasses.formControlCode])}>
         <InputLabel id="demo-simple-select-outlined-label" shrink={true}>
           国家
         </InputLabel>

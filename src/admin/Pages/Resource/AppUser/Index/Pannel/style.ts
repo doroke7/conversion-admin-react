@@ -8,11 +8,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       marginBottom: oTheme.spacing(3)
     },
     id: {
-      width: oTheme.spacing(16),
+      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2)
     },
     username: {
-      width: oTheme.spacing(16),
+      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2)
     },
     formControl: {
@@ -21,13 +21,20 @@ let oStyle = makeStyles((oTheme: Theme) =>
           maxWidth: oTheme.spacing(250)
         }
       },
-
+      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2)
+    },
+    formControlCode: {
+      '& fieldset': {
+        '& > legend': {
+          maxWidth: oTheme.spacing(250)
+        }
+      }
     },
     formControlPhoneType: {
       '& fieldset': {
         '& > legend': {
-          width: oTheme.spacing(6)
+          width: oTheme.spacing(4)
         }
       }
     },
@@ -38,17 +45,16 @@ let oStyle = makeStyles((oTheme: Theme) =>
         }
       }
     },
-    selectCode: {
-      width: oTheme.spacing(24)
-    },
+    selectCode: {},
     selectEmpty: {
       color: grey[400]
     },
     number: {
-      width: oTheme.spacing(16),
+      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2)
     },
     startDate: {
+      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2),
       '& .MuiFormLabel-filled': {
         '& + .MuiInputBase-root': {
@@ -60,7 +66,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
       }
     },
     endDate: {
+      width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2),
+
       '& .MuiFormLabel-filled': {
         '& + .MuiInputBase-root': {
           color: 'rgba(0, 0, 0, 0.87)'
@@ -70,12 +78,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
         color: grey[400] // 时间选择器：未选择时候是暗灰色
       }
     },
-    selectPhoneType: {
-      width: oTheme.spacing(20)
-    },
-    selectVip: {
-      width: oTheme.spacing(20)
-    },
+    selectPhoneType: {},
+    selectVip: {},
     icon: {
       maxWidth: oTheme.spacing(2),
       maxHeight: oTheme.spacing(2)
