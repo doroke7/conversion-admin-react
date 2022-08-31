@@ -16,32 +16,27 @@ let oStyle = makeStyles((oTheme: Theme) =>
       marginRight: oTheme.spacing(2)
     },
     formControl: {
-      '& fieldset': {
-        '& > legend': {
-          maxWidth: oTheme.spacing(250)
-        }
-      },
       width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2)
     },
     formControlCode: {
       '& fieldset': {
         '& > legend': {
-          maxWidth: oTheme.spacing(250)
+          minWidth: oTheme.spacing(4)
         }
       }
     },
     formControlPhoneType: {
       '& fieldset': {
         '& > legend': {
-          width: oTheme.spacing(4)
+          minWidth: oTheme.spacing(4)
         }
       }
     },
     formControlVip: {
       '& fieldset': {
         '& > legend': {
-          width: oTheme.spacing(8)
+          minWidth: oTheme.spacing(7)
         }
       }
     },
