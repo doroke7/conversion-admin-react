@@ -311,7 +311,7 @@ function Navigation(oProps: any) {
     return () => {
       window.removeEventListener('resize', cResize);
     };
-  }, []);
+  }, [oState]);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
