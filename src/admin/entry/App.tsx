@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 
@@ -52,21 +52,23 @@ function App(oProps: any) {
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
         <Commons.Progress></Commons.Progress>
         <Commons.Alerts></Commons.Alerts>
-        <BrowserRouter>
-          <Switch>
-            {oState.routes.map((oRoute, sIndex) => (
-              <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
-                <oRoute.Component
-                  routes={oRoute.routes}
-                  icon={oRoute.icon}
-                  title={oRoute.title}
-                  authenticator={oRoute.authenticator}
-                  redirections={oRoute.redirections}
-                />
-              </Route>
-            ))}
-          </Switch>
-        </BrowserRouter>
+        <Suspense fallback={<div>Loading...</div>}>
+          <BrowserRouter>
+            <Switch>
+              {oState.routes.map((oRoute, sIndex) => (
+                <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
+                  <oRoute.Component
+                    routes={oRoute.routes}
+                    icon={oRoute.icon}
+                    title={oRoute.title}
+                    authenticator={oRoute.authenticator}
+                    redirections={oRoute.redirections}
+                  />
+                </Route>
+              ))}
+            </Switch>
+          </BrowserRouter>
+        </Suspense>
       </div>
     </StoreContext.Provider>
   );

@@ -1,5 +1,5 @@
-import SignIn from './SignIn/Index';
+import React from 'react';
 
 export default {
-  SignIn
+  SignIn: React.lazy(() => import('./SignIn/Index'))
 };
