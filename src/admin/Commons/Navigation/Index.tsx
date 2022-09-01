@@ -207,8 +207,6 @@ function Navigation(oProps: any) {
       let aApps = CONFIGS.APPS ?? [];
       let iResultIndex = iIndex;
       let iAppId = aApps[iIndex].id;
-      console.info('iIndex=' + iIndex);
-      console.info('iAppId=' + iAppId);
 
       if (iResultIndex != oState.index) {
         let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
