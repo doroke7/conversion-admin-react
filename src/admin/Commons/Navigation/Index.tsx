@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
+import { createTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -25,6 +26,8 @@ import AlertOfApps from './AlertOfApps/Index';
 import style from './style';
 
 let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
+
+let oTheme = createTheme({});
 
 function Navigation(oProps: any) {
   let oClasses = style(void 0);
@@ -294,6 +297,21 @@ function Navigation(oProps: any) {
       events.removeListener('Navigation-onTab', cOnTab);
     };
   }, [oState.tabs, oState.open, oState.index, oState.alert, oState.text]);
+
+  useEffect(() => {
+    let cResize = (oEvent: any) => {
+      let iWidth = oEvent.target.innerWidth;
+      if (oState.open && iWidth <= oTheme.breakpoints.values['sm']) {
+        console.info('resizing' + iWidth);
+        cSetState({ ...oState, open: false });
+      }
+    };
+    window.addEventListener('resize', cResize);
+
+    return () => {
+      window.removeEventListener('resize', cResize);
+    };
+  }, []);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
