@@ -88,10 +88,10 @@ function AlertOfApps(oProps: any) {
               <MenuItem value="-1">
                 <em>未选择</em>
               </MenuItem>
-            )}{' '}
+            )}
             {/* 选了其中一个 APP 后，不不能再选空 APP了*/}
             {aApps.map((oApp: any, iIndexOfApp: any) => (
-              <MenuItem key={iIndexOfApp} value={oApp.id}>
+              <MenuItem key={iIndexOfApp} value={iIndexOfApp}>
                 {oApp.name}
               </MenuItem>
             ))}

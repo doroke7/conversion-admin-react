@@ -203,16 +203,13 @@ function Navigation(oProps: any) {
   }, [oState.tabs, oState.open, oState.index]);
 
   useLayoutEffect(() => {
-    let cClickApp = (iAppId) => {
+    let cClickApp = (iIndex) => {
       let aApps = CONFIGS.APPS ?? [];
-      let iIndex;
-      let iResultIndex = -1;
-      for (iIndex = 0; iIndex < aApps.length; iIndex++) {
-        if (aApps[iIndex].id == iAppId) {
-          iResultIndex = iIndex;
-          break;
-        }
-      }
+      let iResultIndex = iIndex;
+      let iAppId = aApps[iIndex].id;
+      console.info('iIndex=' + iIndex);
+      console.info('iAppId=' + iAppId);
+
       if (iResultIndex != oState.index) {
         let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
         cSetState({ ...oState, index: iResultIndex, tabs: aTabs, value: -1 });
