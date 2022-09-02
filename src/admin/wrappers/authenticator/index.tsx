@@ -54,6 +54,8 @@ let authenticator = (Component: any): any => {
                 message: oResponse?.data?.message ?? sMessage,
                 time: 3 * 1000
               };
+              Helpers.Authentication.setPath(oRouteMatch.path);
+
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[0]);
             }
@@ -61,6 +63,9 @@ let authenticator = (Component: any): any => {
 
           if (oResponse?.data?.code >= 0 && sJwt) {
             Helpers.Authentication.setJwt(sJwt);
+            if (!aRedirections[1]) {
+              Helpers.Authentication.removePath();
+            }
             if (aRedirections[1]) {
               let oMessage = {
                 code: 1,
@@ -72,7 +77,6 @@ let authenticator = (Component: any): any => {
             }
           }
         }
-        Helpers.Authentication.removePath();
 
         cSetState({ status: true });
       };
