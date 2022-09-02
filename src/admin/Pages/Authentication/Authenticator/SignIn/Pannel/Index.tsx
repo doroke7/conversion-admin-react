@@ -119,7 +119,9 @@ function Pannel(oProps: any): any {
            NOTE: await 只是语法糖，看起来像同步，事实上底层运作依然是异步
         */
         await new Promise((cResolve) => setTimeout(cResolve, 300));
-        oHistory.push('/admin/resource');
+        let sPath = Helpers.Authentication.getPath();
+
+        oHistory.push(sPath || '/admin/resource');
         events.emit('Progress-onProgress', { value: 98, status: true });
       }
     } catch (oException) {

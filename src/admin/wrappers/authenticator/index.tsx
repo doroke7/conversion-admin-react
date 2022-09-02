@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import Sdks from '@/admin/Sdks/Index';
 import Helpers from '@/admin/Helpers/Index';
 import events from '@/admin/events/index';
@@ -14,6 +14,7 @@ let authenticator = (Component: any): any => {
     let oHistory = useHistory();
     let bAuthenticator = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
+    let oRouteMatch = useRouteMatch();
 
     let [oState, cSetState] = React.useState<any>({
       status: false
@@ -29,6 +30,7 @@ let authenticator = (Component: any): any => {
             time: 3 * 1000
           };
           events.emit('Alerts-onAlert', oMessage);
+          Helpers.Authentication.setPath(oRouteMatch.path);
           oHistory.push(aRedirections[0]);
         }
         if (sJwt) {
@@ -70,6 +72,8 @@ let authenticator = (Component: any): any => {
             }
           }
         }
+        Helpers.Authentication.removePath();
+
         cSetState({ status: true });
       };
       if (CONFIGS.JWT.AUTHENTICATOR && bAuthenticator) {
