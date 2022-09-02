@@ -303,7 +303,7 @@ function Navigation(oProps: any) {
       let iWidth = oEvent.target.innerWidth;
       if (oState.open && iWidth <= oTheme.breakpoints.values['sm']) {
         console.info('resizing' + iWidth);
-        cSetState({ ...oState, open: false });
+        cSetState((oOldState) => ({ ...oOldState, open: false }));
       }
     };
     window.addEventListener('resize', cResize);
@@ -311,7 +311,7 @@ function Navigation(oProps: any) {
     return () => {
       window.removeEventListener('resize', cResize);
     };
-  }, [oState]);
+  }, [oState.open]);
 
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
