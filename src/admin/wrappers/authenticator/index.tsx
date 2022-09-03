@@ -30,7 +30,7 @@ let authenticator = (Component: any): any => {
             time: 3 * 1000
           };
           events.emit('Alerts-onAlert', oMessage);
-          Helpers.Authentication.setPath(oRouteMatch.path);
+          Helpers.Authentication.setPath(oRouteMatch.url);
           oHistory.push(aRedirections[0]);
         }
         if (sJwt) {
@@ -54,7 +54,7 @@ let authenticator = (Component: any): any => {
                 message: oResponse?.data?.message ?? sMessage,
                 time: 3 * 1000
               };
-              Helpers.Authentication.setPath(oRouteMatch.path);
+              Helpers.Authentication.setPath(oRouteMatch.url);
 
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[0]);
