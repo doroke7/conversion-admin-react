@@ -14,12 +14,27 @@ const style = makeStyles((oTheme: Theme) =>
       width: oTheme.spacing(5),
       padding: oTheme.spacing(0),
       marginRight: oTheme.spacing(1),
+      borderRadius: '50%',
+      boxSizing: 'border-box',
+      overflow: 'hidden'
+    },
+    iconButtonRefresh: {
+      border: '1px solid ' + pink['A700'],
       backgroundColor: oTheme.palette.background.paper,
       '&:hover': {
         backgroundColor: grey[300]
+      }
+    },
+    iconButtonSearch: {
+      // border: '2px solid ' + grey['50'],
+      [oTheme.breakpoints.up('md')]: {
+        display: 'none'
       },
-      border: '1px solid ' + pink['A700'],
-      boxSizing: 'border-box'
+
+      backgroundColor: blue[800],
+      '&:hover': {
+        backgroundColor: blue[600]
+      }
     },
 
     icon: {
