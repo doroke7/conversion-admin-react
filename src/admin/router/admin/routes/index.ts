@@ -63,6 +63,17 @@ let aRoutes = [
       },
       {
         id: '2-4-0',
+        path: '/config/index/app-id/:appId',
+        title: '影视系-平台配置',
+        text: '平台配置',
+        icon: 'BorderAllOutlinedIcon',
+        Component: Pages.Resource.Config.Index,
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        exact: false
+      },
+      {
+        id: '2-none-1',
         path: '/*/app-id/:appId/page/:page/size/:size',
         title: '分页未定义',
         text: '',
@@ -73,7 +84,7 @@ let aRoutes = [
         exact: false
       },
       {
-        id: '2-5-0',
+        id: '2-none-2',
         path: '/*',
         title: '分页未定义',
         text: '',

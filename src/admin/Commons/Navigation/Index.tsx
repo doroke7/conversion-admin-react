@@ -255,7 +255,7 @@ function Navigation(oProps: any) {
         text: (oRoute.text ?? oState.text) || oState.text,
         icon: oRoute.icon ?? ''
       };
-      if (oRoute.id == '2-4-0' || oRoute.id == '2-5-0') {
+      if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
         oTab.text = oState.text || '未定义';
       }
       let iValue = oState.value;
