@@ -202,7 +202,6 @@ module.exports = (env, argvs) => {
           'admin': [
             'socket.io-client',
             'socket.io-file-client',
-            'jwt-decode',
             'jsencrypt',
             'axios',
             'moment',
