@@ -8,6 +8,12 @@ import Vod from './Vod/';
 import None from './None/';
 import Index from './Index/';
 
+/**
+ * import Config from './Config/'; 相当 import Config from './Config/Index.ts';
+ * import Config from './Config/Index'; 相当 import Config from './Config/Index/index.tsx';
+ * import Config from './Config/Index'; 相当 import Config from './Config/Index/index.tsx';
+
+ */
 export default {
   AppUser: AppUser.Index,
   OrderInfo: OrderInfo.Index,
