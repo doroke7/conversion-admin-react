@@ -19,22 +19,22 @@ function Index(oProps: any) {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <BrowserRouter>
-      <Switch>
-        {oState.routes.map((oRoute, sIndex) => (
-          <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
-            <oRoute.Component
-              routes={oRoute.routes}
-              icon={oRoute.icon}
-              title={oRoute.title}
-              authenticator={oRoute.authenticator}
-              redirections={oRoute.redirections}
-            />
-          </Route>
-        ))}
-      </Switch>
-    </BrowserRouter>
-  </Suspense>
+      <BrowserRouter>
+        <Switch>
+          {oState.routes.map((oRoute, sIndex) => (
+            <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
+              <oRoute.Component
+                routes={oRoute.routes}
+                icon={oRoute.icon}
+                title={oRoute.title}
+                authenticator={oRoute.authenticator}
+                redirections={oRoute.redirections}
+              />
+            </Route>
+          ))}
+        </Switch>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
