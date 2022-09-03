@@ -7,8 +7,10 @@ function Counter(oProps: any): any {
   let [iCount, cSetCount] = React.useState<any>(0);
 
   useEffect(() => {
-    let fNumber = Math.random();
-    cSetCount(fNumber);
+    setTimeout(() => {
+      let fNumber = Math.random() * 100;
+      cSetCount(fNumber);
+    }, 1000);
   }, []);
 
   return (
