@@ -45,6 +45,7 @@ let aRoutes = [
         title: '影视系-用户列表',
         text: '用户列表',
         icon: 'AccountBoxTwoToneIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
+        Component: Pages.Resource.AppUser.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
@@ -66,6 +67,7 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
+        Component: Pages.Resource.None.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
@@ -76,6 +78,7 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
+        Component: Pages.Resource.None.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
