@@ -349,4 +349,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default wrappers.tab(wrappers.page(wrappers.title(Index)));
+export default wrappers.authenticator(wrappers.tab(wrappers.page(wrappers.title(Index))));

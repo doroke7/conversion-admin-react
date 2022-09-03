@@ -27,6 +27,8 @@ function Index(oProps: any): any {
                   id={oRoute.id}
                   text={oRoute.text}
                   path={oMatch.url + oRoute.path}
+                  authenticator={oRoute.authenticator}
+                  redirections={oRoute.redirections}
                 />
               </Route>
             ))}
@@ -36,4 +38,4 @@ function Index(oProps: any): any {
     </Fade>
   );
 }
-export default wrappers.authenticator(Index);
+export default Index;
