@@ -9,7 +9,7 @@ let aRoutes = [
     title: '影视',
     text: '',
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-    Component: Pages.Index,
+    Component: Pages.Index.Index,
     exact: true,
     authenticator: false,
     redirections: [null, null],

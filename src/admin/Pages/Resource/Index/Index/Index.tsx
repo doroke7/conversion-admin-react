@@ -9,6 +9,6 @@ import style from './style';
 
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
-  return <div className={oClasses.root}>CONFIG</div>;
+  return <div className={oClasses.root}></div>;
 }
 export default wrappers.authenticator(wrappers.tab(wrappers.title(Index)));
