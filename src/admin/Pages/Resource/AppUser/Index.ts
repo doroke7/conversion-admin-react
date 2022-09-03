@@ -1,5 +1,5 @@
 import React from 'react';
 
-import Index from './Inndex/Index';
+import Index from './Index/Index';
 
 export default { Index };
