@@ -20,8 +20,8 @@ function App(oProps: any) {
 
   return (
     <div>
-      {bTrue ? <UseEffectLifeCycle></UseEffectLifeCycle> : <div></div>}
-      {bFalse ? <UseEffect></UseEffect> : <div></div>}
+      {bFalse ? <UseEffectLifeCycle></UseEffectLifeCycle> : <div></div>}
+      {bTrue ? <UseEffect></UseEffect> : <div></div>}
     </div>
   );
 }
