@@ -7,6 +7,8 @@ import router from '@/admin/router/index';
 import CONFIGS from '@/CONFIGS/INDEX';
 import Commons from '@/admin/Commons/Index';
 import Components from '@/admin/Components/Index';
+import Pages from '@/admin/Pages/Index';
+
 import Helpers from '@/admin/Helpers/Index';
 import style from './style';
 
@@ -52,23 +54,7 @@ function App(oProps: any) {
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
         <Commons.Progress></Commons.Progress>
         <Commons.Alerts></Commons.Alerts>
-        <Suspense fallback={<div>Loading...</div>}>
-          <BrowserRouter>
-            <Switch>
-              {oState.routes.map((oRoute, sIndex) => (
-                <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
-                  <oRoute.Component
-                    routes={oRoute.routes}
-                    icon={oRoute.icon}
-                    title={oRoute.title}
-                    authenticator={oRoute.authenticator}
-                    redirections={oRoute.redirections}
-                  />
-                </Route>
-              ))}
-            </Switch>
-          </BrowserRouter>
-        </Suspense>
+        <Pages.Index></Pages.Index>
       </div>
     </StoreContext.Provider>
   );
