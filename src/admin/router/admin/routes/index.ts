@@ -34,7 +34,7 @@ let aRoutes = [
         title: '影视系',
         text: '',
         icon: '',
-        Component: Pages.Resource.Index,
+        Component: Pages.Resource.Index.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true

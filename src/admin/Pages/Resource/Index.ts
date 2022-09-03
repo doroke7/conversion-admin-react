@@ -15,12 +15,12 @@ import Index from './Index/';
 
  */
 export default {
-  AppUser: AppUser.Index,
-  OrderInfo: OrderInfo.Index,
-  AdminAdministrator: AdminAdministrator.Index,
-  Config: Config.Index,
-  Vod: Vod.Index,
-  None: None.Index,
-  Index: Index.Index,
+  AppUser: AppUser,
+  OrderInfo: OrderInfo,
+  AdminAdministrator: AdminAdministrator,
+  Config: Config,
+  Vod: Vod,
+  None: None,
+  Index: Index,
   _: React.lazy(() => import('./_/Index'))
 };
