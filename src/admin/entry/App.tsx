@@ -44,10 +44,6 @@ function App(oProps: any) {
 
     Helpers.Ver.set(CONFIGS.ADMIN.VER);
   });
-  /**  必须要使用 exact, 否则相同父级别路由会模糊匹配 **/
-  /**  具有 nav 的设定值 才会用 Navigatiob 包起来 **/
-  /**  把 page 丢入 Nav 的 children 中， 最后再由 tabs 解析 **/
-  /**  react-router-dom@5.0.0 <Route>比较麻烦 其下 组件是用 component={Componet} 而不是 component={<Component/>} */
 
   return (
     <StoreContext.Provider value={store}>
@@ -61,7 +57,3 @@ function App(oProps: any) {
 }
 
 export default App;
-
-// <Route exact path="/">
-//   {loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
-// </Route>
