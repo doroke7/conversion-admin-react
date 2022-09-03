@@ -50,10 +50,8 @@ function Progress(oProps: any): any {
   useEffect(() => {
     let cOnProgress = (oProgress) => {
       cSetState((oOldState) => {
-        let oNewState: any = { value: oOldState.value, status: oProgress.status };
-        if (oProgress?.value) {
-          oNewState.value = oProgress?.value;
-        }
+        let oNewState: any = { value: oProgress?.value ?? 0, status: oProgress.status };
+
         return oNewState;
       });
     };
