@@ -6,7 +6,7 @@ function Counter(oProps: any): any {
   let oClasses: any = style(void 0);
   let [iCount, cSetCount] = React.useState<any>(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTimeout(() => {
       let fNumber = Math.random() * 100;
       cSetCount(fNumber);

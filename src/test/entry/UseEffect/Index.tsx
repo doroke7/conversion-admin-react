@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
 import clsx from 'clsx';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
@@ -10,19 +10,21 @@ import Counter from './Counter/Index';
 import style from './style';
 
 function UseEffect(oProps: any): any {
-  let oClasses: any = style(void 0);
+  const [count, setCount] = useState(0);
 
-  let [iCount, cSetCount] = React.useState<any>(0);
+  useEffect(() => {
+    sleep(5000);
+    setCount(98);
+  }, []);
 
-  let cHandleClick = (oEvent: any) => {
-    let fNumber = Math.random();
-    cSetCount(fNumber);
-  };
-
-  return (
-    <div>
-      <Counter></Counter>
-    </div>
-  );
+  return <div>{count}</div>;
 }
 export default UseEffect;
+
+function sleep(duration) {
+  const start = Date.now();
+  let end = start;
+  while (end < start + duration) {
+    end = Date.now();
+  }
+}
