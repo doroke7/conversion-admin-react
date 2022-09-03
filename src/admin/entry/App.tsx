@@ -54,7 +54,7 @@ function App(oProps: any) {
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
         <Commons.Progress></Commons.Progress>
         <Commons.Alerts></Commons.Alerts>
-        <Pages.Index></Pages.Index>
+        <Pages._></Pages._>
       </div>
     </StoreContext.Provider>
   );
