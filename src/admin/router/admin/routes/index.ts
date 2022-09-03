@@ -28,7 +28,6 @@ let aRoutes = [
     // redirections[0]: authenticator fail后 重定向的页面，null 表示不重定向
     // redirections[1]: authenticator success 后 重定向的页面，null 表示不重定向
     routes: [
-      // 嵌套路由必须 使用 exact=false
       {
         id: '2-1-0',
         path: '',
@@ -36,9 +35,8 @@ let aRoutes = [
         text: '',
         icon: '',
         Component: Pages.Resource.Index,
-        // Component: React.lazy(() =>
-        //   import('@/admin/Pages/Admin/Resource/AppUser/Index').then((oModule: any) => ({ default: oModule.Index }))
-        // ),
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true
       },
       {
@@ -47,10 +45,8 @@ let aRoutes = [
         title: '影视系-用户列表',
         text: '用户列表',
         icon: 'AccountBoxTwoToneIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-        Component: Pages.Resource.AppUser.Index,
-        // Component: React.lazy(() =>
-        //   import('@/admin/Pages/Admin/Resource/AppUser/Index').then((oModule: any) => ({ default: oModule.Index }))
-        // ),
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
       },
       {
@@ -60,6 +56,8 @@ let aRoutes = [
         text: '订单列表',
         icon: 'EventNoteTwoToneIcon',
         Component: Pages.Resource.OrderInfo.Index,
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
       },
       {
@@ -68,7 +66,8 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
-        Component: Pages.Resource.None.Index,
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
       },
       {
@@ -77,7 +76,8 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
-        Component: Pages.Resource.None.Index,
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
       }
     ]
