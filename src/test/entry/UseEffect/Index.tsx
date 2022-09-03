@@ -21,8 +21,7 @@ function UseEffect(oProps: any): any {
 
   return (
     <div>
-      <div onClick={cHandleClick}>CLICK</div>
-      <Counter count={iCount}></Counter>
+      <Counter></Counter>
     </div>
   );
 }
