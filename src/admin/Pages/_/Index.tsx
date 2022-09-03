@@ -8,6 +8,7 @@ import CONFIGS from '@/CONFIGS/INDEX';
 import Commons from '@/admin/Commons/Index';
 import Components from '@/admin/Components/Index';
 import Helpers from '@/admin/Helpers/Index';
+import Fallback from './Fallback/Index';
 import style from './style';
 
 function Index(oProps: any) {
@@ -18,7 +19,7 @@ function Index(oProps: any) {
   });
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Fallback></Fallback>}>
       <BrowserRouter>
         <Switch>
           {oState.routes.map((oRoute, sIndex) => (
