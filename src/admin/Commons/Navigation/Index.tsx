@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -33,6 +33,7 @@ function Navigation(oProps: any) {
   let oClasses = style(void 0);
   let children = oProps.children ?? <></>;
   let oHistory = useHistory();
+  let oRef = useRef(null);
   let [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab 位置
@@ -312,6 +313,15 @@ function Navigation(oProps: any) {
     };
   }, [oState.open]);
 
+  useEffect(() => {}, []);
+
+  let cHandleLoad = (oEvent) => {
+    let iWidth = oEvent.target.innerWidth;
+    if (iWidth <= oTheme.breakpoints.values['sm']) {
+      cSetState((oOldState) => ({ ...oOldState, open: false }));
+    }
+  };
+
   let cHandleDrawerOpen = () => {
     cSetState({ ...oState, open: true });
   };
@@ -327,7 +337,7 @@ function Navigation(oProps: any) {
     <Contexts.AppsIndex.Provider value={oState.index}>
       <Contexts.TabsValue.Provider value={oState.value}>
         <Contexts.Tabs.Provider value={oState.tabs}>
-          <div className={oClasses.root}>
+          <div className={oClasses.root} onLoad={cHandleLoad}>
             <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={CONFIGS.APPS}></Bar>
             <Drawer
               variant="permanent"

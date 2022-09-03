@@ -3,6 +3,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { StoreContext } from 'redux-react-hook';
 import Grid from '@material-ui/core/Grid';
 
+import UseEffectLifeCycle from './UseEffectLifeCycle/Index';
+import UseEffect from './UseEffect/Index';
+
 import Item from './Item';
 import style from './style';
 
@@ -12,21 +15,13 @@ function App(oProps: any) {
     name: 'test 服务'
   });
 
-  let C = React.lazy(() => import('./Item'));
+  let bTrue = true;
+  let bFalse = false;
 
   return (
     <div>
-      <Grid container spacing={2}>
-        <Grid item xl={4} spacing={6}>
-          <div style={{ background: 'green' }}>green</div>
-        </Grid>
-        <Grid item xl={4} spacing={6}>
-          <div style={{ background: 'yellow' }}>yellow</div>
-        </Grid>
-        <Grid item xl={4} spacing={6}>
-          <div style={{ background: 'blue' }}>blue</div>
-        </Grid>
-      </Grid>
+      {bTrue ? <UseEffectLifeCycle></UseEffectLifeCycle> : <div></div>}
+      {bFalse ? <UseEffect></UseEffect> : <div></div>}
     </div>
   );
 }
