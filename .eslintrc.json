@@ -27,6 +27,8 @@
         "prefer-const": ["off", {
             "destructuring": "any",
             "ignoreReadBeforeAssign": true
-          }]
+          }],
+          "@typescript-eslint/ban-ts-comment": "off"
+
     }
 }

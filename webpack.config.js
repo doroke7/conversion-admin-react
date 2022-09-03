@@ -30,7 +30,7 @@ module.exports = (env, argvs) => {
 
   
   return {
-    mode: 'production',
+    mode: 'development',
     entry: {
       admin: './src/admin/entry/index.ts',     
       service: './src/service/entry/index.ts', 
@@ -80,7 +80,7 @@ module.exports = (env, argvs) => {
         poll: 3000,
       },
     },
-    devtool: argvs.mode === 'production' ? 'none' : 'source-map',
+    devtool: argvs.mode === 'production' ? 'none' : 'inline-source-map',
     module: {
       rules: [
         {
@@ -161,16 +161,6 @@ module.exports = (env, argvs) => {
     },
     plugins: [
       ...(argvs.mode === 'production' ? [] : [new BundleAnalyzerPlugin({ analyzerPort: process.env.ANALYZER_PORT ?? 8088 })]),
-      // new HtmlWebpackPlugin({
-      //   chunks: ['manifest', 'vendor', 'service'],
-      //   template: './public/service.html',
-      //   filename: 'service/index.html',
-      //   favicon: './public/favicon.ico',
-      //   minify: { //压缩HTML文件
-      //     removeComments: true, //移除HTML中的注释
-      //     collapseWhitespace: true, //删除空白符与换行符
-      //   },
-      // }),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'admin'],
         template: './public/admin.html',

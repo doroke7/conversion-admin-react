@@ -38,6 +38,8 @@ module.exports = {
     "no-unused-vars": 0, // 不允许未定义的变量
     "jsx-control-statements/jsx-use-if-tag": 0,
     "no-control-regex": 0,
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
+
   }
 };

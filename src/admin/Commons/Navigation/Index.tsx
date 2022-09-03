@@ -302,7 +302,6 @@ function Navigation(oProps: any) {
     let cResize = (oEvent: any) => {
       let iWidth = oEvent.target.innerWidth;
       if (oState.open && iWidth <= oTheme.breakpoints.values['sm']) {
-        console.info('resizing' + iWidth);
         cSetState((oOldState) => ({ ...oOldState, open: false }));
       }
     };
