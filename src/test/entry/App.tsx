@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
-import UseEffect from './UseEffect/Index';
-import UseLayoutEffect from './UseLayoutEffect/Index';
-import UseRef1 from './UseRef1/Index';
+import UseRef2 from './UseRef2/Index';
 
 import style from './style';
 
@@ -23,7 +21,7 @@ function App(oProps: any) {
 
   return (
     <div>
-      <UseRef1></UseRef1>
+      <UseRef2></UseRef2>
     </div>
   );
 }
