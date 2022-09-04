@@ -10,8 +10,14 @@ import Index from './Index';
 
 /**
  * import Config from './Config/'; 相当 import Config from './Config/Index.ts';
- * import Config from './Config/Index'; 相当 import Config from './Config/Index/index.tsx';
+ * 
+ * 
+ * import Config from './Config/Index'; 可以相当 import Config from './Config/Index/index.tsx';
+ * import Config from './Config/Index'; 可以相当 import Config from './Config/Index.tsx';
+ * 
+ * 
  * import Config from './Config'; 相当 import Config from './Config/index.tsx';
+ * import Config from './Config'; 相当 import Config from './Config.tsx';
 
  */
 export default {
