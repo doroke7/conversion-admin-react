@@ -33,15 +33,14 @@ function Navigation(oProps: any) {
   let oClasses = style(void 0);
   let children = oProps.children ?? <></>;
   let oHistory = useHistory();
-  let oRef = useRef(null);
+  let oRef = useRef('');
   let [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab 位置
     tabs: [], // Tab 列表
     index: -1, // 选中的 Selectd APP位置
     link: null,
-    menu: null,
-    text: ''
+    menu: null
   });
 
   let oParams: any = useParams();
@@ -158,8 +157,7 @@ function Navigation(oProps: any) {
         page: 1,
         size: 10
       };
-      cSetState({ ...oState, text: oLink.text });
-
+      oRef.current = oLink.text ?? '';
       let sUrl = utilities.url(oLink.path, oParams);
       oHistory.push(sUrl);
     };
@@ -253,11 +251,11 @@ function Navigation(oProps: any) {
         path: oRoute.path,
         url: oRoute.url,
         query: '',
-        text: (oRoute.text ?? oState.text) || oState.text,
+        text: (oRoute.text ?? oRef.current) || oRef.current,
         icon: oRoute.icon ?? ''
       };
       if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
-        oTab.text = oState.text || '未定义';
+        oTab.text = oRef.current || '未定义';
       }
       let iValue = oState.value;
       let bExist = false;
@@ -297,7 +295,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onTab', cOnTab);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.text]);
+  }, [oState.tabs, oState.open, oState.index, oState.alert]);
 
   useEffect(() => {
     let cResize = (oEvent: any) => {
