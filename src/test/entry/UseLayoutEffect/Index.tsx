@@ -20,10 +20,10 @@ function UseLayoutEffect(oProps: any): any {
   console.info('UseLayoutEffect init');
 
   useLayoutEffect(() => {
-    console.info('UseEffect useEffect before');
+    console.info('UseLayoutEffect UseLayoutEffect before');
 
     sleep(2000);
-    console.info('UseEffect useEffect after');
+    console.info('UseLayoutEffect UseLayoutEffect after');
 
     setNumber(99);
   }, []);
