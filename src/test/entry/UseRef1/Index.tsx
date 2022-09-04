@@ -5,7 +5,7 @@ import React, { useContext, useState, useEffect, useLayoutEffect, useRef } from 
  * useRef 范例一： Compoent 内 不会因为值改变，重新 Render 的 值
  */
 
-function UseRef(oProps: any): any {
+function UseRef1(oProps: any): any {
   const [count, setCount] = useState(0);
   const oRef = useRef(0);
 
@@ -26,4 +26,4 @@ function UseRef(oProps: any): any {
     </div>
   );
 }
-export default UseRef;
+export default UseRef1;
