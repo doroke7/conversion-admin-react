@@ -6,7 +6,7 @@ import AdminAdministrator from './AdminAdministrator/Index';
 import Config from './Config/Index';
 import Vod from './Vod/Index';
 import None from './None';
-import Index from './Index/Index';
+import Index from './Index';
 
 /**
  * import Config from './Config/'; 相当 import Config from './Config/Index.ts';

@@ -1,32 +1,15 @@
-import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
+import UseEffect from './UseEffect';
+import style from './style';
 
-function sleep(duration) {
-  const start = Date.now();
-  let end = start;
-  while (end < start + duration) {
-    end = Date.now();
-  }
-}
-
-function UseEffect(oProps: any): any {
-  const [count, setCount] = useState(0);
-  const [number, setNumber] = useState(0);
-
-  useEffect(() => {
-    sleep(2000);
-    setCount(98);
-  }, []);
-
-  useEffect(() => {
-    sleep(2000);
-    setNumber(99);
-  }, []);
+function App(oProps: any) {
+  let oClasses: any = style(void 0);
 
   return (
     <div>
-      <div>count for useEffect :{count}</div>
-      <div>number for useLayoutEffect :{number}</div>
+      <UseEffect></UseEffect>
     </div>
   );
 }
-export default UseEffect;
+
+export default App;
