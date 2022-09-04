@@ -1,12 +1,12 @@
 import React from 'react';
 
-import AppUser from './AppUser/';
-import OrderInfo from './OrderInfo/';
-import AdminAdministrator from './AdminAdministrator/';
-import Config from './Config/';
-import Vod from './Vod/';
-import None from './None/';
-import Index from './Index/';
+import AppUser from './AppUser/Index';
+import OrderInfo from './OrderInfo/Index';
+import AdminAdministrator from './AdminAdministrator/Index';
+import Config from './Config/Index';
+import Vod from './Vod/Index';
+import None from './None/Index';
+import Index from './Index/Index';
 
 /**
  * import Config from './Config/'; 相当 import Config from './Config/Index.ts';
