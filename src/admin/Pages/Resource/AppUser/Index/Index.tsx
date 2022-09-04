@@ -21,8 +21,6 @@ import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 
 import Pannel from './Pannel/Index';
-import NoRowsOverlay from './NoRowsOverlay/Index';
-import LoadingOverlay from './LoadingOverlay/Index';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -221,8 +219,8 @@ function Index(oProps: any): any {
           disableColumnMenu={true}
           rowHeight={dSizesToHeight[oState.size] ?? dSizesToHeight[10]}
           components={{
-            NoRowsOverlay: NoRowsOverlay,
-            LoadingOverlay: LoadingOverlay,
+            NoRowsOverlay: Components.NoRowsOverlay,
+            LoadingOverlay: Components.LoadingOverlay,
             Pagination: (oProps: any) => {
               let oParams: any = useParams();
               let oRouteMatch = useRouteMatch();
@@ -320,37 +318,19 @@ function Index(oProps: any): any {
 
               return (
                 <div className={oClasses.paginationWrapper}>
-                  <Hidden lgUp={true}>
-                    <Pagination
-                      className={oClasses.pagination}
-                      count={oState.count}
-                      variant="outlined"
-                      shape="rounded"
-                      color="primary"
-                      siblingCount={0}
-                      boundaryCount={1}
-                      showFirstButton={true}
-                      showLastButton
-                      page={Number(oParams.page ?? 1)}
-                      onChange={cHandleChange}
-                      size="small"
-                    />
-                  </Hidden>
-                  <Hidden mdDown={true}>
-                    <Pagination
-                      className={oClasses.pagination}
-                      count={oState.count}
-                      variant="outlined"
-                      shape="rounded"
-                      color="primary"
-                      siblingCount={1}
-                      boundaryCount={1}
-                      showFirstButton
-                      showLastButton
-                      page={Number(oParams.page ?? 1)}
-                      onChange={cHandleChange}
-                    />
-                  </Hidden>
+                  <Pagination
+                    className={oClasses.pagination}
+                    count={oState.count}
+                    variant="outlined"
+                    shape="rounded"
+                    color="primary"
+                    siblingCount={1}
+                    boundaryCount={1}
+                    showFirstButton
+                    showLastButton
+                    page={Number(oParams.page ?? 1)}
+                    onChange={cHandleChange}
+                  />
                   <FormControl className={oClasses.formControl}>
                     <Select
                       labelId="demo-simple-select-label"
@@ -363,19 +343,17 @@ function Index(oProps: any): any {
                       <MenuItem value={100}>100条/页</MenuItem>
                     </Select>
                   </FormControl>
-                  <Hidden smDown={true}>
-                    <span className={oClasses.page}>
-                      <span className="pre">跳转到第&ensp;</span>
-                      <TextField
-                        id="page"
-                        value={oInState.page}
-                        onChange={cHandleChangePage}
-                        onKeyPress={cHandleKeyPressPage}
-                        onBlur={cHandleBlurPage}
-                      />
-                      <span className="next">&ensp;页</span>
-                    </span>
-                  </Hidden>
+                  <span className={oClasses.page}>
+                    <span className="pre">跳转到第&ensp;</span>
+                    <TextField
+                      id="page"
+                      value={oInState.page}
+                      onChange={cHandleChangePage}
+                      onKeyPress={cHandleKeyPressPage}
+                      onBlur={cHandleBlurPage}
+                    />
+                    <span className="next">&ensp;页</span>
+                  </span>
                 </div>
               );
             }

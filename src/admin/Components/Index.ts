@@ -12,8 +12,12 @@ import BoxIcon from './BoxIcon/Index';
 import InIcon from './InIcon/Index';
 import AndroidIcon from './AndroidIcon/Index';
 import AppleIcon from './AppleIcon/Index';
+import NoRowsOverlay from './NoRowsOverlay/Index';
+import LoadingOverlay from './LoadingOverlay/Index';
 
 export default {
+  NoRowsOverlay,
+  LoadingOverlay,
   Message,
   Table,
   Icon,
