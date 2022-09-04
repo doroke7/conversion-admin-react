@@ -193,27 +193,6 @@ function Index(oProps: any): any {
     cSetState({ ...oState, size: oParams.size, loading: true });
   }, [oParams.size]);
 
-  let cHandleKeyPressPage = (oEvent: any) => {
-    if (oEvent.charCode == 13) {
-      let iPage = Number(oState.page);
-      if (!Number.isInteger(iPage)) {
-        let oMessage = {
-          code: -1,
-          message: '请输入数字页数',
-          time: 3 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      }
-      if (Number.isInteger(iPage)) {
-        let oPageParams = {
-          ...oParams,
-          page: iPage
-        };
-        let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-        oHistory.push(sUrl);
-      }
-    }
-  };
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
    * NOTE: API 接口服务 1 开始标记为第一页
@@ -283,6 +262,62 @@ function Index(oProps: any): any {
                 let sPage = oEvent.target.value;
                 cSetInState({ ...oInState, page: sPage });
               };
+
+              let cHandleKeyPressPage = (oEvent: any) => {
+                if (oEvent.charCode == 13) {
+                  let iPage = Number(oInState.page);
+                  if (!Number.isInteger(iPage)) {
+                    let oMessage = {
+                      code: -1,
+                      message: '请输入 "整数" 页数',
+                      time: 3 * 1000
+                    };
+                    events.emit('Alerts-onAlert', oMessage);
+                  }
+                  if (Number.isInteger(iPage) && oParams?.page != iPage) {
+                    let oPageParams = {
+                      ...oParams,
+                      page: iPage
+                    };
+                    let oMessage = {
+                      code: 1,
+                      message: '即将跳转到第' + iPage + '页',
+                      time: 3 * 1000
+                    };
+                    events.emit('Alerts-onAlert', oMessage);
+
+                    let sUrl = utilities.url(oRouteMatch.path, oPageParams);
+                    oHistory.push(sUrl);
+                  }
+                }
+              };
+
+              let cHandleBlurPage = (oEvent: any) => {
+                let iPage = Number(oInState.page);
+                if (!Number.isInteger(iPage)) {
+                  let oMessage = {
+                    code: -1,
+                    message: '请输入 "整数" 页数',
+                    time: 3 * 1000
+                  };
+                  events.emit('Alerts-onAlert', oMessage);
+                }
+                if (Number.isInteger(iPage) && oParams?.page != iPage) {
+                  let oPageParams = {
+                    ...oParams,
+                    page: iPage
+                  };
+                  let oMessage = {
+                    code: 1,
+                    message: '即将跳转到第' + iPage + '页',
+                    time: 3 * 1000
+                  };
+                  events.emit('Alerts-onAlert', oMessage);
+                  let sUrl = utilities.url(oRouteMatch.path, oPageParams);
+                  oHistory.push(sUrl);
+                }
+              };
+
               return (
                 <div className={oClasses.paginationWrapper}>
                   <Hidden lgUp={true}>
@@ -328,14 +363,15 @@ function Index(oProps: any): any {
                       <MenuItem value={100}>100条/页</MenuItem>
                     </Select>
                   </FormControl>
-                  <Hidden mdDown={true}>
+                  <Hidden smDown={true}>
                     <span className={oClasses.page}>
                       <span className="pre">跳转到第&ensp;</span>
                       <TextField
                         id="page"
                         value={oInState.page}
                         onChange={cHandleChangePage}
-                        // onKeyPress={cHandleKeyPressPage}
+                        onKeyPress={cHandleKeyPressPage}
+                        onBlur={cHandleBlurPage}
                       />
                       <span className="next">&ensp;页</span>
                     </span>
