@@ -15,13 +15,44 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     dataGrid: {
-      minHeight: oTheme.spacing(8) * 11,
-      maxHeight: oTheme.spacing(8) * 11
+      minHeight: 652,
+      maxHeight: 652
+    },
+    dataGrid10: {
+      '& .MuiDataGrid-row[data-rowindex="9"]': {
+        '& .MuiDataGrid-cell': {
+          borderBottom: 'none'
+        }
+      }
+    },
+    dataGrid20: {
+      '& .MuiDataGrid-row[data-rowindex="19"]': {
+        '& .MuiDataGrid-cell': {
+          borderBottom: 'none'
+        }
+      }
+    },
+    dataGrid50: {
+      '& .MuiDataGrid-row[data-rowindex="49"]': {
+        '& .MuiDataGrid-cell': {
+          borderBottom: 'none'
+        }
+      }
+    },
+    dataGrid100: {
+      '& .MuiDataGrid-row[data-rowindex="99"]': {
+        '& .MuiDataGrid-cell': {
+          borderBottom: 'none'
+        }
+      }
     },
     paginationWrapper: {
       display: 'flex',
       flexDirection: 'row',
-      marginRight: oTheme.spacing(1)
+      justifyContent: 'flex-end',
+      marginRight: oTheme.spacing(1),
+      marginTop: oTheme.spacing(1),
+      paddingTop: oTheme.spacing(1)
     },
     avatar: {
       background: grey[50],

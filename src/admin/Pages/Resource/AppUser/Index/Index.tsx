@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useLayoutEffect, Component } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
@@ -188,6 +189,97 @@ function Index(oProps: any): any {
     cSetState({ ...oState, size: oParams.size, loading: true });
   }, [oParams.size]);
 
+  let [oInState, cSetInState] = useState<any>({
+    size: 10,
+    page: ''
+  });
+
+  useEffect(() => {
+    cSetInState({ ...oInState, size: oParams.size });
+  }, [oParams.size]);
+
+  let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+    let oNextPageParams = {
+      ...oParams,
+      page: iPage
+    };
+    let sUrl = utilities.url(oRouteMatch.path, oNextPageParams);
+    oHistory.push(sUrl);
+  };
+
+  let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let iSize = Number(oEvent.target.value);
+    // cSetState({ ...oState, size: iSize });
+    cSetInState({ ...oInState, size: iSize });
+
+    let oSizeParams = {
+      ...oParams,
+      size: iSize
+    };
+    let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
+    oHistory.push(sUrl);
+  };
+
+  let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    let sPage = oEvent.target.value;
+    cSetInState({ ...oInState, page: sPage });
+  };
+
+  let cHandleKeyPressPage = (oEvent: any) => {
+    if (oEvent.charCode == 13) {
+      let iPage = Number(oInState.page);
+      if (!Number.isInteger(iPage)) {
+        let oMessage = {
+          code: -1,
+          message: '请输入 "整数" 页数',
+          time: 3 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      }
+      if (Number.isInteger(iPage) && oParams?.page != iPage) {
+        let oPageParams = {
+          ...oParams,
+          page: iPage
+        };
+        let oMessage = {
+          code: 1,
+          message: '即将跳转到第' + iPage + '页',
+          time: 3 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+
+        let sUrl = utilities.url(oRouteMatch.path, oPageParams);
+        oHistory.push(sUrl);
+      }
+    }
+  };
+
+  let cHandleBlurPage = (oEvent: any) => {
+    let iPage = Number(oInState.page);
+    if (!Number.isInteger(iPage)) {
+      let oMessage = {
+        code: -1,
+        message: '请输入 "整数" 页数',
+        time: 3 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    }
+    if (Number.isInteger(iPage) && oParams?.page != iPage) {
+      let oPageParams = {
+        ...oParams,
+        page: iPage
+      };
+      let oMessage = {
+        code: 1,
+        message: '即将跳转到第' + iPage + '页',
+        time: 3 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+      let sUrl = utilities.url(oRouteMatch.path, oPageParams);
+      oHistory.push(sUrl);
+    }
+  };
+
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
    * NOTE: API 接口服务 1 开始标记为第一页
@@ -201,7 +293,12 @@ function Index(oProps: any): any {
       <Pannel></Pannel>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
-          className={oClasses.dataGrid}
+          className={clsx(oClasses.dataGrid, {
+            [oClasses.dataGrid10]: oParams.size == 10,
+            [oClasses.dataGrid20]: oParams.size == 20,
+            [oClasses.dataGrid50]: oParams.size == 50,
+            [oClasses.dataGrid100]: oParams.size == 100
+          })}
           rows={oState.rows}
           columns={aColumns}
           rowCount={oState.rows.length == 0 ? 0 : oState.count}
@@ -210,152 +307,50 @@ function Index(oProps: any): any {
           loading={oState.loading}
           checkboxSelection={true}
           disableSelectionOnClick={true}
-          hideFooterPagination={false}
-          hideFooter={false}
-          autoHeight={false}
+          hideFooterPagination={true}
+          hideFooter={true}
+          autoHeight={true}
           disableColumnMenu={true}
           rowHeight={dSizesToHeight[oState.size] ?? dSizesToHeight[10]}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
-            LoadingOverlay: Components.LoadingOverlay,
-            Pagination: (oProps: any) => {
-              let oParams: any = useParams();
-              let oRouteMatch = useRouteMatch();
-
-              let [oInState, cSetInState] = useState<any>({
-                size: 10,
-                page: ''
-              });
-
-              useEffect(() => {
-                cSetInState({ ...oInState, size: oParams.size });
-              }, [oParams.size]);
-
-              let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
-                let oNextPageParams = {
-                  ...oParams,
-                  page: iPage
-                };
-                let sUrl = utilities.url(oRouteMatch.path, oNextPageParams);
-                oHistory.push(sUrl);
-              };
-
-              let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
-                let iSize = Number(oEvent.target.value);
-                // cSetState({ ...oState, size: iSize });
-                cSetInState({ ...oInState, size: iSize });
-
-                let oSizeParams = {
-                  ...oParams,
-                  size: iSize
-                };
-                let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
-                oHistory.push(sUrl);
-              };
-
-              let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-                let sPage = oEvent.target.value;
-                cSetInState({ ...oInState, page: sPage });
-              };
-
-              let cHandleKeyPressPage = (oEvent: any) => {
-                if (oEvent.charCode == 13) {
-                  let iPage = Number(oInState.page);
-                  if (!Number.isInteger(iPage)) {
-                    let oMessage = {
-                      code: -1,
-                      message: '请输入 "整数" 页数',
-                      time: 3 * 1000
-                    };
-                    events.emit('Alerts-onAlert', oMessage);
-                  }
-                  if (Number.isInteger(iPage) && oParams?.page != iPage) {
-                    let oPageParams = {
-                      ...oParams,
-                      page: iPage
-                    };
-                    let oMessage = {
-                      code: 1,
-                      message: '即将跳转到第' + iPage + '页',
-                      time: 3 * 1000
-                    };
-                    events.emit('Alerts-onAlert', oMessage);
-
-                    let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-                    oHistory.push(sUrl);
-                  }
-                }
-              };
-
-              let cHandleBlurPage = (oEvent: any) => {
-                let iPage = Number(oInState.page);
-                if (!Number.isInteger(iPage)) {
-                  let oMessage = {
-                    code: -1,
-                    message: '请输入 "整数" 页数',
-                    time: 3 * 1000
-                  };
-                  events.emit('Alerts-onAlert', oMessage);
-                }
-                if (Number.isInteger(iPage) && oParams?.page != iPage) {
-                  let oPageParams = {
-                    ...oParams,
-                    page: iPage
-                  };
-                  let oMessage = {
-                    code: 1,
-                    message: '即将跳转到第' + iPage + '页',
-                    time: 3 * 1000
-                  };
-                  events.emit('Alerts-onAlert', oMessage);
-                  let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-                  oHistory.push(sUrl);
-                }
-              };
-
-              return (
-                <div className={oClasses.paginationWrapper}>
-                  <Pagination
-                    className={oClasses.pagination}
-                    count={oState.count}
-                    variant="outlined"
-                    shape="rounded"
-                    color="primary"
-                    siblingCount={1}
-                    boundaryCount={1}
-                    showFirstButton
-                    showLastButton
-                    page={Number(oParams.page ?? 1)}
-                    onChange={cHandleChange}
-                  />
-                  <FormControl className={oClasses.formControl}>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="size"
-                      value={oInState.size}
-                      onChange={cHandleChangeSize}>
-                      <MenuItem value={10}>10条/页</MenuItem>
-                      <MenuItem value={20}>20条/页</MenuItem>
-                      <MenuItem value={50}>50条/页</MenuItem>
-                      <MenuItem value={100}>100条/页</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <span className={oClasses.page}>
-                    <span className="pre">跳转到第&ensp;</span>
-                    <TextField
-                      id="page"
-                      value={oInState.page}
-                      onChange={cHandleChangePage}
-                      onKeyPress={cHandleKeyPressPage}
-                      onBlur={cHandleBlurPage}
-                    />
-                    <span className="next">&ensp;页</span>
-                  </span>
-                </div>
-              );
-            }
+            LoadingOverlay: Components.LoadingOverlay
           }}
         />
+      </div>
+      <div className={oClasses.paginationWrapper}>
+        <Pagination
+          className={oClasses.pagination}
+          count={oState.count}
+          variant="outlined"
+          shape="rounded"
+          color="primary"
+          siblingCount={1}
+          boundaryCount={1}
+          showFirstButton
+          showLastButton
+          page={Number(oParams.page ?? 1)}
+          onChange={cHandleChange}
+        />
+        <FormControl className={oClasses.formControl}>
+          <Select labelId="demo-simple-select-label" id="size" value={oInState.size} onChange={cHandleChangeSize}>
+            <MenuItem value={10}>10条/页</MenuItem>
+            <MenuItem value={20}>20条/页</MenuItem>
+            <MenuItem value={50}>50条/页</MenuItem>
+            <MenuItem value={100}>100条/页</MenuItem>
+          </Select>
+        </FormControl>
+        <span className={oClasses.page}>
+          <span className="pre">跳转到第&ensp;</span>
+          <TextField
+            id="page"
+            value={oInState.page}
+            onChange={cHandleChangePage}
+            onKeyPress={cHandleKeyPressPage}
+            onBlur={cHandleBlurPage}
+          />
+          <span className="next">&ensp;页</span>
+        </span>
       </div>
     </div>
   );
