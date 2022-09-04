@@ -10,12 +10,23 @@ function sleep(duration) {
 
 function UseEffect(oProps: any): any {
   const [count, setCount] = useState(0);
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
     sleep(2000);
     setCount(98);
   }, []);
 
-  return <div>c:{count}</div>;
+  useEffect(() => {
+    sleep(2000);
+    setNumber(99);
+  }, []);
+
+  return (
+    <div>
+      <div>count for useEffect :{count}</div>
+      <div>number for useLayoutEffect :{number}</div>
+    </div>
+  );
 }
 export default UseEffect;
