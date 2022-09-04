@@ -1,29 +1,21 @@
-import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { StoreContext } from 'redux-react-hook';
-import Grid from '@material-ui/core/Grid';
+import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
 
-import UseEffectLifeCycle from './UseEffectLifeCycle/Index';
-import UseEffect from './UseEffect/Index';
-
-import Item from './Item';
-import style from './style';
-
-function App(oProps: any) {
-  let oClasses: any = style(void 0);
-  let [oState, cSetState] = React.useState({
-    name: 'test 服务'
-  });
-
-  let bTrue = true;
-  let bFalse = false;
-
-  return (
-    <div>
-      {/* <UseEffectLifeCycle></UseEffectLifeCycle> */}
-      <UseEffect></UseEffect>
-    </div>
-  );
+function sleep(duration) {
+  const start = Date.now();
+  let end = start;
+  while (end < start + duration) {
+    end = Date.now();
+  }
 }
 
-export default App;
+function UseEffect(oProps: any): any {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    sleep(2000);
+    setCount(98);
+  }, []);
+
+  return <div>c:{count}</div>;
+}
+export default UseEffect;
