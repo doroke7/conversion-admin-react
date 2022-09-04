@@ -33,7 +33,8 @@ function Navigation(oProps: any) {
   let oClasses = style(void 0);
   let children = oProps.children ?? <></>;
   let oHistory = useHistory();
-  let oRef = useRef('');
+  let oRefOfText = useRef('');
+  let oRefOfDom: any = useRef();
   let [oState, cSetState] = React.useState<any>({
     open: true,
     value: 0, // 当下被 Selected 的 Tab 位置
@@ -157,7 +158,7 @@ function Navigation(oProps: any) {
         page: 1,
         size: 10
       };
-      oRef.current = oLink.text ?? '';
+      oRefOfText.current = oLink.text ?? '';
       let sUrl = utilities.url(oLink.path, oParams);
       oHistory.push(sUrl);
     };
@@ -251,11 +252,11 @@ function Navigation(oProps: any) {
         path: oRoute.path,
         url: oRoute.url,
         query: '',
-        text: (oRoute.text ?? oRef.current) || oRef.current,
+        text: (oRoute.text ?? oRefOfText.current) || oRefOfText.current,
         icon: oRoute.icon ?? ''
       };
       if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
-        oTab.text = oRef.current || '未定义';
+        oTab.text = oRefOfText.current || '未定义';
       }
       let iValue = oState.value;
       let bExist = false;
@@ -307,14 +308,15 @@ function Navigation(oProps: any) {
     window.addEventListener('resize', cResize);
 
     return () => {
+      /**
+       * resize 事件只有在 window 拥有
+       */
       window.removeEventListener('resize', cResize);
     };
   }, [oState.open]);
 
-  useEffect(() => {}, []);
-
   let cHandleLoad = (oEvent) => {
-    let iWidth = oEvent.target.innerWidth;
+    let iWidth = oRefOfDom.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
       cSetState((oOldState) => ({ ...oOldState, open: false }));
     }
@@ -335,7 +337,7 @@ function Navigation(oProps: any) {
     <Contexts.AppsIndex.Provider value={oState.index}>
       <Contexts.TabsValue.Provider value={oState.value}>
         <Contexts.Tabs.Provider value={oState.tabs}>
-          <div className={oClasses.root} onLoad={cHandleLoad}>
+          <div className={oClasses.root} onLoad={cHandleLoad} ref={oRefOfDom}>
             <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={CONFIGS.APPS}></Bar>
             <Drawer
               variant="permanent"
