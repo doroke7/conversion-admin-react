@@ -17,7 +17,7 @@ function UseEffect(oProps: any): any {
     setCount(98);
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     sleep(2000);
     setNumber(99);
   }, []);
