@@ -309,7 +309,7 @@ function Navigation(oProps: any) {
 
     return () => {
       /**
-       * resize 事件只有在 window 拥有
+       * resize 事件只有在 window 拥有，故我们不能使用 react 的 SyntheticEvent
        */
       window.removeEventListener('resize', cResize);
     };
