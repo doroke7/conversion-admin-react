@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
 import UseEffect from './UseEffect/Index';
+import UseLayoutEffect from './UseLayoutEffect/Index';
+
 import style from './style';
 
 /**
@@ -21,6 +23,7 @@ function App(oProps: any) {
   return (
     <div>
       <UseEffect></UseEffect>
+      <UseLayoutEffect></UseLayoutEffect>
     </div>
   );
 }
