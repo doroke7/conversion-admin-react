@@ -8,12 +8,23 @@ function sleep(duration) {
   }
 }
 
+/**
+ *
+ * NOTE： 少用 useLayoutEffect, 会造成 SPA 同步阻塞渲染， 而且这个阻塞 会阻塞 全部的 DOM
+ */
+
 function UseLayoutEffect(oProps: any): any {
   const [count, setCount] = useState(0);
   const [number, setNumber] = useState(0);
 
+  console.info('UseLayoutEffect init');
+
   useLayoutEffect(() => {
+    console.info('UseEffect useEffect before');
+
     sleep(2000);
+    console.info('UseEffect useEffect after');
+
     setNumber(99);
   }, []);
 
