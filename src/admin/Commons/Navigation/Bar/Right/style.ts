@@ -25,17 +25,6 @@ const style = makeStyles((oTheme: Theme) =>
         backgroundColor: grey[300]
       }
     },
-    iconButtonSearch: {
-      // border: '2px solid ' + grey['50'],
-      [oTheme.breakpoints.up('md')]: {
-        display: 'none'
-      },
-
-      backgroundColor: blue[800],
-      '&:hover': {
-        backgroundColor: blue[600]
-      }
-    },
 
     icon: {
       verticalAlign: 'middle',

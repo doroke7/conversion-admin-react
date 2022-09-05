@@ -13,7 +13,6 @@ import Helpers from '@/admin/Helpers/Index';
 import AlertOfRedis from './AlertOfRedis/Index';
 import Dropdown from './Dropdown/Index';
 import RefreshIcon from './RefreshIcon/Index';
-import SearchIcon from './/SearchIcon/Index';
 import AdministratorIcon from './AdministratorIcon/Index';
 
 import style from './style';
@@ -90,9 +89,6 @@ function Right(oProps: any) {
 
   return (
     <div className={oClasses.right}>
-      <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonSearch)}>
-        <SearchIcon className={clsx(oClasses.icon)}></SearchIcon>
-      </IconButton>
       <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
         <RefreshIcon
           className={clsx(oClasses.icon, {
