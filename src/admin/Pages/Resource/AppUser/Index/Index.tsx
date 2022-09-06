@@ -18,7 +18,7 @@ import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 
-import Pannel from './Pannel/Index';
+import SearchPannel from './SearchPannel/Index';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -290,7 +290,7 @@ function Index(oProps: any): any {
 
   return (
     <div>
-      <Pannel></Pannel>
+      <SearchPannel></SearchPannel>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={clsx(oClasses.dataGrid, {
