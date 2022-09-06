@@ -4,6 +4,9 @@ import { pink, grey } from '@material-ui/core/colors';
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     dataGridWrapper: {
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% - ' + oTheme.spacing(6) + 'px)'
+      },
       width: '100%',
       '& .MuiDataGrid-root': {
         '& .MuiDataGrid-overlay': {
@@ -52,7 +55,24 @@ const style = makeStyles((oTheme: Theme): any =>
       justifyContent: 'flex-end',
       marginRight: oTheme.spacing(1),
       marginTop: oTheme.spacing(1),
-      paddingTop: oTheme.spacing(1)
+      paddingTop: oTheme.spacing(1),
+      [oTheme.breakpoints.down('sm')]: {
+        position: 'fixed',
+        top: '50%',
+        right: '0%',
+        transform: 'translate(0%, -50%)',
+        '& .MuiPagination-ul': {
+          flexDirection: 'column'
+        },
+        '& .MuiPaginationItem-root': {
+          margin: '3px 3px'
+      }
+    },
+    pagination: {
+      marginRight: oTheme.spacing(4),
+      [oTheme.breakpoints.down('sm')]: {
+        marginRight: oTheme.spacing(0)
+      }
     },
     avatar: {
       background: grey[50],
@@ -66,14 +86,18 @@ const style = makeStyles((oTheme: Theme): any =>
       width: oTheme.spacing(4),
       height: oTheme.spacing(4)
     },
-    pagination: {
-      marginRight: oTheme.spacing(4)
-    },
+
     formControl: {
       width: oTheme.spacing(12),
-      marginRight: oTheme.spacing(4)
+      marginRight: oTheme.spacing(4),
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'none'
+      }
     },
     page: {
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'none'
+      },
       color: grey['600'],
       '& .pre': {
         verticalAlign: 'middle'

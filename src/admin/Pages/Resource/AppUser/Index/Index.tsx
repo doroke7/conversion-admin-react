@@ -323,7 +323,7 @@ function Index(oProps: any): any {
           className={oClasses.pagination}
           count={oState.count}
           variant="outlined"
-          shape="rounded"
+          shape="round"
           color="primary"
           siblingCount={1}
           boundaryCount={1}
@@ -341,7 +341,7 @@ function Index(oProps: any): any {
           </Select>
         </FormControl>
         <span className={oClasses.page}>
-          <span className="pre">跳转到第&ensp;</span>
+          <span className="pre">到第&ensp;</span>
           <TextField
             id="page"
             value={oInState.page}
