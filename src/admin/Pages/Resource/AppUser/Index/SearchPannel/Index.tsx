@@ -22,7 +22,7 @@ function SearchPannel(oProps: any) {
   let sClassName = oProps.className ?? '';
   let children = oProps.children ?? <></>;
 
-  return <div>{children}</div>;
+  return <div className={oClasses.root}>{children}</div>;
 }
 
 export default SearchPannel;

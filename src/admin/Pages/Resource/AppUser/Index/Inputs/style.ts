@@ -3,13 +3,7 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    root: {
-      marginTop: oTheme.spacing(1),
-      marginBottom: oTheme.spacing(3),
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'none'
-      }
-    },
+    root: {},
     id: {
       width: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2),
@@ -68,10 +62,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       }
     },
     startDate: {
-      width: 'calc( 14% ' + '- ' + oTheme.spacing(2) + 'px )',
+      width: 'calc( 13% ' + '- ' + oTheme.spacing(2) + 'px )',
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('lg')]: {
-        width: 'calc( 14% ' + '- ' + oTheme.spacing(1) + 'px )',
+        width: 'calc( 13% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
       },
       '& .MuiFormLabel-filled': {
@@ -106,7 +100,25 @@ let oStyle = makeStyles((oTheme: Theme) =>
       maxHeight: oTheme.spacing(2)
     },
     button: {
-      fontWeight: 900
+      position: 'absolute',
+      right: oTheme.spacing(0),
+      height: '100%',
+      maxWidth: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
+      [oTheme.breakpoints.down('lg')]: {
+        maxWidth: 'calc( 12% ' + '- ' + oTheme.spacing(1) + 'px )'
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        position: 'static',
+        right: 'auto'
+      },
+      '& .MuiButton-label': {
+        maxWidth: oTheme.spacing(8) * 0.875,
+        fontWeight: 900,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        justifyContent: 'flex-start'
+      }
     }
   })
 );

@@ -290,7 +290,7 @@ function Index(oProps: any): any {
    */
 
   return (
-    <div>
+    <div className="app-user">
       <SearchPannel>
         <Inputs></Inputs>
       </SearchPannel>
