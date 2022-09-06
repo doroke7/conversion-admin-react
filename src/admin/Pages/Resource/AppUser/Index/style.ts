@@ -47,7 +47,7 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     pagination: {
-      marginRight: oTheme.spacing(4),
+      marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         marginRight: oTheme.spacing(0)
       }
@@ -67,7 +67,7 @@ const style = makeStyles((oTheme: Theme): any =>
 
     formControl: {
       width: oTheme.spacing(12),
-      marginRight: oTheme.spacing(4),
+      marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
       }
