@@ -104,6 +104,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
     icon: {
       maxWidth: oTheme.spacing(2),
       maxHeight: oTheme.spacing(2)
+    },
+    button: {
+      fontWeight: 900
     }
   })
 );

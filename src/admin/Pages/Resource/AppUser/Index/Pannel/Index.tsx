@@ -9,12 +9,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
 
 import Components from '@/admin/Components/Index';
 import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
-function Pannel(oProps: any) {
+function SearchPannel(oProps: any) {
   let oClasses = cStyle();
 
   let sClassName = oProps.className ?? '';
@@ -190,8 +192,11 @@ function Pannel(oProps: any) {
           </MenuItem>
         </Select>
       </FormControl>
+      <Button color="primary" className={oClasses.button} variant="outlined" endIcon={<SearchIcon></SearchIcon>}>
+        筛选
+      </Button>
     </FormGroup>
   );
 }
 
-export default Pannel;
+export default SearchPannel;
