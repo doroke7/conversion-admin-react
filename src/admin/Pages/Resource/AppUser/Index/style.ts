@@ -34,10 +34,10 @@ const style = makeStyles((oTheme: Theme): any =>
       marginTop: oTheme.spacing(1),
       paddingTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
-        position: 'fixed',
-        top: '50%',
+        top: oTheme.spacing(7),
         right: '0%',
-        transform: 'translate(0%, -50%)',
+        position: 'absolute',
+        transform: 'translate(0%, W0%)',
         '& .MuiPagination-ul': {
           flexDirection: 'column'
         },
@@ -90,6 +90,11 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .next': {
         verticalAlign: 'middle'
       }
+    },
+    searchButton: {
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4),
+      [oTheme.breakpoints.down('sm')]: {}
     }
   })
 );
