@@ -66,6 +66,7 @@ const style = makeStyles((oTheme: Theme): any =>
         },
         '& .MuiPaginationItem-root': {
           margin: '3px 3px'
+        }
       }
     },
     pagination: {
