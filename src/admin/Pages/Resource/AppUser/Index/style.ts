@@ -19,31 +19,8 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     dataGrid: {
       minHeight: 652,
-      maxHeight: 652
-    },
-    dataGrid10: {
-      '& .MuiDataGrid-row[data-rowindex="9"]': {
-        '& .MuiDataGrid-cell': {
-          borderBottom: 'none'
-        }
-      }
-    },
-    dataGrid20: {
-      '& .MuiDataGrid-row[data-rowindex="19"]': {
-        '& .MuiDataGrid-cell': {
-          borderBottom: 'none'
-        }
-      }
-    },
-    dataGrid50: {
-      '& .MuiDataGrid-row[data-rowindex="49"]': {
-        '& .MuiDataGrid-cell': {
-          borderBottom: 'none'
-        }
-      }
-    },
-    dataGrid100: {
-      '& .MuiDataGrid-row[data-rowindex="99"]': {
+      maxHeight: 652,
+      '& .MuiDataGrid-row:last-child': {
         '& .MuiDataGrid-cell': {
           borderBottom: 'none'
         }

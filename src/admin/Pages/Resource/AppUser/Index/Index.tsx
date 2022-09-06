@@ -19,6 +19,7 @@ import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 
 import Inputs from './Inputs/Index';
+import SearchPannel from './SearchPannel/Index';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -290,15 +291,12 @@ function Index(oProps: any): any {
 
   return (
     <div>
-      <Inputs></Inputs>
+      <SearchPannel>
+        <Inputs></Inputs>
+      </SearchPannel>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
-          className={clsx(oClasses.dataGrid, {
-            [oClasses.dataGrid10]: oParams.size == 10,
-            [oClasses.dataGrid20]: oParams.size == 20,
-            [oClasses.dataGrid50]: oParams.size == 50,
-            [oClasses.dataGrid100]: oParams.size == 100
-          })}
+          className={clsx(oClasses.dataGrid, {})}
           rows={oState.rows}
           columns={aColumns}
           rowCount={oState.rows.length == 0 ? 0 : oState.count}
