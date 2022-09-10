@@ -316,12 +316,9 @@ function Index(oProps: any): any {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent></DialogContent>
-        <DialogActions>
-          <Button onClick={() => void 0} color="primary">
-            Subscribe
-          </Button>
-        </DialogActions>
+        <DialogContent>
+          <Inputs></Inputs>
+        </DialogContent>
       </Dialog>
       <SearchPannel>
         <Inputs></Inputs>

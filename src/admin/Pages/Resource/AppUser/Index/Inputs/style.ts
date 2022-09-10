@@ -10,6 +10,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       [oTheme.breakpoints.down('lg')]: {
         width: 'calc( 10% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
       }
     },
     username: {
@@ -18,6 +23,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       [oTheme.breakpoints.down('lg')]: {
         width: 'calc( 10% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
       }
     },
     formControl: {
@@ -26,6 +36,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       [oTheme.breakpoints.down('lg')]: {
         width: 'calc( 10% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
       }
     },
     formControlCode: {
@@ -59,6 +74,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       [oTheme.breakpoints.down('lg')]: {
         width: 'calc( 10% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
       }
     },
     startDate: {
@@ -67,6 +87,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       [oTheme.breakpoints.down('lg')]: {
         width: 'calc( 13% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
       },
       '& .MuiFormLabel-filled': {
         '& + .MuiInputBase-root': {
@@ -84,6 +109,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
         width: 'calc( 14% ' + '- ' + oTheme.spacing(1) + 'px )',
         marginRight: oTheme.spacing(1)
       },
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
+      },
       '& .MuiFormLabel-filled': {
         '& + .MuiInputBase-root': {
           color: 'rgba(0, 0, 0, 0.87)'
@@ -99,7 +129,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       maxWidth: oTheme.spacing(2),
       maxHeight: oTheme.spacing(2)
     },
-    button: {
+    submitButton: {
       position: 'absolute',
       right: oTheme.spacing(0),
       height: '100%',
@@ -109,7 +139,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         position: 'static',
-        right: 'auto'
+        right: 'auto',
+        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
+        marginTop: oTheme.spacing(1),
+        marginBottom: oTheme.spacing(1)
       },
       '& .MuiButton-label': {
         maxWidth: oTheme.spacing(8) * 0.875,

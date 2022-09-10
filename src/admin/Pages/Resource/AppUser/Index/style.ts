@@ -5,8 +5,8 @@ const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     closeButton: {
       position: 'absolute',
-      right: oTheme.spacing(1),
-      top: oTheme.spacing(1),
+      right: oTheme.spacing(0),
+      top: oTheme.spacing(0),
       width: oTheme.spacing(5),
       height: oTheme.spacing(5),
       borderRadius: oTheme.spacing(1)
