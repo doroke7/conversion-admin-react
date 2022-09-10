@@ -13,6 +13,16 @@ const style = makeStyles((oTheme: Theme): any =>
           oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
       }
     },
+    dialogForPage: {
+      display: 'none',
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit'
+      },
+      '& .MuiDialogActions-root': {
+        padding:
+          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
+      }
+    },
     submitButton: {
       width: oTheme.spacing(20),
       [oTheme.breakpoints.down('sm')]: {

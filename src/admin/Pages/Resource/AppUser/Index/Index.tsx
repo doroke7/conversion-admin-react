@@ -48,7 +48,8 @@ function Index(oProps: any): any {
     rows: [],
     size: 10,
     page: '',
-    search: false
+    searchDialog: false,
+    pageDialog: false
   });
 
   let dSizesToHeight = {
@@ -294,11 +295,19 @@ function Index(oProps: any): any {
   };
 
   let cHandleSearchClick = (oEvent: any) => {
-    cSetState((oOldState) => ({ ...oOldState, search: true }));
+    cSetState((oOldState) => ({ ...oOldState, searchDialog: true }));
   };
 
   let cHandleSearchCancleClick = (oEvent: any) => {
-    cSetState((oOldState) => ({ ...oOldState, search: false }));
+    cSetState((oOldState) => ({ ...oOldState, searchDialog: false }));
+  };
+
+  let cHandlePageClick = (oEvent: any) => {
+    cSetState((oOldState) => ({ ...oOldState, pageDialog: true }));
+  };
+
+  let cHandlePageCancleClick = (oEvent: any) => {
+    cSetState((oOldState) => ({ ...oOldState, pageDialog: false }));
   };
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
@@ -312,10 +321,10 @@ function Index(oProps: any): any {
     <div className="app-user">
       <Dialog
         className={oClasses.dialogForSearch}
-        open={oState.search}
+        open={oState.searchDialog}
         onClose={cHandleSearchCancleClick}
-        aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">
+        aria-labelledby="form-dialog-search">
+        <DialogTitle id="form-dialog-search">
           搜索用戶列表
           <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandleSearchCancleClick}>
             <CloseIcon />
@@ -331,6 +340,37 @@ function Index(oProps: any): any {
             variant="outlined"
             endIcon={<SearchIcon></SearchIcon>}>
             筛选
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        className={oClasses.dialogForPage}
+        open={oState.pageDialog}
+        onClose={cHandlePageCancleClick}
+        aria-labelledby="form-dialog-page">
+        <DialogTitle id="form-dialog-page">
+          切換頁數
+          <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandlePageCancleClick}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <TextField
+            className={''}
+            id="page"
+            label="頁數"
+            placeholder="请输入數字"
+            InputLabelProps={{
+              shrink: true
+            }}
+            defaultValue={oParams.page}
+            type="number"
+            variant="outlined"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button color="primary" className={oClasses.submitButton} variant="outlined">
+            確認
           </Button>
         </DialogActions>
       </Dialog>
@@ -403,7 +443,7 @@ function Index(oProps: any): any {
           />
           <span className="next">&ensp;页</span>
         </span>
-        <IconButton color="primary" aria-label="页数" className={oClasses.pageButton}>
+        <IconButton color="primary" aria-label="页数" className={oClasses.pageButton} onClick={cHandlePageClick}>
           <MenuBookTwoToneIcon></MenuBookTwoToneIcon>
         </IconButton>
       </div>
