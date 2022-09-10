@@ -319,6 +319,7 @@ function Index(oProps: any): any {
         <DialogContent>
           <Inputs></Inputs>
         </DialogContent>
+        <DialogActions> </DialogActions>
       </Dialog>
       <SearchPannel>
         <Inputs></Inputs>
