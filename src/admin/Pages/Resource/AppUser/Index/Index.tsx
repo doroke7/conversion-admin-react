@@ -316,6 +316,7 @@ function Index(oProps: any): any {
         onClose={cHandleSearchCancleClick}
         aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">
+          搜索用戶列表
           <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandleSearchCancleClick}>
             <CloseIcon />
           </IconButton>

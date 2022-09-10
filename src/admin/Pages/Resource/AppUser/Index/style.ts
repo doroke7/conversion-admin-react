@@ -10,7 +10,7 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '& .MuiDialogActions-root': {
         padding:
-          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(4) + 'px ' + oTheme.spacing(3) + 'px '
+          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
       }
     },
     submitButton: {
@@ -22,11 +22,11 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     closeButton: {
       position: 'absolute',
-      right: oTheme.spacing(0),
-      top: oTheme.spacing(0),
-      width: oTheme.spacing(5),
-      height: oTheme.spacing(5),
-      borderRadius: oTheme.spacing(1)
+      right: oTheme.spacing(2),
+      top: oTheme.spacing(2),
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4),
+      borderRadius: oTheme.spacing(0.5)
     },
     dataGridWrapper: {
       [oTheme.breakpoints.down('sm')]: {
