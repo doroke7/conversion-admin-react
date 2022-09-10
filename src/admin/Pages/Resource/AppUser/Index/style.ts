@@ -3,10 +3,14 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
-    dialog: {
+    dialogForSearch: {
+      display: 'none',
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit'
+      },
       '& .MuiDialogActions-root': {
         padding:
-          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(5) + 'px ' + oTheme.spacing(3) + 'px '
+          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(4) + 'px ' + oTheme.spacing(3) + 'px '
       }
     },
     submitButton: {

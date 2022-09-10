@@ -311,7 +311,7 @@ function Index(oProps: any): any {
   return (
     <div className="app-user">
       <Dialog
-        className={oClasses.dialog}
+        className={oClasses.dialogForSearch}
         open={oState.search}
         onClose={cHandleSearchCancleClick}
         aria-labelledby="form-dialog-title">
