@@ -29,11 +29,13 @@ const style = makeStyles((oTheme: Theme): any =>
     paginationWrapper: {
       display: 'flex',
       flexDirection: 'row',
+      alignItems: 'center',
       justifyContent: 'flex-end',
       marginRight: oTheme.spacing(1),
       marginTop: oTheme.spacing(1),
       paddingTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
         top: '0%',
         right: '0%',
         position: 'absolute',
@@ -54,7 +56,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     avatar: {
       background: grey[50],
-      border: '1px ' + grey[400] + ' solid'
+      border: '1px ' + grey[600] + ' solid'
     },
     vipIcon: {
       transform: ' rotate(45deg)',
@@ -92,10 +94,13 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     searchButton: {
-      border: '1px solid ' + grey[300],
+      border: '1px solid ' + grey[500],
       width: oTheme.spacing(4),
       height: oTheme.spacing(4),
-      [oTheme.breakpoints.down('sm')]: {}
+      display: 'none',
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit'
+      }
     }
   })
 );
