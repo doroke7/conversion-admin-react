@@ -26,34 +26,7 @@ const style = makeStyles((oTheme: Theme): any =>
         }
       }
     },
-    paginationWrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      marginRight: oTheme.spacing(1),
-      marginTop: oTheme.spacing(1),
-      paddingTop: oTheme.spacing(1),
-      [oTheme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
-        top: '0%',
-        right: '0%',
-        position: 'absolute',
-        transform: 'translate(0%, 0%)',
-        '& .MuiPagination-ul': {
-          flexDirection: 'column'
-        },
-        '& .MuiPaginationItem-root': {
-          margin: '3px 3px'
-        }
-      }
-    },
-    pagination: {
-      marginRight: oTheme.spacing(2),
-      [oTheme.breakpoints.down('sm')]: {
-        marginRight: oTheme.spacing(0)
-      }
-    },
+
     avatar: {
       background: grey[50],
       border: '1px ' + grey[600] + ' solid'
@@ -74,6 +47,60 @@ const style = makeStyles((oTheme: Theme): any =>
         display: 'none'
       }
     },
+
+    paginationWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      marginRight: oTheme.spacing(1),
+      marginTop: oTheme.spacing(1),
+      paddingTop: oTheme.spacing(1),
+      [oTheme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        position: 'fixed',
+        bottom: '0%',
+        right: '0%',
+        height: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
+        marginTop: oTheme.spacing(0),
+        paddingTop: oTheme.spacing(0),
+        transform: 'translate(0%, 0%)',
+        '& .MuiPagination-ul': {
+          flexDirection: 'column'
+        },
+        '& .MuiPaginationItem-root': {
+          margin: '3px 3px'
+        }
+      }
+    },
+    pagination: {
+      marginRight: oTheme.spacing(2),
+      [oTheme.breakpoints.down('sm')]: {
+        marginRight: oTheme.spacing(0),
+        marginTop: -oTheme.spacing(2)
+      }
+    },
+    searchButton: {
+      border: '1px solid ' + grey[400],
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4),
+      display: 'none',
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit',
+        marginTop: oTheme.spacing(2)
+      }
+    },
+    pageButton: {
+      border: '1px solid ' + grey[400],
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4),
+      display: 'none',
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit',
+        marginBottom: oTheme.spacing(2)
+      }
+    },
     page: {
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
@@ -91,15 +118,6 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '& .next': {
         verticalAlign: 'middle'
-      }
-    },
-    searchButton: {
-      border: '1px solid ' + grey[500],
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit'
       }
     }
   })

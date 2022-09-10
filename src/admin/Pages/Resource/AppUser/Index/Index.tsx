@@ -13,7 +13,8 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import wrappers from '@/admin/wrappers/index';
 import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
@@ -355,6 +356,9 @@ function Index(oProps: any): any {
           />
           <span className="next">&ensp;页</span>
         </span>
+        <IconButton color="primary" aria-label="页数" className={oClasses.pageButton}>
+          <MenuBookTwoToneIcon></MenuBookTwoToneIcon>
+        </IconButton>
       </div>
     </div>
   );
