@@ -11,10 +11,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+import CloseIcon from '@material-ui/icons/Close';
+
+import Button from '@material-ui/core/Button';
+
 import wrappers from '@/admin/wrappers/index';
 import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
@@ -39,7 +47,8 @@ function Index(oProps: any): any {
     loading: true,
     rows: [],
     size: 10,
-    page: ''
+    page: '',
+    search: false
   });
 
   let dSizesToHeight = {
@@ -284,6 +293,13 @@ function Index(oProps: any): any {
     }
   };
 
+  let cHandleSearchClick = (oEvent: any) => {
+    cSetState((oOldState) => ({ ...oOldState, search: true }));
+  };
+
+  let cHandleSearchCancleClick = (oEvent: any) => {
+    cSetState((oOldState) => ({ ...oOldState, search: false }));
+  };
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
    * NOTE: API 接口服务 1 开始标记为第一页
@@ -294,6 +310,19 @@ function Index(oProps: any): any {
 
   return (
     <div className="app-user">
+      <Dialog open={oState.search} onClose={cHandleSearchCancleClick} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">
+          <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandleSearchCancleClick}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent></DialogContent>
+        <DialogActions>
+          <Button onClick={() => void 0} color="primary">
+            Subscribe
+          </Button>
+        </DialogActions>
+      </Dialog>
       <SearchPannel>
         <Inputs></Inputs>
       </SearchPannel>
@@ -320,7 +349,7 @@ function Index(oProps: any): any {
         />
       </div>
       <div className={oClasses.paginationWrapper}>
-        <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton}>
+        <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>
         </IconButton>
 

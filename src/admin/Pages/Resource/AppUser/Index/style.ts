@@ -3,6 +3,14 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
+    closeButton: {
+      position: 'absolute',
+      right: oTheme.spacing(1),
+      top: oTheme.spacing(1),
+      width: oTheme.spacing(5),
+      height: oTheme.spacing(5),
+      borderRadius: oTheme.spacing(1)
+    },
     dataGridWrapper: {
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% - ' + oTheme.spacing(6) + 'px)'
