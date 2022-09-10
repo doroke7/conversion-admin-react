@@ -192,9 +192,6 @@ function SearchPannel(oProps: any) {
           </MenuItem>
         </Select>
       </FormControl>
-      <Button color="primary" className={oClasses.submitButton} variant="outlined" endIcon={<SearchIcon></SearchIcon>}>
-        筛选
-      </Button>
     </FormGroup>
   );
 }

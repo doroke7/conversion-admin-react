@@ -3,6 +3,19 @@ import { pink, grey } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
+    dialog: {
+      '& .MuiDialogActions-root': {
+        padding:
+          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(5) + 'px ' + oTheme.spacing(3) + 'px '
+      }
+    },
+    submitButton: {
+      width: oTheme.spacing(20),
+      [oTheme.breakpoints.down('sm')]: {
+        width: '100%',
+        height: oTheme.spacing(7)
+      }
+    },
     closeButton: {
       position: 'absolute',
       right: oTheme.spacing(0),

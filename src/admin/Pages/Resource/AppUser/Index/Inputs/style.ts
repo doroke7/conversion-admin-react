@@ -13,8 +13,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
+        marginTop: oTheme.spacing(2),
+        marginRight: oTheme.spacing(0)
       }
     },
     username: {
@@ -26,8 +26,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
+        marginTop: oTheme.spacing(2),
+        marginRight: oTheme.spacing(0)
       }
     },
     formControl: {
@@ -39,8 +39,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
+        marginTop: oTheme.spacing(2),
+        marginRight: oTheme.spacing(0)
       }
     },
     formControlCode: {
@@ -77,8 +77,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
+        marginTop: oTheme.spacing(2),
+        marginRight: oTheme.spacing(0)
       }
     },
     startDate: {
@@ -90,8 +90,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
+        marginTop: oTheme.spacing(2),
+        marginRight: oTheme.spacing(0)
       },
       '& .MuiFormLabel-filled': {
         '& + .MuiInputBase-root': {
@@ -111,8 +111,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('sm')]: {
         width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
+        marginTop: oTheme.spacing(2),
+        marginRight: oTheme.spacing(0)
       },
       '& .MuiFormLabel-filled': {
         '& + .MuiInputBase-root': {
@@ -128,30 +128,6 @@ let oStyle = makeStyles((oTheme: Theme) =>
     icon: {
       maxWidth: oTheme.spacing(2),
       maxHeight: oTheme.spacing(2)
-    },
-    submitButton: {
-      position: 'absolute',
-      right: oTheme.spacing(0),
-      height: '100%',
-      maxWidth: 'calc( 10% ' + '- ' + oTheme.spacing(2) + 'px )',
-      [oTheme.breakpoints.down('lg')]: {
-        maxWidth: 'calc( 12% ' + '- ' + oTheme.spacing(1) + 'px )'
-      },
-      [oTheme.breakpoints.down('sm')]: {
-        position: 'static',
-        right: 'auto',
-        width: 'calc( 100% ' + '- ' + oTheme.spacing(0) + 'px )',
-        marginTop: oTheme.spacing(1),
-        marginBottom: oTheme.spacing(1)
-      },
-      '& .MuiButton-label': {
-        maxWidth: oTheme.spacing(8) * 0.875,
-        fontWeight: 900,
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        justifyContent: 'flex-start'
-      }
     }
   })
 );

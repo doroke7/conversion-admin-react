@@ -310,7 +310,11 @@ function Index(oProps: any): any {
 
   return (
     <div className="app-user">
-      <Dialog open={oState.search} onClose={cHandleSearchCancleClick} aria-labelledby="form-dialog-title">
+      <Dialog
+        className={oClasses.dialog}
+        open={oState.search}
+        onClose={cHandleSearchCancleClick}
+        aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">
           <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandleSearchCancleClick}>
             <CloseIcon />
@@ -319,10 +323,25 @@ function Index(oProps: any): any {
         <DialogContent>
           <Inputs></Inputs>
         </DialogContent>
-        <DialogActions> </DialogActions>
+        <DialogActions>
+          <Button
+            color="primary"
+            className={oClasses.submitButton}
+            variant="outlined"
+            endIcon={<SearchIcon></SearchIcon>}>
+            筛选
+          </Button>
+        </DialogActions>
       </Dialog>
       <SearchPannel>
         <Inputs></Inputs>
+        <Button
+          color="primary"
+          className={oClasses.submitButton}
+          variant="outlined"
+          endIcon={<SearchIcon></SearchIcon>}>
+          筛选
+        </Button>
       </SearchPannel>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
