@@ -1,9 +1,14 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/colors';
+import { pink, grey, lightBlue, cyan, indigo, blue, red } from '@material-ui/core/colors';
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
-    root: {}
+    root: {
+      marginBottom: oTheme.spacing(2)
+    },
+    avatar: {
+      backgroundColor: red[500]
+    }
   })
 );
 

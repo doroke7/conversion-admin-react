@@ -23,8 +23,13 @@ function CardForAppUser(oProps: any) {
   let oRow = oProps.row ?? {};
 
   return (
-    <Card>
-      <CardHeader></CardHeader>
+    <Card raised={false} className={oClasses.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" className={oClasses.avatar}>
+            R
+          </Avatar>
+        }></CardHeader>
       <CardContent>CARD</CardContent>
     </Card>
   );
