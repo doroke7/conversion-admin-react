@@ -26,7 +26,7 @@ import utilities from '@/admin/utilities/index';
 
 import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
-import AvatorForCell from './AvatorForCell/Index';
+import AvatarForCell from './AvatarForCell/Index';
 import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
 import CardForAppUser from './CardForAppUser/Index';
 
@@ -66,7 +66,7 @@ function Index(oProps: any): any {
       description: '头像',
       sortable: false,
       width: 85,
-      renderCell: (oParams: any) => <AvatorForCell {...oParams}></AvatorForCell>
+      renderCell: (oParams: any) => <AvatarForCell {...oParams}></AvatarForCell>
     },
     { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
 
@@ -352,7 +352,7 @@ function Index(oProps: any): any {
       </div>
       <div className={oClasses.cards}>
         {oState.rows.map((oRow, iIndex) => (
-          <CardForAppUser key={iIndex}></CardForAppUser>
+          <CardForAppUser key={iIndex} row={oRow}></CardForAppUser>
         ))}
       </div>
       <div className={oClasses.paginationWrapper}>

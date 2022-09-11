@@ -43,7 +43,7 @@ const style = makeStyles((oTheme: Theme): any =>
       display: 'none',
       [oTheme.breakpoints.down('sm')]: {
         display: 'inherit',
-        maxWidth: 'calc( 100% - ' + oTheme.spacing(6) + 'px )'
+        maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
       }
     },
     dataGridWrapper: {
