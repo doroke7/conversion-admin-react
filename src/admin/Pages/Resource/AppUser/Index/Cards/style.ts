@@ -12,7 +12,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     loadingIcon: {
       width: oTheme.spacing(8),
-      height: oTheme.spacing(8)
+      height: oTheme.spacing(8),
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate( -50%, -50%)'
     }
   })
 );
