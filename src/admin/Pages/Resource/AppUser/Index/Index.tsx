@@ -28,7 +28,7 @@ import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
 import AvatorForCell from './AvatorForCell/Index';
 import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
-import CardForAppUser from './CardForAppUser/Index';
+// import CardForAppUser from './CardForAppUser/Index';
 
 import style from './style';
 
@@ -66,7 +66,7 @@ function Index(oProps: any): any {
       description: '头像',
       sortable: false,
       width: 85,
-      renderCell: () => <></>
+      renderCell: (oParams: any) => <AvatorForCell {...oParams}></AvatorForCell>
     },
     { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
 
@@ -90,7 +90,7 @@ function Index(oProps: any): any {
       description: '设备',
       sortable: false,
       width: 90,
-      renderCell: () => <></>
+      renderCell: (oParams: any) => <PhoneTypeIconForCell {...oParams}></PhoneTypeIconForCell>
     },
     {
       field: 'login_ip',
