@@ -66,7 +66,7 @@ function Index(oProps: any): any {
       description: '头像',
       sortable: false,
       width: 85,
-      renderCell: AvatorForCell
+      renderCell: () => <></>
     },
     { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
 
@@ -90,7 +90,7 @@ function Index(oProps: any): any {
       description: '设备',
       sortable: false,
       width: 90,
-      renderCell: PhoneTypeIconForCell
+      renderCell: () => <></>
     },
     {
       field: 'login_ip',
