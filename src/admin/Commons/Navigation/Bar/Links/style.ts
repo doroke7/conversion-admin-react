@@ -9,7 +9,7 @@ const style = makeStyles((oTheme: Theme) =>
         // display: 'none'
       },
       [oTheme.breakpoints.down('xs')]: {
-        display: 'none'
+        // display: 'none'
       }
     },
     toolTip: {
