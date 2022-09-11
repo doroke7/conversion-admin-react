@@ -28,7 +28,7 @@ import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
 import AvatorForCell from './AvatorForCell/Index';
 import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
-// import CardForAppUser from './CardForAppUser/Index';
+import CardForAppUser from './CardForAppUser/Index';
 
 import style from './style';
 
@@ -350,7 +350,11 @@ function Index(oProps: any): any {
           }}
         />
       </div>
-      <div className={oClasses.cards}></div>
+      <div className={oClasses.cards}>
+        {oState.rows.map((oRow, iIndex) => (
+          <CardForAppUser key={iIndex}></CardForAppUser>
+        ))}
+      </div>
       <div className={oClasses.paginationWrapper}>
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>

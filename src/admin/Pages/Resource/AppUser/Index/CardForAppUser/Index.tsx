@@ -17,12 +17,15 @@ import Components from '@/admin/Components/Index';
 
 import cStyle from './style';
 
-function CardForAppUser(oParams: any) {
+function CardForAppUser(oProps: any) {
   let oClasses = cStyle();
+
+  let oRow = oProps.row ?? {};
 
   return (
     <Card>
       <CardHeader></CardHeader>
+      <CardContent>CARD</CardContent>
     </Card>
   );
 }

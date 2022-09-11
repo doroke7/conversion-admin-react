@@ -38,6 +38,14 @@ const style = makeStyles((oTheme: Theme): any =>
       height: oTheme.spacing(4),
       borderRadius: oTheme.spacing(0.5)
     },
+
+    cards: {
+      display: 'none',
+      [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit',
+        maxWidth: 'calc( 100% - ' + oTheme.spacing(6) + 'px )'
+      }
+    },
     dataGridWrapper: {
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
