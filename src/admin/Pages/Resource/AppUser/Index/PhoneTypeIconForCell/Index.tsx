@@ -17,7 +17,6 @@ function PhoneTypeIconForCell(oParams: any) {
   let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
   let Component = () => <Components.VoidElement className={oClasses.phoneTypeIcon} />;
   Component = iPhoneType == 1 ? () => <Components.AndroidIcon className={oClasses.phoneTypeIcon} /> : Component;
-
   Component = iPhoneType == 2 ? () => <Components.AppleIcon className={oClasses.phoneTypeIcon} /> : Component;
   let sTitle = '';
   sTitle = iPhoneType == 1 ? '安卓设备' : sTitle;

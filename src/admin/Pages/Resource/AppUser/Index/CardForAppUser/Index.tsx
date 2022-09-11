@@ -14,6 +14,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Typography from '@material-ui/core/Typography';
 
 import Components from '@/admin/Components/Index';
 
@@ -26,8 +27,18 @@ function CardForAppUser(oProps: any) {
 
   let sPic = oRow.pic ?? '';
   let sUsername = oRow.username ?? '';
+  let sId = oRow.id ?? '';
+  let sCodeNumber = oRow.code_number ?? '';
+  let sLoginIp = oRow.login_ip ?? '';
 
-  console.info(oRow);
+  let VipIcon = Components.VoidElement;
+  VipIcon = oRow.vip == 1 ? Components.VipIcon1 : VipIcon;
+  VipIcon = oRow.vip == 2 ? Components.VipIcon2 : VipIcon;
+  VipIcon = oRow.vip == 3 ? Components.VipIcon3 : VipIcon;
+
+  let PhoneTypeIcon = Components.VoidElement;
+  PhoneTypeIcon = oRow.phone_type == 1 ? Components.AndroidIcon : PhoneTypeIcon;
+  PhoneTypeIcon = oRow.phone_type == 2 ? Components.AppleIcon : PhoneTypeIcon;
 
   return (
     <Card raised={false} className={oClasses.root}>
@@ -41,9 +52,17 @@ function CardForAppUser(oProps: any) {
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
-        }></CardHeader>
+        }
+        title={sId}
+        subheader={sUsername}></CardHeader>
       <CardMedia className={oClasses.cardMedia} image={sPic} title={sUsername} />
-      <CardContent>CARD</CardContent>
+      <CardContent>
+        <Typography>
+          <VipIcon className={oClasses.badgeIcon}></VipIcon>
+          <PhoneTypeIcon className={oClasses.badgeIcon}></PhoneTypeIcon>
+        </Typography>
+        <Typography>{sCodeNumber}</Typography>
+      </CardContent>
     </Card>
   );
 }

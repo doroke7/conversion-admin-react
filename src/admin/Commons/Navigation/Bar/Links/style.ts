@@ -25,6 +25,11 @@ const style = makeStyles((oTheme: Theme) =>
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: 'rgba(0, 0, 0, 0.12)'
+      },
+      [oTheme.breakpoints.down('xs')]: {
+        '&:nth-child(n+3)': {
+          display: 'none'
+        }
       }
     },
     icon: {

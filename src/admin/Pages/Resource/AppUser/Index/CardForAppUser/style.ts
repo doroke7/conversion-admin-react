@@ -12,6 +12,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
     cardMedia: {
       height: 0,
       paddingTop: '56.25%' // 16:9
+    },
+    badgeIcon: {
+      width: oTheme.spacing(4),
+      height: oTheme.spacing(4)
     }
   })
 );
