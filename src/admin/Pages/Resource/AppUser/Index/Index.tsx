@@ -16,7 +16,6 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
-
 import Button from '@material-ui/core/Button';
 
 import wrappers from '@/admin/wrappers/index';
@@ -29,6 +28,8 @@ import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
 import AvatorForCell from './AvatorForCell/Index';
 import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
+import CardForAppUser from './CardForAppUser/Index';
+
 import style from './style';
 
 function Index(oProps: any): any {
