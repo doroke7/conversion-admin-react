@@ -148,15 +148,6 @@ function Index(oProps: any): any {
     cSetState({ ...oState, size: oParams.size, loading: true });
   }, [oParams.size]);
 
-  let [oInState, cSetInState] = useState<any>({
-    size: 10,
-    page: ''
-  });
-
-  useEffect(() => {
-    cSetInState({ ...oInState, size: oParams.size });
-  }, [oParams.size]);
-
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
     let oNextPageParams = {
       ...oParams,
@@ -168,7 +159,6 @@ function Index(oProps: any): any {
 
   let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iSize = Number(oEvent.target.value);
-    cSetInState({ ...oInState, size: iSize });
 
     let oSizeParams = {
       ...oParams,
@@ -180,12 +170,12 @@ function Index(oProps: any): any {
 
   let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sPage = oEvent.target.value;
-    cSetInState({ ...oInState, page: sPage });
+    cSetState({ ...oState, page: sPage });
   };
 
   let cHandleKeyPressPage = (oEvent: any) => {
     if (oEvent.charCode == 13) {
-      let iPage = Number(oInState.page);
+      let iPage = Number(oState.page);
       if (!Number.isInteger(iPage)) {
         let oMessage = {
           code: -1,
@@ -213,7 +203,7 @@ function Index(oProps: any): any {
   };
 
   let cHandleBlurPage = (oEvent: any) => {
-    let iPage = Number(oInState.page);
+    let iPage = Number(oState.page);
     if (!Number.isInteger(iPage)) {
       let oMessage = {
         code: -1,
@@ -351,9 +341,11 @@ function Index(oProps: any): any {
         />
       </div>
       <div className={oClasses.cards}>
-        {oState.rows.map((oRow, iIndex) => (
-          <CardForAppUser key={iIndex} row={oRow}></CardForAppUser>
-        ))}
+        {oState.loading ? (
+          <></>
+        ) : (
+          oState.rows.map((oRow, iIndex) => <CardForAppUser key={iIndex} row={oRow}></CardForAppUser>)
+        )}
       </div>
       <div className={oClasses.paginationWrapper}>
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
@@ -374,7 +366,7 @@ function Index(oProps: any): any {
           onChange={cHandleChange}
         />
         <FormControl className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="size" value={oInState.size} onChange={cHandleChangeSize}>
+          <Select labelId="demo-simple-select-label" id="size" value={oState.size} onChange={cHandleChangeSize}>
             <MenuItem value={10}>10条/页</MenuItem>
             <MenuItem value={20}>20条/页</MenuItem>
             <MenuItem value={50}>50条/页</MenuItem>
@@ -385,7 +377,7 @@ function Index(oProps: any): any {
           <span className="pre">到第&ensp;</span>
           <TextField
             id="page"
-            value={oInState.page}
+            value={oState.page}
             onChange={cHandleChangePage}
             onKeyPress={cHandleKeyPressPage}
             onBlur={cHandleBlurPage}
