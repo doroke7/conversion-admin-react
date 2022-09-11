@@ -20,7 +20,11 @@ function Cards(oProps: any) {
 
   return (
     <div className={oClasses.root}>
-      {bLoading ? <></> : aRows.map((oRow, iIndex) => <Card key={iIndex} row={oRow}></Card>)}
+      {bLoading ? (
+        <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>
+      ) : (
+        aRows.map((oRow, iIndex) => <Card key={iIndex} row={oRow}></Card>)
+      )}
     </div>
   );
 }

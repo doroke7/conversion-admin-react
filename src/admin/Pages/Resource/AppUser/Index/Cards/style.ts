@@ -9,6 +9,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
         display: 'inherit',
         maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
       }
+    },
+    loadingIcon: {
+      width: oTheme.spacing(8),
+      height: oTheme.spacing(8)
     }
   })
 );
