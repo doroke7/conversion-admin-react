@@ -4,8 +4,6 @@ import clsx from 'clsx';
 
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,7 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -31,6 +28,7 @@ import utilities from '@/admin/utilities/index';
 
 import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
+import AvatorForCell from './AvatorForCell/Index';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -67,36 +65,7 @@ function Index(oProps: any): any {
       description: '头像',
       sortable: false,
       width: 85,
-      renderCell: (oParams: any) => {
-        let sVip = oParams.getValue(oParams.id, 'vip') || '';
-        let sSrc = oParams.getValue(oParams.id, 'pic') || '';
-        let sVipDatetime = oParams.getValue(oParams.id, 'vip_datetime') || '';
-        let Icon = Components.VoidElement;
-        Icon = sVip == 1 ? Components.VipIcon1 : Icon;
-        Icon = sVip == 2 ? Components.VipIcon2 : Icon;
-        Icon = sVip == 3 ? Components.VipIcon3 : Icon;
-
-        let sTitle = '特权一般';
-        sTitle = sVip == 1 ? '特权已过期' : sTitle;
-        sTitle = sVip == 2 ? '特权直到 ' + sVipDatetime.substring(0, 10) : sTitle;
-        sTitle = sVip == 3 ? '特权永久' : sTitle;
-
-        return (
-          <Tooltip title={sTitle} placement="right-end">
-            <Badge
-              overlap="circular"
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              badgeContent={<Icon className={oClasses.vipIcon}></Icon>}>
-              <Avatar className={oClasses.avatar}>
-                <Components.Img src={sSrc}></Components.Img>
-              </Avatar>
-            </Badge>
-          </Tooltip>
-        );
-      }
+      renderCell: AvatorForCell
     },
     { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
 
@@ -106,7 +75,6 @@ function Index(oProps: any): any {
       description: 'VIP的时间',
       sortable: false,
       width: 200
-      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
     },
     {
       field: 'code_number',
@@ -406,6 +374,7 @@ function Index(oProps: any): any {
           }}
         />
       </div>
+      <div className={oClasses.cards}></div>
       <div className={oClasses.paginationWrapper}>
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>

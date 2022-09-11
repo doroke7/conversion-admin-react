@@ -40,7 +40,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     dataGridWrapper: {
       [oTheme.breakpoints.down('sm')]: {
-        width: 'calc( 100% - ' + oTheme.spacing(6) + 'px)'
+        display: 'none'
       },
       width: '100%',
       '& .MuiDataGrid-root': {
