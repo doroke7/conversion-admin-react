@@ -4,7 +4,6 @@ import clsx from 'clsx';
 
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
-import Tooltip from '@material-ui/core/Tooltip';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -29,6 +28,7 @@ import utilities from '@/admin/utilities/index';
 import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
 import AvatorForCell from './AvatorForCell/Index';
+import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -89,28 +89,7 @@ function Index(oProps: any): any {
       description: '设备',
       sortable: false,
       width: 90,
-      renderCell: (oParams: any) => {
-        let iPhoneType = oParams.getValue(oParams.id, 'phone_type') || 0;
-        let Component = () => <Components.VoidElement className={oClasses.phoneTypeIcon} />;
-        Component = iPhoneType == 1 ? () => <Components.AndroidIcon className={oClasses.phoneTypeIcon} /> : Component;
-
-        Component = iPhoneType == 2 ? () => <Components.AppleIcon className={oClasses.phoneTypeIcon} /> : Component;
-        let sTitle = '';
-        sTitle = iPhoneType == 1 ? '安卓设备' : sTitle;
-        sTitle = iPhoneType == 2 ? '苹果设备' : sTitle;
-
-        return iPhoneType == 1 || iPhoneType == 2 ? (
-          <Tooltip title={sTitle} placement="right-end">
-            <div>
-              <Component></Component>
-            </div>
-          </Tooltip>
-        ) : (
-          <div>
-            <Component></Component>
-          </div>
-        );
-      }
+      renderCell: PhoneTypeIconForCell
     },
     {
       field: 'login_ip',
@@ -118,7 +97,6 @@ function Index(oProps: any): any {
       description: 'IP',
       sortable: false,
       width: 150
-      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
     },
     {
       field: 'login_datetime',
@@ -126,7 +104,6 @@ function Index(oProps: any): any {
       description: '上次登入应用程序的时间',
       sortable: false,
       width: 200
-      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
     },
     {
       field: 'add_datetime',
@@ -134,7 +111,6 @@ function Index(oProps: any): any {
       description: '初始应用程序的时间',
       sortable: false,
       width: 200
-      // valueGetter: (oParams: any) => `${utilities.dateTime(oParams.getValue(oParams.id, 'addtime') || 0)}`
     }
   ];
 
@@ -191,7 +167,6 @@ function Index(oProps: any): any {
 
   let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iSize = Number(oEvent.target.value);
-    // cSetState({ ...oState, size: iSize });
     cSetInState({ ...oInState, size: iSize });
 
     let oSizeParams = {
