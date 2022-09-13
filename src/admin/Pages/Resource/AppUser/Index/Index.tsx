@@ -330,8 +330,10 @@ function Index(oProps: any): any {
           checkboxSelection={true}
           disableSelectionOnClick={true}
           hideFooterPagination={true}
+          scrollbarSize={0}
           hideFooter={true}
           autoHeight={true}
+          autoPageSize={false}
           disableColumnMenu={true}
           rowHeight={dSizesToHeight[oState.size] ?? dSizesToHeight[10]}
           components={{
