@@ -14,8 +14,10 @@ import AndroidIcon from './AndroidIcon/Index';
 import AppleIcon from './AppleIcon/Index';
 import NoRowsOverlay from './NoRowsOverlay/Index';
 import LoadingOverlay from './LoadingOverlay/Index';
+import Cards from './Cards/Index';
 
 export default {
+  Cards,
   NoRowsOverlay,
   LoadingOverlay,
   Message,

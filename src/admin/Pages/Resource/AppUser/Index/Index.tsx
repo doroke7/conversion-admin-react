@@ -29,7 +29,6 @@ import SearchPannel from './SearchPannel/Index';
 import AvatarForCell from './AvatarForCell/Index';
 import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
 import CardForAppUser from './CardForAppUser/Index';
-import Cards from './Cards/Index';
 
 import style from './style';
 
@@ -341,7 +340,7 @@ function Index(oProps: any): any {
           }}
         />
       </div>
-      <Cards rows={oState.rows} loading={oState.loading} Card={CardForAppUser}></Cards>
+      <Components.Cards rows={oState.rows} loading={oState.loading} Card={CardForAppUser}></Components.Cards>
       <div className={oClasses.paginationWrapper}>
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>

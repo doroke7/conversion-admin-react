@@ -7,7 +7,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import Components from '@/admin/Components/Index';
+import LoadingIcon from './../LoadingIcon/Index';
+import InIcon from './../InIcon/Index';
 
 import cStyle from './style';
 
@@ -15,13 +16,13 @@ function Cards(oProps: any) {
   let oClasses = cStyle();
 
   let aRows = oProps.rows ?? [];
-  let Card = oProps.Card ?? <></>;
+  let Card = oProps.Card ?? (() => <></>);
   let bLoading = oProps.loading ?? false;
 
   let Componet = <div></div>;
   Componet = bLoading ? (
     <div className={oClasses.container}>
-      <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>{' '}
+      <LoadingIcon className={oClasses.loadingIcon}></LoadingIcon>{' '}
     </div>
   ) : (
     Componet
@@ -29,7 +30,7 @@ function Cards(oProps: any) {
   Componet =
     !bLoading && aRows?.length == 0 ? (
       <div className={oClasses.container}>
-        <Components.InIcon className={oClasses.inIcon}></Components.InIcon>
+        <InIcon className={oClasses.inIcon}></InIcon>
         <div className={oClasses.text}>-暂无数据-</div>
       </div>
     ) : (
