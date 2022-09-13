@@ -10,13 +10,25 @@ let oStyle = makeStyles((oTheme: Theme) =>
         maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
       }
     },
-    loadingIcon: {
-      width: oTheme.spacing(8),
-      height: oTheme.spacing(8),
+    container: {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate( -50%, -50%)'
+      transform: 'translate( -50%, -50%)',
+      textAlign: 'center'
+    },
+    loadingIcon: {
+      width: oTheme.spacing(8),
+      height: oTheme.spacing(8)
+    },
+    inIcon: {
+      width: oTheme.spacing(24),
+      height: oTheme.spacing(24)
+    },
+    text: {
+      color: grey[400],
+      fontSize: oTheme.spacing(4),
+      fontWeight: 900
     }
   })
 );

@@ -18,15 +18,39 @@ function Cards(oProps: any) {
   let Card = oProps.Card ?? <></>;
   let bLoading = oProps.loading ?? false;
 
-  return (
-    <div className={oClasses.root}>
-      {bLoading ? (
-        <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>
-      ) : (
-        aRows.map((oRow, iIndex) => <Card key={iIndex} row={oRow}></Card>)
-      )}
+  let Componet = <div></div>;
+  Componet = bLoading ? (
+    <div className={oClasses.container}>
+      <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>{' '}
     </div>
+  ) : (
+    Componet
   );
+  Componet =
+    !bLoading && aRows?.length == 0 ? (
+      <div className={oClasses.container}>
+        <Components.InIcon className={oClasses.inIcon}></Components.InIcon>
+        <div className={oClasses.text}>-暂无数据-</div>
+      </div>
+    ) : (
+      Componet
+    );
+
+  Componet =
+    !bLoading && aRows?.length >= 1 ? (
+      <div className="">
+        {aRows.map((oRow, iIndex) => (
+          <Card key={iIndex} row={oRow}></Card>
+        ))}
+      </div>
+    ) : (
+      Componet
+    );
+
+  return <div className={oClasses.root}>{Componet}</div>;
 }
 
+/**
+ * NOTE: 使用 多个三元一层运算 取代 嵌套三元运算
+ */
 export default Cards;
