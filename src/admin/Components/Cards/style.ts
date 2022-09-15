@@ -6,7 +6,6 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       display: 'none',
       [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit',
         maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
       }
     },
@@ -15,7 +14,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       top: '50%',
       left: '50%',
       transform: 'translate( -50%, -50%)',
-      textAlign: 'center'
+      textAlign: 'center',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      flexDirection: 'row'
     },
     loadingIcon: {
       width: oTheme.spacing(8),

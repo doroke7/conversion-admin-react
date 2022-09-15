@@ -39,7 +39,7 @@ function Cards(oProps: any) {
 
   Componet =
     !bLoading && aRows?.length >= 1 ? (
-      <div className="">
+      <div className={oClasses.container}>
         {aRows.map((oRow, iIndex) => (
           <Card key={iIndex} row={oRow}></Card>
         ))}
