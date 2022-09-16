@@ -78,7 +78,7 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
-        Component: Pages.Resource.None.Index,
+        Component: Pages.Resource.None,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
@@ -89,7 +89,7 @@ let aRoutes = [
         title: '分页未定义',
         text: '',
         icon: 'WarningTwoToneIcon',
-        Component: Pages.Resource.None.Index,
+        Component: Pages.Resource.None,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: false
