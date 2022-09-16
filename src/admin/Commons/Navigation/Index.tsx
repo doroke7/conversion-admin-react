@@ -190,8 +190,11 @@ function Navigation(oProps: any) {
         icon: oMenu.icon,
         content: oMenu.description
       };
+      oRefOfText.current = oMenu.text ?? '';
 
       if (oTabOfMenu) {
+        oRefOfText.current = oMenu.text ?? '';
+
         cSetState({ ...oState, text: oMenu.text });
         let sUrl = utilities.url(oTabOfMenu.path, oParams);
 
@@ -265,7 +268,7 @@ function Navigation(oProps: any) {
           if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
             iValue = iIndexOfTabs;
             // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-            if (aTabs[iIndexOfTabs]['url'] != oTab.url && aTabs[iIndexOfTabs]['text'] != '未定义') {
+            if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
               aTabs[iIndexOfTabs]['text'] = oTab.text;
             }
             aTabs[iIndexOfTabs]['icon'] = oTab.icon;
