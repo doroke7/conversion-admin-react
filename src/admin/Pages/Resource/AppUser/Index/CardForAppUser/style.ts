@@ -4,7 +4,14 @@ import { pink, grey, lightBlue, cyan, indigo, blue, red } from '@material-ui/cor
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      marginBottom: oTheme.spacing(2)
+      marginBottom: oTheme.spacing(2),
+      width: 'calc( 100% / 3 - ' + oTheme.spacing(2 / 3) + 'px)',
+      [oTheme.breakpoints.down('sm')]: {
+        width: 'calc( 100% / 3 - ' + oTheme.spacing(2 / 3) + 'px)'
+      },
+      [oTheme.breakpoints.down('xs')]: {
+        width: 'calc( 100% / 1 - ' + oTheme.spacing(0 / 1) + 'px)'
+      }
     },
     avatar: {
       backgroundColor: red[500]

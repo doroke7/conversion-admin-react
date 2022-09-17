@@ -24,7 +24,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'absolute',
       padding: oTheme.spacing(2),
       height: 'calc( 100% - ' + oTheme.spacing(2) * 2 + 'px )',
-      width: 'calc( 100% - ' + oTheme.spacing(2) * 2 + 'px )'
+      width: 'calc( 100% - ' + oTheme.spacing(2) * 2 + 'px )',
+      [oTheme.breakpoints.down('sm')]: {
+        padding: oTheme.spacing(1)
+      }
     }
   })
 );
