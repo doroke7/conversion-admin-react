@@ -24,7 +24,7 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     submitButton: {
-      width: oTheme.spacing(20),
+      width: oTheme.spacing(12),
       [oTheme.breakpoints.down('sm')]: {
         width: '100%',
         height: oTheme.spacing(7)

@@ -8,6 +8,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'relative',
       marginTop: oTheme.spacing(1),
       marginBottom: oTheme.spacing(3),
+      justifyContent: 'space-between',
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
       }
