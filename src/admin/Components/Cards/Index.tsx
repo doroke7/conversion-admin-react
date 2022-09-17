@@ -21,7 +21,7 @@ function Cards(oProps: any) {
 
   let Componet = <div></div>;
   Componet = bLoading ? (
-    <div className={oClasses.container}>
+    <div className={oClasses.iconWrapper}>
       <LoadingIcon className={oClasses.loadingIcon}></LoadingIcon>{' '}
     </div>
   ) : (
@@ -29,7 +29,7 @@ function Cards(oProps: any) {
   );
   Componet =
     !bLoading && aRows?.length == 0 ? (
-      <div className={oClasses.container}>
+      <div className={oClasses.iconWrapper}>
         <InIcon className={oClasses.inIcon}></InIcon>
         <div className={oClasses.text}>-暂无数据-</div>
       </div>
@@ -39,7 +39,7 @@ function Cards(oProps: any) {
 
   Componet =
     !bLoading && aRows?.length >= 1 ? (
-      <div className={oClasses.container}>
+      <div className={oClasses.cardsWrapper}>
         {aRows.map((oRow, iIndex) => (
           <Card key={iIndex} row={oRow}></Card>
         ))}

@@ -6,15 +6,18 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       display: 'none',
       [oTheme.breakpoints.down('sm')]: {
+        display: 'inherit',
         maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
       }
     },
-    container: {
+    iconWrapper: {
       position: 'absolute',
       top: '50%',
       left: '50%',
       transform: 'translate( -50%, -50%)',
-      textAlign: 'center',
+      textAlign: 'center'
+    },
+    cardsWrapper: {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
