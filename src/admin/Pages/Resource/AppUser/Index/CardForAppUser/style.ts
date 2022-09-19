@@ -11,6 +11,12 @@ let oStyle = makeStyles((oTheme: Theme) =>
       },
       [oTheme.breakpoints.down('xs')]: {
         width: 'calc( 100% / 1 - ' + oTheme.spacing(0 / 1) + 'px)'
+      },
+      '& .MuiCardHeader-title': {
+        maxWidth: oTheme.spacing(10)
+      },
+      '& .MuiCardHeader-subheader': {
+        maxWidth: oTheme.spacing(10)
       }
     },
     avatar: {

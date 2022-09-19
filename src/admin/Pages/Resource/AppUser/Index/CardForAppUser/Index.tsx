@@ -53,6 +53,8 @@ function CardForAppUser(oProps: any) {
             <MoreVertIcon />
           </IconButton>
         }
+        titleTypographyProps={{ noWrap: true, classes: {} }}
+        subheaderTypographyProps={{ noWrap: true }}
         title={sId}
         subheader={sUsername}></CardHeader>
       <CardMedia className={oClasses.cardMedia} image={sPic} title={sUsername} />
@@ -61,7 +63,7 @@ function CardForAppUser(oProps: any) {
           <VipIcon className={oClasses.badgeIcon}></VipIcon>
           <PhoneTypeIcon className={oClasses.badgeIcon}></PhoneTypeIcon>
         </Typography>
-        <Typography>{sCodeNumber}</Typography>
+        <Typography noWrap={true}>{sCodeNumber}</Typography>
       </CardContent>
     </Card>
   );

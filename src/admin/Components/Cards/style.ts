@@ -7,7 +7,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       display: 'none',
       [oTheme.breakpoints.down('sm')]: {
         display: 'inherit',
-        maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
+        maxWidth: 'calc( 100% - ' + oTheme.spacing(4) + 'px )'
       }
     },
     iconWrapper: {

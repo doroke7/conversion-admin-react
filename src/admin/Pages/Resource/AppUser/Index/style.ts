@@ -38,14 +38,6 @@ const style = makeStyles((oTheme: Theme): any =>
       height: oTheme.spacing(4),
       borderRadius: oTheme.spacing(0.5)
     },
-
-    cards: {
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit',
-        maxWidth: 'calc( 100% - ' + oTheme.spacing(7) + 'px )'
-      }
-    },
     dataGridWrapper: {
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
@@ -83,7 +75,7 @@ const style = makeStyles((oTheme: Theme): any =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      marginRight: oTheme.spacing(1),
+      marginRight: oTheme.spacing(0),
       marginTop: oTheme.spacing(1),
       paddingTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
@@ -92,6 +84,7 @@ const style = makeStyles((oTheme: Theme): any =>
         position: 'fixed',
         bottom: '0%',
         right: '0%',
+        width: oTheme.spacing(7),
         height: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
         marginTop: oTheme.spacing(0),
         paddingTop: oTheme.spacing(0),
