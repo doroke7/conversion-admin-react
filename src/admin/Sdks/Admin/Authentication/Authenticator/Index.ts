@@ -1,7 +1,7 @@
 import Helpers from '@/admin/Helpers/Index';
 
 class Authenticator {
-  public static async postSignIn(sUsername, sPassword) {
+  public static async postSignIn(sname: string, sPassword: string) {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/signIn',
       // API 中，问号拼接的 参数。 如 ?option={}&query={}
@@ -12,7 +12,7 @@ class Authenticator {
       // API 中，以 Body 传参
       data: {
         param: {
-          username: sUsername,
+          name: sname,
           password: sPassword
         }
       }

@@ -21,12 +21,12 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     debugAlert: {
       // 1，前端-未知的错误，
-      backgroundColor: grey[700]
+      backgroundColor: grey[500]
     },
 
     infoAlert: {
       // 0, 前端资讯讯息，后端-资讯讯息
-      backgroundColor: green[500]
+      backgroundColor: blue[500]
     },
     noticeAlert: {
       // -1，前端-警告，注意错误
@@ -44,6 +44,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
     fatalAlert: {
       // -4：后端-系统错误
       backgroundColor: pink[300]
+    },
+
+    unkownAlert: {
+      // -5：后端-未知错误
+      backgroundColor: grey[800]
     },
 
     alertTitle: { fontWeight: 900 },

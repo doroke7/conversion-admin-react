@@ -97,7 +97,7 @@ function Pannel(oProps: any): any {
       }
 
       if (!sJwt) {
-        throw new Exception('接口缺少令牌', -2);
+        throw new Exception('登入响应缺少令牌', -3);
       }
       cSetState({ ...oState, loading: true, pannelAnimation: true });
 

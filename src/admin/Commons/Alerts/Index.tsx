@@ -49,21 +49,30 @@ function Alerts(oProps: any): any {
     '-2': '警告异常', // warning
     '-3': '程序错误', // error
     '-4': '系统奔溃', // fatal
-    '-9999': '未知情形' // unknown
+    '-5': '未知情形' // unknown
   };
 
   let dCodesToIcons = {
-    '1': CheckCircleTwoToneIcon, // success
-    '0': InfoTwoToneIcon, // info
+    '1': InfoTwoToneIcon, // debug
+    '0': CheckCircleTwoToneIcon, // info for success
     '-1': NotificationImportantTwoToneIcon, // notice
     '-2': ReportProblemTwoToneIcon, // warning
     '-3': BugReportTwoToneIcon, // error
     '-4': ReportOffTwoToneIcon, // fatal
-    '-9999': HelpTwoToneIcon // unknown
+    '-5': HelpTwoToneIcon // unknown
   };
 
-  let sTitle = dCodesToTitles[oState.code] ?? dCodesToTitles['-9999'];
-  let Icon = dCodesToIcons[oState.code] ?? dCodesToIcons['-9999'];
+  let sTitle = dCodesToTitles['-5'];
+  let Icon = dCodesToIcons['-5'];
+
+  sTitle = dCodesToTitles[oState.code] ?? sTitle;
+  Icon = dCodesToIcons[oState.code] ?? Icon;
+
+  sTitle = oState.code > 1 ? dCodesToTitles['1'] : sTitle;
+  Icon = oState.code > 1 ? dCodesToIcons['1'] : Icon;
+
+  sTitle = oState.code < -4 ? dCodesToTitles['-5'] : sTitle;
+  Icon = oState.code < -4 ? dCodesToIcons['-5'] : Icon;
 
   useLayoutEffect(() => {
     let cAlert = (oMessage: any) => {
@@ -99,7 +108,8 @@ function Alerts(oProps: any): any {
           [oClasses.noticeAlert]: oState.code == -1,
           [oClasses.warnAlert]: oState.code == -2,
           [oClasses.errorAlert]: oState.code == -3,
-          [oClasses.fatalAlert]: oState.code < -3 || oState.code > 2
+          [oClasses.fatalAlert]: oState.code == -4,
+          [oClasses.unkownAlert]: oState.code < -4 || oState.code > 2
         })}
         icon={<Icon />}
         onClose={cHandleClose}
