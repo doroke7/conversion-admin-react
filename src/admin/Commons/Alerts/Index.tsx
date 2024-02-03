@@ -8,10 +8,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+import ReportTwoToneIcon from '@material-ui/icons/ReportTwoTone';
 import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
 import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
 import BackspaceTwoToneIcon from '@material-ui/icons/BackspaceTwoTone';
+import NotificationImportantTwoToneIcon from '@material-ui/icons/NotificationImportantTwoTone';
 import ReportOffTwoToneIcon from '@material-ui/icons/ReportOffTwoTone';
+import BugReportTwoToneIcon from '@material-ui/icons/BugReportTwoTone';
 import HelpTwoToneIcon from '@material-ui/icons/HelpTwoTone';
 import events from '@/admin/events/index';
 
@@ -40,21 +43,21 @@ function Alerts(oProps: any): any {
   };
 
   let dCodesToTitles = {
-    '1': '成功', // success
-    '0': '资讯', // info
-    '-1': '注意', // notice
+    '1': '打印资料', // success
+    '0': '成功讯息', // info
+    '-1': '注意事项', // notice
     '-2': '警告异常', // warning
-    '-3': '程序异常', // error
-    '-4': '系统异常', // fatal
-    '-9999': '未知异常' // unknown
+    '-3': '程序错误', // error
+    '-4': '系统奔溃', // fatal
+    '-9999': '未知情形' // unknown
   };
 
   let dCodesToIcons = {
     '1': CheckCircleTwoToneIcon, // success
     '0': InfoTwoToneIcon, // info
-    '-1': ReportProblemTwoToneIcon, // notice
+    '-1': NotificationImportantTwoToneIcon, // notice
     '-2': ReportProblemTwoToneIcon, // warning
-    '-3': CancelTwoToneIcon, // error
+    '-3': BugReportTwoToneIcon, // error
     '-4': ReportOffTwoToneIcon, // fatal
     '-9999': HelpTwoToneIcon // unknown
   };
@@ -91,12 +94,12 @@ function Alerts(oProps: any): any {
       action={<></>}>
       <Alert
         className={clsx(oClasses.alert, {
-          [oClasses.successAlert]: oState.code == 2,
-          [oClasses.infoAlert]: oState.code == 1,
-          [oClasses.warningAlert]: oState.code == -1,
-          [oClasses.errorAlert]: oState.code == -2,
-          [oClasses.fatalAlert]: oState.code == -3,
-          [oClasses.unknownAlert]: oState.code < -3 || oState.code > 2
+          [oClasses.debugAlert]: oState.code >= 1,
+          [oClasses.infoAlert]: oState.code == 0,
+          [oClasses.noticeAlert]: oState.code == -1,
+          [oClasses.warnAlert]: oState.code == -2,
+          [oClasses.errorAlert]: oState.code == -3,
+          [oClasses.fatalAlert]: oState.code < -3 || oState.code > 2
         })}
         icon={<Icon />}
         onClose={cHandleClose}

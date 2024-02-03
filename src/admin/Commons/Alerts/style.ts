@@ -19,30 +19,33 @@ let oStyle = makeStyles((oTheme: Theme) =>
     alert: {
       color: oTheme.palette.background.paper
     },
-    successAlert: {
-      // 2，后端-正确讯息
-      backgroundColor: blue[500]
-    },
-    infoAlert: {
-      // 1, 前端资讯讯息，后端-资讯讯息
-      backgroundColor: green[500]
-    },
-    warningAlert: {
-      // -1，前端-警告，后端注意错误
-      backgroundColor: green[500]
-    },
-    errorAlert: {
-      // -2, 后端-警告的错误
-      backgroundColor: orange[500]
-    },
-    fatalAlert: {
-      // -3：后端-程序错误 , -4： 后端-系统错误
-      backgroundColor: pink[500]
-    },
-    unknownAlert: {
-      // -9999，前端-未知的错误，
+    debugAlert: {
+      // 1，前端-未知的错误，
       backgroundColor: grey[700]
     },
+
+    infoAlert: {
+      // 0, 前端资讯讯息，后端-资讯讯息
+      backgroundColor: green[500]
+    },
+    noticeAlert: {
+      // -1，前端-警告，注意错误
+      backgroundColor: green[500]
+    },
+    warnAlert: {
+      // -2, 后端-警告错误
+      backgroundColor: orange[500]
+    },
+    errorAlert: {
+      // -3：后端-程序错误
+      backgroundColor: red[500]
+    },
+
+    fatalAlert: {
+      // -4：后端-系统错误
+      backgroundColor: pink[300]
+    },
+
     alertTitle: { fontWeight: 900 },
     message: { fontWeight: 100 }
   })
