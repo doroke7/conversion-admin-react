@@ -1,6 +1,6 @@
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
-
+import Exception from '@/admin/Exception/Index';
 import Helpers from '@/admin/Helpers/Index';
 import CONFIGS from '@/CONFIGS/INDEX';
 import utilities from '@/admin/utilities/index';
@@ -86,19 +86,24 @@ class AdminHelper {
 
   public static response(oResponse: any): any {
     let oRaw = {};
-    let sKeys = oResponse?.headers?.['keys'] ?? '';
-    sKeys = sKeys == '' ? sKeys : Helpers.Rsa.decode(sKeys);
+    try {
+      let sKeys = oResponse?.headers?.['keys'] ?? '';
+      sKeys = sKeys == '' ? sKeys : Helpers.Rsa.decode(sKeys);
 
-    let oKeys = sKeys == '' ? {} : JSON.parse(sKeys);
-    let sKey = oKeys?.['key'] ?? '';
-    let sIv = oKeys?.['iv'] ?? '';
+      let oKeys = sKeys == '' ? {} : JSON.parse(sKeys);
+      let sKey = oKeys?.['key'] ?? '';
+      let sIv = oKeys?.['iv'] ?? '';
 
-    let sResult = oResponse?.data?.result ?? '';
+      let sResult = oResponse?.data?.result ?? '';
 
-    if (sResult && sKey && sIv) {
-      let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
-      oRaw = JSON.parse(sRaw);
-      oResponse.data.raw = oRaw;
+      if (sResult && sKey && sIv) {
+        let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
+        oRaw = JSON.parse(sRaw);
+        oResponse.data.raw = oRaw;
+      }
+    } catch (oExcepiton) {
+      let sMessage = '响应解密失败' + ': ' + oExcepiton.message ?? '';
+      throw new Exception(sMessage, -2);
     }
 
     return oResponse;

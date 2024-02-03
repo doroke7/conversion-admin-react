@@ -9,7 +9,8 @@ import {
   pink,
   red,
   orange,
-  green
+  green,
+  yellow
 } from '@material-ui/core/colors';
 
 let oStyle = makeStyles((oTheme: Theme) =>
@@ -20,11 +21,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     successAlert: {
       // 2，后端-正确讯息
-      backgroundColor: green[500]
+      backgroundColor: blue[500]
     },
     infoAlert: {
       // 1, 前端资讯讯息，后端-资讯讯息
-      backgroundColor: blue[500]
+      backgroundColor: green[500]
     },
     warningAlert: {
       // -1，前端-警告，后端警告
@@ -32,11 +33,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     errorAlert: {
       // -2, 后端-业务级别的错误
-      backgroundColor: pink[300]
+      backgroundColor: red[500]
     },
     criticalAlert: {
       // -3, 后端-系统错误
-      backgroundColor: red[500]
+      backgroundColor: pink[500]
     },
     unknownAlert: {
       // -9999，前端-未知的错误，
