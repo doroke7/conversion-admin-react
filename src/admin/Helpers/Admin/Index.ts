@@ -76,10 +76,17 @@ class AdminHelper {
     let sParam = oData.param;
     let sSalt = CONFIGS.API.SALT;
 
-    let sSignature1 = CryptoJS.MD5(sJwt + ';' + sVersion + ';' + sVer + ';' + sKeys + ';' + sTime).toString();
-    let sSignature2 = CryptoJS.MD5(sSearch + '&' + sOption).toString();
-    let sSignature3 = CryptoJS.MD5(sParam).toString();
-    let sSignature = CryptoJS.MD5(sSignature1 + '+' + sSignature2 + '+' + sSignature3 + '+' + sSalt).toString();
+    let sBeforeSignature1 = sVersion + '-' + sVer + '-' + sJwt + '-' + sKeys + '-' + sTime;
+    let sBeforeSignature2 = sSearch + '-' + sOption;
+    let sBeforeSignature3 = sParam;
+
+    let sSignature1 = CryptoJS.MD5(sBeforeSignature1 + '|' + sSalt).toString();
+    let sSignature2 = CryptoJS.MD5(sBeforeSignature1 + '|' + sBeforeSignature2 + '|' + sSalt).toString();
+    let sSignature3 = CryptoJS.MD5(
+      sBeforeSignature1 + '|' + sBeforeSignature2 + '|' + sBeforeSignature3 + '|' + sSalt
+    ).toString();
+
+    let sSignature = sSignature1 + sSignature2 + sSignature3;
 
     return sSignature;
   }
@@ -87,12 +94,12 @@ class AdminHelper {
   public static response(oResponse: any): any {
     let oRaw = {};
     try {
-      let sKeys = oResponse?.headers?.['keys'] ?? '';
+      let sKeys = oResponse?.headers?.keys ?? '';
       sKeys = sKeys == '' ? sKeys : Helpers.Rsa.decode(sKeys);
 
       let oKeys = sKeys == '' ? {} : JSON.parse(sKeys);
-      let sKey = oKeys?.['key'] ?? '';
-      let sIv = oKeys?.['iv'] ?? '';
+      let sKey = oKeys?.key ?? '';
+      let sIv = oKeys?.iv ?? '';
 
       let sResult = oResponse?.data?.result ?? '';
 

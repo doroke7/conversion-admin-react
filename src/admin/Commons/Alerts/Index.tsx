@@ -40,22 +40,22 @@ function Alerts(oProps: any): any {
   };
 
   let dCodesToTitles = {
-    '2': '成功', // success
-    '1': '资讯', // info
-    '0': '', //
-    '-1': '警告', // warning
-    '-2': '错误', // error
-    '-3': '严重', // critical
-    '-9999': '未知' // unknown
+    '1': '成功', // success
+    '0': '资讯', // info
+    '-1': '注意', // notice
+    '-2': '警告异常', // warning
+    '-3': '程序异常', // error
+    '-4': '系统异常', // fatal
+    '-9999': '未知异常' // unknown
   };
 
   let dCodesToIcons = {
-    '2': CheckCircleTwoToneIcon, // success
-    '1': InfoTwoToneIcon, // info
-    '0': '', //
-    '-1': ReportProblemTwoToneIcon, // warning
-    '-2': CancelTwoToneIcon, // error
-    '-3': ReportOffTwoToneIcon, // critical
+    '1': CheckCircleTwoToneIcon, // success
+    '0': InfoTwoToneIcon, // info
+    '-1': ReportProblemTwoToneIcon, // notice
+    '-2': ReportProblemTwoToneIcon, // warning
+    '-3': CancelTwoToneIcon, // error
+    '-4': ReportOffTwoToneIcon, // fatal
     '-9999': HelpTwoToneIcon // unknown
   };
 
@@ -95,7 +95,7 @@ function Alerts(oProps: any): any {
           [oClasses.infoAlert]: oState.code == 1,
           [oClasses.warningAlert]: oState.code == -1,
           [oClasses.errorAlert]: oState.code == -2,
-          [oClasses.criticalAlert]: oState.code == -3,
+          [oClasses.fatalAlert]: oState.code == -3,
           [oClasses.unknownAlert]: oState.code < -3 || oState.code > 2
         })}
         icon={<Icon />}
