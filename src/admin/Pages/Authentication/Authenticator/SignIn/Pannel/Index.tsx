@@ -89,7 +89,7 @@ function Pannel(oProps: any): any {
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       let sJwt = oResponse?.headers?.authorization ?? '';
       if (oResponse?.data?.code === undefined) {
-        throw new Exception('服务器异常', -3);
+        throw new Exception('服务器异常', -4);
       }
 
       if (oResponse && oResponse?.data?.code <= -1) {
@@ -97,7 +97,7 @@ function Pannel(oProps: any): any {
       }
 
       if (!sJwt) {
-        throw new Exception('登入响应缺少令牌', -3);
+        throw new Exception('登入响应缺少令牌', -2);
       }
       cSetState({ ...oState, loading: true, pannelAnimation: true });
 
