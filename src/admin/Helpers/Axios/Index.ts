@@ -86,7 +86,7 @@ class AxiosHelper {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
       if (!bConcurrent) {
-        let iIndex;
+        let iIndex = 0;
         let iLength = aRequests.length;
         for (iIndex = 0; iIndex < iLength; iLength++) {
           let oRequest = aRequests[iIndex];
