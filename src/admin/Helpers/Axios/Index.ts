@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 
@@ -24,7 +24,7 @@ class AxiosHelper {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
       if (!bConcurrent) {
-        let iIndex;
+        let iIndex = 0;
         let iLength = aRequests.length;
         for (iIndex = 0; iIndex < iLength; iLength++) {
           let oRequest = aRequests[iIndex];
@@ -40,6 +40,7 @@ class AxiosHelper {
           try {
             oAxiosResponse = await axios.get(_sUrl, oOptions);
           } catch (oExcepiton) {
+
             oAxiosResponse = oExcepiton.response;
           }
 
@@ -59,7 +60,7 @@ class AxiosHelper {
 
           oOptions['params'] = oParams;
 
-          let oAxiosResponse;
+          let oAxiosResponse = null;
           try {
             oAxiosResponse = await axios.get(_sUrl, oOptions);
           } catch (oExcepiton) {
@@ -78,9 +79,9 @@ class AxiosHelper {
 
   public static async post(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
     let bConcurrent = !Object.prototype.hasOwnProperty.call(oConfigs, 'concurrent') || oConfigs.concurrent;
-    let oParams;
-    let oData;
-    let oOptions;
+    let oParams = {};
+    let oData = {};
+    let oOptions = {};
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
@@ -96,7 +97,7 @@ class AxiosHelper {
           oOptions = oRequest.options;
           oOptions['params'] = oParams;
 
-          let oAxiosResponse;
+          let oAxiosResponse = null;
           try {
             oAxiosResponse = await axios.post(_sUrl, oData, oOptions);
           } catch (oExcepiton) {
@@ -158,13 +159,13 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} bConcurrent Use polling (recursive) to send the request
    */
-  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
+  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
 
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
+  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
 }
 export default AxiosHelper;
