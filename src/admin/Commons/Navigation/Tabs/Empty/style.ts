@@ -8,7 +8,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      animation: '$ripple 0.3s ease-in-out 0s 1 alternate, $upAndDown 2s linear 0.3s infinite both'
+      animation: '$ripple 1.4s ease-in-out 0s infinite alternate'
     },
     text: {
       textAlign: 'center',
@@ -18,30 +18,14 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     '@keyframes ripple': {
       '0%': {
-        transform: 'translate(-50%, -50%) scale(.8)',
-        opacity: 0
+        transform: 'translate(-50%, -50%) scale(1.00)',
+        opacity: 1
       },
       '100%': {
-        transform: 'translate(-50%, -50%) scale(1)',
+        transform: 'translate(-50%, -50%) scale(1.06)',
         opacity: 1
       }
     },
-    '@keyframes upAndDown': {
-      '0%': {
-        transform: 'translate(-50%, -50%)'
-      },
-
-      '20%': {
-        transform: 'translate(-50%, -52%)'
-      },
-
-      '75%': {
-        transform: 'translate(-50%, -48%)'
-      },
-      '100%': {
-        transform: 'translate(-50%, -50%)'
-      }
-    }
   })
 );
 
