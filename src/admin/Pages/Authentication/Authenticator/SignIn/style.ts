@@ -7,7 +7,8 @@ const style = makeStyles((oTheme: Theme): any =>
       flexGrow: 1,
       backgroundColor: grey[50],
       height: '100vh',
-      position: 'relative'
+      position: 'relative',
+      overflow: 'hidden',
     },
     middle: {
       width: '100%',
