@@ -4,9 +4,8 @@ import CONFIGS from '@/CONFIGS/INDEX';
 
 const API = CONFIGS.API;
 
-let sHost = API.HOST.replace(/\/$/, '');
+let sHost = API.PROTOCOL + '://' + API.HOST.replace(/\/$/, '');
 
-sHost = /^http(s)?:\/\//.test(sHost) ? sHost : window.location.protocol + '//' + sHost;
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 
 /**

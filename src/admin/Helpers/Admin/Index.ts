@@ -7,9 +7,8 @@ import utilities from '@/admin/utilities/index';
 
 const API = CONFIGS.API;
 
-let sHost = API.HOST.replace(/\/$/, '');
+let sHost = API.PROTOCOL + '://' + API.HOST.replace(/\/$/, '');
 
-sHost = /^http(s)?:\/\//.test(sHost) ? sHost : window.location.protocol + '//' + sHost;
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 
 /**
@@ -296,13 +295,13 @@ class AdminHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} bConcurrent Use polling (recursive) to send the request
    */
-  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
+  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
 
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
+  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
 }
 export default AdminHelper;
