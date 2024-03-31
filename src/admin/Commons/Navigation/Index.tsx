@@ -318,6 +318,10 @@ function Navigation(oProps: any) {
     };
   }, [oState.open]);
 
+  useEffect(() => {
+
+  }, []);
+
   let cHandleLoad = (oEvent) => {
     let iWidth = oRefOfDom.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
