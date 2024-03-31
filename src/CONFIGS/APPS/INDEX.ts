@@ -1,22 +1,27 @@
 const APPS: any = [
   {
     id: 1,
-    name: '加菲猫影视',
+    name: 'JF',
+    title: '加菲影视',
     describtion: '最热最全影视库'
   },
   {
     id: 2,
-    name: '青山影视',
+    name: 'QS',
+    title: '青山影视',
+
     describtion: '剧院热映超前看'
   },
   {
     id: 3,
-    name: '松鼠影视',
+    name: 'SS',
+    title: '松鼠影视',
     describtion: '24小时同步更新'
   },
   {
     id: 4,
-    name: '瓜子影视',
+    name: 'Gz',
+    title: '瓜子影视',
     describtion: '已停止维护'
   }
 ];
