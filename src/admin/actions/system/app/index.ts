@@ -2,16 +2,16 @@ import Helpers from '@/admin/Helpers/Index';
 
 let cShow: any = (oRaw: any) => {
   return {
-    type: 'SYSTEM_MENU',
+    type: 'SYSTEM_APP',
     raw: oRaw
   };
 };
 
-let oMenuAction: any = {
-  show(oParams: any, oData: any) {
+let oAppAction: any = {
+  shows(oParams: any, oData: any) {
     return async (cDispatch: any) => {
       let oResponse = await Helpers.Axios.post({
-        path: '/Admin/System/Menu/show',
+        path: '/Admin/System/Spp/ShowOnes',
         params: oParams,
         data: oData
       });
@@ -24,7 +24,7 @@ let oMenuAction: any = {
         throw new Error(oResponse.message);
       };
 
-      if (!oResponse.raw || !Object.prototype.hasOwnProperty.call(oResponse.raw, 'list') || !oResponse.raw.list) {
+      if (!oResponse.raw || !Object.prototype.hasOwnProperty.call(oResponse.raw, 'ones') || !oResponse.raw.list) {
         throw new Error('接口格式异常');
       };
 
@@ -33,4 +33,4 @@ let oMenuAction: any = {
   }
 };
 
-export default oMenuAction;
+export default oAppAction;
