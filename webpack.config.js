@@ -28,13 +28,13 @@ let sVersion = sY + sM + sD;
 
 module.exports = (env, argvs) => {
 
-  
+
   return {
     mode: 'development',
     entry: {
-      admin: './src/admin/entry/index.ts',     
-      service: './src/service/entry/index.ts', 
-      test: './src/test/entry/index.ts', 
+      admin: './src/admin/entry/index.ts',
+      service: './src/service/entry/index.ts',
+      test: './src/test/entry/index.ts',
 
     },
     resolve: {
@@ -69,7 +69,7 @@ module.exports = (env, argvs) => {
         ],
         verbose: true,
       },
-       allowedHosts: [
+      allowedHosts: [
         'admin.fea.jiafeimao.com',
         // '127.0.0.1',
         // 'localhost'
@@ -211,10 +211,10 @@ module.exports = (env, argvs) => {
             'react-dom',
             'react-router-dom',
             'redux',
+            'react-redux',
             'redux-thunk',
-            'redux-react-hook',
-            '@material-ui/core', 
-            '@mui/x-data-grid', 
+            '@material-ui/core',
+            '@mui/x-data-grid',
 
           ],
           'test': [

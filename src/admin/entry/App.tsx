@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { StoreContext } from 'redux-react-hook';
+import { Provider } from 'react-redux';
+
 
 import store from '@/admin/store/index';
 import router from '@/admin/router/index';
@@ -46,13 +47,13 @@ function App(oProps: any) {
   });
 
   return (
-    <StoreContext.Provider value={store}>
+    <Provider store={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
         <Commons.Progress></Commons.Progress>
         <Commons.Alerts></Commons.Alerts>
         <Pages._></Pages._>
       </div>
-    </StoreContext.Provider>
+    </Provider>
   );
 }
 

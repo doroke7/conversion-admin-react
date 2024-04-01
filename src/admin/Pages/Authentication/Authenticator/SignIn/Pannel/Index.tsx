@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 
 import { useHistory, useLocation } from 'react-router-dom';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
@@ -29,14 +29,13 @@ interface State {
   pannelAnimation: boolean;
   usernameError: boolean;
   passwordError: boolean;
-}
+};
 
 const ENTER_CODE = 13;
 
 function Pannel(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  const jwt = useMappedState((state) => state.jwt);
 
   let oDispatch = useDispatch();
   let oHistory = useHistory();
