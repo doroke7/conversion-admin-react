@@ -46,9 +46,9 @@ function Navigation(oProps: any) {
 
   let oParams: any = useParams();
 
-  let sJwt = useSelector((oState: any) => (oState?.jwt ?? ''));
+  let oAny = useSelector((oState: any) => (oState));
 
-  console.log('sJwt========', sJwt);
+  console.log('oAny========', oAny);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
