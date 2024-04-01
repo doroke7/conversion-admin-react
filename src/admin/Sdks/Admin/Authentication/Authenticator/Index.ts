@@ -45,7 +45,7 @@ class Authenticator {
 
       params: {
         option: {},
-        query: {}
+        search: {}
       },
 
       data: {

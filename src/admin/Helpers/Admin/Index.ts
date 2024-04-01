@@ -72,7 +72,7 @@ class AdminHelper {
 
     let sSearch = oParams.search;
     let sOption = oParams.option;
-    let sParam = oData.param;
+    let sParam = oData?.param ?? ''; // IMPORTANT!! POST 的 { "param": ""} 有可能为 空字串
     let sSalt = CONFIGS.API.SALT;
 
     let sBeforeSignature1 = sVersion + '-' + sVer + '-' + sJwt + '-' + sKeys + '-' + sTime;
@@ -116,15 +116,16 @@ class AdminHelper {
   }
 
   public static async get(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
+
     let bConcurrent = !Object.prototype.hasOwnProperty.call(oConfigs, 'concurrent') || oConfigs.concurrent;
     let oParams;
-    let oData;
+    let oData = {} // IMPORTANT !! GET 方法固定没有 post { "param": '' } 参数;
     let oOptions;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
       let aResponses: any[] = [];
       if (!bConcurrent) {
-        let iIndex;
+        let iIndex = 0;
         let iLength = aRequests.length;
         for (iIndex = 0; iIndex < iLength; iLength++) {
           let oRequest = aRequests[iIndex];
@@ -133,7 +134,6 @@ class AdminHelper {
           let sIv = utilities.randString(16);
 
           oParams = AdminHelper.params(oRequest.params, sKey, sIv);
-          oData = AdminHelper.data(oRequest.data, sKey, sIv);
           oOptions = AdminHelper.options(oRequest.options, sKey, sIv);
 
           oOptions['params'] = oParams;
@@ -161,7 +161,6 @@ class AdminHelper {
           let sIv = utilities.randString(16);
 
           oParams = AdminHelper.params(oRequest.params, sKey, sIv);
-          oData = AdminHelper.data(oRequest.data, sKey, sIv);
           oOptions = AdminHelper.options(oRequest.options, sKey, sIv);
 
           oOptions['params'] = oParams;
@@ -187,17 +186,17 @@ class AdminHelper {
     let sIv = utilities.randString(16);
 
     oParams = AdminHelper.params(oRequest.params, sKey, sIv);
-    oData = AdminHelper.data(oRequest.data, sKey, sIv);
     oOptions = AdminHelper.options(oRequest.options, sKey, sIv);
     oOptions['params'] = oParams;
-    oOptions['headers']['Signature'] = AdminHelper.sign(oParams, oData, oOptions);
+    let sSignature = AdminHelper.sign(oParams, oData, oOptions);
+    oOptions['headers']['Signature'] = sSignature;
 
     let oAxiosResponse;
     try {
       oAxiosResponse = await axios.get(sUrl, oOptions);
     } catch (oExcepiton) {
       oAxiosResponse = oExcepiton.response;
-    }
+    };
     let oResponse = AdminHelper.response(oAxiosResponse);
     return oResponse;
   }

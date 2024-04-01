@@ -6,7 +6,7 @@ import reduxThunk from 'redux-thunk';
 import reducers from '@/admin/reducers/index';
 
 const oReducer = combineReducers({
-  jwt: reducers.authenticationAuthenticator,
+  auhorization: reducers.authenticationAuthenticator,
 });
 
 const oStore: any = createStore(

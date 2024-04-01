@@ -9,7 +9,7 @@ class App {
 
       params: {
         option: {},
-        query: {}
+        search: {}
       },
 
       data: {

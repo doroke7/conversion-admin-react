@@ -24,12 +24,14 @@ import LargeMenus from './LargeMenus/Index';
 import SmallMenus from './SmallMenus/Index';
 import Tabs from './Tabs/Index';
 import AlertOfApps from './AlertOfApps/Index';
+import Sdks from '@/admin/Sdks/Index';
 
 import style from './style';
 
 let oTheme = createTheme({});
 
 function Navigation(oProps: any) {
+
   let oClasses = style(void 0);
   let children = oProps.children ?? <></>;
   let oHistory = useHistory();
@@ -46,9 +48,15 @@ function Navigation(oProps: any) {
 
   let oParams: any = useParams();
 
-  let oAny = useSelector((oState: any) => (oState));
+  let sAuhorization = useSelector((oState: any) => (oState.auhorization));
 
-  console.log('oAny========', oAny);
+  useEffect(() => {
+    (async () => {
+      let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree();
+
+      console.log(oResponse);
+    })();
+  });
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -57,8 +65,7 @@ function Navigation(oProps: any) {
       let aTabsRows1 = aTabs.slice(0, iIndex);
       let aTabsRows2 = aTabs.slice(iIndex + 1, oState.tabs.length);
       aTabs = aTabsRows1.concat(aTabsRows2);
-      // 如果当下关闭的 tab 大于 当下启用的 tab => 当下启用的 tab 不变
-      // 如果当下关闭的 tab 小于等于 当下启用的 tab => 当下启用的 tab 往前移动一个
+
       let iValue = 0;
       iValue = iIndex > oState.value ? oState.value : oState.value - 1;
       iValue = iValue < -1 ? -1 : iValue;

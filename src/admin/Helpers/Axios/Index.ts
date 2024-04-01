@@ -41,14 +41,14 @@ class AxiosHelper {
           } catch (oExcepiton) {
 
             oAxiosResponse = oExcepiton.response;
-          }
+          };
 
           let oResponse = oAxiosResponse;
           aResponses.push(oResponse);
-        }
+        };
 
         return aResponses;
-      }
+      };
 
       aResponses = await Promise.all(
         aRequests.map(async (oRequest) => {
