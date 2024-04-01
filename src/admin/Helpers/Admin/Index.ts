@@ -73,17 +73,19 @@ class AdminHelper {
     let sSearch = oParams.search;
     let sOption = oParams.option;
     let sParam = oData?.param ?? ''; // IMPORTANT!! POST 的 { "param": ""} 有可能为 空字串
-    let sSalt = CONFIGS.API.SALT;
+    let sSalt = CONFIGS?.API?.SALT ?? '';
 
     let sBeforeSignature1 = sVersion + '-' + sVer + '-' + sJwt + '-' + sKeys + '-' + sTime;
     let sBeforeSignature2 = sSearch + '-' + sOption;
     let sBeforeSignature3 = sParam;
 
-    let sSignature1 = CryptoJS.MD5(sBeforeSignature1 + '|' + sSalt).toString();
-    let sSignature2 = CryptoJS.MD5(sBeforeSignature1 + '|' + sBeforeSignature2 + '|' + sSalt).toString();
-    let sSignature3 = CryptoJS.MD5(
-      sBeforeSignature1 + '|' + sBeforeSignature2 + '|' + sBeforeSignature3 + '|' + sSalt
-    ).toString();
+    let oSignature1 = CryptoJS.MD5(sBeforeSignature1 + '|' + sSalt);
+    let oSignature2 = CryptoJS.MD5(sBeforeSignature1 + '|' + sBeforeSignature2 + '|' + sSalt);
+    let oSignature3 = CryptoJS.MD5(sBeforeSignature1 + '|' + sBeforeSignature2 + '|' + sBeforeSignature3 + '|' + sSalt);
+
+    let sSignature1 = String(oSignature1);
+    let sSignature2 = String(oSignature2);
+    let sSignature3 = String(oSignature3);
 
     let sSignature = sSignature1 + sSignature2 + sSignature3;
 
