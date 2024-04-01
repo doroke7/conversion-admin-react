@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { StoreContext } from 'redux-react-hook';
 
 import style from './style';
 
