@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, Suspense } from 'react';
 import UseRef2 from './UseRef2/Index';
 
 import style from './style';

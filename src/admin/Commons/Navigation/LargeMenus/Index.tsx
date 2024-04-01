@@ -36,15 +36,15 @@ function LargeMenus(oProps) {
         oMenus = {
           [oMenu.id]: true
         };
-      }
+      };
       if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
         if (-1 == iIndex) {
           events.emit('Navigation-onPreClickMenu', oMenu);
 
           return;
-        }
+        };
         events.emit('Navigation-onClickMenu', oMenu);
-      }
+      };
 
       cSetState({ ...oState, menus: oMenus });
     };

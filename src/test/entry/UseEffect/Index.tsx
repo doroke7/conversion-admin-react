@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
+import React, {  useState, useEffect, useLayoutEffect } from 'react';
 
 function sleep(duration) {
   const start = Date.now();

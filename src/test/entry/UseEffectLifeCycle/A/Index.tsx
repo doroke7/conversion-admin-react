@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 
 import B from './B/Index';
 import style from './style';

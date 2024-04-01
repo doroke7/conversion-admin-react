@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
 
 import Contexts from '@/admin/Contexts/Index';

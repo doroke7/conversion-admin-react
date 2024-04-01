@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import style from './style';
@@ -10,6 +10,6 @@ function App(oProps: any) {
   });
 
   return <div>{oState.name}</div>;
-}
+};
 
 export default App;
