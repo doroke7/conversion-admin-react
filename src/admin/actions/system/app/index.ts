@@ -1,10 +1,12 @@
 import Helpers from '@/admin/Helpers/Index';
 
 let cShow: any = (oRaw: any) => {
-  return {
+  let oAction = {
     type: 'SYSTEM_APP',
     raw: oRaw
   };
+
+  return oAction;
 };
 
 let oAppAction: any = {

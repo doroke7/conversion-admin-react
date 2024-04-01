@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 
-function useLocalStorage(sKey: string, oInitialValue) {
+function useLocalStorage(sKey: string, oInitialValue: any) {
   const [oState, setState] = useState(() => {
 
     try {

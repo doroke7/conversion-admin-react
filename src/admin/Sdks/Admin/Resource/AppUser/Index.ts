@@ -4,7 +4,7 @@ class AppUser {
   public static async getShow(oOption, oQuery = null) {
     let oResponse = await Helpers.Admin.get({
       path: '/Admin/Resource/AppUser/show',
-      // API 中，问号拼接的 参数。 如 ?option={}&query={}
+
       params: {
         option: {
           app_id: oOption?.app_id,
@@ -13,7 +13,7 @@ class AppUser {
         },
         search: {}
       },
-      // API 中，以 Body 传参
+
       data: {
         param: {}
       }

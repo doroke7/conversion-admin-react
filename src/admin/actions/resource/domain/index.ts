@@ -1,10 +1,13 @@
 import Helpers from '@/admin/Helpers/Index';
 
 let cShow: any = (aDmains: any) => {
-  return {
+
+  let oAction = {
     type: 'SHOW_DOMAIN',
     payload: aDmains
   };
+
+  return oAction;
 };
 
 let oDomain: any = {
@@ -17,19 +20,19 @@ let oDomain: any = {
 
       if (!oResponse) {
         throw new Error('THE_NETWORK_IS_ERROR');
-      }
+      };
 
       if (-1 <= oResponse.code || 200 != oResponse?.status) {
         throw new Error(oResponse.key);
-      }
+      };
 
       if (!oResponse.data || !oResponse.data.domains) {
         throw new Error('THE_API_IS_ERROR');
-      }
+      };
 
       if (oResponse.data && oResponse.data.domains) {
         cDispatch(cShow(oResponse.data.domains));
-      }
+      };
     };
   }
 };

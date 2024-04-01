@@ -4,12 +4,12 @@ class Authenticator {
   public static async postSignIn(sname: string, sPassword: string) {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/signIn',
-      // API 中，问号拼接的 参数。 如 ?option={}&query={}
+
       params: {
         option: {},
         search: {}
       },
-      // API 中，以 Body 传参
+
       data: {
         param: {
           name: sname,
@@ -24,12 +24,12 @@ class Authenticator {
   public static async postRefresh() {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/refresh',
-      // API 中，问号拼接的 参数。 如 ?option={}&query={}
+
       params: {
         option: {},
         search: {}
       },
-      // API 中，以 Body 传参
+
       data: {
         param: {}
       },
@@ -42,12 +42,12 @@ class Authenticator {
   public static async postSignOut() {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/signOut',
-      // API 中，问号拼接的 参数。 如 ?option={}&query={}
+
       params: {
         option: {},
         query: {}
       },
-      // API 中，以 Body 传参
+
       data: {
         param: {}
       },

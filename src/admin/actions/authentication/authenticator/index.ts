@@ -4,10 +4,13 @@
  */
 let oAction: any = {
   postSignIn: (oResponse: any) => {
-    return {
+
+    let oAction = {
       type: '/Admin/Authentication/Authenticator/postSignIn',
       administratorId: oResponse.data.administrator_id
     };
+
+    return oAction;
   }
 };
 
