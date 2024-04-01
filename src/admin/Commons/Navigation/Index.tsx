@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import clsx from 'clsx';
 
 import { createTheme } from '@material-ui/core/styles';
@@ -25,8 +27,6 @@ import AlertOfApps from './AlertOfApps/Index';
 
 import style from './style';
 
-let oMenus = utilities.deTree(CONFIGS.MENUS, 'menus', 'object', 'path');
-
 let oTheme = createTheme({});
 
 function Navigation(oProps: any) {
@@ -45,6 +45,10 @@ function Navigation(oProps: any) {
   });
 
   let oParams: any = useParams();
+
+  let sJwt = useSelector((oState: any) => (oState?.jwt ?? ''));
+
+  console.log('sJwt========', sJwt);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {

@@ -20,7 +20,6 @@ import CONFIGS from '@/CONFIGS/INDEX';
 
 import style from './style';
 
-const MESSAGES = CONFIGS.MESSAGES;
 
 interface State {
   name: string;
