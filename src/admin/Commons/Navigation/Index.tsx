@@ -78,10 +78,10 @@ function Navigation(oProps: any) {
       if (aTabs.length >= 1) {
         let oTab = aTabs[iValue];
         oHistory.push(oTab.url);
-      }
+      };
       if (aTabs.length == 0) {
         oHistory.push('/admin/resource');
-      }
+      };
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
@@ -103,7 +103,7 @@ function Navigation(oProps: any) {
       cSetState({ ...oState, value: iValue, tabs: aTabs });
       if (oTabRow) {
         oHistory.push(oTabRow.url);
-      }
+      };
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     return () => {
@@ -134,7 +134,7 @@ function Navigation(oProps: any) {
       let oTab = oState.tabs[iValue] ?? null;
       if (oTab) {
         oHistory.push(oTab.url);
-      }
+      };
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickTab', cClickTab);
     return () => {
@@ -175,7 +175,6 @@ function Navigation(oProps: any) {
     };
 
     let oEventEmitter: any = events.addListener('Navigation-onClickLink', cClickLink);
-    // 组件销毁前移除事件监听
     return () => {
       events.removeListener('Navigation-onClickLink', cClickLink);
     };
@@ -186,7 +185,7 @@ function Navigation(oProps: any) {
       // 如果 Menu 旗下还有子 menu 就不做事
       if (oMenu?.menus && Array.isArray(oMenu?.menus) && oMenu.menus.length >= 1) {
         return;
-      }
+      };
 
       let oParams = {
         appId: CONFIGS.APPS[oState.index].id ?? '',
@@ -210,7 +209,7 @@ function Navigation(oProps: any) {
         let sUrl = utilities.url(oTabOfMenu.path, oParams);
 
         oHistory.push(sUrl);
-      }
+      };
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickMenu', cClickMenu);
     // 组件销毁前移除事件监听
@@ -247,14 +246,14 @@ function Navigation(oProps: any) {
           ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
           : [...oState.tabs];
       let aApps = CONFIGS.APPS ?? [];
-      let iIndex;
+      let iIndex = 0;
       let iResultIndex = -1;
       for (iIndex = 0; iIndex < aApps.length; iIndex++) {
         if (aApps[iIndex].id == oRoute?.params?.appId) {
           iResultIndex = iIndex;
           break;
-        }
-      }
+        };
+      };
 
       let oParams = {
         appId: oRoute.params.appId ?? '',
@@ -271,7 +270,7 @@ function Navigation(oProps: any) {
       };
       if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
         oTab.text = oRefOfText.current || '未定义';
-      }
+      };
       let iValue = oState.value;
       let bExist = false;
       if (aTabs.length >= 1) {
@@ -287,17 +286,17 @@ function Navigation(oProps: any) {
 
             bExist = true;
             break;
-          }
-        }
-      }
+          };
+        };
+      };
 
       if (bExist) {
         // DO NOTHING
-      }
+      };
       if (!bExist) {
         aTabs = [...aTabs, oTab];
         iValue = aTabs.length - 1;
-      }
+      };
       let oApp = CONFIGS.APPS[oState.index];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
@@ -317,7 +316,7 @@ function Navigation(oProps: any) {
       let iWidth = oEvent.target.innerWidth;
       if (oState.open && iWidth <= oTheme.breakpoints.values['sm']) {
         cSetState((oOldState) => ({ ...oOldState, open: false }));
-      }
+      };
     };
     window.addEventListener('resize', cResize);
 
@@ -337,7 +336,7 @@ function Navigation(oProps: any) {
     let iWidth = oRefOfDom.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
       cSetState((oOldState) => ({ ...oOldState, open: false }));
-    }
+    };
   };
 
   let cHandleDrawerOpen = () => {
