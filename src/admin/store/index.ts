@@ -5,12 +5,12 @@ import reduxThunk from 'redux-thunk';
 
 import reducers from '@/admin/reducers/index';
 
-const oReducer = combineReducers({
-  auhorization: reducers.authenticationAuthenticator,
-});
 
-const oStore: any = createStore(
-  oReducer,
+
+let oStore: any = createStore(
+  combineReducers({
+    auhorization: reducers.authenticationAuthenticator,
+  }),
   composeWithDevTools(
     applyMiddleware(reduxThunk)
   )
