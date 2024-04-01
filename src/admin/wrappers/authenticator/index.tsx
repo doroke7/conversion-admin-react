@@ -7,7 +7,7 @@ import CONFIGS from '@/CONFIGS/INDEX';
 
 interface Props {
   children?: any;
-}
+};
 
 let authenticator = (Component: any): any => {
   function Wrapper(oProps: any) {

@@ -23,7 +23,7 @@ function App(oProps: any) {
     if (CONFIGS.APP.ENV == 'MASTER') {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
-    }
+    };
   };
   useEffect(() => {
     /*
@@ -39,8 +39,8 @@ function App(oProps: any) {
       if ((Helpers.Ver.valid(sVer) && Helpers.Ver.compare(CONFIGS.ADMIN.VER, sVer)) || !Helpers.Ver.valid(sVer)) {
         window.localStorage.clear();
         Helpers.Authentication.setJwt(sJwt);
-      }
-    }
+      };
+    };
 
     Helpers.Ver.set(CONFIGS.ADMIN.VER);
   });

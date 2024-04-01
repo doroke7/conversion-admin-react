@@ -1,5 +1,3 @@
-import React, { useContext, useEffect } from 'react';
-
 import Pages from '@/admin/Pages/Index';
 
 let aRoutes = [
