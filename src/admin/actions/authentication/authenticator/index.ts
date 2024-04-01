@@ -7,7 +7,7 @@ let oAction: any = {
 
     let oAction = {
       type: '/Admin/Authentication/Authenticator/postSignIn',
-      administratorId: oResponse.data.administrator_id
+      authorization: oResponse?.headers?.['authorization']
     };
 
     return oAction;

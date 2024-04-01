@@ -6,15 +6,13 @@ import reduxThunk from 'redux-thunk';
 import reducers from '@/admin/reducers/index';
 
 const oReducer = combineReducers({
-  adminJwt: reducers.jwt,
-  adminRoom: reducers.room
+  jwt: reducers.authenticationAuthenticator,
 });
 
 const oStore: any = createStore(
   oReducer,
   composeWithDevTools(
     applyMiddleware(reduxThunk)
-    // other store enhancers if any
   )
 );
 

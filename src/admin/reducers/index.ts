@@ -1,7 +1,6 @@
-import jwt from './jwt/index';
-import room from './room/index';
+
+import authenticationAuthenticator from './authenticationAuthenticator/index';
 
 export default {
-  jwt,
-  room
+  authenticationAuthenticator: authenticationAuthenticator
 };
