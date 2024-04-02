@@ -16,7 +16,7 @@ import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
 
-function SmallMenus(oProps) {
+function SmallAdminMenus(oProps) {
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
 
@@ -93,4 +93,4 @@ function SmallMenus(oProps) {
   );
 }
 
-export default SmallMenus;
+export default SmallAdminMenus;

@@ -16,7 +16,7 @@ import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
 
-function LargeMenus(oProps) {
+function LargeAdminMenus(oProps) {
   let oClasses = cStyle();
 
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
@@ -83,4 +83,4 @@ function LargeMenus(oProps) {
   );
 }
 
-export default LargeMenus;
+export default LargeAdminMenus;
