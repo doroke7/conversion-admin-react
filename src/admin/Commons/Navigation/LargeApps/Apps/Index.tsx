@@ -46,7 +46,9 @@ function Apps(oProps: any) {
               className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0], {
               })}
               title={oApp?.title ?? ''}
-              status={iIndexOfApp == iIndex}></Icon>
+              status={iIndexOfApp == iIndex}
+              url={oApp.url}
+            ></Icon>
             <ListItemText primary={oApp?.title ?? ''} className={oClasses.listItemText} />
           </ListItem>
         ))}
