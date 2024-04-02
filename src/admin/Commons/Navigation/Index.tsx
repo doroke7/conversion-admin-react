@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -390,6 +390,53 @@ function Navigation(oProps: any) {
     cSetStateOpen(false);
 
   };
+
+
+
+  let aAppBackgroundClasses = [
+    oClasses.backgroundColor01,
+    oClasses.backgroundColor02,
+    oClasses.backgroundColor03,
+    oClasses.backgroundColor04,
+    oClasses.backgroundColor05,
+    oClasses.backgroundColor06,
+    oClasses.backgroundColor07,
+    oClasses.backgroundColor08,
+    oClasses.backgroundColor09,
+    oClasses.backgroundColor10,
+    oClasses.backgroundColor11,
+    oClasses.backgroundColor12,
+    oClasses.backgroundColor13,
+    oClasses.backgroundColor14,
+    oClasses.backgroundColor15
+  ];
+
+
+  let aMemoAppBackgroundClasses = useMemo(() => {
+    let aResults: any[] = [];
+
+    if (aAppBackgroundClasses.length >= aStateApps.length) {
+      aResults.push(...aAppBackgroundClasses);
+      return aResults;
+    };
+
+    if (aAppBackgroundClasses.length < aStateApps.length) {
+      let iFactor = Math.ceil(aStateApps.length / (aAppBackgroundClasses.length || 1));
+
+      for (let iIndex = 0; iIndex < iFactor; iIndex++) {
+
+        aResults.push(...aAppBackgroundClasses);
+      };
+
+      return aResults;
+    };
+
+    return aResults;
+
+  }, [aStateApps.length]);
+
+
+
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
@@ -419,8 +466,8 @@ function Navigation(oProps: any) {
                 </IconButton>
               </div>
               <Divider className={oClasses.firstDivider} />
-              <SmallApps status={!bStateOpen} apps={aStateApps}></SmallApps>
-              <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex}></LargeApps>
+              <SmallApps status={!bStateOpen} apps={aStateApps} backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
+              <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex} backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
               <LargeMenus status={bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
               <SmallMenus status={!bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />

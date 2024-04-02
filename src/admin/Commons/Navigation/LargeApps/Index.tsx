@@ -21,6 +21,7 @@ function LargeApps(oProps) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
+  let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
   const iIndex = useContext(Contexts.AppsIndex) ?? -1;
   const oClasses = cStyle();
@@ -35,47 +36,6 @@ function LargeApps(oProps) {
     cSetState({ ...oState, open: bOpen });
   };
 
-  let aAppBackgroundClasses = [
-    oClasses.backgroundColor01,
-    oClasses.backgroundColor02,
-    oClasses.backgroundColor03,
-    oClasses.backgroundColor04,
-    oClasses.backgroundColor05,
-    oClasses.backgroundColor06,
-    oClasses.backgroundColor07,
-    oClasses.backgroundColor08,
-    oClasses.backgroundColor09,
-    oClasses.backgroundColor10,
-    oClasses.backgroundColor11,
-    oClasses.backgroundColor12,
-    oClasses.backgroundColor13,
-    oClasses.backgroundColor14,
-    oClasses.backgroundColor15
-  ];
-
-  let aMemoAppBackgroundClasses = useMemo(() => {
-    let aResults: any[] = [];
-
-    if (aAppBackgroundClasses.length >= aApps.length) {
-      aResults.push(...aAppBackgroundClasses);
-      return aResults;
-    };
-
-    if (aAppBackgroundClasses.length < aApps.length) {
-      let iFactor = Math.ceil(aApps.length / (aAppBackgroundClasses.length || 1));
-
-      for (let iIndex = 0; iIndex < iFactor; iIndex++) {
-
-        aResults.push(...aAppBackgroundClasses);
-      };
-
-      return aResults;
-    };
-
-    return aResults;
-
-  }, [aApps.length]);
-
   return (
     <List
       component="div"
@@ -86,13 +46,13 @@ function LargeApps(oProps) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
-            className={clsx(aMemoAppBackgroundClasses[iIndex] ?? aMemoAppBackgroundClasses[0])}
+            className={clsx(aBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
             title={oApp?.['title'] ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aMemoAppBackgroundClasses}></Apps>
+        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
       </>
     </List>
   );

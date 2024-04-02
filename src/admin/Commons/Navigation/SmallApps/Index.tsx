@@ -22,6 +22,7 @@ function SmallApps(oProps) {
 
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
+  let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
   const oClasses = cStyle();
   const iIndex = useContext(Contexts.AppsIndex) ?? -1;
@@ -36,27 +37,6 @@ function SmallApps(oProps) {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });
   };
-
-  let aIconColors = [
-    oClasses.backgroundColor01,
-    oClasses.backgroundColor02,
-    oClasses.backgroundColor03,
-    oClasses.backgroundColor04,
-    oClasses.backgroundColor05,
-    oClasses.backgroundColor06,
-    oClasses.backgroundColor07,
-    oClasses.backgroundColor08,
-    oClasses.backgroundColor09,
-    oClasses.backgroundColor10,
-    oClasses.backgroundColor11,
-    oClasses.backgroundColor12,
-    oClasses.backgroundColor13,
-    oClasses.backgroundColor14,
-    oClasses.backgroundColor15
-  ];
-
-
-
 
   let cHandleMouseEnter = () => {
     return (oEvent) => {
@@ -97,7 +77,7 @@ function SmallApps(oProps) {
           onMouseEnter={cHandleMouseEnter()}
           onMouseLeave={cHandleMouseLeave()}>
           <Icon
-            className={clsx(aIconColors?.[iIndex] ?? aIconColors[0])}
+            className={clsx(aBackgroundClasses?.[iIndex] ?? aBackgroundClasses[14])}
             title={oApp?.title ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={''} />
@@ -105,7 +85,7 @@ function SmallApps(oProps) {
             open={Boolean(oState.anchor)}
             apps={aApps}
             anchor={oState.anchor}
-            iconColors={aIconColors}
+            backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
             onMouseLeave={cHandleMouseLeave()}></Apps>
         </ListItem>

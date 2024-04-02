@@ -24,7 +24,7 @@ function Apps(oProps: any) {
   const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   const oClasses = cStyle();
-  let aBackgroundClasses = oProps.iconColors ?? [];
+  let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
   let oHistory = useHistory();
 
