@@ -43,8 +43,11 @@ function Navigation(oProps: any) {
     tabs: [], // Tab 列表
     index: -1, // 选中的 Selectd APP位置
     link: null,
-    menu: null
+    menu: null,
   });
+
+  let [aApps, cSetApp] = React.useState<any>(CONFIGS.APPS);
+
 
   let oParams: any = useParams();
 
@@ -83,7 +86,7 @@ function Navigation(oProps: any) {
       let iValue = 0;
       iValue = iIndex > oState.value ? oState.value : oState.value - 1;
       iValue = iValue < -1 ? -1 : iValue;
-      let oApp = CONFIGS.APPS[oState.index];
+      let oApp = aApps[oState.index];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
@@ -110,7 +113,7 @@ function Navigation(oProps: any) {
       let oTabRow = aTabs[iIndex] ?? null;
       aTabs = oTabRow ? [oTabRow] : [];
       let iValue = 0;
-      let oApp = CONFIGS.APPS[oState.index];
+      let oApp = aApps[oState.index];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
@@ -129,7 +132,7 @@ function Navigation(oProps: any) {
     let cRemoveAllTabs = (iIndex: number) => {
       let aTabs = [];
       let iValue = -1;
-      let oApp = CONFIGS.APPS[oState.index];
+      let oApp = aApps[oState.index];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
@@ -179,7 +182,7 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cClickLink = (oLink) => {
       let oParams = {
-        appId: CONFIGS.APPS[oState.index].id ?? '',
+        appId: aApps[oState.index].id ?? '',
         page: 1,
         size: 10
       };
@@ -202,7 +205,7 @@ function Navigation(oProps: any) {
       };
 
       let oParams = {
-        appId: CONFIGS.APPS[oState.index].id ?? '',
+        appId: aApps[oState.index].id ?? '',
         page: 1,
         size: 10
       };
@@ -234,7 +237,6 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex) => {
-      let aApps = CONFIGS.APPS ?? [];
       let iResultIndex = iIndex;
       let iAppId = aApps[iIndex].id;
 
@@ -259,7 +261,6 @@ function Navigation(oProps: any) {
         oRoute?.params?.appId >= 0 && oState.index == -1
           ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
           : [...oState.tabs];
-      let aApps = CONFIGS.APPS ?? [];
       let iIndex = 0;
       let iResultIndex = -1;
       for (iIndex = 0; iIndex < aApps.length; iIndex++) {
@@ -311,7 +312,7 @@ function Navigation(oProps: any) {
         aTabs = [...aTabs, oTab];
         iValue = aTabs.length - 1;
       };
-      let oApp = CONFIGS.APPS[oState.index];
+      let oApp = aApps[oState.index];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
 
@@ -369,7 +370,7 @@ function Navigation(oProps: any) {
       <Contexts.TabsValue.Provider value={oState.value}>
         <Contexts.Tabs.Provider value={oState.tabs}>
           <div className={oClasses.root} onLoad={cHandleLoad} ref={oRefOfDom}>
-            <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={CONFIGS.APPS}></Bar>
+            <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={aApps}></Bar>
             <Drawer
               variant="permanent"
               className={clsx(oClasses.drawer, {
@@ -390,11 +391,11 @@ function Navigation(oProps: any) {
                 </IconButton>
               </div>
               <Divider className={oClasses.divider} />
-              <SmallApps status={!oState.open} apps={CONFIGS.APPS}></SmallApps>
-              <LargeApps status={oState.open} apps={CONFIGS.APPS} index={oState.index}></LargeApps>
+              <SmallApps status={!oState.open} apps={aApps}></SmallApps>
+              <LargeApps status={oState.open} apps={aApps} index={oState.index}></LargeApps>
               <Divider className={oClasses.divider} />
-              <LargeMenus status={oState.open} menus={CONFIGS.MENUS} apps={CONFIGS.APPS} />
-              <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} apps={CONFIGS.APPS} />
+              <LargeMenus status={oState.open} menus={CONFIGS.MENUS} apps={aApps} />
+              <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} apps={aApps} />
               <Divider className={oClasses.divider} />
               <List></List>
             </Drawer>
@@ -403,7 +404,7 @@ function Navigation(oProps: any) {
               <Tabs>{children}</Tabs>
             </main>
             <AlertOfApps
-              apps={CONFIGS.APPS}
+              apps={aApps}
               link={oState.link}
               menu={oState.menu}
               open={oState.alert}
