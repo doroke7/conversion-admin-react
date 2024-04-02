@@ -18,7 +18,7 @@ import cStyle from './style';
 
 function SmallMenus(oProps) {
   let bStatus = oProps.status;
-  let aAdminMenus = oProps.menus || [];
+  let aAdminMenus = oProps.adminMenus || [];
 
   let oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
@@ -81,7 +81,7 @@ function SmallMenus(oProps) {
             </ListItemIcon>
             <SecondMenus
               open={oState.anchors[oAdminMenu.id] !== undefined}
-              menus={oAdminMenu.menus}
+              adminMenus={oAdminMenu.menus}
               anchor={oState.anchors[oAdminMenu.id]}
               index={iIndex}
               onClickAway={cHandleClose}

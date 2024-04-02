@@ -18,15 +18,16 @@ import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
 function ThirdMenus(oProps: any) {
-  let oClasses = cStyle();
-
-  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
-  let aMenus = oProps.menus ?? [];
+  let aAdminMenus = oProps.adminMenus ?? [];
   let bOpen = oProps.open ?? false;
   let oAnchor = oProps.anchor ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
 
-  let cOnClick = (oMenu: any) => {
+  let oClasses = cStyle();
+
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
+
+  let cOnClick = (oAdminMenu: any) => {
     return (oEvent: any) => {
       let oQuery = {};
       let oOption = {
@@ -35,13 +36,13 @@ function ThirdMenus(oProps: any) {
         app_id: 1
       };
 
-      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oMenu);
+          events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
           return;
         }
-        events.emit('Navigation-onClickMenu', oMenu);
+        events.emit('Navigation-onClickMenu', oAdminMenu);
       }
     };
   };
@@ -56,12 +57,12 @@ function ThirdMenus(oProps: any) {
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>
             <MenuList autoFocusItem={bOpen} id="menu-list-grow">
-              {aMenus.map((oMenu: any, iIndex: any) => (
-                <MenuItem key={oMenu.id} onClick={cOnClick(oMenu)}>
+              {aAdminMenus.map((oAdminMenu: any, iIndex: any) => (
+                <MenuItem key={oAdminMenu.id} onClick={cOnClick(oAdminMenu)}>
                   <ListItemIcon className={oClasses.listItemIcon}>
-                    <Components.Icon name={oMenu.icon} />
+                    <Components.Icon name={oAdminMenu.icon} />
                   </ListItemIcon>
-                  <ListItemText primary={oMenu.text} />
+                  <ListItemText primary={oAdminMenu.text} />
                 </MenuItem>
               ))}
             </MenuList>

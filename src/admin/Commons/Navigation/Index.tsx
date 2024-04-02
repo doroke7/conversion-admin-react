@@ -488,8 +488,8 @@ function Navigation(oProps: any) {
               <SmallApps status={!bStateOpen} apps={aStateApps} backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
               <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex} backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeMenus status={bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
-              <SmallMenus status={!bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
+              <LargeMenus status={bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
+              <SmallMenus status={!bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>

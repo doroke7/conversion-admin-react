@@ -24,7 +24,7 @@ function SecondMenus(oProps: any) {
   const oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let aAdminMenus = oProps.menus ?? []; // 二级 menu
+  let aAdminMenus = oProps.adminMenus ?? []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
@@ -83,7 +83,7 @@ function SecondMenus(oProps: any) {
                     )}
                   </MenuItem>
                   {oAdminMenu.menus !== undefined ? (
-                    <ThirddMenus in={oState.menus[oAdminMenu.id] !== undefined} menus={oAdminMenu.menus}></ThirddMenus>
+                    <ThirddMenus in={oState.menus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.menus}></ThirddMenus>
                   ) : (
                     ''
                   )}

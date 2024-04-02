@@ -17,7 +17,7 @@ import cStyle from './style';
 
 function SecondMenus(oProps: any) {
   let bIn = oProps.in ?? false;
-  let aAdminMenus = oProps.menus ?? [];
+  let aAdminMenus = oProps.adminMenus ?? [];
 
   let oClasses = cStyle();
   let oHistory = useHistory();

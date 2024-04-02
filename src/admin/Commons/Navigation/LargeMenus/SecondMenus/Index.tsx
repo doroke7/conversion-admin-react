@@ -22,26 +22,26 @@ function SecondMenus(oProps: any) {
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bIn = oProps.in ?? false;
-  let aMenus = oProps.menus ?? [];
+  let aAdminMenus = oProps.adminMenus ?? [];
 
   let [oState, cSetState] = useState<any>({
     anchors: {}
   });
 
-  let cHandleToggle = (oMenu: any) => {
+  let cHandleToggle = (oAdminMenu: any) => {
     return (oEvent: any) => {
       let oAnchor = oEvent.currentTarget;
       let oAnchors = {
-        [oMenu.id]: oState.anchors[oMenu.id] == null ? oAnchor : null
+        [oAdminMenu.id]: oState.anchors[oAdminMenu.id] == null ? oAnchor : null
       };
 
-      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oMenu);
+          events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
           return;
         }
-        events.emit('Navigation-onClickMenu', oMenu);
+        events.emit('Navigation-onClickMenu', oAdminMenu);
       }
       cSetState({ ...oState, anchors: oAnchors });
     };
@@ -61,26 +61,26 @@ function SecondMenus(oProps: any) {
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        {aMenus.map((oMenu: any, iSecondIndex: any) => (
+        {aAdminMenus.map((oAdminMenu: any, iSecondIndex: any) => (
           // NOTE： 解决 多个 refs 办法 一： 宣告多一个子 child compoment , 此 compoent 有独立的 ref varible
           <ListItem
             button
-            key={oMenu.id}
+            key={oAdminMenu.id}
             className={oClasses.listItem}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleToggle(oMenu)}>
+            onClick={cHandleToggle(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oMenu.icon} />
+              <Components.Icon name={oAdminMenu.icon} />
             </ListItemIcon>
-            <ListItemText primary={oMenu.text} />
-            {oMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
-            {oMenu.menus !== undefined ? (
+            <ListItemText primary={oAdminMenu.text} />
+            {oAdminMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
+            {oAdminMenu.menus !== undefined ? (
               <ThirdMenus
-                open={oState.anchors[oMenu.id] !== undefined}
-                menus={oMenu.menus}
+                open={oState.anchors[oAdminMenu.id] !== undefined}
+                adminMenus={oAdminMenu.menus}
                 index={iSecondIndex}
-                anchor={oState.anchors[oMenu.id]}
+                anchor={oState.anchors[oAdminMenu.id]}
                 onClickAway={cHandleClose}></ThirdMenus>
             ) : (
               ''

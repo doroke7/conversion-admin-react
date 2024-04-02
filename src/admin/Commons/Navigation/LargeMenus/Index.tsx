@@ -22,31 +22,31 @@ function LargeMenus(oProps) {
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bStatus = oProps.status;
-  let aMenus = oProps.menus || [];
+  let aAdminMenus = oProps.adminMenus || [];
 
   let [oState, cSetState] = useState<any>({
     menus: {}
   });
 
-  let cHandleClick = (oMenu) => {
+  let cHandleClick = (oAdminMenu) => {
     return (oEvent) => {
-      let oMenus = {};
+      let oAdminMenus = {};
 
-      if (!oState.menus[oMenu.id]) {
-        oMenus = {
-          [oMenu.id]: true
+      if (!oState.menus[oAdminMenu.id]) {
+        oAdminMenus = {
+          [oAdminMenu.id]: true
         };
       };
-      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oMenu);
+          events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
           return;
         };
-        events.emit('Navigation-onClickMenu', oMenu);
+        events.emit('Navigation-onClickMenu', oAdminMenu);
       };
 
-      cSetState({ ...oState, menus: oMenus });
+      cSetState({ ...oState, menus: oAdminMenus });
     };
   };
 
@@ -57,23 +57,23 @@ function LargeMenus(oProps) {
       className={clsx(oClasses.root, {
         [oClasses.rootHidden]: !bStatus
       })}>
-      {aMenus.map((oMenu: any, iIndex: any) => (
+      {aAdminMenus.map((oAdminMenu: any, iIndex: any) => (
         <>
-          <ListItem className={oClasses.listItem} button onClick={cHandleClick(oMenu)}>
+          <ListItem className={oClasses.listItem} button onClick={cHandleClick(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oMenu.icon}></Components.Icon>
+              <Components.Icon name={oAdminMenu.icon}></Components.Icon>
             </ListItemIcon>
-            <ListItemText primary={oMenu.text} />
-            {oMenu.menus === undefined ? (
+            <ListItemText primary={oAdminMenu.text} />
+            {oAdminMenu.menus === undefined ? (
               ''
-            ) : oState.menus[oMenu.id] === undefined ? (
+            ) : oState.menus[oAdminMenu.id] === undefined ? (
               <ExpandMore className={oClasses.icon} />
             ) : (
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
-          {oMenu.menus !== undefined ? (
-            <SecondMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></SecondMenus>
+          {oAdminMenu.menus !== undefined ? (
+            <SecondMenus in={oState.menus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.menus}></SecondMenus>
           ) : (
             ''
           )}
