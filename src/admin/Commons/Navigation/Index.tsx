@@ -37,11 +37,17 @@ function Navigation(oProps: any) {
   let oHistory = useHistory();
   let oRefOfText = useRef('');
   let oRefOfDom: any = useRef();
+
+
+
+  // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法， 
+  // 如果 直接使用 setState(值) 有数据覆盖的危险， 
+  // 如果 间接使用 setState(旧的值 => 新的值) 有性能上的问题
   let [oState, cSetState] = React.useState<any>({
-    open: true,
-    value: 0, // 当下被 Selected 的 Tab 位置
-    tabs: [], // Tab 列表
-    index: -1, // 选中的 Selectd APP位置
+    open: true,     
+    value: 0,       // 当下被 Selected 的 Tab 位置
+    tabs: [],       // Tab 列表
+    index: -1,      // 选中的 Selectd APP位置
     link: null,
     menu: null,
   });

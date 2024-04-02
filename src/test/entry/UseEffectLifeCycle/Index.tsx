@@ -23,10 +23,6 @@ import style from './style';
 function UseEffect(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let [oState, cSetState] = React.useState<any>({
-    value: 0,
-    status: false
-  });
 
   return (
     <div>

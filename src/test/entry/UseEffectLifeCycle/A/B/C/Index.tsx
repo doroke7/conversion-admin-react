@@ -15,10 +15,7 @@ function C(oProps: any): any {
     console.info('C useLayoutEffect');
   }, []);
 
-  let [oState, cSetState] = React.useState<any>({
-    value: 0,
-    status: false
-  });
+
 
   return <div>C</div>;
 }
