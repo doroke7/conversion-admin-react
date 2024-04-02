@@ -17,14 +17,12 @@ import Icon from './Icon/Index';
 import cStyle from './style';
 
 function LargeApps(oProps) {
-  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
 
-  console.log('aApps====', aApps);
-
+  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
   const oClasses = cStyle();
 
   let [oState, cSetState] = useState<any>({
@@ -55,6 +53,8 @@ function LargeApps(oProps) {
     oClasses.backgroundColor15
   ];
 
+  let iColor = iIndex % aIconColors.length;
+
   return (
     <List
       component="div"
@@ -65,7 +65,7 @@ function LargeApps(oProps) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
-            className={clsx(aIconColors[iIndex] ?? aIconColors[14])}
+            className={clsx(aIconColors[iColor] ?? aIconColors[14])}
             title={oApp?.['title'] ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={'应用程序'} />
