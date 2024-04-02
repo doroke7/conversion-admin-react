@@ -15,14 +15,13 @@ import style from './style';
 
 function App(oProps: any) {
   let oClasses: any = style(void 0);
-  let [oState, cSetState] = React.useState({
-    open: true,
-    routes: router.admin.routes   // TODO    IMPORTANT 有问题的写法，
-    // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系 
-  });
+  let [aRoutes, cSetRoutes] = React.useState(router.admin.routes);
+  // TODO    IMPORTANT 有问题的写法，
+  // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系 
+
 
   let cHandleContextmenu = (oEvent: any) => {
-    if (CONFIGS.APP.ENV == 'MASTER') {
+    if (CONFIGS.APP.CONTEXT_MENU == false) {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
     };
