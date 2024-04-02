@@ -60,8 +60,8 @@ function Navigation(oProps: any) {
 
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
 
-  let cAdminSystemAdminMenuShowTree = useCallback(async () => {
-    let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree(13);
+  let cAdminSystemAdminMenuShowTree = useCallback(async (iAppId: number) => {
+    let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree(iAppId);
     return oResponse;
   }, [iStateIndex, sAuhorization]);
 
@@ -73,10 +73,10 @@ function Navigation(oProps: any) {
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
-      let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree();
+      let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree(13);
       let oAppResponse = await cAdminSystemAppShowOnes();
 
-      let aApps = oAppResponse?.data.raw?.ones ?? [];
+      let aApps = oAppResponse?.data?.raw?.ones ?? [];
 
       cSetStateApps(aApps);
 
