@@ -15,8 +15,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
       paddingLeft: oTheme.spacing(2)
     },
     listItemIcon: {
-      minWidth: oTheme.spacing(4),
-      color: oTheme.palette.background.paper
+    },
+    listItemText: {
+      textShadow: '1px 1px 1px rgba(0,0,0,0.9), 1px 1px 1px rgba(0,0,0,0.7), 1px 1px 1px rgba(0,0,0,0.7)'
+
     }
   })
 );

@@ -49,6 +49,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       filter:
         'drop-shadow( 1px 1px 0px rgba(0, 0, 0, 0.8)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4)) drop-shadow( 0px 0px 0px rgba(0, 0, 0, 0.4))'
     },
+
     backgroundColor01: { backgroundColor: red[500] },
     backgroundColor02: { backgroundColor: pink[500] },
     backgroundColor03: { backgroundColor: purple[500] },

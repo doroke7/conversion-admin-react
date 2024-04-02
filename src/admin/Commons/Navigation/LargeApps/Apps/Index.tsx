@@ -43,10 +43,11 @@ function Apps(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleClick(iIndexOfApp)}>
             <Icon
-              className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0])}
+              className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0], {
+              })}
               title={oApp?.title ?? ''}
               status={iIndexOfApp == iIndex}></Icon>
-            <ListItemText primary={oApp?.title ?? ''} />
+            <ListItemText primary={oApp?.title ?? ''} className={oClasses.listItemText} />
           </ListItem>
         ))}
       </List>

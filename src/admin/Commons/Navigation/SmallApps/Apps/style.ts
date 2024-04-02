@@ -13,7 +13,11 @@ let oStyle = makeStyles((oTheme: Theme) =>
       background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
       boxShadow: '0 0px 8px 3px rgb(33 203 243 / 30%), 0 0px 8px 3px rgb(33 203 243 / 30%)',
       borderColor: 'rgba(0, 0, 0, 0.23)'
-    }
+    },
+    listItemText: {
+      textShadow: '1px 1px 1px rgba(0,0,0,0.9), 1px 1px 1px rgba(0,0,0,0.7), 1px 1px 1px rgba(0,0,0,0.7)'
+
+    },
   })
 );
 

@@ -55,7 +55,7 @@ function Apps(oProps: any) {
                       className={clsx(aBackgroundClasses[iIndexOfApp] || aBackgroundClasses[0])}
                       title={oApp?.title ?? ''}
                       status={iIndexOfApp == iIndex}></Icon>
-                    <ListItemText primary={oApp?.title ?? ''} />
+                    <ListItemText primary={oApp?.title ?? ''} className={oClasses.listItemText} />
                   </MenuItem>
                 </>
               ))}

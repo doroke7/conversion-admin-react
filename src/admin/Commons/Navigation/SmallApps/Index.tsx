@@ -77,10 +77,12 @@ function SmallApps(oProps) {
           onMouseEnter={cHandleMouseEnter()}
           onMouseLeave={cHandleMouseLeave()}>
           <Icon
-            className={clsx(aBackgroundClasses?.[iIndex] ?? aBackgroundClasses[14])}
+            className={clsx(aBackgroundClasses?.[iIndex] ?? aBackgroundClasses[14], {
+
+            })}
             title={oApp?.title ?? ''}
             status={iIndex >= 0}></Icon>
-          <ListItemText primary={''} />
+          <ListItemText primary={''}  />
           <Apps
             open={Boolean(oState.anchor)}
             apps={aApps}
