@@ -32,13 +32,12 @@ let oTheme = createTheme({});
 
 function Navigation(oProps: any) {
 
-  let oClasses = style(void 0);
   let children = oProps.children ?? <></>;
+
+  let oClasses = style(void 0);
   let oHistory = useHistory();
-  let oRefOfText = useRef('');
-  let oRefOfDom: any = useRef();
-
-
+  let oTextRef = useRef('');
+  let oDomRef: any = useRef();
 
   // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法， 
   // 如果 直接使用 setState(值) 有数据覆盖的危险， 
@@ -53,8 +52,6 @@ function Navigation(oProps: any) {
   let [oStateLink, cSetStateLink] = useState<any>(null);
   let [sStateText, cSetStateText] = useState<any>('');
   let [aStateApps, cSetStateApps] = useState<any>([]);
-
-
 
   let oParams: any = useParams();
 
@@ -205,7 +202,7 @@ function Navigation(oProps: any) {
         page: 1,
         size: 10
       };
-      oRefOfText.current = oLink.text ?? '';
+      oTextRef.current = oLink.text ?? '';
       let sUrl = utilities.url(oLink.path, oParams);
       oHistory.push(sUrl);
     };
@@ -236,10 +233,10 @@ function Navigation(oProps: any) {
         icon: oMenu.icon,
         content: oMenu.description
       };
-      oRefOfText.current = oMenu.text ?? '';
+      oTextRef.current = oMenu.text ?? '';
 
       if (oTabOfMenu) {
-        oRefOfText.current = oMenu.text ?? '';
+        oTextRef.current = oMenu.text ?? '';
 
         cSetStateText(oMenu.text);
         let sUrl = utilities.url(oTabOfMenu.path, oParams);
@@ -301,11 +298,11 @@ function Navigation(oProps: any) {
         path: oRoute.path,
         url: oRoute.url,
         query: '',
-        text: (oRoute.text ?? oRefOfText.current) || oRefOfText.current,
+        text: (oRoute.text ?? oTextRef.current) || oTextRef.current,
         icon: oRoute.icon ?? ''
       };
       if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
-        oTab.text = oRefOfText.current || '未定义';
+        oTab.text = oTextRef.current || '未定义';
       };
       let iValue = iStateValue;
       let bExist = false;
@@ -373,7 +370,7 @@ function Navigation(oProps: any) {
   }, []);
 
   let cHandleLoad = (oEvent) => {
-    let iWidth = oRefOfDom.current.offsetWidth;
+    let iWidth = oDomRef.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
       cSetStateOpen(false);
     };
@@ -397,7 +394,7 @@ function Navigation(oProps: any) {
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
-          <div className={oClasses.root} onLoad={cHandleLoad} ref={oRefOfDom}>
+          <div className={oClasses.root} onLoad={cHandleLoad} ref={oDomRef}>
             <Bar handleDrawerOpen={cHandleDrawerOpen} open={bStateOpen} apps={aStateApps}></Bar>
             <Drawer
               variant="permanent"
