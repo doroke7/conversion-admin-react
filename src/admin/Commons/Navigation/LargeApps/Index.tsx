@@ -35,7 +35,7 @@ function LargeApps(oProps) {
     cSetState({ ...oState, open: bOpen });
   };
 
-  let aBackgroundClasses = [
+  let aAppBackgroundClasses = [
     oClasses.backgroundColor01,
     oClasses.backgroundColor02,
     oClasses.backgroundColor03,
@@ -53,20 +53,20 @@ function LargeApps(oProps) {
     oClasses.backgroundColor15
   ];
 
-  let aMemoBackgroundClasses = useMemo(() => {
+  let aMemoAppBackgroundClasses = useMemo(() => {
     let aResults: any[] = [];
 
-    if (aBackgroundClasses.length >= aApps.length) {
-      aResults.push(...aBackgroundClasses);
+    if (aAppBackgroundClasses.length >= aApps.length) {
+      aResults.push(...aAppBackgroundClasses);
       return aResults;
     };
 
-    if (aBackgroundClasses.length < aApps.length) {
-      let iFactor = Math.ceil(aApps.length / (aBackgroundClasses.length || 1));
+    if (aAppBackgroundClasses.length < aApps.length) {
+      let iFactor = Math.ceil(aApps.length / (aAppBackgroundClasses.length || 1));
 
       for (let iIndex = 0; iIndex < iFactor; iIndex++) {
 
-        aResults.push(...aBackgroundClasses);
+        aResults.push(...aAppBackgroundClasses);
       };
 
       return aResults;
@@ -86,13 +86,13 @@ function LargeApps(oProps) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
-            className={clsx(aMemoBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
+            className={clsx(aMemoAppBackgroundClasses[iIndex] ?? aMemoAppBackgroundClasses[0])}
             title={oApp?.['title'] ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aMemoBackgroundClasses}></Apps>
+        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aMemoAppBackgroundClasses}></Apps>
       </>
     </List>
   );
