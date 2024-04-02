@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'; // 点击事件是否发生在元素之外
@@ -30,7 +30,7 @@ function SecondMenus(oProps: any) {
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     menus: {}
   });
 

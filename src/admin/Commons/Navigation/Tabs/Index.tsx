@@ -27,7 +27,7 @@ function ScrollableTabs(oProps: any) {
 
   let children = oProps.children ?? <></>;
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     anchor: null,
     contextMenu: false,
     tooltip: null,

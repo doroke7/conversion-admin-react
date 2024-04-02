@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import clsx from 'clsx';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
@@ -12,7 +12,7 @@ import style from './style';
 function Progress(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     value: 0,
     status: false
   });

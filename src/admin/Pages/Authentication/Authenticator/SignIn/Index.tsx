@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
@@ -19,7 +19,7 @@ function SignIn(): any {
   let oClasses: any = style(void 0);
   let oDispatch = useDispatch();
 
-  let [oState, cSetState] = React.useState<State>({ open: true });
+  let [oState, cSetState] = useState<State>({ open: true });
 
   let cHandleClick = () => {
     cSetState({ ...oState, open: true });

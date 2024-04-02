@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -24,7 +24,7 @@ function AlertOfApps(oProps: any) {
 
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     shake: false
   });
 
@@ -41,14 +41,14 @@ function AlertOfApps(oProps: any) {
         cSetState({ ...oState, shake: false });
       }, 100);
       return;
-    }
+    };
 
     if (mLink) {
       events.emit('Navigation-onClickLink', mLink);
-    }
+    };
     if (mMenu) {
       events.emit('Navigation-onClickMenu', mMenu);
-    }
+    };
   };
 
   let cHandleChange = (oEvent: React.ChangeEvent<{ value: unknown }>) => {

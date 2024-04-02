@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,14 +20,14 @@ import cStyle from './style';
 import { isNullishCoalesce } from 'typescript';
 
 function SmallApps(oProps) {
-  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
 
   const oClasses = cStyle();
+  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     open: false,
     anchor: null
   });

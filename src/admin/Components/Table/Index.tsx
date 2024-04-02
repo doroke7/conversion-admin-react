@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -148,13 +148,13 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
     highlight:
       theme.palette.type === 'light'
         ? {
-            color: theme.palette.secondary.main,
-            backgroundColor: lighten(theme.palette.secondary.light, 0.85)
-          }
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+        }
         : {
-            color: theme.palette.text.primary,
-            backgroundColor: theme.palette.secondary.dark
-          },
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.dark
+        },
     spacer: {
       flex: '1 1 100%'
     },
@@ -243,12 +243,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function EnhancedTable() {
   const classes = useStyles(void 0);
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
-  const [selected, setSelected] = React.useState<string[]>([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState<keyof Data>('calories');
+  const [selected, setSelected] = useState<string[]>([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   function handleRequestSort(event: React.MouseEvent<unknown>, property: keyof Data) {
     const isDesc = orderBy === property && order === 'desc';

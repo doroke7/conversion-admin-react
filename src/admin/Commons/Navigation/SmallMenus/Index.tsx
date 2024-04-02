@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,7 +24,7 @@ function SmallMenus(oProps) {
   let bStatus = oProps.status;
   let aMenus = oProps.menus || [];
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     anchors: {}
   });
 

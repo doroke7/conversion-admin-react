@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -43,8 +43,8 @@ function Navigation(oProps: any) {
   // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法， 
   // 如果 直接使用 setState(值) 有数据覆盖的危险， 
   // 如果 间接使用 setState(旧的值 => 新的值) 有性能上的问题
-  let [oState, cSetState] = React.useState<any>({
-    open: true,     
+  let [oState, cSetState] = useState<any>({
+    open: true,
     value: 0,       // 当下被 Selected 的 Tab 位置
     tabs: [],       // Tab 列表
     index: -1,      // 选中的 Selectd APP位置
@@ -52,7 +52,7 @@ function Navigation(oProps: any) {
     menu: null,
   });
 
-  let [aApps, cSetApp] = React.useState<any>(CONFIGS.APPS);
+  let [aApps, cSetApp] = useState<any>(CONFIGS.APPS);
 
 
   let oParams: any = useParams();

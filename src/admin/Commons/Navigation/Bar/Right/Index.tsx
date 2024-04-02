@@ -19,7 +19,7 @@ import style from './style';
 
 function Right(oProps: any) {
   let oClasses = style(void 0);
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     open: false,
     rotating: false,
     anchor: null

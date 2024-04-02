@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -10,7 +10,7 @@ import style from './style';
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
   let oRouteMatch = useRouteMatch();
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     animation: false
   });
 
@@ -20,7 +20,7 @@ function Index(oProps: any): any {
       await new Promise((cResolve) => setTimeout(cResolve, 300));
       cSetState({ animation: false });
     })();
-    return () => {};
+    return () => { };
   }, [oRouteMatch.url]);
 
   return (

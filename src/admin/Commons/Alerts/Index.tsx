@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
@@ -23,7 +23,7 @@ import style from './style';
 function Alerts(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let [oState, cSetState] = React.useState<any>({
+  let [oState, cSetState] = useState<any>({
     open: false,
     code: 0,
     message: 'MESSAGE',
