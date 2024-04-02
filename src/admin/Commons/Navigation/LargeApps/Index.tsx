@@ -16,10 +16,9 @@ import Icon from './Icon/Index';
 
 import cStyle from './style';
 
-function LargeApps(oProps) {
+function LargeApps(oProps: any) {
 
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
-  let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
@@ -31,10 +30,12 @@ function LargeApps(oProps) {
   });
 
   let oApp = aApps[iIndex] ?? {};
-  let cHandleToggle = (oEvent) => {
+  let cHandleToggle = (oEvent: React.SyntheticEvent) => {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });
   };
+
+  console.log(aApps);
 
   return (
     <List
@@ -47,8 +48,10 @@ function LargeApps(oProps) {
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
             className={clsx(aBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
-            title={oApp?.['title'] ?? ''}
-            status={iIndex >= 0}></Icon>
+            title={oApp?.title ?? ''}
+            status={iIndex >= 0}
+            url={oApp?.url ?? ''}
+          ></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>

@@ -142,8 +142,8 @@ const style = makeStyles((oTheme: Theme) =>
     backgroundColor10: { backgroundColor: green[500] },
     backgroundColor11: { backgroundColor: lightGreen[500] },
     backgroundColor12: { backgroundColor: lime[500] },
-    backgroundColor13: { backgroundColor: deepOrange[500] },
-    backgroundColor14: { backgroundColor: brown[500] },
+    backgroundColor13: { backgroundColor: brown[500] },
+    backgroundColor14: { backgroundColor: deepOrange[500] },
     backgroundColor15: { backgroundColor: blueGrey[500] }
   })
 );

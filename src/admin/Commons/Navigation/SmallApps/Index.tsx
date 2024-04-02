@@ -81,8 +81,10 @@ function SmallApps(oProps) {
 
             })}
             title={oApp?.title ?? ''}
-            status={iIndex >= 0}></Icon>
-          <ListItemText primary={''}  />
+            status={iIndex >= 0}
+            url={oApp?.url ?? ''}
+          ></Icon>
+          <ListItemText primary={''} />
           <Apps
             open={Boolean(oState.anchor)}
             apps={aApps}

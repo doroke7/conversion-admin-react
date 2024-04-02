@@ -8,7 +8,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       width: oTheme.spacing(3),
       height: oTheme.spacing(3),
       boxSizing: 'border-box',
-      boxShadow: `0 0 5px 0px ${grey[500]}`,
+      boxShadow: '1px 1px 2px 0px #676767b3, 1px 1px 2px 0px #676767b3, 1px 1px 2px 0px #676767b3',
     },
     badge: {
       marginRight: oTheme.spacing(1),

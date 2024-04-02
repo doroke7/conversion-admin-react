@@ -18,8 +18,9 @@ function Icon(oProps: any) {
   const oClasses = cStyle();
   let sClassName = oProps.className ?? '';
   let bStatus = oProps.status ?? false;
-
   let sTitle = oProps.title ?? '';
+  let sUrl = oProps.url ?? '';
+
   sTitle = sTitle.substr(0, 1);
   return (
     <Badge
@@ -30,7 +31,7 @@ function Icon(oProps: any) {
       }}
       className={oClasses.badge}
       badgeContent={bStatus ? <CheckBoxIcon className={oClasses.checkCircleIcon}></CheckBoxIcon> : <></>}>
-      <Avatar className={clsx(oClasses.root, sClassName)} variant="rounded">
+      <Avatar className={clsx(oClasses.root, sClassName)} variant="rounded" src={sUrl}>
         {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
       </Avatar>
     </Badge>

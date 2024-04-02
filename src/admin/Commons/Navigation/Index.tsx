@@ -263,15 +263,15 @@ function Navigation(oProps: any) {
         cSetStateValue(-1);
         if (iStateIndex >= 0) {
           oHistory.push('/admin/resource');
-        }
-      }
+        };
+      };
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听
     return () => {
       events.removeListener('Navigation-onClickApp', cClickApp);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, aStateApps]);
 
   useLayoutEffect(() => {
     let cOnTab = (oRoute: any) => {

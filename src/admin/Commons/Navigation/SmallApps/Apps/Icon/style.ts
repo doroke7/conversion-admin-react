@@ -6,7 +6,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       fontSize: oTheme.spacing(2),
       width: oTheme.spacing(3),
-      height: oTheme.spacing(3)
+      height: oTheme.spacing(3),
+      boxShadow: '1px 1px 2px 0px #676767b3, 1px 1px 2px 0px #676767b3, 1px 1px 2px 0px #676767b3',
     },
     badge: {
       marginRight: oTheme.spacing(1),
