@@ -22,7 +22,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
         opacity: 1
       },
       '100%': {
-        transform: 'translate(-50%, -50%) scale(1.1)',
+        transform: 'translate(-50%, -50%) scale(1.05)',
         opacity: 1
       }
     },
