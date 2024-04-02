@@ -96,8 +96,8 @@ function SmallApps(oProps) {
           onMouseEnter={cHandleMouseEnter()}
           onMouseLeave={cHandleMouseLeave()}>
           <Icon
-            className={clsx(aIconColors[iIndex] ?? aIconColors[14])}
-            name={oApp['name'] ?? ''}
+            className={clsx(aIconColors?.[iIndex] ?? aIconColors[14])}
+            title={oApp?.title ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={''} />
           <Apps
