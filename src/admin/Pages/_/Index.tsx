@@ -1,4 +1,4 @@
-import React, {  useEffect, useLayoutEffect, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import store from '@/admin/store/index';
@@ -12,19 +12,15 @@ import style from './style';
 
 function Index(oProps: any) {
   let oClasses: any = style(void 0);
-  let [oState, cSetState] = React.useState({
-    open: true,
-    routes: router.admin.routes
-  });
 
   return (
     <Suspense fallback={<Fallback></Fallback>}>
       <BrowserRouter>
         <Switch>
-          {oState.routes.map((oRoute, sIndex) => (
+          {router.admin.routes.map((oRoute, sIndex) => (
             <Route path={oRoute.path} key={sIndex} exact={oRoute.exact}>
               <oRoute.Component
-                routes={oRoute.routes}
+                routes={oRoute.routes ?? []}
                 icon={oRoute.icon}
                 title={oRoute.title}
                 authenticator={oRoute.authenticator}

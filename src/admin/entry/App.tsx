@@ -1,4 +1,4 @@
-import React, {  useEffect, useLayoutEffect, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -17,7 +17,8 @@ function App(oProps: any) {
   let oClasses: any = style(void 0);
   let [oState, cSetState] = React.useState({
     open: true,
-    routes: router.admin.routes
+    routes: router.admin.routes   // TODO    IMPORTANT 有问题的写法，
+    // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系 
   });
 
   let cHandleContextmenu = (oEvent: any) => {
