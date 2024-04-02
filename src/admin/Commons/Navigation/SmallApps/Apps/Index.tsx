@@ -53,9 +53,9 @@ function Apps(oProps: any) {
                   <MenuItem key={oApp.id} onClick={cHandleClick(iIndexOfApp)}>
                     <Icon
                       className={clsx(aBackgroundClasses[iIndexOfApp] || aBackgroundClasses[0])}
-                      name={oApp.name}
+                      title={oApp?.title ?? ''}
                       status={iIndexOfApp == iIndex}></Icon>
-                    <ListItemText primary={oApp.name} />
+                    <ListItemText primary={oApp?.title ?? ''} />
                   </MenuItem>
                 </>
               ))}

@@ -45,9 +45,9 @@ function Apps(oProps: any) {
             onClick={cHandleClick(iIndexOfApp)}>
             <Icon
               className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0])}
-              name={oApp.name}
+              name={oApp?.title ?? ''}
               status={iIndexOfApp == iIndex}></Icon>
-            <ListItemText primary={oApp.name} />
+            <ListItemText primary={oApp?.title ?? ''} />
           </ListItem>
         ))}
       </List>
