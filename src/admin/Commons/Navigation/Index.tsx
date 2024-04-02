@@ -43,16 +43,6 @@ function Navigation(oProps: any) {
   // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法， 
   // 如果 直接使用 setState(值) 有数据覆盖的危险， 
   // 如果 间接使用 setState(旧的值 => 新的值) 有性能上的问题
-  let [oState, cSetState] = useState<any>({
-    open: true,
-    alert: false,
-    value: 0,       // 当下被 Selected 的 Tab 位置
-    tabs: [],       // Tab 列表
-    index: -1,      // 选中的 Selectd APP位置
-    link: null,
-    menu: null,
-    text: '',
-  });
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [bStateAlert, cSetStateAlert] = useState<any>(false);
@@ -61,24 +51,24 @@ function Navigation(oProps: any) {
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
   let [oStateMenu, cSetStateMenu] = useState<any>(null);
   let [oStateLink, cSetStateLink] = useState<any>(null);
-  let [aStateApps, cSetStateApps] = useState<any>(CONFIGS.APPS);
   let [sStateText, cSetStateText] = useState<any>('');
+  let [aStateApps, cSetStateApps] = useState<any>(CONFIGS.APPS);
 
 
 
   let oParams: any = useParams();
 
-  let sAuhorization = useSelector((oState: any) => (oState.auhorization));
+  let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
 
   let cAdminSystemAdminMenuShowTree = React.useCallback(async () => {
     let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree(13);
     return oResponse;
-  }, [oState.index, sAuhorization]);
+  }, [iStateIndex, sAuhorization]);
 
   let cAdminSystemAppShowOnes = React.useCallback(async () => {
     let oResponse = await Sdks.Admin.System.App.getShowOnes();
     return oResponse;
-  }, [oState.index, sAuhorization]);
+  }, [iStateIndex, sAuhorization]);
 
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
@@ -94,20 +84,19 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
-      let aTabs = [...oState.tabs];
+      let aTabs = [...aStateTabs];
 
       let aTabsRows1 = aTabs.slice(0, iIndex);
-      let aTabsRows2 = aTabs.slice(iIndex + 1, oState.tabs.length);
+      let aTabsRows2 = aTabs.slice(iIndex + 1, aStateTabs.length);
       aTabs = aTabsRows1.concat(aTabsRows2);
 
       let iValue = 0;
-      iValue = iIndex > oState.value ? oState.value : oState.value - 1;
+      iValue = iIndex > iStateValue ? iStateValue : iStateValue - 1;
       iValue = iValue < -1 ? -1 : iValue;
-      let oApp = aStateApps[oState.index];
+      let oApp = aStateApps[iStateIndex];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
-      cSetState({ ...oState, value: iValue, tabs: aTabs });
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
 
@@ -123,20 +112,19 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, iStateValue]);
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
-      let aTabs = [...oState.tabs];
+      let aTabs = [...aStateTabs];
 
       let oTabRow = aTabs[iIndex] ?? null;
       aTabs = oTabRow ? [oTabRow] : [];
       let iValue = 0;
-      let oApp = aStateApps[oState.index];
+      let oApp = aStateApps[iStateIndex];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
-      cSetState({ ...oState, value: iValue, tabs: aTabs });
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
 
@@ -148,17 +136,16 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, iStateValue]);
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
       let aTabs = [];
       let iValue = -1;
-      let oApp = aStateApps[oState.index];
+      let oApp = aStateApps[iStateIndex];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
-      cSetState({ ...oState, value: iValue, tabs: aTabs });
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
       oHistory.push('/admin/resource');
@@ -167,14 +154,13 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert, oState.value]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, iStateValue]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
-      cSetState({ ...oState, value: iValue });
       cSetStateValue(iValue);
 
-      let oTab = oState.tabs[iValue] ?? null;
+      let oTab = aStateTabs[iValue] ?? null;
       if (oTab) {
         oHistory.push(oTab.url);
       };
@@ -183,11 +169,10 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [oState.value, oState.open, oState.index, oState.alert, oState.tabs]);
+  }, [iStateValue, bStateOpen, iStateIndex, bStateAlert, aStateTabs]);
 
   useEffect(() => {
     let cPreClickLink = (oLink: any) => {
-      cSetState({ ...oState, alert: true, link: oLink, menu: null });
       cSetStateAlert(true);
       cSetStateLink(oLink);
       cSetStateMenu(null);
@@ -197,11 +182,10 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
-      cSetState({ ...oState, alert: true, link: null, menu: oMenu });
       cSetStateAlert(true);
       cSetStateLink(null);
       cSetStateMenu(oMenu);
@@ -210,12 +194,12 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useEffect(() => {
     let cClickLink = (oLink) => {
       let oParams = {
-        appId: aStateApps[oState.index].id ?? '',
+        appId: aStateApps[iStateIndex].id ?? '',
         page: 1,
         size: 10
       };
@@ -228,7 +212,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickLink', cClickLink);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useEffect(() => {
     let cClickMenu = (oMenu) => {
@@ -238,7 +222,7 @@ function Navigation(oProps: any) {
       };
 
       let oParams = {
-        appId: aStateApps[oState.index].id ?? '',
+        appId: aStateApps[iStateIndex].id ?? '',
         page: 1,
         size: 10
       };
@@ -255,7 +239,7 @@ function Navigation(oProps: any) {
       if (oTabOfMenu) {
         oRefOfText.current = oMenu.text ?? '';
 
-        cSetState({ ...oState, text: oMenu.text });
+        cSetStateText(oMenu.text);
         let sUrl = utilities.url(oTabOfMenu.path, oParams);
 
         oHistory.push(sUrl);
@@ -266,17 +250,19 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickMenu', cClickMenu);
     };
-  }, [oState.tabs, oState.open, oState.index]);
+  }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex) => {
       let iResultIndex = iIndex;
       let iAppId = aStateApps[iIndex].id;
 
-      if (iResultIndex != oState.index) {
+      if (iResultIndex != iStateIndex) {
         let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
-        cSetState({ ...oState, index: iResultIndex, tabs: aTabs, value: -1 });
-        if (oState.index >= 0) {
+        cSetStateIndex(iResultIndex);
+        cSetStateTabs(aTabs);
+        cSetStateValue(-1);
+        if (iStateIndex >= 0) {
           oHistory.push('/admin/resource');
         }
       }
@@ -286,14 +272,14 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickApp', cClickApp);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useLayoutEffect(() => {
     let cOnTab = (oRoute: any) => {
       let aTabs =
-        oRoute?.params?.appId >= 0 && oState.index == -1
+        oRoute?.params?.appId >= 0 && iStateIndex == -1
           ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
-          : [...oState.tabs];
+          : [...aStateTabs];
       let iIndex = 0;
       let iResultIndex = -1;
       for (iIndex = 0; iIndex < aStateApps.length; iIndex++) {
@@ -319,7 +305,7 @@ function Navigation(oProps: any) {
       if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
         oTab.text = oRefOfText.current || '未定义';
       };
-      let iValue = oState.value;
+      let iValue = iStateValue;
       let bExist = false;
       if (aTabs.length >= 1) {
         for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
@@ -345,11 +331,15 @@ function Navigation(oProps: any) {
         aTabs = [...aTabs, oTab];
         iValue = aTabs.length - 1;
       };
-      let oApp = aStateApps[oState.index];
+      let oApp = aStateApps[iStateIndex];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
 
-      cSetState({ ...oState, value: iValue, tabs: aTabs, alert: false, index: iResultIndex });
+      cSetStateValue(iValue);
+      cSetStateTabs(aTabs);
+      cSetStateAlert(false);
+      cSetStateIndex(iResultIndex);
+
     };
 
     let oEventEmitter: any = events.addListener('Navigation-onTab', cOnTab);
@@ -357,13 +347,13 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onTab', cOnTab);
     };
-  }, [oState.tabs, oState.open, oState.index, oState.alert]);
+  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useEffect(() => {
     let cResize = (oEvent: any) => {
       let iWidth = oEvent.target.innerWidth;
-      if (oState.open && iWidth <= oTheme.breakpoints.values['sm']) {
-        cSetState((oOldState) => ({ ...oOldState, open: false }));
+      if (bStateOpen && iWidth <= oTheme.breakpoints.values['sm']) {
+        cSetStateOpen(false);
       };
     };
     window.addEventListener('resize', cResize);
@@ -374,7 +364,7 @@ function Navigation(oProps: any) {
        */
       window.removeEventListener('resize', cResize);
     };
-  }, [oState.open]);
+  }, [bStateOpen]);
 
   useEffect(() => {
 
@@ -383,40 +373,43 @@ function Navigation(oProps: any) {
   let cHandleLoad = (oEvent) => {
     let iWidth = oRefOfDom.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
-      cSetState((oOldState) => ({ ...oOldState, open: false }));
+      cSetStateOpen(false);
     };
   };
 
   let cHandleDrawerOpen = () => {
-    cSetState({ ...oState, open: true });
+    cSetStateOpen(true);
+
   };
 
   let cHandleDrawerClose = () => {
-    cSetState({ ...oState, open: false });
+    cSetStateOpen(false);
+
   };
 
   let cHandleClose = () => {
-    cSetState({ ...oState, alert: false });
+    cSetStateOpen(false);
+
   };
   return (
-    <Contexts.AppsIndex.Provider value={oState.index}>
-      <Contexts.TabsValue.Provider value={oState.value}>
-        <Contexts.Tabs.Provider value={oState.tabs}>
+    <Contexts.AppsIndex.Provider value={iStateIndex}>
+      <Contexts.TabsValue.Provider value={iStateValue}>
+        <Contexts.Tabs.Provider value={aStateTabs}>
           <div className={oClasses.root} onLoad={cHandleLoad} ref={oRefOfDom}>
-            <Bar handleDrawerOpen={cHandleDrawerOpen} open={oState.open} apps={aStateApps}></Bar>
+            <Bar handleDrawerOpen={cHandleDrawerOpen} open={bStateOpen} apps={aStateApps}></Bar>
             <Drawer
               variant="permanent"
               className={clsx(oClasses.drawer, {
-                [oClasses.drawerOpen]: oState.open,
-                [oClasses.drawerClose]: !oState.open
+                [oClasses.drawerOpen]: bStateOpen,
+                [oClasses.drawerClose]: !bStateOpen
               })}
               classes={{
                 paper: clsx(oClasses.drawerPaper, {
-                  [oClasses.drawerOpen]: oState.open,
-                  [oClasses.drawerClose]: !oState.open
+                  [oClasses.drawerOpen]: bStateOpen,
+                  [oClasses.drawerClose]: !bStateOpen
                 })
               }}
-              open={oState.open}>
+              open={bStateOpen}>
               <div className={oClasses.toolbar}>
                 <span className={oClasses.appName}>{CONFIGS.ADMIN.NAME}</span>
                 <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
@@ -424,11 +417,11 @@ function Navigation(oProps: any) {
                 </IconButton>
               </div>
               <Divider className={oClasses.divider} />
-              <SmallApps status={!oState.open} apps={aStateApps}></SmallApps>
-              <LargeApps status={oState.open} apps={aStateApps} index={oState.index}></LargeApps>
+              <SmallApps status={!bStateOpen} apps={aStateApps}></SmallApps>
+              <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex}></LargeApps>
               <Divider className={oClasses.divider} />
-              <LargeMenus status={oState.open} menus={CONFIGS.MENUS} apps={aStateApps} />
-              <SmallMenus status={!oState.open} menus={CONFIGS.MENUS} apps={aStateApps} />
+              <LargeMenus status={bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
+              <SmallMenus status={!bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
               <Divider className={oClasses.divider} />
               <List></List>
             </Drawer>
@@ -438,9 +431,9 @@ function Navigation(oProps: any) {
             </main>
             <AlertOfApps
               apps={aStateApps}
-              link={oState.link}
-              menu={oState.menu}
-              open={oState.alert}
+              link={oStateLink}
+              menu={oStateMenu}
+              open={bStateAlert}
               onClose={cHandleClose}></AlertOfApps>
           </div>
         </Contexts.Tabs.Provider>
