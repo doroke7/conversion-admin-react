@@ -29,7 +29,7 @@ function Index(oProps: any): any {
         [oClasses.rootAnimation]: oState.animation
       })}>
       <Icon></Icon>
-      <div className={oClasses.text}>─分页组件未定义─</div>
+      <div className={oClasses.text}>⎯分页组件未定义⎯</div>
     </div>
   );
 }
