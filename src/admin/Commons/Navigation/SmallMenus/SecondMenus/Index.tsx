@@ -16,7 +16,6 @@ import Contexts from '@/admin/Contexts/Index';
 
 import Components from '@/admin/Components/Index';
 
-import CONFIGS from '@/CONFIGS/INDEX';
 import ThirddMenus from './ThirdMenus/Index';
 
 import cStyle from './style';
@@ -25,7 +24,7 @@ function SecondMenus(oProps: any) {
   const oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let aMenus = oProps.menus ?? []; // 二级 menu
+  let aAdminMenus = oProps.menus ?? []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
@@ -34,24 +33,24 @@ function SecondMenus(oProps: any) {
     menus: {}
   });
 
-  let cOnClick = (oMenu: any) => {
+  let cOnClick = (oAdminMenu: any) => {
     return (oEvent) => {
-      let oMenus = {};
+      let oAdminMenus = {};
 
-      if (!oState.menus[oMenu.id]) {
-        oMenus = {
-          [oMenu.id]: true
+      if (!oState.menus[oAdminMenu.id]) {
+        oAdminMenus = {
+          [oAdminMenu.id]: true
         };
       }
-      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oMenu);
+          events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
           return;
-        }
-        events.emit('Navigation-onClickMenu', oMenu);
-      }
-      cSetState({ ...oState, menus: oMenus });
+        };
+        events.emit('Navigation-onClickMenu', oAdminMenu);
+      };
+      cSetState({ ...oState, menus: oAdminMenus });
       // if (oSecondMenu.path !== undefined && oSecondMenu.menus === undefined) {
       //   Helpers.History.push(oHistory, oSecondMenu.path, oQuery, oOption);
       // }
@@ -68,23 +67,23 @@ function SecondMenus(oProps: any) {
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>
             <MenuList autoFocusItem={bOpen} id="menu-list-grow">
-              {aMenus.map((oMenu: any, iIndex: any) => (
+              {aAdminMenus.map((oAdminMenu: any, iIndex: any) => (
                 <>
-                  <MenuItem key={oMenu.id} onClick={cOnClick(oMenu)}>
+                  <MenuItem key={oAdminMenu.id} onClick={cOnClick(oAdminMenu)}>
                     <ListItemIcon className={oClasses.listItemIcon}>
-                      <Components.Icon name={oMenu.icon} />
+                      <Components.Icon name={oAdminMenu.icon} />
                     </ListItemIcon>
-                    <ListItemText primary={oMenu.text} />
-                    {oMenu.menus === undefined ? (
+                    <ListItemText primary={oAdminMenu.text} />
+                    {oAdminMenu.menus === undefined ? (
                       ''
-                    ) : oState.menus[oMenu.id] === undefined ? (
+                    ) : oState.menus[oAdminMenu.id] === undefined ? (
                       <ExpandMore />
                     ) : (
                       <ExpandLess />
                     )}
                   </MenuItem>
-                  {oMenu.menus !== undefined ? (
-                    <ThirddMenus in={oState.menus[oMenu.id] !== undefined} menus={oMenu.menus}></ThirddMenus>
+                  {oAdminMenu.menus !== undefined ? (
+                    <ThirddMenus in={oState.menus[oAdminMenu.id] !== undefined} menus={oAdminMenu.menus}></ThirddMenus>
                   ) : (
                     ''
                   )}

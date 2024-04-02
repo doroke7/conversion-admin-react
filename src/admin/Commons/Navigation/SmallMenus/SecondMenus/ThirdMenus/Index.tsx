@@ -16,21 +16,23 @@ import Components from '@/admin/Components/Index';
 import cStyle from './style';
 
 function SecondMenus(oProps: any) {
-  const oClasses = cStyle();
+  let bIn = oProps.in ?? false;
+  let aAdminMenus = oProps.menus ?? [];
+
+  let oClasses = cStyle();
   let oHistory = useHistory();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
-  let bIn = oProps.in ?? false;
-  let aMenus = oProps.menus ?? [];
+
 
   let [oState, cSetState] = useState<any>({
     anchors: {}
   });
 
-  let cHandleClick = (oMenu: any) => {
+  let cHandleClick = (oAdminMenu: any) => {
     return (oEvent: any) => {
       let oAnchor = oEvent.currentTarget;
       let oAnchors = {
-        [oMenu.id]: oAnchor
+        [oAdminMenu.id]: oAnchor
       };
       cSetState({ ...oState, anchors: oAnchors });
 
@@ -41,13 +43,13 @@ function SecondMenus(oProps: any) {
         app_id: 1
       };
 
-      if (!Object.prototype.hasOwnProperty.call(oMenu, 'menus') || oMenu.menus.length == 0) {
+      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oMenu);
+          events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
           return;
         }
-        events.emit('Navigation-onClickMenu', oMenu);
+        events.emit('Navigation-onClickMenu', oAdminMenu);
       }
     };
   };
@@ -55,19 +57,19 @@ function SecondMenus(oProps: any) {
   return (
     <Collapse in={bIn} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        {aMenus.map((oMenu: any, iSecondIndex: any) => (
+        {aAdminMenus.map((oAdminMenu: any, iSecondIndex: any) => (
           // NOTE： 解决 多个 refs 办法 一： 宣告多一个子 child compoment , 此 compoent 有独立的 ref varible
           <ListItem
             button
-            key={oMenu.id}
+            key={oAdminMenu.id}
             className={oClasses.nested}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleClick(oMenu)}>
+            onClick={cHandleClick(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oMenu.icon} />
+              <Components.Icon name={oAdminMenu.icon} />
             </ListItemIcon>
-            <ListItemText primary={oMenu.text} />
+            <ListItemText primary={oAdminMenu.text} />
           </ListItem>
         ))}
       </List>
