@@ -2,12 +2,12 @@ import Helpers from '@/admin/Helpers/Index';
 
 class App {
 
-  public static async getShowTree(iAppId: number) {
+  public static async getShowTree(oOption: any = {}, oSearch: any = {}, oParam: any = {}) {
     let oResponse = await Helpers.Admin.get({
       path: '/Admin/System/AdminMenu/showTree',
       params: {
         option: {
-          appId: iAppId
+          ...oOption
         },
         search: {}
       },
