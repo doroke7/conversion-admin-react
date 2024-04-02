@@ -23,6 +23,8 @@ function LargeApps(oProps) {
   let aMenus = oProps.menus ?? [];
   let aApps = oProps.apps ?? [];
 
+  console.log('aApps====', aApps);
+
   const oClasses = cStyle();
 
   let [oState, cSetState] = useState<any>({
@@ -30,7 +32,6 @@ function LargeApps(oProps) {
   });
 
   let oApp = aApps[iIndex] ?? {};
-  let sName = oApp.name ?? '';
   let cHandleToggle = (oEvent) => {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });

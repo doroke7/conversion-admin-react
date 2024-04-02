@@ -17,7 +17,6 @@ import Apps from './Apps/Index';
 import Icon from './Icon/Index';
 
 import cStyle from './style';
-import { isNullishCoalesce } from 'typescript';
 
 function SmallApps(oProps) {
 
@@ -33,8 +32,7 @@ function SmallApps(oProps) {
   });
 
   let oApp = aApps[iIndex] ?? {};
-  let sName = oApp.name ?? '';
-  let cHandleToggle = (oEvent) => {
+  let cHandleToggle = (oEvent: React.SyntheticEvent) => {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });
   };

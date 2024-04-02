@@ -52,7 +52,7 @@ function Navigation(oProps: any) {
   let [oStateMenu, cSetStateMenu] = useState<any>(null);
   let [oStateLink, cSetStateLink] = useState<any>(null);
   let [sStateText, cSetStateText] = useState<any>('');
-  let [aStateApps, cSetStateApps] = useState<any>(CONFIGS.APPS);
+  let [aStateApps, cSetStateApps] = useState<any>([]);
 
 
 
@@ -60,12 +60,12 @@ function Navigation(oProps: any) {
 
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
 
-  let cAdminSystemAdminMenuShowTree = React.useCallback(async () => {
+  let cAdminSystemAdminMenuShowTree = useCallback(async () => {
     let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree(13);
     return oResponse;
   }, [iStateIndex, sAuhorization]);
 
-  let cAdminSystemAppShowOnes = React.useCallback(async () => {
+  let cAdminSystemAppShowOnes = useCallback(async () => {
     let oResponse = await Sdks.Admin.System.App.getShowOnes();
     return oResponse;
   }, [iStateIndex, sAuhorization]);
@@ -73,14 +73,16 @@ function Navigation(oProps: any) {
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
-      let oResponse1 = await cAdminSystemAdminMenuShowTree();
-      let oResponse2 = await cAdminSystemAppShowOnes();
+      let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree();
+      let oAppResponse = await cAdminSystemAppShowOnes();
 
-      console.log(oResponse1);
-      console.log(oResponse2);
+      let aApps = oAppResponse?.data.raw?.ones ?? [];
+
+      cSetStateApps(aApps);
 
     })();
   }, [cAdminSystemAdminMenuShowTree, cAdminSystemAppShowOnes]);
+
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -197,7 +199,7 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useEffect(() => {
-    let cClickLink = (oLink) => {
+    let cClickLink = (oLink: any) => {
       let oParams = {
         appId: aStateApps[iStateIndex].id ?? '',
         page: 1,
@@ -215,7 +217,7 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
 
   useEffect(() => {
-    let cClickMenu = (oMenu) => {
+    let cClickMenu = (oMenu: any) => {
       // 如果 Menu 旗下还有子 menu 就不做事
       if (oMenu?.menus && Array.isArray(oMenu?.menus) && oMenu.menus.length >= 1) {
         return;
@@ -253,7 +255,7 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useLayoutEffect(() => {
-    let cClickApp = (iIndex) => {
+    let cClickApp = (iIndex: any) => {
       let iResultIndex = iIndex;
       let iAppId = aStateApps[iIndex].id;
 
