@@ -6,7 +6,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       width: '100%',
       maxWidth: 360,
-      color: grey[100]
+      color: grey[100],
+      zIndex: -1,
+
     },
     rootHidden: {
       display: 'none'

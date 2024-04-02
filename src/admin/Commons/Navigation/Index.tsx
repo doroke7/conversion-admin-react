@@ -409,19 +409,22 @@ function Navigation(oProps: any) {
                 })
               }}
               open={bStateOpen}>
-              <div className={oClasses.toolbar}>
+              <div className={clsx(oClasses.toolbar, {
+                [oClasses.toolbarOpen]: bStateOpen,
+                [oClasses.toolbarClose]: !bStateOpen
+              })}>
                 <span className={oClasses.appName}>{CONFIGS.ADMIN.NAME}</span>
                 <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
                   <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
                 </IconButton>
               </div>
-              <Divider className={oClasses.divider} />
+              <Divider className={oClasses.firstDivider} />
               <SmallApps status={!bStateOpen} apps={aStateApps}></SmallApps>
               <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex}></LargeApps>
-              <Divider className={oClasses.divider} />
+              <Divider className={oClasses.secondDivider} />
               <LargeMenus status={bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
               <SmallMenus status={!bStateOpen} menus={CONFIGS.MENUS} apps={aStateApps} />
-              <Divider className={oClasses.divider} />
+              <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>
             <main className={oClasses.content}>

@@ -10,11 +10,6 @@ const style = makeStyles((oTheme: Theme) =>
     none: {
       display: 'none'
     },
-    appsWrapper: {
-      maxHeight: 'calc(100vh - 56px)',
-      height: 'calc(100vh - 56px)',
-      overflowY: 'scroll'
-    },
     drawer: {
       width: oTheme.spacing(25),
       flexShrink: 0,
@@ -55,15 +50,26 @@ const style = makeStyles((oTheme: Theme) =>
     toolbar: {
       ...oTheme.mixins.toolbar,
       display: 'flex',
+      position: 'fixed',
+      top: oTheme.spacing(0),
+      left: oTheme.spacing(0),
       color: grey[100],
       alignItems: 'center',
       justifyContent: 'space-between',
       paddingTop: oTheme.spacing(0),
-      paddingRight: oTheme.spacing(2),
+      paddingRight: oTheme.spacing(2) + 6,
       paddingBottom: oTheme.spacing(0),
       paddingLeft: oTheme.spacing(2) + 4,
 
-      minHeight: oTheme.spacing(7)
+      minHeight: oTheme.spacing(7),
+      background: 'linear-gradient(195deg, #125489 5%, #125480 100%)',
+    },
+    toolbarOpen: {
+      boxShadow: '10px 1px 70px 1px rgba(0,0,0,0.75)',
+
+    },
+    toolbarClose: {
+
     },
     [oTheme.breakpoints.up('sm')]: {
       toolbar: {
@@ -98,9 +104,14 @@ const style = makeStyles((oTheme: Theme) =>
     },
     firstDivider: {
       marginTop: oTheme.spacing(7),
+      zIndex: -1,
     },
-    divider: {
-      // backgroundColor: cyan[200]
+    secondDivider: {
+      zIndex: -1,
+
+    },
+    thirdDivider: {
+      zIndex: -1,
     }
   })
 );
