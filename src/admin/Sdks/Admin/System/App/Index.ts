@@ -4,7 +4,7 @@ class App {
 
 
   public static async getShowOnes() {
-    let oResponse = await Helpers.Admin.post({
+    let oResponse = await Helpers.Admin.get({
       path: '/Admin/System/App/showOnes',
 
       params: {

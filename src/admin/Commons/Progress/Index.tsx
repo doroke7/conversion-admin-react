@@ -1,4 +1,4 @@
-import React, {  useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import clsx from 'clsx';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
@@ -19,20 +19,18 @@ function Progress(oProps: any): any {
 
   useEffect(() => {
     let oInterval = setInterval(() => {
-      /**
-       * React setState Hook 可以输入 callback function， 能使用 oldState
-       */
+
       if (oState.status) {
         cSetState((oOldState) => {
           let oNewState = { value: 0, status: false };
           if (oOldState.value === 100) {
             oNewState.value = 0;
             return oNewState;
-          }
+          };
           if (oOldState.value < 100) {
             let iDiffValue = Math.random() * 20;
             oNewState.value = oOldState.value + iDiffValue;
-          }
+          };
 
           let iValue = Math.min(oNewState.value, 100);
           oNewState.value = iValue;

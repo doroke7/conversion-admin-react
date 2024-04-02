@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -50,13 +50,27 @@ function Navigation(oProps: any) {
 
   let sAuhorization = useSelector((oState: any) => (oState.auhorization));
 
-  useEffect(() => {
-    (async () => {
-      let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree();
+  let cAdminSystemAdminMenuShowTree = React.useCallback(async () => {
+    let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree(13);
+    return oResponse;
+  }, [oState.index, sAuhorization]);
 
-      console.log(oResponse);
+  let cAdminSystemAppShowOnes = React.useCallback(async () => {
+    let oResponse = await Sdks.Admin.System.App.getShowOnes();
+    return oResponse;
+  }, [oState.index, sAuhorization]);
+
+  useEffect(() => {
+    // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
+    (async () => {
+      let oResponse1 = await cAdminSystemAdminMenuShowTree();
+      let oResponse2 = await cAdminSystemAppShowOnes();
+
+      console.log(oResponse1);
+      console.log(oResponse2);
+
     })();
-  });
+  }, [cAdminSystemAdminMenuShowTree, cAdminSystemAppShowOnes]);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
