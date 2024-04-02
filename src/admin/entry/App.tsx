@@ -19,9 +19,6 @@ function App(oProps: any) {
   // TODO    IMPORTANT 有问题的写法，
   // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系 
 
-
-  console.log('CONFIGS.APP=', CONFIGS.APP);
-
   let cHandleContextmenu = (oEvent: any) => {
     if (CONFIGS.APP.CONTEXT_MENU == false) {
       oEvent.stopPropagation(); // 取消 link

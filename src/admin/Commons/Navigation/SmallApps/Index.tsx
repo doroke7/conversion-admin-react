@@ -55,6 +55,9 @@ function SmallApps(oProps) {
     oClasses.backgroundColor15
   ];
 
+
+
+
   let cHandleMouseEnter = () => {
     return (oEvent) => {
       let oAnchor = oEvent.currentTarget;
@@ -94,7 +97,7 @@ function SmallApps(oProps) {
           onMouseEnter={cHandleMouseEnter()}
           onMouseLeave={cHandleMouseLeave()}>
           <Icon
-            className={clsx(aIconColors?.[iIndex] ?? aIconColors[14])}
+            className={clsx(aIconColors?.[iIndex] ?? aIconColors[0])}
             title={oApp?.title ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={''} />

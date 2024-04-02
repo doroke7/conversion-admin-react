@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useMemo } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -53,6 +53,28 @@ function LargeApps(oProps) {
     oClasses.backgroundColor15
   ];
 
+  let aMemoBackgroundClasses = useMemo(() => {
+    let aResults: any[] = [];
+
+    if (aBackgroundClasses.length >= aApps.length) {
+      aResults.push(...aBackgroundClasses);
+      return aResults;
+    };
+
+    if (aBackgroundClasses.length < aApps.length) {
+      let iFactor = Math.ceil(aApps.length / (aBackgroundClasses.length || 1));
+
+      for (let iIndex = 0; iIndex < iFactor; iIndex++) {
+
+        aResults.push(...aBackgroundClasses);
+      };
+
+      return aResults;
+    };
+
+    return aResults;
+
+  }, [aApps.length]);
 
   return (
     <List
@@ -64,13 +86,13 @@ function LargeApps(oProps) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
-            className={clsx(aBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
+            className={clsx(aMemoBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
             title={oApp?.['title'] ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
+        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aMemoBackgroundClasses}></Apps>
       </>
     </List>
   );

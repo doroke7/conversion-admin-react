@@ -4,6 +4,5 @@ const API: any = {
   SALT: process.env.API_SALT || 'PmWTE2!=xPC@6jwN'
 };
 
-console.log('process.env.API_HOST', process.env.API_HOST)
 
 export default API;
