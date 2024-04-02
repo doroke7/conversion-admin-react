@@ -96,6 +96,9 @@ const style = makeStyles((oTheme: Theme) =>
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
       marginTop: oTheme.spacing(1) - 4
     },
+    firstDivider: {
+      marginTop: oTheme.spacing(7),
+    },
     divider: {
       // backgroundColor: cyan[200]
     }
