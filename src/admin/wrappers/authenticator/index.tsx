@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import Sdks from '@/admin/Sdks/Index';
 import Helpers from '@/admin/Helpers/Index';
@@ -15,10 +15,7 @@ let authenticator = (Component: any): any => {
     let bAuthenticator = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
     let oRouteMatch = useRouteMatch();
-
-    let [oState, cSetState] = React.useState<any>({
-      status: false
-    });
+    let [bStatus, cSetStatus] = useState<boolean>(false);
 
     useEffect(() => {
       let cRefresh = async () => {
@@ -32,7 +29,7 @@ let authenticator = (Component: any): any => {
           events.emit('Alerts-onAlert', oMessage);
           Helpers.Authentication.setPath(oRouteMatch.url);
           oHistory.push(aRedirections[0]);
-        }
+        };
         if (sJwt) {
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
           sJwt = oResponse?.headers?.authorization ?? '';
@@ -58,14 +55,14 @@ let authenticator = (Component: any): any => {
 
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[0]);
-            }
-          }
+            };
+          };
 
           if (oResponse?.data?.code >= 0 && sJwt) {
             Helpers.Authentication.setJwt(sJwt);
             if (!aRedirections[1]) {
               Helpers.Authentication.removePath();
-            }
+            };
             if (aRedirections[1]) {
               let oMessage = {
                 code: 1,
@@ -74,11 +71,11 @@ let authenticator = (Component: any): any => {
               };
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[1]);
-            }
-          }
-        }
+            };
+          };
+        };
 
-        cSetState({ status: true });
+        cSetStatus(true);
       };
       if (CONFIGS.JWT.AUTHENTICATOR && bAuthenticator) {
         events.emit('Progress-onProgress', { value: 0, status: true });
@@ -88,13 +85,13 @@ let authenticator = (Component: any): any => {
           clearInterval(oInterval);
         };
         // events.emit('Progress-onProgress', { value: 90, status: true });
-      }
+      };
     }, []);
 
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    return oState.status || !CONFIGS.JWT.AUTHENTICATOR ? <Component {...oProps}></Component> : <></>;
+    return bStatus || !CONFIGS.JWT.AUTHENTICATOR ? <Component {...oProps}></Component> : <></>;
   }
 
   return Wrapper;
