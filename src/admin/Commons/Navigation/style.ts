@@ -65,7 +65,7 @@ const style = makeStyles((oTheme: Theme) =>
       background: 'linear-gradient(195deg, #125489 5%, #125480 100%)',
     },
     toolbarOpen: {
-      boxShadow: '10px 1px 70px 1px rgba(0,0,0,0.75)',
+      boxShadow: '0px 0px 15px 0px rgb(33 203 243 / 60%)',
 
     },
     toolbarClose: {

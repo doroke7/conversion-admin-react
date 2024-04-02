@@ -7,8 +7,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       position: 'relative',
       flexGrow: 1,
       width: '100%',
-      minHeight: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
-      maxHeight: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
+      minHeight: 'calc( 100vh )',
+      maxHeight: 'calc( 100vh )',
       backgroundColor: oTheme.palette.background.paper,
       '& .MuiTab-root': {
         [oTheme.breakpoints.up('sm')]: {

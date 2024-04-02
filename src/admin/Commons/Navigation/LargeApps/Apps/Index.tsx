@@ -21,7 +21,7 @@ function Apps(oProps: any) {
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let bIn = oProps.in ?? false;
   let aApps = oProps.apps ?? [];
-  let aBackgroundClasses = oProps.iconColors ?? [];
+  let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
   let cHandleClick = (iIndexOfApp) => {
     return (oEvent) => {

@@ -35,16 +35,16 @@ function LargeApps(oProps) {
     cSetState({ ...oState, open: bOpen });
   };
 
-  let aIconColors = [
-    oClasses.backgroundColor1,
-    oClasses.backgroundColor2,
-    oClasses.backgroundColor3,
-    oClasses.backgroundColor4,
-    oClasses.backgroundColor5,
-    oClasses.backgroundColor6,
-    oClasses.backgroundColor7,
-    oClasses.backgroundColor8,
-    oClasses.backgroundColor9,
+  let aBackgroundClasses = [
+    oClasses.backgroundColor01,
+    oClasses.backgroundColor02,
+    oClasses.backgroundColor03,
+    oClasses.backgroundColor04,
+    oClasses.backgroundColor05,
+    oClasses.backgroundColor06,
+    oClasses.backgroundColor07,
+    oClasses.backgroundColor08,
+    oClasses.backgroundColor09,
     oClasses.backgroundColor10,
     oClasses.backgroundColor11,
     oClasses.backgroundColor12,
@@ -53,7 +53,6 @@ function LargeApps(oProps) {
     oClasses.backgroundColor15
   ];
 
-  let iColor = iIndex % aIconColors.length;
 
   return (
     <List
@@ -65,13 +64,13 @@ function LargeApps(oProps) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
-            className={clsx(aIconColors[iColor] ?? aIconColors[14])}
+            className={clsx(aBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
             title={oApp?.['title'] ?? ''}
             status={iIndex >= 0}></Icon>
           <ListItemText primary={'应用程序'} />
           {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} iconColors={aIconColors}></Apps>
+        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
       </>
     </List>
   );
