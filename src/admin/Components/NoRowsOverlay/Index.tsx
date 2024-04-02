@@ -16,7 +16,7 @@ function NoRowsOverlay(oProps: any) {
   return (
     <GridOverlay className={oClasses.root}>
       <InIcon className={oClasses.icon}></InIcon>
-      <div className={oClasses.text}>-暂无数据-</div>
+      <div className={oClasses.text}>─暂无数据─</div>
     </GridOverlay>
   );
 }

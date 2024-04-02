@@ -12,7 +12,7 @@ function Empty(oProps: any) {
   return (
     <div className={clsx(oClasses.root, sClssName)}>
       <Icon></Icon>
-      <div className={oClasses.text}>-{CONFIGS.ADMIN.NAME}-</div>
+      <div className={oClasses.text}>─{CONFIGS.ADMIN.NAME}─</div>
     </div>
   );
 }

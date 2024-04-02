@@ -31,7 +31,7 @@ function Cards(oProps: any) {
     !bLoading && aRows?.length == 0 ? (
       <div className={oClasses.iconWrapper}>
         <InIcon className={oClasses.inIcon}></InIcon>
-        <div className={oClasses.text}>-暂无数据-</div>
+        <div className={oClasses.text}>─暂无数据─</div>
       </div>
     ) : (
       Componet
