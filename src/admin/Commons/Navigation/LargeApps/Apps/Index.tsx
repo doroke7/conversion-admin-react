@@ -17,8 +17,7 @@ import Icon from './Icon/Index';
 import cStyle from './style';
 
 function Apps(oProps: any) {
-  const oClasses = cStyle();
-  let oHistory = useHistory();
+  let oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let bIn = oProps.in ?? false;
   let aApps = oProps.apps ?? [];
@@ -45,7 +44,7 @@ function Apps(oProps: any) {
             onClick={cHandleClick(iIndexOfApp)}>
             <Icon
               className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0])}
-              name={oApp?.title ?? ''}
+              title={oApp?.title ?? ''}
               status={iIndexOfApp == iIndex}></Icon>
             <ListItemText primary={oApp?.title ?? ''} />
           </ListItem>

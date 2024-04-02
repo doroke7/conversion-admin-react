@@ -14,8 +14,8 @@ function Icon(oProps: any) {
   let sClassName = oProps.className ?? '';
   let bStatus = oProps.status ?? false;
 
-  let sName = oProps.name ?? '';
-  sName = sName.substr(0, 1);
+  let sTitle = oProps.title ?? '';
+  sTitle = sTitle.substr(0, 1);
   return (
     <Badge
       overlap="circular"
@@ -26,7 +26,7 @@ function Icon(oProps: any) {
       className={oClasses.badge}
       badgeContent={bStatus ? <CheckBoxIcon className={oClasses.checkCircleIcon}></CheckBoxIcon> : <></>}>
       <Avatar className={clsx(oClasses.root, sClassName)} variant="rounded">
-        {sName}
+        {sTitle}
       </Avatar>
     </Badge>
   );
