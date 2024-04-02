@@ -19,7 +19,7 @@ let authenticator = (Component: any): any => {
 
     useEffect(() => {
       let cRefresh = async () => {
-        let sJwt = Helpers.Authentication.getJwt() ?? '';
+        let sJwt = Helpers.Authentication.authorization() ?? '';
         if (sJwt == '' && aRedirections[0]) {
           let oMessage = {
             code: -1,

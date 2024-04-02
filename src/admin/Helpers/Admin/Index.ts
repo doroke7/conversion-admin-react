@@ -42,7 +42,7 @@ class AdminHelper {
   }
 
   public static options(oOptions: any, sKey: string, sIv: string): any {
-    let sJwt = Helpers.Authentication.getJwt();
+    let sJwt = Helpers.Authentication.authorization();
     let iTime = Math.floor(Date.now() / 1000);
     let oKeys = { key: sKey, iv: sIv };
     let sKeys = JSON.stringify(oKeys);

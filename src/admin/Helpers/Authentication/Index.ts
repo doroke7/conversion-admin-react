@@ -1,5 +1,5 @@
 class AuthenticationHelper {
-  public static getJwt(): string | null {
+  public static authorization(): string | null {
     let sJwt = window.localStorage.getItem('jwt') ?? '';
     return sJwt;
   }

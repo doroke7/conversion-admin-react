@@ -30,7 +30,7 @@ function App(oProps: any) {
      * sVer: 客户端上次打开时候 浏览器的版本号
      */
     let sVer = Helpers.Ver.get();
-    let sJwt = Helpers.Authentication.getJwt();
+    let sJwt = Helpers.Authentication.authorization();
 
     /**
      * TITLE: 开启清理 window.storage 开关， 且 客户端版本提高的情况下 => 清理 window.storage
