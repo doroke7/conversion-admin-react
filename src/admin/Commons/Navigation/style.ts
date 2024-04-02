@@ -7,8 +7,13 @@ const style = makeStyles((oTheme: Theme) =>
       display: 'flex'
     },
 
-    hide: {
+    none: {
       display: 'none'
+    },
+    appsWrapper: {
+      maxHeight: 'calc(100vh - 56px)',
+      height: 'calc(100vh - 56px)',
+      overflowY: 'scroll'
     },
     drawer: {
       width: oTheme.spacing(25),
