@@ -1,14 +1,18 @@
-let oAuthenticationAuthenticator = (sJwt: string = '', oAction: any) => {
-  let sJwt1 = (oAction?.authorization ?? sJwt) || sJwt;
+import AuthenticationHelper from '@/admin/Helpers/Authentication/Index';
+
+let oAuthenticationAuthenticator = (sAuhorization: string = '', oAction: any) => {
+  let sAuhorization0 = AuthenticationHelper.authorization();
+
+  let sAuhorization1 = (oAction?.authorization ?? sAuhorization) || sAuhorization || sAuhorization0;
 
   switch (oAction.type) {
     case '/Admin/Authentication/Authenticator/postSignIn':
-      return sJwt1;
+      return sAuhorization1;
     case 'JWT_REFRESH':
-      return sJwt1;
+      return sAuhorization1;
     default:
 
-      return sJwt;
+      return sAuhorization1;
   }
 };
 
