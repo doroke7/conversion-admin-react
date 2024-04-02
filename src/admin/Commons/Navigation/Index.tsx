@@ -51,6 +51,7 @@ function Navigation(oProps: any) {
     index: -1,      // 选中的 Selectd APP位置
     link: null,
     menu: null,
+    text: '',
   });
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
@@ -61,6 +62,7 @@ function Navigation(oProps: any) {
   let [oStateMenu, cSetStateMenu] = useState<any>(null);
   let [oStateLink, cSetStateLink] = useState<any>(null);
   let [aStateApps, cSetStateApps] = useState<any>(CONFIGS.APPS);
+  let [sStateText, cSetStateText] = useState<any>('');
 
 
 
@@ -106,6 +108,8 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
+      cSetStateValue(iValue);
+      cSetStateTabs(aTabs);
 
       if (aTabs.length >= 1) {
         let oTab = aTabs[iValue];
@@ -133,6 +137,9 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
+      cSetStateValue(iValue);
+      cSetStateTabs(aTabs);
+
       if (oTabRow) {
         oHistory.push(oTabRow.url);
       };
@@ -152,6 +159,8 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
 
       cSetState({ ...oState, value: iValue, tabs: aTabs });
+      cSetStateValue(iValue);
+      cSetStateTabs(aTabs);
       oHistory.push('/admin/resource');
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
@@ -163,6 +172,8 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cClickTab = (iValue: number) => {
       cSetState({ ...oState, value: iValue });
+      cSetStateValue(iValue);
+
       let oTab = oState.tabs[iValue] ?? null;
       if (oTab) {
         oHistory.push(oTab.url);
@@ -177,6 +188,10 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cPreClickLink = (oLink: any) => {
       cSetState({ ...oState, alert: true, link: oLink, menu: null });
+      cSetStateAlert(true);
+      cSetStateLink(oLink);
+      cSetStateMenu(null);
+
     };
     let oEventEmitter: any = events.addListener('Navigation-onPreClickLink', cPreClickLink);
     return () => {
@@ -187,6 +202,9 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
       cSetState({ ...oState, alert: true, link: null, menu: oMenu });
+      cSetStateAlert(true);
+      cSetStateLink(null);
+      cSetStateMenu(oMenu);
     };
     let oEventEmitter: any = events.addListener('Navigation-onPreClickMenu', cPreClicMenu);
     return () => {
