@@ -58,14 +58,11 @@ function Navigation(oProps: any) {
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
 
   let iAppId = useMemo(() => {
-    console.log('iStateIndex=', iStateIndex);
 
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
   }, [aStateApps, iStateIndex]);
 
-  console.log('iStateIndex=', iStateIndex);
-  console.log('iAppId=', iAppId);
 
   let cAdminSystemAdminMenuShowTree = useCallback(async (iAppId: number) => {
     let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree({ appId: iAppId });
@@ -78,11 +75,17 @@ function Navigation(oProps: any) {
     return oResponse;
   }, [sAuhorization]);
 
+
+
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
       let oAppResponse = await cAdminSystemAppShowOnes();
+      let oAdminUserLinkResponse = await Sdks.Admin.System.AdminUserLink.getShowOnes();
+
       let aApps = oAppResponse?.data?.raw?.ones ?? [];
+      console.log('oAppResponse=', oAppResponse);
+      console.log('oAdminUserLinkResponse=', oAdminUserLinkResponse);
 
       cSetStateApps(aApps);
 
