@@ -9,7 +9,7 @@ import Contexts from '@/admin/Contexts/Index';
 
 import style from './style';
 
-function Links(oProps: any) {
+function AdminUserLinks(oProps: any) {
   let oClasses = style(void 0);
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let aApps = oProps.apps ?? [];
@@ -41,4 +41,4 @@ function Links(oProps: any) {
   );
 }
 
-export default Links;
+export default AdminUserLinks;

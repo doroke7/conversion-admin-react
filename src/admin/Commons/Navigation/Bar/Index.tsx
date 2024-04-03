@@ -18,7 +18,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Components from '@/admin/Components/Index';
 
 import CONFIGS from '@/CONFIGS/INDEX';
-import Links from './Links/Index';
+import AdminUserLinks from './AdminUserLinks/Index';
 import Right from './Right/Index';
 
 import style from './style';
@@ -44,7 +44,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <Links links={CONFIGS.LINKS} apps={aApps}></Links>
+        <AdminUserLinks links={CONFIGS.LINKS} apps={aApps}></AdminUserLinks>
         <Right></Right>
       </Toolbar>
     </AppBar>
