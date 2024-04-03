@@ -44,7 +44,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <AdminUserLinks links={CONFIGS.LINKS} apps={aApps}></AdminUserLinks>
+        <AdminUserLinks links={CONFIGS.ADMIN_USER_LINKS} apps={aApps}></AdminUserLinks>
         <Right></Right>
       </Toolbar>
     </AppBar>

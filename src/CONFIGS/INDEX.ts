@@ -13,10 +13,10 @@ import APP from './APP/INDEX';
 import ADMIN from './ADMIN/INDEX';
 import AES from './AES/INDEX';
 import RSA from './RSA/INDEX';
-import LINKS from './LINKS/INDEX';
 import APPS from './APPS/INDEX';
 import JWT from './JWT/INDEX';
 import CODES from './CODES/INDEX';
+import ADMIN_USER_LINKS from './ADMIN_USER_LINKS/INDEX';
 
 export default {
   APP: APP,
@@ -34,8 +34,8 @@ export default {
   ADMIN_MENUS: ADMIN_MENUS,
   MENUS: MENUS,
   ICONS: ICONS,
-  LINKS: LINKS,
   APPS: APPS,
   JWT: JWT,
-  CODES: CODES
+  CODES: CODES,
+  ADMIN_USER_LINKS: ADMIN_USER_LINKS
 };
