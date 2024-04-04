@@ -87,6 +87,16 @@ function Navigation(oProps: any) {
       console.log('oAppResponse=', oAppResponse);
       console.log('oAdminUserLinkResponse=', oAdminUserLinkResponse);
 
+      if(aApps.length == 0){
+        let oMessage = {
+          code: -1,
+          message: '您尚未配置管理的應用程序，請聯繫系統管理員',
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+
       cSetStateApps(aApps);
 
     })();

@@ -90,7 +90,7 @@ function Alerts(oProps: any): any {
     };
   }, []);
 
-  return oState.code && oState.message ? (
+  return oState.message ? (
     <Snackbar
       anchorOrigin={{
         vertical: 'top',
