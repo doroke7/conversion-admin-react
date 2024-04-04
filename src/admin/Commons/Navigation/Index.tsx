@@ -237,9 +237,9 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
-    let cClickMenu = (oMenu: any) => {
+    let cClickMenu = (oAdminMenu: any) => {
       // 如果 Menu 旗下还有子 menu 就不做事
-      if (oMenu?.menus && Array.isArray(oMenu?.menus) && oMenu.menus.length >= 1) {
+      if (oAdminMenu?.menus && Array.isArray(oAdminMenu?.menus) && oAdminMenu.menus.length >= 1) {
         return;
       };
 
@@ -247,21 +247,21 @@ function Navigation(oProps: any) {
         page: 1,
         limit: 10
       };
-      let oTabOfMenu = {
-        id: oMenu.id,
-        path: oMenu.path,
+      let oTabOfAdminMenu = {
+        id: oAdminMenu.id,
+        path: oAdminMenu.path,
         query: '',
-        text: oMenu.text,
-        icon: oMenu.icon,
-        content: oMenu.description
+        text: oAdminMenu.text,
+        icon: oAdminMenu.icon,
+        content: oAdminMenu.description
       };
-      oTextRef.current = oMenu.text ?? '';
+      oTextRef.current = oAdminMenu.text ?? '';
 
-      if (oTabOfMenu) {
-        oTextRef.current = oMenu.text ?? '';
+      if (oTabOfAdminMenu) {
+        oTextRef.current = oAdminMenu.text ?? '';
 
-        cSetStateText(oMenu.text);
-        let sUrl = utilities.url(oTabOfMenu.path, oParams);
+        cSetStateText(oAdminMenu.text);
+        let sUrl = utilities.url(oTabOfAdminMenu.path, oParams);
 
         oHistory.push(sUrl);
       };
