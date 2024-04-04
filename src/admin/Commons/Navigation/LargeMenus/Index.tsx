@@ -24,15 +24,13 @@ function LargeAdminMenus(oProps) {
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
 
-  let [oState, cSetState] = useState<any>({
-    menus: {}
-  });
+  let [oStateAdminMenus, cSetStateAdminMenus] = useState<any>({});
 
   let cHandleClick = (oAdminMenu) => {
     return (oEvent) => {
       let oAdminMenus = {};
 
-      if (!oState.menus[oAdminMenu.id]) {
+      if (!oStateAdminMenus[oAdminMenu.id]) {
         oAdminMenus = {
           [oAdminMenu.id]: true
         };
@@ -46,7 +44,7 @@ function LargeAdminMenus(oProps) {
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
 
-      cSetState({ ...oState, menus: oAdminMenus });
+      cSetStateAdminMenus(oAdminMenus);
     };
   };
 
@@ -66,14 +64,14 @@ function LargeAdminMenus(oProps) {
             <ListItemText primary={oAdminMenu.text} />
             {oAdminMenu.menus === undefined ? (
               ''
-            ) : oState.menus[oAdminMenu.id] === undefined ? (
+            ) : oStateAdminMenus[oAdminMenu.id] === undefined ? (
               <ExpandMore className={oClasses.icon} />
             ) : (
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
           {oAdminMenu.menus !== undefined ? (
-            <SecondMenus in={oState.menus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.menus}></SecondMenus>
+            <SecondMenus in={oStateAdminMenus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.menus}></SecondMenus>
           ) : (
             ''
           )}

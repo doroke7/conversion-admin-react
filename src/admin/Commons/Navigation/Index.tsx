@@ -81,8 +81,12 @@ function Navigation(oProps: any) {
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
-      let oAppResponse = await cAdminSystemAppShowOnes();
-      let oAdminUserLinkResponse = await Sdks.Admin.System.AdminUserLink.getShowOnes();
+      let aResponses = await Promise.all([
+        cAdminSystemAppShowOnes(),
+        Sdks.Admin.System.AdminUserLink.getShowOnes()
+      ]);
+      let oAppResponse = aResponses[0];
+      let oAdminUserLinkResponse = aResponses[1];
 
       let aApps = oAppResponse?.data?.raw?.ones ?? [];
       let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
