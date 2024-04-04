@@ -36,7 +36,7 @@ function SecondMenus(oProps: any) {
         [oAdminMenu.id]: oState.anchors[oAdminMenu.id] == null ? oAnchor : null
       };
 
-      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
@@ -71,11 +71,11 @@ function SecondMenus(oProps: any) {
               <Components.Icon name={oAdminMenu.icon} />
             </ListItemIcon>
             <ListItemText primary={oAdminMenu.text} />
-            {oAdminMenu.menus !== undefined ? <ArrowRightIcon /> : ''}
-            {oAdminMenu.menus !== undefined ? (
+            {oAdminMenu.adminMenus !== undefined ? <ArrowRightIcon /> : ''}
+            {oAdminMenu.adminMenus !== undefined ? (
               <ThirdMenus
                 open={oState.anchors[oAdminMenu.id] !== undefined}
-                adminMenus={oAdminMenu.menus}
+                adminMenus={oAdminMenu.adminMenus}
                 index={iSecondIndex}
                 anchor={oState.anchors[oAdminMenu.id]}
                 onClickAway={cHandleClose}></ThirdMenus>

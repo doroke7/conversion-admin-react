@@ -36,7 +36,7 @@ function SecondMenus(oProps: any) {
       };
       cSetState({ ...oState, anchors: oAnchors });
 
-      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       }

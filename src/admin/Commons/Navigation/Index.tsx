@@ -239,7 +239,7 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cClickMenu = (oAdminMenu: any) => {
       // 如果 Menu 旗下还有子 menu 就不做事
-      if (oAdminMenu?.menus && Array.isArray(oAdminMenu?.menus) && oAdminMenu.menus.length >= 1) {
+      if (oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu.adminMenus.length >= 1) {
         return;
       };
 

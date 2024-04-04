@@ -52,9 +52,7 @@ function SmallAdminMenus(oProps) {
   };
 
   let cHandleClose = (oEvent: any) => {
-    // if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
-    //   return;
-    // }
+
     let oAnchors = {};
     cSetState({ ...oState, anchors: oAnchors });
   };
@@ -78,7 +76,7 @@ function SmallAdminMenus(oProps) {
             </ListItemIcon>
             <SecondMenus
               open={oState.anchors[oAdminMenu.id] !== undefined}
-              adminMenus={oAdminMenu.menus}
+              adminMenus={oAdminMenu.adminMenus}
               anchor={oState.anchors[oAdminMenu.id]}
               index={iIndex}
               onClickAway={cHandleClose}

@@ -34,7 +34,7 @@ function LargeAdminMenus(oProps: any) {
           [oAdminMenu.id]: true
         };
       };
-      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.['menus'] || oAdminMenu.adminMenus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
@@ -57,7 +57,7 @@ function LargeAdminMenus(oProps: any) {
               <Components.Icon name={oAdminMenu.icon}></Components.Icon>
             </ListItemIcon>
             <ListItemText primary={oAdminMenu.text} />
-            {oAdminMenu.menus === undefined ? (
+            {oAdminMenu.adminMenus === undefined ? (
               ''
             ) : oStateAdminMenus[oAdminMenu.id] === undefined ? (
               <ExpandMore className={oClasses.icon} />
@@ -65,8 +65,8 @@ function LargeAdminMenus(oProps: any) {
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
-          {oAdminMenu.menus !== undefined ? (
-            <SecondMenus in={oStateAdminMenus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.menus}></SecondMenus>
+          {oAdminMenu.adminMenus !== undefined ? (
+            <SecondMenus in={oStateAdminMenus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
           ) : (
             ''
           )}

@@ -31,24 +31,24 @@ function SecondMenus(oProps: any) {
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let [oState, cSetState] = useState<any>({
-    menus: {}
+    adminMenus: {}
   });
 
   let cOnClick = (oAdminMenu: any) => {
     return (oEvent) => {
       let oAdminMenus = {};
 
-      if (!oState.menus[oAdminMenu.id]) {
+      if (!oState.adminMenus[oAdminMenu.id]) {
         oAdminMenus = {
           [oAdminMenu.id]: true
         };
       }
-      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
       
-      cSetState({ ...oState, menus: oAdminMenus });
+      cSetState({ ...oState, adminMenus: oAdminMenus });
    
     };
   };
@@ -70,16 +70,16 @@ function SecondMenus(oProps: any) {
                       <Components.Icon name={oAdminMenu.icon} />
                     </ListItemIcon>
                     <ListItemText primary={oAdminMenu.text} />
-                    {oAdminMenu.menus === undefined ? (
+                    {oAdminMenu.adminMenus === undefined ? (
                       ''
-                    ) : oState.menus[oAdminMenu.id] === undefined ? (
+                    ) : oState.adminMenus[oAdminMenu.id] === undefined ? (
                       <ExpandMore />
                     ) : (
                       <ExpandLess />
                     )}
                   </MenuItem>
-                  {oAdminMenu.menus !== undefined ? (
-                    <ThirddMenus in={oState.menus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.menus}></ThirddMenus>
+                  {oAdminMenu.adminMenus !== undefined ? (
+                    <ThirddMenus in={oState.adminMenus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
                   ) : (
                     ''
                   )}

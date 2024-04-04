@@ -5,7 +5,7 @@ let ADMIN_MENUS: any = [
     description: '会员管理',
     path: '/admin/app-user/index',
     icon: 'AccountBoxIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-    menus: [
+    adminMenus: [
       {
         id: 11,
         text: '会员列表',
@@ -28,14 +28,14 @@ let ADMIN_MENUS: any = [
     description: '系统管理',
     path: '/admin/system/index',
     icon: 'BuildIcon',
-    menus: [
+    adminMenus: [
       {
         id: 41,
         text: '权限管理',
         description: '权限管理',
         path: '/admin/system/authroization/index/app-id/4',
         icon: 'SecurityOutlinedIcon',
-        menus: [
+        adminMenus: [
           {
             id: 411,
             text: '管理列表',
@@ -58,7 +58,7 @@ let ADMIN_MENUS: any = [
         description: '后台管理',
         path: '/admin/system/authroization/index/app-id/4',
         icon: 'SecurityOutlinedIcon',
-        menus: [
+        adminMenus: [
           {
             id: 424,
             text: '接口列表',
