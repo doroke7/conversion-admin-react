@@ -25,7 +25,7 @@ import style from './style';
 
 function Bar(oProps: any) {
   let oClasses = style(void 0);
-  let aApps = oProps.apps ?? [];
+  let aAdminUserLinks = oProps.adminUserLinks ?? [];
   return (
     <AppBar
       position="fixed"
@@ -44,7 +44,7 @@ function Bar(oProps: any) {
           <MenuIcon />
         </IconButton>
         {/* 点击右边的 App-Icon */}
-        <AdminUserLinks links={CONFIGS.ADMIN_USER_LINKS} apps={aApps}></AdminUserLinks>
+        <AdminUserLinks links={aAdminUserLinks}></AdminUserLinks>
         <Right></Right>
       </Toolbar>
     </AppBar>

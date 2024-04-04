@@ -12,16 +12,10 @@ import style from './style';
 function AdminUserLinks(oProps: any) {
   let oClasses = style(void 0);
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
-  let aApps = oProps.apps ?? [];
 
   let aLinks = oProps.links;
   let cHandleClickLink = (oLink) => {
     return (oEvent) => {
-      if (-1 == iIndex) {
-        events.emit('Navigation-onPreClickLink', oLink);
-
-        return;
-      }
       events.emit('Navigation-onClickLink', oLink);
     };
   };
@@ -30,9 +24,9 @@ function AdminUserLinks(oProps: any) {
     <>
       <span className={oClasses.root}>
         {aLinks.map((oLink, sIndex) => (
-          <Tooltip key={sIndex} className={oClasses.toolTip} title={oLink.text} arrow>
+          <Tooltip key={sIndex} className={oClasses.toolTip} title={oLink.name} arrow>
             <IconButton className={oClasses.iconButton} onClick={cHandleClickLink(oLink)}>
-              <Components.Icon name={oLink.icon} className={oClasses.icon} />
+              <Components.Icon name={'LibraryBooksIcon'} className={oClasses.icon} />
             </IconButton>
           </Tooltip>
         ))}

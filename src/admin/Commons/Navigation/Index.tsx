@@ -52,6 +52,7 @@ function Navigation(oProps: any) {
   let [oStateLink, cSetStateLink] = useState<any>(null);
   let [sStateText, cSetStateText] = useState<any>('');
   let [aStateApps, cSetStateApps] = useState<any>([]);
+  let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
 
   let oParams: any = useParams();
 
@@ -84,6 +85,7 @@ function Navigation(oProps: any) {
       let oAdminUserLinkResponse = await Sdks.Admin.System.AdminUserLink.getShowOnes();
 
       let aApps = oAppResponse?.data?.raw?.ones ?? [];
+      let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
       console.log('oAppResponse=', oAppResponse);
       console.log('oAdminUserLinkResponse=', oAdminUserLinkResponse);
 
@@ -98,7 +100,7 @@ function Navigation(oProps: any) {
 
 
       cSetStateApps(aApps);
-
+      cSetStateAdminUserLinks(aAdminUserLinks);
     })();
   }, [cAdminSystemAppShowOnes]);
 
@@ -232,11 +234,9 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let cClickLink = (oLink: any) => {
       let oParams = {
-        appId: aStateApps[iStateIndex].id ?? '',
         page: 1,
-        size: 10
+        length: 10
       };
-      oTextRef.current = oLink.text ?? '';
       let sUrl = utilities.url(oLink.path, oParams);
       oHistory.push(sUrl);
     };
@@ -474,7 +474,7 @@ function Navigation(oProps: any) {
       <Contexts.TabsValue.Provider value={iStateValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
           <div className={oClasses.root} onLoad={cHandleLoad} ref={oDomRef}>
-            <Bar handleDrawerOpen={cHandleDrawerOpen} open={bStateOpen} apps={aStateApps}></Bar>
+            <Bar handleDrawerOpen={cHandleDrawerOpen} open={bStateOpen} adminUserLinks={aStateAdminUserLinks}></Bar>
             <Drawer
               variant="permanent"
               className={clsx(oClasses.drawer, {

@@ -42,7 +42,13 @@ import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone'
 import ReportProblemTwoToneIcon from '@material-ui/icons/ReportProblemTwoTone';
 import WarningTwoToneIcon from '@material-ui/icons/WarningTwoTone';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AlbumIcon from '@material-ui/icons/Album';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 let ICONS: any = {
+  LibraryBooksIcon: LibraryBooksIcon,
+  BookmarksIcon: BookmarksIcon,
+  AlbumIcon: AlbumIcon,
   ExitToAppIcon: ExitToAppIcon,
   WarningTwoToneIcon: WarningTwoToneIcon,
   ReportProblemTwoToneIcon: ReportProblemTwoToneIcon,
