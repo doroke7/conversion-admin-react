@@ -20,8 +20,8 @@ import CONFIGS from '@/CONFIGS/INDEX';
 import Bar from './Bar/Index';
 import SmallApps from './SmallApps/Index';
 import LargeApps from './LargeApps/Index';
-import LargeMenus from './LargeMenus/Index';
-import SmallMenus from './SmallMenus/Index';
+import LargeAdminMenus from './LargeAdminMenus/Index';
+import SmallAdminMenus from './SmallAdminMenus/Index';
 import Tabs from './Tabs/Index';
 import AlertOfApps from './AlertOfApps/Index';
 import Sdks from '@/admin/Sdks/Index';
@@ -505,8 +505,8 @@ function Navigation(oProps: any) {
               <SmallApps status={!bStateOpen} apps={aStateApps} backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
               <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex} backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeMenus status={bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
-              <SmallMenus status={!bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
+              <LargeAdminMenus status={bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
+              <SmallAdminMenus status={!bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>
