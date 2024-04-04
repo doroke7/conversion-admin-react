@@ -5,7 +5,6 @@ import MESSAGES from './MESSAGES/INDEX';
 import MODALS from './MODALS/INDEX';
 import HTTP from './HTTP/INDEX';
 import ADMIN_MENUS from './ADMIN_MENUS/INDEX';
-import MENUS from './MENUS/INDEX';
 import ICONS from './ICONS/INDEX';
 import SERVICE from './SERVICE/INDEX';
 import API from './API/INDEX';
@@ -16,7 +15,6 @@ import RSA from './RSA/INDEX';
 import APPS from './APPS/INDEX';
 import JWT from './JWT/INDEX';
 import CODES from './CODES/INDEX';
-import ADMIN_USER_LINKS from './ADMIN_USER_LINKS/INDEX';
 
 export default {
   APP: APP,
@@ -32,10 +30,8 @@ export default {
   HTTP: HTTP,
   MODALS: MODALS,
   ADMIN_MENUS: ADMIN_MENUS,
-  MENUS: MENUS,
   ICONS: ICONS,
   APPS: APPS,
   JWT: JWT,
   CODES: CODES,
-  ADMIN_USER_LINKS: ADMIN_USER_LINKS
 };

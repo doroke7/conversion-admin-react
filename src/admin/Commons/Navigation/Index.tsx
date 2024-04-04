@@ -51,6 +51,7 @@ function Navigation(oProps: any) {
   let [sStateText, cSetStateText] = useState<any>('');
   let [aStateApps, cSetStateApps] = useState<any>([]);
   let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
+  let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>(CONFIGS.ADMIN_MENUS);
 
   let oParams: any = useParams();
 
@@ -312,7 +313,7 @@ function Navigation(oProps: any) {
       let oParams = {
         appId: oRoute.params.appId ?? '',
         page: 1,
-        size: 10
+        limit: 10
       };
       let oTab = {
         id: oRoute.id,
@@ -334,7 +335,7 @@ function Navigation(oProps: any) {
             // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
             if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
               aTabs[iIndexOfTabs]['text'] = oTab.text;
-            }
+            };
             aTabs[iIndexOfTabs]['icon'] = oTab.icon;
             aTabs[iIndexOfTabs]['url'] = oTab.url;
 
@@ -453,8 +454,6 @@ function Navigation(oProps: any) {
 
   }, [aStateApps.length]);
 
-
-
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
@@ -487,8 +486,8 @@ function Navigation(oProps: any) {
               <SmallApps status={!bStateOpen} apps={aStateApps} backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
               <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex} backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeAdminMenus status={bStateOpen} adminMenus={CONFIGS.ADMIN_MENUS} apps={aStateApps} />
-              <SmallAdminMenus status={!bStateOpen} adminMenus={CONFIGS.ADMIN_MENUS} apps={aStateApps} />
+              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} />
+              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} />
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>
