@@ -220,22 +220,13 @@ function Navigation(oProps: any) {
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
-  useEffect(() => {
-    let cPreClicMenu = (oMenu: any) => {
-      cSetStateLink(null);
-      cSetStateMenu(oMenu);
-    };
-    let oEventEmitter: any = events.addListener('Navigation-onPreClickMenu', cPreClicMenu);
-    return () => {
-      events.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
-    };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
+
 
   useEffect(() => {
     let cClickLink = (oLink: any) => {
       let oParams = {
         page: 1,
-        length: 10
+        limit: 10
       };
       let sUrl = utilities.url(oLink.path, oParams);
       oHistory.push(sUrl);
@@ -255,9 +246,8 @@ function Navigation(oProps: any) {
       };
 
       let oParams = {
-        appId: aStateApps[iStateIndex].id ?? '',
         page: 1,
-        size: 10
+        limit: 10
       };
       let oTabOfMenu = {
         id: oMenu.id,
@@ -274,6 +264,9 @@ function Navigation(oProps: any) {
 
         cSetStateText(oMenu.text);
         let sUrl = utilities.url(oTabOfMenu.path, oParams);
+
+        console.log('oTabOfMenu=', oTabOfMenu);
+        console.log('sUrl=', sUrl);
 
         oHistory.push(sUrl);
       };

@@ -36,10 +36,7 @@ function SmallAdminMenus(oProps) {
         };
       };
       if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
-        if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oAdminMenu);
-          return;
-        };
+
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
       cSetState({ ...oState, anchors: oAnchors });

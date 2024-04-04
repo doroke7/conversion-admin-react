@@ -35,13 +35,11 @@ function LargeAdminMenus(oProps) {
         };
       };
       if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
-        if (-1 == iIndex) {
-          events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
-          return;
-        };
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
+
+      console.log('42 oAdminMenu=', oAdminMenu)
 
       cSetStateAdminMenus(oAdminMenus);
     };

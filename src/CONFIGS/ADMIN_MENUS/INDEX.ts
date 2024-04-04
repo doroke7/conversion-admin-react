@@ -10,14 +10,14 @@ let ADMIN_MENUS: any = [
         id: 11,
         text: '会员列表',
         description: '会员列表',
-        path: '/admin/resource/app-user/index/app-id/:appId/page/:page/size/:size',
+        path: '/admin/resource/app-user/app-id/4',
         icon: 'AssignmentIndOutlinedIcon'
       },
       {
         id: 12,
         text: '订单列表',
         description: '订单列表',
-        path: '/admin/resource/order-info/index/app-id/:appId/page/:page/size/:size',
+        path: '/admin/resource/order-info/index/app-id/4',
         icon: 'EventNoteIcon'
       }
     ]
@@ -33,21 +33,21 @@ let ADMIN_MENUS: any = [
         id: 41,
         text: '权限管理',
         description: '权限管理',
-        path: '/admin/system/authroization/index/app-id/:appId/page/:page/size/:size',
+        path: '/admin/system/authroization/index/app-id/4',
         icon: 'SecurityOutlinedIcon',
         menus: [
           {
             id: 411,
             text: '管理列表',
             description: '管理列表',
-            path: '/admin/resource/admin-administrator/index/app-id/:appId/page/:page/size/:size',
+            path: '/admin/resource/admin-administrator/index/app-id/4',
             icon: 'SupervisorAccountOutlinedIcon'
           },
           {
             id: 412,
             text: '角色列表',
             description: '角色列表',
-            path: '/admin/resource/admin-role/index/app-id/:appId/page/:page/size/:size',
+            path: '/admin/resource/admin-role/index/app-id/4',
             icon: 'AccessibilityOutlinedIcon'
           }
         ]
@@ -56,21 +56,21 @@ let ADMIN_MENUS: any = [
         id: 42,
         text: '后台管理',
         description: '后台管理',
-        path: '/admin/system/authroization/index/app-id/:appId/page/:page/size/:size',
+        path: '/admin/system/authroization/index/app-id/4',
         icon: 'SecurityOutlinedIcon',
         menus: [
           {
             id: 424,
             text: '接口列表',
             description: '接口列表',
-            path: '/admin/resource/admin-api/index/app-id/:appId/page/:page/size/:size',
+            path: '/admin/resource/admin-api/index/app-id/4',
             icon: 'LockOpenOutlinedIcon'
           },
           {
             id: 423,
             text: '路由列表',
             description: '路由列表',
-            path: '/admin/resource/admin-route/index/app-id/:appId/page/:page/size/:size',
+            path: '/admin/resource/admin-route/index/app-id/4',
             icon: 'LockOpenOutlinedIcon'
           },
 
