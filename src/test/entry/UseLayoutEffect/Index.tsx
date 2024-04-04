@@ -17,13 +17,10 @@ function UseLayoutEffect(oProps: any): any {
   const [count, setCount] = useState(0);
   const [number, setNumber] = useState(0);
 
-  console.info('UseLayoutEffect init');
 
   useLayoutEffect(() => {
-    console.info('UseLayoutEffect UseLayoutEffect before');
 
     sleep(2000);
-    console.info('UseLayoutEffect UseLayoutEffect after');
 
     setNumber(99);
   }, []);

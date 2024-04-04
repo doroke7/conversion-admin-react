@@ -36,13 +36,6 @@ function SecondMenus(oProps: any) {
       };
       cSetState({ ...oState, anchors: oAnchors });
 
-      let oQuery = {};
-      let oOption = {
-        limit: 10,
-        page: 1,
-        app_id: 1
-      };
-
       if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);

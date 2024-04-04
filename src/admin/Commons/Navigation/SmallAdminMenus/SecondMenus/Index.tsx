@@ -21,13 +21,14 @@ import ThirddMenus from './ThirdMenus/Index';
 import cStyle from './style';
 
 function SecondMenus(oProps: any) {
-  const oClasses = cStyle();
-  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let aAdminMenus = oProps.adminMenus ?? []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
+
+  let oClasses = cStyle();
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let [oState, cSetState] = useState<any>({
     menus: {}
@@ -46,10 +47,9 @@ function SecondMenus(oProps: any) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
+      
       cSetState({ ...oState, menus: oAdminMenus });
-      // if (oSecondMenu.path !== undefined && oSecondMenu.menus === undefined) {
-      //   Helpers.History.push(oHistory, oSecondMenu.path, oQuery, oOption);
-      // }
+   
     };
   };
 

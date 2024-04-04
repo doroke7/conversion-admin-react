@@ -35,9 +35,6 @@ function LargeApps(oProps: any) {
     cSetState({ ...oState, open: bOpen });
   };
 
-  console.log('LargeApps');
-  console.log('aApps=', aApps);
-
 
   return (
     <List

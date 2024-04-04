@@ -6,14 +6,11 @@ import style from './style';
 function A(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  console.info('A init');
 
   useEffect(() => {
-    console.info('A useEffect');
   }, []);
 
   useLayoutEffect(() => {
-    console.info('A useLayoutEffect');
   }, []);
 
   return (

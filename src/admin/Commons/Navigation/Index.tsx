@@ -88,8 +88,6 @@ function Navigation(oProps: any) {
 
       let aApps = oAppResponse?.data?.raw?.ones ?? [];
       let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
-      console.log('oAppResponse=', oAppResponse);
-      console.log('oAdminUserLinkResponse=', oAdminUserLinkResponse);
 
       if(aApps.length == 0){
         let oMessage = {
@@ -113,7 +111,6 @@ function Navigation(oProps: any) {
 
       let aAdminMenus = oAdminMenuResponse?.data?.raw?.ones ?? [];
 
-      console.log('oAdminMenuResponse=', oAdminMenuResponse);
 
     })();
   }, [iAppId]);
@@ -264,9 +261,6 @@ function Navigation(oProps: any) {
 
         cSetStateText(oMenu.text);
         let sUrl = utilities.url(oTabOfMenu.path, oParams);
-
-        console.log('oTabOfMenu=', oTabOfMenu);
-        console.log('sUrl=', sUrl);
 
         oHistory.push(sUrl);
       };
@@ -493,8 +487,8 @@ function Navigation(oProps: any) {
               <SmallApps status={!bStateOpen} apps={aStateApps} backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
               <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex} backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeAdminMenus status={bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
-              <SmallAdminMenus status={!bStateOpen} adminMenus={CONFIGS.MENUS} apps={aStateApps} />
+              <LargeAdminMenus status={bStateOpen} adminMenus={CONFIGS.ADMIN_MENUS} apps={aStateApps} />
+              <SmallAdminMenus status={!bStateOpen} adminMenus={CONFIGS.ADMIN_MENUS} apps={aStateApps} />
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>

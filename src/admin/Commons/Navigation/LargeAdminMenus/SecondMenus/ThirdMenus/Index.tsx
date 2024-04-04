@@ -29,12 +29,7 @@ function ThirdMenus(oProps: any) {
 
   let cOnClick = (oAdminMenu: any) => {
     return (oEvent: any) => {
-      let oQuery = {};
-      let oOption = {
-        limit: 10,
-        page: 1,
-        app_id: 1
-      };
+
 
       if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
 

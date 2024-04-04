@@ -5,14 +5,11 @@ import style from './style';
 function C(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  console.info('C init');
 
   useEffect(() => {
-    console.info('C useEffect');
   }, []);
 
   useLayoutEffect(() => {
-    console.info('C useLayoutEffect');
   }, []);
 
 

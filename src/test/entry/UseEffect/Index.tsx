@@ -12,13 +12,10 @@ function UseEffect(oProps: any): any {
   const [count, setCount] = useState(0);
   const [number, setNumber] = useState(0);
 
-  console.info('UseEffect init');
 
   useEffect(() => {
-    console.info('UseEffect useEffect before');
 
     sleep(2000);
-    console.info('UseEffect useEffect after');
     setCount(98);
   }, []);
 

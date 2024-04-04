@@ -12,7 +12,6 @@ function UseRef1(oProps: any): any {
   useEffect(() => {
     let oInterval = setInterval(() => {
       oRef.current = oRef.current + 1;
-      console.info('oRef.current=' + oRef.current);
     }, 1000);
 
     return () => {

@@ -16,7 +16,7 @@ import SecondMenus from './SecondMenus/Index';
 
 import cStyle from './style';
 
-function LargeAdminMenus(oProps) {
+function LargeAdminMenus(oProps: any) {
 
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
@@ -38,8 +38,6 @@ function LargeAdminMenus(oProps) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
-
-      console.log('42 oAdminMenu=', oAdminMenu)
 
       cSetStateAdminMenus(oAdminMenus);
     };

@@ -24,6 +24,7 @@ function SecondMenus(oProps: any) {
   let bIn = oProps.in ?? false;
   let aAdminMenus = oProps.adminMenus ?? [];
 
+
   let [oState, cSetState] = useState<any>({
     anchors: {}
   });
@@ -38,7 +39,7 @@ function SecondMenus(oProps: any) {
       if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
-      }
+      };
       cSetState({ ...oState, anchors: oAnchors });
     };
   };
