@@ -35,7 +35,7 @@ function SecondMenus(oProps: any) {
         [oAdminMenu.id]: oState.anchors[oAdminMenu.id] == null ? oAnchor : null
       };
 
-      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
           events.emit('Navigation-onPreClickMenu', oAdminMenu);
 

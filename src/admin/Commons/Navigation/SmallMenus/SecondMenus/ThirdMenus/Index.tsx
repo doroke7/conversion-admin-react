@@ -43,7 +43,7 @@ function SecondMenus(oProps: any) {
         app_id: 1
       };
 
-      if (!Object.prototype.hasOwnProperty.call(oAdminMenu, 'menus') || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
         if (-1 == iIndex) {
           events.emit('Navigation-onPreClickMenu', oAdminMenu);
 
