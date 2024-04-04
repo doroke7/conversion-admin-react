@@ -1,4 +1,4 @@
-let MENUS: any = [
+let ADMIN_MENUS: any = [
   {
     id: 1,
     text: '会员管理',
@@ -94,4 +94,4 @@ let MENUS: any = [
   }
 ];
 
-export default MENUS;
+export default ADMIN_MENUS;
