@@ -23,7 +23,6 @@ import LargeApps from './LargeApps/Index';
 import LargeAdminMenus from './LargeAdminMenus/Index';
 import SmallAdminMenus from './SmallAdminMenus/Index';
 import Tabs from './Tabs/Index';
-import AlertOfApps from './AlertOfApps/Index';
 import Sdks from '@/admin/Sdks/Index';
 
 import style from './style';
@@ -44,7 +43,6 @@ function Navigation(oProps: any) {
   // 如果 间接使用 setState(旧的值 => 新的值) 有性能上的问题
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
-  let [bStateAlert, cSetStateAlert] = useState<any>(false);
   let [iStateValue, cSetStateValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
@@ -151,7 +149,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, iStateValue]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue]);
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
@@ -175,7 +173,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, iStateValue]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue]);
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
@@ -193,7 +191,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, iStateValue]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
@@ -208,11 +206,10 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [iStateValue, bStateOpen, iStateIndex, bStateAlert, aStateTabs]);
+  }, [iStateValue, bStateOpen, iStateIndex, aStateTabs]);
 
   useEffect(() => {
     let cPreClickLink = (oLink: any) => {
-      cSetStateAlert(true);
       cSetStateLink(oLink);
       cSetStateMenu(null);
 
@@ -221,11 +218,10 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
+  }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
     let cPreClicMenu = (oMenu: any) => {
-      cSetStateAlert(true);
       cSetStateLink(null);
       cSetStateMenu(oMenu);
     };
@@ -233,7 +229,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onPreClickMenu', cPreClicMenu);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
+  }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
     let cClickLink = (oLink: any) => {
@@ -249,7 +245,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickLink', cClickLink);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
+  }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
     let cClickMenu = (oMenu: any) => {
@@ -309,7 +305,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickApp', cClickApp);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert, aStateApps]);
+  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps]);
 
   useLayoutEffect(() => {
     let cOnTab = (oRoute: any) => {
@@ -374,7 +370,6 @@ function Navigation(oProps: any) {
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
-      cSetStateAlert(false);
       cSetStateIndex(iResultIndex);
 
     };
@@ -384,7 +379,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onTab', cOnTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, bStateAlert]);
+  }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
     let cResize = (oEvent: any) => {
@@ -514,12 +509,7 @@ function Navigation(oProps: any) {
               <div className={oClasses.toolbar}></div>
               <Tabs>{children}</Tabs>
             </main>
-            <AlertOfApps
-              apps={aStateApps}
-              link={oStateLink}
-              menu={oStateMenu}
-              open={bStateAlert}
-              onClose={cHandleClose}></AlertOfApps>
+        
           </div>
         </Contexts.Tabs.Provider>
       </Contexts.TabsValue.Provider>

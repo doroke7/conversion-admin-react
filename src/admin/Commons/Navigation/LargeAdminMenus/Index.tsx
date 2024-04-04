@@ -17,13 +17,12 @@ import SecondMenus from './SecondMenus/Index';
 import cStyle from './style';
 
 function LargeAdminMenus(oProps) {
-  let oClasses = cStyle();
-
-  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
 
+  let oClasses = cStyle();
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
   let [oStateAdminMenus, cSetStateAdminMenus] = useState<any>({});
 
   let cHandleClick = (oAdminMenu) => {
