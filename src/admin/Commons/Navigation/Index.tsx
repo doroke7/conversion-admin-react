@@ -310,11 +310,6 @@ function Navigation(oProps: any) {
         };
       };
 
-      let oParams = {
-        appId: oRoute.params.appId ?? '',
-        page: 1,
-        limit: 10
-      };
       let oTab = {
         id: oRoute.id,
         path: oRoute.path,
