@@ -67,16 +67,16 @@ function SecondMenus(oProps: any) {
                       <Components.Icon name={oAdminMenu.icon} />
                     </ListItemIcon>
                     <ListItemText primary={oAdminMenu.text} />
-                    {oAdminMenu.adminMenus === undefined ? (
+                    {!oAdminMenu?.adminMenus ? (
                       ''
-                    ) : oStateAdminMenus[oAdminMenu.id] === undefined ? (
+                    ) : !oStateAdminMenus?.[oAdminMenu.id] ? (
                       <ExpandMore />
                     ) : (
                       <ExpandLess />
                     )}
                   </MenuItem>
-                  {oAdminMenu.adminMenus !== undefined ? (
-                    <ThirddMenus in={oStateAdminMenus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
+                  {oAdminMenu?.adminMenus ? (
+                    <ThirddMenus in={oStateAdminMenus?.[oAdminMenu.id]} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
                   ) : (
                     ''
                   )}

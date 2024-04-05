@@ -71,13 +71,13 @@ function SecondMenus(oProps: any) {
               <Components.Icon name={oAdminMenu.icon} />
             </ListItemIcon>
             <ListItemText primary={oAdminMenu.text} />
-            {oAdminMenu.adminMenus !== undefined ? <ArrowRightIcon /> : ''}
-            {oAdminMenu.adminMenus !== undefined ? (
+            {oAdminMenu?.adminMenus ? <ArrowRightIcon /> : ''}
+            {oAdminMenu?.adminMenus ? (
               <ThirdMenus
-                open={oState.anchors[oAdminMenu.id] !== undefined}
+                open={oState?.anchors?.[oAdminMenu.id]}
                 adminMenus={oAdminMenu.adminMenus}
                 index={iSecondIndex}
-                anchor={oState.anchors[oAdminMenu.id]}
+                anchor={oState?.anchors[oAdminMenu.id]}
                 onClickAway={cHandleClose}></ThirdMenus>
             ) : (
               ''
