@@ -56,17 +56,17 @@ function LargeAdminMenus(oProps: any) {
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Icon name={oAdminMenu.icon}></Components.Icon>
             </ListItemIcon>
-            <ListItemText primary={oAdminMenu.text} />
-            {oAdminMenu.adminMenus === undefined ? (
+            <ListItemText primary={oAdminMenu?.text ?? ''} />
+            {!oAdminMenu?.adminMenus ? (
               ''
-            ) : oStateAdminMenus[oAdminMenu.id] === undefined ? (
+            ) : !oStateAdminMenus?.[oAdminMenu.id] ? (
               <ExpandMore className={oClasses.icon} />
             ) : (
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
-          {oAdminMenu.adminMenus !== undefined ? (
-            <SecondMenus in={oStateAdminMenus[oAdminMenu.id] !== undefined} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
+          {oAdminMenu?.adminMenus ? (
+            <SecondMenus in={oStateAdminMenus?.[oAdminMenu.id]} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
           ) : (
             ''
           )}

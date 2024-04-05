@@ -23,10 +23,7 @@ function SecondMenus(oProps: any) {
   let oHistory = useHistory();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-
-  let [oState, cSetState] = useState<any>({
-    anchors: {}
-  });
+  let [oStateAnchors, cSetStateAnchors] = useState<any>({});
 
   let cHandleClick = (oAdminMenu: any) => {
     return (oEvent: any) => {
@@ -34,12 +31,11 @@ function SecondMenus(oProps: any) {
       let oAnchors = {
         [oAdminMenu.id]: oAnchor
       };
-      cSetState({ ...oState, anchors: oAnchors });
-
+      cSetStateAnchors(oAnchors);
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
-      }
+      };
     };
   };
 
