@@ -58,7 +58,6 @@ function Navigation(oProps: any) {
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
 
   let iAppId = useMemo(() => {
-
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
   }, [aStateApps, iStateIndex]);
@@ -110,7 +109,9 @@ function Navigation(oProps: any) {
     (async () => {
       let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree(iAppId);
 
-      let aAdminMenus = oAdminMenuResponse?.data?.raw?.ones ?? [];
+      let aAdminMenus = oAdminMenuResponse?.data?.raw?.tree ?? [];
+      console.log(aAdminMenus);
+      console.log(oAdminMenuResponse);
 
 
     })();
