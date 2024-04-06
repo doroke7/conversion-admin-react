@@ -22,14 +22,14 @@ function LargeApps(oProps: any) {
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
-  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
+  const iIndex = (useContext(Contexts.AppsIndex) ?? -1) as number;
   const oClasses = cStyle();
 
   let [oState, cSetState] = useState<any>({
     open: false
   });
 
-  let oApp = aApps[iIndex] ?? {};
+  let oApp = aApps?.[iIndex] ?? {};
   let cHandleToggle = (oEvent: React.SyntheticEvent) => {
     let bOpen = !oState.open;
     cSetState({ ...oState, open: bOpen });
@@ -46,7 +46,7 @@ function LargeApps(oProps: any) {
       <>
         <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
           <Icon
-            className={clsx(aBackgroundClasses[iIndex] ?? aBackgroundClasses[14])}
+            className={clsx(aBackgroundClasses?.[iIndex] ?? aBackgroundClasses?.[14])}
             title={oApp?.title ?? ''}
             status={iIndex >= 0}
             url={oApp?.url ?? ''}

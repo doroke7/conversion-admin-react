@@ -468,7 +468,7 @@ function Navigation(oProps: any) {
                   [oClasses.drawerClose]: !bStateOpen
                 })
               }}
-              open={bStateOpen}>
+              open={false}>
               <div className={clsx(oClasses.toolbar, {
                 [oClasses.toolbarOpen]: bStateOpen,
                 [oClasses.toolbarClose]: !bStateOpen
