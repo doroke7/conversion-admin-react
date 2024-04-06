@@ -26,7 +26,7 @@ function AdminUserLinks(oProps: any) {
         {aLinks.map((oLink, sIndex) => (
           <Tooltip key={sIndex} className={oClasses.toolTip} title={oLink.name} arrow>
             <IconButton className={oClasses.iconButton} onClick={cHandleClickLink(oLink)}>
-              <Components.Icon name={'LibraryBooksIcon'} className={oClasses.icon} />
+              <Components.Icon name={'AddBoxIcon'} className={oClasses.icon} />
             </IconButton>
           </Tooltip>
         ))}

@@ -4,48 +4,49 @@ let ADMIN_MENUS: any = [
     name: '应用模块',
     description: '应用模块',
     path: '/admin/application',
-    icon: 'AccountBoxIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
+    icon: 'LineWeightIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     adminMenus: [
       {
         id: 11,
         name: '應用列表',
         description: '会员列表',
         path: '/admin/resource/app',
-        icon: 'AssignmentIndOutlinedIcon'
+        icon: 'DragHandleIcon'
+      },
+      {
+        id: 12,
+        name: '帳戶列表',
+        description: '帳戶列表',
+        path: '/admin/resource/app-user',
+        icon: 'DragHandleIcon'
       }
     ]
   },
   {
     id: 4,
     name: '權限模塊',
-    description: '系统管理',
+    description: '權限模塊',
     path: '/admin/authorization',
-    icon: 'BuildIcon',
+    icon: 'LineWeightIcon',
     adminMenus: [
       {
         id: 41,
         name: '角色列表',
         description: '角色列表',
         path: '/admin/resource/admin-role',
-        icon: 'SecurityOutlinedIcon',
+        icon: 'DragHandleIcon',
         adminMenus: [
-          // {
-          //   id: 411,
-          //   name: '管理列表',
-          //   description: '管理列表',
-          //   path: '/admin/resource/admin-administrator/index/app-id/4',
-          //   icon: 'SupervisorAccountOutlinedIcon'
-          // },
-          // {
-          //   id: 412,
-          //   name: '角色列表',
-          //   description: '角色列表',
-          //   path: '/admin/resource/admin-role/index/app-id/4',
-          //   icon: 'AccessibilityOutlinedIcon'
-          // }
         ]
       },
- 
+      {
+        id: 42,
+        name: '用戶列表',
+        description: '用戶列表',
+        path: '/admin/resource/admin-user',
+        icon: 'DragHandleIcon',
+        adminMenus: [
+        ]
+      }, 
     ]
   }
 ];

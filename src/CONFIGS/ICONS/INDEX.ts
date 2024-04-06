@@ -45,7 +45,13 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AlbumIcon from '@material-ui/icons/Album';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import LineWeightIcon from '@material-ui/icons/LineWeight';
+import MenuIcon from '@material-ui/icons/Menu';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 let ICONS: any = {
+  AddBoxIcon: AddBoxIcon,
+  MenuIcon: MenuIcon,
+  LineWeightIcon: LineWeightIcon,
   LibraryBooksIcon: LibraryBooksIcon,
   BookmarksIcon: BookmarksIcon,
   AlbumIcon: AlbumIcon,

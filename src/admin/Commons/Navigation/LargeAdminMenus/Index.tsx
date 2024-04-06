@@ -57,7 +57,7 @@ function LargeAdminMenus(oProps: any) {
               <Components.Icon name={oAdminMenu.icon}></Components.Icon>
             </ListItemIcon>
             <ListItemText primary={oAdminMenu?.name ?? ''} />
-            {!oAdminMenu?.adminMenus ? (
+            {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? (
               ''
             ) : !oStateAdminMenus?.[oAdminMenu.id] ? (
               <ExpandMore className={oClasses.icon} />
@@ -65,7 +65,7 @@ function LargeAdminMenus(oProps: any) {
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
-          {oAdminMenu?.adminMenus ? (
+          {(oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1) ? (
             <SecondMenus in={oStateAdminMenus?.[oAdminMenu.id]} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
           ) : (
             ''

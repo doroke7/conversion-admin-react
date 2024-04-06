@@ -67,7 +67,7 @@ function SecondMenus(oProps: any) {
                       <Components.Icon name={oAdminMenu.icon} />
                     </ListItemIcon>
                     <ListItemText primary={oAdminMenu.name} />
-                    {!oAdminMenu?.adminMenus ? (
+                    {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? (
                       ''
                     ) : !oStateAdminMenus?.[oAdminMenu.id] ? (
                       <ExpandMore />
@@ -75,7 +75,7 @@ function SecondMenus(oProps: any) {
                       <ExpandLess />
                     )}
                   </MenuItem>
-                  {oAdminMenu?.adminMenus ? (
+                  {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
                     <ThirddMenus in={oStateAdminMenus?.[oAdminMenu.id]} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
                   ) : (
                     ''
