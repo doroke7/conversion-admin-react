@@ -18,7 +18,7 @@ import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
 function ThirdMenus(oProps: any) {
-  
+
   let aAdminMenus = oProps.adminMenus ?? [];
   let bOpen = oProps.open ?? false;
   let oAnchor = oProps.anchor ?? null;
@@ -54,7 +54,7 @@ function ThirdMenus(oProps: any) {
                   <ListItemIcon className={oClasses.listItemIcon}>
                     <Components.Icon name={oAdminMenu.icon} />
                   </ListItemIcon>
-                  <ListItemText primary={oAdminMenu.text} />
+                  <ListItemText primary={oAdminMenu.name} />
                 </MenuItem>
               ))}
             </MenuList>

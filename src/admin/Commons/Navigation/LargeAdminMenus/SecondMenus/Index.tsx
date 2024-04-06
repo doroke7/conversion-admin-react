@@ -68,7 +68,7 @@ function SecondMenus(oProps: any) {
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Icon name={oAdminMenu.icon} />
             </ListItemIcon>
-            <ListItemText primary={oAdminMenu.text} />
+            <ListItemText primary={oAdminMenu.name} />
             {oAdminMenu?.adminMenus ? <ArrowRightIcon /> : ''}
             {oAdminMenu?.adminMenus ? (
               <ThirdMenus

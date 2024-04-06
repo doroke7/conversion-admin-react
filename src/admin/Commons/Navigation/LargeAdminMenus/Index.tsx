@@ -56,7 +56,7 @@ function LargeAdminMenus(oProps: any) {
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Icon name={oAdminMenu.icon}></Components.Icon>
             </ListItemIcon>
-            <ListItemText primary={oAdminMenu?.text ?? ''} />
+            <ListItemText primary={oAdminMenu?.name ?? ''} />
             {!oAdminMenu?.adminMenus ? (
               ''
             ) : !oStateAdminMenus?.[oAdminMenu.id] ? (

@@ -54,7 +54,7 @@ function SecondMenus(oProps: any) {
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Icon name={oAdminMenu.icon} />
             </ListItemIcon>
-            <ListItemText primary={oAdminMenu.text} />
+            <ListItemText primary={oAdminMenu.name} />
           </ListItem>
         ))}
       </List>
