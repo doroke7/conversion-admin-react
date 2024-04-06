@@ -30,6 +30,21 @@ const style = makeStyles((oTheme: Theme) =>
         '&:nth-child(n+3)': {
           display: 'none'
         }
+      },
+      [oTheme.breakpoints.down('sm')]: {
+        '&:nth-child(n+6)': {
+          display: 'none'
+        }
+      },
+      [oTheme.breakpoints.down('md')]: {
+        '&:nth-child(n+8)': {
+          display: 'none'
+        }
+      },
+      [oTheme.breakpoints.down('lg')]: {
+        '&:nth-child(n+10)': {
+          display: 'none'
+        }
       }
     },
     icon: {
