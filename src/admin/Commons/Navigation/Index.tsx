@@ -440,7 +440,6 @@ function Navigation(oProps: any) {
       let iFactor = Math.ceil(aStateApps.length / (aAppBackgroundClasses.length || 1));
 
       for (let iIndex = 0; iIndex < iFactor; iIndex++) {
-
         aResults.push(...aAppBackgroundClasses);
       };
 
