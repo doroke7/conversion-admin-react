@@ -34,7 +34,7 @@ function LargeAdminMenus(oProps: any) {
           [oAdminMenu.id]: true
         };
       };
-      if (!oAdminMenu?.['menus'] || oAdminMenu.adminMenus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };

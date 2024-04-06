@@ -18,29 +18,27 @@ import ThirdMenus from './ThirdMenus/Index';
 import style from './style';
 
 function SecondMenus(oProps: any) {
-  let oClasses = style();
-  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
-
   let bIn = oProps.in ?? false;
   let aAdminMenus = oProps.adminMenus ?? [];
 
+  let oClasses = style();
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let [oState, cSetState] = useState<any>({
-    anchors: {}
-  });
+  let [oStateAnchors, cSetStateAnchors] = useState<any>({});
 
   let cHandleToggle = (oAdminMenu: any) => {
     return (oEvent: any) => {
       let oAnchor = oEvent.currentTarget;
       let oAnchors = {
-        [oAdminMenu.id]: oState.anchors[oAdminMenu.id] == null ? oAnchor : null
+        [oAdminMenu.id]: oStateAnchors?.[oAdminMenu.id] || oAnchor
       };
 
-      if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
-      cSetState({ ...oState, anchors: oAnchors });
+      cSetStateAnchors(oAnchors);
+
     };
   };
 
@@ -48,11 +46,11 @@ function SecondMenus(oProps: any) {
     // 如果 三级 菜单 有被锚点， 且 点击的 dom 包含 当下的 三级菜单就 不做事
 
     // 如果 三级 菜单 没被锚点， 且 点击的 dom 不包含 当下的 三级菜单就 关闭
-    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
+    if (oStateAnchors && oStateAnchors.contains(oEvent.target as HTMLElement)) {
       return;
-    }
+    };
     let oAnchors = {};
-    cSetState({ ...oState, anchors: oAnchors });
+    cSetStateAnchors(oAnchors);
   };
 
   return (
@@ -74,10 +72,10 @@ function SecondMenus(oProps: any) {
             {oAdminMenu?.adminMenus ? <ArrowRightIcon /> : ''}
             {oAdminMenu?.adminMenus ? (
               <ThirdMenus
-                open={oState?.anchors?.[oAdminMenu.id]}
+                open={oStateAnchors?.[oAdminMenu.id]}
                 adminMenus={oAdminMenu.adminMenus}
                 index={iSecondIndex}
-                anchor={oState?.anchors[oAdminMenu.id]}
+                anchor={oStateAnchors?.[oAdminMenu.id]}
                 onClickAway={cHandleClose}></ThirdMenus>
             ) : (
               ''
