@@ -4,11 +4,15 @@ import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      width: oTheme.spacing(56),
-      height: oTheme.spacing(56),
+      width: oTheme.spacing(26),
+      height: oTheme.spacing(26),
       verticalAlign: 'middle',
       fill: 'currentColor',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      [oTheme.breakpoints.up('sm')]: {
+        width: oTheme.spacing(56),
+        height: oTheme.spacing(56),
+      },
     }
   })
 );

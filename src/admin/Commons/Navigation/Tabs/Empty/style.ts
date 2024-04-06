@@ -3,18 +3,24 @@ import { lightBlue, blue, blueGrey, grey, deepPurple, indigo, pink, red } from '
 
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
+
     root: {
       position: 'absolute',
       top: '50%',
-      left: '50%',
+      left: '52%',
       transform: 'translate(-50%, -50%)',
-      animation: '$ripple 3.4s ease-in-out 0s infinite alternate'
+      animation: '$ripple 3.4s ease-in-out 0s infinite alternate',
+
     },
     text: {
       textAlign: 'center',
       fontWeight: 900,
       color: grey[500],
-      fontSize: oTheme.spacing(4)
+      fontSize: oTheme.spacing(2),
+      [oTheme.breakpoints.up('sm')]: {
+        fontSize: oTheme.spacing(4),
+
+      },
     },
     '@keyframes ripple': {
       '0%': {
