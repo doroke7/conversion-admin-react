@@ -51,7 +51,7 @@ function Navigation(oProps: any) {
   let [sStateText, cSetStateText] = useState<any>('');
   let [aStateApps, cSetStateApps] = useState<any>([]);
   let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
-  let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>(CONFIGS.ADMIN_MENUS);
+  let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>([]);
 
   let oParams: any = useParams();
 
@@ -116,7 +116,7 @@ function Navigation(oProps: any) {
       console.log(aAdminMenus);
       console.log(oAdminMenuResponse);
 
-
+      cSetStateAdminMenus(aAdminMenus);
     })();
   }, [iAppId]);
 
