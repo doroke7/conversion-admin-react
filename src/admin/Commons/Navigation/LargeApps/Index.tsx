@@ -25,14 +25,12 @@ function LargeApps(oProps: any) {
   const iIndex = (useContext(Contexts.AppsIndex) ?? -1) as number;
   const oClasses = cStyle();
 
-  let [oState, cSetState] = useState<any>({
-    open: false
-  });
+  let [oStateOpen, cSetStateOpen] = useState<any>(false);
 
   let oApp = aApps?.[iIndex] ?? {};
   let cHandleToggle = (oEvent: React.SyntheticEvent) => {
-    let bOpen = !oState.open;
-    cSetState({ ...oState, open: bOpen });
+    console.log('TODO');
+    cSetStateOpen(!oStateOpen);
   };
 
 
@@ -52,9 +50,9 @@ function LargeApps(oProps: any) {
             url={oApp?.url ?? ''}
           ></Icon>
           <ListItemText primary={'应用程序'} />
-          {oState.open ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
+          {oStateOpen ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oState.open} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
+        <Apps in={oStateOpen} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
       </>
     </List>
   );

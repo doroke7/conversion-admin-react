@@ -57,6 +57,9 @@ function Navigation(oProps: any) {
 
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
 
+
+  console.log('TODO 61', bStateOpen);
+
   let iAppId = useMemo(() => {
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
@@ -369,6 +372,7 @@ function Navigation(oProps: any) {
     let cResize = (oEvent: any) => {
       let iWidth = oEvent.target.innerWidth;
       if (bStateOpen && iWidth <= oTheme.breakpoints.values['sm']) {
+        console.log('TODO 375');
         cSetStateOpen(false);
       };
     };
@@ -380,18 +384,15 @@ function Navigation(oProps: any) {
        */
       window.removeEventListener('resize', cResize);
     };
-  }, [bStateOpen]);
-
-  useEffect(() => {
-
   }, []);
 
-  let cHandleLoad = (oEvent) => {
+  useEffect(() => {
     let iWidth = oDomRef.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
       cSetStateOpen(false);
     };
-  };
+  }, []);
+
 
   let cHandleDrawerOpen = () => {
     cSetStateOpen(true);
@@ -454,7 +455,7 @@ function Navigation(oProps: any) {
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
-          <div className={oClasses.root} onLoad={cHandleLoad} ref={oDomRef}>
+          <div className={oClasses.root} ref={oDomRef}>
             <Bar handleDrawerOpen={cHandleDrawerOpen} open={bStateOpen} adminUserLinks={aStateAdminUserLinks}></Bar>
             <Drawer
               variant="permanent"
@@ -468,7 +469,7 @@ function Navigation(oProps: any) {
                   [oClasses.drawerClose]: !bStateOpen
                 })
               }}
-              open={false}>
+              open={bStateOpen}>
               <div className={clsx(oClasses.toolbar, {
                 [oClasses.toolbarOpen]: bStateOpen,
                 [oClasses.toolbarClose]: !bStateOpen
