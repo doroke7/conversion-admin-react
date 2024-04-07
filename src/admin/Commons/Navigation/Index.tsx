@@ -201,13 +201,13 @@ function Navigation(oProps: any) {
   }, [iStateValue, bStateOpen, iStateIndex, aStateTabs]);
 
   useEffect(() => {
-    let cPreClickLink = (oLink: any) => {
+    let cPreClickAdminUserLink = (oLink: any) => {
       cSetStateLink(oLink);
       cSetStateMenu(null);
     };
-    let oEventEmitter: any = events.addListener('Navigation-onPreClickLink', cPreClickLink);
+    let oEventEmitter: any = events.addListener('Navigation-onPreClickAdminUserLink', cPreClickAdminUserLink);
     return () => {
-      events.removeListener('Navigation-onPreClickLink', cPreClickLink);
+      events.removeListener('Navigation-onPreClickAdminUserLink', cPreClickAdminUserLink);
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
@@ -228,7 +228,7 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
-    let cClickMenu = (oAdminMenu: any) => {
+    let cClickAdminMenu = (oAdminMenu: any) => {
       // 如果 Menu 旗下还有子 menu 就不做事
       if (oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu.adminMenus.length >= 1) {
         return;
@@ -257,10 +257,10 @@ function Navigation(oProps: any) {
         oHistory.push(sUrl);
       }
     };
-    let oEventEmitter: any = events.addListener('Navigation-onClickAdminMenu', cClickMenu);
+    let oEventEmitter: any = events.addListener('Navigation-onClickAdminMenu', cClickAdminMenu);
     // 组件销毁前移除事件监听
     return () => {
-      events.removeListener('Navigation-onClickAdminMenu', cClickMenu);
+      events.removeListener('Navigation-onClickAdminMenu', cClickAdminMenu);
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
