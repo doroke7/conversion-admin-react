@@ -212,18 +212,18 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
   useEffect(() => {
-    let cClickLink = (oLink: any) => {
+    let cClickAdminUserLink = (oAdminUserLink: any) => {
       let oParams = {
         page: 1,
         limit: 10
       };
-      let sUrl = utilities.url(oLink.path, oParams);
+      let sUrl = utilities.url(oAdminUserLink.path, oParams);
       oHistory.push(sUrl);
     };
 
-    let oEventEmitter: any = events.addListener('Navigation-onClickAdminUserLink', cClickLink);
+    let oEventEmitter: any = events.addListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
     return () => {
-      events.removeListener('Navigation-onClickAdminUserLink', cClickLink);
+      events.removeListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
