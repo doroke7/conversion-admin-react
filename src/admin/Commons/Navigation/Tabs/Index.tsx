@@ -23,7 +23,7 @@ function ScrollableTabs(oProps: any) {
   let children = oProps.children ?? <></>;
 
   let oClasses: any = style(void 0);
-  let aTabs = useContext(Contexts.Tabs);
+  let aTabs = useContext(Contexts.Tabs) ?? [];
   let iTabsValue = useContext(Contexts.TabsValue);
 
   let [oStateAnchor, cSetStateAnchor] = useState<any>(null);
@@ -109,7 +109,8 @@ function ScrollableTabs(oProps: any) {
     };
   };
 
-  let iTabsLength = aTabs.length;
+  let iTabsLength = aTabs?.length ?? 0;
+  console.log('aTabs=', aTabs);
   return (
     <div className={oClasses.root}>
       <div

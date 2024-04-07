@@ -43,7 +43,7 @@ let aRoutes = [
         title: '應用列表',
         text: '',
         icon: '',
-        Component: Pages.Resource.AppPipeline,
+        Component: Pages.Resource.App,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true
