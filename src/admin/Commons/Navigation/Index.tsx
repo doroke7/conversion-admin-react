@@ -293,7 +293,7 @@ function Navigation(oProps: any) {
           ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
           : [...aStateTabs];
 
-      console.log('aTabs=', aTabs);
+      console.log('296 aTabs=', aTabs);
       let iIndex = 0;
       let iResultIndex = -1;
       for (iIndex = 0; iIndex < aStateApps.length; iIndex++) {
