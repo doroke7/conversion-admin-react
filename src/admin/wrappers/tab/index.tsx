@@ -13,9 +13,11 @@ let tab = (Component: any): any => {
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
+    let iAppId = Number(oParams?.appId);
 
+    console.log('oParams=', oParams);
     useEffect(() => {
-      if (parseInt(oParams?.appId) >= 1) {
+      if (iAppId >= 1) {
         let oRoute = {
           id: sId,
           text: sText,
