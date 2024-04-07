@@ -10,6 +10,7 @@ import Contexts from '@/admin/Contexts/Index';
 
 import Helpers from '@/admin/Helpers/Index';
 import events from '@/admin/events/index';
+import utilities from '@/admin/utilities';
 
 import Components from '@/admin/Components/Index';
 
@@ -23,15 +24,9 @@ function SecondMenus(oProps: any) {
   let oHistory = useHistory();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let [oStateAnchors, cSetStateAnchors] = useState<any>({});
 
   let cHandleClick = (oAdminMenu: any) => {
-    return (oEvent: any) => {
-      let oAnchor = oEvent.currentTarget;
-      let oAnchors = {
-        [oAdminMenu.id]: oAnchor
-      };
-      cSetStateAnchors(oAnchors);
+    return (oEvent: any) => { 
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
@@ -52,9 +47,9 @@ function SecondMenus(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleClick(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oAdminMenu.icon} />
+              <Components.Icon name={oAdminMenu?.icon || 'RemoveIcon'} />
             </ListItemIcon>
-            <ListItemText primary={oAdminMenu.name} />
+            <ListItemText primary={oAdminMenu?.name} />
           </ListItem>
         ))}
       </List>

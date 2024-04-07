@@ -24,7 +24,7 @@ import deTree from './deTree/';
 import randString from './randString/';
 import url from './url/';
 import dateTime from './dateTime/';
-
+import adminMenuKey from './adminMenuKey';
 export {
   selectType,
   cDeTree as deTree,
@@ -54,5 +54,6 @@ export default {
   url,
   appIdPageLimit,
   deTree,
-  randString
+  randString,
+  adminMenuKey: adminMenuKey
 };

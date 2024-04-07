@@ -14,6 +14,7 @@ import Components from '@/admin/Components/Index';
 import events from '@/admin/events/index';
 import Contexts from '@/admin/Contexts/Index';
 import ThirdMenus from './ThirdMenus/Index';
+import utilities from '@/admin/utilities';
 
 import style from './style';
 
@@ -29,8 +30,10 @@ function SecondMenus(oProps: any) {
   let cHandleToggle = (oAdminMenu: any) => {
     return (oEvent: any) => {
       let oAnchor = oEvent.currentTarget;
+      let sKey = utilities.adminMenuKey(oAdminMenu);
+
       let oAnchors = {
-        [oAdminMenu.id]: oStateAnchors?.[oAdminMenu.id] || oAnchor
+        [sKey]: oStateAnchors?.[sKey] || oAnchor
       };
 
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus.length == 0) {
@@ -66,16 +69,16 @@ function SecondMenus(oProps: any) {
             aria-haspopup="true"
             onClick={cHandleToggle(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oAdminMenu.icon} />
+              <Components.Icon name={oAdminMenu?.icon || 'DragHandleIcon'} />
             </ListItemIcon>
             <ListItemText primary={oAdminMenu.name} />
             {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? '' : <ArrowRightIcon />}
             {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >=  1 ? (
               <ThirdMenus
-                open={oStateAnchors?.[oAdminMenu.id]}
+                open={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
                 adminMenus={oAdminMenu.adminMenus}
                 index={iSecondIndex}
-                anchor={oStateAnchors?.[oAdminMenu.id]}
+                anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
                 onClickAway={cHandleClose}></ThirdMenus>
             ) : (
               ''

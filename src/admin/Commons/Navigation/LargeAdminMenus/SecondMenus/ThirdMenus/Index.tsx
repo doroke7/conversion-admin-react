@@ -31,11 +31,9 @@ function ThirdMenus(oProps: any) {
   let cOnClick = (oAdminMenu: any) => {
     return (oEvent: any) => {
 
-
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
-
         events.emit('Navigation-onClickMenu', oAdminMenu);
-      }
+      };
     };
   };
 
@@ -52,9 +50,9 @@ function ThirdMenus(oProps: any) {
               {aAdminMenus.map((oAdminMenu: any, iIndex: any) => (
                 <MenuItem key={oAdminMenu.id} onClick={cOnClick(oAdminMenu)}>
                   <ListItemIcon className={oClasses.listItemIcon}>
-                    <Components.Icon name={oAdminMenu.icon} />
+                    <Components.Icon name={oAdminMenu?.icon || 'RemoveIcon'} />
                   </ListItemIcon>
-                  <ListItemText primary={oAdminMenu.name} />
+                  <ListItemText primary={oAdminMenu?.name} />
                 </MenuItem>
               ))}
             </MenuList>

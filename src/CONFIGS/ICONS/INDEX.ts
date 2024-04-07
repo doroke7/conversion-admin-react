@@ -48,7 +48,10 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import LineWeightIcon from '@material-ui/icons/LineWeight';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import RemoveIcon from '@material-ui/icons/Remove';
+
 let ICONS: any = {
+  RemoveIcon: RemoveIcon,
   AddBoxIcon: AddBoxIcon,
   MenuIcon: MenuIcon,
   LineWeightIcon: LineWeightIcon,

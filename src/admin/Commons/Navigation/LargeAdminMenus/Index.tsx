@@ -9,7 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Components from '@/admin/Components/Index';
 import events from '@/admin/events/index';
 import Contexts from '@/admin/Contexts/Index';
-
+import utilities from '@/admin/utilities';
 import CONFIGS from '@/CONFIGS/INDEX';
 
 import SecondMenus from './SecondMenus/Index';
@@ -29,9 +29,10 @@ function LargeAdminMenus(oProps: any) {
     return (oEvent) => {
       let oAdminMenus = {};
 
-      if (!oStateAdminMenus[oAdminMenu.id]) {
+      let sKey = utilities.adminMenuKey(oAdminMenu);
+      if (!oStateAdminMenus[sKey]) {
         oAdminMenus = {
-          [oAdminMenu.id]: true
+          [sKey]: true
         };
       };
       if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
@@ -54,19 +55,19 @@ function LargeAdminMenus(oProps: any) {
         <>
           <ListItem className={oClasses.listItem} button onClick={cHandleClick(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oAdminMenu.icon}></Components.Icon>
+              <Components.Icon name={oAdminMenu?.icon || 'LineWeightIcon'}></Components.Icon>
             </ListItemIcon>
             <ListItemText primary={oAdminMenu?.name ?? ''} />
             {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? (
               ''
-            ) : !oStateAdminMenus?.[oAdminMenu.id] ? (
+            ) : !oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)] ? (
               <ExpandMore className={oClasses.icon} />
             ) : (
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
           {(oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1) ? (
-            <SecondMenus in={oStateAdminMenus?.[oAdminMenu.id]} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
+            <SecondMenus in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
           ) : (
             ''
           )}

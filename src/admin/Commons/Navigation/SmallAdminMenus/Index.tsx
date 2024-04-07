@@ -10,6 +10,7 @@ import Popover from '@material-ui/core/Popover';
 import Components from '@/admin/Components/Index';
 import events from '@/admin/events/index';
 import Contexts from '@/admin/Contexts/Index';
+import utilities from '@/admin/utilities';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 import SecondMenus from './SecondMenus/Index';
@@ -22,39 +23,37 @@ function SmallAdminMenus(oProps) {
 
   let oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
-  let [oState, cSetState] = useState<any>({
-    anchors: {}
-  });
 
-  let cHandleMouseEnter = (oAdminMenu) => {
+  let [oStateAnchors, cSetStateAnchors] = useState<any>({});
+
+  let cHandleMouseEnter = (oAdminMenu: any) => {
     return (oEvent: React.SyntheticEvent) => {
       let oAnchors = {};
-
-      if (!oState.anchors[oAdminMenu.id]) {
+      let sKey = utilities.adminMenuKey(oAdminMenu);
+      if (!oStateAnchors?.[sKey]) {
         oAnchors = {
-          [oAdminMenu.id]: oEvent.currentTarget
+          [sKey]: oEvent.currentTarget
         };
       };
-      if (!oAdminMenu?.['menus'] || oAdminMenu.menus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
-      cSetState({ ...oState, anchors: oAnchors });
+      cSetStateAnchors(oAnchors);
     };
   };
 
-  let cHandleMouseLeave = (oAdminMenu) => {
-    return (oEvent) => {
+  let cHandleMouseLeave = (oAdminMenu: any) => {
+    return (oEvent: React.SyntheticEvent) => {
       let oAnchors = {};
+      cSetStateAnchors(oAnchors);
 
-      cSetState({ ...oState, anchors: oAnchors });
     };
   };
 
   let cHandleClose = (oEvent: any) => {
-
     let oAnchors = {};
-    cSetState({ ...oState, anchors: oAnchors });
+    cSetStateAnchors(oAnchors);
   };
 
   return (
@@ -72,12 +71,12 @@ function SmallAdminMenus(oProps) {
             onMouseEnter={cHandleMouseEnter(oAdminMenu)}
             onMouseLeave={cHandleMouseLeave(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oAdminMenu.icon}></Components.Icon>
+              <Components.Icon name={oAdminMenu?.icon}></Components.Icon>
             </ListItemIcon>
             <SecondMenus
-              open={oState.anchors[oAdminMenu.id] !== undefined}
-              adminMenus={oAdminMenu.adminMenus}
-              anchor={oState.anchors[oAdminMenu.id]}
+              open={!!(oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)])}
+              adminMenus={oAdminMenu?.adminMenus}
+              anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               index={iIndex}
               onClickAway={cHandleClose}
               onMouseLeave={cHandleMouseLeave(oAdminMenu)}></SecondMenus>

@@ -13,6 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import events from '@/admin/events/index';
 import Contexts from '@/admin/Contexts/Index';
+import utilities from '@/admin/utilities';
 
 import Components from '@/admin/Components/Index';
 
@@ -34,14 +35,16 @@ function SecondMenus(oProps: any) {
 
   let cOnClick = (oAdminMenu: any) => {
     return (oEvent) => {
+      let sKey = utilities.adminMenuKey(oAdminMenu);
+
       let oAdminMenus = {};
 
-      if (!oStateAdminMenus[oAdminMenu.id]) {
+      if (!oStateAdminMenus[sKey]) {
         oAdminMenus = {
-          [oAdminMenu.id]: true
+          [sKey]: true
         };
       };
-      if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
+      if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
 
         events.emit('Navigation-onClickMenu', oAdminMenu);
       };
@@ -64,19 +67,19 @@ function SecondMenus(oProps: any) {
                 <>
                   <MenuItem key={oAdminMenu.id} onClick={cOnClick(oAdminMenu)}>
                     <ListItemIcon className={oClasses.listItemIcon}>
-                      <Components.Icon name={oAdminMenu.icon} />
+                      <Components.Icon name={oAdminMenu?.icon || 'DragHandleIcon'} />
                     </ListItemIcon>
                     <ListItemText primary={oAdminMenu.name} />
                     {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? (
                       ''
-                    ) : !oStateAdminMenus?.[oAdminMenu.id] ? (
+                    ) : !oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)] ? (
                       <ExpandMore />
                     ) : (
                       <ExpandLess />
                     )}
                   </MenuItem>
                   {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
-                    <ThirddMenus in={oStateAdminMenus?.[oAdminMenu.id]} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
+                    <ThirddMenus in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
                   ) : (
                     ''
                   )}
