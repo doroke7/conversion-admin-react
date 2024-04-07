@@ -253,7 +253,7 @@ function Navigation(oProps: any) {
 
         cSetStateText(oAdminMenu.text);
         let sUrl = utilities.url(oTabOfAdminMenu.path, oParams);
-
+        //
         oHistory.push(sUrl);
       }
     };
