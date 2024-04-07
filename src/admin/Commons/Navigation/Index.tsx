@@ -56,8 +56,6 @@ function Navigation(oProps: any) {
 
   let sAuhorization = useSelector((oStore: any) => oStore.auhorization);
 
-  console.log('TODO 61', bStateOpen);
-
   let iAppId = useMemo(() => {
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;

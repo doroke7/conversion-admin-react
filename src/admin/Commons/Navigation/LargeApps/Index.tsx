@@ -28,7 +28,6 @@ function LargeApps(oProps: any) {
 
   let oApp = aApps?.[iIndex] ?? {};
   let cHandleToggle = (oEvent: React.SyntheticEvent) => {
-    console.log('TODO');
     cSetStateOpen(!oStateOpen);
   };
 
