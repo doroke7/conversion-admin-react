@@ -20,12 +20,12 @@ import Dropdown from './Dropdown/Index';
 import style from './style';
 
 function ScrollableTabs(oProps: any) {
-  let oClasses: any = style(void 0);
+  let children = oProps.children ?? <></>;
 
+  let oClasses: any = style(void 0);
   let aTabs = useContext(Contexts.Tabs);
   let iTabsValue = useContext(Contexts.TabsValue);
 
-  let children = oProps.children ?? <></>;
 
   let [oState, cSetState] = useState<any>({
     anchor: null,
@@ -34,6 +34,13 @@ function ScrollableTabs(oProps: any) {
     tooltips: {},
     index: -1 // 当下右键 选择 的  Tab , 为了定位 Dropdown "关闭当下" 需要的是哪个
   });
+
+  let [oStateAnchor, cSetStateAnchor] = useState<any>(null);
+  let [oStateContextMenu, cSetStateContextMenu] = useState<any>(false);
+  let [oStateTooltip, cSetStateTooltip] = useState<any>(null);
+  let [oStateTooltips, cSetStateTooltips] = useState<any>({});
+  let [oStateIndex, cSetStateIndex] = useState<any>(-1);
+
 
   let cHandleRemoveTab = (sIndex) => {
     return (oEvent) => {
