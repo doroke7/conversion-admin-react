@@ -39,16 +39,15 @@ class AxiosHelper {
           try {
             oAxiosResponse = await axios.get(_sUrl, oOptions);
           } catch (oExcepiton) {
-
             oAxiosResponse = oExcepiton.response;
-          };
+          }
 
           let oResponse = oAxiosResponse;
           aResponses.push(oResponse);
-        };
+        }
 
         return aResponses;
-      };
+      }
 
       aResponses = await Promise.all(
         aRequests.map(async (oRequest) => {
@@ -158,13 +157,13 @@ class AxiosHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} bConcurrent Use polling (recursive) to send the request
    */
-  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
+  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
 
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
+  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
 }
 export default AxiosHelper;

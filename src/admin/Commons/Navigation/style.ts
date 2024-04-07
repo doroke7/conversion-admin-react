@@ -79,15 +79,12 @@ const style = makeStyles((oTheme: Theme) =>
       paddingLeft: oTheme.spacing(2) + 4,
 
       minHeight: oTheme.spacing(7),
-      background: 'linear-gradient(195deg, #125489 5%, #125480 100%)',
+      background: 'linear-gradient(195deg, #125489 5%, #125480 100%)'
     },
     toolbarOpen: {
-      boxShadow: '0px 0px 15px 0px rgb(33 203 243 / 60%)',
-
+      boxShadow: '0px 0px 15px 0px rgb(33 203 243 / 60%)'
     },
-    toolbarClose: {
-
-    },
+    toolbarClose: {},
     [oTheme.breakpoints.up('sm')]: {
       toolbar: {
         minHeight: oTheme.spacing(7)
@@ -121,14 +118,13 @@ const style = makeStyles((oTheme: Theme) =>
     },
     firstDivider: {
       marginTop: oTheme.spacing(7),
-      zIndex: -1,
+      zIndex: -1
     },
     secondDivider: {
-      zIndex: -1,
-
+      zIndex: -1
     },
     thirdDivider: {
-      zIndex: -1,
+      zIndex: -1
     },
     backgroundColor01: { backgroundColor: red[500] },
     backgroundColor02: { backgroundColor: pink[500] },

@@ -37,11 +37,9 @@ function SecondMenus(oProps: any) {
       };
 
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus.length == 0) {
-
-        events.emit('Navigation-onClickMenu', oAdminMenu);
-      };
+        events.emit('Navigation-onClickAdminMenu', oAdminMenu);
+      }
       cSetStateAnchors(oAnchors);
-
     };
   };
 
@@ -51,7 +49,7 @@ function SecondMenus(oProps: any) {
     // 如果 三级 菜单 没被锚点， 且 点击的 dom 不包含 当下的 三级菜单就 关闭
     if (oStateAnchors && oStateAnchors.contains(oEvent.target as HTMLElement)) {
       return;
-    };
+    }
     let oAnchors = {};
     cSetStateAnchors(oAnchors);
   };
@@ -72,8 +70,12 @@ function SecondMenus(oProps: any) {
               <Components.Icon name={oAdminMenu?.icon || 'DragHandleIcon'} />
             </ListItemIcon>
             <ListItemText primary={oAdminMenu.name} />
-            {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? '' : <ArrowRightIcon />}
-            {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >=  1 ? (
+            {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? (
+              ''
+            ) : (
+              <ArrowRightIcon />
+            )}
+            {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
               <ThirdMenus
                 open={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
                 adminMenus={oAdminMenu.adminMenus}

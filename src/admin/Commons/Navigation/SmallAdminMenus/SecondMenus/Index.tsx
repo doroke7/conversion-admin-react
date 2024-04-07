@@ -22,7 +22,6 @@ import ThirddMenus from './ThirdMenus/Index';
 import cStyle from './style';
 
 function SecondMenus(oProps: any) {
-
   let aAdminMenus = oProps.adminMenus ?? []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
@@ -43,12 +42,11 @@ function SecondMenus(oProps: any) {
         oAdminMenus = {
           [sKey]: true
         };
-      };
+      }
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
+        events.emit('Navigation-onClickAdminMenu', oAdminMenu);
+      }
 
-        events.emit('Navigation-onClickMenu', oAdminMenu);
-      };
-      
       cSetStateAdminMenus(oAdminMenus);
     };
   };
@@ -70,7 +68,9 @@ function SecondMenus(oProps: any) {
                       <Components.Icon name={oAdminMenu?.icon || 'DragHandleIcon'} />
                     </ListItemIcon>
                     <ListItemText primary={oAdminMenu.name} />
-                    {!oAdminMenu?.adminMenus || !Array.isArray(oAdminMenu?.adminMenus) || oAdminMenu?.adminMenus.length == 0 ? (
+                    {!oAdminMenu?.adminMenus ||
+                    !Array.isArray(oAdminMenu?.adminMenus) ||
+                    oAdminMenu?.adminMenus.length == 0 ? (
                       ''
                     ) : !oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)] ? (
                       <ExpandMore />
@@ -78,8 +78,12 @@ function SecondMenus(oProps: any) {
                       <ExpandLess />
                     )}
                   </MenuItem>
-                  {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
-                    <ThirddMenus in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]} adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
+                  {oAdminMenu?.adminMenus &&
+                  Array.isArray(oAdminMenu?.adminMenus) &&
+                  oAdminMenu?.adminMenus.length >= 1 ? (
+                    <ThirddMenus
+                      in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
+                      adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
                   ) : (
                     ''
                   )}

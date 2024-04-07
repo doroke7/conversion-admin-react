@@ -33,5 +33,5 @@ export default {
   ICONS: ICONS,
   APPS: APPS,
   JWT: JWT,
-  CODES: CODES,
+  CODES: CODES
 };

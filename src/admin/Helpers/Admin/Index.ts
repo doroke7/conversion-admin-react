@@ -118,10 +118,9 @@ class AdminHelper {
   }
 
   public static async get(oRequest: any | any[], oConfigs: any = {}): Promise<any> {
-
     let bConcurrent = !Object.prototype.hasOwnProperty.call(oConfigs, 'concurrent') || oConfigs.concurrent;
     let oParams;
-    let oData = {} // IMPORTANT !! GET 方法固定没有 post { "param": '' } 参数;
+    let oData = {}; // IMPORTANT !! GET 方法固定没有 post { "param": '' } 参数;
     let oOptions;
     if (oRequest instanceof Array) {
       let aRequests: any[] = oRequest;
@@ -198,7 +197,7 @@ class AdminHelper {
       oAxiosResponse = await axios.get(sUrl, oOptions);
     } catch (oExcepiton) {
       oAxiosResponse = oExcepiton.response;
-    };
+    }
     let oResponse = AdminHelper.response(oAxiosResponse);
     return oResponse;
   }
@@ -296,13 +295,13 @@ class AdminHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} bConcurrent Use polling (recursive) to send the request
    */
-  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
+  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
 
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
+  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
 }
 export default AdminHelper;

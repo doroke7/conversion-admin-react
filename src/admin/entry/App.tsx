@@ -2,7 +2,6 @@ import React, { useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-
 import store from '@/admin/store/index';
 import router from '@/admin/router/index';
 import CONFIGS from '@/CONFIGS/INDEX';
@@ -17,13 +16,13 @@ function App(oProps: any) {
   let oClasses: any = style(void 0);
   let [aRoutes, cSetRoutes] = React.useState(router.admin.routes);
   // TODO    IMPORTANT 有问题的写法，
-  // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系 
+  // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系
 
   let cHandleContextmenu = (oEvent: any) => {
     if (CONFIGS.APP.CONTEXT_MENU == false) {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a tag 取消 href
-    };
+    }
   };
   useEffect(() => {
     /*
@@ -39,8 +38,8 @@ function App(oProps: any) {
       if ((Helpers.Ver.valid(sVer) && Helpers.Ver.compare(CONFIGS.ADMIN.VER, sVer)) || !Helpers.Ver.valid(sVer)) {
         window.localStorage.clear();
         Helpers.Authentication.setJwt(sJwt);
-      };
-    };
+      }
+    }
 
     Helpers.Ver.set(CONFIGS.ADMIN.VER);
   });

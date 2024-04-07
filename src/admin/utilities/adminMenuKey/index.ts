@@ -1,5 +1,5 @@
 let adminMenuKey = (oAdminMenu: any) => {
-  let sKey = String(oAdminMenu.appId)  + '-' + String(oAdminMenu.id)
+  let sKey = String(oAdminMenu.appId) + '-' + String(oAdminMenu.id);
   return sKey;
 };
 

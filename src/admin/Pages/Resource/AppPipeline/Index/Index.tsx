@@ -1,4 +1,4 @@
-import React, {  useState, useEffect, useLayoutEffect, Component } from 'react';
+import React, { useState, useEffect, useLayoutEffect, Component } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -251,10 +251,6 @@ function Index(oProps: any): any {
 
    */
 
-  return (
-    <div>
-     APP-PIPELINE
-    </div>
-  );
+  return <div>APP-PIPELINE</div>;
 }
 export default wrappers.authenticator(wrappers.tab(wrappers.page(wrappers.title(Index))));

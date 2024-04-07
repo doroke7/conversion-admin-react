@@ -8,7 +8,7 @@ const style = makeStyles((oTheme: Theme): any =>
       backgroundColor: grey[50],
       height: '100vh',
       position: 'relative',
-      overflow: 'hidden',
+      overflow: 'hidden'
     },
     middle: {
       width: '100%',

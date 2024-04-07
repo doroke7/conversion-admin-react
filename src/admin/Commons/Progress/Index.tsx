@@ -19,18 +19,17 @@ function Progress(oProps: any): any {
 
   useEffect(() => {
     let oInterval = setInterval(() => {
-
       if (oState.status) {
         cSetState((oOldState) => {
           let oNewState = { value: 0, status: false };
           if (oOldState.value === 100) {
             oNewState.value = 0;
             return oNewState;
-          };
+          }
           if (oOldState.value < 100) {
             let iDiffValue = Math.random() * 20;
             oNewState.value = oOldState.value + iDiffValue;
-          };
+          }
 
           let iValue = Math.min(oNewState.value, 100);
           oNewState.value = iValue;

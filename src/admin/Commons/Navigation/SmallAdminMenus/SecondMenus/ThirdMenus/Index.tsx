@@ -24,13 +24,11 @@ function SecondMenus(oProps: any) {
   let oHistory = useHistory();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-
   let cHandleClick = (oAdminMenu: any) => {
-    return (oEvent: any) => { 
+    return (oEvent: any) => {
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
-
-        events.emit('Navigation-onClickMenu', oAdminMenu);
-      };
+        events.emit('Navigation-onClickAdminMenu', oAdminMenu);
+      }
     };
   };
 

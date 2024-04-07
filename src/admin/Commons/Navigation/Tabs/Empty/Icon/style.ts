@@ -11,8 +11,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
       overflow: 'hidden',
       [oTheme.breakpoints.up('sm')]: {
         width: oTheme.spacing(56),
-        height: oTheme.spacing(56),
-      },
+        height: oTheme.spacing(56)
+      }
     }
   })
 );

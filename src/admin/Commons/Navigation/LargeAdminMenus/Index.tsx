@@ -17,7 +17,6 @@ import SecondMenus from './SecondMenus/Index';
 import cStyle from './style';
 
 function LargeAdminMenus(oProps: any) {
-
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
 
@@ -34,11 +33,10 @@ function LargeAdminMenus(oProps: any) {
         oAdminMenus = {
           [sKey]: true
         };
-      };
+      }
       if (!oAdminMenu?.adminMenus || oAdminMenu.adminMenus.length == 0) {
-
-        events.emit('Navigation-onClickMenu', oAdminMenu);
-      };
+        events.emit('Navigation-onClickAdminMenu', oAdminMenu);
+      }
 
       cSetStateAdminMenus(oAdminMenus);
     };
@@ -66,8 +64,10 @@ function LargeAdminMenus(oProps: any) {
               <ExpandLess className={oClasses.icon} />
             )}
           </ListItem>
-          {(oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1) ? (
-            <SecondMenus in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]} adminMenus={oAdminMenu.adminMenus}></SecondMenus>
+          {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
+            <SecondMenus
+              in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
+              adminMenus={oAdminMenu.adminMenus}></SecondMenus>
           ) : (
             ''
           )}

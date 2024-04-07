@@ -7,6 +7,6 @@ function App(oProps: any) {
   let oClasses: any = style(void 0);
   let [sName, cSetName] = useState('servie 服务');
   return <div>{sName}</div>;
-};
+}
 
 export default App;

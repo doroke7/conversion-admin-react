@@ -34,11 +34,10 @@ function SmallAdminMenus(oProps) {
         oAnchors = {
           [sKey]: oEvent.currentTarget
         };
-      };
+      }
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
-
-        events.emit('Navigation-onClickMenu', oAdminMenu);
-      };
+        events.emit('Navigation-onClickAdminMenu', oAdminMenu);
+      }
       cSetStateAnchors(oAnchors);
     };
   };
@@ -47,7 +46,6 @@ function SmallAdminMenus(oProps) {
     return (oEvent: React.SyntheticEvent) => {
       let oAnchors = {};
       cSetStateAnchors(oAnchors);
-
     };
   };
 
@@ -74,7 +72,7 @@ function SmallAdminMenus(oProps) {
               <Components.Icon name={oAdminMenu?.icon}></Components.Icon>
             </ListItemIcon>
             <SecondMenus
-              open={!!(oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)])}
+              open={!!oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               adminMenus={oAdminMenu?.adminMenus}
               anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               index={iIndex}

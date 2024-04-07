@@ -11,7 +11,6 @@ let oAuthenticationAuthenticator = (sAuhorization: string = '', oAction: any) =>
     case 'JWT_REFRESH':
       return sAuhorization1;
     default:
-
       return sAuhorization1;
   }
 };

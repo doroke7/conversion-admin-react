@@ -20,7 +20,7 @@ function Index(oProps: any): any {
       await new Promise((cResolve) => setTimeout(cResolve, 300));
       cSetState({ animation: false });
     })();
-    return () => { };
+    return () => {};
   }, [oRouteMatch.url]);
 
   return (

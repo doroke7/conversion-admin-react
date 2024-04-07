@@ -31,7 +31,6 @@ function ScrollableTabs(oProps: any) {
   let [oStateTooltips, cSetStateTooltips] = useState<any>({});
   let [oStateIndex, cSetStateIndex] = useState<any>(-1);
 
-
   let cHandleRemoveTab = (sIndex) => {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
@@ -99,8 +98,7 @@ function ScrollableTabs(oProps: any) {
           [iIndex]: true
         };
         cSetStateTooltips(oTooltips);
-
-      };
+      }
     };
   };
 
@@ -108,17 +106,16 @@ function ScrollableTabs(oProps: any) {
     return (oEvent: any) => {
       let oTooltips = {};
       cSetStateTooltips(oTooltips);
-
     };
   };
 
   let iTabsLength = aTabs.length;
   return (
     <div className={oClasses.root}>
-      <div className={clsx(null, {
-         [oClasses.mainNone]: iTabsLength == 0 
-         }
-         )}>
+      <div
+        className={clsx(null, {
+          [oClasses.mainNone]: iTabsLength == 0
+        })}>
         <AppBar position="static" color="default" component="div">
           <Tabs
             className={oClasses.tabs}

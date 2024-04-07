@@ -7,7 +7,7 @@ import CONFIGS from '@/CONFIGS/INDEX';
 
 interface Props {
   children?: any;
-};
+}
 
 let authenticator = (Component: any): any => {
   function Wrapper(oProps: any) {
@@ -29,7 +29,7 @@ let authenticator = (Component: any): any => {
           events.emit('Alerts-onAlert', oMessage);
           Helpers.Authentication.setPath(oRouteMatch.url);
           oHistory.push(aRedirections[0]);
-        };
+        }
         if (sJwt) {
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
           sJwt = oResponse?.headers?.authorization ?? '';
@@ -55,14 +55,14 @@ let authenticator = (Component: any): any => {
 
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[0]);
-            };
-          };
+            }
+          }
 
           if (oResponse?.data?.code >= 0 && sJwt) {
             Helpers.Authentication.setJwt(sJwt);
             if (!aRedirections[1]) {
               Helpers.Authentication.removePath();
-            };
+            }
             if (aRedirections[1]) {
               let oMessage = {
                 code: 1,
@@ -71,9 +71,9 @@ let authenticator = (Component: any): any => {
               };
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[1]);
-            };
-          };
-        };
+            }
+          }
+        }
 
         cSetStatus(true);
       };
@@ -85,7 +85,7 @@ let authenticator = (Component: any): any => {
           clearInterval(oInterval);
         };
         // events.emit('Progress-onProgress', { value: 90, status: true });
-      };
+      }
     }, []);
 
     /**

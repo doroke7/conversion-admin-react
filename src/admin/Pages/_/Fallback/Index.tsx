@@ -1,4 +1,4 @@
-import React, {  useEffect, useLayoutEffect, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import store from '@/admin/store/index';

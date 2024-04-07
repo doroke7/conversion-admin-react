@@ -16,7 +16,7 @@ function AdminUserLinks(oProps: any) {
   let aLinks = oProps.links;
   let cHandleClickLink = (oLink) => {
     return (oEvent) => {
-      events.emit('Navigation-onClickLink', oLink);
+      events.emit('Navigation-onClickAdminUserLink', oLink);
     };
   };
 

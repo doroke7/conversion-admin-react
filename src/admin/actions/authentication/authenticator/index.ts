@@ -4,10 +4,9 @@
  */
 let oAction: any = {
   postSignIn: (oResponse: any) => {
-
     let oAction = {
       type: '/Admin/Authentication/Authenticator/postSignIn',
-      authorization: oResponse?.headers?.['authorization'] ?? '',
+      authorization: oResponse?.headers?.['authorization'] ?? ''
     };
 
     return oAction;

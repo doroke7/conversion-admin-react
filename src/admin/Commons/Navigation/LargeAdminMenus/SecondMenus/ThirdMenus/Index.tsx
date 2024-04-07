@@ -18,7 +18,6 @@ import CONFIGS from '@/CONFIGS/INDEX';
 import cStyle from './style';
 
 function ThirdMenus(oProps: any) {
-
   let aAdminMenus = oProps.adminMenus ?? [];
   let bOpen = oProps.open ?? false;
   let oAnchor = oProps.anchor ?? null;
@@ -30,10 +29,9 @@ function ThirdMenus(oProps: any) {
 
   let cOnClick = (oAdminMenu: any) => {
     return (oEvent: any) => {
-
       if (!oAdminMenu?.adminMenus || oAdminMenu?.adminMenus?.length == 0) {
-        events.emit('Navigation-onClickMenu', oAdminMenu);
-      };
+        events.emit('Navigation-onClickAdminMenu', oAdminMenu);
+      }
     };
   };
 

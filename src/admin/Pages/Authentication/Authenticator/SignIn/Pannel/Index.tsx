@@ -20,7 +20,6 @@ import CONFIGS from '@/CONFIGS/INDEX';
 
 import style from './style';
 
-
 interface State {
   name: string;
   password: string;
@@ -28,13 +27,12 @@ interface State {
   pannelAnimation: boolean;
   usernameError: boolean;
   passwordError: boolean;
-};
+}
 
 const ENTER_CODE = 13;
 
 function Pannel(oProps: any): any {
   let oClasses: any = style(void 0);
-
 
   let oDispatch = useDispatch();
   let oHistory = useHistory();
@@ -64,39 +62,39 @@ function Pannel(oProps: any): any {
       if (!oState.name) {
         cSetState({ ...oState, usernameError: true });
         throw new Exception('请输入管理用户名称', -1);
-      };
+      }
 
       if (!oState.password) {
         cSetState({ ...oState, passwordError: true });
         throw new Exception('请输入管理用户密码', -1);
-      };
+      }
 
       if (oState.name.length <= 3) {
         cSetState({ ...oState, usernameError: true });
 
         throw new Exception('请输入4 字元以上名称', -1);
-      };
+      }
 
       if (oState.password.length <= 5) {
         cSetState({ ...oState, passwordError: true });
 
         throw new Exception('请输入6 字以上元密码', -1);
-      };
+      }
       events.emit('Progress-onProgress', { value: 0, status: true });
 
       let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
       let sJwt = oResponse?.headers?.authorization ?? '';
       if (oResponse?.data?.code === undefined) {
         throw new Exception('服务器异常', -4);
-      };
+      }
 
       if (oResponse && oResponse?.data?.code <= -1) {
         throw new Exception(oResponse?.data?.message ?? '', oResponse?.data?.code ?? 0);
-      };
+      }
 
       if (!sJwt) {
         throw new Exception('登入响应缺少令牌', -2);
-      };
+      }
       cSetState({ ...oState, loading: true, pannelAnimation: true });
 
       Helpers.Authentication.setJwt(sJwt);
@@ -109,18 +107,15 @@ function Pannel(oProps: any): any {
           time: 2 * 1000
         };
         events.emit('Alerts-onAlert', oMessage);
-      };
+      }
 
       if (oResponse) {
-
         await new Promise((cResolve) => setTimeout(cResolve, 300));
         let sPath = Helpers.Authentication.getPath();
 
         oHistory.push(sPath || '/admin/resource');
         events.emit('Progress-onProgress', { value: 98, status: true });
-      };
-
-
+      }
     } catch (oException) {
       let oMessage = {
         code: oException.code ?? -9999,

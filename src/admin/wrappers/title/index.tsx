@@ -15,7 +15,7 @@ let title = (Component: any): any => {
       document.title = sTitle;
     }, []);
     return <Component {...oProps}></Component>;
-  };
+  }
 
   return Wrapper;
 };

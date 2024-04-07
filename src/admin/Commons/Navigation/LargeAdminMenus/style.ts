@@ -7,8 +7,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       width: '100%',
       maxWidth: oTheme.spacing(40),
       color: grey[100],
-      zIndex: -1,
-
+      zIndex: -1
     },
     title: {
       marginLeft: oTheme.spacing(2),

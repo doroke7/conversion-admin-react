@@ -16,8 +16,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     listItemText: {
       textShadow: '1px 1px 1px rgba(0,0,0,0.9), 1px 1px 1px rgba(0,0,0,0.7), 1px 1px 1px rgba(0,0,0,0.7)'
-
-    },
+    }
   })
 );
 

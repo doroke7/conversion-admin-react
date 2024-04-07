@@ -35,8 +35,7 @@ let ADMIN_MENUS: any = [
         description: '角色列表',
         path: '/admin/resource/admin-role',
         icon: 'DragHandleIcon',
-        adminMenus: [
-        ]
+        adminMenus: []
       },
       {
         id: 42,
@@ -44,9 +43,8 @@ let ADMIN_MENUS: any = [
         description: '用戶列表',
         path: '/admin/resource/admin-user',
         icon: 'DragHandleIcon',
-        adminMenus: [
-        ]
-      }, 
+        adminMenus: []
+      }
     ]
   }
 ];

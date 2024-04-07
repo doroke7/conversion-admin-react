@@ -30,7 +30,6 @@ import style from './style';
 let oTheme = createTheme({});
 
 function Navigation(oProps: any) {
-
   let children = oProps.children ?? <></>;
 
   let oClasses = style(void 0);
@@ -38,8 +37,8 @@ function Navigation(oProps: any) {
   let oTextRef = useRef('');
   let oDomRef: any = useRef();
 
-  // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法， 
-  // 如果 直接使用 setState(值) 有数据覆盖的危险， 
+  // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法，
+  // 如果 直接使用 setState(值) 有数据覆盖的危险，
   // 如果 间接使用 setState(旧的值 => 新的值) 有性能上的问题
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
@@ -55,8 +54,7 @@ function Navigation(oProps: any) {
 
   let oParams: any = useParams();
 
-  let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
-
+  let sAuhorization = useSelector((oStore: any) => oStore.auhorization);
 
   console.log('TODO 61', bStateOpen);
 
@@ -65,42 +63,37 @@ function Navigation(oProps: any) {
     return iAppId;
   }, [aStateApps, iStateIndex]);
 
-
-  let cAdminSystemAdminMenuShowTree = useCallback(async (iAppId: number) => {
-    let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree({ appId: iAppId });
-    return oResponse;
-  }, [iAppId, sAuhorization]);
+  let cAdminSystemAdminMenuShowTree = useCallback(
+    async (iAppId: number) => {
+      let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree({ appId: iAppId });
+      return oResponse;
+    },
+    [iAppId, sAuhorization]
+  );
 
   let cAdminSystemAppShowOnes = useCallback(async () => {
-
     let oResponse = await Sdks.Admin.System.App.getShowOnes();
     return oResponse;
   }, [sAuhorization]);
 
-
-
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
-      let aResponses = await Promise.all([
-        cAdminSystemAppShowOnes(),
-        Sdks.Admin.System.AdminUserLink.getShowOnes()
-      ]);
+      let aResponses = await Promise.all([cAdminSystemAppShowOnes(), Sdks.Admin.System.AdminUserLink.getShowOnes()]);
       let oAppResponse = aResponses[0];
       let oAdminUserLinkResponse = aResponses[1];
 
       let aApps = oAppResponse?.data?.raw?.ones ?? [];
       let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
 
-      if(aApps.length == 0){
+      if (aApps.length == 0) {
         let oMessage = {
           code: -1,
           message: '您尚未配置管理的應用程序，請聯繫系統管理員',
           time: 2 * 1000
         };
         events.emit('Alerts-onAlert', oMessage);
-      };
-
+      }
 
       cSetStateApps(aApps);
       cSetStateAdminUserLinks(aAdminUserLinks);
@@ -119,7 +112,6 @@ function Navigation(oProps: any) {
       cSetStateAdminMenus(aAdminMenus);
     })();
   }, [iAppId]);
-
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -142,10 +134,10 @@ function Navigation(oProps: any) {
       if (aTabs.length >= 1) {
         let oTab = aTabs[iValue];
         oHistory.push(oTab.url);
-      };
+      }
       if (aTabs.length == 0) {
         oHistory.push('/admin/resource');
-      };
+      }
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
@@ -169,7 +161,7 @@ function Navigation(oProps: any) {
 
       if (oTabRow) {
         oHistory.push(oTabRow.url);
-      };
+      }
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     return () => {
@@ -202,7 +194,7 @@ function Navigation(oProps: any) {
       let oTab = aStateTabs[iValue] ?? null;
       if (oTab) {
         oHistory.push(oTab.url);
-      };
+      }
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickTab', cClickTab);
     return () => {
@@ -214,15 +206,12 @@ function Navigation(oProps: any) {
     let cPreClickLink = (oLink: any) => {
       cSetStateLink(oLink);
       cSetStateMenu(null);
-
     };
     let oEventEmitter: any = events.addListener('Navigation-onPreClickLink', cPreClickLink);
     return () => {
       events.removeListener('Navigation-onPreClickLink', cPreClickLink);
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
-
-
 
   useEffect(() => {
     let cClickLink = (oLink: any) => {
@@ -234,9 +223,9 @@ function Navigation(oProps: any) {
       oHistory.push(sUrl);
     };
 
-    let oEventEmitter: any = events.addListener('Navigation-onClickLink', cClickLink);
+    let oEventEmitter: any = events.addListener('Navigation-onClickAdminUserLink', cClickLink);
     return () => {
-      events.removeListener('Navigation-onClickLink', cClickLink);
+      events.removeListener('Navigation-onClickAdminUserLink', cClickLink);
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
@@ -245,7 +234,7 @@ function Navigation(oProps: any) {
       // 如果 Menu 旗下还有子 menu 就不做事
       if (oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu.adminMenus.length >= 1) {
         return;
-      };
+      }
 
       let oParams = {
         page: 1,
@@ -268,12 +257,12 @@ function Navigation(oProps: any) {
         let sUrl = utilities.url(oTabOfAdminMenu.path, oParams);
 
         oHistory.push(sUrl);
-      };
+      }
     };
-    let oEventEmitter: any = events.addListener('Navigation-onClickMenu', cClickMenu);
+    let oEventEmitter: any = events.addListener('Navigation-onClickAdminMenu', cClickMenu);
     // 组件销毁前移除事件监听
     return () => {
-      events.removeListener('Navigation-onClickMenu', cClickMenu);
+      events.removeListener('Navigation-onClickAdminMenu', cClickMenu);
     };
   }, [aStateTabs, bStateOpen, iStateIndex]);
 
@@ -289,8 +278,8 @@ function Navigation(oProps: any) {
         cSetStateValue(-1);
         if (iStateIndex >= 0) {
           oHistory.push('/admin/resource');
-        };
-      };
+        }
+      }
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听
@@ -311,8 +300,8 @@ function Navigation(oProps: any) {
         if (aStateApps[iIndex].id == oRoute?.params?.appId) {
           iResultIndex = iIndex;
           break;
-        };
-      };
+        }
+      }
 
       let oTab = {
         id: oRoute.id,
@@ -324,7 +313,7 @@ function Navigation(oProps: any) {
       };
       if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
         oTab.text = oTextRef.current || '未定义';
-      };
+      }
       let iValue = iStateValue;
       let bExist = false;
       if (aTabs.length >= 1) {
@@ -334,23 +323,23 @@ function Navigation(oProps: any) {
             // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
             if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
               aTabs[iIndexOfTabs]['text'] = oTab.text;
-            };
+            }
             aTabs[iIndexOfTabs]['icon'] = oTab.icon;
             aTabs[iIndexOfTabs]['url'] = oTab.url;
 
             bExist = true;
             break;
-          };
-        };
-      };
+          }
+        }
+      }
 
       if (bExist) {
         // DO NOTHING
-      };
+      }
       if (!bExist) {
         aTabs = [...aTabs, oTab];
         iValue = aTabs.length - 1;
-      };
+      }
       let oApp = aStateApps[iStateIndex];
 
       Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
@@ -358,7 +347,6 @@ function Navigation(oProps: any) {
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
       cSetStateIndex(iResultIndex);
-
     };
 
     let oEventEmitter: any = events.addListener('Navigation-onTab', cOnTab);
@@ -373,7 +361,7 @@ function Navigation(oProps: any) {
       let iWidth = oEvent.target.innerWidth;
       if (bStateOpen && iWidth <= oTheme.breakpoints.values['sm']) {
         cSetStateOpen(false);
-      };
+      }
     };
     window.addEventListener('resize', cResize);
 
@@ -389,23 +377,19 @@ function Navigation(oProps: any) {
     let iWidth = oDomRef.current.offsetWidth;
     if (iWidth <= oTheme.breakpoints.values['sm']) {
       cSetStateOpen(false);
-    };
+    }
   }, []);
-
 
   let cHandleDrawerOpen = () => {
     cSetStateOpen(true);
-
   };
 
   let cHandleDrawerClose = () => {
     cSetStateOpen(false);
-
   };
 
   let cHandleClose = () => {
     cSetStateOpen(false);
-
   };
 
   let aAppBackgroundClasses = [
@@ -426,27 +410,25 @@ function Navigation(oProps: any) {
     oClasses.backgroundColor15
   ];
 
-
   let aMemoAppBackgroundClasses = useMemo(() => {
     let aResults: any[] = [];
 
     if (aAppBackgroundClasses.length >= aStateApps.length) {
       aResults.push(...aAppBackgroundClasses);
       return aResults;
-    };
+    }
 
     if (aAppBackgroundClasses.length < aStateApps.length) {
       let iFactor = Math.ceil(aStateApps.length / (aAppBackgroundClasses.length || 1));
 
       for (let iIndex = 0; iIndex < iFactor; iIndex++) {
         aResults.push(...aAppBackgroundClasses);
-      };
+      }
 
       return aResults;
-    };
+    }
 
     return aResults;
-
   }, [aStateApps.length]);
 
   return (
@@ -468,18 +450,26 @@ function Navigation(oProps: any) {
                 })
               }}
               open={bStateOpen}>
-              <div className={clsx(oClasses.toolbar, {
-                [oClasses.toolbarOpen]: bStateOpen,
-                [oClasses.toolbarClose]: !bStateOpen
-              })}>
+              <div
+                className={clsx(oClasses.toolbar, {
+                  [oClasses.toolbarOpen]: bStateOpen,
+                  [oClasses.toolbarClose]: !bStateOpen
+                })}>
                 <span className={oClasses.appName}>{CONFIGS.ADMIN.NAME}</span>
                 <IconButton className={oClasses.iconButton} onClick={cHandleDrawerClose}>
                   <DoubleArrowIcon className={oClasses.icon}></DoubleArrowIcon>
                 </IconButton>
               </div>
               <Divider className={oClasses.firstDivider} />
-              <SmallApps status={!bStateOpen} apps={aStateApps} backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
-              <LargeApps status={bStateOpen} apps={aStateApps} index={iStateIndex} backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
+              <SmallApps
+                status={!bStateOpen}
+                apps={aStateApps}
+                backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
+              <LargeApps
+                status={bStateOpen}
+                apps={aStateApps}
+                index={iStateIndex}
+                backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
               <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} />
               <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} />
@@ -490,7 +480,6 @@ function Navigation(oProps: any) {
               <div className={oClasses.toolbar}></div>
               <Tabs>{children}</Tabs>
             </main>
-        
           </div>
         </Contexts.Tabs.Provider>
       </Contexts.TabsValue.Provider>
