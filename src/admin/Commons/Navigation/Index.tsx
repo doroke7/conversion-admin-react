@@ -124,16 +124,16 @@ function Navigation(oProps: any) {
       iValue = iValue < -1 ? -1 : iValue;
       let oApp = aStateApps[iStateIndex];
 
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
+      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp?.id);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
 
-      if (aTabs.length >= 1) {
+      if (aTabs?.length >= 1) {
         let oTab = aTabs[iValue];
-        oHistory.push(oTab.url);
+        oHistory.push(oTab?.url);
       }
-      if (aTabs.length == 0) {
+      if (aTabs?.length == 0) {
         oHistory.push('/admin/resource');
       }
     };
