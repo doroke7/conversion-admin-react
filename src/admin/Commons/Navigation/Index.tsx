@@ -372,7 +372,6 @@ function Navigation(oProps: any) {
     let cResize = (oEvent: any) => {
       let iWidth = oEvent.target.innerWidth;
       if (bStateOpen && iWidth <= oTheme.breakpoints.values['sm']) {
-        console.log('TODO 375');
         cSetStateOpen(false);
       };
     };

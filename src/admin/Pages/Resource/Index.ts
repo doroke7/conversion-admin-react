@@ -7,6 +7,8 @@ import Config from './Config/Index';
 import Vod from './Vod/Index';
 import None from './None/Index';
 import Index from './Index/Index';
+import AppPipeline from './AppPipeline/Index';
+import App from './App/Index';
 
 /**
  * import Config from './Config/'; 相当 import Config from './Config/Index.ts';
@@ -21,6 +23,8 @@ import Index from './Index/Index';
 
  */
 export default {
+  AppPipeline: AppPipeline,
+  App: App,
   AppUser: AppUser,
   OrderInfo: OrderInfo,
   AdminAdministrator: AdminAdministrator,

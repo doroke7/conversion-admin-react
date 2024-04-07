@@ -27,59 +27,26 @@ let aRoutes = [
     // redirections[1]: authenticator success 后 重定向的页面，null 表示不重定向
     routes: [
       {
-        id: '2-1-0',
-        path: '',
-        title: '影视系',
+        id: '2-1-2',
+        path: '/admin/resource/app-pipeline/app-id/:appId',
+        title: '資源列表',
         text: '',
         icon: '',
-        Component: Pages.Resource.Index,
+        Component: Pages.Resource.AppPipeline,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true
       },
       {
-        id: '2-2-0',
-        path: '/app-user/index/app-id/:appId/page/:page/size/:size',
-        title: '影视系-用户列表',
-        text: '用户列表',
-        icon: 'AccountBoxTwoToneIcon', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
-        Component: Pages.Resource.AppUser.Index,
-        authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
-        exact: false
-      },
-      {
-        id: '2-3-0',
-        path: '/order-info/index/app-id/:appId/page/:page/size/:size',
-        title: '影视系-订单列表',
-        text: '订单列表',
-        icon: 'EventNoteTwoToneIcon',
-        Component: Pages.Resource.OrderInfo.Index,
-        authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
-        exact: false
-      },
-      {
-        id: '2-4-0',
-        path: '/config/index/app-id/:appId',
-        title: '影视系-平台配置',
-        text: '平台配置',
-        icon: 'BorderAllOutlinedIcon',
-        Component: Pages.Resource.Config.Index,
-        authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
-        exact: false
-      },
-      {
-        id: '2-none-1',
-        path: '/*/app-id/:appId/page/:page/size/:size',
-        title: '分页未定义',
+        id: '2-1-3',
+        path: '/admin/resource/app',
+        title: '應用列表',
         text: '',
-        icon: 'WarningTwoToneIcon',
-        Component: Pages.Resource.None,
+        icon: '',
+        Component: Pages.Resource.AppPipeline,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
-        exact: false
+        exact: true
       },
       {
         id: '2-none-2',
