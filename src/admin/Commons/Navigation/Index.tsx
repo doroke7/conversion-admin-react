@@ -380,7 +380,9 @@ function Navigation(oProps: any) {
     if (iWidth > oTheme.breakpoints.values['sm']) {
       cSetStateOpen(true);
     }
-  }, [bStateOpen, oDomRef?.current?.offsetWidth]);
+
+  }, [oDomRef?.current?.offsetHeight]);  // 利用 高度改变的瞬间 =》 DOM 已经完成， =》 判断是否要开关 菜单
+
 
   let cHandleDrawerOpen = () => {
     cSetStateOpen(true);

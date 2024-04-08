@@ -110,7 +110,7 @@ function MyTabs(oProps: any) {
   };
 
   let iTabsLength = aTabs?.length ?? 0;
-  console.log('aTabs=', aTabs);
+
   return (
     <div className={oClasses.root}>
       <div
@@ -158,7 +158,6 @@ function MyTabs(oProps: any) {
                         })}>
                         {oTab.text}
                       </span>
-                      {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
                       <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
                         <CloseIcon />
                       </IconButton>
@@ -166,7 +165,7 @@ function MyTabs(oProps: any) {
                   }
                   id={'scrollable-auto-tab-' + sIndex}
                   aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
-                />
+                />c
               </Tooltip>
             ))}
           </Tabs>
@@ -178,7 +177,9 @@ function MyTabs(oProps: any) {
             onRemoveOtherTabs={cHandleRemoveOtherTabs(oStateIndex)}
             onRemoveAllTabs={cHandleRemoveAllTabs}></Dropdown>
         </AppBar>
-        <TabPanel>{children}</TabPanel>
+        <TabPanel>
+          {children}
+        </TabPanel>
       </div>
       <Empty className={clsx(null, { [oClasses.emptyNone]: iTabsLength >= 1 })}></Empty>
     </div>
