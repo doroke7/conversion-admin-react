@@ -10,29 +10,30 @@ let tab = (Component: any): any => {
     let sId = oProps.id ?? '0-0-0';
     let sText = oProps.text ?? '未定义';
     let sPath = oProps.path ?? '';
+    let cOnTab = oProps.onTab ?? (() => (void 0));
+
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
     let iAppId = Number(oParams?.appId);
 
-    console.log(18, 'oParams=', oParams);
-    // useEffect(() => {
+    console.log('20, oProps=', oProps);
 
+    useEffect(() => {
 
-    //   let oRoute = {
-    //     id: sId,
-    //     text: sText,
-    //     url: oRouteMatch.url,
-    //     params: oParams,
-    //     path: sPath,
-    //     icon: sIcon,
-    //     query: ''
-    //   };
-    //   events.emit('Navigation-onTab', oRoute);
-    //   console.log(21, 'oRoute=', oRoute);
-
-    //   return () => { };
-    // }, []);
+      let oRoute = {
+        id: sId,
+        text: sText,
+        url: oRouteMatch.url,
+        params: oParams,
+        path: sPath,
+        icon: sIcon,
+        query: ''
+      };
+      // cOnTab(oRoute);
+      events.emit('Navigation-onTab', oRoute);
+      return () => { };
+    }, []);
 
 
     return <Component {...oProps}></Component>;
