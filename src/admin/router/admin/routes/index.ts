@@ -27,7 +27,7 @@ let aRoutes = [
     // redirections[1]: authenticator success 后 重定向的页面，null 表示不重定向
     routes: [
       {
-        id: '2-1-2',
+        id: '2-1-0',
         path: '/admin/resource/app-pipeline/app-id/:appId',
         title: '資源列表',
         text: '資源列表',
@@ -38,7 +38,7 @@ let aRoutes = [
         exact: true
       },
       {
-        id: '2-1-3',
+        id: '2-2-0',
         path: '/admin/resource/app',
         title: '應用列表',
         text: '應用列表',
@@ -49,7 +49,7 @@ let aRoutes = [
         exact: true
       },
       {
-        id: '2-none-2',
+        id: '2-3-0',
         path: '/*',
         title: '分页未定义',
         text: '分页未定义',
