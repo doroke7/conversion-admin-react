@@ -19,7 +19,7 @@ import Dropdown from './Dropdown/Index';
 
 import style from './style';
 
-function ScrollableTabs(oProps: any) {
+function MyTabs(oProps: any) {
   let children = oProps.children ?? <></>;
 
   let oClasses: any = style(void 0);
@@ -185,4 +185,4 @@ function ScrollableTabs(oProps: any) {
   );
 }
 
-export default ScrollableTabs;
+export default MyTabs;
