@@ -312,37 +312,38 @@ function Navigation(oProps: any) {
     }
     let iValue = iStateValue;
     let bExist = false;
-    // if (aTabs.length >= 1) {
-    //   for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
-    //     if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
-    //       iValue = iIndexOfTabs;
-    //       // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-    //       if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
-    //         aTabs[iIndexOfTabs]['text'] = oTab.text;
-    //       }
-    //       aTabs[iIndexOfTabs]['icon'] = oTab.icon;
-    //       aTabs[iIndexOfTabs]['url'] = oTab.url;
+    if (aTabs.length >= 1) {
+      for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
+        if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
+          iValue = iIndexOfTabs;
+          // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+          if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
+            aTabs[iIndexOfTabs]['text'] = oTab.text;
+          }
+          aTabs[iIndexOfTabs]['icon'] = oTab.icon;
+          aTabs[iIndexOfTabs]['url'] = oTab.url;
 
-    //       bExist = true;
-    //       break;
-    //     }
-    //   }
-    // }
+          bExist = true;
+          break;
+        }
+      }
+    }
 
-    // if (bExist) {
-    //   // DO NOTHING
-    // }
-    // if (!bExist) {
-    //   aTabs = [...aTabs, oTab];
-    //   iValue = aTabs.length - 1;
-    // }
-    // let oApp = aStateApps[iStateIndex];
+    if (bExist) {
+      // DO NOTHING
+    }
+    if (!bExist) {
+      aTabs = [...aTabs, oTab];
+      iValue = aTabs.length - 1;
+    }
+    let oApp = aStateApps[iStateIndex];
 
-    // Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
+    Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
 
-    // cSetStateValue(iValue);
-    // cSetStateTabs(aTabs);
-    // cSetStateIndex(iResultIndex);
+    console.log('aTabs=', aTabs)
+    cSetStateValue(iValue);
+    cSetStateTabs(aTabs);
+    cSetStateIndex(iResultIndex);
   };
 
   useLayoutEffect(() => {
@@ -353,7 +354,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onTab', cOnTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
+  }, [bStateOpen]);
 
   useEffect(() => {
     let cResize = (oEvent: any) => {
