@@ -16,23 +16,25 @@ let tab = (Component: any): any => {
     let iAppId = Number(oParams?.appId);
 
     console.log(18, 'oParams=', oParams);
-    useEffect(() => {
+    // useEffect(() => {
 
 
-      let oRoute = {
-        id: sId,
-        text: sText,
-        url: oRouteMatch.url,
-        params: oParams,
-        path: sPath,
-        icon: sIcon,
-        query: ''
-      };
-      events.emit('Navigation-onTab', oRoute);
-      console.log(21, 'oRoute=', oRoute);
+    //   let oRoute = {
+    //     id: sId,
+    //     text: sText,
+    //     url: oRouteMatch.url,
+    //     params: oParams,
+    //     path: sPath,
+    //     icon: sIcon,
+    //     query: ''
+    //   };
+    //   events.emit('Navigation-onTab', oRoute);
+    //   console.log(21, 'oRoute=', oRoute);
 
-      return () => { };
-    }, [oRouteMatch.url]);
+    //   return () => { };
+    // }, []);
+
+
     return <Component {...oProps}></Component>;
   }
 

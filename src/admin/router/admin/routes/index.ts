@@ -28,22 +28,22 @@ let aRoutes = [
     routes: [
       {
         id: '2-1-0',
-        path: '/admin/resource/app-pipeline/app-id/:appId',
+        path: '/app-pipeline/app-id/:appId',
         title: '資源列表',
         text: '資源列表',
         icon: '',
-        Component: Pages.Resource.AppPipeline,
+        Component: Pages.Resource.AppPipeline.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true
       },
       {
         id: '2-2-0',
-        path: '/admin/resource/app',
+        path: '/app',
         title: '應用列表',
         text: '應用列表',
         icon: '',
-        Component: Pages.Resource.App,
+        Component: Pages.Resource.App.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true
