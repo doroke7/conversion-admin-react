@@ -436,7 +436,6 @@ function Navigation(oProps: any) {
   }, [aStateApps.length]);
 
   console.log('aStateTab=', aStateTabs);
-  console.log('bStateOpen=', bStateOpen);
 
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
