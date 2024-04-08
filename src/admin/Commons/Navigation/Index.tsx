@@ -35,7 +35,7 @@ function Navigation(oProps: any) {
   let oClasses = style(void 0);
   let oHistory = useHistory();
   let oTextRef = useRef('');
-  let oDomRef: any = useRef();
+  let oDomRef: any = useRef(null);
 
   // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法，
   // 如果 直接使用 setState(值) 有数据覆盖的危险，
@@ -104,7 +104,6 @@ function Navigation(oProps: any) {
       let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree(iAppId);
 
       let aAdminMenus = oAdminMenuResponse?.data?.raw?.tree ?? [];
-      console.log(aAdminMenus);
       console.log(oAdminMenuResponse);
 
       cSetStateAdminMenus(aAdminMenus);
@@ -286,81 +285,79 @@ function Navigation(oProps: any) {
     };
   }, [aStateTabs, bStateOpen, iStateIndex, aStateApps]);
 
-  useLayoutEffect(() => {
-    let cOnTab = (oRoute: any) => {
-      let aTabs =
-        oRoute?.params?.appId >= 0 && iStateIndex == -1
-          ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
-          : [...aStateTabs];
+  let cOnTab = (oRoute: any) => {
 
-      console.log('296 aTabs=', aTabs);
-      let iIndex = 0;
-      let iResultIndex = -1;
-      for (iIndex = 0; iIndex < aStateApps.length; iIndex++) {
-        if (aStateApps[iIndex].id == oRoute?.params?.appId) {
-          iResultIndex = iIndex;
+    console.log('oRoute=', oRoute);
+    let aTabs =
+      oRoute?.params?.appId >= 0 && iStateIndex == -1
+        ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
+        : [...aStateTabs];
+
+    let iIndex = 0;
+    let iResultIndex = -1;
+    for (iIndex = 0; iIndex < aStateApps.length; iIndex++) {
+      if (aStateApps[iIndex].id == oRoute?.params?.appId) {
+        iResultIndex = iIndex;
+        break;
+      }
+    }
+
+    let oTab = {
+      id: oRoute.id,
+      path: oRoute.path,
+      url: oRoute.url,
+      query: '',
+      text: (oRoute.text ?? oTextRef.current) || oTextRef.current,
+      icon: oRoute.icon ?? ''
+    };
+    if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
+      oTab.text = oTextRef.current || '未定义';
+    }
+    let iValue = iStateValue;
+    let bExist = false;
+    if (aTabs.length >= 1) {
+      for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
+        if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
+          iValue = iIndexOfTabs;
+          // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+          if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
+            aTabs[iIndexOfTabs]['text'] = oTab.text;
+          }
+          aTabs[iIndexOfTabs]['icon'] = oTab.icon;
+          aTabs[iIndexOfTabs]['url'] = oTab.url;
+
+          bExist = true;
           break;
         }
       }
+    }
 
-      let oTab = {
-        id: oRoute.id,
-        path: oRoute.path,
-        url: oRoute.url,
-        query: '',
-        text: (oRoute.text ?? oTextRef.current) || oTextRef.current,
-        icon: oRoute.icon ?? ''
-      };
-      if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
-        oTab.text = oTextRef.current || '未定义';
-      }
-      let iValue = iStateValue;
-      let bExist = false;
-      if (aTabs.length >= 1) {
-        for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
-          if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
-            iValue = iIndexOfTabs;
-            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-            if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
-              aTabs[iIndexOfTabs]['text'] = oTab.text;
-            }
-            aTabs[iIndexOfTabs]['icon'] = oTab.icon;
-            aTabs[iIndexOfTabs]['url'] = oTab.url;
+    if (bExist) {
+      // DO NOTHING
+    }
+    if (!bExist) {
+      aTabs = [...aTabs, oTab];
+      iValue = aTabs.length - 1;
+    }
+    let oApp = aStateApps[iStateIndex];
 
-            bExist = true;
-            break;
-          }
-        }
-      }
+    Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
 
-      if (bExist) {
-        // DO NOTHING
-      }
-      if (!bExist) {
-        aTabs = [...aTabs, oTab];
-        iValue = aTabs.length - 1;
-      }
-      let oApp = aStateApps[iStateIndex];
-
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
-
-      cSetStateValue(iValue);
-      cSetStateTabs(aTabs);
-      cSetStateIndex(iResultIndex);
-    };
-
-    let oEventEmitter: any = events.addListener('Navigation-onTab', cOnTab);
-    // 组件销毁前移除事件监听
-    return () => {
-      events.removeListener('Navigation-onTab', cOnTab);
-    };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
+    cSetStateValue(iValue);
+    cSetStateTabs(aTabs);
+    cSetStateIndex(iResultIndex);
+  };
 
   useEffect(() => {
     let cResize = (oEvent: any) => {
       let iWidth = oEvent.target.innerWidth;
+
       if (bStateOpen && iWidth <= oTheme.breakpoints.values['sm']) {
         cSetStateOpen(false);
+      }
+
+      if (!bStateOpen && iWidth > oTheme.breakpoints.values['sm']) {
+        cSetStateOpen(true);
       }
     };
     window.addEventListener('resize', cResize);
@@ -371,14 +368,19 @@ function Navigation(oProps: any) {
        */
       window.removeEventListener('resize', cResize);
     };
-  }, []);
+  }, [bStateOpen]);
 
   useEffect(() => {
     let iWidth = oDomRef.current.offsetWidth;
+
     if (iWidth <= oTheme.breakpoints.values['sm']) {
       cSetStateOpen(false);
     }
-  }, []);
+
+    if (iWidth > oTheme.breakpoints.values['sm']) {
+      cSetStateOpen(true);
+    }
+  }, [bStateOpen, oDomRef?.current?.offsetWidth]);
 
   let cHandleDrawerOpen = () => {
     cSetStateOpen(true);
@@ -431,6 +433,9 @@ function Navigation(oProps: any) {
     return aResults;
   }, [aStateApps.length]);
 
+  console.log('aStateTab=', aStateTabs);
+  console.log('bStateOpen=', bStateOpen);
+
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
@@ -478,7 +483,9 @@ function Navigation(oProps: any) {
             </Drawer>
             <main className={oClasses.content}>
               <div className={oClasses.toolbar}></div>
-              <Tabs>{children}</Tabs>
+              <Tabs onTab={cOnTab}>
+                {children}
+              </Tabs>
             </main>
           </div>
         </Contexts.Tabs.Provider>
