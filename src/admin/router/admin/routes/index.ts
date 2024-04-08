@@ -28,7 +28,7 @@ let aRoutes = [
     routes: [
       {
         id: '2-1-0',
-        path: '/app-pipeline/app-id/:appId',
+        path: '/app-pipeline/index/app-id/:appId',
         title: '資源列表',
         text: '資源列表',
         icon: '',
@@ -39,11 +39,22 @@ let aRoutes = [
       },
       {
         id: '2-2-0',
-        path: '/app',
+        path: '/app/index',
         title: '應用列表',
         text: '應用列表',
         icon: '',
         Component: Pages.Resource.App.Index,
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        exact: true
+      },
+      {
+        id: '2-3-0',
+        path: '/app-user/index',
+        title: '账号列表',
+        text: '账号列表',
+        icon: '',
+        Component: Pages.Resource.AppUser.Index,
         authenticator: true,
         redirections: ['/admin/authentication/authenticator/sign-in', null],
         exact: true
