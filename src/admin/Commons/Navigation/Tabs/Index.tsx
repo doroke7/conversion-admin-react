@@ -165,7 +165,7 @@ function MyTabs(oProps: any) {
                   }
                   id={'scrollable-auto-tab-' + sIndex}
                   aria-controls={`scrollable-auto-tabpanel-${sIndex}`}
-                />c
+                />
               </Tooltip>
             ))}
           </Tabs>
