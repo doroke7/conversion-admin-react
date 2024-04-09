@@ -123,7 +123,7 @@ function Navigation(oProps: any) {
       iValue = iValue < -1 ? -1 : iValue;
       let oApp = aStateApps[iStateIndex];
 
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp?.id);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs, 0, oApp?.id);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
@@ -151,7 +151,7 @@ function Navigation(oProps: any) {
       let iValue = 0;
       let oApp = aStateApps[iStateIndex];
 
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs, 0, oApp.id);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
@@ -172,7 +172,7 @@ function Navigation(oProps: any) {
       let iValue = -1;
       let oApp = aStateApps[iStateIndex];
 
-      Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oApp.id);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs, 0, oApp.id);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
@@ -269,7 +269,7 @@ function Navigation(oProps: any) {
       let iAppId = aStateApps[iIndex].id;
 
       if (iResultIndex != iStateIndex) {
-        let aTabs = Helpers.Tab.getOnesByAdministratorIdAppId(0, iAppId ?? -1) ?? [];
+        let aTabs = Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId ?? -1) ?? [];
         cSetStateIndex(iResultIndex);
         cSetStateTabs(aTabs);
         cSetStateValue(-1);
@@ -286,10 +286,16 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex, aStateApps]);
 
   let cOnTab = (oRoute: any) => {
-    let aTabs =
-      oRoute?.params?.appId >= 0 && iStateIndex == -1
-        ? Helpers.Tab.getOnesByAdministratorIdAppId(0, oRoute?.params?.appId ?? -1)
-        : [...aStateTabs];
+
+    let iAppId = Number(oRoute?.params?.appId ?? 0);
+
+    let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId);
+    let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+
+    let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
+    aTabs = iStateIndex == -1 && iAppId <= 0 ? [...aTabs0] : aTabs;
+    aTabs = iStateIndex == -1 && iAppId >= 1 ? [...aTabs1, ...aTabs0] : aTabs;
+
     let iIndex = 0;
     let iResultIndex = -1;
     for (iIndex = 0; iIndex < aStateApps.length; iIndex++) {
@@ -304,7 +310,7 @@ function Navigation(oProps: any) {
       path: oRoute.path,
       url: oRoute.url,
       query: '',
-      text: (oRoute.text ?? oTextRef.current) || oTextRef.current,
+      text: oRoute?.text || oTextRef?.current,
       icon: oRoute.icon ?? ''
     };
     if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
@@ -312,16 +318,35 @@ function Navigation(oProps: any) {
     }
     let iValue = iStateValue;
     let bExist = false;
-    if (aTabs.length >= 1) {
-      for (let iIndexOfTabs = 0; iIndexOfTabs < aTabs.length; iIndexOfTabs++) {
-        if (aTabs[iIndexOfTabs]['id'] == oTab.id) {
-          iValue = iIndexOfTabs;
+    let iTabIndex = 0;
+
+    if (aTabs1.length >= 1) {
+      for (iTabIndex = 0; iTabIndex < aTabs1.length; iTabIndex++) {
+        if (aTabs1[iTabIndex]['id'] == oTab.id) {
+          iValue = iTabIndex;
           // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-          if (aTabs[iIndexOfTabs]['url'] != oTab.url || aTabs[iIndexOfTabs]['text'] == '未定义') {
-            aTabs[iIndexOfTabs]['text'] = oTab.text;
+          if (aTabs1[iTabIndex]['url'] != oTab?.url || aTabs1[iTabIndex]['text'] == '未定义') {
+            aTabs1[iTabIndex]['text'] = oTab?.text;
           }
-          aTabs[iIndexOfTabs]['icon'] = oTab.icon;
-          aTabs[iIndexOfTabs]['url'] = oTab.url;
+          aTabs1[iTabIndex]['icon'] = oTab?.icon;
+          aTabs1[iTabIndex]['url'] = oTab?.url;
+
+          bExist = true;
+          break;
+        }
+      }
+    }
+
+    if (aTabs0.length >= 1 && !bExist) {
+      for (iTabIndex = 0; iTabIndex < aTabs0.length; iTabIndex++) {
+        if (aTabs0[iTabIndex]['id'] == oTab.id) {
+          iValue = iTabIndex + aTabs1.length;
+          // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+          if (aTabs0[iTabIndex]['url'] != oTab?.url || aTabs0[iTabIndex]['text'] == '未定义') {
+            aTabs0[iTabIndex]['text'] = oTab?.text;
+          }
+          aTabs0[iTabIndex]['icon'] = oTab?.icon;
+          aTabs0[iTabIndex]['url'] = oTab?.url;
 
           bExist = true;
           break;
@@ -334,13 +359,17 @@ function Navigation(oProps: any) {
     }
     if (!bExist) {
       aTabs = [...aTabs, oTab];
-      iValue = aTabs.length - 1;
+
+      aTabs1 = iAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+      aTabs0 = iAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
+      aTabs = [...aTabs1, ...aTabs0];
+
+      iValue = iAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
     }
-    let oApp = aStateApps[iStateIndex];
 
-    Helpers.Tab.setOnesByAdministratorIdAppId(aTabs, 0, oRoute?.params?.appId);
 
-    console.log('aTabs=', aTabs)
     cSetStateValue(iValue);
     cSetStateTabs(aTabs);
     cSetStateIndex(iResultIndex);
@@ -445,11 +474,6 @@ function Navigation(oProps: any) {
 
   console.log('aStateTab=', aStateTabs);
 
-  let Children = React.Children.map(children, (child) => {
-    return React.cloneElement(children, { onTab: cOnTab });
-
-  });
-
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
@@ -497,8 +521,8 @@ function Navigation(oProps: any) {
             </Drawer>
             <main className={oClasses.content}>
               <div className={oClasses.toolbar}></div>
-              <Tabs onTab={cOnTab}>
-                {Children}
+              <Tabs>
+                {children}
               </Tabs>
             </main>
           </div>

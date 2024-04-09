@@ -15,9 +15,10 @@ let tab = (Component: any): any => {
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
-    let iAppId = Number(oParams?.appId);
+    let iAppId = Number(oParams?.appId ?? 0);
 
     console.log('20, oProps=', oProps);
+    console.log('20, oParams=', oParams);
 
     useEffect(() => {
 
@@ -30,7 +31,6 @@ let tab = (Component: any): any => {
         icon: sIcon,
         query: ''
       };
-      // cOnTab(oRoute);
       events.emit('Navigation-onTab', oRoute);
       return () => { };
     }, []);

@@ -2,7 +2,7 @@ class TabHelper {
   /**
    * getUsrId
    */
-  public static getOnesByAdministratorIdAppId(iAdministratorId = 0, iAppId): any[] {
+  public static getOnesByAdminiUserIdAppId(iAdministratorId = 0, iAppId): any[] {
     let aTabs = [];
     if (iAppId >= 0) {
       let sKey = 'tabs' + '-' + iAdministratorId + '-' + iAppId;
@@ -14,7 +14,7 @@ class TabHelper {
     return aTabs;
   }
 
-  public static setOnesByAdministratorIdAppId(aTabs, iAdministratorId = 0, iAppId): boolean {
+  public static setOnesByAdminUserIdAppId(aTabs, iAdministratorId = 0, iAppId): boolean {
     if (iAppId >= 0) {
       let sTabs = JSON.stringify(aTabs);
       let sKey = 'tabs' + '-' + iAdministratorId + '-' + iAppId;
