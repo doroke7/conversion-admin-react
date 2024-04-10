@@ -14,8 +14,8 @@ function AdminUserLinks(oProps: any) {
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let aLinks = oProps.links;
-  let cHandleClickLink = (oLink) => {
-    return (oEvent) => {
+  let cHandleClickLink = (oLink: any) => {
+    return (oEvent: React.SyntheticEvent) => {
       events.emit('Navigation-onClickAdminUserLink', oLink);
     };
   };

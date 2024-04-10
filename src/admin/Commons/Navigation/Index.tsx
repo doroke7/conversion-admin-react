@@ -252,7 +252,7 @@ function Navigation(oProps: any) {
         page: 1,
         limit: 10
       };
-      let sUrl = utilities.url(oAdminUserLink.path, oParams);
+      let sUrl = utilities.url(oAdminUserLink.url, oParams);
       oHistory.push(sUrl);
     };
 
