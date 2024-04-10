@@ -13,12 +13,12 @@ import Helpers from '@/admin/Helpers/Index';
 import Components from '@/admin/Components/Index';
 import events from '@/admin/events/index';
 import Contexts from '@/admin/Contexts/Index';
-import ThirdMenus from './ThirdMenus/Index';
+import ThirdAdminMenus from './ThirdAdminMenus/Index';
 import utilities from '@/admin/utilities';
 
 import style from './style';
 
-function SecondMenus(oProps: any) {
+function SecondAdminMenus(oProps: any) {
   let bIn = oProps.in ?? false;
   let aAdminMenus = oProps.adminMenus ?? [];
 
@@ -76,12 +76,12 @@ function SecondMenus(oProps: any) {
               <ArrowRightIcon />
             )}
             {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
-              <ThirdMenus
+              <ThirdAdminMenus
                 open={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
                 adminMenus={oAdminMenu.adminMenus}
                 index={iSecondIndex}
                 anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
-                onClickAway={cHandleClose}></ThirdMenus>
+                onClickAway={cHandleClose}></ThirdAdminMenus>
             ) : (
               ''
             )}
@@ -92,4 +92,4 @@ function SecondMenus(oProps: any) {
   );
 }
 
-export default SecondMenus;
+export default SecondAdminMenus;

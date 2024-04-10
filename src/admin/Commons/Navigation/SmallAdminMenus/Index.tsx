@@ -13,7 +13,7 @@ import Contexts from '@/admin/Contexts/Index';
 import utilities from '@/admin/utilities';
 
 import CONFIGS from '@/CONFIGS/INDEX';
-import SecondMenus from './SecondMenus/Index';
+import SecondAdminMenus from './SecondAdminMenus/Index';
 
 import cStyle from './style';
 
@@ -71,13 +71,13 @@ function SmallAdminMenus(oProps) {
             <ListItemIcon className={oClasses.listItemIcon}>
               <Components.Icon name={oAdminMenu?.icon || 'LineWeightIcon'}></Components.Icon>
             </ListItemIcon>
-            <SecondMenus
+            <SecondAdminMenus
               open={!!oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               adminMenus={oAdminMenu?.adminMenus}
               anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               index={iIndex}
               onClickAway={cHandleClose}
-              onMouseLeave={cHandleMouseLeave(oAdminMenu)}></SecondMenus>
+              onMouseLeave={cHandleMouseLeave(oAdminMenu)}></SecondAdminMenus>
           </ListItem>
         </>
       ))}

@@ -17,11 +17,11 @@ import utilities from '@/admin/utilities';
 
 import Components from '@/admin/Components/Index';
 
-import ThirddMenus from './ThirdMenus/Index';
+import ThirdAdminMenus from './ThirdAdminMenus/Index';
 
 import cStyle from './style';
 
-function SecondMenus(oProps: any) {
+function SecondAdminMenus(oProps: any) {
   let aAdminMenus = oProps.adminMenus ?? []; // 二级 menu
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
@@ -81,9 +81,9 @@ function SecondMenus(oProps: any) {
                   {oAdminMenu?.adminMenus &&
                   Array.isArray(oAdminMenu?.adminMenus) &&
                   oAdminMenu?.adminMenus.length >= 1 ? (
-                    <ThirddMenus
+                    <ThirdAdminMenus
                       in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
-                      adminMenus={oAdminMenu.adminMenus}></ThirddMenus>
+                      adminMenus={oAdminMenu.adminMenus}></ThirdAdminMenus>
                   ) : (
                     ''
                   )}
@@ -97,4 +97,4 @@ function SecondMenus(oProps: any) {
   );
 }
 
-export default SecondMenus;
+export default SecondAdminMenus;

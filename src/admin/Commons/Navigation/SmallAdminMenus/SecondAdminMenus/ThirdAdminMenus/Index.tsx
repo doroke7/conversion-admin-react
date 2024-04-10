@@ -16,7 +16,7 @@ import Components from '@/admin/Components/Index';
 
 import cStyle from './style';
 
-function SecondMenus(oProps: any) {
+function ThirdAdminMenus(oProps: any) {
   let bIn = oProps.in ?? false;
   let aAdminMenus = oProps.adminMenus ?? [];
 
@@ -55,4 +55,4 @@ function SecondMenus(oProps: any) {
   );
 }
 
-export default SecondMenus;
+export default ThirdAdminMenus;
