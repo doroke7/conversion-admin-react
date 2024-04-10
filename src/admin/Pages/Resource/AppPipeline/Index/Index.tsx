@@ -18,7 +18,7 @@ import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 
-import wrappers from '@/admin/wrappers/index';
+import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
@@ -42,4 +42,4 @@ function Index(oProps: any): any {
 
   return <div>APP-PIPELINE</div>;
 }
-export default wrappers.authenticator(wrappers.tab(wrappers.page(wrappers.title(Index))));
+export default Hocs.authenticator(Hocs.tab(Hocs.page(Hocs.title(Index))));

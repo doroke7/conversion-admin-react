@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
-import wrappers from '@/admin/wrappers/index';
+import Hocs from '@/admin/Hocs';
 
 import style from './style';
 
@@ -16,4 +16,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default wrappers.authenticator(Index);
+export default Hocs.authenticator(Index);
