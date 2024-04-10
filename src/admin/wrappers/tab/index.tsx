@@ -17,9 +17,6 @@ let tab = (Component: any): any => {
     let oParams: any = useParams();
     let iAppId = Number(oParams?.appId ?? 0);
 
-    console.log('20, oProps=', oProps);
-    console.log('20, oParams=', oParams);
-
     useEffect(() => {
 
       let oRoute = {

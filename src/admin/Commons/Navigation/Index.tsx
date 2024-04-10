@@ -118,12 +118,8 @@ function Navigation(oProps: any) {
       let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
       let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
 
-      console.log('aTabs1=', aTabs1);
-      console.log('aTabs0=', aTabs0);
-      console.log('iIndex=', iIndex);
-
       if (iIndex < aTabs1.length) {
-        // 
+
         let aTempLeftTabs1 = aTabs1.slice(0, iIndex);
         let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
 
@@ -133,17 +129,11 @@ function Navigation(oProps: any) {
       };
 
       if (iIndex >= aTabs1.length) {
-        console.log('iIndex=', iIndex);
-        console.log('iIndex - aTabs1.length + 1=', iIndex - aTabs1.length + 1);
-        console.log('aTabs1.length=', aTabs1.length);
 
         let aTempLeftTabs0 = aTabs0.slice(0, iIndex - aTabs1.length);
         let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
 
         aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
-        console.log('aTempLeftTabs0=', aTempLeftTabs0);
-        console.log('aTempRightTabs0=', aTempRightTabs0);
-
         Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
 
       };
@@ -181,13 +171,13 @@ function Navigation(oProps: any) {
       let oTab = null;
 
       if (iIndex < aTabs1.length) {
-        let oTab = aTabs1[iIndex] ?? null;
+        oTab = aTabs1[iIndex] ?? null;
         aTabs1 = [oTab];
         aTabs0 = [];
       };
 
       if (iIndex >= aTabs1.length) {
-        let oTab = aTabs0[iIndex - aTabs1.length] ?? null;
+        oTab = aTabs0[iIndex - aTabs1.length] ?? null;
         aTabs0 = [];
         aTabs0 = [oTab];
       };
@@ -362,7 +352,7 @@ function Navigation(oProps: any) {
       text: oRoute?.text || oTextRef?.current,
       icon: oRoute.icon ?? ''
     };
-    if (oRoute.id == '2-none-2' || oRoute.id == '2-none-1') {
+    if (oRoute.id == '2-n-0') {
       oTab.text = oTextRef.current || '未定义';
     }
     let iValue = iStateValue;
@@ -407,10 +397,12 @@ function Navigation(oProps: any) {
       // DO NOTHING
     }
     if (!bExist) {
-      aTabs = [...aTabs, oTab];
-
       aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
       aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+
+      console.log('aTabs1=', aTabs1);
+      console.log('aTabs0=', aTabs0);
+
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iParamsAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
       aTabs = [...aTabs1, ...aTabs0];

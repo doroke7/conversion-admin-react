@@ -34,7 +34,7 @@ let aRoutes = [
         icon: '',
         Component: Pages.Resource.AppPipeline.Index,
         authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        redirections: ['/admin/resource', null],
         exact: true
       },
       {
@@ -45,7 +45,7 @@ let aRoutes = [
         icon: '',
         Component: Pages.Resource.App.Index,
         authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        redirections: ['/admin/resource', null],
         exact: true
       },
       {
@@ -56,7 +56,7 @@ let aRoutes = [
         icon: '',
         Component: Pages.Resource.AppUser.Index,
         authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        redirections: ['/admin/resource', null],
         exact: true
       },
       {
@@ -67,18 +67,18 @@ let aRoutes = [
         icon: '',
         Component: Pages.Resource.AdminRole.Index,
         authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        redirections: ['/admin/resource', null],
         exact: true
       },
       {
-        id: '2-4-0',
+        id: '2-n-0',
         path: '/*',
         title: '分页未定义',
         text: '分页未定义',
         icon: 'WarningTwoToneIcon',
         Component: Pages.Resource.None,
         authenticator: true,
-        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        redirections: ['/admin/resource', null],
         exact: false
       }
     ]
