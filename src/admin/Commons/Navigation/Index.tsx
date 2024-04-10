@@ -400,9 +400,6 @@ function Navigation(oProps: any) {
       aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
       aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
 
-      console.log('aTabs1=', aTabs1);
-      console.log('aTabs0=', aTabs0);
-
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iParamsAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
       aTabs = [...aTabs1, ...aTabs0];
@@ -413,6 +410,7 @@ function Navigation(oProps: any) {
     cSetStateValue(iValue);
     cSetStateTabs(aTabs);
     cSetStateIndex(iResultIndex);
+
   }, [iStateIndex, aStateApps]);
 
   useLayoutEffect(() => {
@@ -511,8 +509,6 @@ function Navigation(oProps: any) {
 
     return aResults;
   }, [aStateApps.length]);
-
-  console.log('aStateTab=', aStateTabs);
 
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
