@@ -22,7 +22,8 @@ import ThirdAdminMenus from './ThirdAdminMenus/Index';
 import cStyle from './style';
 
 function SecondAdminMenus(oProps: any) {
-  let aAdminMenus = oProps.adminMenus ?? []; // 二级 menu
+
+  let aAdminMenus = oProps.adminMenus ?? [];
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
   let cOnClickAway = oProps.onClickAway;
@@ -70,7 +71,7 @@ function SecondAdminMenus(oProps: any) {
                     <ListItemText primary={oAdminMenu.name} />
                     {!oAdminMenu?.adminMenus ||
                     !Array.isArray(oAdminMenu?.adminMenus) ||
-                    oAdminMenu?.adminMenus.length == 0 ? (
+                    oAdminMenu?.adminMenus?.length == 0 ? (
                       ''
                     ) : !oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)] ? (
                       <ExpandMore />
@@ -80,7 +81,7 @@ function SecondAdminMenus(oProps: any) {
                   </MenuItem>
                   {oAdminMenu?.adminMenus &&
                   Array.isArray(oAdminMenu?.adminMenus) &&
-                  oAdminMenu?.adminMenus.length >= 1 ? (
+                  oAdminMenu?.adminMenus?.length >= 1 ? (
                     <ThirdAdminMenus
                       in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
                       adminMenus={oAdminMenu.adminMenus}></ThirdAdminMenus>

@@ -9,6 +9,7 @@ import None from './None/Index';
 import Index from './Index/Index';
 import AppPipeline from './AppPipeline/Index';
 import App from './App/Index';
+import AdminRole from './AdminRole/Index';
 
 /**
  * import Config from './Config/'; 相当 import Config from './Config/Index.ts';
@@ -28,6 +29,7 @@ export default {
   AppUser: AppUser,
   OrderInfo: OrderInfo,
   AdminAdministrator: AdminAdministrator,
+  AdminRole: AdminRole,
   Config: Config,
   Vod: Vod,
   None: None,

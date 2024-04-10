@@ -60,7 +60,18 @@ let aRoutes = [
         exact: true
       },
       {
-        id: '2-3-0',
+        id: '2-4-0',
+        path: '/admin-role/index',
+        title: '角色列表',
+        text: '角色列表',
+        icon: '',
+        Component: Pages.Resource.AdminRole.Index,
+        authenticator: true,
+        redirections: ['/admin/authentication/authenticator/sign-in', null],
+        exact: true
+      },
+      {
+        id: '2-4-0',
         path: '/*',
         title: '分页未定义',
         text: '分页未定义',

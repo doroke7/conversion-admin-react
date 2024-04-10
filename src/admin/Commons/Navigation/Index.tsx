@@ -112,18 +112,47 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
-      let aTabs = [...aStateTabs];
+      let oApp = aStateApps[iStateIndex];
+      let iAppId = oApp?.id ?? 0;
 
-      let aTabsRows1 = aTabs.slice(0, iIndex);
-      let aTabsRows2 = aTabs.slice(iIndex + 1, aStateTabs.length);
-      aTabs = aTabsRows1.concat(aTabsRows2);
+      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+
+      console.log('aTabs1=', aTabs1);
+      console.log('aTabs0=', aTabs0);
+      console.log('iIndex=', iIndex);
+
+      if (iIndex < aTabs1.length) {
+        // 
+        let aTempLeftTabs1 = aTabs1.slice(0, iIndex);
+        let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
+
+        aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, oApp?.id);
+
+      };
+
+      if (iIndex >= aTabs1.length) {
+        console.log('iIndex=', iIndex);
+        console.log('iIndex - aTabs1.length + 1=', iIndex - aTabs1.length + 1);
+        console.log('aTabs1.length=', aTabs1.length);
+
+        let aTempLeftTabs0 = aTabs0.slice(0, iIndex - aTabs1.length);
+        let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
+
+        aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
+        console.log('aTempLeftTabs0=', aTempLeftTabs0);
+        console.log('aTempRightTabs0=', aTempRightTabs0);
+
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
+
+      };
+      let aTabs = [...aTabs1, ...aTabs0];
 
       let iValue = 0;
       iValue = iIndex > iStateValue ? iStateValue : iStateValue - 1;
       iValue = iValue < -1 ? -1 : iValue;
-      let oApp = aStateApps[iStateIndex];
 
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs, 0, oApp?.id);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
@@ -144,20 +173,36 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
-      let aTabs = [...aStateTabs];
-
-      let oTabRow = aTabs[iIndex] ?? null;
-      aTabs = oTabRow ? [oTabRow] : [];
-      let iValue = 0;
       let oApp = aStateApps[iStateIndex];
+      let iAppId = oApp?.id ?? 0;
 
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs, 0, oApp.id);
+      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+      let oTab = null;
+
+      if (iIndex < aTabs1.length) {
+        let oTab = aTabs1[iIndex] ?? null;
+        aTabs1 = [oTab];
+        aTabs0 = [];
+      };
+
+      if (iIndex >= aTabs1.length) {
+        let oTab = aTabs0[iIndex - aTabs1.length] ?? null;
+        aTabs0 = [];
+        aTabs0 = [oTab];
+      };
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
+
+      let iValue = 0;
+
+      let aTabs = [...aTabs1, ...aTabs0];
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
 
-      if (oTabRow) {
-        oHistory.push(oTabRow.url);
+      if (oTab) {
+        oHistory.push(oTab.url);
       }
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
@@ -168,14 +213,15 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
-      let aTabs = [];
       let iValue = -1;
       let oApp = aStateApps[iStateIndex];
+      let iAppId = oApp?.id ?? 0;
 
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs, 0, oApp.id);
+      iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId([], 0, iAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId([], 0, 0);
 
       cSetStateValue(iValue);
-      cSetStateTabs(aTabs);
+      cSetStateTabs([]);
       oHistory.push('/admin/resource');
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
@@ -265,12 +311,18 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
-      let iResultIndex = iIndex;
-      let iAppId = aStateApps[iIndex].id;
+      let iAppId = aStateApps?.[iIndex]?.id;
 
-      if (iResultIndex != iStateIndex) {
-        let aTabs = Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId ?? -1) ?? [];
-        cSetStateIndex(iResultIndex);
+      if (iIndex == iStateIndex) {
+        // DO NOTHING
+      }
+
+      if (iIndex != iStateIndex) {
+        let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId);
+        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+
+        let aTabs = [...aTabs1, ...aTabs0];
+        cSetStateIndex(iIndex);
         cSetStateTabs(aTabs);
         cSetStateValue(-1);
         if (iStateIndex >= 0) {
@@ -285,31 +337,28 @@ function Navigation(oProps: any) {
     };
   }, [aStateTabs, bStateOpen, iStateIndex, aStateApps]);
 
-  let cOnTab = (oRoute: any) => {
+  let cOnTab = useCallback((oRoute: any) => {
+    let oApp = aStateApps?.[iStateIndex];
+    let iAppId = oApp?.id ?? 0;
 
-    let iAppId = Number(oRoute?.params?.appId ?? 0);
+    let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
-    let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId);
+    let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
     let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
 
     let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
-    aTabs = iStateIndex == -1 && iAppId <= 0 ? [...aTabs0] : aTabs;
-    aTabs = iStateIndex == -1 && iAppId >= 1 ? [...aTabs1, ...aTabs0] : aTabs;
+    aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
+    aTabs = iStateIndex == -1 ? [...aTabs1, ...aTabs0] : aTabs;
 
-    let iIndex = 0;
     let iResultIndex = -1;
-    for (iIndex = 0; iIndex < aStateApps.length; iIndex++) {
-      if (aStateApps[iIndex].id == oRoute?.params?.appId) {
-        iResultIndex = iIndex;
-        break;
-      }
-    }
+
+    let sUrl = utilities.url(oRoute.url, oRoute?.params);
 
     let oTab = {
       id: oRoute.id,
       path: oRoute.path,
-      url: oRoute.url,
-      query: '',
+      url: sUrl,
+      param: oRoute?.params ?? {},
       text: oRoute?.text || oTextRef?.current,
       icon: oRoute.icon ?? ''
     };
@@ -360,20 +409,19 @@ function Navigation(oProps: any) {
     if (!bExist) {
       aTabs = [...aTabs, oTab];
 
-      aTabs1 = iAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
-      aTabs0 = iAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iAppId);
+      aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+      aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iParamsAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
       aTabs = [...aTabs1, ...aTabs0];
 
-      iValue = iAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
+      iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
     }
-
 
     cSetStateValue(iValue);
     cSetStateTabs(aTabs);
     cSetStateIndex(iResultIndex);
-  };
+  }, [iStateIndex, aStateApps]);
 
   useLayoutEffect(() => {
 
