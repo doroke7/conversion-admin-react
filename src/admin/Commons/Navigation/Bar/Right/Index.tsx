@@ -65,7 +65,7 @@ function Right(oProps: any) {
 
     let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignOut();
 
-    if (oResponse?.data?.code <= -1) {
+    if (oResponse?.data?.code <= 0) {
       let oMessage = {
         code: oResponse?.data?.code ?? 0,
         message: oResponse?.data?.message ?? '',
@@ -75,7 +75,7 @@ function Right(oProps: any) {
     }
 
     Helpers.Authentication.removeJwt();
-    if (oResponse?.data?.code >= 0) {
+    if (oResponse?.data?.code <= 0) {
       let oMessage = {
         code: oResponse?.data?.code,
         message: oResponse?.data?.message ?? '登出成功',
