@@ -20,15 +20,6 @@ import CONFIGS from '@/CONFIGS/INDEX';
 
 import style from './style';
 
-interface State {
-  name: string;
-  password: string;
-  loading: boolean;
-  pannelAnimation: boolean;
-  usernameError: boolean;
-  passwordError: boolean;
-}
-
 const ENTER_CODE = 13;
 
 function Pannel(oProps: any): any {
@@ -38,7 +29,7 @@ function Pannel(oProps: any): any {
   let oHistory = useHistory();
   let oLocation = useLocation();
 
-  let [oState, cSetState] = useState<State>({
+  let [oState, cSetState] = useState<any>({
     name: '',
     password: '',
     loading: false,
@@ -47,42 +38,57 @@ function Pannel(oProps: any): any {
     passwordError: false
   });
 
+  let [sStateName, cSetStateName] = useState<string>('');
+  let [sStatePassword, cSetStatePassword] = useState<string>('');
+  let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
+  let [bStateAnimation, cSetStateAnimation] = useState<boolean>(false);
+  let [bStateNameError, cSetStateNameError] = useState<boolean>(false);
+  let [bStatePasswordError, cSetStatePasswordError] = useState<boolean>(false);
+
   let onChangeName = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sName = oEvent.target.value;
     cSetState({ ...oState, name: sName });
+    cSetStateName(sName);
+
   };
 
   let onChangePassword = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sPassword = oEvent.target.value;
     cSetState({ ...oState, password: sPassword });
+    cSetStatePassword(sPassword);
   };
 
   let cSignIn = async () => {
     try {
-      if (!oState.name) {
-        cSetState({ ...oState, usernameError: true });
+      if (!sStateName) {
+        cSetStateNameError(true);
         throw new Exception('请输入管理用户名称', -1);
       }
 
-      if (!oState.password) {
-        cSetState({ ...oState, passwordError: true });
+      if (!sStatePassword) {
+        cSetStatePasswordError(true);
         throw new Exception('请输入管理用户密码', -1);
       }
 
-      if (oState.name.length <= 3) {
+      if (sStateName.length <= 3) {
         cSetState({ ...oState, usernameError: true });
-
         throw new Exception('请输入4 字元以上名称', -1);
       }
 
-      if (oState.password.length <= 5) {
+      if (sStatePassword.length <= 5) {
         cSetState({ ...oState, passwordError: true });
+        cSetStatePasswordError(true);
 
         throw new Exception('请输入6 字以上元密码', -1);
       }
       events.emit('Progress-onProgress', { value: 0, status: true });
 
-      let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oState.name, oState.password);
+      let oParam = {
+        name: sStateName,
+        password: sStatePassword,
+      }
+
+      let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oParam);
       let sJwt = oResponse?.headers?.authorization ?? '';
       if (oResponse?.data?.code === undefined) {
         throw new Exception('服务器异常', -4);
@@ -93,9 +99,10 @@ function Pannel(oProps: any): any {
       }
 
       if (!sJwt) {
-        throw new Exception('登入响应缺少令牌', -2);
+        throw new Exception('接口响应缺少令牌', -2);
       }
-      cSetState({ ...oState, loading: true, pannelAnimation: true });
+      cSetStateLoading(true);
+      cSetStateAnimation(true);
 
       Helpers.Authentication.setJwt(sJwt);
       oDispatch(actions.authentication.authenticator.postSignIn(oResponse));
@@ -111,9 +118,7 @@ function Pannel(oProps: any): any {
 
       if (oResponse) {
         await new Promise((cResolve) => setTimeout(cResolve, 300));
-        let sPath = Helpers.Authentication.getPath();
-
-        oHistory.push(sPath || '/admin/resource');
+        oHistory.push('/admin/resource');
         events.emit('Progress-onProgress', { value: 98, status: true });
       }
     } catch (oException) {
@@ -125,15 +130,15 @@ function Pannel(oProps: any): any {
       events.emit('Alerts-onAlert', oMessage);
       events.emit('Progress-onProgress', { value: 0, status: false });
     } finally {
-      cSetState((oOldState) => {
-        let oNewState = { ...oOldState, loading: false };
-        return oNewState;
-      });
+
+      cSetStateLoading(false);
+
     }
   };
 
   let onKeyPress = (oEvent: any) => {
-    cSetState({ ...oState, passwordError: false, usernameError: false });
+    cSetStateNameError(false);
+    cSetStatePasswordError(false);
 
     if (ENTER_CODE === oEvent.charCode) {
       cSignIn();

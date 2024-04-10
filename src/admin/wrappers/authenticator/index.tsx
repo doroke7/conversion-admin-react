@@ -9,6 +9,10 @@ interface Props {
   children?: any;
 }
 
+/**
+ * 这边是 HOC的写法， 完全可以用 hook 思维取代
+ */
+
 let authenticator = (Component: any): any => {
   function Wrapper(oProps: any) {
     let oHistory = useHistory();
@@ -16,6 +20,8 @@ let authenticator = (Component: any): any => {
     let aRedirections = oProps.redirections ?? [null, null];
     let oRouteMatch = useRouteMatch();
     let [bStatus, cSetStatus] = useState<boolean>(false);
+
+    let sUri = oRouteMatch.url.replace(/^\//, '').replace(/\/$/, '');
 
     useEffect(() => {
       let cRefresh = async () => {
@@ -31,7 +37,12 @@ let authenticator = (Component: any): any => {
           oHistory.push(aRedirections[0]);
         }
         if (sJwt) {
-          let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh();
+
+          let oParam = {
+            uri: sUri,
+          }
+
+          let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam);
           sJwt = oResponse?.headers?.authorization ?? '';
 
           if (
@@ -77,7 +88,7 @@ let authenticator = (Component: any): any => {
 
         cSetStatus(true);
       };
-      if (CONFIGS.JWT.AUTHENTICATOR && bAuthenticator) {
+      if (CONFIGS?.JWT?.AUTHENTICATOR && bAuthenticator) {
         events.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
         let oInterval = setInterval(cRefresh, CONFIGS.JWT.TIME ?? 60 * 1000);

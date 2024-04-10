@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Fade from '@material-ui/core/Fade';
 import Commons from '@/admin/Commons/Index';
-import wrappers from '@/admin/wrappers';
+import _ from './_/Index';
 
 import style from './style';
 
@@ -18,7 +18,7 @@ function Index(oProps: any): any {
       <div>
         <Commons.Navigation>
           <Switch>
-            {aRoutes.map((oRoute, sIndex) => (
+            {aRoutes.map((oRoute: any, sIndex: string) => (
               <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
                 <oRoute.Component
                   routes={oRoute.routes}
@@ -32,10 +32,19 @@ function Index(oProps: any): any {
                 />
               </Route>
             ))}
+
+            <Route path={oMatch.url} key={aRoutes.lenth} exact={true}>
+              <_
+                path={oMatch.url}
+                authenticator={true}
+                redirections={['/admin/authentication/authenticator/sign-in', null]}
+              />
+            </Route>
           </Switch>
         </Commons.Navigation>
       </div>
     </Fade>
   );
 }
+
 export default Index;

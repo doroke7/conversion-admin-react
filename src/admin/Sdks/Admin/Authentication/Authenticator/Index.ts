@@ -1,7 +1,7 @@
 import Helpers from '@/admin/Helpers/Index';
 
 class Authenticator {
-  public static async postSignIn(sname: string, sPassword: string) {
+  public static async postSignIn(oParam: any = {}) {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/signIn',
 
@@ -11,17 +11,14 @@ class Authenticator {
       },
 
       data: {
-        param: {
-          name: sname,
-          password: sPassword
-        }
+        param: oParam
       }
     });
 
     return oResponse;
   }
 
-  public static async postRefresh() {
+  public static async postRefresh(oParam: any = {}) {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/refresh',
 
@@ -31,7 +28,7 @@ class Authenticator {
       },
 
       data: {
-        param: {}
+        param: oParam
       },
       options: {}
     });
@@ -39,7 +36,7 @@ class Authenticator {
     return oResponse;
   }
 
-  public static async postSignOut() {
+  public static async postSignOut(oParam: any = {}) {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/signOut',
 
