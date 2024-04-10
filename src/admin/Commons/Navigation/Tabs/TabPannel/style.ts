@@ -5,7 +5,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       position: 'absolute',
-      height: 'calc( 100% - ' + oTheme.spacing(6) + 'px )',
+      height: 'calc( 100% - ' + oTheme.spacing(14) + 'px )',
       [oTheme.breakpoints.down('sm')]: {
         height: 'calc( 100% - ' + oTheme.spacing(0) + 'px )'
       },

@@ -69,7 +69,7 @@ function SmallAdminMenus(oProps) {
             onMouseEnter={cHandleMouseEnter(oAdminMenu)}
             onMouseLeave={cHandleMouseLeave(oAdminMenu)}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oAdminMenu?.icon}></Components.Icon>
+              <Components.Icon name={oAdminMenu?.icon || 'LineWeightIcon'}></Components.Icon>
             </ListItemIcon>
             <SecondMenus
               open={!!oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
