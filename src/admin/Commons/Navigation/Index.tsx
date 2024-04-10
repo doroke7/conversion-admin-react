@@ -273,9 +273,9 @@ function Navigation(oProps: any) {
         page: 1,
         limit: 10
       };
-      let oTabOfAdminMenu = {
+      let oThisAdminMenu = {
         id: oAdminMenu.id,
-        path: oAdminMenu.path,
+        uri: oAdminMenu.uri,
         query: '',
         text: oAdminMenu.text,
         icon: oAdminMenu.icon,
@@ -283,11 +283,11 @@ function Navigation(oProps: any) {
       };
       oTextRef.current = oAdminMenu.text ?? '';
 
-      if (oTabOfAdminMenu) {
+      if (oThisAdminMenu) {
         oTextRef.current = oAdminMenu.text ?? '';
 
         cSetStateText(oAdminMenu.text);
-        let sUrl = utilities.url(oTabOfAdminMenu.path, oParams);
+        let sUrl = utilities.url(oThisAdminMenu.uri, oParams);
         //
         oHistory.push(sUrl);
       }
