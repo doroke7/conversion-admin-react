@@ -18,13 +18,13 @@ class Authenticator {
     return oResponse;
   }
 
-  public static async postRefresh(oParam: any = {}) {
+  public static async postRefresh(oParam: any = {}, oSearch: any = {}, option: any = {}) {
     let oResponse = await Helpers.Admin.post({
       path: '/Admin/Authentication/Authenticator/refresh',
 
       params: {
-        option: {},
-        search: {}
+        option: option,
+        search: oSearch
       },
 
       data: {

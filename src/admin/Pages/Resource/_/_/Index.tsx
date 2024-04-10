@@ -9,6 +9,7 @@ function Index(oProps: any): any {
   let oMatch = useRouteMatch();
 
   let aRoutes = oProps.routes ?? [];
+  console.log(12, oProps);
 
   return (
     <div>

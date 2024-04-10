@@ -14,12 +14,17 @@ interface Props {
  */
 
 let authenticator = (Component: any): any => {
+
   function Wrapper(oProps: any) {
-    let oHistory = useHistory();
+
     let bAuthenticator = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
+
+    let oHistory = useHistory();
     let oRouteMatch = useRouteMatch();
-    let [bStatus, cSetStatus] = useState<boolean>(false);
+    let oParams = useParams() as { [key: string]: any };
+    let [bStateStatus, cSetStateStatus] = useState<boolean>(false);
+    let [sStateAuthorizations, cSetStateAuthorizations] = useState<string>('');
 
     let sUri = oRouteMatch.url.replace(/^\//, '').replace(/\/$/, '');
 
@@ -40,10 +45,24 @@ let authenticator = (Component: any): any => {
 
           let oParam = {
             uri: sUri,
-          }
+          };
 
-          let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam);
+          let oSearch = {
+
+          };
+
+          let oOption = {
+            appId: oParams?.appId ?? 0
+          };
+
+          let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam, oSearch, oOption);
           sJwt = oResponse?.headers?.authorization ?? '';
+          let sAuthorizations = oResponse?.data?.result?.raw?.authorizations ?? '00000000';
+          console.log(' Hocs.auth, oRouteMatch=', oRouteMatch);
+          console.log(' Hocs.auth, oParams=', oParams);
+
+          console.log(' Hocs.auth, oResponse=', oResponse);
+          cSetStateAuthorizations(sAuthorizations);
 
           if (
             oResponse?.data?.code === undefined ||
@@ -86,7 +105,7 @@ let authenticator = (Component: any): any => {
           }
         }
 
-        cSetStatus(true);
+        cSetStateStatus(true);
       };
       if (CONFIGS?.JWT?.AUTHENTICATOR && bAuthenticator) {
         events.emit('Progress-onProgress', { value: 0, status: true });
@@ -102,7 +121,7 @@ let authenticator = (Component: any): any => {
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    return bStatus || !CONFIGS.JWT.AUTHENTICATOR ? <Component {...oProps}></Component> : <></>;
+    return bStateStatus || !CONFIGS.JWT.AUTHENTICATOR ? <Component {...oProps} authorizaions={sStateAuthorizations}></Component> : <></>;
   }
 
   return Wrapper;
