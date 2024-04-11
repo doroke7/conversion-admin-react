@@ -41,17 +41,6 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  let [oState, cSetState] = useState<any>({
-    number: 0,
-    count: 0,
-    loading: true,
-    rows: [],
-    size: 10,
-    page: '',
-    searchDialog: false,
-    pageDialog: false
-  });
-
   let [iStateNumer, cSetStateNumer] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
@@ -140,14 +129,9 @@ function Index(oProps: any): any {
 
   useEffect(() => {
     (async () => {
-      cSetState((oOldState) => {
-        let oNewState = {
-          ...oOldState,
-          loading: true,
-          rows: []
-        };
-        return oNewState;
-      });
+
+      cSetStateLoading(true);
+      cSetStateRows([]);
       let oOption = {
         app_id: oParams.appId,
         page: oParams.page,
@@ -155,20 +139,28 @@ function Index(oProps: any): any {
       };
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
+      let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10)) || 1;
-      cSetState({
-        number: oResponse?.data?.raw?.number ?? 0,
-        rows: oResponse?.data?.raw?.list ?? [],
-        count: iCount,
-        loading: false,
-        size: oParams.size
-      });
+      let aRows = oResponse?.data?.raw?.ones ?? [];
+      let iSize = oParams.size;
+
+      cSetStateNumer(iNumber);
+      cSetStateRows(aRows);
+      cSetStateCount(iCount);
+      cSetStateLoading(false);
+      cSetStateSize(iSize);
+
       cSetPageMax(iCount);
+
     })();
   }, [oParams.appId, oParams.page, oParams.size]);
 
   useEffect(() => {
-    cSetState({ ...oState, size: oParams.size, loading: true });
+    let iSize = oParams?.size ?? 1;
+
+    cSetStateLoading(true);
+    cSetStateSize(iSize);
+
   }, [oParams.size]);
 
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
@@ -183,22 +175,22 @@ function Index(oProps: any): any {
   let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iSize = Number(oEvent.target.value);
 
-    let oSizeParams = {
+    let oOtherParams = {
       ...oParams,
       size: iSize
     };
-    let sUrl = utilities.url(oRouteMatch.path, oSizeParams);
+    let sUrl = utilities.url(oRouteMatch.path, oOtherParams);
     oHistory.push(sUrl);
   };
 
   let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let sPage = oEvent.target.value;
-    cSetState({ ...oState, page: sPage });
+    cSetStatePage(sPage);
   };
 
   let cHandleKeyPressPage = (oEvent: any) => {
     if (oEvent.charCode == 13) {
-      let iPage = Number(oState.page);
+      let iPage = Number(sStatePage);
       if (!Number.isInteger(iPage)) {
         let oMessage = {
           code: -1,
@@ -226,7 +218,7 @@ function Index(oProps: any): any {
   };
 
   let cHandleBlurPage = (oEvent: any) => {
-    let iPage = Number(oState.page);
+    let iPage = Number(sStatePage);
     if (!Number.isInteger(iPage)) {
       let oMessage = {
         code: -1,
@@ -252,19 +244,20 @@ function Index(oProps: any): any {
   };
 
   let cHandleSearchClick = (oEvent: any) => {
-    cSetState((oOldState) => ({ ...oOldState, searchDialog: true }));
+    cSetStateSearchDialog(true);
   };
 
   let cHandleSearchCancleClick = (oEvent: any) => {
-    cSetState((oOldState) => ({ ...oOldState, searchDialog: false }));
+    cSetStateSearchDialog(false);
+
   };
 
   let cHandlePageClick = (oEvent: any) => {
-    cSetState((oOldState) => ({ ...oOldState, pageDialog: true }));
+    cSetStatePageDialog(true);
   };
 
   let cHandlePageCancleClick = (oEvent: any) => {
-    cSetState((oOldState) => ({ ...oOldState, pageDialog: false }));
+    cSetStatePageDialog(false);
   };
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页
@@ -278,7 +271,7 @@ function Index(oProps: any): any {
     <div className="app-user">
       <Dialog
         className={oClasses.dialogForSearch}
-        open={oState.searchDialog}
+        open={bStateSearchDialog}
         onClose={cHandleSearchCancleClick}
         aria-labelledby="form-dialog-search">
         <DialogTitle id="form-dialog-search">
@@ -302,7 +295,7 @@ function Index(oProps: any): any {
       </Dialog>
       <Dialog
         className={oClasses.dialogForPage}
-        open={oState.pageDialog}
+        open={bStatePageDialog}
         onClose={cHandlePageCancleClick}
         aria-labelledby="form-dialog-page">
         <DialogTitle id="form-dialog-page">
@@ -344,12 +337,12 @@ function Index(oProps: any): any {
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={clsx(oClasses.dataGrid, {})}
-          rows={oState.rows}
+          rows={aStateRows}
           columns={aColumns}
-          rowCount={oState.rows.length == 0 ? 0 : oState.count}
+          rowCount={aStateRows.length == 0 ? 0 : iStateCount}
           page={0}
           pageSize={oParams.size}
-          loading={oState.loading}
+          loading={bStateLoading}
           checkboxSelection={true}
           disableSelectionOnClick={true}
           hideFooterPagination={true}
@@ -358,14 +351,14 @@ function Index(oProps: any): any {
           autoHeight={true}
           autoPageSize={false}
           disableColumnMenu={true}
-          rowHeight={oSizesToHeights[oState.size] ?? oSizesToHeights[10]}
+          rowHeight={oSizesToHeights[iStateSize] ?? oSizesToHeights[10]}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
             LoadingOverlay: Components.LoadingOverlay
           }}
         />
       </div>
-      <Components.Cards rows={oState.rows} loading={oState.loading} Card={CardForAppUser}></Components.Cards>
+      <Components.Cards rows={aStateRows} loading={bStateLoading} Card={CardForAppUser}></Components.Cards>
       <div className={oClasses.paginationWrapper}>
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>
@@ -373,7 +366,7 @@ function Index(oProps: any): any {
 
         <Pagination
           className={oClasses.pagination}
-          count={oState.count}
+          count={iStateCount}
           variant="outlined"
           shape="round"
           color="primary"
@@ -385,7 +378,7 @@ function Index(oProps: any): any {
           onChange={cHandleChange}
         />
         <FormControl className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="size" value={oState.size} onChange={cHandleChangeSize}>
+          <Select labelId="demo-simple-select-label" id="size" value={iStateSize} onChange={cHandleChangeSize}>
             <MenuItem value={10}>10条/页</MenuItem>
             <MenuItem value={20}>20条/页</MenuItem>
             <MenuItem value={50}>50条/页</MenuItem>
@@ -396,7 +389,7 @@ function Index(oProps: any): any {
           <span className="pre">到第&ensp;</span>
           <TextField
             id="page"
-            value={oState.page}
+            value={sStatePage}
             onChange={cHandleChangePage}
             onKeyPress={cHandleKeyPressPage}
             onBlur={cHandleBlurPage}
