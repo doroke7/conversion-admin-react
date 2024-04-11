@@ -305,6 +305,7 @@ function Navigation(oProps: any) {
 
       if (iIndex == iStateIndex) {
         // DO NOTHING
+        // 点击的 App 跟当前 app 相同
       }
 
       if (iIndex != iStateIndex) {
@@ -316,7 +317,7 @@ function Navigation(oProps: any) {
         cSetStateIndex(iIndex);
         cSetStateTabs(aTabs);
         cSetStateValue(iValue);
-        if (iStateIndex >= 0) {
+        if (iIndex >= 0) {
           oHistory.push('/admin/resource');
         }
       }
