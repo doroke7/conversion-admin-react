@@ -33,13 +33,14 @@ import CardForAppUser from './CardForAppUser/Index';
 import style from './style';
 
 function Index(oProps: any): any {
+  let cSetPageMax = oProps.setPageMax ?? (() => void 0);
+
   let oClasses: any = style(void 0);
   let oHistory = useHistory();
 
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  let cSetPageMax = oProps.setPageMax ?? (() => void 0);
   let [oState, cSetState] = useState<any>({
     number: 0,
     count: 0,
@@ -60,7 +61,7 @@ function Index(oProps: any): any {
   let [bStateSearchDialog, cSetStateSearchDialog] = useState<boolean>(false);
   let [bStatePageDialog, cSetStatePageDialog] = useState<boolean>(false);
 
-  let dSizesToHeight = {
+  let oSizesToHeights = {
     '10': 59.448,
     '20': 29.724,
     '50': 29.724,
@@ -68,17 +69,30 @@ function Index(oProps: any): any {
   };
 
   let aColumns: any[] = [
-    { field: 'id', headerName: 'ID', description: '流水号', width: 100, sortable: false, editable: false },
+    {
+      field: 'id',
+      headerName: 'ID',
+      description: '流水号',
+      width: 100,
+      sortable: false,
+      editable: false
+    },
     {
       field: 'avatar',
       headerName: '头像',
       description: '头像',
       sortable: false,
       width: 85,
-      renderCell: (oParams: any) => <AvatarForCell {...oParams}></AvatarForCell>
+      renderCell: (oProps: any) => (<AvatarForCell {...oProps}></AvatarForCell>)
     },
-    { field: 'username', headerName: '昵称', description: '昵称', width: 160, sortable: false, editable: false },
-
+    {
+      field: 'username',
+      headerName: '昵称',
+      description: '昵称',
+      width: 160,
+      sortable: false,
+      editable: false
+    },
     {
       field: 'vip_datetime',
       headerName: 'VIP时间',
@@ -99,7 +113,7 @@ function Index(oProps: any): any {
       description: '设备',
       sortable: false,
       width: 90,
-      renderCell: (oParams: any) => <PhoneTypeIconForCell {...oParams}></PhoneTypeIconForCell>
+      renderCell: (oProps: any) => (<PhoneTypeIconForCell {...oProps}></PhoneTypeIconForCell>)
     },
     {
       field: 'login_ip',
@@ -344,7 +358,7 @@ function Index(oProps: any): any {
           autoHeight={true}
           autoPageSize={false}
           disableColumnMenu={true}
-          rowHeight={dSizesToHeight[oState.size] ?? dSizesToHeight[10]}
+          rowHeight={oSizesToHeights[oState.size] ?? oSizesToHeights[10]}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
             LoadingOverlay: Components.LoadingOverlay
