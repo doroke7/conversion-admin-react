@@ -312,9 +312,10 @@ function Navigation(oProps: any) {
         let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
 
         let aTabs = [...aTabs1, ...aTabs0];
+        let iValue = aTabs.length > 0 ? 0 : -1;
         cSetStateIndex(iIndex);
         cSetStateTabs(aTabs);
-        cSetStateValue(-1);
+        cSetStateValue(iValue);
         if (iStateIndex >= 0) {
           oHistory.push('/admin/resource');
         }
@@ -346,18 +347,29 @@ function Navigation(oProps: any) {
 
     let iResultIndex = -1;
 
-    for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
-      let oStateApp = aStateApps[iStateAppIndex];
 
-      if (oStateApp.id == iParamsAppId) {
-        iResultIndex = iStateAppIndex;
-        break;
-      }
-    };
+    console.log('iStateIndex=', iStateIndex);
+
+    if (iStateIndex >= 0) {
+      iResultIndex = iStateIndex;
+    }
+
+    if (iStateIndex <= -1) {
+      console.log('aStateApps=', aStateApps);
+      for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
+        let oStateApp = aStateApps[iStateAppIndex];
+
+        if (oStateApp.id == iParamsAppId) {
+          iResultIndex = iStateAppIndex;
+          break;
+        }
+      };
+
+    }
+
+    console.log('iResultIndex=', iResultIndex);
 
     let sUrl = utilities.url(oRoute.url, oRoute?.params);
-
-    console.log('oRoute=', oRoute);
 
     let oTab = {
       id: oRoute.id,
@@ -373,6 +385,7 @@ function Navigation(oProps: any) {
     let iValue = iStateValue;
     let bExist = false;
     let iTabIndex = 0;
+    console.log('386 bExist=', bExist);
 
     if (aTabs1.length >= 1) {
       for (iTabIndex = 0; iTabIndex < aTabs1.length; iTabIndex++) {
@@ -390,6 +403,7 @@ function Navigation(oProps: any) {
         }
       }
     }
+    console.log('404 bExist=', bExist);
 
     if (aTabs0.length >= 1 && !bExist) {
       for (iTabIndex = 0; iTabIndex < aTabs0.length; iTabIndex++) {
@@ -407,6 +421,9 @@ function Navigation(oProps: any) {
         }
       }
     }
+    console.log('422 bExist=', bExist);
+    console.log('422 aTabs1=', aTabs1);
+    console.log('422 aTabs0=', aTabs0);
 
     if (bExist) {
       // DO NOTHING
@@ -418,8 +435,8 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iParamsAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
       aTabs = [...aTabs1, ...aTabs0];
-
       iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
+
     }
 
     cSetStateValue(iValue);
@@ -436,7 +453,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onTab', cOnTab);
     };
-  }, [bStateOpen]);
+  }, [iStateIndex, aStateApps]);
 
   useEffect(() => {
     let cResize = (oEvent: any) => {

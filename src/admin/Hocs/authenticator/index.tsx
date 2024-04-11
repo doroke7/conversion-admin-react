@@ -26,7 +26,7 @@ let authenticator = (Component: any): any => {
     let [bStateStatus, cSetStateStatus] = useState<boolean>(false);
     let [sStateAuthorizations, cSetStateAuthorizations] = useState<string>('');
 
-    let sPath = oRouteMatch.path.replace(/^\//, '').replace(/\/$/, '');
+    let sPath = oRouteMatch.path.replace(/^\//, '').replace(/\/\*?$/, '');
 
     useEffect(() => {
       let cRefresh = async () => {
@@ -58,10 +58,6 @@ let authenticator = (Component: any): any => {
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam, oSearch, oOption);
           sJwt = oResponse?.headers?.authorization ?? '';
           let sAuthorizations = oResponse?.data?.result?.raw?.authorizations ?? '00000000';
-          console.log(' Hocs.auth, oRouteMatch=', oRouteMatch);
-          console.log(' Hocs.auth, oParams=', oParams);
-
-          console.log(' Hocs.auth, oResponse=', oResponse);
           cSetStateAuthorizations(sAuthorizations);
 
           if (

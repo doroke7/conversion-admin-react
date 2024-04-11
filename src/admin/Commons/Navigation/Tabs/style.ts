@@ -91,6 +91,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     emptyNone: {
       display: 'none'
+    },
+    emptyBlock: {
+      display: 'block'
     }
   })
 );

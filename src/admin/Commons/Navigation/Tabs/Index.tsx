@@ -111,6 +111,8 @@ function MyTabs(oProps: any) {
 
   let iTabsLength = aTabs?.length ?? 0;
 
+  console.log('iTabsValue=', iTabsValue);
+
   return (
     <div className={oClasses.root}>
       <div
@@ -156,7 +158,7 @@ function MyTabs(oProps: any) {
                           [oClasses.listITemText1]: iTabsLength >= 15 && iTabsLength < 19,
                           [oClasses.listITemText0]: iTabsLength >= 19
                         })}>
-                        {oTab.text}
+                        {oTab?.text ?? ''}
                       </span>
                       <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
                         <CloseIcon />

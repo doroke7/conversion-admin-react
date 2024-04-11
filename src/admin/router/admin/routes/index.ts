@@ -29,8 +29,8 @@ let aRoutes = [
       {
         id: '2-1-0',
         path: '/app-pipeline/index/app-id/:appId',
-        title: '资源列表',
-        text: '资源列表',
+        title: '任务列表',
+        text: '任务列表',
         icon: '',
         Component: Pages.Resource.AppPipeline.Index,
         authenticator: true,
