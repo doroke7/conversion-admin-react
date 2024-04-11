@@ -16,7 +16,7 @@ let aRoutes = [
   {
     id: '2-0-0',
     path: '/admin/resource',
-    title: '影视系后台系统',
+    title: '转码后台系统',
     text: '',
     icon: '',
     Component: Pages.Resource._,
@@ -29,8 +29,8 @@ let aRoutes = [
       {
         id: '2-1-0',
         path: '/app-pipeline/index/app-id/:appId',
-        title: '資源列表',
-        text: '資源列表',
+        title: '资源列表',
+        text: '资源列表',
         icon: '',
         Component: Pages.Resource.AppPipeline.Index,
         authenticator: true,
@@ -40,8 +40,8 @@ let aRoutes = [
       {
         id: '2-2-0',
         path: '/app/index',
-        title: '應用列表',
-        text: '應用列表',
+        title: '应用列表',
+        text: '应用列表',
         icon: '',
         Component: Pages.Resource.App.Index,
         authenticator: true,

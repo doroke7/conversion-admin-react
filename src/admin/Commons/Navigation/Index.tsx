@@ -328,6 +328,10 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex, aStateApps]);
 
   let cOnTab = useCallback((oRoute: any) => {
+
+    // TODO
+    // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
+
     let oApp = aStateApps?.[iStateIndex];
     let iAppId = oApp?.id ?? 0;
 
@@ -342,12 +346,23 @@ function Navigation(oProps: any) {
 
     let iResultIndex = -1;
 
+    for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
+      let oStateApp = aStateApps[iStateAppIndex];
+
+      if (oStateApp.id == iParamsAppId) {
+        iResultIndex = iStateAppIndex;
+        break;
+      }
+    };
+
     let sUrl = utilities.url(oRoute.url, oRoute?.params);
+
+    console.log('oRoute=', oRoute);
 
     let oTab = {
       id: oRoute.id,
       path: oRoute.path,
-      url: sUrl,
+      url: oRoute.url,
       param: oRoute?.params ?? {},
       text: oRoute?.text || oTextRef?.current,
       icon: oRoute.icon ?? ''

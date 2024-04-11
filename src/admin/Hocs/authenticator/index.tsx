@@ -26,7 +26,7 @@ let authenticator = (Component: any): any => {
     let [bStateStatus, cSetStateStatus] = useState<boolean>(false);
     let [sStateAuthorizations, cSetStateAuthorizations] = useState<string>('');
 
-    let sUri = oRouteMatch.url.replace(/^\//, '').replace(/\/$/, '');
+    let sPath = oRouteMatch.path.replace(/^\//, '').replace(/\/$/, '');
 
     useEffect(() => {
       let cRefresh = async () => {
@@ -44,7 +44,7 @@ let authenticator = (Component: any): any => {
         if (sJwt) {
 
           let oParam = {
-            uri: sUri,
+            path: sPath,
           };
 
           let oSearch = {
