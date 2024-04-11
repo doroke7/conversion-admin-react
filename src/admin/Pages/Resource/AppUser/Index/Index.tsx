@@ -67,25 +67,25 @@ function Index(oProps: any): any {
       editable: false
     },
     {
-      field: 'avatar',
-      headerName: '头像',
-      description: '头像',
+      field: 'name',
+      headerName: '名称',
+      description: '名称',
       sortable: false,
       width: 85,
       renderCell: (oProps: any) => (<AvatarForCell {...oProps}></AvatarForCell>)
     },
     {
-      field: 'username',
-      headerName: '昵称',
-      description: '昵称',
+      field: 'sort',
+      headerName: '优先级',
+      description: '优先级',
       width: 160,
       sortable: false,
       editable: false
     },
     {
-      field: 'vip_datetime',
-      headerName: 'VIP时间',
-      description: 'VIP的时间',
+      field: 'app_url',
+      headerName: '项目',
+      description: '项目',
       sortable: false,
       width: 200
     },
