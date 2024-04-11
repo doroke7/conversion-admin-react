@@ -51,6 +51,15 @@ function Index(oProps: any): any {
     pageDialog: false
   });
 
+  let [iStateNumer, cSetStateNumer] = useState<number>(0);
+  let [iStateCount, cSetStateCount] = useState<number>(0);
+  let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
+  let [aStateRows, cSetStateRows] = useState<any[]>([]);
+  let [iStateSize, cSetStateSize] = useState<number>(10);
+  let [sStatePage, cSetStatePage] = useState<string>('');
+  let [bStateSearchDialog, cSetStateSearchDialog] = useState<boolean>(false);
+  let [bStatePageDialog, cSetStatePageDialog] = useState<boolean>(false);
+
   let dSizesToHeight = {
     '10': 59.448,
     '20': 29.724,
