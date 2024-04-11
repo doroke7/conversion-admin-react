@@ -312,7 +312,7 @@ function Navigation(oProps: any) {
         let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
 
         let aTabs = [...aTabs1, ...aTabs0];
-        let iValue = aTabs.length > 0 ? 0 : -1;
+        let iValue = -1;
         cSetStateIndex(iIndex);
         cSetStateTabs(aTabs);
         cSetStateValue(iValue);

@@ -179,7 +179,7 @@ function MyTabs(oProps: any) {
             onRemoveOtherTabs={cHandleRemoveOtherTabs(oStateIndex)}
             onRemoveAllTabs={cHandleRemoveAllTabs}></Dropdown>
         </AppBar>
-        <TabPanel>
+        <TabPanel value={iTabsValue}>
           {children}
         </TabPanel>
       </div>
