@@ -155,14 +155,6 @@ function Index(oProps: any): any {
     })();
   }, [oParams.appId, oParams.page, oParams.size]);
 
-  useEffect(() => {
-    let iSize = oParams?.size ?? 1;
-
-    cSetStateLoading(true);
-    cSetStateSize(iSize);
-
-  }, [oParams.size]);
-
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
     let oNextPageParams = {
       ...oParams,
