@@ -71,6 +71,7 @@ function Index(oProps: any): any {
       headerName: '名称',
       description: '名称',
       sortable: false,
+      flex: 1,
       width: 85,
       renderCell: (oProps: any) => (<AvatarForCell {...oProps}></AvatarForCell>)
     },
@@ -89,6 +90,20 @@ function Index(oProps: any): any {
       sortable: false,
       width: 200
     },
+    {
+      field: 'added_time',
+      headerName: '创建时间',
+      description: '创建时间',
+      sortable: false,
+      width: 200
+    },
+    {
+      field: 'tool',
+      headerName: '操作',
+      description: '操作',
+      sortable: false,
+      width: 200
+    },
   ];
 
   useEffect(() => {
@@ -96,8 +111,9 @@ function Index(oProps: any): any {
 
       cSetStateLoading(true);
       cSetStateRows([]);
+      
       let oOption = {
-        app_id: oParams.appId,
+        appId: oParams.appId,
         page: oParams.page,
         size: oParams.size
       };
