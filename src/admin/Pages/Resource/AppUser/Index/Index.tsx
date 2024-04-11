@@ -89,42 +89,6 @@ function Index(oProps: any): any {
       sortable: false,
       width: 200
     },
-    {
-      field: 'code_number',
-      headerName: '手机号',
-      description: '手机号',
-      sortable: false,
-      width: 140
-    },
-    {
-      field: 'phone_type_icon',
-      headerName: '设备',
-      description: '设备',
-      sortable: false,
-      width: 90,
-      renderCell: (oProps: any) => (<PhoneTypeIconForCell {...oProps}></PhoneTypeIconForCell>)
-    },
-    {
-      field: 'login_ip',
-      headerName: 'IP',
-      description: 'IP',
-      sortable: false,
-      width: 150
-    },
-    {
-      field: 'login_datetime',
-      headerName: '登入时间',
-      description: '上次登入应用程序的时间',
-      sortable: false,
-      width: 200
-    },
-    {
-      field: 'add_datetime',
-      headerName: '注册时间',
-      description: '初始应用程序的时间',
-      sortable: false,
-      width: 200
-    }
   ];
 
   useEffect(() => {
@@ -261,71 +225,6 @@ function Index(oProps: any): any {
 
   return (
     <div className="app-user">
-      <Dialog
-        className={oClasses.dialogForSearch}
-        open={bStateSearchDialog}
-        onClose={cHandleSearchCancleClick}
-        aria-labelledby="form-dialog-search">
-        <DialogTitle id="form-dialog-search">
-          搜索用戶列表
-          <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandleSearchCancleClick}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent>
-          <Inputs></Inputs>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            color="primary"
-            className={oClasses.submitButton}
-            variant="outlined"
-            endIcon={<SearchIcon></SearchIcon>}>
-            筛选
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog
-        className={oClasses.dialogForPage}
-        open={bStatePageDialog}
-        onClose={cHandlePageCancleClick}
-        aria-labelledby="form-dialog-page">
-        <DialogTitle id="form-dialog-page">
-          切換頁數
-          <IconButton aria-label="close" className={oClasses.closeButton} onClick={cHandlePageCancleClick}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent>
-          <TextField
-            className={''}
-            id="page"
-            label="頁數"
-            placeholder="请输入數字"
-            InputLabelProps={{
-              shrink: true
-            }}
-            defaultValue={oParams.page}
-            type="number"
-            variant="outlined"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button color="primary" className={oClasses.submitButton} variant="outlined">
-            確認
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <SearchPannel>
-        <Inputs></Inputs>
-        <Button
-          color="primary"
-          className={oClasses.submitButton}
-          variant="outlined"
-          endIcon={<SearchIcon></SearchIcon>}>
-          筛选
-        </Button>
-      </SearchPannel>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={clsx(oClasses.dataGrid, {})}

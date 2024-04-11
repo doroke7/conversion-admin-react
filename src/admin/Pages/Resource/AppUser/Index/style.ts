@@ -53,8 +53,8 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     dataGrid: {
-      minHeight: 652,
-      maxHeight: 652,
+      minHeight: 'calc( 100vh - ' + oTheme.spacing(23) + 'px )',
+      maxHeight: 'calc( 100vh - ' + oTheme.spacing(23) + 'px )',
       '& .MuiDataGrid-row:last-child': {
         '& .MuiDataGrid-cell': {
           borderBottom: 'none'
