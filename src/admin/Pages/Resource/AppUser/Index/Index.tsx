@@ -247,9 +247,10 @@ function Index(oProps: any): any {
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={clsx(oClasses.dataGrid, {})}
-          rows={aStateRows}
           columns={aColumns}
+          headerHeight={28}
           rowCount={aStateRows.length == 0 ? 0 : iStateCount}
+          rows={aStateRows}
           page={0}
           pageSize={oParams.size}
           loading={bStateLoading}
