@@ -111,8 +111,6 @@ function MyTabs(oProps: any) {
 
   let iTabsLength = aTabs?.length ?? 0;
 
-  console.log('iTabsValue=', iTabsValue);
-
   return (
     <div className={oClasses.root}>
       <div

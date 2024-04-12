@@ -349,15 +349,11 @@ function Navigation(oProps: any) {
 
     let iResultIndex = -1;
 
-
-    console.log('iStateIndex=', iStateIndex);
-
     if (iStateIndex >= 0) {
       iResultIndex = iStateIndex;
     }
 
     if (iStateIndex <= -1) {
-      console.log('aStateApps=', aStateApps);
       for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
         let oStateApp = aStateApps[iStateAppIndex];
 
@@ -368,8 +364,6 @@ function Navigation(oProps: any) {
       };
 
     }
-
-    console.log('iResultIndex=', iResultIndex);
 
     let sUrl = utilities.url(oRoute.url, oRoute?.params);
 
@@ -387,7 +381,6 @@ function Navigation(oProps: any) {
     let iValue = iStateValue;
     let bExist = false;
     let iTabIndex = 0;
-    console.log('386 bExist=', bExist);
 
     if (aTabs1.length >= 1) {
       for (iTabIndex = 0; iTabIndex < aTabs1.length; iTabIndex++) {
@@ -405,7 +398,6 @@ function Navigation(oProps: any) {
         }
       }
     }
-    console.log('404 bExist=', bExist);
 
     if (aTabs0.length >= 1 && !bExist) {
       for (iTabIndex = 0; iTabIndex < aTabs0.length; iTabIndex++) {
@@ -423,10 +415,6 @@ function Navigation(oProps: any) {
         }
       }
     }
-    console.log('422 bExist=', bExist);
-    console.log('422 aTabs1=', aTabs1);
-    console.log('422 aTabs0=', aTabs0);
-
     if (bExist) {
       // DO NOTHING
     }
