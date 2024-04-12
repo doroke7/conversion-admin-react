@@ -71,7 +71,7 @@ function Index(oProps: any): any {
       headerName: '名称',
       description: '名称',
       sortable: false,
-      flex: 1,
+      flex: 2,
       width: 85,
       renderCell: (oProps: any) => (<AvatarForCell {...oProps}></AvatarForCell>)
     },
@@ -79,7 +79,7 @@ function Index(oProps: any): any {
       field: 'sort',
       headerName: '优先级',
       description: '优先级',
-      width: 160,
+      width: 120,
       sortable: false,
       editable: false
     },
@@ -88,6 +88,7 @@ function Index(oProps: any): any {
       headerName: '项目',
       description: '项目',
       sortable: false,
+      flex: 1,
       width: 200
     },
     {
@@ -95,6 +96,7 @@ function Index(oProps: any): any {
       headerName: '创建时间',
       description: '创建时间',
       sortable: false,
+      flex: 1,
       width: 200
     },
     {
@@ -102,6 +104,7 @@ function Index(oProps: any): any {
       headerName: '操作',
       description: '操作',
       sortable: false,
+      flex: 1,
       width: 200
     },
   ];
@@ -111,14 +114,14 @@ function Index(oProps: any): any {
 
       cSetStateLoading(true);
       cSetStateRows([]);
-      
+
       let oOption = {
         appId: oParams.appId,
         page: oParams.page,
         size: oParams.size
       };
 
-      let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
+      let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oOption);
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10)) || 1;
       let aRows = oResponse?.data?.raw?.ones ?? [];

@@ -131,7 +131,7 @@ function Index(oProps: any): any {
         size: oParams.size
       };
 
-      let oResponse = await Sdks.Admin.Resource.AppUser.getShow(oOption);
+      let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oOption);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10)) || 1;
       cSetState({
         number: oResponse?.data?.raw?.number ?? 0,
