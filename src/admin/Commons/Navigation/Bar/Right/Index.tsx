@@ -74,7 +74,8 @@ function Right(oProps: any) {
       events.emit('Alerts-onAlert', oMessage);
     }
 
-    Helpers.Authentication.removeJwt();
+    Helpers.Authentication.remove();
+
     if (oResponse?.data?.code <= 0) {
       let oMessage = {
         code: oResponse?.data?.code,
