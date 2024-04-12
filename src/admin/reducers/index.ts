@@ -1,5 +1,7 @@
-import authenticationAuthenticator from './authenticationAuthenticator/index';
+import authorization from './authorization/index';
+import adminUserId from './adminUserId/index';
 
 export default {
-  authenticationAuthenticator: authenticationAuthenticator
+  authorization: authorization,
+  adminUserId: adminUserId
 };

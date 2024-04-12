@@ -73,7 +73,15 @@ function Index(oProps: any): any {
       sortable: false,
       flex: 2,
       width: 85,
-      renderCell: (oProps: any) => (<AvatarForCell {...oProps}></AvatarForCell>)
+    },
+
+    {
+      field: 'app_url',
+      headerName: '项目',
+      description: '项目',
+      sortable: false,
+      flex: 1,
+      width: 200
     },
     {
       field: 'sort',
@@ -82,14 +90,6 @@ function Index(oProps: any): any {
       width: 120,
       sortable: false,
       editable: false
-    },
-    {
-      field: 'app_url',
-      headerName: '项目',
-      description: '项目',
-      sortable: false,
-      flex: 1,
-      width: 200
     },
     {
       field: 'added_time',

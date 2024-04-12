@@ -105,7 +105,7 @@ function Navigation(oProps: any) {
       let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree(iAppId);
 
       let aAdminMenus = oAdminMenuResponse?.data?.raw?.tree ?? [];
-      console.log(oAdminMenuResponse);
+      console.log('API AdminMenu 数据=', oAdminMenuResponse);
 
       cSetStateAdminMenus(aAdminMenus);
     })();
@@ -332,6 +332,7 @@ function Navigation(oProps: any) {
 
   let cOnTab = useCallback((oRoute: any) => {
 
+    console.log('OnTab 行为发生 oRoute=', oRoute);
     // TODO
     // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
 
