@@ -8,7 +8,7 @@ class AuthenticationHelper {
     window.localStorage.removeItem('jwt');
   }
 
-  public static setJwt(sJwt: string): void {
+  public static set(sJwt: string): void {
     window.localStorage.setItem('jwt', sJwt);
   }
 

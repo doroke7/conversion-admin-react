@@ -85,7 +85,7 @@ let authenticator = (Component: any): any => {
           }
 
           if (oResponse?.data?.code >= 0 && sJwt) {
-            Helpers.Authentication.setJwt(sJwt);
+            Helpers.Authentication.set(sJwt);
             if (!aRedirections[1]) {
               Helpers.Authentication.removePath();
             }

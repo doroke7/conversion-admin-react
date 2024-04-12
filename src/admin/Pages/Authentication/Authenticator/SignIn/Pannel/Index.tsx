@@ -92,8 +92,8 @@ function Pannel(oProps: any): any {
         cSetStateLoading(true);
         cSetStateAnimation(true);
 
-        Helpers.Authentication.setJwt(sJwt);
-        oDispatch(actions.authentication.authenticator.postSignIn(oResponse));
+        Helpers.Authentication.set(sJwt);
+        oDispatch(actions.authorizaion.set(sJwt));
 
         if (oResponse && oResponse?.data?.code == 0) {
           let oMessage = {

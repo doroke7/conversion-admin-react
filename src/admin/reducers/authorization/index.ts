@@ -6,7 +6,7 @@ let oAuthorization = (sAuhorization: string = '', oAction: any) => {
   let sAuhorization1 = (oAction?.authorization ?? sAuhorization) || sAuhorization || sAuhorization0;
 
   switch (oAction.type) {
-    case '/Admin/Authentication/Authenticator/postSignIn':
+    case 'AUTHORIZATION_SET':
       return sAuhorization1;
     case 'JWT_REFRESH':
       return sAuhorization1;

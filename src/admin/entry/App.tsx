@@ -37,7 +37,7 @@ function App(oProps: any) {
     if (CONFIGS.ADMIN.STORAGE) {
       if ((Helpers.Ver.valid(sVer) && Helpers.Ver.compare(CONFIGS.ADMIN.VER, sVer)) || !Helpers.Ver.valid(sVer)) {
         window.localStorage.clear();
-        Helpers.Authentication.setJwt(sJwt);
+        Helpers.Authentication.set(sJwt);
       }
     }
 

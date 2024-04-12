@@ -3,10 +3,10 @@
  * DATE: 2022-0809
  */
 let oAction: any = {
-  postSignIn: (oResponse: any) => {
+  set: (sAuthorization: string) => {
     let oAction = {
-      type: '/Admin/Authentication/Authenticator/postSignIn',
-      authorization: oResponse?.headers?.['authorization'] ?? ''
+      type: 'AUTHORIZATION_SET',
+      authorization: sAuthorization
     };
 
     return oAction;

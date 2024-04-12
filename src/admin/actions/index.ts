@@ -1,5 +1,5 @@
-import authentication from './authentication';
+import authorizaion from './authorizaion';
 
 export default {
-  authentication,
+  authorizaion: authorizaion
 };
