@@ -175,57 +175,13 @@ function Index(oProps: any): any {
 
   let cHandleKeyPressPage = (oEvent: any) => {
     if (oEvent.charCode == 13) {
-      let iPage = Number(oState.page);
-      if (!Number.isInteger(iPage)) {
-        let oMessage = {
-          code: -1,
-          message: '请输入 "整数" 页数',
-          time: 3 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      }
-      if (Number.isInteger(iPage) && oParams?.page != iPage) {
-        let oPageParams = {
-          ...oParams,
-          page: iPage
-        };
-        let oMessage = {
-          code: 1,
-          message: '即将跳转到第' + iPage + '页',
-          time: 3 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-
-        let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-        oHistory.push(sUrl);
-      }
+      // 
     }
   };
 
   let cHandleBlurPage = (oEvent: any) => {
     let iPage = Number(oState.page);
-    if (!Number.isInteger(iPage)) {
-      let oMessage = {
-        code: -1,
-        message: '请输入 "整数" 页数',
-        time: 3 * 1000
-      };
-      events.emit('Alerts-onAlert', oMessage);
-    }
-    if (Number.isInteger(iPage) && oParams?.page != iPage) {
-      let oPageParams = {
-        ...oParams,
-        page: iPage
-      };
-      let oMessage = {
-        code: 1,
-        message: '即将跳转到第' + iPage + '页',
-        time: 3 * 1000
-      };
-      events.emit('Alerts-onAlert', oMessage);
-      let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-      oHistory.push(sUrl);
-    }
+
   };
 
   let cHandleSearchClick = (oEvent: any) => {

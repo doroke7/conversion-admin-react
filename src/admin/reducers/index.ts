@@ -1,7 +1,9 @@
 import authorization from './authorization/index';
-import adminUserId from './adminUserId/index';
+import adminUser from './adminUser/index';
+import adminUsers from './adminUsers/index';
 
 export default {
   authorization: authorization,
-  adminUserId: adminUserId
+  adminUser: adminUser,
+  adminUsers: adminUsers
 };

@@ -1,6 +1,6 @@
 import AuthenticationHelper from '@/admin/Helpers/Authentication/Index';
 
-let oAuthorization = (sAuhorization: string = '', oAction: any) => {
+let cReducer = (sAuhorization: string = '', oAction: any) => {
   let sAuhorization0 = AuthenticationHelper.authorization();
 
   let sAuhorization1 = (oAction?.authorization ?? sAuhorization) || sAuhorization || sAuhorization0;
@@ -15,4 +15,4 @@ let oAuthorization = (sAuhorization: string = '', oAction: any) => {
   }
 };
 
-export default oAuthorization;
+export default cReducer;

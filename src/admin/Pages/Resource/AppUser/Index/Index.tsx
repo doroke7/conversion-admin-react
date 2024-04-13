@@ -30,6 +30,7 @@ import AvatarForCell from './AvatarForCell/Index';
 import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
 import CardForAppUser from './CardForAppUser/Index';
 
+import hooks from '@/admin/hooks';
 import style from './style';
 
 function Index(oProps: any): any {
@@ -40,17 +41,21 @@ function Index(oProps: any): any {
 
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
+  let oUrlSearchParams = hooks.useURLSearchParams();
 
   let [iStateNumer, cSetStateNumer] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
-  let [iStateSize, cSetStateSize] = useState<number>(10);
+  let [iStateLimit, cSetStateLimit] = useState<number>(10);
   let [sStatePage, cSetStatePage] = useState<string>('');
   let [bStateSearchDialog, cSetStateSearchDialog] = useState<boolean>(false);
   let [bStatePageDialog, cSetStatePageDialog] = useState<boolean>(false);
 
-  let oSizesToHeights = {
+
+  let iLimit = Number(oUrlSearchParams.get('limit'));
+
+  let oLimitToHeight = {
     '10': 59.448,
     '20': 29.724,
     '50': 29.724,
@@ -118,20 +123,21 @@ function Index(oProps: any): any {
       let oOption = {
         appId: oParams.appId,
         page: oParams.page,
-        size: oParams.size
+        limit: iLimit ?? 10
       };
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oOption);
+
+      console.log('oResponse', oResponse);
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10)) || 1;
       let aRows = oResponse?.data?.raw?.ones ?? [];
-      let iSize = oParams.size;
 
       cSetStateNumer(iNumber);
       cSetStateRows(aRows);
       cSetStateCount(iCount);
       cSetStateLoading(false);
-      cSetStateSize(iSize);
+      cSetStateLimit(iLimit);
 
       cSetPageMax(iCount);
 
@@ -165,57 +171,12 @@ function Index(oProps: any): any {
 
   let cHandleKeyPressPage = (oEvent: any) => {
     if (oEvent.charCode == 13) {
-      let iPage = Number(sStatePage);
-      if (!Number.isInteger(iPage)) {
-        let oMessage = {
-          code: -1,
-          message: '请输入 "整数" 页数',
-          time: 3 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      }
-      if (Number.isInteger(iPage) && oParams?.page != iPage) {
-        let oPageParams = {
-          ...oParams,
-          page: iPage
-        };
-        let oMessage = {
-          code: 1,
-          message: '即将跳转到第' + iPage + '页',
-          time: 3 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-
-        let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-        oHistory.push(sUrl);
-      }
+      // 
     }
   };
 
   let cHandleBlurPage = (oEvent: any) => {
     let iPage = Number(sStatePage);
-    if (!Number.isInteger(iPage)) {
-      let oMessage = {
-        code: -1,
-        message: '请输入 "整数" 页数',
-        time: 3 * 1000
-      };
-      events.emit('Alerts-onAlert', oMessage);
-    }
-    if (Number.isInteger(iPage) && oParams?.page != iPage) {
-      let oPageParams = {
-        ...oParams,
-        page: iPage
-      };
-      let oMessage = {
-        code: 1,
-        message: '即将跳转到第' + iPage + '页',
-        time: 3 * 1000
-      };
-      events.emit('Alerts-onAlert', oMessage);
-      let sUrl = utilities.url(oRouteMatch.path, oPageParams);
-      oHistory.push(sUrl);
-    }
   };
 
   let cHandleSearchClick = (oEvent: any) => {
@@ -244,6 +205,47 @@ function Index(oProps: any): any {
 
   return (
     <div className="app-user">
+      <div className={oClasses.paginationWrapper}>
+        <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
+          <SearchIcon></SearchIcon>
+        </IconButton>
+        <FormControl className={oClasses.formControl}>
+          <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeSize}>
+            <MenuItem value={10}>10笔</MenuItem>
+            <MenuItem value={20}>20笔</MenuItem>
+            <MenuItem value={50}>50笔</MenuItem>
+            <MenuItem value={100}>100笔</MenuItem>
+          </Select>
+        </FormControl>
+        <Pagination
+          className={oClasses.pagination}
+          count={iStateCount}
+          size="small"
+          variant="outlined"
+          shape="rounded"
+          color="primary"
+          siblingCount={1}
+          boundaryCount={1}
+          showFirstButton
+          showLastButton
+          page={Number(oParams.page ?? 1)}
+          onChange={cHandleChange}
+        />
+
+        <span className={oClasses.page}>
+          <TextField
+            id="page"
+            value={sStatePage}
+            onChange={cHandleChangePage}
+            onKeyPress={cHandleKeyPressPage}
+            onBlur={cHandleBlurPage}
+          />
+          <span className="next">&ensp;页</span>
+        </span>
+        <IconButton color="primary" aria-label="页数" className={oClasses.pageButton} onClick={cHandlePageClick}>
+          <MenuBookTwoToneIcon></MenuBookTwoToneIcon>
+        </IconButton>
+      </div>
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={clsx(oClasses.dataGrid, {})}
@@ -262,7 +264,7 @@ function Index(oProps: any): any {
           autoHeight={true}
           autoPageSize={false}
           disableColumnMenu={true}
-          rowHeight={oSizesToHeights[iStateSize] ?? oSizesToHeights[10]}
+          rowHeight={oLimitToHeight[iStateLimit] ?? oLimitToHeight[10]}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
             LoadingOverlay: Components.LoadingOverlay
@@ -270,47 +272,7 @@ function Index(oProps: any): any {
         />
       </div>
       <Components.Cards rows={aStateRows} loading={bStateLoading} Card={CardForAppUser}></Components.Cards>
-      <div className={oClasses.paginationWrapper}>
-        <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
-          <SearchIcon></SearchIcon>
-        </IconButton>
 
-        <Pagination
-          className={oClasses.pagination}
-          count={iStateCount}
-          variant="outlined"
-          shape="round"
-          color="primary"
-          siblingCount={1}
-          boundaryCount={1}
-          showFirstButton
-          showLastButton
-          page={Number(oParams.page ?? 1)}
-          onChange={cHandleChange}
-        />
-        <FormControl className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="size" value={iStateSize} onChange={cHandleChangeSize}>
-            <MenuItem value={10}>10条/页</MenuItem>
-            <MenuItem value={20}>20条/页</MenuItem>
-            <MenuItem value={50}>50条/页</MenuItem>
-            <MenuItem value={100}>100条/页</MenuItem>
-          </Select>
-        </FormControl>
-        <span className={oClasses.page}>
-          <span className="pre">到第&ensp;</span>
-          <TextField
-            id="page"
-            value={sStatePage}
-            onChange={cHandleChangePage}
-            onKeyPress={cHandleKeyPressPage}
-            onBlur={cHandleBlurPage}
-          />
-          <span className="next">&ensp;页</span>
-        </span>
-        <IconButton color="primary" aria-label="页数" className={oClasses.pageButton} onClick={cHandlePageClick}>
-          <MenuBookTwoToneIcon></MenuBookTwoToneIcon>
-        </IconButton>
-      </div>
     </div>
   );
 }

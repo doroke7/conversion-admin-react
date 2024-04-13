@@ -63,7 +63,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     formControl: {
-      width: oTheme.spacing(12),
+      width: oTheme.spacing(8),
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
@@ -133,14 +133,14 @@ const style = makeStyles((oTheme: Theme): any =>
         verticalAlign: 'middle'
       },
       '& .MuiTextField-root': {
-        width: oTheme.spacing(6),
+        width: oTheme.spacing(4),
         verticalAlign: 'middle',
         '& input': {
           textAlign: 'right'
         }
       },
       '& .next': {
-        verticalAlign: 'middle'
+        verticalAlign: 'middle',
       }
     }
   })

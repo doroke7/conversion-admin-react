@@ -6,7 +6,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       position: 'absolute',
       top: '50%',
-      left: '52%',
+      left: '50%',
       transform: 'translate(-50%, -50%)',
       animation: '$ripple 3.4s ease-in-out 0s infinite alternate'
     },
@@ -34,4 +34,3 @@ let oStyle = makeStyles((oTheme: Theme) =>
 
 export default oStyle;
 
-// csq

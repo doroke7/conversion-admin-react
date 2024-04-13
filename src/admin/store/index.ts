@@ -5,10 +5,12 @@ import reduxThunk from 'redux-thunk';
 
 import reducers from '@/admin/reducers/index';
 
-let oStore: any = createStore(
+let oStore = createStore(
   combineReducers({
     auhorization: reducers.authorization,
-    adminUserId: reducers.adminUserId,
+    adminUser: reducers.adminUser,
+    adminUsers: reducers.adminUsers,
+
   }),
   composeWithDevTools(applyMiddleware(reduxThunk))
 );
