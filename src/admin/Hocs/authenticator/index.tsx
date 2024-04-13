@@ -1,8 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Sdks from '@/admin/Sdks/Index';
 import Helpers from '@/admin/Helpers/Index';
 import events from '@/admin/events/index';
+import actions from '@/admin/actions/';
 import CONFIGS from '@/CONFIGS/INDEX';
 
 interface Props {
@@ -19,6 +21,7 @@ let authenticator = (Component: any): any => {
 
     let bAuthenticator = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
+    let oDispatch = useDispatch();
 
     let oHistory = useHistory();
     let oRouteMatch = useRouteMatch();
@@ -57,7 +60,9 @@ let authenticator = (Component: any): any => {
 
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam, oSearch, oOption);
           sJwt = oResponse?.headers?.authorization ?? '';
-          let sAuthorizations = oResponse?.data?.result?.raw?.authorizations ?? '00000000';
+          let sAuthorizations = oResponse?.data?.raw?.one?.authorizations ?? '00000000';
+          let oAdminUser = oResponse?.data?.raw?.one?.adminUser ?? {};
+
           cSetStateAuthorizations(sAuthorizations);
 
           if (
@@ -99,6 +104,10 @@ let authenticator = (Component: any): any => {
               oHistory.push(aRedirections[1]);
             }
           }
+
+          sJwt && oDispatch(actions.authorizaion.set(sJwt));
+          oAdminUser && oAdminUser?.id && oDispatch(actions.adminUser.set(oAdminUser));
+
         }
 
         cSetStateStatus(true);

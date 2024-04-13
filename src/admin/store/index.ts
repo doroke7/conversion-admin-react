@@ -10,6 +10,7 @@ let oStore = createStore(
     auhorization: reducers.authorization,
     adminUser: reducers.adminUser,
     adminUsers: reducers.adminUsers,
+    appUsers: reducers.appUsers,
 
   }),
   composeWithDevTools(applyMiddleware(reduxThunk))

@@ -39,6 +39,7 @@ const style = makeStyles((oTheme: Theme): any =>
       borderRadius: oTheme.spacing(0.5)
     },
     dataGridWrapper: {
+      marginTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
       },
@@ -63,11 +64,18 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     formControl: {
-      width: oTheme.spacing(8),
+      width: oTheme.spacing(7),
+      '& .MuiInputBase-root': {
+        fontSize: oTheme.spacing(1.75),
+      },
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
       }
+    },
+    menuItem: {
+      fontSize: oTheme.spacing(1.75),
+      lineHeight: 1.25,
     },
 
     paginationWrapper: {
@@ -76,8 +84,7 @@ const style = makeStyles((oTheme: Theme): any =>
       alignItems: 'center',
       justifyContent: 'flex-end',
       marginRight: oTheme.spacing(0),
-      marginTop: oTheme.spacing(1),
-      paddingTop: oTheme.spacing(1),
+      marginBottom: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         justifyContent: 'space-between',

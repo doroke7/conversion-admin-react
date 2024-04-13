@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, Component } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
@@ -23,6 +24,7 @@ import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
+import actions from '@/admin/actions/';
 
 import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
@@ -42,6 +44,8 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
   let oUrlSearchParams = hooks.useURLSearchParams();
+  let oDispatch = useDispatch();
+
 
   let [iStateNumer, cSetStateNumer] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
@@ -53,7 +57,12 @@ function Index(oProps: any): any {
   let [bStatePageDialog, cSetStatePageDialog] = useState<boolean>(false);
 
 
-  let iLimit = Number(oUrlSearchParams.get('limit'));
+  let iLimit = Number(oUrlSearchParams.get('limit')) || 10;
+  let iPage = Number(oUrlSearchParams.get('page')) || 1;
+
+  let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
+  let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
+
 
   let oLimitToHeight = {
     '10': 59.448,
@@ -118,23 +127,23 @@ function Index(oProps: any): any {
     (async () => {
 
       cSetStateLoading(true);
-      cSetStateRows([]);
 
+      let oParam = {};
       let oOption = {
-        appId: oParams.appId,
-        page: oParams.page,
-        limit: iLimit ?? 10
+        page: iPage,
+        limit: iLimit
       };
+      let oSearch = {};
 
-      let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oOption);
+      let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oParam, oOption, oSearch);
 
       console.log('oResponse', oResponse);
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
-      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((oParams.size ?? 10) || 10)) || 1;
-      let aRows = oResponse?.data?.raw?.ones ?? [];
+      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((iLimit ?? 10) || 10)) || 1;
+      let aAppUsers = oResponse?.data?.raw?.ones ?? [];
+      oDispatch(actions.appUsers.set(aAppUsers));
 
       cSetStateNumer(iNumber);
-      cSetStateRows(aRows);
       cSetStateCount(iCount);
       cSetStateLoading(false);
       cSetStateLimit(iLimit);
@@ -142,7 +151,14 @@ function Index(oProps: any): any {
       cSetPageMax(iCount);
 
     })();
-  }, [oParams.appId, oParams.page, oParams.size]);
+  }, [iPage, iLimit]);
+
+  useEffect(() => {
+    cSetStateRows(aAppUsers);
+
+  }, [aAppUsers]);
+
+
 
   let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
     let oNextPageParams = {
@@ -211,10 +227,10 @@ function Index(oProps: any): any {
         </IconButton>
         <FormControl className={oClasses.formControl}>
           <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeLimit}>
-            <MenuItem value={10}>10笔</MenuItem>
-            <MenuItem value={20}>20笔</MenuItem>
-            <MenuItem value={50}>50笔</MenuItem>
-            <MenuItem value={100}>100笔</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={10}>10笔</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={20}>20笔</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={50}>50笔</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={100}>100笔</MenuItem>
           </Select>
         </FormControl>
         <Pagination
@@ -271,7 +287,6 @@ function Index(oProps: any): any {
           }}
         />
       </div>
-      <Components.Cards rows={aStateRows} loading={bStateLoading} Card={CardForAppUser}></Components.Cards>
 
     </div>
   );

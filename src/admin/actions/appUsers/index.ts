@@ -3,10 +3,10 @@
  * DATE: 2022-0809
  */
 let oAction: any = {
-  set: (aAdminUsers: any[] = []) => {
+  set: (aAppUsers: any[] = []) => {
     let oAction = {
-      type: 'ADMIN_USERS_SET',
-      adminUsers: aAdminUsers
+      type: 'APP_USERS_SET',
+      appUsers: aAppUsers
     };
 
     return oAction;

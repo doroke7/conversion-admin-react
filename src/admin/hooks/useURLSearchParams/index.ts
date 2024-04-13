@@ -1,7 +1,10 @@
+import { useLocation } from 'react-router-dom';
 
 function useURLSearchParams() {
-  let sWindowLocationSearch = window.location.search;
-  let oUrlSearchParams = new URLSearchParams(sWindowLocationSearch);
+
+  let oLocation = useLocation();
+  let sSearch = oLocation.search;
+  let oUrlSearchParams = new URLSearchParams(sSearch);
 
   return oUrlSearchParams;
 };

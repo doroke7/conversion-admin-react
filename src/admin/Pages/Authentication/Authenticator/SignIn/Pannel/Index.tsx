@@ -78,6 +78,7 @@ function Pannel(oProps: any): any {
 
         let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignIn(oParam);
         let sJwt = oResponse?.headers?.authorization ?? '';
+        let oAdminUser = oResponse?.data?.raw?.one?.adminUser ?? {};
         if (oResponse?.data?.code === undefined) {
           throw new Exception('服务器异常', -4);
         }
@@ -93,7 +94,8 @@ function Pannel(oProps: any): any {
         cSetStateAnimation(true);
 
         Helpers.Authentication.set(sJwt);
-        oDispatch(actions.authorizaion.set(sJwt));
+        sJwt && oDispatch(actions.authorizaion.set(sJwt));
+        oAdminUser && oAdminUser?.id && oDispatch(actions.adminUser.set(oAdminUser));
 
         if (oResponse && oResponse?.data?.code == 0) {
           let oMessage = {
