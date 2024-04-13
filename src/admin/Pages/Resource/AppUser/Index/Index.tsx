@@ -153,12 +153,12 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleChangeSize = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
-    let iSize = Number(oEvent.target.value);
+  let cHandleChangeLimit = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let iLimit = Number(oEvent.target.value);
 
     let oOtherParams = {
       ...oParams,
-      size: iSize
+      limit: iLimit
     };
     let sUrl = utilities.url(oRouteMatch.path, oOtherParams);
     oHistory.push(sUrl);
@@ -210,7 +210,7 @@ function Index(oProps: any): any {
           <SearchIcon></SearchIcon>
         </IconButton>
         <FormControl className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeSize}>
+          <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeLimit}>
             <MenuItem value={10}>10笔</MenuItem>
             <MenuItem value={20}>20笔</MenuItem>
             <MenuItem value={50}>50笔</MenuItem>
