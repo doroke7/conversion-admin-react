@@ -73,6 +73,11 @@ const style = makeStyles((oTheme: Theme): any =>
         '& .MuiDataGrid-cell': {
           borderBottom: 'none'
         }
+      },
+      '& .MuiIconButton-label': {
+        '& .MuiSvgIcon-root': {
+          fontSize: '1rem'
+        }
       }
     },
     avatar: {
