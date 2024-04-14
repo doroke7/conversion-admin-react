@@ -87,14 +87,19 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     formControl: {
-      width: oTheme.spacing(8),
+      textAlign: 'right',
+      width: oTheme.spacing(11),
       '& .MuiInputBase-root': {
         fontSize: oTheme.spacing(1.75),
       },
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
-      }
+      },
+      '& .MuiOutlinedInput-input': {
+        paddingTop: oTheme.spacing(0.625),
+        paddingBottom: oTheme.spacing(0.625),
+      },
     },
     menuItem: {
       fontSize: oTheme.spacing(1.75),
@@ -173,6 +178,18 @@ const style = makeStyles((oTheme: Theme): any =>
         verticalAlign: 'middle',
         fontSize: oTheme.spacing(1.75),
 
+      }
+    },
+    textField: {
+      width: oTheme.spacing(8),
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+      },
+      '& .MuiOutlinedInput-root': {
+        height: oTheme.spacing(3.25),
+      },
+      '& .MuiInputBase-input': {
+        textAlign: 'right',
+        fontSize: oTheme.spacing(1.75),
       }
     }
   })

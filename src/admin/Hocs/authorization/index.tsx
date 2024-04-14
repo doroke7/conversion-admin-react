@@ -62,7 +62,6 @@ let authenticator = (Component: any): any => {
           let sAuthorizations = oResponse?.data?.raw?.one?.authorizations ?? '00000000';
           let oAdminUser = oResponse?.data?.raw?.one?.adminUser ?? {};
 
-          console.log('hoc oResponse=', oResponse);
 
           cSetStateAuthorizations(sAuthorizations);
 

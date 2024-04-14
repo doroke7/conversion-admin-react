@@ -55,7 +55,10 @@ function Navigation(oProps: any) {
 
   let oParams: any = useParams();
 
-  let sAuhorization = useSelector((oStore: any) => oStore.auhorization);
+  let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
+  let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
+
+  console.log('NAV 的 oAdminUser=', oAdminUser);
 
   let iAppId = useMemo(() => {
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
@@ -105,7 +108,6 @@ function Navigation(oProps: any) {
       let oAdminMenuResponse = await cAdminSystemAdminMenuShowTree(iAppId);
 
       let aAdminMenus = oAdminMenuResponse?.data?.raw?.tree ?? [];
-      console.log('API AdminMenu 数据=', oAdminMenuResponse);
 
       cSetStateAdminMenus(aAdminMenus);
     })();
@@ -113,113 +115,122 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
-      let oApp = aStateApps[iStateIndex];
-      let iAppId = oApp?.id ?? 0;
+      if (oAdminUser?.id) {
+        let oApp = aStateApps[iStateIndex];
+        let iAppId = oApp?.id ?? 0;
 
-      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
-      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId) : [];
+        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
 
-      if (iIndex < aTabs1.length) {
+        if (iIndex < aTabs1.length) {
 
-        let aTempLeftTabs1 = aTabs1.slice(0, iIndex);
-        let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
+          let aTempLeftTabs1 = aTabs1.slice(0, iIndex);
+          let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
 
-        aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, oApp?.id);
+          aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
+          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oAdminUser?.id, oApp?.id);
 
-      };
+        };
 
-      if (iIndex >= aTabs1.length) {
+        if (iIndex >= aTabs1.length) {
 
-        let aTempLeftTabs0 = aTabs0.slice(0, iIndex - aTabs1.length);
-        let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
+          let aTempLeftTabs0 = aTabs0.slice(0, iIndex - aTabs1.length);
+          let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
 
-        aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
+          aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
+          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oAdminUser?.id, 0);
 
-      };
-      let aTabs = [...aTabs1, ...aTabs0];
+        };
+        let aTabs = [...aTabs1, ...aTabs0];
 
-      let iValue = 0;
-      iValue = iIndex > iStateValue ? iStateValue : iStateValue - 1;
-      iValue = iValue < -1 ? -1 : iValue;
+        let iValue = 0;
+        iValue = iIndex > iStateValue ? iStateValue : iStateValue - 1;
+        iValue = iValue < -1 ? -1 : iValue;
 
 
-      cSetStateValue(iValue);
-      cSetStateTabs(aTabs);
+        cSetStateValue(iValue);
+        cSetStateTabs(aTabs);
 
-      if (aTabs?.length >= 1) {
-        let oTab = aTabs[iValue];
-        oHistory.push(oTab?.url);
+        if (aTabs?.length >= 1) {
+          let oTab = aTabs[iValue];
+          oHistory.push(oTab?.url);
+        }
+        if (aTabs?.length == 0) {
+          oHistory.push('/admin/resource');
+        }
       }
-      if (aTabs?.length == 0) {
-        oHistory.push('/admin/resource');
-      }
+
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveTab', cRemoveTab);
     return () => {
       events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oAdminUser.id]);
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
-      let oApp = aStateApps[iStateIndex];
-      let iAppId = oApp?.id ?? 0;
+      if (oAdminUser?.id) {
+        let oApp = aStateApps[iStateIndex];
+        let iAppId = oApp?.id ?? 0;
 
-      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
-      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
-      let oTab = null;
+        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId) : [];
+        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
+        let oTab = null;
 
-      if (iIndex < aTabs1.length) {
-        oTab = aTabs1[iIndex] ?? null;
-        aTabs1 = [oTab];
-        aTabs0 = [];
-      };
+        if (iIndex < aTabs1.length) {
+          oTab = aTabs1[iIndex] ?? null;
+          aTabs1 = [oTab];
+          aTabs0 = [];
+        };
 
-      if (iIndex >= aTabs1.length) {
-        oTab = aTabs0[iIndex - aTabs1.length] ?? null;
-        aTabs0 = [];
-        aTabs0 = [oTab];
-      };
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iAppId);
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
+        if (iIndex >= aTabs1.length) {
+          oTab = aTabs0[iIndex - aTabs1.length] ?? null;
+          aTabs0 = [];
+          aTabs0 = [oTab];
+        };
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oAdminUser?.id, iAppId);
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oAdminUser?.id, 0);
 
-      let iValue = 0;
+        let iValue = 0;
 
-      let aTabs = [...aTabs1, ...aTabs0];
+        let aTabs = [...aTabs1, ...aTabs0];
 
-      cSetStateValue(iValue);
-      cSetStateTabs(aTabs);
+        cSetStateValue(iValue);
+        cSetStateTabs(aTabs);
 
-      if (oTab) {
-        oHistory.push(oTab.url);
+        if (oTab) {
+          oHistory.push(oTab.url);
+        }
       }
+
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     return () => {
       events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oAdminUser.id]);
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
-      let iValue = -1;
-      let oApp = aStateApps[iStateIndex];
-      let iAppId = oApp?.id ?? 0;
+      if (oAdminUser?.id) {
+        let iValue = -1;
+        let oApp = aStateApps[iStateIndex];
+        let iAppId = oApp?.id ?? 0;
 
-      iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId([], 0, iAppId);
-      Helpers.Tab.setOnesByAdminUserIdAppId([], 0, 0);
+        iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId([], oAdminUser?.id, iAppId);
+        Helpers.Tab.setOnesByAdminUserIdAppId([], oAdminUser?.id, 0);
 
-      cSetStateValue(iValue);
-      cSetStateTabs([]);
-      oHistory.push('/admin/resource');
+        cSetStateValue(iValue);
+        cSetStateTabs([]);
+        oHistory.push('/admin/resource');
+      }
+
     };
     let oEventEmitter: any = events.addListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     return () => {
       events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oAdminUser.id]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
@@ -237,23 +248,8 @@ function Navigation(oProps: any) {
   }, [iStateValue, bStateOpen, iStateIndex, aStateTabs]);
 
   useEffect(() => {
-    let cPreClickAdminUserLink = (oLink: any) => {
-      cSetStateLink(oLink);
-      cSetStateMenu(null);
-    };
-    let oEventEmitter: any = events.addListener('Navigation-onPreClickAdminUserLink', cPreClickAdminUserLink);
-    return () => {
-      events.removeListener('Navigation-onPreClickAdminUserLink', cPreClickAdminUserLink);
-    };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
-
-  useEffect(() => {
     let cClickAdminUserLink = (oAdminUserLink: any) => {
-      let oParams = {
-        page: 1,
-        limit: 10
-      };
-      let sUrl = utilities.url('', oAdminUserLink.url, {});
+      let sUrl = utilities.url('/', oAdminUserLink.url, {});
       oHistory.push(sUrl);
     };
 
@@ -298,139 +294,146 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
-      let iAppId = aStateApps?.[iIndex]?.id;
+      if (oAdminUser?.id) {
+        let iAppId = aStateApps?.[iIndex]?.id;
 
-      if (iIndex == iStateIndex) {
-        // DO NOTHING
-        // 点击的 App 跟当前 app 相同
-      }
+        if (iIndex == iStateIndex) {
+          // DO NOTHING
+          // 点击的 App 跟当前 app 相同
+        }
 
-      if (iIndex != iStateIndex) {
-        let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId);
-        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+        if (iIndex != iStateIndex) {
+          let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId);
+          let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
 
-        let aTabs = [...aTabs1, ...aTabs0];
-        let iValue = -1;
-        cSetStateIndex(iIndex);
-        cSetStateTabs(aTabs);
-        cSetStateValue(iValue);
-        if (iIndex >= 0) {
-          oHistory.push('/admin/resource');
+          let aTabs = [...aTabs1, ...aTabs0];
+          let iValue = -1;
+          cSetStateIndex(iIndex);
+          cSetStateTabs(aTabs);
+          cSetStateValue(iValue);
+          if (iIndex >= 0) {
+            oHistory.push('/admin/resource');
+          }
         }
       }
+
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
     // 组件销毁前移除事件监听
     return () => {
       events.removeListener('Navigation-onClickApp', cClickApp);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps]);
+  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oAdminUser.id]);
 
   let cOnTab = useCallback((oRoute: any) => {
-
     console.log('OnTab 行为发生 oRoute=', oRoute);
-    // TODO
-    // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
 
-    let oApp = aStateApps?.[iStateIndex];
-    let iAppId = oApp?.id ?? 0;
+    if (oAdminUser.id) {
+      // TODO
+      // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
 
-    let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
+      let oApp = aStateApps?.[iStateIndex];
+      let iAppId = oApp?.id ?? 0;
 
-    let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(0, iAppId) : [];
-    let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(0, 0);
+      let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
-    let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
-    aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
-    aTabs = iStateIndex == -1 ? [...aTabs1, ...aTabs0] : aTabs;
+      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser.id, iAppId) : [];
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser.id, 0);
 
-    let iResultIndex = -1;
+      let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
+      aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
+      aTabs = iStateIndex == -1 ? [...aTabs1, ...aTabs0] : aTabs;
 
-    if (iStateIndex >= 0) {
-      iResultIndex = iStateIndex;
-    }
+      let iResultIndex = -1;
 
-    if (iStateIndex <= -1) {
-      for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
-        let oStateApp = aStateApps[iStateAppIndex];
+      if (iStateIndex >= 0) {
+        iResultIndex = iStateIndex;
+      }
 
-        if (oStateApp.id == iParamsAppId) {
-          iResultIndex = iStateAppIndex;
-          break;
-        }
+      if (iStateIndex <= -1) {
+        for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
+          let oStateApp = aStateApps[iStateAppIndex];
+
+          if (oStateApp.id == iParamsAppId) {
+            iResultIndex = iStateAppIndex;
+            break;
+          }
+        };
+
+      }
+
+      let sUrl = utilities.url('', oRoute.url, oRoute?.params);
+
+      let oTab = {
+        id: oRoute.id,
+        path: oRoute.path,
+        url: oRoute.url,
+        param: oRoute?.params ?? {},
+        text: oRoute?.text || oTextRef?.current,
+        icon: oRoute.icon ?? ''
       };
+      if (oRoute.id == '2-n-0') {
+        oTab.text = oTextRef.current || '未定义';
+      }
+      let iValue = iStateValue;
+      let bExist = false;
+      let iTabIndex = 0;
 
-    }
+      if (aTabs1.length >= 1) {
+        for (iTabIndex = 0; iTabIndex < aTabs1.length; iTabIndex++) {
+          if (aTabs1[iTabIndex]['id'] == oTab.id) {
+            iValue = iTabIndex;
+            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+            if (aTabs1[iTabIndex]['url'] != oTab?.url || aTabs1[iTabIndex]['text'] == '未定义') {
+              aTabs1[iTabIndex]['text'] = oTab?.text;
+            }
+            aTabs1[iTabIndex]['icon'] = oTab?.icon;
+            aTabs1[iTabIndex]['url'] = oTab?.url;
 
-    let sUrl = utilities.url('', oRoute.url, oRoute?.params);
+            bExist = true;
+            break;
+          }
+        }
+      }
 
-    let oTab = {
-      id: oRoute.id,
-      path: oRoute.path,
-      url: oRoute.url,
-      param: oRoute?.params ?? {},
-      text: oRoute?.text || oTextRef?.current,
-      icon: oRoute.icon ?? ''
+      if (aTabs0.length >= 1 && !bExist) {
+        for (iTabIndex = 0; iTabIndex < aTabs0.length; iTabIndex++) {
+          if (aTabs0[iTabIndex]['id'] == oTab.id) {
+            iValue = iTabIndex + aTabs1.length;
+            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+            if (aTabs0[iTabIndex]['url'] != oTab?.url || aTabs0[iTabIndex]['text'] == '未定义') {
+              aTabs0[iTabIndex]['text'] = oTab?.text;
+            }
+            aTabs0[iTabIndex]['icon'] = oTab?.icon;
+            aTabs0[iTabIndex]['url'] = oTab?.url;
+
+            bExist = true;
+            break;
+          }
+        }
+      }
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+        aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oAdminUser.id, iParamsAppId);
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oAdminUser.id, 0);
+        aTabs = [...aTabs1, ...aTabs0];
+        iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
+
+      }
+
+      cSetStateValue(iValue);
+      cSetStateTabs(aTabs);
+      cSetStateIndex(iResultIndex);
     };
-    if (oRoute.id == '2-n-0') {
-      oTab.text = oTextRef.current || '未定义';
-    }
-    let iValue = iStateValue;
-    let bExist = false;
-    let iTabIndex = 0;
 
-    if (aTabs1.length >= 1) {
-      for (iTabIndex = 0; iTabIndex < aTabs1.length; iTabIndex++) {
-        if (aTabs1[iTabIndex]['id'] == oTab.id) {
-          iValue = iTabIndex;
-          // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-          if (aTabs1[iTabIndex]['url'] != oTab?.url || aTabs1[iTabIndex]['text'] == '未定义') {
-            aTabs1[iTabIndex]['text'] = oTab?.text;
-          }
-          aTabs1[iTabIndex]['icon'] = oTab?.icon;
-          aTabs1[iTabIndex]['url'] = oTab?.url;
 
-          bExist = true;
-          break;
-        }
-      }
-    }
 
-    if (aTabs0.length >= 1 && !bExist) {
-      for (iTabIndex = 0; iTabIndex < aTabs0.length; iTabIndex++) {
-        if (aTabs0[iTabIndex]['id'] == oTab.id) {
-          iValue = iTabIndex + aTabs1.length;
-          // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
-          if (aTabs0[iTabIndex]['url'] != oTab?.url || aTabs0[iTabIndex]['text'] == '未定义') {
-            aTabs0[iTabIndex]['text'] = oTab?.text;
-          }
-          aTabs0[iTabIndex]['icon'] = oTab?.icon;
-          aTabs0[iTabIndex]['url'] = oTab?.url;
-
-          bExist = true;
-          break;
-        }
-      }
-    }
-    if (bExist) {
-      // DO NOTHING
-    }
-    if (!bExist) {
-      aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
-      aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
-
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, 0, iParamsAppId);
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, 0, 0);
-      aTabs = [...aTabs1, ...aTabs0];
-      iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
-
-    }
-
-    cSetStateValue(iValue);
-    cSetStateTabs(aTabs);
-    cSetStateIndex(iResultIndex);
-
-  }, [iStateIndex, aStateApps]);
+  }, [iStateIndex, aStateApps, oAdminUser.id]);
 
   useLayoutEffect(() => {
 

@@ -155,7 +155,6 @@ function Index(oProps: any): any {
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oParam, oOption, oSearch);
 
-      console.log('oResponse', oResponse);
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((iLimit ?? 10) || 10)) || 1;
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
@@ -193,27 +192,39 @@ function Index(oProps: any): any {
     };
     let sUrl = utilities.url('', oRouteMatch.path, oParams);
 
-
-    console.log(oParams);
-    console.log(oRouteMatch);
-    console.log(sUrl);
-
     oHistory.push(sUrl);
   };
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let iPage = Number(oEvent.target.value);
     cSetStatePage(iPage);
+
   };
 
   let cHandleKeyPressPageOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
-      // 
+      let iPage = Number(oEvent.target.value);
+
+      oParams = {
+        page: iPage,
+        limit: iLimit
+      };
+      let sUrl = utilities.url('', oRouteMatch.path, oParams);
+
+      oHistory.push(sUrl);
     }
   };
 
   let cHandleBlurPageOfTextField = (oEvent: any) => {
-    let iPage = Number(iStatePage);
+    let iPage = Number(oEvent.target.value);
+
+    oParams = {
+      page: iPage,
+      limit: iLimit
+    };
+    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+
+    oHistory.push(sUrl);
   };
 
   let cHandleSearchClick = (oEvent: any) => {
@@ -240,8 +251,8 @@ function Index(oProps: any): any {
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>
         </IconButton>
-        <FormControl className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeLimitOfSelect}>
+        <FormControl variant="outlined" className={oClasses.formControl}>
+          <Select labelId="demo-simple-select-label" id="limit" value={iStateLimit} onChange={cHandleChangeLimitOfSelect}>
             <MenuItem className={oClasses.menuItem} value={10}>10笔</MenuItem>
             <MenuItem className={oClasses.menuItem} value={20}>20笔</MenuItem>
             <MenuItem className={oClasses.menuItem} value={50}>50笔</MenuItem>
@@ -263,16 +274,17 @@ function Index(oProps: any): any {
           onChange={cHandleChangePageOfPagination}
         />
 
-        <span className={oClasses.page}>
-          <TextField
-            id="page"
-            value={iStatePage}
-            onChange={cHandleChangePageOfTextField}
-            onKeyPress={cHandleKeyPressPageOfTextField}
-            onBlur={cHandleBlurPageOfTextField}
-          />
-          <span className="next">&ensp;页</span>
-        </span>
+        <TextField
+          className={oClasses.textField}
+          id="page"
+          label="页"
+          size="small"
+          variant="outlined"
+          value={iStatePage}
+          onChange={cHandleChangePageOfTextField}
+          onKeyPress={cHandleKeyPressPageOfTextField}
+          onBlur={cHandleBlurPageOfTextField}
+        />
         <IconButton color="primary" aria-label="页数" className={oClasses.pageButton} onClick={cHandlePageClick}>
           <MenuBookTwoToneIcon></MenuBookTwoToneIcon>
         </IconButton>
@@ -303,7 +315,7 @@ function Index(oProps: any): any {
         />
       </div>
 
-    </div>
+    </div >
   );
 }
 export default Hocs.authorization(Hocs.tab(Hocs.page(Hocs.title(Index))));
