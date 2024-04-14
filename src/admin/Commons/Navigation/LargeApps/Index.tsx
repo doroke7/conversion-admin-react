@@ -45,7 +45,7 @@ function LargeApps(oProps: any) {
             title={oApp?.title ?? ''}
             status={iIndex >= 0}
             url={oApp?.url ?? ''}></Icon>
-          <ListItemText primary={'应用程序'} />
+          <ListItemText primary={'项目应用'} />
           {oStateOpen ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
         <Apps in={oStateOpen} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>

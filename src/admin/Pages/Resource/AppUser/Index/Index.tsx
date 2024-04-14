@@ -31,11 +31,7 @@ import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 import actions from '@/admin/actions/';
 
-import Inputs from './Inputs/Index';
 import SearchPannel from './SearchPannel/Index';
-import AvatarForCell from './AvatarForCell/Index';
-import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
-import CardForAppUser from './CardForAppUser/Index';
 
 import hooks from '@/admin/hooks';
 import style from './style';
@@ -67,6 +63,8 @@ function Index(oProps: any): any {
   let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
 
 
+
+
   let oLimitToHeight = {
     '10': 59.448,
     '20': 29.724,
@@ -84,7 +82,7 @@ function Index(oProps: any): any {
       editable: false
     },
     {
-      field: 'app_url',
+      field: 'appUrl',
       headerName: '项目',
       description: '项目',
       sortable: false,
@@ -122,19 +120,19 @@ function Index(oProps: any): any {
       editable: false
     },
     {
-      field: 'added_time',
+      field: 'addedTime',
       headerName: '创建时间',
       description: '创建时间',
       sortable: false,
       flex: 1,
-      width: 200
+      width: 200,
+      valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
     },
     {
       field: 'tool',
       headerName: '操作',
       description: '操作',
       sortable: false,
-      flex: 1,
       width: 200
     },
   ];
@@ -161,6 +159,8 @@ function Index(oProps: any): any {
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((iLimit ?? 10) || 10)) || 1;
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
       oDispatch(actions.appUsers.set(aAppUsers));
+
+      console.log('aAppUsers=', aAppUsers);
 
       cSetStateNumer(iNumber);
       cSetStateCount(iCount);
@@ -254,11 +254,11 @@ function Index(oProps: any): any {
           <SearchIcon></SearchIcon>
         </IconButton>
         <FormControl variant="outlined" className={oClasses.formControl}>
-         <InputLabel id="demo-simple-select-filled-label">筆</InputLabel>
-          <Select 
-            labelId="demo-simple-select-label" 
-            id="limit" 
-            value={iStateLimit} 
+          <InputLabel id="demo-simple-select-filled-label">筆</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="limit"
+            value={iStateLimit}
             onChange={cHandleChangeLimitOfSelect}
             label="筆"
           >
@@ -316,7 +316,9 @@ function Index(oProps: any): any {
           autoHeight={false}
           autoPageSize={false}
           disableColumnMenu={true}
-          rowHeight={36}
+          rowHeight={35.650000000000002125}
+          // 35.650000000000002125 太小  ，  
+          // 35.65000000000000225 太大
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
             LoadingOverlay: Components.LoadingOverlay

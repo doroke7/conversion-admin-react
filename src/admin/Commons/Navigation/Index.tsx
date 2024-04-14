@@ -81,26 +81,33 @@ function Navigation(oProps: any) {
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
-      let aResponses = await Promise.all([cAdminSystemAppShowOnes(), Sdks.Admin.System.AdminUserLink.getShowOnes()]);
-      let oAppResponse = aResponses[0];
-      let oAdminUserLinkResponse = aResponses[1];
+      if (oAdminUser.id) {
+        let aResponses = await Promise.all([
+          cAdminSystemAppShowOnes(),
+          Sdks.Admin.System.AdminUserLink.getShowOnes()
+        ]);
+        
+        let oAppResponse = aResponses[0];
+        let oAdminUserLinkResponse = aResponses[1];
 
-      let aApps = oAppResponse?.data?.raw?.ones ?? [];
-      let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
+        let aApps = oAppResponse?.data?.raw?.ones ?? [];
+        let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
 
-      if (aApps.length == 0) {
-        let oMessage = {
-          code: -1,
-          message: '您尚未配置管理的應用程序，請聯繫系統管理員',
-          time: 2 * 1000
-        };
-       // events.emit('Alerts-onAlert', oMessage);
+        if (aApps.length == 0) {
+          let oMessage = {
+            code: -1,
+            message: '您尚未配置管理的應用程序，請聯繫系統管理員',
+            time: 2 * 1000
+          };
+          events.emit('Alerts-onAlert', oMessage);
+        }
+
+        cSetStateApps(aApps);
+        cSetStateAdminUserLinks(aAdminUserLinks);
       }
 
-      cSetStateApps(aApps);
-      cSetStateAdminUserLinks(aAdminUserLinks);
     })();
-  }, [cAdminSystemAppShowOnes]);
+  }, [cAdminSystemAppShowOnes, oAdminUser.id]);
 
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
