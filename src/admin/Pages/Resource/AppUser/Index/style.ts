@@ -75,6 +75,11 @@ const style = makeStyles((oTheme: Theme): any =>
         }
       }
     },
+    avatar: {
+      width: oTheme.spacing(3),
+      height: oTheme.spacing(3),
+
+    },
 
     formControl: {
       width: oTheme.spacing(8),

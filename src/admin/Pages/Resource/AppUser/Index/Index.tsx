@@ -5,8 +5,11 @@ import clsx from 'clsx';
 
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
+import WidgetsIcon from '@material-ui/icons/Widgets';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import Avatar from '@material-ui/core/Avatar';
+import Badge from '@material-ui/core/Badge';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -18,6 +21,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -92,8 +96,20 @@ function Index(oProps: any): any {
       headerName: '项目',
       description: '项目',
       sortable: false,
-      flex: 1,
-      width: 200
+      width: 84,
+      align: 'left',
+      renderCell: (oProps: any) => {
+        let sTitle = oProps?.row?.app?.title;
+        let sUrl = oProps?.row?.app?.url;
+
+        return (
+          <Tooltip title={sTitle}>
+            <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
+              {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
+            </Avatar>
+          </Tooltip>
+        );
+      },
     },
     {
       field: 'sort',
@@ -265,7 +281,7 @@ function Index(oProps: any): any {
         <DataGrid
           className={clsx(oClasses.dataGrid, {})}
           columns={aColumns}
-          headerHeight={28}
+          headerHeight={36}
           rowCount={aStateRows.length == 0 ? 0 : iStateCount}
           rows={aStateRows}
           page={0}
@@ -279,7 +295,7 @@ function Index(oProps: any): any {
           autoHeight={false}
           autoPageSize={false}
           disableColumnMenu={false}
-          rowHeight={28}
+          rowHeight={36}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
             LoadingOverlay: Components.LoadingOverlay
