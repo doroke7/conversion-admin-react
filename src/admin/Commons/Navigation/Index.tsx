@@ -94,7 +94,7 @@ function Navigation(oProps: any) {
           message: '您尚未配置管理的應用程序，請聯繫系統管理員',
           time: 2 * 1000
         };
-        events.emit('Alerts-onAlert', oMessage);
+       // events.emit('Alerts-onAlert', oMessage);
       }
 
       cSetStateApps(aApps);
@@ -238,7 +238,8 @@ function Navigation(oProps: any) {
 
       let oTab = aStateTabs[iValue] ?? null;
       if (oTab) {
-        oHistory.push(oTab.url);
+        let sUrl = utilities.url('', oTab.url, oTab.options);
+        oHistory.push(sUrl);
       }
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickTab', cClickTab);
@@ -270,7 +271,7 @@ function Navigation(oProps: any) {
         id: oAdminMenu.id,
         uri: oAdminMenu.uri,
         path: oAdminMenu.path,
-        query: '',
+        options: {},
         text: oAdminMenu.text,
         icon: oAdminMenu.icon,
         content: oAdminMenu.description
@@ -370,6 +371,7 @@ function Navigation(oProps: any) {
         path: oRoute.path,
         url: oRoute.url,
         param: oRoute?.params ?? {},
+        options: oRoute?.options ?? {},
         text: oRoute?.text || oTextRef?.current,
         icon: oRoute.icon ?? ''
       };

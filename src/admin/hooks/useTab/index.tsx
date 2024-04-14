@@ -23,10 +23,16 @@ let tab = (Component: any): any => {
 
     let iPage = Number(oURLSearchParams.get('page'));
     let iLimit = Number(oURLSearchParams.get('limit'));
-    let oOptions = {
-      page: iPage,
-      limit: iLimit
-    };
+
+    console.log('oRouteMatch99=', oRouteMatch);
+
+
+
+
+
+
+
+
 
     useEffect(() => {
 
@@ -37,7 +43,7 @@ let tab = (Component: any): any => {
         params: oParams,
         path: sPath,
         icon: sIcon,
-        options: oOptions,
+        query: '',
         adminUserId: oAdminUser.id
       };
       events.emit('Navigation-onTab', oRoute);

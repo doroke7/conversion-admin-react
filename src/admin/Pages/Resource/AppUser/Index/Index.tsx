@@ -79,19 +79,10 @@ function Index(oProps: any): any {
       field: 'id',
       headerName: 'ID',
       description: '流水号',
-      width: 100,
+      width: 80,
       sortable: false,
       editable: false
     },
-    {
-      field: 'name',
-      headerName: '名称',
-      description: '名称',
-      sortable: false,
-      flex: 2,
-      width: 85,
-    },
-
     {
       field: 'app_url',
       headerName: '项目',
@@ -112,6 +103,16 @@ function Index(oProps: any): any {
         );
       },
     },
+    {
+      field: 'name',
+      headerName: '名称',
+      description: '名称',
+      sortable: false,
+      flex: 2,
+      width: 85,
+    },
+
+
     {
       field: 'sort',
       headerName: '优先级',
@@ -314,7 +315,7 @@ function Index(oProps: any): any {
           hideFooter={true}
           autoHeight={false}
           autoPageSize={false}
-          disableColumnMenu={false}
+          disableColumnMenu={true}
           rowHeight={36}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
