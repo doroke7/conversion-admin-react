@@ -89,6 +89,9 @@ const style = makeStyles((oTheme: Theme): any =>
     formControl: {
       textAlign: 'right',
       width: oTheme.spacing(11),
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink':{
+        transform: 'translate(14px, -5px) scale(0.65)'
+      },
       '& .MuiInputBase-root': {
         fontSize: oTheme.spacing(1.75),
       },
@@ -183,6 +186,7 @@ const style = makeStyles((oTheme: Theme): any =>
     textField: {
       width: oTheme.spacing(8),
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -5px) scale(0.65)'
       },
       '& .MuiOutlinedInput-root': {
         height: oTheme.spacing(3.25),
@@ -190,7 +194,8 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiInputBase-input': {
         textAlign: 'right',
         fontSize: oTheme.spacing(1.75),
-      }
+      },
+
     }
   })
 );

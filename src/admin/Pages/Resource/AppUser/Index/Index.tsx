@@ -22,6 +22,7 @@ import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -252,11 +253,18 @@ function Index(oProps: any): any {
           <SearchIcon></SearchIcon>
         </IconButton>
         <FormControl variant="outlined" className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="limit" value={iStateLimit} onChange={cHandleChangeLimitOfSelect}>
-            <MenuItem className={oClasses.menuItem} value={10}>10笔</MenuItem>
-            <MenuItem className={oClasses.menuItem} value={20}>20笔</MenuItem>
-            <MenuItem className={oClasses.menuItem} value={50}>50笔</MenuItem>
-            <MenuItem className={oClasses.menuItem} value={100}>100笔</MenuItem>
+         <InputLabel id="demo-simple-select-filled-label">筆</InputLabel>
+          <Select 
+            labelId="demo-simple-select-label" 
+            id="limit" 
+            value={iStateLimit} 
+            onChange={cHandleChangeLimitOfSelect}
+            label="筆"
+          >
+            <MenuItem className={oClasses.menuItem} value={10}>10</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={20}>20</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={50}>50</MenuItem>
+            <MenuItem className={oClasses.menuItem} value={100}>100</MenuItem>
           </Select>
         </FormControl>
         <Pagination
