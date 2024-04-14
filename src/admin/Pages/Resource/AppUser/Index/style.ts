@@ -94,7 +94,7 @@ const style = makeStyles((oTheme: Theme): any =>
 
     formControl: {
       textAlign: 'right',
-      width: oTheme.spacing(11),
+      width: oTheme.spacing(9),
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
         transform: 'translate(14px, -5px) scale(0.65)'
       },
