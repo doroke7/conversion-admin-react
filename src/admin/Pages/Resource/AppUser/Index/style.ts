@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, grey, common } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -50,7 +50,20 @@ const style = makeStyles((oTheme: Theme): any =>
         }
       },
       '& .MuiDataGrid-footerContainer': {
-        background: grey[50]
+      },
+      '& .MuiDataGrid-dataContainer': {
+        //  backgroundColor: common['white']
+      },
+      '& .MuiDataGrid-window': {
+        // minHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
+        // maxHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
+        scrollbarWidth: 'thin',
+        //  backgroundColor: grey[100],
+        overflowX: 'hidden'
+      },
+      '&  .MuiDataGrid-row': {
+        //  backgroundColor: common['white']
+
       }
     },
     dataGrid: {
@@ -64,7 +77,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     formControl: {
-      width: oTheme.spacing(7),
+      width: oTheme.spacing(8),
       '& .MuiInputBase-root': {
         fontSize: oTheme.spacing(1.75),
       },
@@ -148,6 +161,8 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '& .next': {
         verticalAlign: 'middle',
+        fontSize: oTheme.spacing(1.75),
+
       }
     }
   })

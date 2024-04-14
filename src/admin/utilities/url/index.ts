@@ -5,13 +5,11 @@ let cUrl = (sRoute: string, oParams: any) => {
     limit: 10,
     ...oParams
   };
-  for (let sKey in oParams) {
-    sResult = sResult.replace(':' + sKey, oParams[sKey]);
-  }
+  let aParams = Object.entries(oParams).map(([sKey, sValue]: [string, string]) => (`${encodeURIComponent(sKey)}=${encodeURIComponent(sValue)}`));
 
-  sResult = sResult.replace(/^\/+/, '');
+  let sParams = aParams.join('&');
 
-  sResult = '/' + sResult;
+  sResult = '?' + sParams;
   return sResult;
 };
 

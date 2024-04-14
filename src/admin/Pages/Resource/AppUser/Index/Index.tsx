@@ -52,9 +52,7 @@ function Index(oProps: any): any {
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(10);
-  let [sStatePage, cSetStatePage] = useState<string>('');
-  let [bStateSearchDialog, cSetStateSearchDialog] = useState<boolean>(false);
-  let [bStatePageDialog, cSetStatePageDialog] = useState<boolean>(false);
+  let [iStatePage, cSetStatePage] = useState<number>(0);
 
 
   let iLimit = Number(oUrlSearchParams.get('limit')) || 10;
@@ -124,6 +122,10 @@ function Index(oProps: any): any {
   ];
 
   useEffect(() => {
+    cSetStateRows(aAppUsers);
+  }, [aAppUsers]);
+
+  useEffect(() => {
     (async () => {
 
       cSetStateLoading(true);
@@ -147,16 +149,13 @@ function Index(oProps: any): any {
       cSetStateCount(iCount);
       cSetStateLoading(false);
       cSetStateLimit(iLimit);
+      cSetStatePage(iPage);
 
       cSetPageMax(iCount);
 
     })();
   }, [iPage, iLimit]);
 
-  useEffect(() => {
-    cSetStateRows(aAppUsers);
-
-  }, [aAppUsers]);
 
 
 
@@ -172,17 +171,23 @@ function Index(oProps: any): any {
   let cHandleChangeLimit = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iLimit = Number(oEvent.target.value);
 
-    let oOtherParams = {
+    oParams = {
       ...oParams,
       limit: iLimit
     };
-    let sUrl = utilities.url(oRouteMatch.path, oOtherParams);
+    let sUrl = utilities.url(oRouteMatch.path, oParams);
+
+
+    console.log(oParams);
+    console.log(oRouteMatch);
+    console.log(sUrl);
+
     oHistory.push(sUrl);
   };
 
   let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-    let sPage = oEvent.target.value;
-    cSetStatePage(sPage);
+    let iPage = Number(oEvent.target.value);
+    cSetStatePage(iPage);
   };
 
   let cHandleKeyPressPage = (oEvent: any) => {
@@ -192,32 +197,26 @@ function Index(oProps: any): any {
   };
 
   let cHandleBlurPage = (oEvent: any) => {
-    let iPage = Number(sStatePage);
+    let iPage = Number(iStatePage);
   };
 
   let cHandleSearchClick = (oEvent: any) => {
-    cSetStateSearchDialog(true);
+    //  cSetStateSearchDialog(true);
   };
 
   let cHandleSearchCancleClick = (oEvent: any) => {
-    cSetStateSearchDialog(false);
+    // cSetStateSearchDialog(false);
 
   };
 
   let cHandlePageClick = (oEvent: any) => {
-    cSetStatePageDialog(true);
+    //  cSetStatePageDialog(true);
   };
 
   let cHandlePageCancleClick = (oEvent: any) => {
-    cSetStatePageDialog(false);
+    // cSetStatePageDialog(false);
   };
-  /*
-   * NOTE: 一般使用者 习惯从 1 开始标记为第一页
-   * NOTE: API 接口服务 1 开始标记为第一页
-   * NOTE: <DataGrid>  0 开始标记为第一页
-   * NOTE: MYSQL  0 开始标记为第一页
 
-   */
 
   return (
     <div className="app-user">
@@ -244,14 +243,14 @@ function Index(oProps: any): any {
           boundaryCount={1}
           showFirstButton
           showLastButton
-          page={Number(oParams.page ?? 1)}
+          page={iStatePage}
           onChange={cHandleChange}
         />
 
         <span className={oClasses.page}>
           <TextField
             id="page"
-            value={sStatePage}
+            value={iStatePage}
             onChange={cHandleChangePage}
             onKeyPress={cHandleKeyPressPage}
             onBlur={cHandleBlurPage}
@@ -270,17 +269,17 @@ function Index(oProps: any): any {
           rowCount={aStateRows.length == 0 ? 0 : iStateCount}
           rows={aStateRows}
           page={0}
-          pageSize={oParams.size}
+          pageSize={iStateLimit}
           loading={bStateLoading}
           checkboxSelection={true}
           disableSelectionOnClick={true}
           hideFooterPagination={true}
           scrollbarSize={0}
           hideFooter={true}
-          autoHeight={true}
+          autoHeight={false}
           autoPageSize={false}
-          disableColumnMenu={true}
-          rowHeight={oLimitToHeight[iStateLimit] ?? oLimitToHeight[10]}
+          disableColumnMenu={false}
+          rowHeight={28}
           components={{
             NoRowsOverlay: Components.NoRowsOverlay,
             LoadingOverlay: Components.LoadingOverlay
