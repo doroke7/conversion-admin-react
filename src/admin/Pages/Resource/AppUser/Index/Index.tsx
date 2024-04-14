@@ -156,7 +156,7 @@ function Index(oProps: any): any {
       let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oParam, oOption, oSearch);
 
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
-      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / ((iLimit ?? 10) || 10)) || 1;
+      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
       oDispatch(actions.appUsers.set(aAppUsers));
 
