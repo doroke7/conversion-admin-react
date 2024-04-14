@@ -254,13 +254,13 @@ function Index(oProps: any): any {
           <SearchIcon></SearchIcon>
         </IconButton>
         <FormControl variant="outlined" className={oClasses.formControl}>
-          <InputLabel id="demo-simple-select-filled-label">筆</InputLabel>
+          <InputLabel id="demo-simple-select-filled-label">笔</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="limit"
             value={iStateLimit}
             onChange={cHandleChangeLimitOfSelect}
-            label="筆"
+            label="笔"
           >
             <MenuItem className={oClasses.menuItem} value={10}>10</MenuItem>
             <MenuItem className={oClasses.menuItem} value={20}>20</MenuItem>
