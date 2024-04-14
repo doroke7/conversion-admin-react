@@ -56,7 +56,7 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(0);
 
 
-  let iLimit = Number(oUrlSearchParams.get('limit')) || 10;
+  let iLimit = Number(oUrlSearchParams.get('limit')) || 20;
   let iPage = Number(oUrlSearchParams.get('page')) || 1;
 
   let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
