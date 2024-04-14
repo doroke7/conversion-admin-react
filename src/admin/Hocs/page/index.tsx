@@ -32,7 +32,6 @@ let page = (Component: any): any => {
         //   time: 3 * 1000
         // };
         // events.emit('Alerts-onAlert', oMessage);
-        // let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: 1 });
         // oHistory.push(sUrl);
       }
       if (iPage > oState.max) {
@@ -42,7 +41,6 @@ let page = (Component: any): any => {
         //   time: 3 * 1000
         // };
         // events.emit('Alerts-onAlert', oMessage);
-        // let sUrl = utilities.url(oRouteMatch.path, { ...oParams, page: oState.max });
         // oHistory.push(sUrl);
       }
       return () => {};

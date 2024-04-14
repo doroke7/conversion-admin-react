@@ -16,4 +16,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default Hocs.authenticator(Index);
+export default Hocs.authorization(Index);

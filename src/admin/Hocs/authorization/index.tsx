@@ -51,7 +51,6 @@ let authenticator = (Component: any): any => {
           };
 
           let oSearch = {
-
           };
 
           let oOption = {
@@ -63,12 +62,12 @@ let authenticator = (Component: any): any => {
           let sAuthorizations = oResponse?.data?.raw?.one?.authorizations ?? '00000000';
           let oAdminUser = oResponse?.data?.raw?.one?.adminUser ?? {};
 
+          console.log('hoc oResponse=', oResponse);
+
           cSetStateAuthorizations(sAuthorizations);
 
           if (
-            oResponse?.data?.code === undefined ||
-            (oResponse?.data?.code >= 0 && !sJwt) ||
-            oResponse?.data?.code <= -1
+            oResponse?.data?.code === undefined || !sJwt || oResponse?.data?.code <= -1
           ) {
             let sMessage = '未知错误';
 
@@ -86,22 +85,6 @@ let authenticator = (Component: any): any => {
 
               events.emit('Alerts-onAlert', oMessage);
               oHistory.push(aRedirections[0]);
-            }
-          }
-
-          if (oResponse?.data?.code >= 0 && sJwt) {
-            Helpers.Authentication.set(sJwt);
-            if (!aRedirections[1]) {
-              Helpers.Path.remove();
-            }
-            if (aRedirections[1]) {
-              let oMessage = {
-                code: 1,
-                message: '令牌持续有效, 即将跳转主页',
-                time: 3 * 1000
-              };
-              events.emit('Alerts-onAlert', oMessage);
-              oHistory.push(aRedirections[1]);
             }
           }
 

@@ -47,7 +47,7 @@ function SignIn(): any {
     </div>
   );
 }
-export default Hocs.authenticator(Hocs.title(SignIn));
+export default Hocs.authorization(Hocs.title(SignIn));
 
 /**
  * 

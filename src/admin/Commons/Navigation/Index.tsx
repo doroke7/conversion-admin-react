@@ -253,7 +253,7 @@ function Navigation(oProps: any) {
         page: 1,
         limit: 10
       };
-      let sUrl = utilities.url(oAdminUserLink.url, oParams);
+      let sUrl = utilities.url('', oAdminUserLink.url, oParams);
       oHistory.push(sUrl);
     };
 
@@ -277,6 +277,7 @@ function Navigation(oProps: any) {
       let oThisAdminMenu = {
         id: oAdminMenu.id,
         uri: oAdminMenu.uri,
+        path: oAdminMenu.path,
         query: '',
         text: oAdminMenu.text,
         icon: oAdminMenu.icon,
@@ -288,7 +289,13 @@ function Navigation(oProps: any) {
         oTextRef.current = oAdminMenu.text ?? '';
 
         cSetStateText(oAdminMenu.text);
-        let sUrl = utilities.url(oThisAdminMenu.uri, oParams);
+        let sUrl = utilities.url('/', oThisAdminMenu.uri, oParams);
+
+        console.log('oAdminMenu=', oAdminMenu);
+        console.log('oThisAdminMenu=', oThisAdminMenu);
+        console.log('oParams=', oParams);
+        console.log('sUrl=', sUrl);
+
         //
         oHistory.push(sUrl);
       }
@@ -366,7 +373,7 @@ function Navigation(oProps: any) {
 
     }
 
-    let sUrl = utilities.url(oRoute.url, oRoute?.params);
+    let sUrl = utilities.url('', oRoute.url, oRoute?.params);
 
     let oTab = {
       id: oRoute.id,

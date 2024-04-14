@@ -180,7 +180,7 @@ function Index(oProps: any): any {
       ...oParams,
       page: iPage
     };
-    let sUrl = utilities.url(oRouteMatch.path, oNextPageParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oNextPageParams);
     oHistory.push(sUrl);
   };
 
@@ -191,7 +191,7 @@ function Index(oProps: any): any {
       ...oParams,
       limit: iLimit
     };
-    let sUrl = utilities.url(oRouteMatch.path, oParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oParams);
 
 
     console.log(oParams);
@@ -306,4 +306,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default Hocs.authenticator(Hocs.tab(Hocs.page(Hocs.title(Index))));
+export default Hocs.authorization(Hocs.tab(Hocs.page(Hocs.title(Index))));

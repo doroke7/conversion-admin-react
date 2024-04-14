@@ -9,4 +9,4 @@ function Index(oProps: any): any {
   let oClasses: any = style(void 0);
   return <div className={oClasses.root}></div>;
 }
-export default Hocs.authenticator(Hocs.tab(Hocs.title(Index)));
+export default Hocs.authorization(Hocs.tab(Hocs.title(Index)));
