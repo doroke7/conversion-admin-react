@@ -253,7 +253,7 @@ function Navigation(oProps: any) {
         page: 1,
         limit: 10
       };
-      let sUrl = utilities.url('', oAdminUserLink.url, oParams);
+      let sUrl = utilities.url('', oAdminUserLink.url, {});
       oHistory.push(sUrl);
     };
 
@@ -285,7 +285,7 @@ function Navigation(oProps: any) {
         oTextRef.current = oAdminMenu.text ?? '';
 
         cSetStateText(oAdminMenu.text);
-        let sUrl = utilities.url('/', oThisAdminMenu.uri, oParams);
+        let sUrl = utilities.url('/', oThisAdminMenu.uri, {});
         oHistory.push(sUrl);
       }
     };
