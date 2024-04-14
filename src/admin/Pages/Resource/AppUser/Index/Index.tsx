@@ -95,7 +95,7 @@ function Index(oProps: any): any {
         let sUrl = oProps?.row?.app?.url;
 
         return (
-          <Tooltip title={sTitle}>
+          <Tooltip title={sTitle} placement="right">
             <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
               {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
             </Avatar>
