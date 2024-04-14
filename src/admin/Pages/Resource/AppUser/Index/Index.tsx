@@ -175,20 +175,20 @@ function Index(oProps: any): any {
 
 
 
-  let cHandleChange = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
-    let oNextPageParams = {
-      ...oParams,
-      page: iPage
+  let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+    let oParams = {
+      page: iPage,
+      limit: iLimit
     };
-    let sUrl = utilities.url('', oRouteMatch.path, oNextPageParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oParams);
     oHistory.push(sUrl);
   };
 
-  let cHandleChangeLimit = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+  let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iLimit = Number(oEvent.target.value);
 
     oParams = {
-      ...oParams,
+      page: iPage,
       limit: iLimit
     };
     let sUrl = utilities.url('', oRouteMatch.path, oParams);
@@ -201,18 +201,18 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleChangePage = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+  let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let iPage = Number(oEvent.target.value);
     cSetStatePage(iPage);
   };
 
-  let cHandleKeyPressPage = (oEvent: any) => {
+  let cHandleKeyPressPageOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
       // 
     }
   };
 
-  let cHandleBlurPage = (oEvent: any) => {
+  let cHandleBlurPageOfTextField = (oEvent: any) => {
     let iPage = Number(iStatePage);
   };
 
@@ -241,7 +241,7 @@ function Index(oProps: any): any {
           <SearchIcon></SearchIcon>
         </IconButton>
         <FormControl className={oClasses.formControl}>
-          <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeLimit}>
+          <Select labelId="demo-simple-select-label" id="size" value={iStateLimit} onChange={cHandleChangeLimitOfSelect}>
             <MenuItem className={oClasses.menuItem} value={10}>10笔</MenuItem>
             <MenuItem className={oClasses.menuItem} value={20}>20笔</MenuItem>
             <MenuItem className={oClasses.menuItem} value={50}>50笔</MenuItem>
@@ -260,16 +260,16 @@ function Index(oProps: any): any {
           showFirstButton
           showLastButton
           page={iStatePage}
-          onChange={cHandleChange}
+          onChange={cHandleChangePageOfPagination}
         />
 
         <span className={oClasses.page}>
           <TextField
             id="page"
             value={iStatePage}
-            onChange={cHandleChangePage}
-            onKeyPress={cHandleKeyPressPage}
-            onBlur={cHandleBlurPage}
+            onChange={cHandleChangePageOfTextField}
+            onKeyPress={cHandleKeyPressPageOfTextField}
+            onBlur={cHandleBlurPageOfTextField}
           />
           <span className="next">&ensp;页</span>
         </span>
