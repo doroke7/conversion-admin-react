@@ -270,10 +270,6 @@ function Navigation(oProps: any) {
         return;
       }
 
-      let oParams = {
-        page: 1,
-        limit: 10
-      };
       let oThisAdminMenu = {
         id: oAdminMenu.id,
         uri: oAdminMenu.uri,
@@ -290,13 +286,6 @@ function Navigation(oProps: any) {
 
         cSetStateText(oAdminMenu.text);
         let sUrl = utilities.url('/', oThisAdminMenu.uri, oParams);
-
-        console.log('oAdminMenu=', oAdminMenu);
-        console.log('oThisAdminMenu=', oThisAdminMenu);
-        console.log('oParams=', oParams);
-        console.log('sUrl=', sUrl);
-
-        //
         oHistory.push(sUrl);
       }
     };
