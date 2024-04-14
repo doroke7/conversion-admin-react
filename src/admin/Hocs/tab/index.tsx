@@ -20,13 +20,13 @@ let tab = (Component: any): any => {
     let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
 
     let iAppId = Number(oParams?.appId ?? 0);
+    let oOptions = {};
 
-    let iPage = Number(oURLSearchParams.get('page'));
-    let iLimit = Number(oURLSearchParams.get('limit'));
-    let oOptions = {
-      page: iPage,
-      limit: iLimit
+    for (let [sKey, mValue] of oURLSearchParams) {
+      oOptions[sKey] = mValue;
     };
+
+    let sURLSearchParams = oURLSearchParams.toString();
 
     useEffect(() => {
 
@@ -42,7 +42,7 @@ let tab = (Component: any): any => {
       };
       events.emit('Navigation-onTab', oRoute);
       return () => { };
-    }, [oParams.appId, iPage, iLimit]);
+    }, [oParams.appId, sURLSearchParams]);
 
 
     return <Component {...oProps}></Component>;

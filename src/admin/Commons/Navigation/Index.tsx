@@ -86,7 +86,7 @@ function Navigation(oProps: any) {
           cAdminSystemAppShowOnes(),
           Sdks.Admin.System.AdminUserLink.getShowOnes()
         ]);
-        
+
         let oAppResponse = aResponses[0];
         let oAdminUserLinkResponse = aResponses[1];
 
@@ -119,6 +119,87 @@ function Navigation(oProps: any) {
       cSetStateAdminMenus(aAdminMenus);
     })();
   }, [iAppId]);
+
+
+  useEffect(() => {
+    let cClickAdminUserLink = (oAdminUserLink: any) => {
+      let sUrl = utilities.url('/', oAdminUserLink.url, {});
+      oHistory.push(sUrl);
+    };
+
+    let oEventEmitter: any = events.addListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
+    return () => {
+      events.removeListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
+    };
+  }, [aStateTabs, bStateOpen, iStateIndex]);
+
+  useEffect(() => {
+    let cClickAdminMenu = (oAdminMenu: any) => {
+      // 如果 Menu 旗下还有子 menu 就不做事
+      if (oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu.adminMenus.length >= 1) {
+        return;
+      }
+
+      let oThisAdminMenu = {
+        id: oAdminMenu.id,
+        uri: oAdminMenu.uri,
+        path: oAdminMenu.path,
+        options: {},
+        text: oAdminMenu.text,
+        icon: oAdminMenu.icon,
+        content: oAdminMenu.description
+      };
+      oTextRef.current = oAdminMenu.text ?? '';
+
+      if (oThisAdminMenu) {
+        oTextRef.current = oAdminMenu.text ?? '';
+
+        cSetStateText(oAdminMenu.text);
+        let sUrl = utilities.url('/', oThisAdminMenu.uri, {});
+        oHistory.push(sUrl);
+      }
+    };
+    let oEventEmitter: any = events.addListener('Navigation-onClickAdminMenu', cClickAdminMenu);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.removeListener('Navigation-onClickAdminMenu', cClickAdminMenu);
+    };
+  }, [aStateTabs, bStateOpen, iStateIndex]);
+
+  useLayoutEffect(() => {
+    let cClickApp = (iIndex: any) => {
+      if (oAdminUser?.id) {
+        let iAppId = aStateApps?.[iIndex]?.id;
+
+        if (iIndex == iStateIndex) {
+          // DO NOTHING
+          // 点击的 App 跟当前 app 相同
+        }
+
+        if (iIndex != iStateIndex) {
+          let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId);
+          let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
+
+          let aTabs = [...aTabs1, ...aTabs0];
+          let iValue = -1;
+          cSetStateIndex(iIndex);
+          cSetStateTabs(aTabs);
+          cSetStateValue(iValue);
+          if (iIndex >= 0) {
+            oHistory.push('/admin/resource');
+          }
+        }
+      }
+
+    };
+    let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.removeListener('Navigation-onClickApp', cClickApp);
+    };
+  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oAdminUser.id]);
+
+
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -255,84 +336,6 @@ function Navigation(oProps: any) {
     };
   }, [iStateValue, bStateOpen, iStateIndex, aStateTabs]);
 
-  useEffect(() => {
-    let cClickAdminUserLink = (oAdminUserLink: any) => {
-      let sUrl = utilities.url('/', oAdminUserLink.url, {});
-      oHistory.push(sUrl);
-    };
-
-    let oEventEmitter: any = events.addListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
-    return () => {
-      events.removeListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
-    };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
-
-  useEffect(() => {
-    let cClickAdminMenu = (oAdminMenu: any) => {
-      // 如果 Menu 旗下还有子 menu 就不做事
-      if (oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu.adminMenus.length >= 1) {
-        return;
-      }
-
-      let oThisAdminMenu = {
-        id: oAdminMenu.id,
-        uri: oAdminMenu.uri,
-        path: oAdminMenu.path,
-        options: {},
-        text: oAdminMenu.text,
-        icon: oAdminMenu.icon,
-        content: oAdminMenu.description
-      };
-      oTextRef.current = oAdminMenu.text ?? '';
-
-      if (oThisAdminMenu) {
-        oTextRef.current = oAdminMenu.text ?? '';
-
-        cSetStateText(oAdminMenu.text);
-        let sUrl = utilities.url('/', oThisAdminMenu.uri, {});
-        oHistory.push(sUrl);
-      }
-    };
-    let oEventEmitter: any = events.addListener('Navigation-onClickAdminMenu', cClickAdminMenu);
-    // 组件销毁前移除事件监听
-    return () => {
-      events.removeListener('Navigation-onClickAdminMenu', cClickAdminMenu);
-    };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
-
-  useLayoutEffect(() => {
-    let cClickApp = (iIndex: any) => {
-      if (oAdminUser?.id) {
-        let iAppId = aStateApps?.[iIndex]?.id;
-
-        if (iIndex == iStateIndex) {
-          // DO NOTHING
-          // 点击的 App 跟当前 app 相同
-        }
-
-        if (iIndex != iStateIndex) {
-          let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId);
-          let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
-
-          let aTabs = [...aTabs1, ...aTabs0];
-          let iValue = -1;
-          cSetStateIndex(iIndex);
-          cSetStateTabs(aTabs);
-          cSetStateValue(iValue);
-          if (iIndex >= 0) {
-            oHistory.push('/admin/resource');
-          }
-        }
-      }
-
-    };
-    let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
-    // 组件销毁前移除事件监听
-    return () => {
-      events.removeListener('Navigation-onClickApp', cClickApp);
-    };
-  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oAdminUser.id]);
-
   let cOnTab = useCallback((oRoute: any) => {
     console.log('OnTab 行为发生 oRoute=', oRoute);
     let iAdminUserId = oRoute.adminUserId;
@@ -352,12 +355,7 @@ function Navigation(oProps: any) {
       let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
       aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
       aTabs = iStateIndex == -1 ? [...aTabs1, ...aTabs0] : aTabs;
-
-      let iResultIndex = -1;
-
-      if (iStateIndex >= 0) {
-        iResultIndex = iStateIndex;
-      }
+      let iResultIndex = iStateIndex >= 0 ? iStateIndex : -1;
 
       if (iStateIndex <= -1) {
         for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
@@ -371,13 +369,11 @@ function Navigation(oProps: any) {
 
       }
 
-      let sUrl = utilities.url('', oRoute.url, oRoute?.params);
-
       let oTab = {
         id: oRoute.id,
         path: oRoute.path,
         url: oRoute.url,
-        param: oRoute?.params ?? {},
+        params: oRoute?.params ?? {},
         options: oRoute?.options ?? {},
         text: oRoute?.text || oTextRef?.current,
         icon: oRoute.icon ?? ''
@@ -399,6 +395,8 @@ function Navigation(oProps: any) {
             }
             aTabs1[iTabIndex]['icon'] = oTab?.icon;
             aTabs1[iTabIndex]['url'] = oTab?.url;
+            aTabs1[iTabIndex]['params'] = oTab?.params;
+            aTabs1[iTabIndex]['options'] = oTab?.options;
 
             bExist = true;
             break;
@@ -416,6 +414,8 @@ function Navigation(oProps: any) {
             }
             aTabs0[iTabIndex]['icon'] = oTab?.icon;
             aTabs0[iTabIndex]['url'] = oTab?.url;
+            aTabs0[iTabIndex]['params'] = oTab?.params;
+            aTabs0[iTabIndex]['options'] = oTab?.options;
 
             bExist = true;
             break;
@@ -429,12 +429,14 @@ function Navigation(oProps: any) {
         aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
         aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
 
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iParamsAppId);
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+
         aTabs = [...aTabs1, ...aTabs0];
         iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
 
       }
+
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iParamsAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
