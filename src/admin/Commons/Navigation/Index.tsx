@@ -327,8 +327,9 @@ function Navigation(oProps: any) {
 
   let cOnTab = useCallback((oRoute: any) => {
     console.log('OnTab 行为发生 oRoute=', oRoute);
+    let iAdminUserId = oRoute.adminUserId;
 
-    if (oAdminUser.id) {
+    if (iAdminUserId) {
       // TODO
       // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
 
@@ -337,8 +338,8 @@ function Navigation(oProps: any) {
 
       let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
-      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser.id, iAppId) : [];
-      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser.id, 0);
+      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId) : [];
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
 
       let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
       aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
@@ -419,8 +420,8 @@ function Navigation(oProps: any) {
         aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
         aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
 
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oAdminUser.id, iParamsAppId);
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oAdminUser.id, 0);
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iParamsAppId);
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
         aTabs = [...aTabs1, ...aTabs0];
         iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
 
@@ -433,7 +434,7 @@ function Navigation(oProps: any) {
 
 
 
-  }, [iStateIndex, aStateApps, oAdminUser.id]);
+  }, [iStateIndex, aStateApps]);
 
   useLayoutEffect(() => {
 

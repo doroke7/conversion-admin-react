@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, Suspense } from 'react';
+import React, { useEffect, useState, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -14,7 +14,7 @@ import style from './style';
 
 function App(oProps: any) {
   let oClasses: any = style(void 0);
-  let [aRoutes, cSetRoutes] = React.useState(router.admin.routes);
+  let [aRoutes, cSetRoutes] = useState(router.admin.routes);
   // TODO    IMPORTANT 有问题的写法，
   // 去掉会造成 Page组件 读取不到，可能跟懒加载有关系
 

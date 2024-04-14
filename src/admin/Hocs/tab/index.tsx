@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouteMatch, useParams, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Contexts from '@/admin/Contexts/Index';
 import events from '@/admin/events/index';
@@ -10,11 +11,12 @@ let tab = (Component: any): any => {
     let sId = oProps.id ?? '0-0-0';
     let sText = oProps.text ?? '未定义';
     let sPath = oProps.path ?? '';
-    let cOnTab = oProps.onTab ?? (() => (void 0));
 
     let oLocation = useLocation();
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
+    let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
+
     let iAppId = Number(oParams?.appId ?? 0);
 
     useEffect(() => {
@@ -26,7 +28,8 @@ let tab = (Component: any): any => {
         params: oParams,
         path: sPath,
         icon: sIcon,
-        query: ''
+        query: '',
+        adminUserId: oAdminUser.id
       };
       events.emit('Navigation-onTab', oRoute);
       return () => { };
