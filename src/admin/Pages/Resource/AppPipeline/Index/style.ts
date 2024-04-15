@@ -189,8 +189,8 @@ const style = makeStyles((oTheme: Theme): any =>
 
       }
     },
+
     textField: {
-      width: oTheme.spacing(8),
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
         transform: 'translate(14px, -5px) scale(0.65)'
       },
@@ -201,6 +201,16 @@ const style = makeStyles((oTheme: Theme): any =>
         textAlign: 'right',
         fontSize: oTheme.spacing(1.75),
       },
+
+    },
+    textFieldName: {
+      width: oTheme.spacing(20),
+
+
+    },
+
+    textFieldPage: {
+      width: oTheme.spacing(8),
 
     }
   })

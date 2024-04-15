@@ -241,8 +241,19 @@ function Index(oProps: any): any {
 
 
   return (
-    <div className="app-user">
+    <div className="app-pipeline">
       <div className={oClasses.paginationWrapper}>
+
+        <TextField
+          className={clsx(oClasses.textField, oClasses.textFieldName)}
+          id="name"
+          label="名称"
+          size="small"
+          variant="outlined"
+          value={iStatePage}
+          onChange={cHandleChangePageOfTextField}
+          onKeyPress={cHandleKeyPressPageOfTextField}
+        />
         <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
           <SearchIcon></SearchIcon>
         </IconButton>
@@ -277,7 +288,7 @@ function Index(oProps: any): any {
         />
 
         <TextField
-          className={oClasses.textField}
+          className={clsx(oClasses.textField, oClasses.textFieldPage)}
           id="page"
           label="页"
           size="small"
