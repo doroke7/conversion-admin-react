@@ -45,7 +45,7 @@ function Index(oProps: any): any {
   let oUrlSearchParams = hooks.useURLSearchParams();
   let oDispatch = useDispatch();
 
-
+  let [sStateName, cSetStateName] = useState<string>('');
   let [iStateNumer, cSetStateNumer] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
@@ -179,6 +179,28 @@ function Index(oProps: any): any {
 
     oHistory.push(sUrl);
   };
+  let cHandleChangeNameOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    let sName = oEvent.target.value;
+    cSetStateName(sName);
+
+  };
+
+
+  let cHandleKeyPressNameOfTextField = (oEvent: any) => {
+    if (oEvent.charCode == 13) {
+      let sName = oEvent.target.value;
+
+      let oOptions = {
+        page: iStatePage,
+        limit: iStateLimit,
+        name: sName
+      };
+      let sUrl = utilities.url('', oRouteMatch.path, oOptions);
+
+      oHistory.push(sUrl);
+    }
+  };
+
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let iPage = Number(oEvent.target.value);
@@ -190,112 +212,102 @@ function Index(oProps: any): any {
     if (oEvent.charCode == 13) {
       let iPage = Number(oEvent.target.value);
 
-      oParams = {
+      let oOptions: any = {
         page: iPage,
         limit: iLimit
       };
-      let sUrl = utilities.url('', oRouteMatch.path, oParams);
+
+      sStateName && (oOptions = {
+        ...oOptions,
+        name: sStateName
+      });
+      let sUrl = utilities.url('', oRouteMatch.path, oOptions);
 
       oHistory.push(sUrl);
     }
   };
 
+
+
   let cHandleBlurPageOfTextField = (oEvent: any) => {
     let iPage = Number(oEvent.target.value);
 
-    oParams = {
-      page: iPage,
-      limit: iLimit
+    let oOptions = {
+      page: iStatePage,
+      limit: iStateLimit,
     };
-    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oOptions);
 
     oHistory.push(sUrl);
   };
 
-  let cHandleSearchClick = (oEvent: any) => {
-    //  cSetStateSearchDialog(true);
-  };
-
-  let cHandleSearchCancleClick = (oEvent: any) => {
-    // cSetStateSearchDialog(false);
-
-  };
-
-  let cHandlePageClick = (oEvent: any) => {
-    //  cSetStatePageDialog(true);
-  };
-
-  let cHandlePageCancleClick = (oEvent: any) => {
-    // cSetStatePageDialog(false);
-  };
-
-
   return (
     <div className="app-pipeline">
-      <div className={oClasses.paginationWrapper}>
+      <div className={oClasses.top}>
+        <div className={oClasses.searchWrapper}>
+          <TextField
+            className={clsx(oClasses.textField, oClasses.textFieldName)}
+            id="name"
+            label="名称"
+            size="small"
+            variant="outlined"
+            value={sStateName}
+            onChange={cHandleChangeNameOfTextField}
+            onKeyPress={cHandleKeyPressPageOfTextField}
+          />
+          <Button
+            color="primary"
+            className={oClasses.button}
+            variant="outlined"
+            endIcon={<SearchIcon></SearchIcon>}>
+            筛选
+          </Button>
+        </div>
+        <div className={oClasses.paginationWrapper}>
+          <FormControl variant="outlined" className={oClasses.formControl}>
+            <InputLabel id="demo-simple-select-filled-label">笔</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="limit"
+              value={iStateLimit}
+              onChange={cHandleChangeLimitOfSelect}
+              label="笔"
+            >
+              <MenuItem className={oClasses.menuItem} value={10}>10</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={20}>20</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={50}>50</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={100}>100</MenuItem>
+            </Select>
+          </FormControl>
+          <Pagination
+            className={oClasses.pagination}
+            count={iStateCount}
+            size="small"
+            variant="outlined"
+            shape="rounded"
+            color="primary"
+            siblingCount={1}
+            boundaryCount={1}
+            showFirstButton
+            showLastButton
+            page={iStatePage}
+            onChange={cHandleChangePageOfPagination}
+          />
 
-        <TextField
-          className={clsx(oClasses.textField, oClasses.textFieldName)}
-          id="name"
-          label="名称"
-          size="small"
-          variant="outlined"
-          value={iStatePage}
-          onChange={cHandleChangePageOfTextField}
-          onKeyPress={cHandleKeyPressPageOfTextField}
-        />
-        <Button
-          color="primary"
-          className={oClasses.submitButton}
-          variant="outlined"
-          endIcon={<SearchIcon></SearchIcon>}>
-          筛选
-        </Button>
-        <FormControl variant="outlined" className={oClasses.formControl}>
-          <InputLabel id="demo-simple-select-filled-label">笔</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="limit"
-            value={iStateLimit}
-            onChange={cHandleChangeLimitOfSelect}
-            label="笔"
-          >
-            <MenuItem className={oClasses.menuItem} value={10}>10</MenuItem>
-            <MenuItem className={oClasses.menuItem} value={20}>20</MenuItem>
-            <MenuItem className={oClasses.menuItem} value={50}>50</MenuItem>
-            <MenuItem className={oClasses.menuItem} value={100}>100</MenuItem>
-          </Select>
-        </FormControl>
-        <Pagination
-          className={oClasses.pagination}
-          count={iStateCount}
-          size="small"
-          variant="outlined"
-          shape="rounded"
-          color="primary"
-          siblingCount={1}
-          boundaryCount={1}
-          showFirstButton
-          showLastButton
-          page={iStatePage}
-          onChange={cHandleChangePageOfPagination}
-        />
-
-        <TextField
-          className={clsx(oClasses.textField, oClasses.textFieldPage)}
-          id="page"
-          label="页"
-          size="small"
-          variant="outlined"
-          value={iStatePage}
-          onChange={cHandleChangePageOfTextField}
-          onKeyPress={cHandleKeyPressPageOfTextField}
-          onBlur={cHandleBlurPageOfTextField}
-        />
-        <IconButton color="primary" aria-label="页数" className={oClasses.pageButton} onClick={cHandlePageClick}>
-          <MenuBookTwoToneIcon></MenuBookTwoToneIcon>
-        </IconButton>
+          <TextField
+            className={clsx(oClasses.textField, oClasses.textFieldPage)}
+            id="page"
+            label="页"
+            size="small"
+            variant="outlined"
+            value={iStatePage}
+            onChange={cHandleChangePageOfTextField}
+            onKeyPress={cHandleKeyPressPageOfTextField}
+            onBlur={cHandleBlurPageOfTextField}
+          />
+        </div>
       </div>
+
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
           className={clsx(oClasses.dataGrid, {})}

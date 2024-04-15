@@ -3,41 +3,47 @@ import { pink, grey, common } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
-    dialogForSearch: {
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit'
-      },
-      '& .MuiDialogActions-root': {
-        padding:
-          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
-      }
+    top: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr'
     },
-    dialogForPage: {
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit'
-      },
-      '& .MuiDialogActions-root': {
-        padding:
-          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
-      }
-    },
-    submitButton: {
-      minWidth: oTheme.spacing(12),
+    button: {
+      minWidth: oTheme.spacing(8),
+      height: oTheme.spacing(3.25),
       [oTheme.breakpoints.down('sm')]: {
         width: '100%',
-        height: oTheme.spacing(7)
+        height: oTheme.spacing(4)
       }
     },
-    closeButton: {
-      position: 'absolute',
-      right: oTheme.spacing(2),
-      top: oTheme.spacing(2),
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      borderRadius: oTheme.spacing(0.5)
+
+    textField: {
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -5px) scale(0.65) !important'
+      },
+      '& .MuiInputLabel-outlined.MuiInputLabel-marginDense': {
+        transform: 'translate(14px, 7px) scale(0.9)'
+      },
+
+      '& .MuiOutlinedInput-root': {
+        height: oTheme.spacing(3.25),
+      },
+      '& .MuiInputBase-input': {
+        textAlign: 'right',
+        fontSize: oTheme.spacing(1.75),
+      },
+
     },
+    textFieldName: {
+      width: oTheme.spacing(20),
+      marginRight: oTheme.spacing(2),
+
+    },
+
+    textFieldPage: {
+      width: oTheme.spacing(8),
+
+    },
+
     dataGridWrapper: {
       marginTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
@@ -121,7 +127,6 @@ const style = makeStyles((oTheme: Theme): any =>
       alignItems: 'center',
       justifyContent: 'flex-end',
       marginRight: oTheme.spacing(0),
-      marginBottom: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -148,16 +153,7 @@ const style = makeStyles((oTheme: Theme): any =>
         marginTop: -oTheme.spacing(2)
       }
     },
-    searchButton: {
-      border: '1px solid ' + grey[400],
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit',
-        marginTop: oTheme.spacing(2)
-      }
-    },
+
     pageButton: {
       border: '1px solid ' + grey[400],
       width: oTheme.spacing(4),
@@ -190,29 +186,7 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
 
-    textField: {
-      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
-        transform: 'translate(14px, -5px) scale(0.65)'
-      },
-      '& .MuiOutlinedInput-root': {
-        height: oTheme.spacing(3.25),
-      },
-      '& .MuiInputBase-input': {
-        textAlign: 'right',
-        fontSize: oTheme.spacing(1.75),
-      },
 
-    },
-    textFieldName: {
-      width: oTheme.spacing(20),
-
-
-    },
-
-    textFieldPage: {
-      width: oTheme.spacing(8),
-
-    }
   })
 );
 
