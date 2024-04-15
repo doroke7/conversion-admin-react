@@ -28,7 +28,7 @@ let aRoutes = [
     routes: [
       {
         id: '2-1-0',
-        path: '/app-pipeline/index/app-id/:appId',
+        path: '/app-pipeline/index/app-id/:appId/page/:page/limit/:limit',
         title: '任务列表',
         text: '任务列表',
         icon: '',
@@ -39,7 +39,7 @@ let aRoutes = [
       },
       {
         id: '2-2-0',
-        path: '/app/index',
+        path: '/app/index/page/:page/limit/:limit',
         title: '应用列表',
         text: '应用列表',
         icon: '',
@@ -50,7 +50,7 @@ let aRoutes = [
       },
       {
         id: '2-3-0',
-        path: '/app-user/index',
+        path: '/app-user/index/page/:page/limit/:limit',
         title: '账号列表',
         text: '账号列表',
         icon: '',
@@ -61,7 +61,7 @@ let aRoutes = [
       },
       {
         id: '2-4-0',
-        path: '/admin-role/index',
+        path: '/admin-role/index/page/:page/limit/:limit',
         title: '角色列表',
         text: '角色列表',
         icon: '',

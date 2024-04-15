@@ -54,8 +54,8 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
 
 
-  let iLimit = Number(oUrlSearchParams.get('limit')) || 20;
-  let iPage = Number(oUrlSearchParams.get('page')) || 1;
+  let iLimit = oParams.limit || 20;
+  let iPage = oParams.page || 1;
   let sName = String(oUrlSearchParams.get('name')) || '';
 
   let oMe = useSelector((oStore: any) => (oStore.me));
@@ -165,22 +165,16 @@ function Index(oProps: any): any {
   }, [iPage, iLimit]);
 
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
-    let oParams = {
-      page: iPage,
-      limit: iLimit
-    };
-    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
     oHistory.push(sUrl);
   };
 
   let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iLimit = Number(oEvent.target.value);
 
-    oParams = {
-      page: iPage,
-      limit: iLimit
-    };
-    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, {});
+
 
     oHistory.push(sUrl);
   };
@@ -195,12 +189,10 @@ function Index(oProps: any): any {
     if (oEvent.charCode == 13) {
       let sName = oEvent.target.value;
 
-      let oOptions = {
-        page: iStatePage,
-        limit: iStateLimit,
+      let oSearch = {
         name: sName
       };
-      let sUrl = utilities.url('', oRouteMatch.path, oOptions);
+      let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, oParams.limit, oSearch);
 
       oHistory.push(sUrl);
     }
@@ -217,16 +209,14 @@ function Index(oProps: any): any {
     if (oEvent.charCode == 13) {
       let iPage = Number(oEvent.target.value);
 
-      let oOptions: any = {
-        page: iPage,
-        limit: iLimit
+      let oSearch: any = {
       };
 
-      sStateName && (oOptions = {
-        ...oOptions,
+      sStateName && (oSearch = {
+        ...oSearch,
         name: sStateName
       });
-      let sUrl = utilities.url('', oRouteMatch.path, oOptions);
+      let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
       oHistory.push(sUrl);
     }
@@ -237,11 +227,15 @@ function Index(oProps: any): any {
   let cHandleBlurPageOfTextField = (oEvent: any) => {
     let iPage = Number(oEvent.target.value);
 
-    let oOptions = {
-      page: iStatePage,
-      limit: iStateLimit,
+    let oSearch: any = {
     };
-    let sUrl = utilities.url('', oRouteMatch.path, oOptions);
+
+    sStateName && (oSearch = {
+      ...oSearch,
+      name: sStateName
+    });
+
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
     oHistory.push(sUrl);
   };

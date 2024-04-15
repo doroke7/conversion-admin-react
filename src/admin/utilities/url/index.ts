@@ -1,9 +1,14 @@
-let cUrl = (sPrefix: string = '', sRoute: string, oParams: any = {}) => {
-  let sResult = sRoute;
+let cUrl = (sPrefix: string = '', sPath: string, iAppId: number = 0, iPage: number = 1, iLimit: number = 20, oSearch: any = {}) => {
+  let oRegex1: RegExp = /\/app-id\/:[^/]+/g;
+  let oRegex2: RegExp = /\/page\/:[^/]+/g;
+  let oRegex3: RegExp = /\/limit\/:[^/]+/g;
 
-  let aParams = Object.entries(oParams).map(([sKey, sValue]) => (`${encodeURIComponent(sKey)}=${encodeURIComponent(String(sValue))}`));
-  let sParams = aParams.join('&');
-  sResult = sPrefix + sRoute + '?' + sParams;
+  sPath = sPath.replace(oRegex1, '/app-id/' + iAppId);
+  sPath = sPath.replace(oRegex2, '/page/' + iPage);
+  sPath = sPath.replace(oRegex3, '/limit/' + iLimit);
+
+  let sResult = sPrefix + sPath;
+
 
   return sResult;
 };

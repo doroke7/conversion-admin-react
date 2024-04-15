@@ -31,8 +31,6 @@ import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 import actions from '@/admin/actions/';
 
-import SearchPannel from './SearchPannel/Index';
-
 import hooks from '@/admin/hooks';
 import style from './style';
 
@@ -47,6 +45,8 @@ function Index(oProps: any): any {
   let oUrlSearchParams = hooks.useURLSearchParams();
   let oDispatch = useDispatch();
 
+  let iLimit = Number(oParams?.limit || 20);
+  let iPage = Number(oParams?.page || 1);
 
   let [iStateNumer, cSetStateNumer] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
@@ -54,10 +54,6 @@ function Index(oProps: any): any {
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
-
-
-  let iLimit = Number(oUrlSearchParams.get('limit')) || 20;
-  let iPage = Number(oUrlSearchParams.get('page')) || 1;
 
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
@@ -127,9 +123,15 @@ function Index(oProps: any): any {
     },
   ];
 
+
+
   useEffect(() => {
-    cSetStateRows(aAppUsers);
-  }, [aAppUsers]);
+    cSetStateLimit(iLimit);
+  }, [oParams.limit]);
+
+  useEffect(() => {
+    cSetStatePage(iPage);
+  }, [oParams.page]);
 
   useEffect(() => {
     (async () => {
@@ -138,8 +140,8 @@ function Index(oProps: any): any {
 
       let oParam = {};
       let oOption = {
-        page: iPage,
-        limit: iLimit
+        page: iStatePage,
+        limit: iStateLimit
       };
       let oSearch = {};
 
@@ -150,53 +152,42 @@ function Index(oProps: any): any {
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
       oDispatch(actions.appUsers.set(aAppUsers));
 
-      cSetStateNumer(iNumber);
       cSetStateCount(iCount);
       cSetStateLoading(false);
-      cSetStateLimit(iLimit);
-      cSetStatePage(iPage);
-
-      cSetPageMax(iCount);
 
     })();
-  }, [iPage, iLimit]);
+  }, [iStatePage, iStateLimit]);
+
+  useEffect(() => {
+    cSetStateRows(aAppUsers);
+  }, [aAppUsers]);
 
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
-    let oParams = {
-      page: iPage,
-      limit: iLimit
-    };
-    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
     oHistory.push(sUrl);
   };
 
   let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iLimit = Number(oEvent.target.value);
 
-    oParams = {
-      page: iPage,
-      limit: iLimit
-    };
-    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, {});
 
     oHistory.push(sUrl);
   };
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let iPage = Number(oEvent.target.value);
-    cSetStatePage(iPage);
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
 
+    oHistory.push(sUrl);
   };
 
   let cHandleKeyPressPageOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
       let iPage = Number(oEvent.target.value);
 
-      oParams = {
-        page: iPage,
-        limit: iLimit
-      };
-      let sUrl = utilities.url('', oRouteMatch.path, oParams);
+      let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
 
       oHistory.push(sUrl);
     }
@@ -205,39 +196,20 @@ function Index(oProps: any): any {
   let cHandleBlurPageOfTextField = (oEvent: any) => {
     let iPage = Number(oEvent.target.value);
 
-    oParams = {
-      page: iPage,
-      limit: iLimit
-    };
-    let sUrl = utilities.url('', oRouteMatch.path, oParams);
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
+
 
     oHistory.push(sUrl);
   };
 
-  let cHandleSearchClick = (oEvent: any) => {
-    //  cSetStateSearchDialog(true);
-  };
 
-  let cHandleSearchCancleClick = (oEvent: any) => {
-    // cSetStateSearchDialog(false);
-
-  };
 
   let cHandlePageClick = (oEvent: any) => {
-    //  cSetStatePageDialog(true);
   };
-
-  let cHandlePageCancleClick = (oEvent: any) => {
-    // cSetStatePageDialog(false);
-  };
-
 
   return (
     <div className="app-user">
       <div className={oClasses.paginationWrapper}>
-        <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
-          <SearchIcon></SearchIcon>
-        </IconButton>
         <FormControl variant="outlined" className={oClasses.formControl}>
           <InputLabel id="demo-simple-select-filled-label">笔</InputLabel>
           <Select

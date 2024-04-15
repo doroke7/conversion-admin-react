@@ -119,7 +119,7 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cClickAdminUserLink = (oAdminUserLink: any) => {
-      let sUrl = utilities.url('/', oAdminUserLink.url, {});
+      let sUrl = utilities.url('/', oAdminUserLink.url, 0, 0, 0, {});
       oHistory.push(sUrl);
     };
 
@@ -150,7 +150,12 @@ function Navigation(oProps: any) {
       if (oThisAdminMenu) {
         oTextRef.current = oAdminMenu.text ?? '';
 
-        let sUrl = utilities.url('/', oThisAdminMenu.uri, {});
+        console.log('oThisAdminMenu=', oThisAdminMenu);
+
+        let sUrl = utilities.url('/', oThisAdminMenu.uri, 0, 0, 0, {});
+
+        console.log('sUrl=', sUrl);
+
         oHistory.push(sUrl);
       }
     };
@@ -323,7 +328,12 @@ function Navigation(oProps: any) {
 
       let oTab = aStateTabs[iValue] ?? null;
       if (oTab) {
-        let sUrl = utilities.url('', oTab.url, oTab.options);
+        let iAppId = oTab?.params?.appId ?? 0;
+        let iPage = oTab?.params?.page ?? 1;
+        let iLimit = oTab?.params?.limit ?? 20;
+        let oSearch = oTab?.search ?? {};
+
+        let sUrl = utilities.url('', oTab.path, iAppId, iPage, iLimit, oSearch);
         oHistory.push(sUrl);
       }
     };

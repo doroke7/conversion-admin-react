@@ -20,13 +20,16 @@ let tab = (Component: any): any => {
     let oMe = useSelector((oStore: any) => (oStore.me));
 
     let iAppId = Number(oParams?.appId ?? 0);
-    let oOptions = {};
+    let oSearch = {};
 
     for (let [sKey, mValue] of oURLSearchParams) {
-      oOptions[sKey] = mValue;
+      oSearch[sKey] = mValue;
     };
 
     let sURLSearchParams = oURLSearchParams.toString();
+
+    console.log('oRouteMatch=', oRouteMatch);
+    console.log('oSearch=', oSearch);
 
     useEffect(() => {
 
@@ -37,10 +40,11 @@ let tab = (Component: any): any => {
         params: oParams,
         path: sPath,
         icon: sIcon,
-        options: oOptions,
+        search: oSearch,
         adminUserId: oMe.id
       };
       events.emit('Navigation-onTab', oRoute);
+
       return () => { };
     }, [oParams.appId, sURLSearchParams]);
 
