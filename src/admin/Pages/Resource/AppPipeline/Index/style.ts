@@ -28,7 +28,7 @@ const style = makeStyles((oTheme: Theme): any =>
         height: oTheme.spacing(3.25),
       },
       '& .MuiInputBase-input': {
-        textAlign: 'right',
+        textAlign: 'left',
         fontSize: oTheme.spacing(1.75),
       },
 
@@ -36,12 +36,16 @@ const style = makeStyles((oTheme: Theme): any =>
     textFieldName: {
       width: oTheme.spacing(20),
       marginRight: oTheme.spacing(2),
-
+      '& .MuiInputBase-input': {
+        textAlign: 'left',
+      },
     },
 
     textFieldPage: {
       width: oTheme.spacing(8),
-
+      '& .MuiInputBase-input': {
+        textAlign: 'right',
+      },
     },
 
     dataGridWrapper: {

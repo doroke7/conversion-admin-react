@@ -32,7 +32,9 @@ import actions from '@/admin/actions/';
 
 
 import hooks from '@/admin/hooks';
+import State from './State/Index';
 import style from './style';
+
 
 function Index(oProps: any): any {
   let cSetPageMax = oProps.setPageMax ?? (() => void 0);
@@ -54,8 +56,9 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
 
 
-  let iLimit = oParams.limit || 20;
-  let iPage = oParams.page || 1;
+  let iLimit = Number(oParams.limit || 20);
+  let iPage = Number(oParams.page || 1);
+  let iAppId = Number(oParams.appId || 0);
   let sName = String(oUrlSearchParams.get('name')) || '';
 
   let oMe = useSelector((oStore: any) => (oStore.me));
@@ -71,50 +74,63 @@ function Index(oProps: any): any {
       editable: false
     },
     {
-      field: 'appUrl',
-      headerName: '项目',
-      description: '项目',
+      field: 'appUserName',
+      headerName: '账号',
+      description: '账号',
       sortable: false,
-      width: 84,
+      width: 184,
       align: 'left',
+      valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
+    },
+    {
+      field: 'name',
+      headerName: '档名',
+      description: '名称',
+      sortable: false,
+      width: 385,
+    },
+    {
+      field: 'width',
+      headerName: '宽度',
+      description: '宽度',
+      sortable: false,
+      width: 85,
+    },
+    {
+      field: 'height',
+      headerName: '高度',
+      description: '高度',
+      sortable: false,
+      width: 85,
+    },
+    {
+      field: 'duration',
+      headerName: '时长',
+      description: '时长',
+      sortable: false,
+      width: 145,
+    },
+    {
+      field: 'state',
+      headerName: '状态',
+      description: '状态',
+      sortable: false,
+      width: 80,
       renderCell: (oProps: any) => {
-        let sTitle = oProps?.row?.app?.title;
-        let sUrl = oProps?.row?.app?.url;
-
+        let iState = oProps?.row?.state;
         return (
-          <Tooltip title={sTitle} placement="right">
-            <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
-              {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
-            </Avatar>
-          </Tooltip>
+          <State value={iState}>
+          </State>
         );
       },
     },
     {
-      field: 'name',
-      headerName: '名称',
-      description: '名称',
-      sortable: false,
-      flex: 2,
-      width: 85,
-    },
-
-
-    {
-      field: 'sort',
-      headerName: '优先级',
-      description: '优先级',
-      width: 120,
-      sortable: false,
-      editable: false
-    },
-    {
       field: 'addedTime',
-      headerName: '创建时间',
-      description: '创建时间',
+      headerName: '启动时间',
+      description: '启动时间',
       sortable: false,
       flex: 1,
-      width: 200,
+      width: 240,
       valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
     },
     {
@@ -122,9 +138,17 @@ function Index(oProps: any): any {
       headerName: '操作',
       description: '操作',
       sortable: false,
-      width: 200
+      width: 140
     },
   ];
+
+  useEffect(() => {
+    cSetStateLimit(iLimit);
+  }, [oParams.limit]);
+
+  useEffect(() => {
+    cSetStatePage(iPage);
+  }, [oParams.page]);
 
   useEffect(() => {
     cSetStateRows(aAppPipelines);
@@ -137,6 +161,7 @@ function Index(oProps: any): any {
 
       let oParam = {};
       let oOption = {
+        appId: iAppId,
         page: iPage,
         limit: iLimit
       };
@@ -151,18 +176,39 @@ function Index(oProps: any): any {
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+
+      console.log('aAppPipelines , oResponse=', oResponse);
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
       cSetStateNumer(iNumber);
       cSetStateCount(iCount);
       cSetStateLoading(false);
-      cSetStateLimit(iLimit);
-      cSetStatePage(iPage);
-
-      cSetPageMax(iCount);
 
     })();
-  }, [iPage, iLimit]);
+  }, [iStatePage, iStateLimit]);
+
+  let cHandleClickNameOfButton = (oEvent: React.SyntheticEvent<unknown>) => {
+
+    if (sStateName.length == 0) {
+      let oMessage = {
+        code: -1,
+        message: '请输入视频前缀名称',
+        time: 3 * 1000
+      };
+
+      events.emit('Alerts-onAlert', oMessage);
+      return;
+    }
+
+
+
+    let oSearch = {
+      name: sStateName
+    };
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 1, oParams.limit, oSearch);
+
+    oHistory.push(sUrl);
+  };
 
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
 
@@ -175,29 +221,14 @@ function Index(oProps: any): any {
 
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, {});
 
-
     oHistory.push(sUrl);
   };
+
   let cHandleChangeNameOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-    let sName = oEvent.target.value;
+    let sName = String(oEvent.target.value);
+
     cSetStateName(sName);
-
   };
-
-
-  let cHandleKeyPressNameOfTextField = (oEvent: any) => {
-    if (oEvent.charCode == 13) {
-      let sName = oEvent.target.value;
-
-      let oSearch = {
-        name: sName
-      };
-      let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, oParams.limit, oSearch);
-
-      oHistory.push(sUrl);
-    }
-  };
-
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let iPage = Number(oEvent.target.value);
@@ -209,35 +240,40 @@ function Index(oProps: any): any {
     if (oEvent.charCode == 13) {
       let iPage = Number(oEvent.target.value);
 
-      let oSearch: any = {
-      };
+      let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
 
-      sStateName && (oSearch = {
+      oHistory.push(sUrl);
+    }
+  };
+
+  let cHandleKeyPressNameOfTextField = (oEvent: any) => {
+    if (oEvent.charCode == 13) {
+      let sName = String(oEvent.target.value);
+
+      let oSearch = {};
+      sName && (oSearch = {
         ...oSearch,
-        name: sStateName
+        name: sName
       });
+
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
       oHistory.push(sUrl);
     }
   };
 
-
-
   let cHandleBlurPageOfTextField = (oEvent: any) => {
     let iPage = Number(oEvent.target.value);
 
-    let oSearch: any = {
-    };
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
 
-    sStateName && (oSearch = {
-      ...oSearch,
-      name: sStateName
-    });
-
-    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
     oHistory.push(sUrl);
+  };
+
+
+
+  let cHandlePageClick = (oEvent: any) => {
   };
 
   return (
@@ -247,18 +283,20 @@ function Index(oProps: any): any {
           <TextField
             className={clsx(oClasses.textField, oClasses.textFieldName)}
             id="name"
-            label="名称"
+            label="档名"
             size="small"
             variant="outlined"
             value={sStateName}
             onChange={cHandleChangeNameOfTextField}
-            onKeyPress={cHandleKeyPressPageOfTextField}
+            onKeyPress={cHandleKeyPressNameOfTextField}
           />
           <Button
             color="primary"
             className={oClasses.button}
             variant="outlined"
-            endIcon={<SearchIcon></SearchIcon>}>
+            endIcon={<SearchIcon></SearchIcon>}
+            onClick={cHandleClickNameOfButton}
+          >
             筛选
           </Button>
         </div>

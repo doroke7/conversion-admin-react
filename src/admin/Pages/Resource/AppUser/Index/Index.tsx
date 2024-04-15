@@ -178,10 +178,9 @@ function Index(oProps: any): any {
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
     let iPage = Number(oEvent.target.value);
-    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, {});
+    cSetStatePage(iPage);
 
-    oHistory.push(sUrl);
-  };
+  }
 
   let cHandleKeyPressPageOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
