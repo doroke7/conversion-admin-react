@@ -19,7 +19,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
-import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -31,7 +30,6 @@ import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 import actions from '@/admin/actions/';
 
-import SearchPannel from './SearchPannel/Index';
 
 import hooks from '@/admin/hooks';
 import style from './style';
@@ -246,9 +244,13 @@ function Index(oProps: any): any {
           onChange={cHandleChangePageOfTextField}
           onKeyPress={cHandleKeyPressPageOfTextField}
         />
-        <IconButton color="primary" aria-label="筛选" className={oClasses.searchButton} onClick={cHandleSearchClick}>
-          <SearchIcon></SearchIcon>
-        </IconButton>
+        <Button
+          color="primary"
+          className={oClasses.submitButton}
+          variant="outlined"
+          endIcon={<SearchIcon></SearchIcon>}>
+          筛选
+        </Button>
         <FormControl variant="outlined" className={oClasses.formControl}>
           <InputLabel id="demo-simple-select-filled-label">笔</InputLabel>
           <Select

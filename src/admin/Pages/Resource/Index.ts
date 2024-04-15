@@ -1,10 +1,6 @@
 import React from 'react';
 
 import AppUser from './AppUser/Index';
-import OrderInfo from './OrderInfo/Index';
-import AdminAdministrator from './AdminAdministrator/Index';
-import Config from './Config/Index';
-import Vod from './Vod/Index';
 import None from './None/Index';
 import Index from './Index/Index';
 import AppPipeline from './AppPipeline/Index';
@@ -27,11 +23,7 @@ export default {
   AppPipeline: AppPipeline,
   App: App,
   AppUser: AppUser,
-  OrderInfo: OrderInfo,
-  AdminAdministrator: AdminAdministrator,
   AdminRole: AdminRole,
-  Config: Config,
-  Vod: Vod,
   None: None,
   Index: Index,
   _: React.lazy(() => import('./_/Index'))
