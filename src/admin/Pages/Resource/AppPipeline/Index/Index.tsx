@@ -57,7 +57,7 @@ function Index(oProps: any): any {
   let iLimit = Number(oUrlSearchParams.get('limit')) || 20;
   let iPage = Number(oUrlSearchParams.get('page')) || 1;
 
-  let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
+  let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
 
   let aColumns: any[] = [

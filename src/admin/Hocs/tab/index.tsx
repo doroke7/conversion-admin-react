@@ -17,7 +17,7 @@ let tab = (Component: any): any => {
     let oRouteMatch = useRouteMatch();
     let oParams: any = useParams();
     let oURLSearchParams = hooks.useURLSearchParams();
-    let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
+    let oMe = useSelector((oStore: any) => (oStore.me));
 
     let iAppId = Number(oParams?.appId ?? 0);
     let oOptions = {};
@@ -38,7 +38,7 @@ let tab = (Component: any): any => {
         path: sPath,
         icon: sIcon,
         options: oOptions,
-        adminUserId: oAdminUser.id
+        adminUserId: oMe.id
       };
       events.emit('Navigation-onTab', oRoute);
       return () => { };

@@ -55,7 +55,7 @@ function Navigation(oProps: any) {
   let oParams: any = useParams();
 
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
-  let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
+  let oMe = useSelector((oStore: any) => (oStore.me));
 
   let iAppId = useMemo(() => {  // 实际 appId
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
@@ -77,7 +77,7 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     (async () => {
-      if (oAdminUser.id) {
+      if (oMe.id) {
         let aResponses = await Promise.all([
           cAdminSystemAppShowOnes(),
           Sdks.Admin.System.AdminUserLink.getShowOnes()
@@ -103,7 +103,7 @@ function Navigation(oProps: any) {
       }
 
     })();
-  }, [cAdminSystemAppShowOnes, oAdminUser.id]);
+  }, [cAdminSystemAppShowOnes, oMe.id]);
 
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
@@ -163,7 +163,7 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
-      if (oAdminUser?.id) {
+      if (oMe?.id) {
         let iAppId = aStateApps?.[iIndex]?.id;
 
         if (iIndex == iStateIndex) {
@@ -172,8 +172,8 @@ function Navigation(oProps: any) {
         }
 
         if (iIndex != iStateIndex) {
-          let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId);
-          let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
+          let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, iAppId);
+          let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, 0);
 
           let aTabs = [...aTabs1, ...aTabs0];
           let iValue = -1;
@@ -194,18 +194,18 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickApp', cClickApp);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oAdminUser.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oMe.id]);
 
 
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
-      if (oAdminUser?.id) {
+      if (oMe?.id) {
         let oApp = aStateApps[iStateIndex];
         let iAppId = oApp?.id ?? 0;
 
-        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId) : [];
-        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
+        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, iAppId) : [];
+        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, 0);
 
         if (iIndex < aTabs1.length) {
 
@@ -213,7 +213,7 @@ function Navigation(oProps: any) {
           let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
 
           aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
-          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oAdminUser?.id, oApp?.id);
+          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, oApp?.id);
 
         };
 
@@ -223,7 +223,7 @@ function Navigation(oProps: any) {
           let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
 
           aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
-          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oAdminUser?.id, 0);
+          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
 
         };
         let aTabs = [...aTabs1, ...aTabs0];
@@ -250,16 +250,16 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oAdminUser.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
-      if (oAdminUser?.id) {
+      if (oMe?.id) {
         let oApp = aStateApps[iStateIndex];
         let iAppId = oApp?.id ?? 0;
 
-        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, iAppId) : [];
-        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oAdminUser?.id, 0);
+        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, iAppId) : [];
+        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, 0);
         let oTab = null;
 
         if (iIndex < aTabs1.length) {
@@ -273,8 +273,8 @@ function Navigation(oProps: any) {
           aTabs0 = [];
           aTabs0 = [oTab];
         };
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oAdminUser?.id, iAppId);
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oAdminUser?.id, 0);
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, iAppId);
+        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
 
         let iValue = 0;
 
@@ -293,17 +293,17 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oAdminUser.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
-      if (oAdminUser?.id) {
+      if (oMe?.id) {
         let iValue = -1;
         let oApp = aStateApps[iStateIndex];
         let iAppId = oApp?.id ?? 0;
 
-        iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId([], oAdminUser?.id, iAppId);
-        Helpers.Tab.setOnesByAdminUserIdAppId([], oAdminUser?.id, 0);
+        iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, iAppId);
+        Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, 0);
 
         cSetStateValue(iValue);
         cSetStateTabs([]);
@@ -315,7 +315,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oAdminUser.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {

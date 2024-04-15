@@ -88,7 +88,7 @@ let authenticator = (Component: any): any => {
           }
 
           sJwt && oDispatch(actions.authorizaion.set(sJwt));
-          oAdminUser && oAdminUser?.id && oDispatch(actions.adminUser.set(oAdminUser));
+          oAdminUser && oAdminUser?.id && oDispatch(actions.me.set(oAdminUser));
 
         }
 
