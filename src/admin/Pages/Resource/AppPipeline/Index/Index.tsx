@@ -56,9 +56,10 @@ function Index(oProps: any): any {
 
   let iLimit = Number(oUrlSearchParams.get('limit')) || 20;
   let iPage = Number(oUrlSearchParams.get('page')) || 1;
+  let sName = String(oUrlSearchParams.get('name')) || '';
 
   let oMe = useSelector((oStore: any) => (oStore.me));
-  let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
+  let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
 
   let aColumns: any[] = [
     {
@@ -126,8 +127,8 @@ function Index(oProps: any): any {
   ];
 
   useEffect(() => {
-    cSetStateRows(aAppUsers);
-  }, [aAppUsers]);
+    cSetStateRows(aAppPipelines);
+  }, [aAppPipelines]);
 
   useEffect(() => {
     (async () => {
@@ -141,12 +142,16 @@ function Index(oProps: any): any {
       };
       let oSearch = {};
 
-      let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oParam, oOption, oSearch);
+      sName && (oSearch = {
+        ...oSearch,
+        name: sName
+      });
+      let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
-      let aAppUsers = oResponse?.data?.raw?.ones ?? [];
-      oDispatch(actions.appUsers.set(aAppUsers));
+      let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+      oDispatch(actions.appPipelines.set(aAppPipelines));
 
       cSetStateNumer(iNumber);
       cSetStateCount(iCount);

@@ -19,7 +19,7 @@ let authenticator = (Component: any): any => {
 
   function Wrapper(oProps: any) {
 
-    let bAuthenticator = oProps.authenticator ?? false;
+    let bAuthorization = oProps.authenticator ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
     let oDispatch = useDispatch();
 
@@ -94,7 +94,10 @@ let authenticator = (Component: any): any => {
 
         cSetStateStatus(true);
       };
-      if (CONFIGS?.JWT?.AUTHENTICATOR && bAuthenticator) {
+      console.log('bAuthorization=', bAuthorization);
+
+      console.log(CONFIGS?.JWT);
+      if (CONFIGS?.JWT?.AUTHORIZATION && bAuthorization) {
         events.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
         let oInterval = setInterval(cRefresh, CONFIGS.JWT.TIME ?? 60 * 1000);
@@ -108,7 +111,7 @@ let authenticator = (Component: any): any => {
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    return bStateStatus || !CONFIGS.JWT.AUTHENTICATOR ? <Component {...oProps} authorizaions={sStateAuthorizations}></Component> : <></>;
+    return bStateStatus || !CONFIGS.JWT.AUTHORIZATION ? <Component {...oProps} authorizaions={sStateAuthorizations}></Component> : <></>;
   }
 
   return Wrapper;

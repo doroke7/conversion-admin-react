@@ -1,2 +1,7 @@
 import AppUser from './AppUser/Index';
-export default { AppUser };
+import AppPipeline from './AppPipeline/Index';
+
+export default {
+  AppUser: AppUser,
+  AppPipeline: AppPipeline
+};
