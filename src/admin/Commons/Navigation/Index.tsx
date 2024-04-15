@@ -57,8 +57,6 @@ function Navigation(oProps: any) {
   let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
   let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
 
-  console.log('NAV 的 oAdminUser=', oAdminUser);
-
   let iAppId = useMemo(() => {  // 实际 appId
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
@@ -179,9 +177,11 @@ function Navigation(oProps: any) {
 
           let aTabs = [...aTabs1, ...aTabs0];
           let iValue = -1;
+          cSetStateAppId(iAppId);
           cSetStateIndex(iIndex);
           cSetStateTabs(aTabs);
           cSetStateValue(iValue);
+
           if (iIndex >= 0) {
             oHistory.push('/admin/resource');
           }

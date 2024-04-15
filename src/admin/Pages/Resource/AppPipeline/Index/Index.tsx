@@ -150,8 +150,6 @@ function Index(oProps: any): any {
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
       oDispatch(actions.appUsers.set(aAppUsers));
 
-      console.log('aAppUsers=', aAppUsers);
-
       cSetStateNumer(iNumber);
       cSetStateCount(iCount);
       cSetStateLoading(false);
@@ -162,12 +160,6 @@ function Index(oProps: any): any {
 
     })();
   }, [iPage, iLimit]);
-
-  console.log('iPage', iPage);
-  console.log('iLimit', iLimit);
-
-
-
 
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
     let oParams = {
