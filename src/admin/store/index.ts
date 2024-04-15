@@ -11,6 +11,7 @@ let oStore = createStore(
     adminUser: reducers.adminUser,
     adminUsers: reducers.adminUsers,
     appUsers: reducers.appUsers,
+    appPipelines: reducers.appPipelines
 
   }),
   composeWithDevTools(applyMiddleware(reduxThunk))
