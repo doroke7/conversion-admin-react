@@ -5,7 +5,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       zIndex: 1,
-      flexDirection: 'column'
+      flexDirection: 'column',
+      backgroundColor: 'rgba(250, 250, 250, 0)'
     },
     icon: {
       width: oTheme.spacing(24),

@@ -46,7 +46,7 @@ const style = makeStyles((oTheme: Theme): any =>
       width: '100%',
       '& .MuiDataGrid-root': {
         '& .MuiDataGrid-overlay': {
-          background: grey[50]
+          backgroundColor: 'rgba(250, 250, 250, 0)'
         }
       },
       '& .MuiDataGrid-columnsContainer': {
