@@ -52,8 +52,8 @@ function Index(oProps: any): any {
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
-  let [iStateLimit, cSetStateLimit] = useState<number>(10);
-  let [iStatePage, cSetStatePage] = useState<number>(0);
+  let [iStateLimit, cSetStateLimit] = useState<number>(20);
+  let [iStatePage, cSetStatePage] = useState<number>(1);
 
 
   let iLimit = Number(oUrlSearchParams.get('limit')) || 20;
@@ -61,16 +61,6 @@ function Index(oProps: any): any {
 
   let oAdminUser = useSelector((oStore: any) => (oStore.adminUser));
   let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
-
-
-
-
-  let oLimitToHeight = {
-    '10': 59.448,
-    '20': 29.724,
-    '50': 29.724,
-    '100': 29.724
-  };
 
   let aColumns: any[] = [
     {
