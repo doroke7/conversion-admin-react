@@ -173,6 +173,9 @@ function Index(oProps: any): any {
     })();
   }, [iPage, iLimit]);
 
+  console.log('iPage', iPage);
+  console.log('iLimit', iLimit);
+
 
 
 

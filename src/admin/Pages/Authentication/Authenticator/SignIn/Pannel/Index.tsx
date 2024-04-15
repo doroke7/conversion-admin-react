@@ -60,8 +60,8 @@ function Pannel(oProps: any): any {
           throw new Exception('请输入管理用户密码', -1);
         }
 
-        if (sStateName.length <= 3) {
-          throw new Exception('请输入4 字元以上名称', -1);
+        if (sStateName.length <= 2) {
+          throw new Exception('请输入3 字元以上名称', -1);
         }
 
         if (sStatePassword.length <= 5) {
