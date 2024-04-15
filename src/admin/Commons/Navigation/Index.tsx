@@ -47,7 +47,7 @@ function Navigation(oProps: any) {
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
   let [aStateApps, cSetStateApps] = useState<any>([]);
-  let [iStateAppId, cSetStateAppId] = useState<any>(-1);
+  let [iStateAppId, cSetStateAppId] = useState<any>(0);  // 临时 appId, 用来 路由appId 改变时候驱动改变 iStateIndex
 
   let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
   let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>([]);
@@ -59,7 +59,7 @@ function Navigation(oProps: any) {
 
   console.log('NAV 的 oAdminUser=', oAdminUser);
 
-  let iAppId = useMemo(() => {
+  let iAppId = useMemo(() => {  // 实际 appId
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
   }, [aStateApps, iStateIndex]);
