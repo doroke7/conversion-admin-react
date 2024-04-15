@@ -46,10 +46,9 @@ function Navigation(oProps: any) {
   let [iStateValue, cSetStateValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
-  let [oStateMenu, cSetStateMenu] = useState<any>(null);
-  let [oStateLink, cSetStateLink] = useState<any>(null);
-  let [sStateText, cSetStateText] = useState<any>('');
   let [aStateApps, cSetStateApps] = useState<any>([]);
+  let [iStateAppId, cSetStateAppId] = useState<any>(-1);
+
   let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
   let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>([]);
 
@@ -79,7 +78,6 @@ function Navigation(oProps: any) {
   }, [sAuhorization]);
 
   useEffect(() => {
-    // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数
     (async () => {
       if (oAdminUser.id) {
         let aResponses = await Promise.all([
@@ -154,7 +152,6 @@ function Navigation(oProps: any) {
       if (oThisAdminMenu) {
         oTextRef.current = oAdminMenu.text ?? '';
 
-        cSetStateText(oAdminMenu.text);
         let sUrl = utilities.url('/', oThisAdminMenu.uri, {});
         oHistory.push(sUrl);
       }
@@ -343,31 +340,28 @@ function Navigation(oProps: any) {
     if (iAdminUserId) {
       // TODO
       // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
-
       let oApp = aStateApps?.[iStateIndex];
-      let iAppId = oApp?.id ?? 0;
+      let oAppId = oApp?.id ?? 0;
 
       let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
+      let iCurrentAppId = 0;
 
-      let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId) : [];
+      if (iParamsAppId > 0) {
+        iCurrentAppId = iParamsAppId;
+      }
+
+      if (iParamsAppId <= 0) {
+        iCurrentAppId = oAppId;
+      }
+
+      cSetStateAppId(iCurrentAppId);
+
+      let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iCurrentAppId) : [];
       let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
 
       let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
       aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
       aTabs = iStateIndex == -1 ? [...aTabs1, ...aTabs0] : aTabs;
-      let iResultIndex = iStateIndex >= 0 ? iStateIndex : -1;
-
-      if (iStateIndex <= -1) {
-        for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
-          let oStateApp = aStateApps[iStateAppIndex];
-
-          if (oStateApp.id == iParamsAppId) {
-            iResultIndex = iStateAppIndex;
-            break;
-          }
-        };
-
-      }
 
       let oTab = {
         id: oRoute.id,
@@ -426,26 +420,41 @@ function Navigation(oProps: any) {
         // DO NOTHING
       }
       if (!bExist) {
-        aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
-        aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
-
+        aTabs1 = iCurrentAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+        aTabs0 = iCurrentAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
 
         aTabs = [...aTabs1, ...aTabs0];
-        iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
-
+        iValue = iCurrentAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
       }
 
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iParamsAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
-      cSetStateIndex(iResultIndex);
     };
 
-
-
   }, [iStateIndex, aStateApps]);
+
+  useEffect(() => {
+
+    if (iStateAppId >= 1 && aStateApps.length > 0) {
+      let iIndex = -1;
+      for (let iStateAppIndex = 0; iStateAppIndex < aStateApps.length; iStateAppIndex++) {
+        let oStateApp = aStateApps[iStateAppIndex];
+
+        if (oStateApp.id == iStateAppId) {
+          iIndex = iStateAppIndex;
+          break;
+        }
+      };
+      cSetStateIndex(iIndex);
+
+    }
+
+
+
+  }, [iStateAppId, aStateApps]);
 
   useLayoutEffect(() => {
 
