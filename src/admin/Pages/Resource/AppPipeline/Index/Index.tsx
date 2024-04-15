@@ -78,6 +78,7 @@ function Index(oProps: any): any {
       headerName: '账号',
       description: '账号',
       sortable: false,
+      flex: 1,
       width: 184,
       align: 'left',
       valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
@@ -111,6 +112,15 @@ function Index(oProps: any): any {
       width: 145,
     },
     {
+      field: 'appDownloaderStageSize',
+      headerName: '容量',
+      description: '容量',
+      sortable: false,
+      width: 145,
+      valueGetter: (oProps: any) => (utilities.size(oProps.row?.appDownloaderStage?.size ?? 0))
+
+    },
+    {
       field: 'state',
       headerName: '状态',
       description: '状态',
@@ -129,8 +139,7 @@ function Index(oProps: any): any {
       headerName: '启动时间',
       description: '启动时间',
       sortable: false,
-      flex: 1,
-      width: 240,
+      width: 170,
       valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
     },
     {
@@ -177,7 +186,6 @@ function Index(oProps: any): any {
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
 
-      console.log('aAppPipelines , oResponse=', oResponse);
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
       cSetStateNumer(iNumber);
@@ -297,7 +305,7 @@ function Index(oProps: any): any {
             endIcon={<SearchIcon></SearchIcon>}
             onClick={cHandleClickNameOfButton}
           >
-            筛选
+            检索
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>

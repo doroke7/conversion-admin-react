@@ -23,6 +23,7 @@ import cDeTree from './deTree/';
 import deTree from './deTree/';
 import randString from './randString/';
 import url from './url/';
+import size from './size/';
 import dateTime from './dateTime/';
 import adminMenuKey from './adminMenuKey';
 
@@ -52,6 +53,7 @@ export {
 
 export default {
   dateTime: dateTime,
+  size: size,
   url: url,
   appIdPageLimit: appIdPageLimit,
   deTree: deTree,
