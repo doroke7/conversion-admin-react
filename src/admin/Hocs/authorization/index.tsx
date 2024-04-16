@@ -111,7 +111,6 @@ let authenticator = (Component: any): any => {
 
         cSetStateStatus(true);
       };
-      console.log('bAuthorization=', bAuthorization);
 
       console.log(CONFIGS?.JWT);
       if (CONFIGS?.JWT?.AUTHORIZATION && bAuthorization) {
@@ -121,7 +120,6 @@ let authenticator = (Component: any): any => {
         return () => {
           clearInterval(oInterval);
         };
-        // events.emit('Progress-onProgress', { value: 90, status: true });
       }
     }, []);
 
