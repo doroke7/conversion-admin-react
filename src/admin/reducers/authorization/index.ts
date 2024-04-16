@@ -7,6 +7,7 @@ let cReducer = (sAuhorization: string = '', oAction: any) => {
 
   switch (oAction.type) {
     case 'AUTHORIZATION_SET':
+      AuthenticationHelper.set(sAuhorization1);
       return sAuhorization1;
     case 'JWT_REFRESH':
       return sAuhorization1;
