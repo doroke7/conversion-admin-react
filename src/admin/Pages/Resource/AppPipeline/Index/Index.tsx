@@ -24,6 +24,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import InputLabel from '@material-ui/core/InputLabel';
 import UpdateTwoToneIcon from '@material-ui/icons/UpdateTwoTone';
 import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
+import FlipCameraIosTwoToneIcon from '@material-ui/icons/FlipCameraIosTwoTone';
+import PermScanWifiTwoToneIcon from '@material-ui/icons/PermScanWifiTwoTone';
 
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -387,20 +389,13 @@ function Index(oProps: any): any {
 
         return (
           <div>
-            <Button
-              color="default"
-              variant="outlined"
-              size="small"
-              className={clsx(oClasses.button, oClasses.buttonOfDataGrid)}
-              startIcon={<UpdateTwoToneIcon></UpdateTwoToneIcon>}
-            ></Button>
-            <Button
-              color="default"
-              variant="outlined"
-              size="small"
-              className={clsx(oClasses.button, oClasses.buttonOfDataGrid)}
-              startIcon={<SendTwoToneIcon></SendTwoToneIcon>}
-            ></Button>
+            <IconButton color="" aria-label="" component="span">
+              <FlipCameraIosTwoToneIcon />
+            </IconButton>
+
+            <IconButton color="" aria-label="" component="span">
+              <PermScanWifiTwoToneIcon />
+            </IconButton>
           </div>
         );
       },
