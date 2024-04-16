@@ -42,6 +42,7 @@ import actions from '@/admin/actions/';
 import hooks from '@/admin/hooks';
 import State from './State/Index';
 import style from './style';
+import C from '@/test/entry/UseEffectLifeCycle/A/B/C/Index';
 
 
 function Index(oProps: any): any {
@@ -190,6 +191,7 @@ function Index(oProps: any): any {
     });
 
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
+    console.log(194, 'sUrl=', sUrl);
     oHistory.push(sUrl);
   };
 

@@ -324,6 +324,7 @@ function Navigation(oProps: any) {
       cSetStateValue(iValue);
 
       let oTab = aStateTabs[iValue] ?? null;
+      console.log('oTab=', oTab);
       if (oTab) {
         let iAppId = oTab?.params?.appId ?? 0;
         let iPage = oTab?.params?.page ?? 1;
@@ -366,16 +367,14 @@ function Navigation(oProps: any) {
       let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iCurrentAppId) : [];
       let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
 
-      let aTabs = iStateIndex >= 0 ? [...aStateTabs] : [];
-      aTabs = iStateIndex == -1 ? [...aTabs0] : aTabs;
-      aTabs = iStateIndex == -1 ? [...aTabs1, ...aTabs0] : aTabs;
+      let aTabs = [...aTabs1, ...aTabs0] ?? [];
 
       let oTab = {
         id: oRoute.id,
         path: oRoute.path,
         url: oRoute.url,
         params: oRoute?.params ?? {},
-        options: oRoute?.options ?? {},
+        search: oRoute?.search ?? {},
         text: oRoute?.text || oTextRef?.current,
         icon: oRoute.icon ?? ''
       };
@@ -397,7 +396,7 @@ function Navigation(oProps: any) {
             aTabs1[iTabIndex]['icon'] = oTab?.icon;
             aTabs1[iTabIndex]['url'] = oTab?.url;
             aTabs1[iTabIndex]['params'] = oTab?.params;
-            aTabs1[iTabIndex]['options'] = oTab?.options;
+            aTabs1[iTabIndex]['search'] = oTab?.search;
 
             bExist = true;
             break;
@@ -416,7 +415,7 @@ function Navigation(oProps: any) {
             aTabs0[iTabIndex]['icon'] = oTab?.icon;
             aTabs0[iTabIndex]['url'] = oTab?.url;
             aTabs0[iTabIndex]['params'] = oTab?.params;
-            aTabs0[iTabIndex]['options'] = oTab?.options;
+            aTabs0[iTabIndex]['search'] = oTab?.search;
 
             bExist = true;
             break;
@@ -443,6 +442,8 @@ function Navigation(oProps: any) {
 
   }, [iStateIndex, aStateApps]);
 
+
+  console.log(aStateTabs);
   useEffect(() => {
 
     if (iStateAppId >= 1 && aStateApps.length > 0) {

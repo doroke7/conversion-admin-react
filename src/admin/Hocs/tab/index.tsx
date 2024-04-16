@@ -43,7 +43,7 @@ let tab = (Component: any): any => {
       events.emit('Navigation-onTab', oRoute);
 
       return () => { };
-    }, [oParams.appId, sURLSearchParams]);
+    }, [oParams.appId, oParams.page, oParams.limit, sURLSearchParams]);
 
 
     return <Component {...oProps}></Component>;
