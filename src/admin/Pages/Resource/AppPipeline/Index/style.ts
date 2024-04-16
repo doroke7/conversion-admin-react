@@ -57,6 +57,14 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiDataGrid-root': {
         '& .MuiDataGrid-overlay': {
           backgroundColor: 'rgba(250, 250, 250, 0)'
+        },
+        '& .MuiDataGrid-cell': {
+          '&:focus':{
+            outline: 'none'
+          },
+          '&:focus-within':{
+            outline: 'none'
+          }
         }
       },
       '& .MuiDataGrid-columnsContainer': {
