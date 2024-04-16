@@ -54,6 +54,7 @@ function Index(oProps: any): any {
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
+  let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -64,92 +65,29 @@ function Index(oProps: any): any {
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
 
-  let aColumns: any[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      description: '流水号',
-      width: 80,
-      sortable: false,
-      editable: false
-    },
-    {
-      field: 'appUserName',
-      headerName: '账号',
-      description: '账号',
-      sortable: false,
-      flex: 1,
-      width: 184,
-      align: 'left',
-      valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
-    },
-    {
-      field: 'name',
-      headerName: '档名',
-      description: '名称',
-      sortable: false,
-      width: 385,
-    },
-    {
-      field: 'width',
-      headerName: '宽度',
-      description: '宽度',
-      sortable: false,
-      width: 85,
-    },
-    {
-      field: 'height',
-      headerName: '高度',
-      description: '高度',
-      sortable: false,
-      width: 85,
-    },
-    {
-      field: 'duration',
-      headerName: '时长',
-      description: '时长',
-      sortable: false,
-      width: 145,
-    },
-    {
-      field: 'appDownloaderStageSize',
-      headerName: '容量',
-      description: '容量',
-      sortable: false,
-      width: 145,
-      valueGetter: (oProps: any) => (utilities.size(oProps.row?.appDownloaderStage?.size ?? 0))
+  useEffect(() => {
+    (async () => {
 
-    },
-    {
-      field: 'state',
-      headerName: '状态',
-      description: '状态',
-      sortable: false,
-      width: 80,
-      renderCell: (oProps: any) => {
-        let iState = oProps?.row?.state;
-        return (
-          <State value={iState}>
-          </State>
-        );
-      },
-    },
-    {
-      field: 'addedTime',
-      headerName: '启动时间',
-      description: '启动时间',
-      sortable: false,
-      width: 170,
-      valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
-    },
-    {
-      field: 'tool',
-      headerName: '操作',
-      description: '操作',
-      sortable: false,
-      width: 140
-    },
-  ];
+      cSetStateLoading(true);
+
+      let oParam = {};
+      let oOption = {
+      };
+      let oSearch = {
+        appId: iAppId,
+      };
+
+
+      let oResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
+
+      let aAppUsers = oResponse?.data?.raw?.ones ?? [];
+
+      console.log('aAppUsers=', aAppUsers);
+      cSetStateAppUsers(aAppUsers);
+
+    })();
+  }, [iAppId]);
+
 
   useEffect(() => {
     cSetStateLimit(iLimit);
@@ -201,20 +139,13 @@ function Index(oProps: any): any {
 
   let cHandleClickNameOfButton = (oEvent: React.SyntheticEvent<unknown>) => {
 
-    if (sStateName.length == 0) {
-      let oMessage = {
-        code: -1,
-        message: '请输入视频前缀名称',
-        time: 3 * 1000
-      };
+    let oSearch = {};
 
-      events.emit('Alerts-onAlert', oMessage);
-      return;
-    }
-
-    let oSearch = {
+    sStateName && (oSearch = {
+      ...oSearch,
       name: sStateName
-    };
+    });
+
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 1, oParams.limit, oSearch);
 
     oHistory.push(sUrl);
@@ -313,10 +244,116 @@ function Index(oProps: any): any {
   let cHandlePageClick = (oEvent: any) => {
   };
 
+  let aColumns: any[] = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      description: '流水号',
+      width: 80,
+      sortable: false,
+      editable: false
+    },
+    {
+      field: 'appUserName',
+      headerName: '账号',
+      description: '账号',
+      sortable: false,
+      width: 184,
+      align: 'left',
+      valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
+    },
+    {
+      field: 'name',
+      headerName: '档名',
+      description: '名称',
+      sortable: false,
+      width: 385,
+    },
+    {
+      field: 'width',
+      headerName: '宽度',
+      description: '宽度',
+      sortable: false,
+      flex: 1,
+      width: 85,
+    },
+    {
+      field: 'height',
+      headerName: '高度',
+      description: '高度',
+      sortable: false,
+      flex: 1,
+      width: 85,
+    },
+    {
+      field: 'duration',
+      headerName: '时长',
+      description: '时长',
+      sortable: false,
+      flex: 1,
+      width: 145,
+    },
+    {
+      field: 'appDownloaderStageSize',
+      headerName: '容量',
+      description: '容量',
+      sortable: false,
+      flex: 1,
+      width: 145,
+      valueGetter: (oProps: any) => (utilities.size(oProps.row?.appDownloaderStage?.size ?? 0))
+
+    },
+    {
+      field: 'state',
+      headerName: '状态',
+      description: '状态',
+      sortable: false,
+      width: 80,
+      renderCell: (oProps: any) => {
+        let iState = oProps?.row?.state;
+        return (
+          <State value={iState}>
+          </State>
+        );
+      },
+    },
+    {
+      field: 'addedTime',
+      headerName: '启动时间',
+      description: '启动时间',
+      sortable: false,
+      width: 170,
+      valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
+    },
+    {
+      field: 'tool',
+      headerName: '操作',
+      description: '操作',
+      sortable: false,
+      width: 140
+    },
+  ];
+
+
   return (
     <div className="app-pipeline">
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
+          <FormControl variant="outlined" className={oClasses.formControl}>
+            <InputLabel id="app-user-id">账号</InputLabel>
+            <Select
+              labelId="app-user-id"
+              id="app-user-id"
+              value={iStateLimit}
+              onChange={cHandleChangeLimitOfSelect}
+              label="账号"
+            >
+              <MenuItem className={oClasses.menuItem} value={0}>--</MenuItem>
+              {aStateAppUsers.map((oStateAppUser, sKey) => (
+                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateAppUser.id}>{oStateAppUser.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             className={clsx(oClasses.textField, oClasses.textFieldName)}
             id="name"

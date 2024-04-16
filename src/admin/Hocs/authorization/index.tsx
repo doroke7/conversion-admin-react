@@ -66,8 +66,16 @@ let authenticator = (Component: any): any => {
           cSetStateAuthorizations(sAuthorizations);
 
           if (
+            oResponse?.data?.code <= -2
+          ) {
+            sJwt = '';
+            oAdminUser = {};
+          }
+
+          if (
             oResponse?.data?.code === undefined || !sJwt || oResponse?.data?.code <= -1
           ) {
+
             let sMessage = '未知错误';
 
             sMessage = oResponse?.data?.code === undefined ? '服务器未定义 code 错误' : sMessage;
@@ -87,8 +95,8 @@ let authenticator = (Component: any): any => {
             }
           }
 
-          sJwt && oDispatch(actions.authorizaion.set(sJwt));
-          oAdminUser && oAdminUser?.id && oDispatch(actions.me.set(oAdminUser));
+          oDispatch(actions.authorizaion.set(sJwt));
+          oDispatch(actions.me.set(oAdminUser));
 
         }
 
