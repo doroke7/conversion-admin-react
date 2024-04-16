@@ -265,9 +265,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sStateName && (oSearch = {
+      sName && (oSearch = {
         ...oSearch,
-        name: sStateName
+        name: sName
       });
 
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
@@ -298,7 +298,77 @@ function Index(oProps: any): any {
 
 
 
-  let cHandlePageClick = (oEvent: any) => {
+  let cHandleTranscoderClick = (iId: number) => {
+    return async (oEvent: React.SyntheticEvent<unknown>) => {
+      let oParam = {};
+      let oOption = {
+        appId: iAppId
+      };
+      let oSearch = {
+        id: iId
+      };
+
+      let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+
+      if (!oResponse || oResponse?.data?.code <= -1) {
+        let iCode = oResponse?.data?.code;
+        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+      if (!oResponse || oResponse?.data?.code >= 0) {
+        let iCode = 1;
+        let sMessage = oResponse?.data?.message ?? '未知的成功信息';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+    };
+  };
+
+  let cHandleNotifierClick = (iId: number) => {
+    return async (oEvent: React.SyntheticEvent<unknown>) => {
+
+      let oParam = {};
+      let oOption = {
+        appId: iAppId
+      };
+      let oSearch = {
+        id: iId
+      };
+
+      let oResponse = await Sdks.Admin.System.AppPipeline.postNotifyOne(oParam, oOption, oSearch);
+
+      if (!oResponse || oResponse?.data?.code <= -1) {
+        let iCode = oResponse?.data?.code;
+        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+      if (!oResponse || oResponse?.data?.code >= 0) {
+        let iCode = 0;
+        let sMessage = oResponse?.data?.message ?? '未知的成功信息';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+    };
   };
 
   let aColumns: any[] = [
@@ -396,11 +466,25 @@ function Index(oProps: any): any {
 
         return (
           <div>
-            <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)} color="primary" aria-label="" component="span" disabled={bTranscoderDisable}>
+            <IconButton
+              onClick={cHandleTranscoderClick(iId)}
+              className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)}
+              color="primary"
+              aria-label=""
+              component="span"
+              disabled={bTranscoderDisable}
+            >
               <FlipCameraAndroidTwoToneIcon />
             </IconButton>
 
-            <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)} color="primary" aria-label="" component="span" disabled={bNotifierDisable}>
+            <IconButton
+              onClick={cHandleNotifierClick(iId)}
+              className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)}
+              color="primary"
+              aria-label=""
+              component="span"
+              disabled={bNotifierDisable}
+            >
               <AddAlertTwoToneIcon />
             </IconButton>
           </div>

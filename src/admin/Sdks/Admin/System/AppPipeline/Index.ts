@@ -3,7 +3,7 @@ import Helpers from '@/admin/Helpers/Index';
 class AppPipeline {
   public static async postNotifyOne(oParam: any = {}, oOption: any = {}, oSearch: any = {}) {
     let oResponse = await Helpers.Admin.post({
-      path: '/Admin/Resource/AppPipeline/postNotifyOne',
+      path: '/Admin/System/AppPipeline/notifyOne',
 
       params: {
         option: oOption,
@@ -20,7 +20,7 @@ class AppPipeline {
 
   public static async postTranscodeOne(oParam: any = {}, oOption: any = {}, oSearch: any = {}) {
     let oResponse = await Helpers.Admin.post({
-      path: '/Admin/Resource/AppPipeline/postTranscodeOne',
+      path: '/Admin/System/AppPipeline/transcodeOne',
 
       params: {
         option: oOption,

@@ -70,14 +70,14 @@ const style = makeStyles((oTheme: Theme): any =>
         // minHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
         // maxHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
         scrollbarWidth: 'thin',
-        backgroundColor: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
+        background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
         overflowX: 'hidden'
       },
       '&  .MuiDataGrid-row': {
-        backgroundColor: '#FFFFFF',
+        background: '#FFFFFF',
 
         '&:hover': {
-          backgroundColor: '#F2F2F2'
+          background: '#F2F2F2'
         }
       }
     },
