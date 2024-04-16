@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, common } from '@material-ui/core/colors';
+import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -65,20 +65,19 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiDataGrid-footerContainer': {
       },
       '& .MuiDataGrid-dataContainer': {
-        //  backgroundColor: common['white']
       },
       '& .MuiDataGrid-window': {
         // minHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
         // maxHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
         scrollbarWidth: 'thin',
-        background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
+        backgroundColor: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
         overflowX: 'hidden'
       },
       '&  .MuiDataGrid-row': {
-        background: '#FFFFFF',
+        backgroundColor: '#FFFFFF',
 
         '&:hover': {
-          background: '#F2F2F2'
+          backgroundColor: '#F2F2F2'
         }
       }
     },
@@ -165,7 +164,39 @@ const style = makeStyles((oTheme: Theme): any =>
         marginTop: -oTheme.spacing(2)
       }
     },
+    iconButton: {
+      '& .MuiIconButton-label ': {
+        width: oTheme.spacing(3),
+        height: oTheme.spacing(3),
+        borderRadius: oTheme.spacing(0.5),
+        border: '1px solid ' + grey[400],
+        '& .MuiSvgIcon-root': {
+          fontSize: oTheme.spacing(2.25),
+          color: common['white']
 
+        },
+      },
+      '&.MuiIconButton-root.Mui-disabled': {
+        '& .MuiIconButton-label': {
+          opacity: 0.2
+        }
+
+      }
+    },
+    iconButtonTranscoder: {
+      '& .MuiIconButton-label ': {
+        backgroundColor: red[700],
+
+      },
+
+    },
+    iconButtonNotifier: {
+      '& .MuiIconButton-label ': {
+        backgroundColor: teal[600],
+
+      },
+
+    },
     pageButton: {
       border: '1px solid ' + grey[400],
       width: oTheme.spacing(4),

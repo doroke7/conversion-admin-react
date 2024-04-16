@@ -26,7 +26,11 @@ import UpdateTwoToneIcon from '@material-ui/icons/UpdateTwoTone';
 import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
 import FlipCameraIosTwoToneIcon from '@material-ui/icons/FlipCameraIosTwoTone';
 import PermScanWifiTwoToneIcon from '@material-ui/icons/PermScanWifiTwoTone';
-
+import FlipCameraIosIcon from '@material-ui/icons/FlipCameraIos';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import ContactlessTwoToneIcon from '@material-ui/icons/ContactlessTwoTone';
+import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
+import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
@@ -386,15 +390,18 @@ function Index(oProps: any): any {
       width: 140,
       renderCell: (oProps: any) => {
         let iId = oProps?.row?.id;
+        let bTranscoderDisable = oProps?.row?.state == 0;
+
+        let bNotifierDisable = oProps?.row?.state < 5;
 
         return (
           <div>
-            <IconButton color="" aria-label="" component="span">
-              <FlipCameraIosTwoToneIcon />
+            <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)} color="primary" aria-label="" component="span" disabled={bTranscoderDisable}>
+              <FlipCameraAndroidTwoToneIcon />
             </IconButton>
 
-            <IconButton color="" aria-label="" component="span">
-              <PermScanWifiTwoToneIcon />
+            <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)} color="primary" aria-label="" component="span" disabled={bNotifierDisable}>
+              <AddAlertTwoToneIcon />
             </IconButton>
           </div>
         );

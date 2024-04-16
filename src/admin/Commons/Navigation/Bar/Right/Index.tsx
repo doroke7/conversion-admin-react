@@ -90,12 +90,12 @@ function Right(oProps: any) {
 
   return (
     <div className={oClasses.right}>
-      <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
+      {/* <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
         <RefreshIcon
           className={clsx(oClasses.icon, {
             [oClasses.iconAnimation]: oState.rotating
           })}></RefreshIcon>
-      </IconButton>
+      </IconButton> */}
       <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
       <div
         className={oClasses.avatarWrapper}
