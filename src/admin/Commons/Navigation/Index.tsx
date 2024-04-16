@@ -54,7 +54,6 @@ function Navigation(oProps: any) {
 
   let oParams: any = useParams();
 
-  let sAuhorization = useSelector((oStore: any) => (oStore.auhorization));
   let oMe = useSelector((oStore: any) => (oStore.me));
 
   let iAppId = useMemo(() => {  // 实际 appId
@@ -67,13 +66,13 @@ function Navigation(oProps: any) {
       let oResponse = await Sdks.Admin.System.AdminMenu.getShowTree({ appId: iAppId });
       return oResponse;
     },
-    [iAppId, sAuhorization]
+    [iAppId, oMe.id]
   );
 
   let cAdminSystemAppShowOnes = useCallback(async () => {
     let oResponse = await Sdks.Admin.System.App.getShowOnes();
     return oResponse;
-  }, [sAuhorization]);
+  }, [oMe.id]);
 
   useEffect(() => {
     (async () => {
@@ -127,7 +126,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickAdminUserLink', cClickAdminUserLink);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
+  }, []);
 
   useEffect(() => {
     let cClickAdminMenu = (oAdminMenu: any) => {
