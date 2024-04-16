@@ -7,7 +7,10 @@ let cUrl = (sPrefix: string = '', sPath: string, iAppId: number = 0, iPage: numb
   sPath = sPath.replace(oRegex2, '/page/' + iPage);
   sPath = sPath.replace(oRegex3, '/limit/' + iLimit);
 
-  let sResult = sPrefix + sPath;
+  let aParams = Object.entries(oSearch).map(([sKey, sValue]) => (`${encodeURIComponent(sKey)}=${encodeURIComponent(String(sValue))}`));
+  let sParams = aParams.length > 0 ? aParams.join('&') : '';
+
+  let sResult = sPrefix + sPath + (sParams ? '?' + sParams : '');
 
 
   return sResult;
