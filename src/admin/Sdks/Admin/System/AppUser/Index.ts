@@ -6,12 +6,12 @@ class AppUser {
       path: '/Admin/System/AppUser/showOnes',
 
       params: {
-        option: {},
-        search: {}
+        option: oOption,
+        search: oSearch
       },
 
       data: {
-        param: {}
+        param: oParam
       },
       options: {}
     });

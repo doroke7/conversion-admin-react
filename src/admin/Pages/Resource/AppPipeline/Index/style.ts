@@ -103,8 +103,6 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     formControl: {
-      textAlign: 'right',
-      width: oTheme.spacing(9),
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
         transform: 'translate(14px, -5px) scale(0.65)'
       },
@@ -119,6 +117,16 @@ const style = makeStyles((oTheme: Theme): any =>
         paddingTop: oTheme.spacing(0.6),
         paddingBottom: oTheme.spacing(0.6),
       },
+    },
+    formControlAppUserId: {
+      textAlign: 'left',
+      width: oTheme.spacing(20),
+
+    },
+    formControlLimit: {
+      textAlign: 'right',
+      width: oTheme.spacing(9),
+
     },
     menuItem: {
       fontSize: oTheme.spacing(1.75),

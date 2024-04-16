@@ -55,12 +55,14 @@ function Index(oProps: any): any {
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
+  let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
 
 
   let iLimit = Number(oParams.limit || 20);
   let iPage = Number(oParams.page || 1);
   let iAppId = Number(oParams.appId || 0);
   let sName = String(oUrlSearchParams.get('name') || '');
+  let iAppUserId = Number(oUrlSearchParams.get('app-user-id') || 0);
 
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
@@ -82,7 +84,6 @@ function Index(oProps: any): any {
 
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
 
-      console.log('aAppUsers=', aAppUsers);
       cSetStateAppUsers(aAppUsers);
 
     })();
@@ -100,6 +101,10 @@ function Index(oProps: any): any {
   useEffect(() => {
     cSetStateName(sName);
   }, [sName]);
+
+  useEffect(() => {
+    cSetStateAppUserId(iAppUserId);
+  }, [iAppUserId]);
 
   useEffect(() => {
     cSetStateRows(aAppPipelines);
@@ -122,6 +127,12 @@ function Index(oProps: any): any {
         ...oSearch,
         name: sStateName
       });
+
+      iAppUserId && (oSearch = {
+        ...oSearch,
+        appUserId: iAppUserId
+      });
+
       let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
@@ -135,11 +146,16 @@ function Index(oProps: any): any {
       cSetStateLoading(false);
 
     })();
-  }, [iStatePage, iStateLimit, sName]);
+  }, [iStatePage, iStateLimit, sName, iAppUserId]);
 
-  let cHandleClickNameOfButton = (oEvent: React.SyntheticEvent<unknown>) => {
+  let cHandleClickOfButton = (oEvent: React.SyntheticEvent<unknown>) => {
 
     let oSearch = {};
+
+    iStateAppUserId && (oSearch = {
+      ...oSearch,
+      'app-user-id': iStateAppUserId
+    });
 
     sStateName && (oSearch = {
       ...oSearch,
@@ -155,6 +171,11 @@ function Index(oProps: any): any {
 
     let oSearch = {};
 
+    iStateAppUserId && (oSearch = {
+      ...oSearch,
+      'app-user-id': iStateAppUserId
+    });
+
     sStateName && (oSearch = {
       ...oSearch,
       name: sStateName
@@ -164,10 +185,21 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
+  let cHandleChangeAppUserIdOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let iAppUserId = Number(oEvent.target.value);
+
+    cSetStateAppUserId(iAppUserId);
+  };
+
   let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iLimit = Number(oEvent.target.value);
 
     let oSearch = {};
+
+    iStateAppUserId && (oSearch = {
+      ...oSearch,
+      'app-user-id': iStateAppUserId
+    });
 
     sStateName && (oSearch = {
       ...oSearch,
@@ -197,6 +229,11 @@ function Index(oProps: any): any {
 
       let oSearch = {};
 
+      iStateAppUserId && (oSearch = {
+        ...oSearch,
+        'app-user-id': iStateAppUserId
+      });
+
       sStateName && (oSearch = {
         ...oSearch,
         name: sStateName
@@ -213,9 +250,14 @@ function Index(oProps: any): any {
       let sName = String(oEvent.target.value);
 
       let oSearch = {};
-      sName && (oSearch = {
+      iStateAppUserId && (oSearch = {
         ...oSearch,
-        name: sName
+        'app-user-id': iStateAppUserId
+      });
+
+      sStateName && (oSearch = {
+        ...oSearch,
+        name: sStateName
       });
 
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
@@ -227,6 +269,11 @@ function Index(oProps: any): any {
   let cHandleBlurPageOfTextField = (oEvent: any) => {
     let iPage = Number(oEvent.target.value);
     let oSearch = {};
+
+    iStateAppUserId && (oSearch = {
+      ...oSearch,
+      'app-user-id': iStateAppUserId
+    });
 
     sStateName && (oSearch = {
       ...oSearch,
@@ -339,18 +386,18 @@ function Index(oProps: any): any {
     <div className="app-pipeline">
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
-          <FormControl variant="outlined" className={oClasses.formControl}>
+          <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>
             <InputLabel id="app-user-id">账号</InputLabel>
             <Select
               labelId="app-user-id"
               id="app-user-id"
-              value={iStateLimit}
-              onChange={cHandleChangeLimitOfSelect}
+              value={iStateAppUserId}
+              onChange={cHandleChangeAppUserIdOfSelect}
               label="账号"
             >
-              <MenuItem className={oClasses.menuItem} value={0}>--</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={0}>-</MenuItem>
               {aStateAppUsers.map((oStateAppUser, sKey) => (
-                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateAppUser.id}>{oStateAppUser.name}</MenuItem>
+                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateAppUser?.id ?? 0}>{oStateAppUser?.name ?? ''}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -369,13 +416,13 @@ function Index(oProps: any): any {
             className={oClasses.button}
             variant="outlined"
             endIcon={<SearchIcon></SearchIcon>}
-            onClick={cHandleClickNameOfButton}
+            onClick={cHandleClickOfButton}
           >
             检索
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
-          <FormControl variant="outlined" className={oClasses.formControl}>
+          <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlLimit)}>
             <InputLabel id="demo-simple-select-filled-label">笔</InputLabel>
             <Select
               labelId="demo-simple-select-label"
