@@ -39,6 +39,9 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiInputBase-input': {
         textAlign: 'left',
       },
+      [oTheme.breakpoints.down('md')]: {
+        width: oTheme.spacing(8),
+      },
     },
 
     textFieldPage: {
@@ -128,7 +131,9 @@ const style = makeStyles((oTheme: Theme): any =>
     formControlAppUserId: {
       textAlign: 'left',
       width: oTheme.spacing(20),
-
+      [oTheme.breakpoints.down('md')]: {
+        width: oTheme.spacing(8),
+      },
     },
     formControlLimit: {
       textAlign: 'right',
