@@ -28,9 +28,6 @@ let tab = (Component: any): any => {
 
     let sURLSearchParams = oURLSearchParams.toString();
 
-    console.log('oRouteMatch=', oRouteMatch);
-    console.log('oSearch=', oSearch);
-
     useEffect(() => {
 
       let oRoute = {

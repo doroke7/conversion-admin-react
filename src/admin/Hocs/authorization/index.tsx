@@ -66,11 +66,22 @@ let authenticator = (Component: any): any => {
           cSetStateAuthorizations(sAuthorizations);
 
           if (
+            oResponse?.data?.code >= 0 && oResponse?.data?.code !== undefined
+          ) {
+
+            oDispatch(actions.authorizaion.set(sJwt));
+            oDispatch(actions.me.set(oAdminUser));
+          }
+
+          if (
             oResponse?.data?.code == -1
           ) {
             // 服务器回传 -1 (判定token 不合法), => 清空 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
             sJwt = '';
             oAdminUser = {};
+
+            oDispatch(actions.authorizaion.set(sJwt));
+            oDispatch(actions.me.set(oAdminUser));
           }
 
 
@@ -79,22 +90,23 @@ let authenticator = (Component: any): any => {
           ) {
             // 服务器回传 -2 (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
             oAdminUser = {};
+            oDispatch(actions.me.set(oAdminUser));
 
           }
 
-          // NOTE：注意 dispatch 交互放的位置
-          // 必须在跳转之前就作 用户数据覆盖 与 jwt 数据覆盖
-          oDispatch(actions.authorizaion.set(sJwt));
-          oDispatch(actions.me.set(oAdminUser));
+          if (oResponse?.data?.code === undefined) {
+            // 服务器回传 undefined (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
 
+            oAdminUser = {};
+            oDispatch(actions.me.set(oAdminUser));
+          }
 
           if (
-            oResponse?.data?.code === undefined || !sJwt || oResponse?.data?.code <= -1
+            oResponse?.data?.code <= -1
           ) {
 
             let sMessage = '未知错误';
 
-            sMessage = oResponse?.data?.code === undefined ? '服务器未定义 code 错误' : sMessage;
             sMessage = oResponse?.data?.code >= 0 && !sJwt ? '服务器未定义 authorization 错误' : sMessage;
             sMessage = oResponse?.data?.code <= -1 ? '错误' : sMessage;
 

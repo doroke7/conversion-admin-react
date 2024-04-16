@@ -146,8 +146,6 @@ function Index(oProps: any): any {
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
-      console.log('iNumber=', iNumber);
-      console.log('iCount=', iCount);
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
@@ -321,8 +319,8 @@ function Index(oProps: any): any {
         events.emit('Alerts-onAlert', oMessage);
       };
 
-      if (!oResponse || oResponse?.data?.code >= 0) {
-        let iCode = 1;
+      if (oResponse && oResponse?.data?.code >= 0) {
+        let iCode = 0;
         let sMessage = oResponse?.data?.message ?? '未知的成功信息';
         let oMessage = {
           code: iCode,
@@ -358,7 +356,8 @@ function Index(oProps: any): any {
         events.emit('Alerts-onAlert', oMessage);
       };
 
-      if (!oResponse || oResponse?.data?.code >= 0) {
+      if (oResponse && oResponse?.data?.code >= 0) {
+
         let iCode = 0;
         let sMessage = oResponse?.data?.message ?? '未知的成功信息';
         let oMessage = {
@@ -492,9 +491,6 @@ function Index(oProps: any): any {
       },
     },
   ];
-
-  console.log('iStatePage=', iStatePage);
-  console.log('iStateCount=', iStateCount);
 
 
   return (
