@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple } from '@material-ui/core/colors';
+import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -192,7 +192,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     iconButtonNotifier: {
       '& .MuiIconButton-label ': {
-        backgroundColor: teal[600],
+        backgroundColor: green['700'],
 
       },
 
