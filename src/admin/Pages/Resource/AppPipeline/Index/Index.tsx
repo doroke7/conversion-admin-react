@@ -431,8 +431,8 @@ function Index(oProps: any): any {
     },
     {
       field: 'state',
-      headerName: '状态',
-      description: '状态',
+      headerName: '进度',
+      description: '进度',
       sortable: false,
       width: 80,
       renderCell: (oProps: any) => {
