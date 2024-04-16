@@ -84,6 +84,8 @@ function Navigation(oProps: any) {
 
         let oAppResponse = aResponses[0];
         let oAdminUserLinkResponse = aResponses[1];
+        console.log('oAppResponse=', oAppResponse);
+        console.log('oAdminUserLinkResponse=', oAdminUserLinkResponse);
 
         let aApps = oAppResponse?.data?.raw?.ones ?? [];
         let aAdminUserLinks = oAdminUserLinkResponse?.data?.raw?.ones ?? [];
@@ -103,6 +105,8 @@ function Navigation(oProps: any) {
 
     })();
   }, [cAdminSystemAppShowOnes, oMe.id]);
+
+  console.log('oMe,oMe,oMe=', oMe);
 
   useEffect(() => {
     // useEffect 不不允许 输入 async 函数， 需要修改成 在里面呼叫一个 async 立即呼叫函数

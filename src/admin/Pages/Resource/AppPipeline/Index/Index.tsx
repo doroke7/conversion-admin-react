@@ -138,6 +138,8 @@ function Index(oProps: any): any {
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+      console.log('iNumber=', iNumber);
+      console.log('iCount=', iCount);
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
@@ -381,6 +383,9 @@ function Index(oProps: any): any {
     },
   ];
 
+  console.log('iStatePage=', iStatePage);
+  console.log('iStateCount=', iStateCount);
+
 
   return (
     <div className="app-pipeline">
@@ -444,10 +449,10 @@ function Index(oProps: any): any {
             variant="outlined"
             shape="rounded"
             color="primary"
-            siblingCount={1}
+            siblingCount={0}
             boundaryCount={1}
-            showFirstButton
-            showLastButton
+            //   showFirstButton
+            // showLastButton
             page={iStatePage}
             onChange={cHandleChangePageOfPagination}
           />

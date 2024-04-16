@@ -68,7 +68,7 @@ let authenticator = (Component: any): any => {
           if (
             oResponse?.data?.code == -1
           ) {
-            // 服务器回传 -1 (判定token 不合法),清空 本地浏览器 [登入token] 与 [用户数据]
+            // 服务器回传 -1 (判定token 不合法), => 清空 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
             sJwt = '';
             oAdminUser = {};
           }
@@ -77,9 +77,16 @@ let authenticator = (Component: any): any => {
           if (
             oResponse?.data?.code <= -2
           ) {
-            // DO NOTHING
-            // 服务器回传 -2 (判定服务器暂时错误),保留 本地浏览器 [登入token] 与 [用户数据]
+            // 服务器回传 -2 (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
+            oAdminUser = {};
+
           }
+
+          // NOTE：注意 dispatch 交互放的位置
+          // 必须在跳转之前就作 用户数据覆盖 与 jwt 数据覆盖
+          oDispatch(actions.authorizaion.set(sJwt));
+          oDispatch(actions.me.set(oAdminUser));
+
 
           if (
             oResponse?.data?.code === undefined || !sJwt || oResponse?.data?.code <= -1
@@ -104,15 +111,11 @@ let authenticator = (Component: any): any => {
             }
           }
 
-          oDispatch(actions.authorizaion.set(sJwt));
-          oDispatch(actions.me.set(oAdminUser));
-
         }
 
         cSetStateStatus(true);
       };
 
-      console.log(CONFIGS?.JWT);
       if (CONFIGS?.JWT?.AUTHORIZATION && bAuthorization) {
         events.emit('Progress-onProgress', { value: 0, status: true });
         cRefresh();
