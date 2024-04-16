@@ -66,10 +66,19 @@ let authenticator = (Component: any): any => {
           cSetStateAuthorizations(sAuthorizations);
 
           if (
-            oResponse?.data?.code <= -2
+            oResponse?.data?.code == -1
           ) {
+            // 服务器回传 -1 (判定token 不合法),清空 本地浏览器 [登入token] 与 [用户数据]
             sJwt = '';
             oAdminUser = {};
+          }
+
+
+          if (
+            oResponse?.data?.code <= -2
+          ) {
+            // DO NOTHING
+            // 服务器回传 -2 (判定服务器暂时错误),保留 本地浏览器 [登入token] 与 [用户数据]
           }
 
           if (
