@@ -197,6 +197,9 @@ const style = makeStyles((oTheme: Theme): any =>
 
       }
     },
+    buttonOfDataGrid: {
+
+    },
 
 
   })

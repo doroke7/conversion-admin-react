@@ -58,71 +58,6 @@ function Index(oProps: any): any {
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppUsers = useSelector((oStore: any) => (oStore.appUsers));
 
-  let aColumns: any[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      description: '流水号',
-      width: 80,
-      sortable: false,
-      editable: false
-    },
-    {
-      field: 'appUrl',
-      headerName: '项目',
-      description: '项目',
-      sortable: false,
-      width: 84,
-      align: 'left',
-      renderCell: (oProps: any) => {
-        let sTitle = oProps?.row?.app?.title;
-        let sUrl = oProps?.row?.app?.url;
-
-        return (
-          <Tooltip title={sTitle} placement="right">
-            <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
-              {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
-            </Avatar>
-          </Tooltip>
-        );
-      },
-    },
-    {
-      field: 'name',
-      headerName: '名称',
-      description: '名称',
-      sortable: false,
-      flex: 2,
-      width: 85,
-    },
-
-
-    {
-      field: 'sort',
-      headerName: '优先级',
-      description: '优先级',
-      width: 120,
-      sortable: false,
-      editable: false
-    },
-    {
-      field: 'addedTime',
-      headerName: '创建时间',
-      description: '创建时间',
-      sortable: false,
-      flex: 1,
-      width: 200,
-      valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
-    },
-    {
-      field: 'tool',
-      headerName: '操作',
-      description: '操作',
-      sortable: false,
-      width: 200
-    },
-  ];
-
 
 
   useEffect(() => {
@@ -205,6 +140,73 @@ function Index(oProps: any): any {
 
   let cHandlePageClick = (oEvent: any) => {
   };
+
+
+  let aColumns: any[] = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      description: '流水号',
+      width: 80,
+      sortable: false,
+      editable: false
+    },
+    {
+      field: 'appUrl',
+      headerName: '项目',
+      description: '项目',
+      sortable: false,
+      width: 84,
+      align: 'left',
+      renderCell: (oProps: any) => {
+        let sTitle = oProps?.row?.app?.title;
+        let sUrl = oProps?.row?.app?.url;
+
+        return (
+          <Tooltip title={sTitle} placement="right">
+            <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
+              {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
+            </Avatar>
+          </Tooltip>
+        );
+      },
+    },
+    {
+      field: 'name',
+      headerName: '名称',
+      description: '名称',
+      sortable: false,
+      flex: 2,
+      width: 85,
+    },
+
+
+    {
+      field: 'sort',
+      headerName: '优先级',
+      description: '优先级',
+      width: 120,
+      sortable: false,
+      editable: false
+    },
+    {
+      field: 'addedTime',
+      headerName: '创建时间',
+      description: '创建时间',
+      sortable: false,
+      flex: 1,
+      width: 200,
+      valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
+    },
+    {
+      field: 'tool',
+      headerName: '操作',
+      description: '操作',
+      sortable: false,
+      width: 200
+    },
+  ];
+
 
   return (
     <div className="app-user">

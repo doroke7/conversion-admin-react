@@ -22,6 +22,8 @@ import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import InputLabel from '@material-ui/core/InputLabel';
+import UpdateTwoToneIcon from '@material-ui/icons/UpdateTwoTone';
+import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
 
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -379,7 +381,29 @@ function Index(oProps: any): any {
       headerName: '操作',
       description: '操作',
       sortable: false,
-      width: 140
+      width: 140,
+      renderCell: (oProps: any) => {
+        let iId = oProps?.row?.id;
+
+        return (
+          <div>
+            <Button
+              color="default"
+              variant="outlined"
+              size="small"
+              className={clsx(oClasses.button, oClasses.buttonOfDataGrid)}
+              startIcon={<UpdateTwoToneIcon></UpdateTwoToneIcon>}
+            ></Button>
+            <Button
+              color="default"
+              variant="outlined"
+              size="small"
+              className={clsx(oClasses.button, oClasses.buttonOfDataGrid)}
+              startIcon={<SendTwoToneIcon></SendTwoToneIcon>}
+            ></Button>
+          </div>
+        );
+      },
     },
   ];
 
@@ -417,8 +441,8 @@ function Index(oProps: any): any {
             onKeyPress={cHandleKeyPressNameOfTextField}
           />
           <Button
-            color="primary"
             className={oClasses.button}
+            color="primary"
             variant="outlined"
             endIcon={<SearchIcon></SearchIcon>}
             onClick={cHandleClickOfButton}
