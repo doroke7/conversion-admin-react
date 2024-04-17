@@ -79,8 +79,6 @@ function Index(oProps: any): any {
   useEffect(() => {
     (async () => {
 
-      cSetStateLoading(true);
-
       let oParam = {};
       let oOption = {
       };
