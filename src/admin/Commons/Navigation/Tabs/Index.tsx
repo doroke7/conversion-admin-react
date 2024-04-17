@@ -136,8 +136,9 @@ function MyTabs(oProps: any) {
                 open={oStateTooltips?.[sIndex] && iTabsLength >= 11}
                 className={oClasses.toolTip}
                 title={oTab?.text + ''}
-                placement="bottom"
-                arrow>
+                placement="top"
+                arrow
+              >
                 <Tab
                   onContextMenu={cHandleContextmenu(sIndex)}
                   onMouseLeave={cHandleMouseLeave(sIndex)}

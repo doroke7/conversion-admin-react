@@ -87,7 +87,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
     },
     iconButton: {},
     tooltip: {
-      background: 'linear-gradient(195deg, ' + grey[900] + ' 30%, ' + grey[800] + ' 90%)'
+      background: 'linear-gradient(195deg, ' + grey[900] + ' 30%, ' + grey[800] + ' 90%)',
+      opacity: 0.9
     },
     emptyNone: {
       display: 'none'
