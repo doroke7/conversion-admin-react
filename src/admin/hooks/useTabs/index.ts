@@ -18,7 +18,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
     };
   });
 
-  let [iStateTabsValue, cSetStateTabsValue] = useState(-1);
+  let [iStateTabsValue, cSetStateTabsValue] = useState<number>(-1);
 
   let cWrapperSetStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
     iAppId > 0 && TabHelper.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iAppId);
@@ -28,7 +28,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   }, [iAdminUserId, iAppId]);
 
-  let cWrapperRemoveTab = useCallback((iIndex: number) => {
+  let cWrapperRemoveStateTab = useCallback((iIndex: number) => {
 
     if (iIndex >= aStateTabs.length) {
       return;
@@ -63,7 +63,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let cWrapperRemoveAllTab = useCallback(() => {
+  let cWrapperRemoveTabs = useCallback(() => {
 
     if (iAppId > 0) {
       TabHelper.setOnesByAdminUserIdAppId([], iAdminUserId, iAppId);
@@ -79,7 +79,40 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  return [aStateTabs, iStateTabsValue, cWrapperSetStateTabs, cWrapperRemoveTab, cWrapperRemoveAllTab];
+  let cWrapperRemoveOtherTabs = useCallback((iIndex: number) => {
+
+    let aTabs1 = iAppId > 0 ? TabHelper.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId) : [];
+    let aTabs0 = TabHelper.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
+    let oTab = null;
+
+    if (iIndex < aTabs1.length) {
+      oTab = aTabs1[iIndex] ?? null;
+      aTabs1 = [oTab];
+      aTabs0 = [];
+    };
+
+    if (iIndex >= aTabs1.length) {
+      oTab = aTabs0[iIndex - aTabs1.length] ?? null;
+      aTabs0 = [];
+      aTabs0 = [oTab];
+    };
+    TabHelper.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iAppId);
+    TabHelper.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+
+    let aTabs = [...aTabs1, ...aTabs0];
+
+    cSetStateTabsValue(0);
+    cSetStateTabs(aTabs);
+
+  }, [iAdminUserId, iAppId]);
+
+
+
+
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cWrapperSetStateTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs, cSetStateTabsValue];
+
+
+  return aResults;
 };
 
 export default useTabs;

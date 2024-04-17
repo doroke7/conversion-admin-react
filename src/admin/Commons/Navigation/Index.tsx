@@ -275,7 +275,7 @@ function Navigation(oProps: any) {
           aTabs0 = [];
           aTabs0 = [oTab];
         };
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, iAppId);
+        iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, iAppId);
         Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
 
         let iValue = 0;
