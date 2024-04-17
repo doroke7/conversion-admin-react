@@ -60,7 +60,7 @@ function SmallApps(oProps) {
       className={clsx(oClasses.root, {
         [oClasses.hidden]: !bStatus
       })}>
-      <>
+      <div className={oClasses.listItemWrapper}>
         <ListItem
           className={oClasses.listItem}
           button
@@ -79,8 +79,11 @@ function SmallApps(oProps) {
             backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
             onMouseLeave={cHandleMouseLeave}></Apps>
+            <div className={oClasses.listItemOverlay}>
+
+            </div>
         </ListItem>
-      </>
+      </div>
     </List>
   );
 }

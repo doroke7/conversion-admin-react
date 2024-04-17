@@ -21,6 +21,7 @@ import {
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
+      overflow: 'visible',
       width: '100%',
       maxWidth: oTheme.spacing(40),
       color: grey[100],
@@ -41,8 +42,22 @@ let oStyle = makeStyles((oTheme: Theme) =>
       minWidth: oTheme.spacing(4),
       color: grey[100]
     },
+    listItemWrapper: {
+      overflow: 'visible'
+    },
     listItem: {
-      height: oTheme.spacing(8)
+      height: oTheme.spacing(8),
+      overflow: 'visible',
+      position: 'relative'
+    },
+    listItemOverlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '58px',
+      height: '68px',
+      opacity: 0,
+      cursor: 'pointer'
     },
     icon: {
       filter:

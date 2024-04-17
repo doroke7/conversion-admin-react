@@ -58,7 +58,7 @@ const style = makeStyles((oTheme: Theme) =>
         easing: oTheme.transitions.easing.sharp,
         duration: oTheme.transitions.duration.leavingScreen
       }),
-      overflowX: 'hidden',
+      overflow: 'visible',
       width: oTheme.spacing(7),
       [oTheme.breakpoints.up('sm')]: {
         width: oTheme.spacing(7) // 一个 8px
@@ -74,9 +74,9 @@ const style = makeStyles((oTheme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       paddingTop: oTheme.spacing(0),
-      paddingRight: oTheme.spacing(2) + 6,
+      paddingRight: oTheme.spacing(2.75),
       paddingBottom: oTheme.spacing(0),
-      paddingLeft: oTheme.spacing(2) + 4,
+      paddingLeft: oTheme.spacing(2.5),
 
       minHeight: oTheme.spacing(7),
       background: 'linear-gradient(195deg, #125489 5%, #125480 100%)'
@@ -112,9 +112,9 @@ const style = makeStyles((oTheme: Theme) =>
 
     paper: {
       padding: oTheme.spacing(2),
-      borderRadius: oTheme.spacing(1) - 2,
+      borderRadius: oTheme.spacing(1.75),
       boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
-      marginTop: oTheme.spacing(1) - 4
+      marginTop: oTheme.spacing(0.5)
     },
     firstDivider: {
       marginTop: oTheme.spacing(7),
