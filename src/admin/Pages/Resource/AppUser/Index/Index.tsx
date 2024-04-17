@@ -62,7 +62,7 @@ function Index(oProps: any): any {
 
   useEffect(() => {
     cSetStateLimit(iLimit);
-  }, [oParams.limit]);
+  }, [oParams.limit, oParams.page]);
 
   useEffect(() => {
     cSetStatePage(iPage);
