@@ -26,22 +26,15 @@ function SmallApps(oProps) {
   const oClasses = cStyle();
   const iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
-  let [oState, cSetState] = useState<any>({
-    open: false,
-    anchor: null
-  });
+  let [oStateAnchor, cSetStateAnchor] = useState<any>(null);
 
   let oApp = aApps[iIndex] ?? {};
-  let cHandleToggle = (oEvent: React.SyntheticEvent) => {
-    let bOpen = !oState.open;
-    cSetState({ ...oState, open: bOpen });
-  };
 
   let cHandleMouseEnter = () => {
     return (oEvent) => {
       let oAnchor = oEvent.currentTarget;
 
-      cSetState({ ...oState, anchor: oAnchor });
+      cSetStateAnchor(oAnchor);
     };
   };
 
@@ -49,17 +42,19 @@ function SmallApps(oProps) {
     return (oEvent) => {
       let oAnchor = null;
 
-      cSetState({ ...oState, anchor: oAnchor });
+      cSetStateAnchor(oAnchor);
+
     };
   };
 
   let cHandleClose = (oEvent: any) => {
-    if (oState.achor && oState.achor.contains(oEvent.target as HTMLElement)) {
+    if (oStateAnchor && oStateAnchor.contains(oEvent.target as HTMLElement)) {
       return;
     }
     let oAnchor = null;
 
-    cSetState({ ...oState, anchor: oAnchor });
+    cSetStateAnchor(oAnchor);
+
   };
 
   return (
@@ -82,9 +77,9 @@ function SmallApps(oProps) {
             url={oApp?.url ?? ''}></Icon>
           <ListItemText primary={''} />
           <Apps
-            open={Boolean(oState.anchor)}
+            open={Boolean(oStateAnchor)}
             apps={aApps}
-            anchor={oState.anchor}
+            anchor={oStateAnchor}
             backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
             onMouseLeave={cHandleMouseLeave()}></Apps>
