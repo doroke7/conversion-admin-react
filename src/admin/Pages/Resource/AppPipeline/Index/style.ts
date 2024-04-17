@@ -58,14 +58,22 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       width: '100%',
       '& .MuiDataGrid-root': {
+        '& .MuiDataGrid-columnHeader': {
+          '&:focus': {
+            outline: 'none'
+          },
+          '&:focus-within': {
+            outline: 'none'
+          }
+        },
         '& .MuiDataGrid-overlay': {
           backgroundColor: 'rgba(250, 250, 250, 0)'
         },
         '& .MuiDataGrid-cell': {
-          '&:focus':{
+          '&:focus': {
             outline: 'none'
           },
-          '&:focus-within':{
+          '&:focus-within': {
             outline: 'none'
           }
         }
