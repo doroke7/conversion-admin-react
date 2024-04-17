@@ -153,7 +153,7 @@ function Index(oProps: any): any {
       cSetStateLoading(false);
 
     })();
-  }, [iAppId, iStatePage, iStateLimit, sName, iAppUserId]);
+  }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId]);
 
   let cHandleClickOfButton = (oEvent: React.SyntheticEvent<unknown>) => {
 

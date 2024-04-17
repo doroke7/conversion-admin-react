@@ -62,7 +62,7 @@ function Index(oProps: any): any {
 
   useEffect(() => {
     cSetStateLimit(iLimit);
-  }, [oParams.limit, oParams.page]);
+  }, [oParams.limit]);
 
   useEffect(() => {
     cSetStatePage(iPage);
@@ -75,10 +75,13 @@ function Index(oProps: any): any {
 
       let oParam = {};
       let oOption = {
-        page: iStatePage,
-        limit: iStateLimit
+        page: oParams.page,
+        limit: oParams.limit
       };
       let oSearch = {};
+
+      console.log('oOption=', oOption);
+      console.log('oParams=', oParams);
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oParam, oOption, oSearch);
 
@@ -91,7 +94,7 @@ function Index(oProps: any): any {
       cSetStateLoading(false);
 
     })();
-  }, [iStatePage, iStateLimit]);
+  }, [oParams.page, oParams.limit]);
 
   useEffect(() => {
     cSetStateRows(aAppUsers);
