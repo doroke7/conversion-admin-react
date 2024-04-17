@@ -30,21 +30,17 @@ function SmallApps(oProps) {
 
   let oApp = aApps[iIndex] ?? {};
 
-  let cHandleMouseEnter = () => {
-    return (oEvent) => {
-      let oAnchor = oEvent.currentTarget;
+  let cHandleMouseEnter = (oEvent:any) => {
+    let oAnchor = oEvent.currentTarget;
 
-      cSetStateAnchor(oAnchor);
-    };
+    cSetStateAnchor(oAnchor);
   };
 
-  let cHandleMouseLeave = () => {
-    return (oEvent) => {
-      let oAnchor = null;
+  let cHandleMouseLeave = (oEvent:any) => {
+    let oAnchor = null;
 
-      cSetStateAnchor(oAnchor);
+    cSetStateAnchor(oAnchor);
 
-    };
   };
 
   let cHandleClose = (oEvent: any) => {
@@ -68,8 +64,8 @@ function SmallApps(oProps) {
         <ListItem
           className={oClasses.listItem}
           button
-          onMouseEnter={cHandleMouseEnter()}
-          onMouseLeave={cHandleMouseLeave()}>
+          onMouseEnter={cHandleMouseEnter}
+          onMouseLeave={cHandleMouseLeave}>
           <Icon
             className={clsx(aBackgroundClasses?.[iIndex] ?? aBackgroundClasses[14], {})}
             title={oApp?.title ?? ''}
@@ -77,12 +73,12 @@ function SmallApps(oProps) {
             url={oApp?.url ?? ''}></Icon>
           <ListItemText primary={''} />
           <Apps
-            open={Boolean(oStateAnchor)}
+            open={Boolean(oStateAnchor ?? false)}
             apps={aApps}
             anchor={oStateAnchor}
             backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
-            onMouseLeave={cHandleMouseLeave()}></Apps>
+            onMouseLeave={cHandleMouseLeave}></Apps>
         </ListItem>
       </>
     </List>
