@@ -393,6 +393,7 @@ function Navigation(oProps: any) {
             if (aTabs1[iTabIndex]['url'] != oTab?.url || aTabs1[iTabIndex]['text'] == '未定义') {
               aTabs1[iTabIndex]['text'] = oTab?.text;
             }
+            aTabs1[iTabIndex]['path'] = oTab?.path;
             aTabs1[iTabIndex]['icon'] = oTab?.icon;
             aTabs1[iTabIndex]['url'] = oTab?.url;
             aTabs1[iTabIndex]['params'] = oTab?.params;
@@ -412,6 +413,7 @@ function Navigation(oProps: any) {
             if (aTabs0[iTabIndex]['url'] != oTab?.url || aTabs0[iTabIndex]['text'] == '未定义') {
               aTabs0[iTabIndex]['text'] = oTab?.text;
             }
+            aTabs1[iTabIndex]['path'] = oTab?.path;
             aTabs0[iTabIndex]['icon'] = oTab?.icon;
             aTabs0[iTabIndex]['url'] = oTab?.url;
             aTabs0[iTabIndex]['params'] = oTab?.params;
