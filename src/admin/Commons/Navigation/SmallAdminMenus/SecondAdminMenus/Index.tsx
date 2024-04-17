@@ -57,7 +57,7 @@ function SecondAdminMenus(oProps: any) {
   }
 
   return (
-    <Popper open={bOpen} anchorEl={oAnchor} role={undefined} placement={'right-start'}>
+    <Popper className={oClasses.root} open={bOpen} anchorEl={oAnchor} role={undefined} placement={'right-start'}>
       <Grow in={true} style={{ transformOrigin: 'left top' }}>
         <Paper className={oClasses.papper}>
           <ClickAwayListener onClickAway={cOnClickAway}>

@@ -4,7 +4,9 @@ import { pink, grey } from '@material-ui/core/colors';
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      zIndex: 10
+      zIndex: 10,
+      overflow: 'visible',
+
     },
     listItemIcon: {
       minWidth: oTheme.spacing(3),
