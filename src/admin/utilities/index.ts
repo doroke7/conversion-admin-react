@@ -26,6 +26,7 @@ import url from './url/';
 import size from './size/';
 import dateTime from './dateTime/';
 import adminMenuKey from './adminMenuKey';
+import hhmmss from './hhmmss/';
 
 export {
   selectType,
@@ -58,5 +59,6 @@ export default {
   appIdPageLimit: appIdPageLimit,
   deTree: deTree,
   randString: randString,
-  adminMenuKey: adminMenuKey
+  adminMenuKey: adminMenuKey,
+  hhmmss: hhmmss
 };
