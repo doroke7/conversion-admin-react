@@ -155,21 +155,54 @@ function Index(oProps: any): any {
     })();
   }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId]);
 
-  let cHandleClickOfButton = (oEvent: React.SyntheticEvent<unknown>) => {
+  let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
-    let oSearch = {};
+    let oSearch1 = {};
 
-    iStateAppUserId && (oSearch = {
-      ...oSearch,
+    iStateAppUserId && (oSearch1 = {
+      ...oSearch1,
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
-      ...oSearch,
+    sStateName && (oSearch1 = {
+      ...oSearch1,
       name: sStateName
     });
 
-    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 1, oParams.limit, oSearch);
+
+    let oParam2 = {};
+    let oOption2 = {
+      appId: iAppId,
+      page: iPage,
+      limit: iLimit
+    };
+
+    let oSearch2 = {};
+
+    iStateAppUserId && (oSearch2 = {
+      ...oSearch1,
+      'appUserId': iStateAppUserId
+    });
+
+    sStateName && (oSearch2 = {
+      ...oSearch2,
+      name: sStateName
+    });
+    cSetStateLoading(true);
+
+    let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
+
+    let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
+    let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
+    let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+
+    oDispatch(actions.appPipelines.set(aAppPipelines));
+
+    cSetStateNumer(iNumber);
+    cSetStateCount(iCount);
+    cSetStateLoading(false);
+
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 1, oParams.limit, oSearch1);
 
     oHistory.push(sUrl);
   };
