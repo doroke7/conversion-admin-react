@@ -145,6 +145,7 @@ function Index(oProps: any): any {
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+      console.log('aAppPipelines=', aAppPipelines);
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
@@ -196,6 +197,7 @@ function Index(oProps: any): any {
     let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
     let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
 
+    console.log('aAppPipelines=', aAppPipelines);
     oDispatch(actions.appPipelines.set(aAppPipelines));
 
     cSetStateNumer(iNumber);
@@ -451,7 +453,7 @@ function Index(oProps: any): any {
       sortable: false,
       flex: 1,
       width: 145,
-      valueGetter: (oProps: any) => (Number(oProps.row?.duration ?? 0).toFixed(2))
+      valueGetter: (oProps: any) => (utilities.hhmmss(oProps.row?.duration ?? 0))
     },
     {
       field: 'appDownloaderStageSize',
