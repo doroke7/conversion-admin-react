@@ -418,6 +418,7 @@ function Index(oProps: any): any {
       sortable: false,
       flex: 1,
       width: 145,
+      valueGetter: (oProps: any) => (Number(oProps.row?.duration ?? 0).toFixed(2))
     },
     {
       field: 'appDownloaderStageSize',
@@ -437,8 +438,10 @@ function Index(oProps: any): any {
       width: 80,
       renderCell: (oProps: any) => {
         let iState = oProps?.row?.state;
+        let iId = oProps?.row?.id;
+
         return (
-          <State value={iState}>
+          <State id={iId} value={iState}>
           </State>
         );
       },
