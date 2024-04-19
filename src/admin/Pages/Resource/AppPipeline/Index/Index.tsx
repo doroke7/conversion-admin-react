@@ -535,7 +535,6 @@ function Index(oProps: any): any {
     },
   ];
 
-
   return (
     <div className="app-pipeline">
       <div className={oClasses.top}>
