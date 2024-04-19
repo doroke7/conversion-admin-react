@@ -75,6 +75,9 @@ function Index(oProps: any): any {
 
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
+  let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
+
+  console.log('oAuthorizations=', oAuthorizations);
 
   useEffect(() => {
     (async () => {

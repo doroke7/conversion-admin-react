@@ -8,7 +8,7 @@ import reducers from '@/admin/reducers/index';
 let oStore = createStore(
   combineReducers({
     auhorization: reducers.authorization,
-    auhorizations: reducers.authorizations,
+    authorizations: reducers.authorizations,
     me: reducers.me,
     adminUser: reducers.adminUser,
     adminUsers: reducers.adminUsers,
