@@ -503,27 +503,32 @@ function Index(oProps: any): any {
 
         return (
           <div>
-            <IconButton
-              onClick={cHandleTranscoderClick(iId)}
-              className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)}
-              color="primary"
-              aria-label=""
-              component="span"
-              disabled={bTranscoderDisable}
-            >
-              <FlipCameraAndroidTwoToneIcon />
-            </IconButton>
+            <Tooltip title="转码" arrow placement="top">
+              <IconButton
+                onClick={cHandleTranscoderClick(iId)}
+                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)}
+                color="primary"
+                aria-label=""
+                component="span"
+                disabled={bTranscoderDisable}
+              >
+                <FlipCameraAndroidTwoToneIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="转码" arrow placement="top">
+              <IconButton
+                onClick={cHandleNotifierClick(iId)}
+                className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)}
+                color="primary"
+                aria-label=""
+                component="span"
+                disabled={bNotifierDisable}
+              >
+                <AddAlertTwoToneIcon />
+              </IconButton>
+            </Tooltip>
 
-            <IconButton
-              onClick={cHandleNotifierClick(iId)}
-              className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)}
-              color="primary"
-              aria-label=""
-              component="span"
-              disabled={bNotifierDisable}
-            >
-              <AddAlertTwoToneIcon />
-            </IconButton>
+
           </div>
         );
       },
