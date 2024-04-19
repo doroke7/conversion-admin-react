@@ -9,7 +9,7 @@ let aRoutes = [
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Pages.Index.Index,
     exact: true,
-    authenticator: false,
+    authorization: false,
     redirections: [null, null],
     routes: []
   },
@@ -21,7 +21,7 @@ let aRoutes = [
     icon: '',
     Component: Pages.Resource._,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
-    authenticator: true,
+    authorization: true,
     redirections: ['/admin/authentication/authenticator/sign-in', null],
     // redirections[0]: authenticator fail后 重定向的页面，null 表示不重定向
     // redirections[1]: authenticator success 后 重定向的页面，null 表示不重定向
@@ -33,7 +33,7 @@ let aRoutes = [
         text: '任务列表',
         icon: '',
         Component: Pages.Resource.AppPipeline.Index,
-        authenticator: true,
+        authorization: true,
         redirections: ['/admin/resource', null],
         exact: true
       },
@@ -44,7 +44,7 @@ let aRoutes = [
         text: '应用列表',
         icon: '',
         Component: Pages.Resource.App.Index,
-        authenticator: true,
+        authorization: true,
         redirections: ['/admin/resource', null],
         exact: true
       },
@@ -55,7 +55,7 @@ let aRoutes = [
         text: '账号列表',
         icon: '',
         Component: Pages.Resource.AppUser.Index,
-        authenticator: true,
+        authorization: true,
         redirections: ['/admin/resource', null],
         exact: true
       },
@@ -66,7 +66,7 @@ let aRoutes = [
         text: '角色列表',
         icon: '',
         Component: Pages.Resource.AdminRole.Index,
-        authenticator: true,
+        authorization: true,
         redirections: ['/admin/resource', null],
         exact: true
       },
@@ -77,7 +77,7 @@ let aRoutes = [
         text: '分页未定义',
         icon: 'WarningTwoToneIcon',
         Component: Pages.Resource.None,
-        authenticator: true,
+        authorization: true,
         redirections: ['/admin/resource', null],
         exact: false
       }
@@ -91,7 +91,7 @@ let aRoutes = [
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Pages.Authentication.Authenticator.SignIn,
     exact: false,
-    authenticator: true,
+    authorization: true,
     redirections: [null, '/admin/resource'],
     routes: []
   },
@@ -103,7 +103,7 @@ let aRoutes = [
     icon: '', // icon 使用文字型的， 这种格式对于 后端 JSON 文本数据兼容性更好
     Component: Pages.None,
     exact: false,
-    authenticator: false,
+    authorization: false,
     redirections: [null, null],
     routes: []
   }

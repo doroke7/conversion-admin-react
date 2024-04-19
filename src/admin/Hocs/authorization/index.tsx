@@ -7,19 +7,16 @@ import events from '@/admin/events/index';
 import actions from '@/admin/actions/';
 import CONFIGS from '@/CONFIGS/INDEX';
 
-interface Props {
-  children?: any;
-}
 
 /**
  * 这边是 HOC的写法， 完全可以用 hook 思维取代
  */
 
-let authenticator = (Component: any): any => {
+let authorization = (Component: any): any => {
 
   function Wrapper(oProps: any) {
 
-    let bAuthorization = oProps.authenticator ?? false;
+    let bAuthorization = oProps.authorization ?? false;
     let aRedirections = oProps.redirections ?? [null, null];
     let oDispatch = useDispatch();
 
@@ -147,4 +144,4 @@ let authenticator = (Component: any): any => {
   return Wrapper;
 };
 
-export default authenticator;
+export default authorization;

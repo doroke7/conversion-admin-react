@@ -27,7 +27,7 @@ function Index(oProps: any): any {
                   id={oRoute.id}
                   text={oRoute.text}
                   path={oMatch.url + oRoute.path}
-                  authenticator={oRoute.authenticator}
+                  authorization={oRoute.authorization}
                   redirections={oRoute.redirections}
                 />
               </Route>
@@ -36,7 +36,7 @@ function Index(oProps: any): any {
             <Route path={oMatch.url} key={aRoutes.lenth} exact={true}>
               <_
                 path={oMatch.url}
-                authenticator={true}
+                authorization={true}
                 redirections={['/admin/authentication/authenticator/sign-in', null]}
               />
             </Route>

@@ -23,7 +23,7 @@ function Index(oProps: any) {
                 routes={oRoute.routes ?? []}
                 icon={oRoute.icon}
                 title={oRoute.title}
-                authenticator={oRoute.authenticator}
+                authorization={oRoute.authorization}
                 redirections={oRoute.redirections}
               />
             </Route>
