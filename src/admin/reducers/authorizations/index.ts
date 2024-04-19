@@ -1,18 +1,18 @@
 import AuthenticationHelper from '@/admin/Helpers/Authentication/Index';
 
-let cReducer = (oAuhorizations: {} = {}, oAction: any) => {
+let cReducer = (oAuthorizations: {} = {}, oAction: any) => {
 
-  oAuhorizations = {
-    ...oAuhorizations,
+  oAuthorizations = {
+    ...oAuthorizations,
     ...(oAction.authorizations)
   };
 
   switch (oAction.type) {
     case 'AUTHORIZATIONS_SET':
-      return oAuhorizations;
+      return oAuthorizations;
 
     default:
-      return oAuhorizations;
+      return oAuthorizations;
   }
 };
 
