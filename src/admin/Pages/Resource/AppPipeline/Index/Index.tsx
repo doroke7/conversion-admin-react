@@ -503,7 +503,7 @@ function Index(oProps: any): any {
 
         return (
           <div>
-            <Tooltip title="转码" arrow placement="top">
+            <Tooltip title="转码" arrow placement="right-start">
               <IconButton
                 onClick={cHandleTranscoderClick(iId)}
                 className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)}
@@ -515,7 +515,7 @@ function Index(oProps: any): any {
                 <FlipCameraAndroidTwoToneIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="转码" arrow placement="top">
+            <Tooltip title="回调" arrow placement="right-start">
               <IconButton
                 onClick={cHandleNotifierClick(iId)}
                 className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)}
