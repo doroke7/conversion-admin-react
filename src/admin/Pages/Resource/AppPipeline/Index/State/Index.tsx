@@ -37,7 +37,7 @@ function Index(oProps: any): any {
       });
     })();
 
-  }, [iStateStep]);
+  }, [iStateStep, iValue]);
 
   return (
     <Tooltip title={sState} placement="right">
