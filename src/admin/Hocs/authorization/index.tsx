@@ -6,6 +6,7 @@ import Helpers from '@/admin/Helpers/Index';
 import events from '@/admin/events/index';
 import actions from '@/admin/actions/';
 import CONFIGS from '@/CONFIGS/INDEX';
+import utilities from '@/admin/utilities';
 
 
 /**
@@ -27,6 +28,9 @@ let authorization = (Component: any): any => {
     let [sStateAuthorizations, cSetStateAuthorizations] = useState<string>('');
 
     let sPath = oRouteMatch.path.replace(/^\//, '').replace(/\/\*?$/, '');
+
+    console.log('oRouteMatch=', oRouteMatch);
+
 
     useEffect(() => {
       let cRefresh = async () => {
@@ -59,8 +63,15 @@ let authorization = (Component: any): any => {
           let sAuthorizations = oResponse?.data?.raw?.one?.authorizations ?? '00000000';
           let oAdminUser = oResponse?.data?.raw?.one?.adminUser ?? {};
 
+          let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 0, 0);  // 强制配置 page=0, limit=0 。隐含全部页面都是一样的权限
+
+          let oAuthorizations = {
+            [sUrl]: sAuthorizations
+          };
+
 
           cSetStateAuthorizations(sAuthorizations);
+          oDispatch(actions.authorizaions.set(oAuthorizations));
 
           if (
             oResponse?.data?.code >= 0 && oResponse?.data?.code !== undefined
