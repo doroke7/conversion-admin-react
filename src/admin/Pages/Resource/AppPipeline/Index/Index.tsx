@@ -5,30 +5,14 @@ import clsx from 'clsx';
 
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
-import WidgetsIcon from '@material-ui/icons/Widgets';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
 import InputLabel from '@material-ui/core/InputLabel';
-import UpdateTwoToneIcon from '@material-ui/icons/UpdateTwoTone';
-import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
-import FlipCameraIosTwoToneIcon from '@material-ui/icons/FlipCameraIosTwoTone';
-import PermScanWifiTwoToneIcon from '@material-ui/icons/PermScanWifiTwoTone';
-import FlipCameraIosIcon from '@material-ui/icons/FlipCameraIos';
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import ContactlessTwoToneIcon from '@material-ui/icons/ContactlessTwoTone';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
 import Hocs from '@/admin/Hocs';
@@ -42,7 +26,6 @@ import actions from '@/admin/actions/';
 import hooks from '@/admin/hooks';
 import State from './State/Index';
 import style from './style';
-import C from '@/test/entry/UseEffectLifeCycle/A/B/C/Index';
 
 
 function Index(oProps: any): any {

@@ -13,7 +13,6 @@ function Index(oProps: any): any {
   let aRoutes = oProps.routes ?? [];
 
   return (
-    // <Fade> 效果，必须字元素只有一个 DIV
     <Fade in={true} timeout={1000}>
       <div>
         <Commons.Navigation>
