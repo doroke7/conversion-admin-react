@@ -10,42 +10,7 @@ let page = (Component: any): any => {
     let oRouteMatch = useRouteMatch();
     let oHistory = useHistory();
 
-    let [oState, cSetState] = useState<any>({
-      min: 1,
-      max: Number.MAX_VALUE
-    });
-
-    let cSetPageMax = (iCount) => {
-      cSetState((oOldState) => {
-        iCount = iCount <= 0 ? 1 : iCount;
-        let oNewState = { ...oOldState, max: iCount };
-        return oNewState;
-      });
-    };
-
-    useEffect(() => {
-      let iPage = oParams.page || 0;
-      if (iPage < oState.min) {
-        // let oMessage = {
-        //   code: -1,
-        //   message: '页数1, 已为第一首页, 即将从 第' + iPage + '页 跳转到 第' + oState.min + '页',
-        //   time: 3 * 1000
-        // };
-        // events.emit('Alerts-onAlert', oMessage);
-        // oHistory.push(sUrl);
-      }
-      if (iPage > oState.max) {
-        // let oMessage = {
-        //   code: -1,
-        //   message: '页数' + oState.max + ', 已为最后末页, 即将从 第' + iPage + '页 跳转到 第' + oState.max + '页',
-        //   time: 3 * 1000
-        // };
-        // events.emit('Alerts-onAlert', oMessage);
-        // oHistory.push(sUrl);
-      }
-      return () => {};
-    }, [oParams.page, oState.max]);
-    return <Component setPageMax={cSetPageMax} {...oProps}></Component>;
+    return <Component {...oProps}></Component>;
   }
 
   return Wrapper;

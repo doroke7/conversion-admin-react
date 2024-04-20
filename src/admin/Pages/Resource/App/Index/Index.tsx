@@ -39,7 +39,6 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  let cSetPageMax = oProps.setPageMax ?? (() => void 0);
 
 
   return <div>APP</div>;

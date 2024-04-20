@@ -39,17 +39,6 @@ function Index(oProps: any): any {
   let oParams: any = useParams();
   let oRouteMatch = useRouteMatch();
 
-  let cSetPageMax = oProps.setPageMax ?? (() => void 0);
-  let [oState, cSetState] = useState<any>({
-    number: 0,
-    count: 0,
-    loading: true,
-    rows: [],
-    size: 10,
-    page: '',
-    searchDialog: false,
-    pageDialog: false
-  });
 
   /*
    * NOTE: 一般使用者 习惯从 1 开始标记为第一页

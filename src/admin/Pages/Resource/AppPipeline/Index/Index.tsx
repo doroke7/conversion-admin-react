@@ -29,7 +29,6 @@ import style from './style';
 
 
 function Index(oProps: any): any {
-  let cSetPageMax = oProps.setPageMax ?? (() => void 0);
 
   let oClasses: any = style(void 0);
   let oHistory = useHistory();
