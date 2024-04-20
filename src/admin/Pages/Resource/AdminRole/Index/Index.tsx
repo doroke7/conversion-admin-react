@@ -54,4 +54,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default Hocs.authorization(Hocs.tab(Hocs.page(Hocs.title(Index))));
+export default Hocs.authorization(Hocs.tab(Hocs.title(Index)));

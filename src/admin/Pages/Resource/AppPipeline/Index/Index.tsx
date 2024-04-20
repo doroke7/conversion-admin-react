@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { GridOverlay, DataGrid } from '@mui/x-data-grid';
 import Pagination from '@material-ui/lab/Pagination';
 import MenuItem from '@material-ui/core/MenuItem';
+import Tooltip from '@material-ui/core/Tooltip';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
@@ -635,4 +636,4 @@ function Index(oProps: any): any {
     </div >
   );
 }
-export default Hocs.authorization(Hocs.tab(Hocs.page(Hocs.title(Index))));
+export default Hocs.authorization(Hocs.tab(Hocs.title(Index)));
