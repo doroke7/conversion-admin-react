@@ -40,7 +40,7 @@ function Index(oProps: any): any {
   }, [iStateStep, iValue]);
 
   return (
-    <Tooltip title={sState} placement="right">
+    <Tooltip title={sState} placement="top">
       <div className={oClasses.root}>
         <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 1 })}></div>
         <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 2 })}></div>

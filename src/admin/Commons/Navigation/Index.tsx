@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from 'react';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import clsx from 'clsx';
@@ -36,6 +36,9 @@ function Navigation(oProps: any) {
   let oHistory = useHistory();
   let oTextRef = useRef('');
   let oDomRef: any = useRef(null);
+  let oRouteMatch = useRouteMatch();
+
+  console.log('oRouteMatch', oRouteMatch);
 
 
   // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法，
