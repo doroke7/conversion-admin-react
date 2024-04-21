@@ -61,7 +61,7 @@ let authorization = (Component: any): any => {
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam, oSearch, oOption);
           sJwt = oResponse?.headers?.authorization ?? '';
           let sAuthorizations = oResponse?.data?.raw?.one?.authorizations ?? '00000000';
-          let oAdminUser = oResponse?.data?.raw?.one?.adminUser ?? {};
+          let oMe = oResponse?.data?.raw?.me ?? {};
 
           let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 0, 0);  // 强制配置 page=0, limit=0 。隐含全部页面都是一样的权限
 
@@ -78,7 +78,7 @@ let authorization = (Component: any): any => {
           ) {
 
             oDispatch(actions.authorizaion.set(sJwt));
-            oDispatch(actions.me.set(oAdminUser));
+            oDispatch(actions.me.set(oMe));
           }
 
           if (
@@ -86,10 +86,10 @@ let authorization = (Component: any): any => {
           ) {
             // 服务器回传 -1 (判定token 不合法), => 清空 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
             sJwt = '';
-            oAdminUser = {};
+            oMe = {};
 
             oDispatch(actions.authorizaion.set(sJwt));
-            oDispatch(actions.me.set(oAdminUser));
+            oDispatch(actions.me.set(oMe));
           }
 
 
@@ -97,16 +97,16 @@ let authorization = (Component: any): any => {
             oResponse?.data?.code <= -2
           ) {
             // 服务器回传 -2 (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
-            oAdminUser = {};
-            oDispatch(actions.me.set(oAdminUser));
+            oMe = {};
+            oDispatch(actions.me.set(oMe));
 
           }
 
           if (oResponse?.data?.code === undefined) {
             // 服务器回传 undefined (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
 
-            oAdminUser = {};
-            oDispatch(actions.me.set(oAdminUser));
+            oMe = {};
+            oDispatch(actions.me.set(oMe));
           }
 
           if (
