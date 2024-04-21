@@ -15,7 +15,31 @@ let oStyle = makeStyles((oTheme: Theme) =>
     text: {
       color: grey[400],
       fontSize: oTheme.spacing(4),
-      fontWeight: 900
+      fontWeight: 900,
+      
+    },
+    zoom: {
+      animation: '$zoomIn 0.5s ease-in-out 0s 1 normal, $fadeIn 0.2s ease-out 0s 1 normal'
+
+    },
+    '@keyframes zoomIn': {
+      '0%': {
+        transform: 'scale(0)',
+      },
+      '60%': {
+        transform: 'scale(1.2)',
+      },
+      '100%': {
+        transform: 'scale(1)',
+      }
+    },
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0',
+      },
+      '100%': {
+        opacity: '1',
+      }
     }
   })
 );
