@@ -60,18 +60,10 @@ let authorization = (Component: any): any => {
 
           let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam, oSearch, oOption);
           sJwt = oResponse?.headers?.authorization ?? '';
-          let sAuthorizations = oResponse?.data?.raw?.one?.authorizations ?? '00000000';
+          let oAutohorizations = oResponse?.data?.raw?.authorizations ?? {};
           let oMe = oResponse?.data?.raw?.me ?? {};
 
-          let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 0, 0);  // 强制配置 page=0, limit=0 。隐含全部页面都是一样的权限
-
-          let oAuthorizations = {
-            [sUrl]: sAuthorizations
-          };
-
-
-          cSetStateAuthorizations(sAuthorizations);
-          oDispatch(actions.authorizaions.set(oAuthorizations));
+          oDispatch(actions.authorizaions.set(oAutohorizations));
 
           if (
             oResponse?.data?.code >= 0 && oResponse?.data?.code !== undefined
