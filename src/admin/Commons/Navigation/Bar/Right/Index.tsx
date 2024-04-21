@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import Badge from '@material-ui/core/Badge';
@@ -18,14 +19,26 @@ import AdministratorIcon from './AdministratorIcon/Index';
 import style from './style';
 
 function Right(oProps: any) {
-  let oClasses = style(void 0);
+
+  let oAuthorizations = oProps.authorizations ?? {};
+  let sAuthorizaion = useSelector((oStore:any) => (oStore?.authorizations?.['admin/resource'] ?? ''));
   let [oState, cSetState] = useState<any>({
     open: false,
     rotating: false,
     anchor: null
   });
-  let oHistory = useHistory();
 
+  let oHistory = useHistory();
+  let oClasses = style(void 0);
+
+  let iAuthorizaion = parseInt(sAuthorizaion, 2);
+
+  let sFlushallAuthorization = oAuthorizations?.['FLUSHALL'] ?? ''; 
+  let iFlushallAuthorization = parseInt(sFlushallAuthorization, 2);
+
+  let bFlushall = (iAuthorizaion & iFlushallAuthorization) == iFlushallAuthorization; 
+
+  
   let cHandleClose = () => {
     cSetState({ ...oState, open: false });
   };
@@ -90,12 +103,13 @@ function Right(oProps: any) {
 
   return (
     <div className={oClasses.right}>
-      {/* <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
+       {bFlushall ? 
+       <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
         <RefreshIcon
           className={clsx(oClasses.icon, {
             [oClasses.iconAnimation]: oState.rotating
           })}></RefreshIcon>
-      </IconButton> */}
+      </IconButton> : ''}
       <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
       <div
         className={oClasses.avatarWrapper}

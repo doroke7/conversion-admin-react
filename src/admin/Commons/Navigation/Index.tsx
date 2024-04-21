@@ -570,8 +570,17 @@ function Navigation(oProps: any) {
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
-          <div className={oClasses.root} ref={oDomRef}>
-            <Bar handleDrawerOpen={cHandleDrawerOpen} open={bStateOpen} adminUserLinks={aStateAdminUserLinks}></Bar>
+          <div 
+            className={oClasses.root} 
+            ref={oDomRef}
+          >
+            <Bar 
+              handleDrawerOpen={cHandleDrawerOpen} 
+              open={bStateOpen} 
+              adminUserLinks={aStateAdminUserLinks}
+              authorizations={oAuthorizations}
+            >
+            </Bar>
             <Drawer
               variant="permanent"
               className={clsx(oClasses.drawer, {

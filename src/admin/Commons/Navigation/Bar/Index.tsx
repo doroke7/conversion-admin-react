@@ -24,8 +24,12 @@ import Right from './Right/Index';
 import style from './style';
 
 function Bar(oProps: any) {
-  let oClasses = style(void 0);
   let aAdminUserLinks = oProps.adminUserLinks ?? [];
+  let oAuthorizations = oProps.authorizations ?? {};
+
+  let oClasses = style(void 0);
+
+
   return (
     <AppBar
       position="fixed"
@@ -45,7 +49,8 @@ function Bar(oProps: any) {
         </IconButton>
         {/* 点击右边的 App-Icon */}
         <AdminUserLinks links={aAdminUserLinks}></AdminUserLinks>
-        <Right></Right>
+        <Right authorizations={oAuthorizations}>
+        </Right>
       </Toolbar>
     </AppBar>
   );
