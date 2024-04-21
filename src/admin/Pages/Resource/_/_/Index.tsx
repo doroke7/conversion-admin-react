@@ -20,4 +20,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default Hocs.authorization(Index);
+export default Hocs.authorization(Hocs.title(Index));

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistor
 import Fade from '@material-ui/core/Fade';
 import Commons from '@/admin/Commons/Index';
 import _ from './_/Index';
+import CONFIGS from '@/CONFIGS/';
 
 import style from './style';
 
@@ -38,6 +39,7 @@ function Index(oProps: any): any {
                 path={oMatch.url}
                 authorization={true}
                 redirections={['/admin/authentication/authenticator/sign-in', null]}
+                title={CONFIGS.ADMIN.NAME}
               />
             </Route>
           </Switch>

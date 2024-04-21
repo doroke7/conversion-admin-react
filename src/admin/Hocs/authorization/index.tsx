@@ -141,7 +141,7 @@ let authorization = (Component: any): any => {
     /**
      * NOTE： refresh 完毕后才渲染页面， 避免发生没有 tokne 却能 瞬间看到页面的情况
      */
-    return bStateStatus || !CONFIGS.JWT.AUTHORIZATION ? <Component {...oProps} authorizaions={sStateAuthorizations}></Component> : <></>;
+    return bStateStatus ? <Component {...oProps} authorizaions={sStateAuthorizations}></Component> : <></>;
   }
 
   return Wrapper;
