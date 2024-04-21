@@ -22,11 +22,11 @@ function Right(oProps: any) {
 
   let oAuthorizations = oProps.authorizations ?? {};
   let sAuthorizaion = useSelector((oStore:any) => (oStore?.authorizations?.['admin/resource'] ?? ''));
-  let [oState, cSetState] = useState<any>({
-    open: false,
-    rotating: false,
-    anchor: null
-  });
+
+  let [oStateOpen, cSetStateOpen] = useState<boolean>(false);
+  let [oStateRotating, cSetStateRotating] = useState<boolean>(false);
+  let [oStateAnchor, cSetStateAnchor] = useState<boolean>(null);
+
 
   let oHistory = useHistory();
   let oClasses = style(void 0);
@@ -40,17 +40,19 @@ function Right(oProps: any) {
 
   
   let cHandleClose = () => {
-    cSetState({ ...oState, open: false });
+    cSetStateOpen(false);
   };
 
   let cHandleOpen = () => {
-    cSetState({ ...oState, open: true });
+    cSetStateOpen(true);
+
   };
 
   let cHandleAlertOfRedisConfirm = () => {
-    cSetState({ ...oState, rotating: true, open: false });
+    cSetStateOpen(false);
+    cSetStateRotating(true);
     setTimeout(() => {
-      cSetState({ ...oState, rotating: false, open: false });
+      cSetStateRotating(false);
     }, 1200);
   };
 
@@ -58,22 +60,24 @@ function Right(oProps: any) {
     oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
     oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
     let oAnchor = oEvent.currentTarget;
-    cSetState({ ...oState, anchor: oAnchor });
+    cSetStateAnchor(oAnchor);
   };
 
   let cHandleAvatarWrapperContextMenu = (oEvent: any) => {
     oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
     oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
     let oAnchor = oEvent.currentTarget;
-    cSetState({ ...oState, anchor: oAnchor });
+    cSetStateAnchor(oAnchor);
+
   };
 
   let cHandleDropdownClickAway = (oEvent: any) => {
-    cSetState({ ...oState, anchor: false });
+    cSetStateAnchor(null);
   };
 
   let cHandleDropdownClick = async (oEvent: any) => {
-    cSetState({ ...oState, anchor: false });
+    cSetStateAnchor(null);
+
     events.emit('Progress-onProgress', { value: 0, status: true });
 
     let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignOut();
@@ -107,10 +111,10 @@ function Right(oProps: any) {
        <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
         <RefreshIcon
           className={clsx(oClasses.icon, {
-            [oClasses.iconAnimation]: oState.rotating
+            [oClasses.iconAnimation]: oStateRotating
           })}></RefreshIcon>
       </IconButton> : ''}
-      <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
+      <AlertOfRedis open={oStateOpen} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
       <div
         className={oClasses.avatarWrapper}
         onClick={cHandleAvatarWrapperClick}
@@ -129,8 +133,8 @@ function Right(oProps: any) {
         </Badge>
       </div>
       <Dropdown
-        open={Boolean(oState.anchor)}
-        anchor={oState.anchor}
+        open={Boolean(oStateAnchor)}
+        anchor={oStateAnchor}
         onClickAway={cHandleDropdownClickAway}
         onClick={cHandleDropdownClick}></Dropdown>
     </div>
