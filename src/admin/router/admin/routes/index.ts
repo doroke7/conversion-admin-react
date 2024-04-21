@@ -11,6 +11,8 @@ let aRoutes = [
     exact: true,
     authorization: false,
     redirections: [null, null],
+    authorizations: {
+    },
     routes: []
   },
   {
@@ -22,6 +24,9 @@ let aRoutes = [
     Component: Pages.Resource._,
     exact: false, // 相同 父层路由会模糊匹配 如果 exact=false
     authorization: true,
+    authorizations: {
+      'FLUSHALL': '00010000'
+    },
     redirections: ['/admin/authentication/authenticator/sign-in', null],
     // redirections[0]: authenticator fail后 重定向的页面，null 表示不重定向
     // redirections[1]: authenticator success 后 重定向的页面，null 表示不重定向
@@ -35,7 +40,9 @@ let aRoutes = [
         Component: Pages.Resource.AppPipeline.Index,
         authorization: true,
         redirections: ['/admin/resource', null],
-        exact: true
+        exact: true,
+        authorizations: {
+        },
       },
       {
         id: '2-2-0',
@@ -46,7 +53,9 @@ let aRoutes = [
         Component: Pages.Resource.App.Index,
         authorization: true,
         redirections: ['/admin/resource', null],
-        exact: true
+        exact: true,
+        authorizations: {
+        },
       },
       {
         id: '2-3-0',
@@ -57,7 +66,9 @@ let aRoutes = [
         Component: Pages.Resource.AppUser.Index,
         authorization: true,
         redirections: ['/admin/resource', null],
-        exact: true
+        exact: true,
+        authorizations: {
+        },
       },
       {
         id: '2-4-0',
@@ -68,7 +79,9 @@ let aRoutes = [
         Component: Pages.Resource.AdminRole.Index,
         authorization: true,
         redirections: ['/admin/resource', null],
-        exact: true
+        exact: true,
+        authorizations: {
+        },
       },
       {
         id: '2-n-0',
@@ -79,7 +92,9 @@ let aRoutes = [
         Component: Pages.Resource.None,
         authorization: true,
         redirections: ['/admin/resource', null],
-        exact: false
+        exact: false,
+        authorizations: {
+        },
       }
     ]
   },
@@ -93,6 +108,8 @@ let aRoutes = [
     exact: false,
     authorization: true,
     redirections: [null, '/admin/resource'],
+    authorizations: {
+    },
     routes: []
   },
   {
@@ -105,6 +122,8 @@ let aRoutes = [
     exact: false,
     authorization: false,
     redirections: [null, null],
+    authorizations: {
+    },
     routes: []
   }
 ];
