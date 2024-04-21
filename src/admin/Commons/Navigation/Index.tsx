@@ -31,6 +31,7 @@ let oTheme = createTheme({});
 
 function Navigation(oProps: any) {
   let children = oProps.children ?? <></>;
+  let oAuthorizations = oProps.authorizations ?? {};
 
   let oClasses = style(void 0);
   let oHistory = useHistory();
@@ -38,7 +39,6 @@ function Navigation(oProps: any) {
   let oDomRef: any = useRef(null);
   let oRouteMatch = useRouteMatch();
 
-  console.log('oRouteMatch', oRouteMatch);
 
 
   // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法，

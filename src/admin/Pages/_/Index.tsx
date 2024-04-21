@@ -24,6 +24,7 @@ function Index(oProps: any) {
                 icon={oRoute.icon}
                 title={oRoute.title}
                 authorization={oRoute.authorization}
+                authorizations={oRoute.authorizations}
                 redirections={oRoute.redirections}
               />
             </Route>

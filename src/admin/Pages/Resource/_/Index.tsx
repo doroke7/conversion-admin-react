@@ -11,11 +11,12 @@ function Index(oProps: any): any {
   let oMatch = useRouteMatch();
 
   let aRoutes = oProps.routes ?? [];
+  let oAuthorizations = oProps.authorizations ?? {};
 
   return (
     <Fade in={true} timeout={1000}>
       <div>
-        <Commons.Navigation>
+        <Commons.Navigation authorizations={oAuthorizations}>
           <Switch>
             {aRoutes.map((oRoute: any, sIndex: string) => (
               <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
