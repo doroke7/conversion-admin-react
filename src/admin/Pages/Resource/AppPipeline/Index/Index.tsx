@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import InputLabel from '@material-ui/core/InputLabel';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
@@ -489,28 +490,29 @@ function Index(oProps: any): any {
         return (
           <div>
             <Tooltip title="转码" arrow placement="top">
-              <IconButton
+              <Fab
+                            className={oClasses.iconButton}
+
+              size="small"
+              color="secondary"
                 onClick={cHandleTranscoderClick(iId)}
-                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder)}
-                color="primary"
-                aria-label=""
-                component="span"
                 disabled={bTranscoderDisable}
+
               >
                 <FlipCameraAndroidTwoToneIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
-              <IconButton
-                onClick={cHandleNotifierClick(iId)}
-                className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier)}
-                color="primary"
-                aria-label=""
-                component="span"
+              <Fab
+              className={oClasses.iconButton}
+            size="small"
+            color="primary"
                 disabled={bNotifierDisable}
+                onClick={cHandleNotifierClick(iId)}
+    
               >
                 <AddAlertTwoToneIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
 
 
