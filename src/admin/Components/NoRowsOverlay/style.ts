@@ -28,7 +28,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
         transform: 'scale(0)',
       },
       '60%': {
-        transform: 'scale(1.4)',
+        transform: 'scale(1.2)',
       },
       '100%': {
         transform: 'scale(1)',
