@@ -488,12 +488,18 @@ function Index(oProps: any): any {
 
         let bNotifierDisable = oProps?.row?.state < 5;
 
+        let iRandom1 = Math.floor(Math.random() * 10) + 1;
+        let iRandom2 = Math.floor(Math.random() * 10) + 1;
+
+
         return (
           <div>
             <Tooltip title="转码" arrow placement="top">
 
               <Fab
-                className={clsx(oClasses.fab)}
+                className={clsx(oClasses.fab, {
+                  [oClasses.fabAnimation]: iRandom1 <= 4
+                })}
                 size="small"
                 color="secondary"
                 onClick={cHandleTranscoderClick(iId)}
@@ -507,7 +513,10 @@ function Index(oProps: any): any {
             <Tooltip title="回调" arrow placement="top">
 
               <Fab
-                className={clsx(oClasses.fab)}
+                className={clsx(oClasses.fab, {
+                  [oClasses.fabAnimation]: iRandom2 <= 4
+
+                })}
                 size="small"
                 color="primary"
                 disabled={bNotifierDisable}

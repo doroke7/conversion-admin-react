@@ -189,7 +189,6 @@ const style = makeStyles((oTheme: Theme): any =>
       width: oTheme.spacing(4.5) - 0.36,
       height: oTheme.spacing(4.5) - 0.36,
       borderRadius: oTheme.spacing(0),
-      animation: '$spin 0.4s ease-in-out 0s 1 normal',
 
       '&.MuiFab-root': {
         boxShadow: 'none',
@@ -208,13 +207,11 @@ const style = makeStyles((oTheme: Theme): any =>
 
       }
     },
-    iconButtonTranscoder: {
+    fabAnimation: {
+      animation: '$spin 0.4s ease-in-out 0s 1 normal',
 
     },
-    iconButtonNotifier: {
 
-
-    },
     pageButton: {
       border: '1px solid ' + grey[400],
       width: oTheme.spacing(4),
