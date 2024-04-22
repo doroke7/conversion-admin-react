@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistor
 import Fade from '@material-ui/core/Fade';
 import Commons from '@/admin/Commons/Index';
 import _ from './_/Index';
-import CONFIGS from '@/CONFIGS/';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import style from './style';
 
