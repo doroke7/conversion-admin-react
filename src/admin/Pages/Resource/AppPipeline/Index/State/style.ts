@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, indigo, lightBlue, blue, common } from '@material-ui/core/colors';
+import { pink, grey, indigo, lightBlue, blue, red, common } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -9,18 +9,37 @@ const style = makeStyles((oTheme: Theme): any =>
       justifyContent: 'space-between'
 
     },
-    step: {
+    outerBlock: {
       width: '7px',
+      height: '20px',
+      background: lightBlue[50],
+      position: 'relative',
+    },
+    innerBlock: {
+      width: '7px',
+      background: lightBlue[700],
+      position: 'absolute',
+      left: oTheme.spacing(0),
+      bottom: oTheme.spacing(0),
+    },
+    innerBlockFail: {
+      height: '20px',
+      background: red[700],
+
+    },
+    innerBlockNone: {
+      height: '0px',
+
+    },
+    innerBlockOnging: {
+      height: '10px',
+
+    },
+    innerBlockSuccess: {
       height: '20px',
 
     },
-    stepDisable: {
-      background: lightBlue[50]
-    },
-    stepEnable: {
-      background: lightBlue[700]
 
-    }
   })
 );
 

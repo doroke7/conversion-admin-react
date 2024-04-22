@@ -42,16 +42,74 @@ function Index(oProps: any): any {
   return (
     <Tooltip title={sState} placement="top">
       <div className={oClasses.root}>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 1 })}></div>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 2 })}></div>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 3 })}></div>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 4 })}></div>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 5 })}></div>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 6 })}></div>
-        <div className={clsx(oClasses.step, { [oClasses.stepDisable]: true, [oClasses.stepEnable]: iStateStep >= 7 })}></div>
+        <div className={oClasses.outerBlock}>
+          <div className={clsx(oClasses.innerBlock, {
+            [oClasses.innerBlockFail]: false,
+            [oClasses.innerBlockNone]: 1 > iStateStep,
+            [oClasses.innerBlockOnging]: 1 == iStateStep,
+            [oClasses.innerBlockSuccess]: 1 < iStateStep,
+
+          })}>
+          </div>
+        </div>
+
+        <div className={oClasses.outerBlock}>
+          <div className={clsx(oClasses.innerBlock, {
+            [oClasses.innerBlockFail]: false,
+            [oClasses.innerBlockNone]: 2 > iStateStep,
+            [oClasses.innerBlockOnging]: 2 == iStateStep,
+            [oClasses.innerBlockSuccess]: 2 < iStateStep,
+
+          })}>
+          </div>
+        </div>
+
+        <div className={oClasses.outerBlock}>
+          <div className={clsx(oClasses.innerBlock, {
+            [oClasses.innerBlockFail]: false,
+            [oClasses.innerBlockNone]: 3 > iStateStep,
+            [oClasses.innerBlockOnging]: 3 == iStateStep,
+            [oClasses.innerBlockSuccess]: 3 < iStateStep,
+
+          })}>
+          </div>
+        </div>
+
+        <div className={oClasses.outerBlock}>
+          <div className={clsx(oClasses.innerBlock, {
+            [oClasses.innerBlockFail]: false,
+            [oClasses.innerBlockNone]: 4 > iStateStep,
+            [oClasses.innerBlockOnging]: 4 == iStateStep,
+            [oClasses.innerBlockSuccess]: 4 < iStateStep,
+
+          })}>
+          </div>
+        </div>
+
+        <div className={oClasses.outerBlock}>
+          <div className={clsx(oClasses.innerBlock, {
+            [oClasses.innerBlockFail]: false,
+            [oClasses.innerBlockNone]: 5 > iStateStep,
+            [oClasses.innerBlockOnging]: 5 == iStateStep,
+            [oClasses.innerBlockSuccess]: 5 < iStateStep,
+
+          })}>
+          </div>
+        </div>
+
+        <div className={oClasses.outerBlock}>
+          <div className={clsx(oClasses.innerBlock, {
+            [oClasses.innerBlockFail]: false,
+            [oClasses.innerBlockNone]: 6 > iStateStep,
+            [oClasses.innerBlockOnging]: 6 == iStateStep,
+            [oClasses.innerBlockSuccess]: 6 < iStateStep,
+
+          })}>
+          </div>
+        </div>
 
       </div>
-    </Tooltip>
+    </Tooltip >
 
   );
 }
