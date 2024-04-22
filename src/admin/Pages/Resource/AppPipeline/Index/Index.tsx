@@ -66,8 +66,7 @@ function Index(oProps: any): any {
     (async () => {
 
       let oParam = {};
-      let oOption = {
-      };
+      let oOption = {};
       let oSearch = {
         appId: iAppId,
       };
