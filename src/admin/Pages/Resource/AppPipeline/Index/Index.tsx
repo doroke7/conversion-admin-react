@@ -488,8 +488,8 @@ function Index(oProps: any): any {
 
         let bNotifierDisable = oProps?.row?.state < 5;
 
-        let iRandom1 = Math.floor(Math.random() * 10) + 1;
-        let iRandom2 = Math.floor(Math.random() * 10) + 1;
+        let iRandomA = Math.floor(Math.random() * 5);
+        let iRandomB = Math.floor(Math.random() * 5);
 
 
         return (
@@ -498,7 +498,11 @@ function Index(oProps: any): any {
 
               <Fab
                 className={clsx(oClasses.fab, {
-                  [oClasses.fabAnimation]: iRandom1 <= 4
+                  [oClasses.fabAnimation0]: iRandomA == 0,
+                  [oClasses.fabAnimation1]: iRandomA == 1,
+                  [oClasses.fabAnimation2]: iRandomA == 2,
+                  [oClasses.fabAnimation3]: iRandomA == 3,
+                  [oClasses.fabAnimation4]: iRandomA == 4
                 })}
                 size="small"
                 color="secondary"
@@ -514,8 +518,11 @@ function Index(oProps: any): any {
 
               <Fab
                 className={clsx(oClasses.fab, {
-                  [oClasses.fabAnimation]: iRandom2 <= 4
-
+                  [oClasses.fabAnimation0]: iRandomB == 0,
+                  [oClasses.fabAnimation1]: iRandomB == 1,
+                  [oClasses.fabAnimation2]: iRandomB == 2,
+                  [oClasses.fabAnimation3]: iRandomB == 3,
+                  [oClasses.fabAnimation4]: iRandomB == 4
                 })}
                 size="small"
                 color="primary"

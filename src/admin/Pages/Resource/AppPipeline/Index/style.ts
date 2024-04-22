@@ -207,8 +207,24 @@ const style = makeStyles((oTheme: Theme): any =>
 
       }
     },
-    fabAnimation: {
-      animation: '$spin 0.4s ease-in-out 0s 1 normal',
+    fabAnimation0: {
+      animation: '$zoomIn 0.4s ease-in-out 0s 1 normal, $fadeIn 0.4s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation1: {
+      animation: '$zoomIn 0.4s ease-in-out 0.1s 1 normal, $fadeIn 0.4s ease-in-out 0.1s 1 normal, $fade 0.1s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation2: {
+      animation: '$zoomIn 0.4s ease-in-out 0.2s 1 normal, $fadeIn 0.4s ease-in-out 0.2s 1 normal, $fade 0.2s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation3: {
+      animation: '$zoomIn 0.4s ease-in-out 0.3s 1 normal, $fadeIn 0.4s ease-in-out 0.3s 1 normal, $fade 0.3s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation4: {
+      animation: '$zoomIn 0.4s ease-in-out 0.4s 1 normal, $fadeIn 0.4s ease-in-out 0.4s 1 normal, $fade 0.4s ease-in-out 0s 1 normal',
 
     },
 
@@ -252,6 +268,44 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '100%': {
         transform: 'rotate(360deg) scale(1)'
+      }
+    },
+    '@keyframes zoomIn': {
+      '0%': {
+        transform: 'scale(0)'
+      },
+      '100%': {
+        transform: 'scale(1)'
+      }
+    },
+    '@keyframes fade': {
+      '0%': {
+        opacity: '0'
+      },
+      '100%': {
+        opacity: '0'
+      }
+    },
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0'
+      },
+      '100%': {
+        opacity: '1'
+      }
+    },
+    '@keyframes scale': {
+      '0%': {
+        transform: 'scaleX(0) scaleY(0)'
+      },
+      '30%': {
+        transform: 'scaleX(1) scaleY(0.1)'
+      },
+      '80%': {
+        transform: 'scaleX(1) scaleY(0.8)'
+      },
+      '100%': {
+        transform: 'scaleX(1) scaleY(1)'
       }
     },
 
