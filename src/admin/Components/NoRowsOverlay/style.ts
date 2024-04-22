@@ -6,7 +6,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       zIndex: 1,
       flexDirection: 'column',
-      backgroundColor: 'rgba(250, 250, 250, 0)'
+      backgroundColor: 'rgba(250, 250, 250, 0)',
+      textAlign: 'center'
     },
     icon: {
       width: oTheme.spacing(24),
@@ -16,7 +17,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       color: grey[400],
       fontSize: oTheme.spacing(4),
       fontWeight: 900,
-      
+
     },
     zoom: {
       animation: '$zoomIn 0.5s ease-in-out 0s 1 normal, $fadeIn 0.2s ease-out 0s 1 normal'
@@ -27,7 +28,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
         transform: 'scale(0)',
       },
       '60%': {
-        transform: 'scale(1.2)',
+        transform: 'scale(1.4)',
       },
       '100%': {
         transform: 'scale(1)',
