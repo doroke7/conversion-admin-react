@@ -186,12 +186,15 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     fab: {
-      '&.MuiFab-root': {
-        boxShadow: 'none',
-      },
       width: oTheme.spacing(4.5) - 0.36,
       height: oTheme.spacing(4.5) - 0.36,
       borderRadius: oTheme.spacing(0),
+      animation: '$spin 0.4s ease-in-out 0s 1 normal',
+
+      '&.MuiFab-root': {
+        boxShadow: 'none',
+      },
+
       '& .MuiIconButton-label ': {
 
         '& .MuiSvgIcon-root': {
@@ -246,7 +249,14 @@ const style = makeStyles((oTheme: Theme): any =>
     buttonOfDataGrid: {
 
     },
-
+    '@keyframes spin': {
+      '0%': {
+        transform: 'rotate(0deg) scale(0)'
+      },
+      '100%': {
+        transform: 'rotate(360deg) scale(1)'
+      }
+    },
 
   })
 );
