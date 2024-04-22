@@ -186,16 +186,15 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     iconButton: {
-      width: oTheme.spacing(4.5),
-      height: oTheme.spacing(4.5),
+      '&.MuiFab-root': {
+        boxShadow: 'none',
+      },
+      width: oTheme.spacing(4.5) - 0.36,
+      height: oTheme.spacing(4.5) - 0.36,
       borderRadius: oTheme.spacing(0),
       '& .MuiIconButton-label ': {
 
-        // borderRadius: oTheme.spacing(0.5),
-        // border: '1px solid ' + grey[400],
         '& .MuiSvgIcon-root': {
-          // fontSize: oTheme.spacing(2.25),
-          // color: common['white']
 
         },
       },
@@ -207,17 +206,10 @@ const style = makeStyles((oTheme: Theme): any =>
       }
     },
     iconButtonTranscoder: {
-      // '& .MuiIconButton-label ': {
-      //   backgroundColor: red[700],
-
-      // },
 
     },
     iconButtonNotifier: {
-      // '& .MuiIconButton-label ': {
-      //   backgroundColor: green['700'],
 
-      // },
 
     },
     pageButton: {
