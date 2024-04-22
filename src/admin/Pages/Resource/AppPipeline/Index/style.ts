@@ -185,7 +185,7 @@ const style = makeStyles((oTheme: Theme): any =>
         marginTop: -oTheme.spacing(2)
       }
     },
-    iconButton: {
+    fab: {
       '&.MuiFab-root': {
         boxShadow: 'none',
       },

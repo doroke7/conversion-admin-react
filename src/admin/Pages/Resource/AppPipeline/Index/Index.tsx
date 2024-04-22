@@ -17,6 +17,7 @@ import Fab from '@material-ui/core/Fab';
 import InputLabel from '@material-ui/core/InputLabel';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
+import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
@@ -490,29 +491,32 @@ function Index(oProps: any): any {
         return (
           <div>
             <Tooltip title="转码" arrow placement="top">
-              <Fab
-                            className={oClasses.iconButton}
 
-              size="small"
-              color="secondary"
+              <Fab
+                className={clsx(oClasses.fab)}
+                size="small"
+                color="secondary"
                 onClick={cHandleTranscoderClick(iId)}
                 disabled={bTranscoderDisable}
 
               >
                 <FlipCameraAndroidTwoToneIcon />
               </Fab>
+
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
+
               <Fab
-              className={oClasses.iconButton}
-            size="small"
-            color="primary"
+                className={clsx(oClasses.fab)}
+                size="small"
+                color="primary"
                 disabled={bNotifierDisable}
                 onClick={cHandleNotifierClick(iId)}
-    
+
               >
                 <AddAlertTwoToneIcon />
               </Fab>
+
             </Tooltip>
 
 
