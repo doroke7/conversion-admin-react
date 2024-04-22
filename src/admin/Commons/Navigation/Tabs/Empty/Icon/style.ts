@@ -13,7 +13,8 @@ let oStyle = makeStyles((oTheme: Theme) =>
         width: oTheme.spacing(56),
         height: oTheme.spacing(56)
       }
-    }
+    },
+
   })
 );
 
