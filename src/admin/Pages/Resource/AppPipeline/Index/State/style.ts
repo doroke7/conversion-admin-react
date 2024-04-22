@@ -32,7 +32,7 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
     innerBlockOnging: {
-      height: '10px',
+      height: '12px',
 
     },
     innerBlockSuccess: {
