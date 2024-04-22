@@ -41,6 +41,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
       '0%': {
         opacity: '0',
       },
+      '70%': {
+        opacity: '0.4',
+      },
       '100%': {
         opacity: '1',
       }
