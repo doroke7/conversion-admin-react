@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, Component } from 'react';
+import React, { useState, useEffect, useLayoutEffect, Component, useMemo } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
@@ -101,6 +101,8 @@ function Index(oProps: any): any {
   }, [iAppUserId]);
 
   useEffect(() => {
+    console.log('aAppPipelines=', aAppPipelines);
+
     cSetStateRows(aAppPipelines);
   }, [aAppPipelines]);
 
@@ -132,7 +134,6 @@ function Index(oProps: any): any {
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
-      console.log('aAppPipelines=', aAppPipelines);
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
@@ -211,7 +212,6 @@ function Index(oProps: any): any {
     });
 
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
-    console.log(194, 'sUrl=', sUrl);
     oHistory.push(sUrl);
   };
 
@@ -460,10 +460,11 @@ function Index(oProps: any): any {
       width: 80,
       renderCell: (oProps: any) => {
         let iState = oProps?.row?.state;
+        let iStatus = oProps?.row?.status;
         let iId = oProps?.row?.id;
 
         return (
-          <State id={iId} value={iState}>
+          <State id={iId} state={iState} status={iStatus}>
           </State>
         );
       },
@@ -488,9 +489,14 @@ function Index(oProps: any): any {
 
         let bNotifierDisable = oProps?.row?.state < 5;
 
-        let iRandomA = Math.floor(Math.random() * 5);
-        let iRandomB = Math.floor(Math.random() * 5);
-
+        let iRandomA = useMemo(() => {
+          let iResult = Math.floor(Math.random() * 5);
+          return iResult;
+        }, iId);
+        let iRandomB = useMemo(() => {
+          let iResult = Math.floor(Math.random() * 5);
+          return iResult;
+        }, iId);
 
         return (
           <div>
