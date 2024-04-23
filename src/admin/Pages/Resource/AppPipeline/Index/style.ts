@@ -196,6 +196,9 @@ const style = makeStyles((oTheme: Theme): any =>
       '&.Mui-disabled': {
 
       },
+      '&:nth-child(n+1)': {
+        marginLeft: oTheme.spacing(1),
+      }
     },
 
     fabTranscoder: {
@@ -206,7 +209,7 @@ const style = makeStyles((oTheme: Theme): any =>
       backgroundColor: red[700],
       '&.Mui-disabled': {
         color: grey[50],
-        backgroundColor: '#d32f2f75',
+        backgroundColor: '#d32f2f33',
       },
 
     },
@@ -218,7 +221,7 @@ const style = makeStyles((oTheme: Theme): any =>
       backgroundColor: green[700],
       '&.Mui-disabled': {
         color: grey[50],
-        backgroundColor: '#388e3c94',
+        backgroundColor: '#388e3c33',
       },
     },
     fabAnimation0: {
