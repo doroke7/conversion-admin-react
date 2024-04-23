@@ -199,6 +199,9 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     fabTranscoder: {
+      '&:hover': {
+        backgroundColor: red[900],
+      },
       color: grey[50],
       backgroundColor: red[700],
       '&.Mui-disabled': {
@@ -208,6 +211,9 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
     fabNotifier: {
+      '&:hover': {
+        backgroundColor: green[900],
+      },
       color: grey[50],
       backgroundColor: green[700],
       '&.Mui-disabled': {
