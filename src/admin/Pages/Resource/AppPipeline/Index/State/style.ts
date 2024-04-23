@@ -23,8 +23,10 @@ const style = makeStyles((oTheme: Theme): any =>
       bottom: oTheme.spacing(0),
     },
     innerBlockFail: {
+      boxSizing: 'border-box',
       height: '20px',
-      background: red[700],
+      background: pink[50],
+      border: '2px dotted ' + red[200],
 
     },
     innerBlockNone: {
