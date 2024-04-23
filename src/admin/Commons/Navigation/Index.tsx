@@ -39,12 +39,6 @@ function Navigation(oProps: any) {
   let oDomRef: any = useRef(null);
   let oRouteMatch = useRouteMatch();
 
-
-
-  // WARN, 建议不要将全部的 State 集合在一个地方的 hook 写法，
-  // 如果 直接使用 setState(值) 有数据覆盖的危险，
-  // 如果 间接使用 setState(旧的值 => 新的值) 有性能上的问题
-
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [iStateValue, cSetStateValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
@@ -63,6 +57,9 @@ function Navigation(oProps: any) {
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
   }, [aStateApps, iStateIndex]);
+
+  console.log('bStateOpen', bStateOpen);
+
 
   let cAdminSystemAdminMenuShowTree = useCallback(
     async (iAppId: number) => {
@@ -504,11 +501,11 @@ function Navigation(oProps: any) {
   useEffect(() => {
     let iWidth = oDomRef.current.offsetWidth;
 
-    if (iWidth <= oTheme.breakpoints.values['sm']) {
+    if (iWidth > 0 && iWidth <= oTheme.breakpoints.values['sm']) {
       cSetStateOpen(false);
     }
 
-    if (iWidth > oTheme.breakpoints.values['sm']) {
+    if (iWidth > 0 && iWidth > oTheme.breakpoints.values['sm']) {
       cSetStateOpen(true);
     }
 
@@ -570,13 +567,13 @@ function Navigation(oProps: any) {
     <Contexts.AppsIndex.Provider value={iStateIndex}>
       <Contexts.TabsValue.Provider value={iStateValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
-          <div 
-            className={oClasses.root} 
+          <div
+            className={oClasses.root}
             ref={oDomRef}
           >
-            <Bar 
-              handleDrawerOpen={cHandleDrawerOpen} 
-              open={bStateOpen} 
+            <Bar
+              handleDrawerOpen={cHandleDrawerOpen}
+              open={bStateOpen}
               adminUserLinks={aStateAdminUserLinks}
               authorizations={oAuthorizations}
             >
