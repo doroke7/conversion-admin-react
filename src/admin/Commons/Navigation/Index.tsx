@@ -215,6 +215,8 @@ function Navigation(oProps: any) {
           let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
 
           aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
+
+          console.log('iAppId 看看有沒有為0可能係=', iAppId);
           Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, oApp?.id);
 
         };
@@ -238,8 +240,15 @@ function Navigation(oProps: any) {
         cSetStateValue(iValue);
         cSetStateTabs(aTabs);
 
+        console.log('iValue=', iValue);
+        console.log('aTabs=', aTabs);
+        console.log('aTabs.length=', aTabs.length);
+
         if (aTabs?.length >= 1) {
+
           let oTab = aTabs[iValue];
+          console.log('oTab=', oTab);
+
           oHistory.push(oTab?.url);
         }
         if (aTabs?.length == 0) {
@@ -437,6 +446,10 @@ function Navigation(oProps: any) {
 
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+
+      console.log('aTabs1=', aTabs1);
+      console.log('aTabs0=', aTabs0);
+      console.log('iAdminUserId=', iAdminUserId);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);
