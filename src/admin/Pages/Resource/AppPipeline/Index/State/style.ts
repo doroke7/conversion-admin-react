@@ -23,7 +23,7 @@ const style = makeStyles((oTheme: Theme): any =>
       bottom: oTheme.spacing(0),
     },
     innerBlockFail: {
-      height: '12px',
+      height: '20px',
       background: red[700],
 
     },
