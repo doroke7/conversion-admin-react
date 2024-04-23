@@ -503,7 +503,7 @@ function Index(oProps: any): any {
             <Tooltip title="转码" arrow placement="top">
 
               <Fab
-                className={clsx(oClasses.fab, {
+                className={clsx([oClasses.fab, oClasses.fabTranscoder], {
                   [oClasses.fabAnimation0]: iRandomA == 0,
                   [oClasses.fabAnimation1]: iRandomA == 1,
                   [oClasses.fabAnimation2]: iRandomA == 2,
@@ -511,7 +511,6 @@ function Index(oProps: any): any {
                   [oClasses.fabAnimation4]: iRandomA == 4
                 })}
                 size="small"
-                color="secondary"
                 onClick={cHandleTranscoderClick(iId)}
                 disabled={bTranscoderDisable}
 
@@ -523,7 +522,7 @@ function Index(oProps: any): any {
             <Tooltip title="回调" arrow placement="top">
 
               <Fab
-                className={clsx(oClasses.fab, {
+                className={clsx([oClasses.fab, oClasses.fabNotifier], {
                   [oClasses.fabAnimation0]: iRandomB == 0,
                   [oClasses.fabAnimation1]: iRandomB == 1,
                   [oClasses.fabAnimation2]: iRandomB == 2,
@@ -531,7 +530,6 @@ function Index(oProps: any): any {
                   [oClasses.fabAnimation4]: iRandomB == 4
                 })}
                 size="small"
-                color="primary"
                 disabled={bNotifierDisable}
                 onClick={cHandleNotifierClick(iId)}
 

@@ -193,19 +193,27 @@ const style = makeStyles((oTheme: Theme): any =>
       '&.MuiFab-root': {
         boxShadow: 'none',
       },
+      '&.Mui-disabled': {
 
-      '& .MuiIconButton-label ': {
-
-        '& .MuiSvgIcon-root': {
-
-        },
       },
-      '&.MuiIconButton-root.Mui-disabled': {
-        '& .MuiIconButton-label': {
-          opacity: 0.2
-        }
+    },
 
-      }
+    fabTranscoder: {
+      color: grey[50],
+      backgroundColor: red[700],
+      '&.Mui-disabled': {
+        color: grey[50],
+        backgroundColor: '#d32f2f75',
+      },
+
+    },
+    fabNotifier: {
+      color: grey[50],
+      backgroundColor: green[700],
+      '&.Mui-disabled': {
+        color: grey[50],
+        backgroundColor: '#388e3c94',
+      },
     },
     fabAnimation0: {
       animation: '$zoomIn 0.4s ease-in-out 0s 1 normal, $fadeIn 0.4s ease-in-out 0s 1 normal',
