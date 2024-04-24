@@ -446,6 +446,7 @@ function Navigation(oProps: any) {
 
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+      console.log('iCurrentAppId=', iCurrentAppId);
 
       console.log('aTabs1=', aTabs1);
       console.log('aTabs0=', aTabs0);
