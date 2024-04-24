@@ -224,24 +224,40 @@ const style = makeStyles((oTheme: Theme): any =>
         backgroundColor: '#388e3c33',
       },
     },
-    fabAnimation0: {
-      animation: '$zoomIn 0.4s ease-in-out 0s 1 normal, $fadeIn 0.4s ease-in-out 0s 1 normal',
+    fabAnimation000: {
+      animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation1: {
-      animation: '$zoomIn 0.4s ease-in-out 0.1s 1 normal, $fadeIn 0.4s ease-in-out 0.1s 1 normal, $fade 0.1s ease-in-out 0s 1 normal',
+    fabAnimation005: {
+      animation: '$zoomIn 0.3s ease-in-out 0.05s 1 normal, $fadeIn 0.2s ease-in-out 0.05s 1 normal, $fade 0.05s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation2: {
-      animation: '$zoomIn 0.4s ease-in-out 0.2s 1 normal, $fadeIn 0.4s ease-in-out 0.2s 1 normal, $fade 0.2s ease-in-out 0s 1 normal',
+    fabAnimation010: {
+      animation: '$zoomIn 0.3s ease-in-out 0.10s 1 normal, $fadeIn 0.2s ease-in-out 0.10s 1 normal, $fade 0.10s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation3: {
-      animation: '$zoomIn 0.4s ease-in-out 0.3s 1 normal, $fadeIn 0.4s ease-in-out 0.3s 1 normal, $fade 0.3s ease-in-out 0s 1 normal',
+    fabAnimation015: {
+      animation: '$zoomIn 0.3s ease-in-out 0.15s 1 normal, $fadeIn 0.2s ease-in-out 0.15s 1 normal, $fade 0.15s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation4: {
-      animation: '$zoomIn 0.4s ease-in-out 0.4s 1 normal, $fadeIn 0.4s ease-in-out 0.4s 1 normal, $fade 0.4s ease-in-out 0s 1 normal',
+    fabAnimation020: {
+      animation: '$zoomIn 0.3s ease-in-out 0.20s 1 normal, $fadeIn 0.2s ease-in-out 0.20s 1 normal, $fade 0.20s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation025: {
+      animation: '$zoomIn 0.3s ease-in-out 0.25s 1 normal, $fadeIn 0.2s ease-in-out 0.25s 1 normal, $fade 0.25s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation030: {
+      animation: '$zoomIn 0.3s ease-in-out 0.30s 1 normal, $fadeIn 0.2s ease-in-out 0.30s 1 normal, $fade 0.30s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation035: {
+      animation: '$zoomIn 0.3s ease-in-out 0.35s 1 normal, $fadeIn 0.2s ease-in-out 0.35s 1 normal, $fade 0.35s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation040: {
+      animation: '$zoomIn 0.3s ease-in-out 0.40s 1 normal, $fadeIn 0.2s ease-in-out 0.40s 1 normal, $fade 0.40s ease-in-out 0s 1 normal',
 
     },
 

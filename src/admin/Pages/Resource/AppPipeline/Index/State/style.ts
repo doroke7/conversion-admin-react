@@ -27,21 +27,47 @@ const style = makeStyles((oTheme: Theme): any =>
       height: '20px',
       background: pink[50],
       border: '2px dotted ' + red[200],
+      animation: '$fadeIn .3s linear 0s 1 normal'
 
     },
     innerBlockNone: {
-      height: '0px',
+      height: '0%',
 
     },
     innerBlockOnging: {
-      height: '12px',
+      height: '60%',
+      animation: '$scaleY60 .3s linear 0s 1 normal'
 
     },
     innerBlockSuccess: {
-      height: '20px',
+      height: '100%',
+      animation: '$scaleY100 .3s linear 0s 1 normal'
 
     },
-
+    '@keyframes scaleY60': {
+      '0%': {
+        height: '0%',
+      },
+      '100%': {
+        height: '60%',
+      }
+    },
+    '@keyframes scaleY100': {
+      '0%': {
+        height: '0%',
+      },
+      '100%': {
+        height: '100%',
+      }
+    },
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0',
+      },
+      '100%': {
+        opacity: '1',
+      }
+    },
   })
 );
 

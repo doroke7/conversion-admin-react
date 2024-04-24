@@ -490,11 +490,11 @@ function Index(oProps: any): any {
         let bNotifierDisable = oProps?.row?.state < 5;
 
         let iRandomA = useMemo(() => {
-          let iResult = Math.floor(Math.random() * 5);
+          let iResult = Math.floor(Math.random() * 9);
           return iResult;
         }, iId);
         let iRandomB = useMemo(() => {
-          let iResult = Math.floor(Math.random() * 5);
+          let iResult = Math.floor(Math.random() * 9);
           return iResult;
         }, iId);
 
@@ -504,11 +504,16 @@ function Index(oProps: any): any {
 
               <Fab
                 className={clsx([oClasses.fab, oClasses.fabTranscoder], {
-                  [oClasses.fabAnimation0]: iRandomA == 0,
-                  [oClasses.fabAnimation1]: iRandomA == 1,
-                  [oClasses.fabAnimation2]: iRandomA == 2,
-                  [oClasses.fabAnimation3]: iRandomA == 3,
-                  [oClasses.fabAnimation4]: iRandomA == 4
+                  [oClasses.fabAnimation000]: iRandomA == 0,
+                  [oClasses.fabAnimation005]: iRandomA == 1,
+                  [oClasses.fabAnimation010]: iRandomA == 2,
+                  [oClasses.fabAnimation015]: iRandomA == 3,
+                  [oClasses.fabAnimation020]: iRandomA == 4,
+                  [oClasses.fabAnimation025]: iRandomA == 5,
+                  [oClasses.fabAnimation030]: iRandomA == 6,
+                  [oClasses.fabAnimation035]: iRandomA == 7,
+                  [oClasses.fabAnimation040]: iRandomA == 8,
+
                 })}
                 size="small"
                 onClick={cHandleTranscoderClick(iId)}
@@ -523,11 +528,15 @@ function Index(oProps: any): any {
 
               <Fab
                 className={clsx([oClasses.fab, oClasses.fabNotifier], {
-                  [oClasses.fabAnimation0]: iRandomB == 0,
-                  [oClasses.fabAnimation1]: iRandomB == 1,
-                  [oClasses.fabAnimation2]: iRandomB == 2,
-                  [oClasses.fabAnimation3]: iRandomB == 3,
-                  [oClasses.fabAnimation4]: iRandomB == 4
+                  [oClasses.fabAnimation000]: iRandomB == 0,
+                  [oClasses.fabAnimation005]: iRandomB == 1,
+                  [oClasses.fabAnimation010]: iRandomB == 2,
+                  [oClasses.fabAnimation015]: iRandomB == 3,
+                  [oClasses.fabAnimation020]: iRandomB == 4,
+                  [oClasses.fabAnimation025]: iRandomB == 5,
+                  [oClasses.fabAnimation030]: iRandomB == 6,
+                  [oClasses.fabAnimation035]: iRandomB == 7,
+                  [oClasses.fabAnimation040]: iRandomB == 8,
                 })}
                 size="small"
                 disabled={bNotifierDisable}

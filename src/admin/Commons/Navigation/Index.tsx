@@ -237,6 +237,7 @@ function Navigation(oProps: any) {
         iValue = iValue < -1 ? -1 : iValue;
 
 
+        console.log
         cSetStateValue(iValue);
         cSetStateTabs(aTabs);
 
@@ -459,7 +460,6 @@ function Navigation(oProps: any) {
   }, [iStateIndex, aStateApps]);
 
 
-  console.log(aStateTabs);
   useEffect(() => {
 
     if (iStateAppId >= 1 && aStateApps.length > 0) {
