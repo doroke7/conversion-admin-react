@@ -31,6 +31,7 @@ let authorization = (Component: any): any => {
 
 
 
+    console.log('oRouteMatch=', oRouteMatch);
 
     useEffect(() => {
       (async () => {

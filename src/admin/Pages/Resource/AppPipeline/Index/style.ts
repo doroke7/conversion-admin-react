@@ -103,6 +103,7 @@ const style = makeStyles((oTheme: Theme): any =>
     dataGrid: {
       minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       maxHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
+      overflow: 'hidden',
       '& .MuiDataGrid-row:last-child': {
         '& .MuiDataGrid-cell': {
           // borderBottom: 'none'

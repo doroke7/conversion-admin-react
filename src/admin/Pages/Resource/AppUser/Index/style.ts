@@ -55,11 +55,8 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiDataGrid-footerContainer': {
       },
       '& .MuiDataGrid-dataContainer': {
-        //  backgroundColor: common['white']
       },
       '& .MuiDataGrid-window': {
-        // minHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
-        // maxHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
         scrollbarWidth: 'thin',
         background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
         overflowX: 'hidden'
