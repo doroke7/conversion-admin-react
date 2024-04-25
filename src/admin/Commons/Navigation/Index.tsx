@@ -216,7 +216,7 @@ function Navigation(oProps: any) {
 
           aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
 
-          console.log('iAppId 看看有沒有為0可能係=', iAppId);
+          console.log('219 准备写入 Tab 数据，aTabs1=', aTabs1, ', oMe?.id=', oMe?.id, ', oApp?.id=', oApp?.id);
           Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, oApp?.id);
 
         };
@@ -227,6 +227,7 @@ function Navigation(oProps: any) {
           let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
 
           aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
+          console.log('230 准备写入 Tab aTabs0=', aTabs0, ', oMe?.id=', oMe?.id, ', 0=', 0);
           Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
 
         };
@@ -237,13 +238,9 @@ function Navigation(oProps: any) {
         iValue = iValue < -1 ? -1 : iValue;
 
 
-        console.log
         cSetStateValue(iValue);
         cSetStateTabs(aTabs);
 
-        console.log('iValue=', iValue);
-        console.log('aTabs=', aTabs);
-        console.log('aTabs.length=', aTabs.length);
 
         if (aTabs?.length >= 1) {
 
@@ -285,7 +282,13 @@ function Navigation(oProps: any) {
           aTabs0 = [];
           aTabs0 = [oTab];
         };
-        iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, iAppId);
+
+        if (iAppId > 0) {
+          console.log('287 准备写入 Tab aTabs1=', aTabs1, ', oMe?.id=', oMe?.id, ', iAppId=', iAppId)
+          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, iAppId);
+        }
+
+        console.log('291 准备写入 Tab aTabs0=', aTabs0, ', oMe?.id=', oMe?.id, ', 0=', 0);
         Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
 
         let iValue = 0;
@@ -314,7 +317,11 @@ function Navigation(oProps: any) {
         let oApp = aStateApps[iStateIndex];
         let iAppId = oApp?.id ?? 0;
 
-        iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, iAppId);
+        if (iAppId > 0) {
+          console.log('321 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', iAppId=', iAppId);
+          Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, iAppId);
+        }
+        console.log('325 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', 0=', 0);
         Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, 0);
 
         cSetStateValue(iValue);
@@ -444,14 +451,12 @@ function Navigation(oProps: any) {
         aTabs = [...aTabs1, ...aTabs0];
         iValue = iCurrentAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
       }
+      console.log('456 准备写入 Tab 数据，aTabs1=', aTabs1, ', iAdminUserId=', iAdminUserId, ', iCurrentAppId=', iCurrentAppId);
+      console.log('457 准备写入 Tab aTabs0=', aTabs0, ', iAdminUserId=', iAdminUserId, ', 0=', 0);
 
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
-      console.log('iCurrentAppId=', iCurrentAppId);
 
-      console.log('aTabs1=', aTabs1);
-      console.log('aTabs0=', aTabs0);
-      console.log('iAdminUserId=', iAdminUserId);
 
       cSetStateValue(iValue);
       cSetStateTabs(aTabs);

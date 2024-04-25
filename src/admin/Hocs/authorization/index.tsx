@@ -29,7 +29,106 @@ let authorization = (Component: any): any => {
 
     let sPath = oRouteMatch.path.replace(/^\//, '').replace(/\/\*?$/, '');
 
-    console.log('oRouteMatch=', oRouteMatch);
+
+
+
+    useEffect(() => {
+      (async () => {
+        let sJwt = Helpers.Authentication.authorization() ?? '';
+        if (sJwt == '' && aRedirections[0]) {
+          let oMessage = {
+            code: -1,
+            message: '令牌不存在, 即将跳转登入页面',
+            time: 3 * 1000
+          };
+          events.emit('Alerts-onAlert', oMessage);
+          Helpers.Path.set(oRouteMatch.url);
+          oHistory.push(aRedirections[0]);
+        }
+        if (sJwt) {
+
+          let oParam = {
+            path: sPath,
+          };
+
+          let oSearch = {
+          };
+
+          let oOption = {
+            appId: oParams?.appId ?? 0
+          };
+
+          let oResponse = await Sdks.Admin.Authentication.Authenticator.postRefresh(oParam, oSearch, oOption);
+          sJwt = oResponse?.headers?.authorization ?? '';
+          let oAutohorizations = oResponse?.data?.raw?.authorizations ?? {};
+          let oMe = oResponse?.data?.raw?.me ?? {};
+
+          oDispatch(actions.authorizaions.set(oAutohorizations));
+
+          if (
+            oResponse?.data?.code >= 0 && oResponse?.data?.code !== undefined
+          ) {
+
+            oDispatch(actions.authorizaion.set(sJwt));
+            oDispatch(actions.me.set(oMe));
+          }
+
+          if (
+            oResponse?.data?.code == -1
+          ) {
+            // 服务器回传 -1 (判定token 不合法), => 清空 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
+            sJwt = '';
+            oMe = {};
+
+            oDispatch(actions.authorizaion.set(sJwt));
+            oDispatch(actions.me.set(oMe));
+          }
+
+
+          if (
+            oResponse?.data?.code <= -2
+          ) {
+            // 服务器回传 -2 (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
+            oMe = {};
+            oDispatch(actions.me.set(oMe));
+
+          }
+
+          if (oResponse?.data?.code === undefined) {
+            // 服务器回传 undefined (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
+
+            oMe = {};
+            oDispatch(actions.me.set(oMe));
+          }
+
+          if (
+            oResponse?.data?.code <= -1
+          ) {
+
+            let sMessage = '未知错误';
+
+            sMessage = oResponse?.data?.code >= 0 && !sJwt ? '服务器未定义 authorization 错误' : sMessage;
+            sMessage = oResponse?.data?.code <= -1 ? '错误' : sMessage;
+
+            if (aRedirections[0]) {
+              let oMessage = {
+                code: oResponse?.data?.code ?? -9999,
+                message: oResponse?.data?.message ?? sMessage,
+                time: 3 * 1000
+              };
+              Helpers.Path.set(oRouteMatch.url);
+
+              events.emit('Alerts-onAlert', oMessage);
+              oHistory.push(aRedirections[0]);
+            }
+          }
+
+        }
+
+        cSetStateStatus(true);
+      })();
+
+    }, [oRouteMatch.path]);
 
 
     useEffect(() => {
