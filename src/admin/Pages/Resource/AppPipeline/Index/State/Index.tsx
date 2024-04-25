@@ -15,14 +15,14 @@ function Index(oProps: any): any {
   let [iStateStep, cSetStateStep] = useState<number>(0);
 
   let oStates = {
-    0: '启动',
-    1: '下载',
-    2: '转码',
-    3: '加密',
-    4: '上传',
-    5: '回调',
-    6: '预热',
-    254: '完成',
+    0: '任務启动',
+    1: '資源下载',
+    2: '資源转码',
+    3: '資源加密',
+    4: '資源上传',
+    5: '資源回调',
+    6: '資源预热',
+    254: '任務完成',
   };
 
   let oStatuses = {
@@ -50,6 +50,15 @@ function Index(oProps: any): any {
         return iNextStateValue;
       });
     })();
+
+
+
+
+
+
+
+
+    
 
   }, [iStateStep, iState]);
 
