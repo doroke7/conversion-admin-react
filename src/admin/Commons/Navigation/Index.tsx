@@ -131,7 +131,7 @@ function Navigation(oProps: any) {
 
   useEffect(() => {
     let cClickAdminMenu = (oAdminMenu: any) => {
-      // 如果 Menu 旗下还有子 menu 就不做事
+      // 如果 adminMenu 旗下还有子 adminMenu 就不做事
       if (oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu.adminMenus.length >= 1) {
         return;
       }
@@ -151,8 +151,6 @@ function Navigation(oProps: any) {
         oTextRef.current = oAdminMenu.text ?? '';
 
         let sUrl = utilities.url('/', oThisAdminMenu.uri, 0, 0, 0, {});
-
-
         oHistory.push(sUrl);
       }
     };
