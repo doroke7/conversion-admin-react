@@ -3,7 +3,7 @@ let cHhmmss = (sSecond: string): string => {
   let iSecond = Number(Number(sSecond).toFixed(2));
   let iHh = Math.floor(iSecond / 3600);
   let iMm = Math.floor(iSecond % 3600 / 60);
-  let iSs = iSecond % 3600 % 60;
+  let iSs = Number((iSecond % 3600 % 60).toFixed(2));
 
   let sHh = iHh > 0 ? (iHh < 10 ? '0' + iHh : iHh) + ':' : '00:';
   let sMm = iMm > 0 ? (iMm < 10 ? '0' + iMm : iMm) + ':' : '00:';

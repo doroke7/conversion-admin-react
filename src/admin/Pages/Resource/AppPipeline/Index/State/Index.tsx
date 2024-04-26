@@ -54,7 +54,7 @@ function Index(oProps: any): any {
   }, [iStateStep, iState]);
 
   return (
-    <Tooltip title={sState + '-' + sStatus} placement="top">
+    <Tooltip title={sState + '-' + sStatus} placement="top" arrow={true}>
       <div className={oClasses.root}>
         <div className={oClasses.wrapperProcess}>
           <div className={clsx(oClasses.process, {
