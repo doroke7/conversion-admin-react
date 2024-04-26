@@ -161,7 +161,7 @@ function Index(oProps: any): any {
       width: 84,
       align: 'left',
       renderCell: (oProps: any) => {
-        let sTitle = oProps?.row?.app?.title;
+        let sTitle = oProps?.row?.app?.title.substr(0, 1);
         let sUrl = oProps?.row?.app?.url;
 
         return (

@@ -78,7 +78,7 @@ function SecondAdminMenus(oProps: any) {
             {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
               <ThirdAdminMenus
                 open={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
-                adminMenus={oAdminMenu.adminMenus}
+                adminMenus={oAdminMenu?.adminMenus}
                 index={iSecondIndex}
                 anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
                 onClickAway={cHandleClose}></ThirdAdminMenus>
