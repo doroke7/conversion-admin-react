@@ -26,10 +26,10 @@ function Index(oProps: any): any {
   };
 
   let oStatuses = {
-    '-1': '失败',
-    '0': '开始',
-    '1': '进行',
-    '2': '成功',
+    '-1': '已失败',
+    '0': '即开始',
+    '1': '进行中',
+    '2': '已成功',
   };
 
   let sState = oStates[iState ?? 0] ?? '';
@@ -58,7 +58,7 @@ function Index(oProps: any): any {
 
 
 
-    
+
 
   }, [iStateStep, iState]);
 
