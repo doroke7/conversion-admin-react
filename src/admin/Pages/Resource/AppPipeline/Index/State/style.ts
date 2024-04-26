@@ -7,22 +7,21 @@ const style = makeStyles((oTheme: Theme): any =>
       width: '160px',
       display: 'flex',
       justifyContent: 'space-between'
-
     },
-    outerBlock: {
+    wrapperProcess: {
       width: '7px',
       height: '20px',
       background: lightBlue[50],
       position: 'relative',
     },
-    innerBlock: {
+    process: {
       width: '7px',
       background: lightBlue[700],
       position: 'absolute',
       left: oTheme.spacing(0),
       bottom: oTheme.spacing(0),
     },
-    innerBlockFail: {
+    processFail: {
       boxSizing: 'border-box',
       height: '20px',
       background: pink[50],
@@ -30,16 +29,16 @@ const style = makeStyles((oTheme: Theme): any =>
       animation: '$fadeIn .3s linear 0s 1 normal'
 
     },
-    innerBlockNone: {
+    processNone: {
       height: '0%',
 
     },
-    innerBlockOnging: {
+    processOnging: {
       height: '60%',
       animation: '$scaleY60 .3s linear 0s 1 normal'
 
     },
-    innerBlockSuccess: {
+    processSuccess: {
       height: '100%',
       animation: '$scaleY100 .3s linear 0s 1 normal'
 

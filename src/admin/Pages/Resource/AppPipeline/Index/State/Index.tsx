@@ -51,80 +51,71 @@ function Index(oProps: any): any {
       });
     })();
 
-
-
-
-
-
-
-
-
-
   }, [iStateStep, iState]);
 
   return (
     <Tooltip title={sState + '-' + sStatus} placement="top">
       <div className={oClasses.root}>
-        <div className={oClasses.outerBlock}>
-          <div className={clsx(oClasses.innerBlock, {
-            [oClasses.innerBlockFail]: 1 == iStateStep && iFailStatus == iStatus,
-            [oClasses.innerBlockNone]: 1 > iStateStep || (1 == iStateStep && iNoneStatus == iStatus),
-            [oClasses.innerBlockOnging]: 1 == iStateStep && iOngoingStatus == iStatus,
-            [oClasses.innerBlockSuccess]: 1 < iStateStep || (1 == iStateStep && iSuccessStatus == iStatus),
+        <div className={oClasses.wrapperProcess}>
+          <div className={clsx(oClasses.process, {
+            [oClasses.processFail]: 1 == iStateStep && iFailStatus == iStatus,
+            [oClasses.processNone]: 1 > iStateStep || (1 == iStateStep && iNoneStatus == iStatus),
+            [oClasses.processOnging]: 1 == iStateStep && iOngoingStatus == iStatus,
+            [oClasses.processSuccess]: 1 < iStateStep || (1 == iStateStep && iSuccessStatus == iStatus),
 
           })}>
           </div>
         </div>
 
-        <div className={oClasses.outerBlock}>
-          <div className={clsx(oClasses.innerBlock, {
-            [oClasses.innerBlockFail]: 2 == iStateStep && iFailStatus == iStatus,
-            [oClasses.innerBlockNone]: 2 > iStateStep || (2 == iStateStep && iNoneStatus == iStatus),
-            [oClasses.innerBlockOnging]: 2 == iStateStep && iOngoingStatus == iStatus,
-            [oClasses.innerBlockSuccess]: 2 < iStateStep || (2 == iStateStep && iSuccessStatus == iStatus),
+        <div className={oClasses.wrapperProcess}>
+          <div className={clsx(oClasses.process, {
+            [oClasses.processFail]: 2 == iStateStep && iFailStatus == iStatus,
+            [oClasses.processNone]: 2 > iStateStep || (2 == iStateStep && iNoneStatus == iStatus),
+            [oClasses.processOnging]: 2 == iStateStep && iOngoingStatus == iStatus,
+            [oClasses.processSuccess]: 2 < iStateStep || (2 == iStateStep && iSuccessStatus == iStatus),
 
           })}>
           </div>
         </div>
 
-        <div className={oClasses.outerBlock}>
-          <div className={clsx(oClasses.innerBlock, {
-            [oClasses.innerBlockFail]: 3 == iStateStep && iFailStatus == iStatus,
-            [oClasses.innerBlockNone]: 3 > iStateStep || (3 == iStateStep && iNoneStatus == iStatus),
-            [oClasses.innerBlockOnging]: 3 == iStateStep && iOngoingStatus == iStatus,
-            [oClasses.innerBlockSuccess]: 3 < iStateStep || (3 == iStateStep && iSuccessStatus == iStatus),
+        <div className={oClasses.wrapperProcess}>
+          <div className={clsx(oClasses.process, {
+            [oClasses.processFail]: 3 == iStateStep && iFailStatus == iStatus,
+            [oClasses.processNone]: 3 > iStateStep || (3 == iStateStep && iNoneStatus == iStatus),
+            [oClasses.processOnging]: 3 == iStateStep && iOngoingStatus == iStatus,
+            [oClasses.processSuccess]: 3 < iStateStep || (3 == iStateStep && iSuccessStatus == iStatus),
 
           })}>
           </div>
         </div>
 
-        <div className={oClasses.outerBlock}>
-          <div className={clsx(oClasses.innerBlock, {
-            [oClasses.innerBlockFail]: 4 == iStateStep && iFailStatus == iStatus,
-            [oClasses.innerBlockNone]: 4 > iStateStep || (4 == iStateStep && iNoneStatus == iStatus),
-            [oClasses.innerBlockOnging]: 4 == iStateStep && iOngoingStatus == iStatus,
-            [oClasses.innerBlockSuccess]: 4 < iStateStep || (4 == iStateStep && iSuccessStatus == iStatus),
+        <div className={oClasses.wrapperProcess}>
+          <div className={clsx(oClasses.process, {
+            [oClasses.processFail]: 4 == iStateStep && iFailStatus == iStatus,
+            [oClasses.processNone]: 4 > iStateStep || (4 == iStateStep && iNoneStatus == iStatus),
+            [oClasses.processOnging]: 4 == iStateStep && iOngoingStatus == iStatus,
+            [oClasses.processSuccess]: 4 < iStateStep || (4 == iStateStep && iSuccessStatus == iStatus),
 
           })}>
           </div>
         </div>
 
-        <div className={oClasses.outerBlock}>
-          <div className={clsx(oClasses.innerBlock, {
-            [oClasses.innerBlockFail]: 5 == iStateStep && iFailStatus == iStatus,
-            [oClasses.innerBlockNone]: 5 > iStateStep || (5 == iStateStep && iNoneStatus == iStatus),
-            [oClasses.innerBlockOnging]: 5 == iStateStep && iOngoingStatus == iStatus,
-            [oClasses.innerBlockSuccess]: 5 < iStateStep || (5 == iStateStep && iSuccessStatus == iStatus),
+        <div className={oClasses.wrapperProcess}>
+          <div className={clsx(oClasses.process, {
+            [oClasses.processFail]: 5 == iStateStep && iFailStatus == iStatus,
+            [oClasses.processNone]: 5 > iStateStep || (5 == iStateStep && iNoneStatus == iStatus),
+            [oClasses.processOnging]: 5 == iStateStep && iOngoingStatus == iStatus,
+            [oClasses.processSuccess]: 5 < iStateStep || (5 == iStateStep && iSuccessStatus == iStatus),
           })}>
           </div>
         </div>
 
-        <div className={oClasses.outerBlock}>
-          <div className={clsx(oClasses.innerBlock, {
-            [oClasses.innerBlockFail]: 6 == iStateStep && iFailStatus == iStatus,
-            [oClasses.innerBlockNone]: 6 > iStateStep || (6 == iStateStep && iNoneStatus == iStatus),
-            [oClasses.innerBlockOnging]: 6 == iStateStep && iOngoingStatus == iStatus,
-            [oClasses.innerBlockSuccess]: 6 < iStateStep || (6 == iStateStep && iSuccessStatus == iStatus),
+        <div className={oClasses.wrapperProcess}>
+          <div className={clsx(oClasses.process, {
+            [oClasses.processFail]: 6 == iStateStep && iFailStatus == iStatus,
+            [oClasses.processNone]: 6 > iStateStep || (6 == iStateStep && iNoneStatus == iStatus),
+            [oClasses.processOnging]: 6 == iStateStep && iOngoingStatus == iStatus,
+            [oClasses.processSuccess]: 6 < iStateStep || (6 == iStateStep && iSuccessStatus == iStatus),
 
           })}>
           </div>
