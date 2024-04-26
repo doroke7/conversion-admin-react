@@ -13,7 +13,7 @@ import Contexts from '@/admin/Contexts/Index';
 import utilities from '@/admin/utilities';
 
 import CONFIGS from '@/CONFIGS/INDEX';
-import SecondMenus from './SecondMenus/Index';
+import SecondAdminMenus from './SecondAdminMenus/Index';
 
 import cStyle from './style';
 
@@ -42,11 +42,9 @@ function SmallAdminMenus(oProps) {
     };
   };
 
-  let cHandleMouseLeave = (oAdminMenu: any) => {
-    return (oEvent: React.SyntheticEvent) => {
-      let oAnchors = {};
-      cSetStateAnchors(oAnchors);
-    };
+  let cHandleMouseLeave = (oEvent: React.SyntheticEvent) => {
+    let oAnchors = {};
+    cSetStateAnchors(oAnchors);
   };
 
   let cHandleClose = (oEvent: any) => {
@@ -62,24 +60,29 @@ function SmallAdminMenus(oProps) {
         [oClasses.rootHidden]: !bStatus
       })}>
       {aAdminMenus.map((oAdminMenu: any, iIndex: any) => (
-        <>
+        <div key={iIndex}>
           <ListItem
             className={oClasses.listItem}
             button
             onMouseEnter={cHandleMouseEnter(oAdminMenu)}
-            onMouseLeave={cHandleMouseLeave(oAdminMenu)}>
+            onMouseLeave={cHandleMouseLeave}>
             <ListItemIcon className={oClasses.listItemIcon}>
-              <Components.Icon name={oAdminMenu?.icon}></Components.Icon>
+              <Components.Icon name={oAdminMenu?.icon || 'LineWeightIcon'}>
+              </Components.Icon>
             </ListItemIcon>
-            <SecondMenus
+            <SecondAdminMenus
               open={!!oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               adminMenus={oAdminMenu?.adminMenus}
               anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
               index={iIndex}
               onClickAway={cHandleClose}
-              onMouseLeave={cHandleMouseLeave(oAdminMenu)}></SecondMenus>
+              onMouseLeave={cHandleMouseLeave}>
+            </SecondAdminMenus>
+            <div className={oClasses.listItemOverlay}>
+
+            </div>
           </ListItem>
-        </>
+        </div>
       ))}
     </List>
   );

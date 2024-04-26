@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import Badge from '@material-ui/core/Badge';
@@ -18,26 +19,40 @@ import AdministratorIcon from './AdministratorIcon/Index';
 import style from './style';
 
 function Right(oProps: any) {
-  let oClasses = style(void 0);
-  let [oState, cSetState] = useState<any>({
-    open: false,
-    rotating: false,
-    anchor: null
-  });
-  let oHistory = useHistory();
 
+  let oAuthorizations = oProps.authorizations ?? {};
+  let sAuthorizaion = useSelector((oStore:any) => (oStore?.authorizations?.['admin/resource'] ?? ''));
+
+  let [oStateOpen, cSetStateOpen] = useState<boolean>(false);
+  let [oStateRotating, cSetStateRotating] = useState<boolean>(false);
+  let [oStateAnchor, cSetStateAnchor] = useState<boolean>(null);
+
+
+  let oHistory = useHistory();
+  let oClasses = style(void 0);
+
+  let iAuthorizaion = parseInt(sAuthorizaion, 2);
+
+  let sFlushallAuthorization = oAuthorizations?.['FLUSHALL'] ?? ''; 
+  let iFlushallAuthorization = parseInt(sFlushallAuthorization, 2);
+
+  let bFlushall = (iAuthorizaion & iFlushallAuthorization) == iFlushallAuthorization; 
+
+  
   let cHandleClose = () => {
-    cSetState({ ...oState, open: false });
+    cSetStateOpen(false);
   };
 
   let cHandleOpen = () => {
-    cSetState({ ...oState, open: true });
+    cSetStateOpen(true);
+
   };
 
   let cHandleAlertOfRedisConfirm = () => {
-    cSetState({ ...oState, rotating: true, open: false });
+    cSetStateOpen(false);
+    cSetStateRotating(true);
     setTimeout(() => {
-      cSetState({ ...oState, rotating: false, open: false });
+      cSetStateRotating(false);
     }, 1200);
   };
 
@@ -45,27 +60,29 @@ function Right(oProps: any) {
     oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
     oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
     let oAnchor = oEvent.currentTarget;
-    cSetState({ ...oState, anchor: oAnchor });
+    cSetStateAnchor(oAnchor);
   };
 
   let cHandleAvatarWrapperContextMenu = (oEvent: any) => {
     oEvent.stopPropagation(); // 改用 全局处理取消预设的 右键交互
     oEvent.preventDefault(); // 改用 全局处理取消预设的 右键交互
     let oAnchor = oEvent.currentTarget;
-    cSetState({ ...oState, anchor: oAnchor });
+    cSetStateAnchor(oAnchor);
+
   };
 
   let cHandleDropdownClickAway = (oEvent: any) => {
-    cSetState({ ...oState, anchor: false });
+    cSetStateAnchor(null);
   };
 
   let cHandleDropdownClick = async (oEvent: any) => {
-    cSetState({ ...oState, anchor: false });
+    cSetStateAnchor(null);
+
     events.emit('Progress-onProgress', { value: 0, status: true });
 
     let oResponse = await Sdks.Admin.Authentication.Authenticator.postSignOut();
 
-    if (oResponse?.data?.code <= -1) {
+    if (oResponse?.data?.code <= 0) {
       let oMessage = {
         code: oResponse?.data?.code ?? 0,
         message: oResponse?.data?.message ?? '',
@@ -74,8 +91,9 @@ function Right(oProps: any) {
       events.emit('Alerts-onAlert', oMessage);
     }
 
-    Helpers.Authentication.removeJwt();
-    if (oResponse?.data?.code >= 0) {
+    Helpers.Authentication.remove();
+
+    if (oResponse?.data?.code <= 0) {
       let oMessage = {
         code: oResponse?.data?.code,
         message: oResponse?.data?.message ?? '登出成功',
@@ -89,13 +107,14 @@ function Right(oProps: any) {
 
   return (
     <div className={oClasses.right}>
-      <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
+       {bFlushall ? 
+       <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
         <RefreshIcon
           className={clsx(oClasses.icon, {
-            [oClasses.iconAnimation]: oState.rotating
+            [oClasses.iconAnimation]: oStateRotating
           })}></RefreshIcon>
-      </IconButton>
-      <AlertOfRedis open={oState.open} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
+      </IconButton> : ''}
+      <AlertOfRedis open={oStateOpen} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
       <div
         className={oClasses.avatarWrapper}
         onClick={cHandleAvatarWrapperClick}
@@ -114,8 +133,8 @@ function Right(oProps: any) {
         </Badge>
       </div>
       <Dropdown
-        open={Boolean(oState.anchor)}
-        anchor={oState.anchor}
+        open={Boolean(oStateAnchor)}
+        anchor={oStateAnchor}
         onClickAway={cHandleDropdownClickAway}
         onClick={cHandleDropdownClick}></Dropdown>
     </div>

@@ -1,5 +1,18 @@
-import authenticationAuthenticator from './authenticationAuthenticator/index';
+import authorization from './authorization/index';
+import authorizations from './authorizations/index';
+
+import me from './me/index';
+import adminUser from './adminUser/index';
+import adminUsers from './adminUsers/index';
+import appUsers from './appUsers/index';
+import appPipelines from './appPipelines/index';
 
 export default {
-  authenticationAuthenticator: authenticationAuthenticator
+  authorization: authorization,
+  authorizations: authorizations,
+  me: me,
+  adminUser: adminUser,
+  adminUsers: adminUsers,
+  appUsers: appUsers,
+  appPipelines: appPipelines
 };

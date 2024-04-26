@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import clsx from 'clsx';
 
-import wrappers from '@/admin/wrappers';
+import Hocs from '@/admin/Hocs';
 
 import Icon from './Icon/Index';
 import style from './style';
@@ -33,4 +33,4 @@ function Index(oProps: any): any {
     </div>
   );
 }
-export default wrappers.authenticator(wrappers.tab(wrappers.title(Index)));
+export default Hocs.authorization(Hocs.tab(Hocs.title(Index)));

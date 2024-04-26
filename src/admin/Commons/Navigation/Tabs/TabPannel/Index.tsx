@@ -6,14 +6,16 @@ import Box from '@material-ui/core/Box';
 import Components from '@/admin/Components/Index';
 import style from './style';
 
-interface Props {
-  children?: React.ReactNode;
-}
 
-function TabPanel(props: Props) {
+
+function TabPanel(props: any) {
   let oClasses: any = style(void 0);
 
-  let { children, ...other } = props;
+  let {
+    children: children,
+    value: value,
+    ...other
+  } = props;
 
   return (
     <div

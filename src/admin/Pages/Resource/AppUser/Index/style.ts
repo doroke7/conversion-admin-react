@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, grey, common } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -39,35 +39,77 @@ const style = makeStyles((oTheme: Theme): any =>
       borderRadius: oTheme.spacing(0.5)
     },
     dataGridWrapper: {
+      marginTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
       },
       width: '100%',
       '& .MuiDataGrid-root': {
         '& .MuiDataGrid-overlay': {
-          background: grey[50]
+          backgroundColor: 'rgba(250, 250, 250, 0)'
         }
       },
+      '& .MuiDataGrid-columnsContainer': {
+        zIndex: 1
+      },
       '& .MuiDataGrid-footerContainer': {
-        background: grey[50]
+      },
+      '& .MuiDataGrid-dataContainer': {
+      },
+      '& .MuiDataGrid-window': {
+        scrollbarWidth: 'thin',
+        background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
+        overflowX: 'hidden'
+      },
+      '&  .MuiDataGrid-row': {
+        background: '#FFFFFF',
+
+        '&:hover': {
+          background: '#F2F2F2'
+        }
       }
     },
     dataGrid: {
-      minHeight: 652,
-      maxHeight: 652,
+      minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
+      maxHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       '& .MuiDataGrid-row:last-child': {
         '& .MuiDataGrid-cell': {
-          borderBottom: 'none'
+          // borderBottom: 'none'
+        }
+      },
+      '& .MuiIconButton-label': {
+        '& .MuiSvgIcon-root': {
+          fontSize: '1rem'
         }
       }
     },
+    avatar: {
+      width: oTheme.spacing(3),
+      height: oTheme.spacing(3),
+
+    },
 
     formControl: {
-      width: oTheme.spacing(12),
+      textAlign: 'right',
+      width: oTheme.spacing(9),
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -5px) scale(0.65)'
+      },
+      '& .MuiInputBase-root': {
+        fontSize: oTheme.spacing(1.75),
+      },
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
-      }
+      },
+      '& .MuiOutlinedInput-input': {
+        paddingTop: oTheme.spacing(0.6),
+        paddingBottom: oTheme.spacing(0.6),
+      },
+    },
+    menuItem: {
+      fontSize: oTheme.spacing(1.75),
+      lineHeight: 1.25,
     },
 
     paginationWrapper: {
@@ -76,8 +118,7 @@ const style = makeStyles((oTheme: Theme): any =>
       alignItems: 'center',
       justifyContent: 'flex-end',
       marginRight: oTheme.spacing(0),
-      marginTop: oTheme.spacing(1),
-      paddingTop: oTheme.spacing(1),
+      marginBottom: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -133,15 +174,31 @@ const style = makeStyles((oTheme: Theme): any =>
         verticalAlign: 'middle'
       },
       '& .MuiTextField-root': {
-        width: oTheme.spacing(6),
+        width: oTheme.spacing(4),
         verticalAlign: 'middle',
         '& input': {
           textAlign: 'right'
         }
       },
       '& .next': {
-        verticalAlign: 'middle'
+        verticalAlign: 'middle',
+        fontSize: oTheme.spacing(1.75),
+
       }
+    },
+    textField: {
+      width: oTheme.spacing(8),
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -5px) scale(0.65)'
+      },
+      '& .MuiOutlinedInput-root': {
+        height: oTheme.spacing(3.25),
+      },
+      '& .MuiInputBase-input': {
+        textAlign: 'right',
+        fontSize: oTheme.spacing(1.75),
+      },
+
     }
   })
 );

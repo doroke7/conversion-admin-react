@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link, useRouteMatch, useParams, useHistory } from 'react-router-dom';
 import Fade from '@material-ui/core/Fade';
 import Commons from '@/admin/Commons/Index';
-import wrappers from '@/admin/wrappers';
+import _ from './_/Index';
+import CONFIGS from '@/CONFIGS/INDEX';
 
 import style from './style';
 
@@ -11,16 +12,14 @@ function Index(oProps: any): any {
   let oMatch = useRouteMatch();
 
   let aRoutes = oProps.routes ?? [];
-
-  console.log('Pages.Resource._', 'aRoutes=', aRoutes);
+  let oAuthorizations = oProps.authorizations ?? {};
 
   return (
-    // <Fade> 效果，必须字元素只有一个 DIV
     <Fade in={true} timeout={1000}>
       <div>
-        <Commons.Navigation>
+        <Commons.Navigation authorizations={oAuthorizations}>
           <Switch>
-            {aRoutes.map((oRoute, sIndex) => (
+            {aRoutes.map((oRoute: any, sIndex: string) => (
               <Route path={oMatch.url + oRoute.path} key={sIndex} exact={oRoute.exact}>
                 <oRoute.Component
                   routes={oRoute.routes}
@@ -29,15 +28,25 @@ function Index(oProps: any): any {
                   id={oRoute.id}
                   text={oRoute.text}
                   path={oMatch.url + oRoute.path}
-                  authenticator={oRoute.authenticator}
+                  authorization={oRoute.authorization}
                   redirections={oRoute.redirections}
                 />
               </Route>
             ))}
+
+            <Route path={oMatch.url} key={aRoutes.lenth} exact={true}>
+              <_
+                path={oMatch.url}
+                authorization={true}
+                redirections={['/admin/authentication/authenticator/sign-in', null]}
+                title={CONFIGS.ADMIN.NAME}
+              />
+            </Route>
           </Switch>
         </Commons.Navigation>
       </div>
     </Fade>
   );
 }
+
 export default Index;

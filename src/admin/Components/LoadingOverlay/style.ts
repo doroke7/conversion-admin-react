@@ -4,7 +4,10 @@ import { pink, grey, lightBlue, cyan, indigo, blue } from '@material-ui/core/col
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      flexDirection: 'column'
+      zIndex: 1,
+      opacity: 0.7,
+      flexDirection: 'column',
+      height: 'calc(100% - ' + oTheme.spacing(4.5) + 'px)'
     },
     icon: {
       width: oTheme.spacing(10),

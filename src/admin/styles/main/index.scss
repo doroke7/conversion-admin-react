@@ -9,7 +9,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-	width: 1px;
+	width: 0px;
 	background-color: #F5F5F5;
 }
 
@@ -20,8 +20,8 @@ body {
 }
 
 *::-webkit-scrollbar:horizontal {
-	width: 1px;
-	height: 1px;
+	width: 0px;
+	height: 0px;
 	background-color: #F5F5F5;
 }
 

@@ -4,6 +4,7 @@ import { pink, grey } from '@material-ui/core/colors';
 let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
+      zIndex: 2,
       '& .MuiListItem-button': {
         '&:hover': {
           backgroundColor: 'rgba(0, 0, 0, 0.2)'

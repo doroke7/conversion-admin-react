@@ -1,0 +1,16 @@
+/**
+ * TITLE: 放弃了 action 控制异步 API 请求的做法， 不好用
+ * DATE: 2022-0809
+ */
+let oAction: any = {
+  set: (aAdminUsers: any[] = []) => {
+    let oAction = {
+      type: 'ADMIN_USERS_SET',
+      adminUsers: aAdminUsers
+    };
+
+    return oAction;
+  }
+};
+
+export default oAction;

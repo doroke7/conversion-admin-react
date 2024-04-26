@@ -19,7 +19,7 @@ import Dropdown from './Dropdown/Index';
 
 import style from './style';
 
-function ScrollableTabs(oProps: any) {
+function MyTabs(oProps: any) {
   let children = oProps.children ?? <></>;
 
   let oClasses: any = style(void 0);
@@ -110,7 +110,7 @@ function ScrollableTabs(oProps: any) {
   };
 
   let iTabsLength = aTabs?.length ?? 0;
-  console.log('aTabs=', aTabs);
+
   return (
     <div className={oClasses.root}>
       <div
@@ -136,8 +136,9 @@ function ScrollableTabs(oProps: any) {
                 open={oStateTooltips?.[sIndex] && iTabsLength >= 11}
                 className={oClasses.toolTip}
                 title={oTab?.text + ''}
-                placement="bottom"
-                arrow>
+                placement="top"
+                arrow
+              >
                 <Tab
                   onContextMenu={cHandleContextmenu(sIndex)}
                   onMouseLeave={cHandleMouseLeave(sIndex)}
@@ -156,9 +157,8 @@ function ScrollableTabs(oProps: any) {
                           [oClasses.listITemText1]: iTabsLength >= 15 && iTabsLength < 19,
                           [oClasses.listITemText0]: iTabsLength >= 19
                         })}>
-                        {oTab.text}
+                        {oTab?.text ?? ''}
                       </span>
-                      {/* {'关闭TAB 的按钮可能会冒泡点击事件'} */}
                       <IconButton size="small" onClick={cHandleRemoveTab(sIndex)}>
                         <CloseIcon />
                       </IconButton>
@@ -178,11 +178,13 @@ function ScrollableTabs(oProps: any) {
             onRemoveOtherTabs={cHandleRemoveOtherTabs(oStateIndex)}
             onRemoveAllTabs={cHandleRemoveAllTabs}></Dropdown>
         </AppBar>
-        <TabPanel>{children}</TabPanel>
+        <TabPanel value={iTabsValue}>
+          {children}
+        </TabPanel>
       </div>
       <Empty className={clsx(null, { [oClasses.emptyNone]: iTabsLength >= 1 })}></Empty>
     </div>
   );
 }
 
-export default ScrollableTabs;
+export default MyTabs;

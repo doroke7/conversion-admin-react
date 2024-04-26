@@ -12,7 +12,7 @@ import Contexts from '@/admin/Contexts/Index';
 import utilities from '@/admin/utilities';
 import CONFIGS from '@/CONFIGS/INDEX';
 
-import SecondMenus from './SecondMenus/Index';
+import SecondAdminMenus from './SecondAdminMenus/Index';
 
 import cStyle from './style';
 
@@ -65,9 +65,9 @@ function LargeAdminMenus(oProps: any) {
             )}
           </ListItem>
           {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
-            <SecondMenus
+            <SecondAdminMenus
               in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
-              adminMenus={oAdminMenu.adminMenus}></SecondMenus>
+              adminMenus={oAdminMenu.adminMenus}></SecondAdminMenus>
           ) : (
             ''
           )}

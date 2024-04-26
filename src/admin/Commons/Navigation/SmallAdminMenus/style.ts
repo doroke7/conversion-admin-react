@@ -7,7 +7,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       width: '100%',
       maxWidth: 360,
       color: grey[100],
-      zIndex: -1
+      zIndex: 1
     },
     rootHidden: {
       display: 'none'
@@ -17,8 +17,23 @@ let oStyle = makeStyles((oTheme: Theme) =>
       marginRight: oTheme.spacing(1),
       color: grey[100]
     },
+    listItemWrapper: {
+      overflow: 'visible',
+
+    },
     listItem: {
-      height: oTheme.spacing(6)
+      height: oTheme.spacing(6),
+      overflow: 'visible',
+      position: 'relative'
+    },
+    listItemOverlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '58px',
+      height: '68px',
+      opacity: 0,
+      cursor: 'pointer'
     },
     popover: {
       pointerEvents: 'none'

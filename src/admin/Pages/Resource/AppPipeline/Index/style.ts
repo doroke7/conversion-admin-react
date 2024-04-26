@@ -1,73 +1,154 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey } from '@material-ui/core/colors';
+import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
-    dialogForSearch: {
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit'
-      },
-      '& .MuiDialogActions-root': {
-        padding:
-          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
-      }
+    top: {
+      display: 'grid',
+      gridTemplateColumns: '2fr 3fr'
     },
-    dialogForPage: {
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit'
-      },
-      '& .MuiDialogActions-root': {
-        padding:
-          oTheme.spacing(1) + 'px ' + oTheme.spacing(3) + 'px ' + oTheme.spacing(2) + 'px ' + oTheme.spacing(3) + 'px '
-      }
-    },
-    submitButton: {
-      minWidth: oTheme.spacing(12),
+    button: {
+      minWidth: oTheme.spacing(8),
+      height: oTheme.spacing(3.25),
       [oTheme.breakpoints.down('sm')]: {
         width: '100%',
-        height: oTheme.spacing(7)
+        height: oTheme.spacing(4)
       }
     },
-    closeButton: {
-      position: 'absolute',
-      right: oTheme.spacing(2),
-      top: oTheme.spacing(2),
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      borderRadius: oTheme.spacing(0.5)
+
+    textField: {
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -5px) scale(0.65) !important'
+      },
+      '& .MuiInputLabel-outlined.MuiInputLabel-marginDense': {
+        transform: 'translate(14px, 7px) scale(0.9)'
+      },
+
+      '& .MuiOutlinedInput-root': {
+        height: oTheme.spacing(3.25),
+      },
+      '& .MuiInputBase-input': {
+        textAlign: 'left',
+        fontSize: oTheme.spacing(1.75),
+      },
+
     },
+    textFieldName: {
+      width: oTheme.spacing(20),
+      marginRight: oTheme.spacing(2),
+      '& .MuiInputBase-input': {
+        textAlign: 'left',
+      },
+      [oTheme.breakpoints.down('md')]: {
+        width: oTheme.spacing(8),
+      },
+    },
+
+    textFieldPage: {
+      width: oTheme.spacing(8),
+      '& .MuiInputBase-input': {
+        textAlign: 'right',
+      },
+    },
+
     dataGridWrapper: {
+      marginTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
       },
       width: '100%',
       '& .MuiDataGrid-root': {
+        '& .MuiDataGrid-columnHeader': {
+          '&:focus': {
+            outline: 'none'
+          },
+          '&:focus-within': {
+            outline: 'none'
+          }
+        },
         '& .MuiDataGrid-overlay': {
-          background: grey[50]
+          backgroundColor: 'rgba(250, 250, 250, 0)'
+        },
+        '& .MuiDataGrid-cell': {
+          '&:focus': {
+            outline: 'none'
+          },
+          '&:focus-within': {
+            outline: 'none'
+          }
         }
       },
+      '& .MuiDataGrid-columnsContainer': {
+        zIndex: 1
+      },
       '& .MuiDataGrid-footerContainer': {
-        background: grey[50]
+      },
+      '& .MuiDataGrid-dataContainer': {
+      },
+      '& .MuiDataGrid-window': {
+        scrollbarWidth: 'thin',
+        background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
+        overflowX: 'hidden'
+      },
+      '&  .MuiDataGrid-row': {
+        background: '#FFFFFF',
+
+        '&:hover': {
+          background: '#F2F2F2'
+        }
       }
     },
     dataGrid: {
-      minHeight: 652,
-      maxHeight: 652,
+      minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
+      maxHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
+      overflow: 'hidden',
       '& .MuiDataGrid-row:last-child': {
         '& .MuiDataGrid-cell': {
-          borderBottom: 'none'
+          // borderBottom: 'none'
+        }
+      },
+      '& .MuiIconButton-label': {
+        '& .MuiSvgIcon-root': {
+          fontSize: '1rem'
         }
       }
     },
+    avatar: {
+      width: oTheme.spacing(3),
+      height: oTheme.spacing(3),
 
+    },
     formControl: {
-      width: oTheme.spacing(12),
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        transform: 'translate(14px, -5px) scale(0.65)'
+      },
+      '& .MuiInputBase-root': {
+        fontSize: oTheme.spacing(1.75),
+      },
       marginRight: oTheme.spacing(2),
       [oTheme.breakpoints.down('sm')]: {
         display: 'none'
-      }
+      },
+      '& .MuiOutlinedInput-input': {
+        paddingTop: oTheme.spacing(0.6),
+        paddingBottom: oTheme.spacing(0.6),
+      },
+    },
+    formControlAppUserId: {
+      textAlign: 'left',
+      width: oTheme.spacing(20),
+      [oTheme.breakpoints.down('md')]: {
+        width: oTheme.spacing(8),
+      },
+    },
+    formControlLimit: {
+      textAlign: 'right',
+      width: oTheme.spacing(9),
+
+    },
+    menuItem: {
+      fontSize: oTheme.spacing(1.75),
+      lineHeight: 1.25,
     },
 
     paginationWrapper: {
@@ -76,8 +157,6 @@ const style = makeStyles((oTheme: Theme): any =>
       alignItems: 'center',
       justifyContent: 'flex-end',
       marginRight: oTheme.spacing(0),
-      marginTop: oTheme.spacing(1),
-      paddingTop: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -104,16 +183,82 @@ const style = makeStyles((oTheme: Theme): any =>
         marginTop: -oTheme.spacing(2)
       }
     },
-    searchButton: {
-      border: '1px solid ' + grey[400],
-      width: oTheme.spacing(4),
-      height: oTheme.spacing(4),
-      display: 'none',
-      [oTheme.breakpoints.down('sm')]: {
-        display: 'inherit',
-        marginTop: oTheme.spacing(2)
+    fab: {
+      width: oTheme.spacing(4.5) - 0.36,
+      height: oTheme.spacing(4.5) - 0.36,
+      borderRadius: oTheme.spacing(0),
+
+      '&.MuiFab-root': {
+        boxShadow: 'none',
+      },
+      '&.Mui-disabled': {
+
+      },
+      '&:nth-child(n+1)': {
+        marginLeft: oTheme.spacing(1),
       }
     },
+
+    fabTranscoder: {
+      '&:hover': {
+        backgroundColor: red[900],
+      },
+      color: grey[50],
+      backgroundColor: red[700],
+      '&.Mui-disabled': {
+        color: grey[50],
+        backgroundColor: '#d32f2f33',
+      },
+
+    },
+    fabNotifier: {
+      '&:hover': {
+        backgroundColor: green[900],
+      },
+      color: grey[50],
+      backgroundColor: green[700],
+      '&.Mui-disabled': {
+        color: grey[50],
+        backgroundColor: '#388e3c33',
+      },
+    },
+    fabAnimation000: {
+      animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation005: {
+      animation: '$zoomIn 0.3s ease-in-out 0.05s 1 normal, $fadeIn 0.2s ease-in-out 0.05s 1 normal, $fade 0.05s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation010: {
+      animation: '$zoomIn 0.3s ease-in-out 0.10s 1 normal, $fadeIn 0.2s ease-in-out 0.10s 1 normal, $fade 0.10s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation015: {
+      animation: '$zoomIn 0.3s ease-in-out 0.15s 1 normal, $fadeIn 0.2s ease-in-out 0.15s 1 normal, $fade 0.15s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation020: {
+      animation: '$zoomIn 0.3s ease-in-out 0.20s 1 normal, $fadeIn 0.2s ease-in-out 0.20s 1 normal, $fade 0.20s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation025: {
+      animation: '$zoomIn 0.3s ease-in-out 0.25s 1 normal, $fadeIn 0.2s ease-in-out 0.25s 1 normal, $fade 0.25s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation030: {
+      animation: '$zoomIn 0.3s ease-in-out 0.30s 1 normal, $fadeIn 0.2s ease-in-out 0.30s 1 normal, $fade 0.30s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation035: {
+      animation: '$zoomIn 0.3s ease-in-out 0.35s 1 normal, $fadeIn 0.2s ease-in-out 0.35s 1 normal, $fade 0.35s ease-in-out 0s 1 normal',
+
+    },
+    fabAnimation040: {
+      animation: '$zoomIn 0.3s ease-in-out 0.40s 1 normal, $fadeIn 0.2s ease-in-out 0.40s 1 normal, $fade 0.40s ease-in-out 0s 1 normal',
+
+    },
+
     pageButton: {
       border: '1px solid ' + grey[400],
       width: oTheme.spacing(4),
@@ -133,16 +278,68 @@ const style = makeStyles((oTheme: Theme): any =>
         verticalAlign: 'middle'
       },
       '& .MuiTextField-root': {
-        width: oTheme.spacing(6),
+        width: oTheme.spacing(4),
         verticalAlign: 'middle',
         '& input': {
           textAlign: 'right'
         }
       },
       '& .next': {
-        verticalAlign: 'middle'
+        verticalAlign: 'middle',
+        fontSize: oTheme.spacing(1.75),
+
       }
-    }
+    },
+    buttonOfDataGrid: {
+
+    },
+    '@keyframes spin': {
+      '0%': {
+        transform: 'rotate(0deg) scale(0)'
+      },
+      '100%': {
+        transform: 'rotate(360deg) scale(1)'
+      }
+    },
+    '@keyframes zoomIn': {
+      '0%': {
+        transform: 'scale(0)'
+      },
+      '100%': {
+        transform: 'scale(1)'
+      }
+    },
+    '@keyframes fade': {
+      '0%': {
+        opacity: '0'
+      },
+      '100%': {
+        opacity: '0'
+      }
+    },
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0'
+      },
+      '100%': {
+        opacity: '1'
+      }
+    },
+    '@keyframes scale': {
+      '0%': {
+        transform: 'scaleX(0) scaleY(0)'
+      },
+      '30%': {
+        transform: 'scaleX(1) scaleY(0.1)'
+      },
+      '80%': {
+        transform: 'scaleX(1) scaleY(0.8)'
+      },
+      '100%': {
+        transform: 'scaleX(1) scaleY(1)'
+      }
+    },
+
   })
 );
 

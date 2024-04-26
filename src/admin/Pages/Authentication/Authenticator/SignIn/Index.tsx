@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Helpers from '@/admin/Helpers/Index';
 import Components from '@/admin/Components/Index';
 import Sdks from '@/admin/Sdks/Index';
-import wrappers from '@/admin/wrappers';
+import Hocs from '@/admin/Hocs';
 
 import Pannel from './Pannel/Index';
 
@@ -47,7 +47,7 @@ function SignIn(): any {
     </div>
   );
 }
-export default wrappers.authenticator(wrappers.title(SignIn));
+export default Hocs.authorization(Hocs.title(SignIn));
 
 /**
  * 

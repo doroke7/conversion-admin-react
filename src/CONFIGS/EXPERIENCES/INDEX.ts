@@ -1,5 +1,5 @@
 const EXPERIENCES: any = {
-  "0": {
+  '0': {
     LEVEL: 1
   }
 };

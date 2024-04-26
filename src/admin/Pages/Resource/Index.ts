@@ -1,14 +1,11 @@
 import React from 'react';
 
 import AppUser from './AppUser/Index';
-import OrderInfo from './OrderInfo/Index';
-import AdminAdministrator from './AdminAdministrator/Index';
-import Config from './Config/Index';
-import Vod from './Vod/Index';
 import None from './None/Index';
 import Index from './Index/Index';
 import AppPipeline from './AppPipeline/Index';
 import App from './App/Index';
+import AdminRole from './AdminRole/Index';
 
 /**
  * import Config from './Config/'; 相当 import Config from './Config/Index.ts';
@@ -26,10 +23,7 @@ export default {
   AppPipeline: AppPipeline,
   App: App,
   AppUser: AppUser,
-  OrderInfo: OrderInfo,
-  AdminAdministrator: AdminAdministrator,
-  Config: Config,
-  Vod: Vod,
+  AdminRole: AdminRole,
   None: None,
   Index: Index,
   _: React.lazy(() => import('./_/Index'))
