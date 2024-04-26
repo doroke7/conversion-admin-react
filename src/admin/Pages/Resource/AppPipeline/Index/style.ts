@@ -86,8 +86,6 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiDataGrid-dataContainer': {
       },
       '& .MuiDataGrid-window': {
-        // minHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
-        // maxHeight: 'calc( 100vh - ' + oTheme.spacing(40) + 'px )',
         scrollbarWidth: 'thin',
         background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
         overflowX: 'hidden'
@@ -120,7 +118,6 @@ const style = makeStyles((oTheme: Theme): any =>
       height: oTheme.spacing(3),
 
     },
-
     formControl: {
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
         transform: 'translate(14px, -5px) scale(0.65)'
