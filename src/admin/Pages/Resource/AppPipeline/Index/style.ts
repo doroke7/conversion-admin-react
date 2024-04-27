@@ -57,6 +57,7 @@ const style = makeStyles((oTheme: Theme): any =>
         display: 'none'
       },
       width: '100%',
+
     },
     dataGrid: {
       minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
