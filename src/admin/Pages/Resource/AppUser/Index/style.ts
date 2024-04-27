@@ -206,6 +206,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     sortOuter: {
       color: common['white'],
+      textShadow: '1px 1px 0 ' +  grey[700] + ', -1px 1px 0 ' + grey[700] + ', -1px -1px 0 ' + grey[700] + ', 1px -1px 0 ' + grey[700],
       fontWeight: 900,
       fontSize: oTheme.spacing(2.0),
       textAlign: 'center',
@@ -214,7 +215,7 @@ const style = makeStyles((oTheme: Theme): any =>
       height: oTheme.spacing(3.25),
       background: 'linear-gradient(327deg, #929292 0%, #8c8c8c 40%, #a1a1a1 45%, #ffffff 50%, #9d9d9d 55%, #9d9d9d 60%, #9d9d9d 100%)',
       backgroundSize: '1400% 1400%',
-      animation: '$animationGradient 12s ease infinite',
+      animation: '$animationGradient 5s ease infinite alternate-reverse',
     },
     sortInner: {
       opacity: 1,
