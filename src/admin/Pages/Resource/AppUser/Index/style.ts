@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, common } from '@material-ui/core/colors';
+import { pink, grey, common, indigo, lightBlue } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -199,6 +199,51 @@ const style = makeStyles((oTheme: Theme): any =>
         fontSize: oTheme.spacing(1.75),
       },
 
+    },
+    sort:{
+      position: 'relative',
+      color: common['white'],
+      fontWeight: 900,
+      fontSize: oTheme.spacing(2.5),
+      boxSizing: 'border-box',
+      textAlign: 'center',
+      width: oTheme.spacing(3.8),
+      height: oTheme.spacing(3.8),
+      lineHeight: oTheme.spacing(3.8) + 'px',
+      background: lightBlue[500],
+      border: '2px solid ' + grey[700],
+      animation: '',
+    },
+    sort01: {
+      background: lightBlue[900],
+
+    },
+    sort11:{
+      background: lightBlue[800],
+    },
+    sort21:{
+      background: lightBlue[700],
+    },
+    sort31:{
+      background: lightBlue[600],
+    },
+    sort41:{
+      background: lightBlue[500],
+    },
+    sort51:{
+      background: lightBlue[400],
+    },
+    sort61:{
+      background: lightBlue[300],
+    },
+    sort71:{
+      background: lightBlue[200],
+    },
+    sort81:{
+      background: lightBlue[100],
+    },
+    sort91:{
+      background: lightBlue[50],
     }
   })
 );
