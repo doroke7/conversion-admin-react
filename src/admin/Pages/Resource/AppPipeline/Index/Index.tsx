@@ -404,58 +404,47 @@ function Index(oProps: any): any {
     {
       field: 'appUserName',
       headerName: '账号',
-      description: '账号',
       sortable: false,
-      width: 184,
+      width: 160,
       align: 'left',
       valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
     },
     {
       field: 'name',
       headerName: '档名',
-      description: '名称',
       sortable: false,
-      width: 385,
+      flex: 1,
     },
     {
       field: 'width',
       headerName: '宽度',
-      description: '宽度',
       sortable: false,
-      flex: 1,
-      width: 85,
+      minWidth: 20,
     },
     {
       field: 'height',
       headerName: '高度',
-      description: '高度',
       sortable: false,
-      flex: 1,
-      width: 85,
+      minWidth: 20,
     },
     {
       field: 'duration',
       headerName: '时长',
-      description: '时长',
       sortable: false,
-      flex: 1,
-      width: 145,
+      minWidth: 30,
       valueGetter: (oProps: any) => (utilities.hhmmss(oProps.row?.duration ?? 0))
     },
     {
       field: 'appDownloaderStageSize',
       headerName: '容量',
-      description: '容量',
       sortable: false,
-      flex: 1,
-      width: 145,
+      minWidth: 20,
       valueGetter: (oProps: any) => (utilities.size(oProps.row?.appDownloaderStage?.size ?? 0))
 
     },
     {
       field: 'state',
       headerName: '进度',
-      description: '进度',
       sortable: false,
       width: 80,
       renderCell: (oProps: any) => {
