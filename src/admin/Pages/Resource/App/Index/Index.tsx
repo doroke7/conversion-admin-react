@@ -24,11 +24,6 @@ import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 
-import Inputs from './Inputs/Index';
-import SearchPannel from './SearchPannel/Index';
-import AvatarForCell from './AvatarForCell/Index';
-import PhoneTypeIconForCell from './PhoneTypeIconForCell/Index';
-import CardForAppUser from './CardForAppUser/Index';
 
 import style from './style';
 
