@@ -57,56 +57,11 @@ const style = makeStyles((oTheme: Theme): any =>
         display: 'none'
       },
       width: '100%',
-      '& .MuiDataGrid-root': {
-        '& .MuiDataGrid-columnHeader': {
-          '&:focus': {
-            outline: 'none'
-          },
-          '&:focus-within': {
-            outline: 'none'
-          }
-        },
-        '& .MuiDataGrid-overlay': {
-          backgroundColor: 'rgba(250, 250, 250, 0)'
-        },
-        '& .MuiDataGrid-cell': {
-          '&:focus': {
-            outline: 'none'
-          },
-          '&:focus-within': {
-            outline: 'none'
-          }
-        }
-      },
-      '& .MuiDataGrid-columnsContainer': {
-        zIndex: 1
-      },
-      '& .MuiDataGrid-footerContainer': {
-      },
-      '& .MuiDataGrid-dataContainer': {
-      },
-      '& .MuiDataGrid-window': {
-        scrollbarWidth: 'thin',
-        background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
-        overflowX: 'hidden'
-      },
-      '&  .MuiDataGrid-row': {
-        background: '#FFFFFF',
-
-        '&:hover': {
-          background: '#F2F2F2'
-        }
-      }
     },
     dataGrid: {
       minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       maxHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       overflow: 'hidden',
-      '& .MuiDataGrid-row:last-child': {
-        '& .MuiDataGrid-cell': {
-          // borderBottom: 'none'
-        }
-      },
       '& .MuiIconButton-label': {
         '& .MuiSvgIcon-root': {
           fontSize: '1rem'
