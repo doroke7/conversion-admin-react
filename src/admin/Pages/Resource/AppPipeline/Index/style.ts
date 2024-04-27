@@ -63,11 +63,6 @@ const style = makeStyles((oTheme: Theme): any =>
       minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       maxHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       overflow: 'hidden',
-      '& .MuiIconButton-label': {
-        '& .MuiSvgIcon-root': {
-          fontSize: '1rem'
-        }
-      }
     },
     avatar: {
       width: oTheme.spacing(3),
@@ -139,78 +134,56 @@ const style = makeStyles((oTheme: Theme): any =>
         marginTop: -oTheme.spacing(2)
       }
     },
-    fab: {
-      width: oTheme.spacing(4.5) - 0.36,
-      height: oTheme.spacing(4.5) - 0.36,
-      borderRadius: oTheme.spacing(0),
-
-      '&.MuiFab-root': {
-        boxShadow: 'none',
+    iconButton: {
+      '&.MuiIconButton-root': {
+        padding: oTheme.spacing(0.5)
       },
       '&.Mui-disabled': {
-
-      },
-      '&:nth-child(n+1)': {
-        marginLeft: oTheme.spacing(1),
-      }
-    },
-
-    fabTranscoder: {
-      '&:hover': {
-        backgroundColor: orange[900],
-      },
-      color: grey[50],
-      backgroundColor: orange[700],
-      '&.Mui-disabled': {
-        color: grey[50],
-        backgroundColor: '#d32f2f33',
-      },
-
-    },
-    fabNotifier: {
-      '&:hover': {
-        backgroundColor: green[900],
-      },
-      color: grey[50],
-      backgroundColor: green[700],
-      '&.Mui-disabled': {
-        color: grey[50],
-        backgroundColor: '#388e3c33',
+        // color: 'rgb(233 38 38 / 26%)',
       },
     },
-    fabAnimation000: {
+    iconButtonTranscoder: {
+      color: orange[900],
+
+    },
+    iconButtonNotifier: {
+      color: green[900],
+
+    },
+
+    iconButtonAnimation000: {
       animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation005: {
+    iconButtonAnimation005: {
       animation: '$zoomIn 0.3s ease-in-out 0.05s 1 normal, $fadeIn 0.2s ease-in-out 0.05s 1 normal, $fade 0.05s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation010: {
+    iconButtonAnimation010: {
       animation: '$zoomIn 0.3s ease-in-out 0.10s 1 normal, $fadeIn 0.2s ease-in-out 0.10s 1 normal, $fade 0.10s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation015: {
+    iconButtonAnimation015: {
       animation: '$zoomIn 0.3s ease-in-out 0.15s 1 normal, $fadeIn 0.2s ease-in-out 0.15s 1 normal, $fade 0.15s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation020: {
+    iconButtonAnimation020: {
       animation: '$zoomIn 0.3s ease-in-out 0.20s 1 normal, $fadeIn 0.2s ease-in-out 0.20s 1 normal, $fade 0.20s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation025: {
+    iconButtonAnimation025: {
       animation: '$zoomIn 0.3s ease-in-out 0.25s 1 normal, $fadeIn 0.2s ease-in-out 0.25s 1 normal, $fade 0.25s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation030: {
+    iconButtonAnimation030: {
       animation: '$zoomIn 0.3s ease-in-out 0.30s 1 normal, $fadeIn 0.2s ease-in-out 0.30s 1 normal, $fade 0.30s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation035: {
+    iconButtonAnimation035: {
       animation: '$zoomIn 0.3s ease-in-out 0.35s 1 normal, $fadeIn 0.2s ease-in-out 0.35s 1 normal, $fade 0.35s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation040: {
+    iconButtonAnimation040: {
       animation: '$zoomIn 0.3s ease-in-out 0.40s 1 normal, $fadeIn 0.2s ease-in-out 0.40s 1 normal, $fade 0.40s ease-in-out 0s 1 normal',
 
     },

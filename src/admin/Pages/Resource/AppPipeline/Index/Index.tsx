@@ -18,6 +18,17 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
 import MovieFilterTwoToneIcon from '@material-ui/icons/MovieFilterTwoTone';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import DirectionsIcon from '@material-ui/icons/Directions';
+import FlipCameraIosIcon from '@material-ui/icons/FlipCameraIos';
+import RepeatOneIcon from '@material-ui/icons/RepeatOne';
+import Rotate90DegreesCcwIcon from '@material-ui/icons/Rotate90DegreesCcw';
+import Rotate90DegreesCcwOutlinedIcon from '@material-ui/icons/Rotate90DegreesCcwOutlined';
+import Rotate90DegreesCcwRoundedIcon from '@material-ui/icons/Rotate90DegreesCcwRounded';
+import Rotate90DegreesCcwTwoToneIcon from '@material-ui/icons/Rotate90DegreesCcwTwoTone';
+import Rotate90DegreesCcwSharpIcon from '@material-ui/icons/Rotate90DegreesCcwSharp';
+import UpdateIcon from '@material-ui/icons/Update';
+
 import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -492,51 +503,51 @@ function Index(oProps: any): any {
           <div>
             <Tooltip title="转码" arrow placement="top">
 
-              <Fab
-                className={clsx([oClasses.fab, oClasses.fabTranscoder], {
-                  [oClasses.fabAnimation000]: iRandomA == 0,
-                  [oClasses.fabAnimation005]: iRandomA == 1,
-                  [oClasses.fabAnimation010]: iRandomA == 2,
-                  [oClasses.fabAnimation015]: iRandomA == 3,
-                  [oClasses.fabAnimation020]: iRandomA == 4,
-                  [oClasses.fabAnimation025]: iRandomA == 5,
-                  [oClasses.fabAnimation030]: iRandomA == 6,
-                  [oClasses.fabAnimation035]: iRandomA == 7,
-                  [oClasses.fabAnimation040]: iRandomA == 8,
-
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
+                  [oClasses.iconButtonAnimation000]: iRandomA == 0,
+                  [oClasses.iconButtonAnimation005]: iRandomA == 1,
+                  [oClasses.iconButtonAnimation010]: iRandomA == 2,
+                  [oClasses.iconButtonAnimation015]: iRandomA == 3,
+                  [oClasses.iconButtonAnimation020]: iRandomA == 4,
+                  [oClasses.iconButtonAnimation025]: iRandomA == 5,
+                  [oClasses.iconButtonAnimation030]: iRandomA == 6,
+                  [oClasses.iconButtonAnimation035]: iRandomA == 7,
+                  [oClasses.iconButtonAnimation040]: iRandomA == 8,
                 })}
-                size="small"
+                size="medium"
                 onClick={cHandleTranscoderClick(iId)}
                 disabled={bTranscoderDisable}
 
               >
-                <MovieFilterTwoToneIcon />
-              </Fab>
+                <UpdateIcon />
+              </IconButton>
 
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
 
-              <Fab
-                className={clsx([oClasses.fab, oClasses.fabNotifier], {
-                  [oClasses.fabAnimation000]: iRandomB == 0,
-                  [oClasses.fabAnimation005]: iRandomB == 1,
-                  [oClasses.fabAnimation010]: iRandomB == 2,
-                  [oClasses.fabAnimation015]: iRandomB == 3,
-                  [oClasses.fabAnimation020]: iRandomB == 4,
-                  [oClasses.fabAnimation025]: iRandomB == 5,
-                  [oClasses.fabAnimation030]: iRandomB == 6,
-                  [oClasses.fabAnimation035]: iRandomB == 7,
-                  [oClasses.fabAnimation040]: iRandomB == 8,
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
+                  [oClasses.iconButtonAnimation000]: iRandomB == 0,
+                  [oClasses.iconButtonAnimation005]: iRandomB == 1,
+                  [oClasses.iconButtonAnimation010]: iRandomB == 2,
+                  [oClasses.iconButtonAnimation015]: iRandomB == 3,
+                  [oClasses.iconButtonAnimation020]: iRandomB == 4,
+                  [oClasses.iconButtonAnimation025]: iRandomB == 5,
+                  [oClasses.iconButtonAnimation030]: iRandomB == 6,
+                  [oClasses.iconButtonAnimation035]: iRandomB == 7,
+                  [oClasses.iconButtonAnimation040]: iRandomB == 8,
                 })}
-                size="small"
+                size="medium"
                 disabled={bNotifierDisable}
                 onClick={cHandleNotifierClick(iId)}
 
               >
-                <AddAlertTwoToneIcon />
-              </Fab>
+                <DirectionsIcon />
+              </IconButton>
 
             </Tooltip>
+
 
 
           </div>

@@ -42,8 +42,8 @@ body {
 // 另外有策略是 統一封裝組件 的策略
 
 .MuiDataGrid-root {
-	.MuiDataGrid-columnHeader{
-		&:focus{
+	.MuiDataGrid-columnHeader {
+		&:focus {
 			outline: none !important;
 		}
 
@@ -52,7 +52,7 @@ body {
 		}
 	}
 
-	.MuiDataGrid-overlay{
+	.MuiDataGrid-overlay {
 		background: rgba(250, 250, 250, 0);
 	}
 
@@ -60,13 +60,14 @@ body {
 		&:focus {
 			outline: none !important;
 		}
+
 		&:focus-within {
 			outline: none !important;
 		}
 	}
 }
 
-.MuiDataGrid-columnsContainer{
+.MuiDataGrid-columnsContainer {
 	z-index: 1;
 }
 
@@ -78,7 +79,12 @@ body {
 
 .MuiDataGrid-row {
 	background: #FFFFFF;
+
 	&:hover {
 		background: #F2F2F2;
 	}
+}
+
+input[type='checkbox']+.MuiSvgIcon-root {
+	font-size: 1rem;
 }
