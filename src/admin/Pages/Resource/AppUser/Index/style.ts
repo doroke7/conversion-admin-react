@@ -201,19 +201,33 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
     sort:{
-      position: 'relative',
+
+
+    },
+    sortOuter: {
       color: common['white'],
       fontWeight: 900,
-      fontSize: oTheme.spacing(2.5),
-      boxSizing: 'border-box',
+      fontSize: oTheme.spacing(2.0),
       textAlign: 'center',
-      width: oTheme.spacing(3.8),
-      height: oTheme.spacing(3.8),
-      lineHeight: oTheme.spacing(3.8) + 'px',
-      background: lightBlue[500],
-      border: '2px solid ' + grey[700],
-      animation: '$fadeIn 0.5s ease-in-out 0.00s 1 normal',
+      position: 'relative',
+      width: oTheme.spacing(3.25),
+      height: oTheme.spacing(3.25),
+      background: 'linear-gradient(327deg, #929292 0%, #8c8c8c 40%, #a1a1a1 45%, #ffffff 50%, #9d9d9d 55%, #9d9d9d 60%, #9d9d9d 100%)',
+      backgroundSize: '1400% 1400%',
+      animation: '$animationGradient 12s ease infinite',
     },
+    sortInner: {
+      opacity: 1,
+      position: 'absolute',
+      top: '50%',  
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: oTheme.spacing(2.8),
+      height: oTheme.spacing(2.8),
+      lineHeight: oTheme.spacing(2.8) + 'px',
+      background: lightBlue[500],
+    },
+
     sort01: {
       background: lightBlue[900],
 
@@ -253,6 +267,17 @@ const style = makeStyles((oTheme: Theme): any =>
         opacity: '1'
       }
     },
+    '@keyframes animationGradient': {
+      '0%': {
+        backgroundPosition: '0% 50%',
+      },
+      '50%': {
+        backgroundPosition: '100% 50%',
+      },
+      '100%': {
+        backgroundPosition: '0% 50%',
+      }
+    }
   })
 );
 

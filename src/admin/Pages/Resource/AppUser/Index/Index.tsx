@@ -196,22 +196,25 @@ function Index(oProps: any): any {
         let iSort = oProps?.row?.sort;
 
         return (
-          <div className={clsx(oClasses.sort, {
-            [oClasses.sort01]: iSort >= 1 && iSort <= 10,
-            [oClasses.sort11]: iSort >= 11 && iSort <= 20,
-            [oClasses.sort21]: iSort >= 21 && iSort <= 30,
-            [oClasses.sort31]: iSort >= 31 && iSort <= 40,
-            [oClasses.sort41]: iSort >= 41 && iSort <= 50,
-            [oClasses.sort51]: iSort >= 51 && iSort <= 60,
-            [oClasses.sort61]: iSort >= 61 && iSort <= 70,
-            [oClasses.sort71]: iSort >= 71 && iSort <= 80,
-            [oClasses.sort81]: iSort >= 81 && iSort <= 90,
-            [oClasses.sort91]: iSort >= 91 && iSort <= 100,
-
-          })}>
+          <div className={clsx(oClasses.sortOuter, {})}>
+            <div className={clsx(oClasses.sortInner, {
+              [oClasses.sort01]: iSort >= 1 && iSort <= 10,
+              [oClasses.sort11]: iSort >= 11 && iSort <= 20,
+              [oClasses.sort21]: iSort >= 21 && iSort <= 30,
+              [oClasses.sort31]: iSort >= 31 && iSort <= 40,
+              [oClasses.sort41]: iSort >= 41 && iSort <= 50,
+              [oClasses.sort51]: iSort >= 51 && iSort <= 60,
+              [oClasses.sort61]: iSort >= 61 && iSort <= 70,
+              [oClasses.sort71]: iSort >= 71 && iSort <= 80,
+              [oClasses.sort81]: iSort >= 81 && iSort <= 90,
+              [oClasses.sort91]: iSort >= 91 && iSort <= 100,
+              
+            })}>
             <span>
             {iSort}
             </span>
+            </div>
+
           </div>
         );
       },
