@@ -17,6 +17,7 @@ import Fab from '@material-ui/core/Fab';
 import InputLabel from '@material-ui/core/InputLabel';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
+import MovieFilterTwoToneIcon from '@material-ui/icons/MovieFilterTwoTone';
 import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -509,7 +510,7 @@ function Index(oProps: any): any {
                 disabled={bTranscoderDisable}
 
               >
-                <FlipCameraAndroidTwoToneIcon />
+                <MovieFilterTwoToneIcon />
               </Fab>
 
             </Tooltip>

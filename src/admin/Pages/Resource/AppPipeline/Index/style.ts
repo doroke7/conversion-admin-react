@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen } from '@material-ui/core/colors';
+import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen, orange, deepOrange } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -157,10 +157,10 @@ const style = makeStyles((oTheme: Theme): any =>
 
     fabTranscoder: {
       '&:hover': {
-        backgroundColor: red[900],
+        backgroundColor: orange[900],
       },
       color: grey[50],
-      backgroundColor: red[700],
+      backgroundColor: orange[700],
       '&.Mui-disabled': {
         color: grey[50],
         backgroundColor: '#d32f2f33',
