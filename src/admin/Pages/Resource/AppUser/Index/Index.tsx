@@ -161,13 +161,15 @@ function Index(oProps: any): any {
       headerAlign: 'center',
       align: 'center',
       renderCell: (oProps: any) => {
-        let sTitle = oProps?.row?.app?.title.substr(0, 1);
+        let sTitle = oProps?.row?.app?.title;
+        let sLetter = sTitle.substr(0, 1);
+
         let sUrl = oProps?.row?.app?.url;
 
         return (
           <Tooltip title={sTitle} placement="right">
             <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
-              {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
+              {sLetter ? sLetter : <WidgetsIcon></WidgetsIcon>}
             </Avatar>
           </Tooltip>
         );

@@ -212,7 +212,7 @@ const style = makeStyles((oTheme: Theme): any =>
       lineHeight: oTheme.spacing(3.8) + 'px',
       background: lightBlue[500],
       border: '2px solid ' + grey[700],
-      animation: '',
+      animation: '$fadeIn 0.5s ease-in-out 0.00s 1 normal',
     },
     sort01: {
       background: lightBlue[900],
@@ -244,7 +244,15 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     sort91:{
       background: lightBlue[50],
-    }
+    },
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0'
+      },
+      '100%': {
+        opacity: '1'
+      }
+    },
   })
 );
 
