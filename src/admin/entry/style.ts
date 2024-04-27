@@ -4,7 +4,6 @@ import { pink, grey, indigo, blue } from '@material-ui/core/colors';
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      backgroundColor: grey[50]
     },
     test: {
       animation: '$fade 1s linear 0s 1 normal, $slide 0.5s ease-out 0.2s 1 normal'
