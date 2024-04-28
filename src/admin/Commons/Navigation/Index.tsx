@@ -211,7 +211,8 @@ function Navigation(oProps: any) {
         let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId) : [];
         let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
 
-        if (iIndex < aTabs1.length) {
+        let iTabs1Length = aTabs1.length;
+        if (iIndex < iTabs1Length) {
 
           let aTempLeftTabs1 = aTabs1.slice(0, iIndex);
           let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
@@ -223,7 +224,8 @@ function Navigation(oProps: any) {
 
         };
 
-        if (iIndex >= aTabs1.length) {
+
+        if (iIndex >= iTabs1Length) {
 
           let aTempLeftTabs0 = aTabs0.slice(0, iIndex - aTabs1.length);
           let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
@@ -237,8 +239,9 @@ function Navigation(oProps: any) {
 
         let iValue = 0;
         iValue = iIndex > iStateTabsValue ? iStateTabsValue : iStateTabsValue - 1;
-        iValue = iValue < -1 ? -1 : iValue;
+        iValue = iValue <= 0 ? 0 : iValue;
 
+        console.log('iValue=', iValue, aTabs1, aTabs0);
 
         cSetStateTabsValue(iValue);
         cSetStateTabs(aTabs);
