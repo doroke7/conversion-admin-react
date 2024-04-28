@@ -24,6 +24,7 @@ import LargeAdminMenus from './LargeAdminMenus/Index';
 import SmallAdminMenus from './SmallAdminMenus/Index';
 import Tabs from './Tabs/Index';
 import Sdks from '@/admin/Sdks/Index';
+import hooks from '@/admin/hooks/index';
 
 import style from './style';
 
@@ -38,6 +39,7 @@ function Navigation(oProps: any) {
   let oTextRef = useRef('');
   let oDomRef: any = useRef(null);
   let oRouteMatch = useRouteMatch();
+  let oParams: any = useParams();
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [iStateValue, cSetStateValue] = useState<any>(0);
@@ -49,14 +51,16 @@ function Navigation(oProps: any) {
   let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
   let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>([]);
 
-  let oParams: any = useParams();
-
   let oMe = useSelector((oStore: any) => (oStore.me));
+
 
   let iAppId = useMemo(() => {  // 实际 appId
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
   }, [aStateApps, iStateIndex]);
+
+  // let [aStateTabs, iStateValue, cRemoveStateTab, cRemoveTabs, cRemoveOtherTabs] = hooks.useTabs(oMe.id, iAppId);
+
 
   console.log('bStateOpen', bStateOpen);
 
