@@ -16,6 +16,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import StepConnector from '@material-ui/core/StepConnector';
+
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
@@ -641,7 +643,7 @@ function Index(oProps: any): any {
 
   iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
   iAppPipelineState = iAppPipelineState >= 6 ? 6 : iAppPipelineState;
-  
+
   return (
     <div className="app-pipeline">
       <Dialog 
@@ -657,7 +659,11 @@ function Index(oProps: any): any {
         <DialogContent dividers>
           <Typography gutterBottom>
 
-            <Stepper activeStep={iAppPipelineState} alternativeLabel>
+            <Stepper 
+              activeStep={iAppPipelineState} 
+              alternativeLabel
+              connector={<StepConnector className={oClasses.stepConnector}/>}
+            >
               <Step>
                 <StepLabel 
                   

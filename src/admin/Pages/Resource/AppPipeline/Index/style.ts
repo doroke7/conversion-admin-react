@@ -158,7 +158,30 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
 
+    stepConnector: {
+      '&.MuiStepConnector-completed': {
+        '& .MuiStepConnector-line': {
+          borderColor: indigo[300]
+        }
+      },
+      '&.MuiStepConnector-active': {
+        '& .MuiStepConnector-line': {
+          
+        }
+      },
+      '&.Mui-disabled': {
+        '& .MuiStepConnector-line': {
+          borderTopStyle: 'dotted'
+        }
+      },
 
+      '&.MuiStepConnector-alternativeLabel': {
+        top: oTheme.spacing(1.25) + 'px',
+      },
+      '& .MuiStepConnector-lineHorizontal': {
+        borderTopWidth: oTheme.spacing(0.375) + 'px',
+      }
+    },
 
     iconButtonAnimation000: {
       animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
