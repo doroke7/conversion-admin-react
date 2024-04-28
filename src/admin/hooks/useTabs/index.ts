@@ -24,7 +24,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
 
 
-  let cWrapperGetStateTabs = useCallback(() => {
+  let cGetStateTabs = useCallback(() => {
 
     if(iAdminUserId > 0){ 
       let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId);
@@ -38,7 +38,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   }, [iAdminUserId, iAppId]);
 
-  let cWrapperAlterStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
+  let cAlterStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
     if(iAdminUserId > 0) {
     
       iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iAppId);
@@ -147,7 +147,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   
 
-  let cWrapperRemoveStateTab = useCallback((iIndex: number) => {
+  let cRemoveStateTab = useCallback((iIndex: number) => {
 
     if(iAdminUserId > 0){ 
 
@@ -189,7 +189,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let cWrapperRemoveStateTabs = useCallback(() => {
+  let cRemoveStateTabs = useCallback(() => {
 
     if(iAdminUserId > 0){ 
       if (iAppId > 0) {
@@ -208,7 +208,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let cWrapperRemoveOtherStateTabs = useCallback((iIndex: number) => {
+  let cRemoveOtherStateTabs = useCallback((iIndex: number) => {
 
     if(iAdminUserId > 0){ 
       let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId) : [];
@@ -239,7 +239,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperGetStateTabs, cWrapperAlterStateTabs, cWrapperRemoveStateTab, cWrapperRemoveStateTabs, cWrapperRemoveOtherStateTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cGetStateTabs, cAlterStateTabs, cRemoveStateTab, cRemoveStateTabs, cRemoveOtherStateTabs];
 
 
   return aResults;
