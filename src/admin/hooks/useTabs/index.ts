@@ -28,6 +28,9 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   }, [iAdminUserId, iAppId]);
 
+
+  
+
   let cWrapperRemoveStateTab = useCallback((iIndex: number) => {
 
     if(iAdminUserId > 0){ 

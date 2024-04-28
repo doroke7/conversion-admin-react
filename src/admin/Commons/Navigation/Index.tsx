@@ -367,15 +367,15 @@ function Navigation(oProps: any) {
   let cOnTab = useCallback((oRoute: any) => {
     console.log('OnTab 行为发生 oRoute=', oRoute);
     let iAdminUserId = oRoute.adminUserId;
+    let iCurrentAppId = 0;
 
     if (iAdminUserId) {
-      // TODO
+          // TODO
       // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
       let oApp = aStateApps?.[iStateIndex];
       let oAppId = oApp?.id ?? 0;
 
       let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
-      let iCurrentAppId = 0;
 
       if (iParamsAppId > 0) {
         iCurrentAppId = iParamsAppId;
@@ -386,6 +386,10 @@ function Navigation(oProps: any) {
       }
 
       cSetStateAppId(iCurrentAppId);
+    }
+
+    if (iAdminUserId) {
+
 
       let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iCurrentAppId) : [];
       let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
