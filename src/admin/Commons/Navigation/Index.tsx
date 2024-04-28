@@ -243,6 +243,10 @@ function Navigation(oProps: any) {
         if (aTabs?.length >= 1) {
 
           let oTab = aTabs[iValue];
+          console.log('aTabs=', aTabs);
+
+          console.log('iValue=', iValue);
+
           console.log('oTab=', oTab);
 
           oHistory.push(oTab?.url);

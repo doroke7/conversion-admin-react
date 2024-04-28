@@ -47,8 +47,14 @@ const style = makeStyles((oTheme: Theme): any =>
       '0%': {
         height: '0%',
       },
-      '80%': {
+      '70%': {
         height: '80%',
+      },
+      '80%': {
+        height: '60%',
+      },
+      '90%': {
+        height: '70%',
       },
       '100%': {
         height: '60%',
@@ -58,8 +64,14 @@ const style = makeStyles((oTheme: Theme): any =>
       '0%': {
         height: '0%',
       },
-      '80%': {
+      '70%': {
         height: '135%',
+      },
+      '80%': {
+        height: '100%',
+      },
+      '90%': {
+        height: '115%',
       },
       '100%': {
         height: '100%',
