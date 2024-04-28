@@ -28,6 +28,9 @@ import Rotate90DegreesCcwRoundedIcon from '@material-ui/icons/Rotate90DegreesCcw
 import Rotate90DegreesCcwTwoToneIcon from '@material-ui/icons/Rotate90DegreesCcwTwoTone';
 import Rotate90DegreesCcwSharpIcon from '@material-ui/icons/Rotate90DegreesCcwSharp';
 import UpdateIcon from '@material-ui/icons/Update';
+import InfoIcon from '@material-ui/icons/Info';
+import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+
 
 import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
@@ -490,30 +493,59 @@ function Index(oProps: any): any {
 
         let bNotifierDisable = oProps?.row?.state < 5;
 
-        let iRandomA = useMemo(() => {
+        let iFirstRandom = useMemo(() => {
           let iResult = Math.floor(Math.random() * 9);
           return iResult;
         }, iId);
-        let iRandomB = useMemo(() => {
+        let iSecondRandom = useMemo(() => {
+          let iResult = Math.floor(Math.random() * 9);
+          return iResult;
+        }, iId);
+
+        let iThirdRandom = useMemo(() => {
           let iResult = Math.floor(Math.random() * 9);
           return iResult;
         }, iId);
 
         return (
           <div>
+            <Tooltip title="详情" arrow placement="top">
+
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
+                  [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iThirdRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iThirdRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iThirdRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iThirdRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iThirdRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iThirdRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iThirdRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iThirdRandom == 8,
+                })}
+                size="medium"
+                disabled={false}
+                onClick={cHandleNotifierClick(iId)}
+
+              >
+                <InfoIcon />
+              </IconButton>
+
+            </Tooltip>
+
             <Tooltip title="转码" arrow placement="top">
 
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
-                  [oClasses.iconButtonAnimation000]: iRandomA == 0,
-                  [oClasses.iconButtonAnimation005]: iRandomA == 1,
-                  [oClasses.iconButtonAnimation010]: iRandomA == 2,
-                  [oClasses.iconButtonAnimation015]: iRandomA == 3,
-                  [oClasses.iconButtonAnimation020]: iRandomA == 4,
-                  [oClasses.iconButtonAnimation025]: iRandomA == 5,
-                  [oClasses.iconButtonAnimation030]: iRandomA == 6,
-                  [oClasses.iconButtonAnimation035]: iRandomA == 7,
-                  [oClasses.iconButtonAnimation040]: iRandomA == 8,
+                  [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iFirstRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iFirstRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iFirstRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iFirstRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iFirstRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iFirstRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iFirstRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
                 })}
                 size="medium"
                 onClick={cHandleTranscoderClick(iId)}
@@ -528,15 +560,15 @@ function Index(oProps: any): any {
 
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
-                  [oClasses.iconButtonAnimation000]: iRandomB == 0,
-                  [oClasses.iconButtonAnimation005]: iRandomB == 1,
-                  [oClasses.iconButtonAnimation010]: iRandomB == 2,
-                  [oClasses.iconButtonAnimation015]: iRandomB == 3,
-                  [oClasses.iconButtonAnimation020]: iRandomB == 4,
-                  [oClasses.iconButtonAnimation025]: iRandomB == 5,
-                  [oClasses.iconButtonAnimation030]: iRandomB == 6,
-                  [oClasses.iconButtonAnimation035]: iRandomB == 7,
-                  [oClasses.iconButtonAnimation040]: iRandomB == 8,
+                  [oClasses.iconButtonAnimation000]: iSecondRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iSecondRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iSecondRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iSecondRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iSecondRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iSecondRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iSecondRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iSecondRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iSecondRandom == 8,
                 })}
                 size="medium"
                 disabled={bNotifierDisable}
@@ -547,6 +579,8 @@ function Index(oProps: any): any {
               </IconButton>
 
             </Tooltip>
+
+
 
 
 

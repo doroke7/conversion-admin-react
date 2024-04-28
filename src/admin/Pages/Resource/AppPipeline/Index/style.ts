@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen, orange, deepOrange, amber } from '@material-ui/core/colors';
+import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen, orange, deepOrange, amber, cyan } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -139,17 +139,26 @@ const style = makeStyles((oTheme: Theme): any =>
         padding: oTheme.spacing(0.5)
       },
       '&.Mui-disabled': {
-        opacity: 0.25
+        color: 'rgb(0 0 0 / 7%)',
+
+
+
       },
     },
+    iconButtonDetail: {
+      color: lightBlue[700],
+
+    },
     iconButtonTranscoder: {
-      color: amber[600],
+      color: amber[700],
 
     },
     iconButtonNotifier: {
-      color: green[600],
+      color: green[700],
 
     },
+
+
 
     iconButtonAnimation000: {
       animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
