@@ -38,7 +38,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   }, [iAdminUserId, iAppId]);
 
-  let cAlterStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
+  let cChangeStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
     if(iAdminUserId > 0) {
     
       iAppId > 0 && Helpers.Tab.setOnesByMeIdAppId(aTabs1, iAdminUserId, iAppId);
@@ -239,7 +239,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cGetStateTabs, cAlterStateTabs, cRemoveStateTab, cRemoveStateTabs, cRemoveOtherStateTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cGetStateTabs, cChangeStateTabs, cRemoveStateTab, cRemoveStateTabs, cRemoveOtherStateTabs];
 
 
   return aResults;
