@@ -640,7 +640,8 @@ function Index(oProps: any): any {
   let iAppPipelineStaus = oAppPipeline?.status ?? 0;
 
   iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
-
+  iAppPipelineState = iAppPipelineState >= 6 ? 6 : iAppPipelineState;
+  
   return (
     <div className="app-pipeline">
       <Dialog 

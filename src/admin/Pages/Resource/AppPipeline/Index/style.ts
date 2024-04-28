@@ -161,39 +161,39 @@ const style = makeStyles((oTheme: Theme): any =>
 
 
     iconButtonAnimation000: {
-      animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $zoomIn 0.5s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation005: {
-      animation: '$zoomIn 0.3s ease-in-out 0.05s 1 normal, $fadeIn 0.2s ease-in-out 0.05s 1 normal, $zoomIn 0.5s ease-in-out 0.05s 1 normal, $fade 0.05s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.05s 1 normal, $fadeIn 0.2s ease-in-out 0.05s 1 normal, $fade 0.05s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation010: {
-      animation: '$zoomIn 0.3s ease-in-out 0.10s 1 normal, $fadeIn 0.2s ease-in-out 0.10s 1 normal, $zoomIn 0.5s ease-in-out 0.10s 1 normal, $fade 0.10s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.10s 1 normal, $fadeIn 0.2s ease-in-out 0.10s 1 normal, $fade 0.10s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation015: {
-      animation: '$zoomIn 0.3s ease-in-out 0.15s 1 normal, $fadeIn 0.2s ease-in-out 0.15s 1 normal, $zoomIn 0.5s ease-in-out 0.15s 1 normal, $fade 0.15s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.15s 1 normal, $fadeIn 0.2s ease-in-out 0.15s 1 normal, $fade 0.15s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation020: {
-      animation: '$zoomIn 0.3s ease-in-out 0.20s 1 normal, $fadeIn 0.2s ease-in-out 0.20s 1 normal, $zoomIn 0.5s ease-in-out 0.20s 1 normal, $fade 0.20s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.20s 1 normal, $fadeIn 0.2s ease-in-out 0.20s 1 normal, $fade 0.20s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation025: {
-      animation: '$zoomIn 0.3s ease-in-out 0.25s 1 normal, $fadeIn 0.2s ease-in-out 0.25s 1 normal, $zoomIn 0.5s ease-in-out 0.25s 1 normal, $fade 0.25s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.25s 1 normal, $fadeIn 0.2s ease-in-out 0.25s 1 normal, $fade 0.25s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation030: {
-      animation: '$zoomIn 0.3s ease-in-out 0.30s 1 normal, $fadeIn 0.2s ease-in-out 0.30s 1 normal, $zoomIn 0.5s ease-in-out 0.30s 1 normal, $fade 0.30s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.30s 1 normal, $fadeIn 0.2s ease-in-out 0.30s 1 normal, $fade 0.30s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation035: {
-      animation: '$zoomIn 0.3s ease-in-out 0.35s 1 normal, $fadeIn 0.2s ease-in-out 0.35s 1 normal, $zoomIn 0.5s ease-in-out 0.35s 1 normal, $fade 0.35s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.35s 1 normal, $fadeIn 0.2s ease-in-out 0.35s 1 normal, $fade 0.35s ease-in-out 0s 1 normal',
 
     },
     iconButtonAnimation040: {
-      animation: '$zoomIn 0.3s ease-in-out 0.40s 1 normal, $fadeIn 0.2s ease-in-out 0.40s 1 normal, $zoomIn 0.5s ease-in-out 0.40s 1 normal, $fade 0.40s ease-in-out 0s 1 normal',
+      animation: '$zoomIn 0.3s ease-in-out 0.40s 1 normal, $fadeIn 0.2s ease-in-out 0.40s 1 normal, $fade 0.40s ease-in-out 0s 1 normal',
 
     },
 
@@ -244,7 +244,7 @@ const style = makeStyles((oTheme: Theme): any =>
         transform: 'scale(0)'
       },
       '60%': {
-        transform: 'scale(1.2)'
+        transform: 'scale(1.6)'
       },
       '100%': {
         transform: 'scale(1)'
