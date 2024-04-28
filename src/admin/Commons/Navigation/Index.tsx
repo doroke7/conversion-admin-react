@@ -373,17 +373,12 @@ function Navigation(oProps: any) {
           // TODO
       // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
       let oApp = aStateApps?.[iStateIndex];
-      let oAppId = oApp?.id ?? 0;
+      let iAppId = oApp?.id ?? 0;
 
       let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
-      if (iParamsAppId > 0) {
-        iCurrentAppId = iParamsAppId;
-      }
-
-      if (iParamsAppId <= 0) {
-        iCurrentAppId = oAppId;
-      }
+      iCurrentAppId = iParamsAppId > 0 ? iParamsAppId : iCurrentAppId;
+      iCurrentAppId = iParamsAppId <= 0 ? iAppId : iCurrentAppId;
 
       cSetStateAppId(iCurrentAppId);
     }
