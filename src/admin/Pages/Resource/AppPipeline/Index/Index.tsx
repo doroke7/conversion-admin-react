@@ -377,7 +377,7 @@ function Index(oProps: any): any {
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
       oDispatch(actions.appPipeline.set(oAppPipeline));
 
-      console.log('oResponse=', oResponse);
+      console.log('oAppPipeline=', oAppPipeline);
 
     };
   };
@@ -636,6 +636,11 @@ function Index(oProps: any): any {
     },
   ];
 
+  let iAppPipelineState = oAppPipeline?.state ?? 0;
+  let iAppPipelineStaus = oAppPipeline?.status ?? 0;
+
+  iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
+
   return (
     <div className="app-pipeline">
       <Dialog 
@@ -643,7 +648,7 @@ function Index(oProps: any): any {
         aria-labelledby="customized-dialog-title" 
         open={bStateOpen}
         fullWidth={true}
-        maxWidth={'xl'}
+        maxWidth={'lg'}
       >
         <DialogTitle id="customized-dialog-title">
           {oAppPipeline?.name ?? ''}
@@ -651,45 +656,52 @@ function Index(oProps: any): any {
         <DialogContent dividers>
           <Typography gutterBottom>
 
-            <Stepper activeStep={oAppPipeline?.state ?? 0} alternativeLabel>
+            <Stepper activeStep={iAppPipelineState} alternativeLabel>
               <Step>
                 <StepLabel 
-                  error={false}
+                  
+                  error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}</Typography>}
                 >
                   資源下载
                 </StepLabel>
               </Step>
               <Step>
                 <StepLabel 
-                  error={false}
+                  error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}</Typography>}
                 >
                   資源转码
                 </StepLabel>
               </Step>
               <Step>
                 <StepLabel 
-                  error={false}
+                  error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}</Typography>}
                 >
                   資源加密
                 </StepLabel>
               </Step>
               <Step>
                 <StepLabel 
-                  error={true}
+                  error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}</Typography>}
                 >
                   資源上传
                 </StepLabel>
               </Step>
               <Step>
                 <StepLabel 
-                  error={false}
+                  error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}</Typography>}
                 >
                   資源回调
                 </StepLabel>
               </Step>
               <Step>
                 <StepLabel 
-                  error={false}
+                  error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}</Typography>}
                 >
                   資源预热
                 </StepLabel>
