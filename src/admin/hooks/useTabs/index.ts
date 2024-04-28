@@ -21,16 +21,34 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   let [iStateTabsValue, cSetStateTabsValue] = useState<number>(-1);
 
-  let cWrapperChangeStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
+
+
+
+  let cWrapperGetStateTabs = useCallback(() => {
+
+    if(iAdminUserId > 0){ 
+      let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId);
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
+      let aTabs = [...aTabs1, ...aTabs0];
+      let iValue = -1;
+      cSetStateTabs(aTabs);
+      cSetStateTabsValue(iValue);
+    }
+
+
+  }, [iAdminUserId, iAppId]);
+
+  let cWrapperAlterStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
     if(iAdminUserId > 0) {
+    
       iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iAppId);
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
       let aTabs = [...aTabs1, aTabs0];
       cSetStateTabs(aTabs);
     }
 
-  }, [iAdminUserId, iAppId]);
 
+  }, [iAdminUserId, iAppId]);
 
 
   let cOnTab = useCallback((oRoute: any) => {
@@ -126,19 +144,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   }, [iAdminUserId, iAppId]);
 
-  let cWrapperSetTabs = useCallback(() => {
 
-    if(iAdminUserId > 0){ 
-      let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId);
-      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
-      let aTabs = [...aTabs1, ...aTabs0];
-      let iValue = -1;
-      cSetStateTabs(aTabs);
-      cSetStateTabsValue(iValue);
-    }
-
-
-  }, [iAdminUserId, iAppId]);
   
 
   let cWrapperRemoveStateTab = useCallback((iIndex: number) => {
@@ -233,7 +239,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperChangeStateTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperGetStateTabs, cWrapperAlterStateTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
 
 
   return aResults;
