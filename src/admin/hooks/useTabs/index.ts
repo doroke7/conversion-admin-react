@@ -21,11 +21,13 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
   let [iStateTabsValue, cSetStateTabsValue] = useState<number>(-1);
 
-  let cWrapperSetStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
-    iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iAppId);
-    Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
-    let aTabs = [...aTabs1, aTabs0];
-    cSetStateTabs(aTabs);
+  let cWrapperChangeStateTabs = useCallback((aTabs1: any[], aTabs0: any[]) => {
+    if(iAdminUserId > 0) {
+      iAppId > 0 && Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+      let aTabs = [...aTabs1, aTabs0];
+      cSetStateTabs(aTabs);
+    }
 
   }, [iAdminUserId, iAppId]);
 
@@ -231,7 +233,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperSetTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperChangeStateTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
 
 
   return aResults;
