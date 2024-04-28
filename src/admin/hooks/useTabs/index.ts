@@ -31,7 +31,98 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
 
 
-  
+  let cOnTab = useCallback((oRoute: any) => {
+    console.log('OnTab 行为发生 oRoute=', oRoute);
+    let iAdminUserId = oRoute.adminUserId;
+    let iCurrentAppId = iAppId;
+
+
+
+    if (iAdminUserId) {
+
+
+      let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iCurrentAppId) : [];
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
+
+      let aTabs = [...aTabs1, ...aTabs0] ?? [];
+
+      let oTab = {
+        id: oRoute.id,
+        path: oRoute.path,
+        url: oRoute.url,
+        params: oRoute?.params ?? {},
+        search: oRoute?.search ?? {},
+        text: oRoute?.text || '',
+        icon: oRoute.icon ?? ''
+      };
+      if (oRoute.id == '2-n-0') {
+        oTab.text = '未定义';
+      }
+      let iValue = iStateTabsValue;
+      let bExist = false;
+      let iTabIndex = 0;
+
+      if (aTabs1.length >= 1) {
+        for (iTabIndex = 0; iTabIndex < aTabs1.length; iTabIndex++) {
+          if (aTabs1[iTabIndex]['id'] == oTab.id) {
+            iValue = iTabIndex;
+            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+            if (aTabs1[iTabIndex]['url'] != oTab?.url || aTabs1[iTabIndex]['text'] == '未定义') {
+              aTabs1[iTabIndex]['text'] = oTab?.text;
+            }
+            aTabs1[iTabIndex]['path'] = oTab?.path;
+            aTabs1[iTabIndex]['icon'] = oTab?.icon;
+            aTabs1[iTabIndex]['url'] = oTab?.url;
+            aTabs1[iTabIndex]['params'] = oTab?.params;
+            aTabs1[iTabIndex]['search'] = oTab?.search;
+
+            bExist = true;
+            break;
+          }
+        }
+      }
+
+      if (aTabs0.length >= 1 && !bExist) {
+        for (iTabIndex = 0; iTabIndex < aTabs0.length; iTabIndex++) {
+          if (aTabs0[iTabIndex]['id'] == oTab.id) {
+            iValue = iTabIndex + aTabs1.length;
+            // 如果 Tab 中存档的地址 跟路由的地址不同 => 改写 tab 内的文字
+            if (aTabs0[iTabIndex]['url'] != oTab?.url || aTabs0[iTabIndex]['text'] == '未定义') {
+              aTabs0[iTabIndex]['text'] = oTab?.text;
+            }
+            aTabs0[iTabIndex]['path'] = oTab?.path;
+            aTabs0[iTabIndex]['icon'] = oTab?.icon;
+            aTabs0[iTabIndex]['url'] = oTab?.url;
+            aTabs0[iTabIndex]['params'] = oTab?.params;
+            aTabs0[iTabIndex]['search'] = oTab?.search;
+
+            bExist = true;
+            break;
+          }
+        }
+      }
+      if (bExist) {
+        // DO NOTHING
+      }
+      if (!bExist) {
+        aTabs1 = iCurrentAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+        aTabs0 = iCurrentAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+
+        aTabs = [...aTabs1, ...aTabs0];
+        iValue = iCurrentAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
+      }
+      console.log('456 准备写入 Tab 数据，aTabs1=', aTabs1, ', iAdminUserId=', iAdminUserId, ', iCurrentAppId=', iCurrentAppId);
+      console.log('457 准备写入 Tab aTabs0=', aTabs0, ', iAdminUserId=', iAdminUserId, ', 0=', 0);
+
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
+      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+
+
+      cSetStateTabsValue(iValue);
+      cSetStateTabs(aTabs);
+    };
+
+  }, [iAdminUserId, iAppId]);
   
 
   let cWrapperRemoveStateTab = useCallback((iIndex: number) => {
@@ -126,7 +217,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
 
 
   return aResults;
