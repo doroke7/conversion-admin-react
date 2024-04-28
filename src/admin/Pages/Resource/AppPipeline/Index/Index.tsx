@@ -8,9 +8,18 @@ import Pagination from '@material-ui/lab/Pagination';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControl from '@material-ui/core/FormControl';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
@@ -31,7 +40,6 @@ import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 
-
 import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -39,7 +47,6 @@ import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 import actions from '@/admin/actions/';
-
 
 import hooks from '@/admin/hooks';
 import State from './State/Index';
@@ -65,6 +72,7 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [bStateOpen, cSetStateOpen] = useState<boolean>(false);
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -75,9 +83,19 @@ function Index(oProps: any): any {
 
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
+  let oAppPipeline = useSelector((oStore: any) => (oStore.appPipeline));
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
 
-  console.log('oAuthorizations=', oAuthorizations);
+  let aSteps = [
+    '傳輸資源',
+    '資源下载',
+    '資源转码',
+    '資源加密',
+    '資源上传',
+    '資源回调',
+    '資源预热',
+  ];
+
 
   useEffect(() => {
     (async () => {
@@ -200,7 +218,6 @@ function Index(oProps: any): any {
     let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
     let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
 
-    console.log('aAppPipelines=', aAppPipelines);
     oDispatch(actions.appPipelines.set(aAppPipelines));
 
     cSetStateNumer(iNumber);
@@ -331,6 +348,44 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
+  let cHandleDetailClick = (iId: number) => {
+    return async (oEvent: React.SyntheticEvent<unknown>) => {
+
+      cSetStateOpen(true);
+      let oParam = {};
+      let oOption = {
+        appId: iAppId
+      };
+      let oSearch = {
+        id: iId
+      };
+
+      let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOne(oParam, oOption, oSearch);
+
+
+      if (!oResponse || oResponse?.data?.code <= -1) {
+        let iCode = oResponse?.data?.code;
+        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+      let oAppPipeline = oResponse?.data?.raw?.one ?? {};
+      oDispatch(actions.appPipeline.set(oAppPipeline));
+
+      console.log('oResponse=', oResponse);
+
+    };
+  };
+
+  let cHandleClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+
+    cSetStateOpen(false);
+  }
 
 
   let cHandleTranscoderClick = (iId: number) => {
@@ -525,7 +580,7 @@ function Index(oProps: any): any {
                 })}
                 size="medium"
                 disabled={false}
-                onClick={cHandleNotifierClick(iId)}
+                onClick={cHandleDetailClick(iId)}
 
               >
                 <InfoIcon />
@@ -554,10 +609,8 @@ function Index(oProps: any): any {
               >
                 <UpdateIcon />
               </IconButton>
-
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
-
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
                   [oClasses.iconButtonAnimation000]: iSecondRandom == 0,
@@ -573,17 +626,10 @@ function Index(oProps: any): any {
                 size="medium"
                 disabled={bNotifierDisable}
                 onClick={cHandleNotifierClick(iId)}
-
               >
                 <DirectionsIcon />
               </IconButton>
-
             </Tooltip>
-
-
-
-
-
           </div>
         );
       },
@@ -592,6 +638,75 @@ function Index(oProps: any): any {
 
   return (
     <div className="app-pipeline">
+      <Dialog 
+        onClose={cHandleClose} 
+        aria-labelledby="customized-dialog-title" 
+        open={bStateOpen}
+        fullWidth={true}
+        maxWidth={'xl'}
+      >
+        <DialogTitle id="customized-dialog-title">
+          {oAppPipeline?.name ?? ''}
+        </DialogTitle>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+
+            <Stepper activeStep={oAppPipeline?.state ?? 0} alternativeLabel>
+              <Step>
+                <StepLabel 
+                  error={false}
+                >
+                  資源下载
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel 
+                  error={false}
+                >
+                  資源转码
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel 
+                  error={false}
+                >
+                  資源加密
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel 
+                  error={true}
+                >
+                  資源上传
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel 
+                  error={false}
+                >
+                  資源回调
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel 
+                  error={false}
+                >
+                  資源预热
+                </StepLabel>
+              </Step>
+            </Stepper>
+          </Typography>
+          {/* <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+            lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+            auctor fringilla.
+          </Typography> */}
+        </DialogContent>
+      </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>
