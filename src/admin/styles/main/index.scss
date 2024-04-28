@@ -88,3 +88,11 @@ body {
 input[type='checkbox']+.MuiSvgIcon-root {
 	font-size: 1rem;
 }
+
+.MuiTooltip-tooltip{
+	background-color: rgba(42, 42, 42, 0.85) !important;
+}
+
+.MuiTooltip-arrow{
+	color: rgba(42, 42, 42, 0.85) !important;
+}
