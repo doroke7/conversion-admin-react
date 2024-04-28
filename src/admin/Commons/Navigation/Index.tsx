@@ -368,6 +368,7 @@ function Navigation(oProps: any) {
     console.log('OnTab 行为发生 oRoute=', oRoute);
     let iAdminUserId = oRoute.adminUserId;
     let iCurrentAppId = 0;
+    let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
     if (iAdminUserId) {
           // TODO
@@ -375,7 +376,6 @@ function Navigation(oProps: any) {
       let oApp = aStateApps?.[iStateIndex];
       let iAppId = oApp?.id ?? 0;
 
-      let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
       iCurrentAppId = iParamsAppId > 0 ? iParamsAppId : iCurrentAppId;
       iCurrentAppId = iParamsAppId <= 0 ? iAppId : iCurrentAppId;
@@ -450,11 +450,11 @@ function Navigation(oProps: any) {
         // DO NOTHING
       }
       if (!bExist) {
-        aTabs1 = iCurrentAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
-        aTabs0 = iCurrentAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+        aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+        aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
 
         aTabs = [...aTabs1, ...aTabs0];
-        iValue = iCurrentAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
+        iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
       }
       console.log('456 准备写入 Tab 数据，aTabs1=', aTabs1, ', iAdminUserId=', iAdminUserId, ', iCurrentAppId=', iCurrentAppId);
       console.log('457 准备写入 Tab aTabs0=', aTabs0, ', iAdminUserId=', iAdminUserId, ', 0=', 0);
