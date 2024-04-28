@@ -123,6 +123,20 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
     };
 
   }, [iAdminUserId, iAppId]);
+
+  let cWrapperSetTabs = useCallback(() => {
+
+    if(iAdminUserId > 0){ 
+      let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId);
+      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
+      let aTabs = [...aTabs1, ...aTabs0];
+      let iValue = -1;
+      cSetStateTabs(aTabs);
+      cSetStateTabsValue(iValue);
+    }
+
+
+  }, [iAdminUserId, iAppId]);
   
 
   let cWrapperRemoveStateTab = useCallback((iIndex: number) => {
@@ -217,7 +231,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperSetTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
 
 
   return aResults;

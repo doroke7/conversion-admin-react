@@ -59,7 +59,7 @@ function Navigation(oProps: any) {
     return iAppId;
   }, [aStateApps, iStateIndex]);
 
-  // let [aStateTabs, iStateValue, cRemoveStateTab, cRemoveTabs, cRemoveOtherTabs] = hooks.useTabs(oMe.id, iAppId);
+  // let [aStateTabs, iStateValue, cOnTab, cWrapperSetTabs, cRemoveStateTab, cRemoveTabs, cRemoveOtherTabs] = hooks.useTabs(oMe.id, iAppId);
 
 
   console.log('bStateOpen', bStateOpen);
