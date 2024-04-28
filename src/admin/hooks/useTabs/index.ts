@@ -109,7 +109,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
 
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cWrapperSetStateTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs, cSetStateTabsValue];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cWrapperSetStateTabs, cSetStateTabsValue, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
 
 
   return aResults;
