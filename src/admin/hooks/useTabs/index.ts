@@ -189,7 +189,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let cWrapperRemoveTabs = useCallback(() => {
+  let cWrapperRemoveStateTabs = useCallback(() => {
 
     if(iAdminUserId > 0){ 
       if (iAppId > 0) {
@@ -208,7 +208,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let cWrapperRemoveOtherTabs = useCallback((iIndex: number) => {
+  let cWrapperRemoveOtherStateTabs = useCallback((iIndex: number) => {
 
     if(iAdminUserId > 0){ 
       let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iAppId) : [];
@@ -239,7 +239,7 @@ function useTabs(iAdminUserId: number = 0, iAppId: number = 0) {
   }, [iAdminUserId, iAppId]);
 
 
-  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperGetStateTabs, cWrapperAlterStateTabs, cWrapperRemoveStateTab, cWrapperRemoveTabs, cWrapperRemoveOtherTabs];
+  let aResults: any[] = [aStateTabs, iStateTabsValue, cOnTab, cWrapperGetStateTabs, cWrapperAlterStateTabs, cWrapperRemoveStateTab, cWrapperRemoveStateTabs, cWrapperRemoveOtherStateTabs];
 
 
   return aResults;
