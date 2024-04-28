@@ -42,7 +42,7 @@ function Navigation(oProps: any) {
   let oParams: any = useParams();
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
-  let [iStateValue, cSetStateValue] = useState<any>(0);
+  let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
   let [aStateApps, cSetStateApps] = useState<any>([]);
@@ -59,7 +59,7 @@ function Navigation(oProps: any) {
     return iAppId;
   }, [aStateApps, iStateIndex]);
 
-  // let [aStateTabs, iStateValue, cOnTab, cWrapperSetTabs, cRemoveStateTab, cRemoveTabs, cRemoveOtherTabs] = hooks.useTabs(oMe.id, iAppId);
+  // let [aStateTabs, iStateTabsValue, cOnTab, cWrapperSetTabs, cRemoveStateTab, cRemoveTabs, cRemoveOtherTabs] = hooks.useTabs(oMe.id, iAppId);
 
 
   console.log('bStateOpen', bStateOpen);
@@ -184,7 +184,7 @@ function Navigation(oProps: any) {
           cSetStateAppId(iAppId);
           cSetStateIndex(iIndex);
           cSetStateTabs(aTabs);
-          cSetStateValue(iValue);
+          cSetStateTabsValue(iValue);
 
           if (iIndex >= 0) {
             oHistory.push('/admin/resource');
@@ -236,11 +236,11 @@ function Navigation(oProps: any) {
         let aTabs = [...aTabs1, ...aTabs0];
 
         let iValue = 0;
-        iValue = iIndex > iStateValue ? iStateValue : iStateValue - 1;
+        iValue = iIndex > iStateTabsValue ? iStateTabsValue : iStateTabsValue - 1;
         iValue = iValue < -1 ? -1 : iValue;
 
 
-        cSetStateValue(iValue);
+        cSetStateTabsValue(iValue);
         cSetStateTabs(aTabs);
 
 
@@ -265,7 +265,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateTabsValue, oMe.id]);
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
@@ -301,7 +301,7 @@ function Navigation(oProps: any) {
 
         let aTabs = [...aTabs1, ...aTabs0];
 
-        cSetStateValue(iValue);
+        cSetStateTabsValue(iValue);
         cSetStateTabs(aTabs);
 
         if (oTab) {
@@ -314,7 +314,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateTabsValue, oMe.id]);
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
@@ -330,7 +330,7 @@ function Navigation(oProps: any) {
         console.log('325 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', 0=', 0);
         Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, 0);
 
-        cSetStateValue(iValue);
+        cSetStateTabsValue(iValue);
         cSetStateTabs([]);
         oHistory.push('/admin/resource');
       }
@@ -340,11 +340,11 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateTabsValue, oMe.id]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
-      cSetStateValue(iValue);
+      cSetStateTabsValue(iValue);
 
       let oTab = aStateTabs[iValue] ?? null;
       console.log('oTab=', oTab);
@@ -362,7 +362,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [iStateValue, bStateOpen, iStateIndex, aStateTabs]);
+  }, [iStateTabsValue, bStateOpen, iStateIndex, aStateTabs]);
 
   let cOnTab = useCallback((oRoute: any) => {
     console.log('OnTab 行为发生 oRoute=', oRoute);
@@ -408,7 +408,7 @@ function Navigation(oProps: any) {
       if (oRoute.id == '2-n-0') {
         oTab.text = oTextRef.current || '未定义';
       }
-      let iValue = iStateValue;
+      let iValue = iStateTabsValue;
       let bExist = false;
       let iTabIndex = 0;
 
@@ -468,7 +468,7 @@ function Navigation(oProps: any) {
       Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
 
 
-      cSetStateValue(iValue);
+      cSetStateTabsValue(iValue);
       cSetStateTabs(aTabs);
     };
 
@@ -594,7 +594,7 @@ function Navigation(oProps: any) {
 
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
-      <Contexts.TabsValue.Provider value={iStateValue}>
+      <Contexts.TabsValue.Provider value={iStateTabsValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
           <div
             className={oClasses.root}
