@@ -666,7 +666,7 @@ function Index(oProps: any): any {
             >
               <Step>
                 <StepLabel 
-                  
+                  className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}</Typography>}
                 >
@@ -675,6 +675,7 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel 
+                  className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}</Typography>}
                 >
@@ -683,6 +684,7 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel 
+                  className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}</Typography>}
                 >
@@ -691,6 +693,7 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel 
+                  className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}</Typography>}
                 >
@@ -699,6 +702,7 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel 
+                  className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}</Typography>}
                 >
@@ -707,6 +711,7 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel 
+                  className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}</Typography>}
                 >

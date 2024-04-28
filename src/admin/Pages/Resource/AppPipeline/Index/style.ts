@@ -158,15 +158,26 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
 
+    stepLabel: {
+      '& .MuiStepIcon-root.MuiStepIcon-completed' : {
+       // color: lightBlue[700]
+
+      },
+      '& .MuiStepIcon-root.MuiStepIcon-active' : {
+        color: lightBlue[500]
+
+      }
+    },
     stepConnector: {
       '&.MuiStepConnector-completed': {
         '& .MuiStepConnector-line': {
-          borderColor: indigo[300]
+          borderColor: lightBlue[700],
+          borderImage: 'linear-gradient(to right, ' + lightBlue[700] + ' 0%, ' + blue[700] + ' 100%)',
+          borderImageSlice: 1,
         }
       },
       '&.MuiStepConnector-active': {
         '& .MuiStepConnector-line': {
-          
         }
       },
       '&.Mui-disabled': {

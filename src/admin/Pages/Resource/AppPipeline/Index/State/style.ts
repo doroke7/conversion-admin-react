@@ -11,7 +11,7 @@ const style = makeStyles((oTheme: Theme): any =>
     wrapperProcess: {
       width: '7px',
       height: '20px',
-      background: lightBlue[50],
+      background: grey[200],
       position: 'relative',
     },
     process: {
