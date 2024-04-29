@@ -178,6 +178,9 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '&.MuiStepConnector-active': {
         '& .MuiStepConnector-line': {
+          borderColor: lightBlue[500],
+          borderImage: 'linear-gradient(to right, ' + blue[700] + ' 10%, ' + grey[100] + ' 60%)',
+          borderImageSlice: 1,
         }
       },
       '&.Mui-disabled': {

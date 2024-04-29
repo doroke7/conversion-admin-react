@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, Component, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, Component, useMemo ,forwardRef } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
@@ -17,7 +17,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
-
+import  Slide  from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
@@ -384,7 +384,7 @@ function Index(oProps: any): any {
     };
   };
 
-  let cHandleClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+  let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
 
     cSetStateOpen(false);
   }
@@ -647,11 +647,13 @@ function Index(oProps: any): any {
   return (
     <div className="app-pipeline">
       <Dialog 
-        onClose={cHandleClose} 
+              TransitionComponent={Slide}
+
+        onClose={cHandleDialogClose} 
         aria-labelledby="customized-dialog-title" 
         open={bStateOpen}
         fullWidth={true}
-        maxWidth={'lg'}
+        maxWidth={'md'}
       >
         <DialogTitle id="customized-dialog-title">
           {oAppPipeline?.name ?? ''}
