@@ -186,6 +186,9 @@ const style = makeStyles((oTheme: Theme): any =>
       '&.Mui-disabled': {
         '& .MuiStepConnector-line': {
           borderTopStyle: 'dotted'
+        },
+        '& .MuiTypography-root':{
+          color: 'rgba(0, 0, 0, 0.54)',
         }
       },
 

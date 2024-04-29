@@ -675,8 +675,8 @@ function Index(oProps: any): any {
                      display={'block'} 
                      align={'center'} 
                      variant="caption" 
-                     color="initial"
-                    >
+                     color={oAppPipeline?.state >= 1 ? 'initial': 'textSecondary'}
+                     >
                       {utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -693,8 +693,8 @@ function Index(oProps: any): any {
                       display={'block'} 
                       align={'center'} 
                       variant="caption" 
-                      color="initial"
-                    >
+                      color={oAppPipeline?.state >= 2 ? 'initial': 'textSecondary'}
+                      >
                       {utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -711,8 +711,8 @@ function Index(oProps: any): any {
                       display={'block'} 
                       align={'center'} 
                       variant="caption" 
-                      color="initial"
-                    >
+                      color={oAppPipeline?.state >= 3 ? 'initial': 'textSecondary'}
+                      >
                       {utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -729,8 +729,8 @@ function Index(oProps: any): any {
                       display={'block'} 
                       align={'center'} 
                       variant="caption" 
-                      color="initial"
-                    >
+                      color={oAppPipeline?.state >= 4 ? 'initial': 'textSecondary'}
+                      >
                       {utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -747,8 +747,8 @@ function Index(oProps: any): any {
                       display={'block'} 
                       align={'center'} 
                       variant="caption" 
-                      color="initial"
-                    >
+                      color={oAppPipeline?.state >= 5 ? 'initial': 'textSecondary'}
+                      >
                       {utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -765,7 +765,7 @@ function Index(oProps: any): any {
                       display={'block'} 
                       align={'center'} 
                       variant="caption" 
-                      color="initial"
+                      color={oAppPipeline?.state >= 6 ? 'initial': 'textSecondary'}
                     >
                       {utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}
                     </Typography>
