@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, Component, useMemo ,forwardRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, Component, useMemo, forwardRef } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
@@ -17,7 +17,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
-import  Slide  from '@material-ui/core/Slide';
+import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
@@ -93,7 +93,7 @@ function Index(oProps: any): any {
     '資源下载',
     '資源转码',
     '資源加密',
-    '資源上传',
+    '資源上云',
     '資源回调',
     '資源预热',
   ];
@@ -646,11 +646,11 @@ function Index(oProps: any): any {
 
   return (
     <div className="app-pipeline">
-      <Dialog 
-              TransitionComponent={Slide}
+      <Dialog
+        TransitionComponent={Slide}
 
-        onClose={cHandleDialogClose} 
-        aria-labelledby="customized-dialog-title" 
+        onClose={cHandleDialogClose}
+        aria-labelledby="customized-dialog-title"
         open={bStateOpen}
         fullWidth={true}
         maxWidth={'md'}
@@ -661,13 +661,13 @@ function Index(oProps: any): any {
         <DialogContent dividers>
           <Typography gutterBottom>
 
-            <Stepper 
-              activeStep={iAppPipelineState} 
+            <Stepper
+              activeStep={iAppPipelineState}
               alternativeLabel
-              connector={<StepConnector className={oClasses.stepConnector}/>}
+              connector={<StepConnector className={oClasses.stepConnector} />}
             >
               <Step>
-                <StepLabel 
+                <StepLabel
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}</Typography>}
@@ -676,7 +676,7 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
               <Step>
-                <StepLabel 
+                <StepLabel
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}</Typography>}
@@ -685,7 +685,7 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
               <Step>
-                <StepLabel 
+                <StepLabel
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}</Typography>}
@@ -694,16 +694,16 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
               <Step>
-                <StepLabel 
+                <StepLabel
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}</Typography>}
                 >
-                  資源上传
+                  資源上云
                 </StepLabel>
               </Step>
               <Step>
-                <StepLabel 
+                <StepLabel
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}</Typography>}
@@ -712,7 +712,7 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
               <Step>
-                <StepLabel 
+                <StepLabel
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
                   optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}</Typography>}
