@@ -2,7 +2,7 @@ class TabHelper {
   /**
    * getUsrId
    */
-  public static getOnesByAdminiUserIdAppId(iAdministratorId = 0, iAppId: number): any[] {
+  public static getOnesByMeIdAppId(iAdministratorId = 0, iAppId: number): any[] {
     let aTabs = [];
 
     try {
@@ -20,7 +20,7 @@ class TabHelper {
     return aTabs;
   }
 
-  public static setOnesByAdminUserIdAppId(aTabs, iAdministratorId = 0, iAppId: number): boolean {
+  public static setOnesByMeIdAppId(aTabs, iAdministratorId = 0, iAppId: number): boolean {
     let sTabs = JSON.stringify([]);
 
 

@@ -36,3 +36,63 @@ body {
 	scrollbar-width: none;
 	-ms-overflow-style: scrollbar;
 }
+
+
+// NOTE： 這裡使用 全局 css 修改的策略 來改變 外部插件的 樣式， 
+// 另外有策略是 統一封裝組件 的策略
+
+.MuiDataGrid-root {
+	.MuiDataGrid-columnHeader {
+		&:focus {
+			outline: none !important;
+		}
+
+		&:focus-within {
+			outline: none !important;
+		}
+	}
+
+	.MuiDataGrid-overlay {
+		background: rgba(250, 250, 250, 0);
+	}
+
+	.MuiDataGrid-cell {
+		&:focus {
+			outline: none !important;
+		}
+
+		&:focus-within {
+			outline: none !important;
+		}
+	}
+}
+
+.MuiDataGrid-columnsContainer {
+	z-index: 1;
+}
+
+.MuiDataGrid-window {
+	scrollbar-width: thin;
+	background: linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%);
+	overflow-x: hidden;
+}
+
+.MuiDataGrid-row {
+	background: #FFFFFF;
+
+	&:hover {
+		background: #F2F2F2;
+	}
+}
+
+input[type='checkbox']+.MuiSvgIcon-root {
+	font-size: 1rem;
+}
+
+.MuiTooltip-tooltip{
+	background-color: rgba(42, 42, 42, 0.85) !important;
+}
+
+.MuiTooltip-arrow{
+	color: rgba(42, 42, 42, 0.85) !important;
+}

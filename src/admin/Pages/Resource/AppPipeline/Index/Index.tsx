@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, Component, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, Component, useMemo, forwardRef } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
@@ -8,15 +8,40 @@ import Pagination from '@material-ui/lab/Pagination';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControl from '@material-ui/core/FormControl';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import StepConnector from '@material-ui/core/StepConnector';
+import Slide from '@material-ui/core/Slide';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import InputLabel from '@material-ui/core/InputLabel';
 import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
+import MovieFilterTwoToneIcon from '@material-ui/icons/MovieFilterTwoTone';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import DirectionsIcon from '@material-ui/icons/Directions';
+import FlipCameraIosIcon from '@material-ui/icons/FlipCameraIos';
+import RepeatOneIcon from '@material-ui/icons/RepeatOne';
+import Rotate90DegreesCcwIcon from '@material-ui/icons/Rotate90DegreesCcw';
+import Rotate90DegreesCcwOutlinedIcon from '@material-ui/icons/Rotate90DegreesCcwOutlined';
+import Rotate90DegreesCcwRoundedIcon from '@material-ui/icons/Rotate90DegreesCcwRounded';
+import Rotate90DegreesCcwTwoToneIcon from '@material-ui/icons/Rotate90DegreesCcwTwoTone';
+import Rotate90DegreesCcwSharpIcon from '@material-ui/icons/Rotate90DegreesCcwSharp';
+import UpdateIcon from '@material-ui/icons/Update';
+import InfoIcon from '@material-ui/icons/Info';
+import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+
 import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
@@ -24,7 +49,6 @@ import events from '@/admin/events/index';
 import Components from '@/admin/Components/Index';
 import utilities from '@/admin/utilities/index';
 import actions from '@/admin/actions/';
-
 
 import hooks from '@/admin/hooks';
 import State from './State/Index';
@@ -50,6 +74,7 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [bStateOpen, cSetStateOpen] = useState<boolean>(false);
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -60,9 +85,19 @@ function Index(oProps: any): any {
 
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
+  let oAppPipeline = useSelector((oStore: any) => (oStore.appPipeline));
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
 
-  console.log('oAuthorizations=', oAuthorizations);
+  let aSteps = [
+    '傳輸資源',
+    '資源下载',
+    '資源转码',
+    '資源加密',
+    '資源上云',
+    '資源回调',
+    '資源预热',
+  ];
+
 
   useEffect(() => {
     (async () => {
@@ -185,7 +220,6 @@ function Index(oProps: any): any {
     let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
     let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
 
-    console.log('aAppPipelines=', aAppPipelines);
     oDispatch(actions.appPipelines.set(aAppPipelines));
 
     cSetStateNumer(iNumber);
@@ -316,6 +350,44 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
+  let cHandleDetailClick = (iId: number) => {
+    return async (oEvent: React.SyntheticEvent<unknown>) => {
+
+      cSetStateOpen(true);
+      let oParam = {};
+      let oOption = {
+        appId: iAppId
+      };
+      let oSearch = {
+        id: iId
+      };
+
+      let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOne(oParam, oOption, oSearch);
+
+
+      if (!oResponse || oResponse?.data?.code <= -1) {
+        let iCode = oResponse?.data?.code;
+        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+      let oAppPipeline = oResponse?.data?.raw?.one ?? {};
+      oDispatch(actions.appPipeline.set(oAppPipeline));
+
+      console.log('oAppPipeline=', oAppPipeline);
+
+    };
+  };
+
+  let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+
+    cSetStateOpen(false);
+  }
 
 
   let cHandleTranscoderClick = (iId: number) => {
@@ -404,58 +476,47 @@ function Index(oProps: any): any {
     {
       field: 'appUserName',
       headerName: '账号',
-      description: '账号',
       sortable: false,
-      width: 184,
+      width: 160,
       align: 'left',
       valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
     },
     {
       field: 'name',
       headerName: '档名',
-      description: '名称',
       sortable: false,
-      width: 385,
+      flex: 1,
     },
     {
       field: 'width',
       headerName: '宽度',
-      description: '宽度',
       sortable: false,
-      flex: 1,
-      width: 85,
+      minWidth: 20,
     },
     {
       field: 'height',
       headerName: '高度',
-      description: '高度',
       sortable: false,
-      flex: 1,
-      width: 85,
+      minWidth: 20,
     },
     {
       field: 'duration',
       headerName: '时长',
-      description: '时长',
       sortable: false,
-      flex: 1,
-      width: 145,
+      minWidth: 30,
       valueGetter: (oProps: any) => (utilities.hhmmss(oProps.row?.duration ?? 0))
     },
     {
       field: 'appDownloaderStageSize',
       headerName: '容量',
-      description: '容量',
       sortable: false,
-      flex: 1,
-      width: 145,
+      minWidth: 20,
       valueGetter: (oProps: any) => (utilities.size(oProps.row?.appDownloaderStage?.size ?? 0))
 
     },
     {
       field: 'state',
       headerName: '进度',
-      description: '进度',
       sortable: false,
       width: 80,
       renderCell: (oProps: any) => {
@@ -489,74 +550,189 @@ function Index(oProps: any): any {
 
         let bNotifierDisable = oProps?.row?.state < 5;
 
-        let iRandomA = useMemo(() => {
+        let iFirstRandom = useMemo(() => {
           let iResult = Math.floor(Math.random() * 9);
           return iResult;
         }, iId);
-        let iRandomB = useMemo(() => {
+        let iSecondRandom = useMemo(() => {
+          let iResult = Math.floor(Math.random() * 9);
+          return iResult;
+        }, iId);
+
+        let iThirdRandom = useMemo(() => {
           let iResult = Math.floor(Math.random() * 9);
           return iResult;
         }, iId);
 
         return (
           <div>
+            <Tooltip title="详情" arrow placement="top">
+
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
+                  [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iThirdRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iThirdRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iThirdRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iThirdRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iThirdRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iThirdRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iThirdRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iThirdRandom == 8,
+                })}
+                size="medium"
+                disabled={false}
+                onClick={cHandleDetailClick(iId)}
+
+              >
+                <InfoIcon />
+              </IconButton>
+
+            </Tooltip>
+
             <Tooltip title="转码" arrow placement="top">
 
-              <Fab
-                className={clsx([oClasses.fab, oClasses.fabTranscoder], {
-                  [oClasses.fabAnimation000]: iRandomA == 0,
-                  [oClasses.fabAnimation005]: iRandomA == 1,
-                  [oClasses.fabAnimation010]: iRandomA == 2,
-                  [oClasses.fabAnimation015]: iRandomA == 3,
-                  [oClasses.fabAnimation020]: iRandomA == 4,
-                  [oClasses.fabAnimation025]: iRandomA == 5,
-                  [oClasses.fabAnimation030]: iRandomA == 6,
-                  [oClasses.fabAnimation035]: iRandomA == 7,
-                  [oClasses.fabAnimation040]: iRandomA == 8,
-
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
+                  [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iFirstRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iFirstRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iFirstRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iFirstRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iFirstRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iFirstRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iFirstRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
                 })}
-                size="small"
+                size="medium"
                 onClick={cHandleTranscoderClick(iId)}
                 disabled={bTranscoderDisable}
 
               >
-                <FlipCameraAndroidTwoToneIcon />
-              </Fab>
-
+                <UpdateIcon />
+              </IconButton>
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
-
-              <Fab
-                className={clsx([oClasses.fab, oClasses.fabNotifier], {
-                  [oClasses.fabAnimation000]: iRandomB == 0,
-                  [oClasses.fabAnimation005]: iRandomB == 1,
-                  [oClasses.fabAnimation010]: iRandomB == 2,
-                  [oClasses.fabAnimation015]: iRandomB == 3,
-                  [oClasses.fabAnimation020]: iRandomB == 4,
-                  [oClasses.fabAnimation025]: iRandomB == 5,
-                  [oClasses.fabAnimation030]: iRandomB == 6,
-                  [oClasses.fabAnimation035]: iRandomB == 7,
-                  [oClasses.fabAnimation040]: iRandomB == 8,
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
+                  [oClasses.iconButtonAnimation000]: iSecondRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iSecondRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iSecondRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iSecondRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iSecondRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iSecondRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iSecondRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iSecondRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iSecondRandom == 8,
                 })}
-                size="small"
+                size="medium"
                 disabled={bNotifierDisable}
                 onClick={cHandleNotifierClick(iId)}
-
               >
-                <AddAlertTwoToneIcon />
-              </Fab>
-
+                <DirectionsIcon />
+              </IconButton>
             </Tooltip>
-
-
           </div>
         );
       },
     },
   ];
 
+  let iAppPipelineState = oAppPipeline?.state ?? 0;
+  let iAppPipelineStaus = oAppPipeline?.status ?? 0;
+
+  iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
+  iAppPipelineState = iAppPipelineState >= 6 ? 6 : iAppPipelineState;
+
   return (
     <div className="app-pipeline">
+      <Dialog
+        TransitionComponent={Slide}
+
+        onClose={cHandleDialogClose}
+        aria-labelledby="customized-dialog-title"
+        open={bStateOpen}
+        fullWidth={true}
+        maxWidth={'md'}
+      >
+        <DialogTitle id="customized-dialog-title">
+          {oAppPipeline?.name ?? ''}
+        </DialogTitle>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+
+            <Stepper
+              activeStep={iAppPipelineState}
+              alternativeLabel
+              connector={<StepConnector className={oClasses.stepConnector} />}
+            >
+              <Step>
+                <StepLabel
+                  className={oClasses.stepLabel}
+                  error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}</Typography>}
+                >
+                  資源下载
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel
+                  className={oClasses.stepLabel}
+                  error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}</Typography>}
+                >
+                  資源转码
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel
+                  className={oClasses.stepLabel}
+                  error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}</Typography>}
+                >
+                  資源加密
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel
+                  className={oClasses.stepLabel}
+                  error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}</Typography>}
+                >
+                  資源上云
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel
+                  className={oClasses.stepLabel}
+                  error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}</Typography>}
+                >
+                  資源回调
+                </StepLabel>
+              </Step>
+              <Step>
+                <StepLabel
+                  className={oClasses.stepLabel}
+                  error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
+                  optional={<Typography display={'block'} align={'center'} variant="caption" color="initial">{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}</Typography>}
+                >
+                  資源预热
+                </StepLabel>
+              </Step>
+            </Stepper>
+          </Typography>
+          {/* <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+            lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+            auctor fringilla.
+          </Typography> */}
+        </DialogContent>
+      </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>

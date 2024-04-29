@@ -24,6 +24,7 @@ import LargeAdminMenus from './LargeAdminMenus/Index';
 import SmallAdminMenus from './SmallAdminMenus/Index';
 import Tabs from './Tabs/Index';
 import Sdks from '@/admin/Sdks/Index';
+import hooks from '@/admin/hooks/index';
 
 import style from './style';
 
@@ -38,9 +39,10 @@ function Navigation(oProps: any) {
   let oTextRef = useRef('');
   let oDomRef: any = useRef(null);
   let oRouteMatch = useRouteMatch();
+  let oParams: any = useParams();
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
-  let [iStateValue, cSetStateValue] = useState<any>(0);
+  let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
   let [aStateApps, cSetStateApps] = useState<any>([]);
@@ -49,14 +51,16 @@ function Navigation(oProps: any) {
   let [aStateAdminUserLinks, cSetStateAdminUserLinks] = useState<any>([]);
   let [aStateAdminMenus, cSetStateAdminMenus] = useState<any>([]);
 
-  let oParams: any = useParams();
-
   let oMe = useSelector((oStore: any) => (oStore.me));
+
 
   let iAppId = useMemo(() => {  // 实际 appId
     let iAppId = aStateApps?.[iStateIndex]?.id ?? 0;
     return iAppId;
   }, [aStateApps, iStateIndex]);
+
+  // let [aStateTabs, iStateTabsValue, cOnTab, cSetTabs, cGetStateTabs, cChangeStateTabs, cRemoveStateTab, cRemoveStateTabs, cRemoveOtherStateTabs] = hooks.useTabs(oMe.id, iAppId);
+
 
   console.log('bStateOpen', bStateOpen);
 
@@ -172,15 +176,15 @@ function Navigation(oProps: any) {
         }
 
         if (iIndex != iStateIndex) {
-          let aTabs1 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, iAppId);
-          let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, 0);
+          let aTabs1 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId);
+          let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
 
           let aTabs = [...aTabs1, ...aTabs0];
           let iValue = -1;
           cSetStateAppId(iAppId);
           cSetStateIndex(iIndex);
           cSetStateTabs(aTabs);
-          cSetStateValue(iValue);
+          cSetStateTabsValue(iValue);
 
           if (iIndex >= 0) {
             oHistory.push('/admin/resource');
@@ -204,10 +208,11 @@ function Navigation(oProps: any) {
         let oApp = aStateApps[iStateIndex];
         let iAppId = oApp?.id ?? 0;
 
-        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, iAppId) : [];
-        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, 0);
+        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId) : [];
+        let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
 
-        if (iIndex < aTabs1.length) {
+        let iTabs1Length = aTabs1.length;
+        if (iIndex < iTabs1Length) {
 
           let aTempLeftTabs1 = aTabs1.slice(0, iIndex);
           let aTempRightTabs1 = aTabs1.slice(iIndex + 1, aTabs1.length);
@@ -215,34 +220,40 @@ function Navigation(oProps: any) {
           aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
 
           console.log('219 准备写入 Tab 数据，aTabs1=', aTabs1, ', oMe?.id=', oMe?.id, ', oApp?.id=', oApp?.id);
-          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, oApp?.id);
+          Helpers.Tab.setOnesByMeIdAppId(aTabs1, oMe?.id, oApp?.id);
 
         };
 
-        if (iIndex >= aTabs1.length) {
+
+        if (iIndex >= iTabs1Length) {
 
           let aTempLeftTabs0 = aTabs0.slice(0, iIndex - aTabs1.length);
           let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
 
           aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
           console.log('230 准备写入 Tab aTabs0=', aTabs0, ', oMe?.id=', oMe?.id, ', 0=', 0);
-          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
+          Helpers.Tab.setOnesByMeIdAppId(aTabs0, oMe?.id, 0);
 
         };
         let aTabs = [...aTabs1, ...aTabs0];
 
         let iValue = 0;
-        iValue = iIndex > iStateValue ? iStateValue : iStateValue - 1;
-        iValue = iValue < -1 ? -1 : iValue;
+        iValue = iIndex > iStateTabsValue ? iStateTabsValue : iStateTabsValue - 1;
+        iValue = iValue <= 0 ? 0 : iValue;
 
+        console.log('iValue=', iValue, aTabs1, aTabs0);
 
-        cSetStateValue(iValue);
+        cSetStateTabsValue(iValue);
         cSetStateTabs(aTabs);
 
 
         if (aTabs?.length >= 1) {
 
           let oTab = aTabs[iValue];
+          console.log('aTabs=', aTabs);
+
+          console.log('iValue=', iValue);
+
           console.log('oTab=', oTab);
 
           oHistory.push(oTab?.url);
@@ -257,7 +268,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveTab', cRemoveTab);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateTabsValue, oMe.id]);
 
   useEffect(() => {
     let cRemoveOtherTabs = (iIndex: number) => {
@@ -265,8 +276,8 @@ function Navigation(oProps: any) {
         let oApp = aStateApps[iStateIndex];
         let iAppId = oApp?.id ?? 0;
 
-        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, iAppId) : [];
-        let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(oMe?.id, 0);
+        let aTabs1 = iAppId > 0 ? Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId) : [];
+        let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
         let oTab = null;
 
         if (iIndex < aTabs1.length) {
@@ -283,17 +294,17 @@ function Navigation(oProps: any) {
 
         if (iAppId > 0) {
           console.log('287 准备写入 Tab aTabs1=', aTabs1, ', oMe?.id=', oMe?.id, ', iAppId=', iAppId)
-          Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, oMe?.id, iAppId);
+          Helpers.Tab.setOnesByMeIdAppId(aTabs1, oMe?.id, iAppId);
         }
 
         console.log('291 准备写入 Tab aTabs0=', aTabs0, ', oMe?.id=', oMe?.id, ', 0=', 0);
-        Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, oMe?.id, 0);
+        Helpers.Tab.setOnesByMeIdAppId(aTabs0, oMe?.id, 0);
 
         let iValue = 0;
 
         let aTabs = [...aTabs1, ...aTabs0];
 
-        cSetStateValue(iValue);
+        cSetStateTabsValue(iValue);
         cSetStateTabs(aTabs);
 
         if (oTab) {
@@ -306,7 +317,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveOtherTabs', cRemoveOtherTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateTabsValue, oMe.id]);
 
   useEffect(() => {
     let cRemoveAllTabs = (iIndex: number) => {
@@ -317,12 +328,12 @@ function Navigation(oProps: any) {
 
         if (iAppId > 0) {
           console.log('321 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', iAppId=', iAppId);
-          Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, iAppId);
+          Helpers.Tab.setOnesByMeIdAppId([], oMe?.id, iAppId);
         }
         console.log('325 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', 0=', 0);
-        Helpers.Tab.setOnesByAdminUserIdAppId([], oMe?.id, 0);
+        Helpers.Tab.setOnesByMeIdAppId([], oMe?.id, 0);
 
-        cSetStateValue(iValue);
+        cSetStateTabsValue(iValue);
         cSetStateTabs([]);
         oHistory.push('/admin/resource');
       }
@@ -332,11 +343,11 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onRemoveAllTabs', cRemoveAllTabs);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex, iStateValue, oMe.id]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateTabsValue, oMe.id]);
 
   useEffect(() => {
     let cClickTab = (iValue: number) => {
-      cSetStateValue(iValue);
+      cSetStateTabsValue(iValue);
 
       let oTab = aStateTabs[iValue] ?? null;
       console.log('oTab=', oTab);
@@ -354,33 +365,32 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickTab', cClickTab);
     };
-  }, [iStateValue, bStateOpen, iStateIndex, aStateTabs]);
+  }, [iStateTabsValue, bStateOpen, iStateIndex, aStateTabs]);
 
   let cOnTab = useCallback((oRoute: any) => {
     console.log('OnTab 行为发生 oRoute=', oRoute);
     let iAdminUserId = oRoute.adminUserId;
+    let iCurrentAppId = 0;
+    let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
     if (iAdminUserId) {
-      // TODO
+          // TODO
       // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
       let oApp = aStateApps?.[iStateIndex];
-      let oAppId = oApp?.id ?? 0;
+      let iAppId = oApp?.id ?? 0;
 
-      let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
-      let iCurrentAppId = 0;
 
-      if (iParamsAppId > 0) {
-        iCurrentAppId = iParamsAppId;
-      }
-
-      if (iParamsAppId <= 0) {
-        iCurrentAppId = oAppId;
-      }
+      iCurrentAppId = iParamsAppId > 0 ? iParamsAppId : iCurrentAppId;
+      iCurrentAppId = iParamsAppId <= 0 ? iAppId : iCurrentAppId;
 
       cSetStateAppId(iCurrentAppId);
+    }
 
-      let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, iCurrentAppId) : [];
-      let aTabs0 = Helpers.Tab.getOnesByAdminiUserIdAppId(iAdminUserId, 0);
+    if (iAdminUserId) {
+
+
+      let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByMeIdAppId(iAdminUserId, iCurrentAppId) : [];
+      let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(iAdminUserId, 0);
 
       let aTabs = [...aTabs1, ...aTabs0] ?? [];
 
@@ -396,7 +406,7 @@ function Navigation(oProps: any) {
       if (oRoute.id == '2-n-0') {
         oTab.text = oTextRef.current || '未定义';
       }
-      let iValue = iStateValue;
+      let iValue = iStateTabsValue;
       let bExist = false;
       let iTabIndex = 0;
 
@@ -443,20 +453,20 @@ function Navigation(oProps: any) {
         // DO NOTHING
       }
       if (!bExist) {
-        aTabs1 = iCurrentAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
-        aTabs0 = iCurrentAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
+        aTabs1 = iParamsAppId >= 1 ? [...aTabs1, oTab] : aTabs1;
+        aTabs0 = iParamsAppId <= 0 ? [...aTabs0, oTab] : aTabs0;
 
         aTabs = [...aTabs1, ...aTabs0];
-        iValue = iCurrentAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
+        iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
       }
       console.log('456 准备写入 Tab 数据，aTabs1=', aTabs1, ', iAdminUserId=', iAdminUserId, ', iCurrentAppId=', iCurrentAppId);
       console.log('457 准备写入 Tab aTabs0=', aTabs0, ', iAdminUserId=', iAdminUserId, ', 0=', 0);
 
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
-      Helpers.Tab.setOnesByAdminUserIdAppId(aTabs0, iAdminUserId, 0);
+      Helpers.Tab.setOnesByMeIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
+      Helpers.Tab.setOnesByMeIdAppId(aTabs0, iAdminUserId, 0);
 
 
-      cSetStateValue(iValue);
+      cSetStateTabsValue(iValue);
       cSetStateTabs(aTabs);
     };
 
@@ -582,7 +592,7 @@ function Navigation(oProps: any) {
 
   return (
     <Contexts.AppsIndex.Provider value={iStateIndex}>
-      <Contexts.TabsValue.Provider value={iStateValue}>
+      <Contexts.TabsValue.Provider value={iStateTabsValue}>
         <Contexts.Tabs.Provider value={aStateTabs}>
           <div
             className={oClasses.root}

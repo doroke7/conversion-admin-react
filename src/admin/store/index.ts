@@ -13,7 +13,8 @@ let oStore = createStore(
     adminUser: reducers.adminUser,
     adminUsers: reducers.adminUsers,
     appUsers: reducers.appUsers,
-    appPipelines: reducers.appPipelines
+    appPipelines: reducers.appPipelines,
+    appPipeline: reducers.appPipeline
 
   }),
   composeWithDevTools(applyMiddleware(reduxThunk))
