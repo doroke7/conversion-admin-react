@@ -3,7 +3,6 @@ import STORAGE from './STORAGE/INDEX';
 import MOMENT from './MOMENT/INDEX';
 import MESSAGES from './MESSAGES/INDEX';
 import MODALS from './MODALS/INDEX';
-import HTTP from './HTTP/INDEX';
 import ADMIN_MENUS from './ADMIN_MENUS/INDEX';
 import ICONS from './ICONS/INDEX';
 import SERVICE from './SERVICE/INDEX';
@@ -27,7 +26,6 @@ export default {
   STORAGE: STORAGE,
   MOMENT: MOMENT,
   MESSAGES: MESSAGES,
-  HTTP: HTTP,
   MODALS: MODALS,
   ADMIN_MENUS: ADMIN_MENUS,
   ICONS: ICONS,
