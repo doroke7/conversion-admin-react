@@ -5,6 +5,7 @@ import adminUser from './adminUser';
 import adminUsers from './adminUsers';
 import appUsers from './appUsers';
 import appPipelines from './appPipelines';
+import appPipeline from './appPipeline';
 
 export default {
   authorizaion: authorizaion,
@@ -13,5 +14,6 @@ export default {
   adminUser: adminUser,
   adminUsers: adminUsers,
   appUsers: appUsers,
-  appPipelines: appPipelines
+  appPipelines: appPipelines,
+  appPipeline: appPipeline
 };

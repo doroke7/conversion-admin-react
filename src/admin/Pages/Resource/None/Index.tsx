@@ -10,15 +10,15 @@ import style from './style';
 function Index(oProps: any): any {
   let oClasses: any = style(void 0);
   let oRouteMatch = useRouteMatch();
-  let [oState, cSetState] = useState<any>({
-    animation: false
-  });
+
+  let [bStateAnimation, cSetStateAnimation] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
-      cSetState({ animation: true });
+      cSetStateAnimation(true);
       await new Promise((cResolve) => setTimeout(cResolve, 300));
-      cSetState({ animation: false });
+      cSetStateAnimation(false);
+
     })();
     return () => {};
   }, [oRouteMatch.url]);
@@ -26,7 +26,7 @@ function Index(oProps: any): any {
   return (
     <div
       className={clsx(oClasses.root, {
-        [oClasses.rootAnimation]: oState.animation
+        [oClasses.rootAnimation]: bStateAnimation
       })}>
       <Icon></Icon>
       <div className={oClasses.text}>⎯分页组件未定义⎯</div>

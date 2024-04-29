@@ -11,7 +11,7 @@ const style = makeStyles((oTheme: Theme): any =>
     wrapperProcess: {
       width: '7px',
       height: '20px',
-      background: lightBlue[50],
+      background: grey[200],
       position: 'relative',
     },
     process: {
@@ -26,7 +26,7 @@ const style = makeStyles((oTheme: Theme): any =>
       height: '20px',
       background: pink[50],
       border: '2px dotted ' + red[200],
-      animation: '$fadeIn .3s linear 0s 1 normal'
+      animation: '$fadeIn 0.3s linear 0s 1 normal'
 
     },
     processNone: {
@@ -35,17 +35,26 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     processOnging: {
       height: '60%',
-      animation: '$scaleY60 .3s linear 0s 1 normal'
+      animation: '$scaleY60 0.3s ease-in 0s 1 normal'
 
     },
     processSuccess: {
       height: '100%',
-      animation: '$scaleY100 .3s linear 0s 1 normal'
+      animation: '$scaleY100 0.3s ease-in 0s 1 normal'
 
     },
     '@keyframes scaleY60': {
       '0%': {
         height: '0%',
+      },
+      '70%': {
+        height: '80%',
+      },
+      '80%': {
+        height: '60%',
+      },
+      '90%': {
+        height: '70%',
       },
       '100%': {
         height: '60%',
@@ -54,6 +63,15 @@ const style = makeStyles((oTheme: Theme): any =>
     '@keyframes scaleY100': {
       '0%': {
         height: '0%',
+      },
+      '50%': {
+        height: '120%',
+      },
+      '60%': {
+        height: '100%',
+      },
+      '70%': {
+        height: '120%',
       },
       '100%': {
         height: '100%',

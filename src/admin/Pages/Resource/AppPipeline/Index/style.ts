@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen } from '@material-ui/core/colors';
+import { pink, red, grey, teal, blue, indigo, lightBlue, common, green, purple, lightGreen, orange, deepOrange, amber, cyan } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -57,61 +57,12 @@ const style = makeStyles((oTheme: Theme): any =>
         display: 'none'
       },
       width: '100%',
-      '& .MuiDataGrid-root': {
-        '& .MuiDataGrid-columnHeader': {
-          '&:focus': {
-            outline: 'none'
-          },
-          '&:focus-within': {
-            outline: 'none'
-          }
-        },
-        '& .MuiDataGrid-overlay': {
-          backgroundColor: 'rgba(250, 250, 250, 0)'
-        },
-        '& .MuiDataGrid-cell': {
-          '&:focus': {
-            outline: 'none'
-          },
-          '&:focus-within': {
-            outline: 'none'
-          }
-        }
-      },
-      '& .MuiDataGrid-columnsContainer': {
-        zIndex: 1
-      },
-      '& .MuiDataGrid-footerContainer': {
-      },
-      '& .MuiDataGrid-dataContainer': {
-      },
-      '& .MuiDataGrid-window': {
-        scrollbarWidth: 'thin',
-        background: 'linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%)',
-        overflowX: 'hidden'
-      },
-      '&  .MuiDataGrid-row': {
-        background: '#FFFFFF',
 
-        '&:hover': {
-          background: '#F2F2F2'
-        }
-      }
     },
     dataGrid: {
       minHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       maxHeight: 'calc( 100vh - ' + oTheme.spacing(21) + 'px )',
       overflow: 'hidden',
-      '& .MuiDataGrid-row:last-child': {
-        '& .MuiDataGrid-cell': {
-          // borderBottom: 'none'
-        }
-      },
-      '& .MuiIconButton-label': {
-        '& .MuiSvgIcon-root': {
-          fontSize: '1rem'
-        }
-      }
     },
     avatar: {
       width: oTheme.spacing(3),
@@ -183,78 +134,102 @@ const style = makeStyles((oTheme: Theme): any =>
         marginTop: -oTheme.spacing(2)
       }
     },
-    fab: {
-      width: oTheme.spacing(4.5) - 0.36,
-      height: oTheme.spacing(4.5) - 0.36,
-      borderRadius: oTheme.spacing(0),
-
-      '&.MuiFab-root': {
-        boxShadow: 'none',
+    iconButton: {
+      '&.MuiIconButton-root': {
+        padding: oTheme.spacing(0.5)
       },
       '&.Mui-disabled': {
+        color: 'rgb(0 0 0 / 7%)',
+
+
 
       },
-      '&:nth-child(n+1)': {
-        marginLeft: oTheme.spacing(1),
+    },
+    iconButtonDetail: {
+      color: lightBlue[700],
+
+    },
+    iconButtonTranscoder: {
+      color: amber[700],
+
+    },
+    iconButtonNotifier: {
+      color: green[700],
+
+    },
+
+    stepLabel: {
+      '& .MuiStepIcon-root.MuiStepIcon-completed' : {
+       // color: lightBlue[700]
+
+      },
+      '& .MuiStepIcon-root.MuiStepIcon-active' : {
+        color: lightBlue[500]
+
+      }
+    },
+    stepConnector: {
+      '&.MuiStepConnector-completed': {
+        '& .MuiStepConnector-line': {
+          borderColor: lightBlue[700],
+          borderImage: 'linear-gradient(to right, ' + lightBlue[700] + ' 0%, ' + blue[700] + ' 100%)',
+          borderImageSlice: 1,
+        }
+      },
+      '&.MuiStepConnector-active': {
+        '& .MuiStepConnector-line': {
+          borderColor: lightBlue[500],
+          borderImage: 'linear-gradient(to right, ' + blue[700] + ' 10%, ' + grey[100] + ' 60%)',
+          borderImageSlice: 1,
+        }
+      },
+      '&.Mui-disabled': {
+        '& .MuiStepConnector-line': {
+          borderTopStyle: 'dotted'
+        }
+      },
+
+      '&.MuiStepConnector-alternativeLabel': {
+        top: oTheme.spacing(1.25) + 'px',
+      },
+      '& .MuiStepConnector-lineHorizontal': {
+        borderTopWidth: oTheme.spacing(0.375) + 'px',
       }
     },
 
-    fabTranscoder: {
-      '&:hover': {
-        backgroundColor: red[900],
-      },
-      color: grey[50],
-      backgroundColor: red[700],
-      '&.Mui-disabled': {
-        color: grey[50],
-        backgroundColor: '#d32f2f33',
-      },
-
-    },
-    fabNotifier: {
-      '&:hover': {
-        backgroundColor: green[900],
-      },
-      color: grey[50],
-      backgroundColor: green[700],
-      '&.Mui-disabled': {
-        color: grey[50],
-        backgroundColor: '#388e3c33',
-      },
-    },
-    fabAnimation000: {
+    iconButtonAnimation000: {
       animation: '$zoomIn 0.3s ease-in-out 0.00s 1 normal, $fadeIn 0.2s ease-in-out 0s 1 normal, $fade 0.00s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation005: {
+    iconButtonAnimation005: {
       animation: '$zoomIn 0.3s ease-in-out 0.05s 1 normal, $fadeIn 0.2s ease-in-out 0.05s 1 normal, $fade 0.05s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation010: {
+    iconButtonAnimation010: {
       animation: '$zoomIn 0.3s ease-in-out 0.10s 1 normal, $fadeIn 0.2s ease-in-out 0.10s 1 normal, $fade 0.10s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation015: {
+    iconButtonAnimation015: {
       animation: '$zoomIn 0.3s ease-in-out 0.15s 1 normal, $fadeIn 0.2s ease-in-out 0.15s 1 normal, $fade 0.15s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation020: {
+    iconButtonAnimation020: {
       animation: '$zoomIn 0.3s ease-in-out 0.20s 1 normal, $fadeIn 0.2s ease-in-out 0.20s 1 normal, $fade 0.20s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation025: {
+    iconButtonAnimation025: {
       animation: '$zoomIn 0.3s ease-in-out 0.25s 1 normal, $fadeIn 0.2s ease-in-out 0.25s 1 normal, $fade 0.25s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation030: {
+    iconButtonAnimation030: {
       animation: '$zoomIn 0.3s ease-in-out 0.30s 1 normal, $fadeIn 0.2s ease-in-out 0.30s 1 normal, $fade 0.30s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation035: {
+    iconButtonAnimation035: {
       animation: '$zoomIn 0.3s ease-in-out 0.35s 1 normal, $fadeIn 0.2s ease-in-out 0.35s 1 normal, $fade 0.35s ease-in-out 0s 1 normal',
 
     },
-    fabAnimation040: {
+    iconButtonAnimation040: {
       animation: '$zoomIn 0.3s ease-in-out 0.40s 1 normal, $fadeIn 0.2s ease-in-out 0.40s 1 normal, $fade 0.40s ease-in-out 0s 1 normal',
 
     },
@@ -305,6 +280,9 @@ const style = makeStyles((oTheme: Theme): any =>
       '0%': {
         transform: 'scale(0)'
       },
+      '60%': {
+        transform: 'scale(1.6)'
+      },
       '100%': {
         transform: 'scale(1)'
       }
@@ -323,20 +301,6 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '100%': {
         opacity: '1'
-      }
-    },
-    '@keyframes scale': {
-      '0%': {
-        transform: 'scaleX(0) scaleY(0)'
-      },
-      '30%': {
-        transform: 'scaleX(1) scaleY(0.1)'
-      },
-      '80%': {
-        transform: 'scaleX(1) scaleY(0.8)'
-      },
-      '100%': {
-        transform: 'scaleX(1) scaleY(1)'
       }
     },
 

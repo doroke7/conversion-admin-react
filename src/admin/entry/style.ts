@@ -4,7 +4,9 @@ import { pink, grey, indigo, blue } from '@material-ui/core/colors';
 const style = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
-      backgroundColor: grey[50]
+      background: 'linear-gradient(308deg, #fbfbfb, #eeeeee)',
+      backgroundSize: '400% 400%',
+        animation: 'animationGradient 12s ease infinite',
     },
     test: {
       animation: '$fade 1s linear 0s 1 normal, $slide 0.5s ease-out 0.2s 1 normal'
@@ -24,6 +26,11 @@ const style = makeStyles((oTheme: Theme) =>
       '100%': {
         transform: 'translateY(0%)'
       }
+    },
+    '@keyframes $animationGradient': {
+      '0%': {backgroundPosition: '2% 0%'},
+      '50%': {backgroundPosition: '99% 100%'},
+      '100%': {backgroundPosition: '2% 0%'},
     }
   })
 );

@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { pink, grey, common } from '@material-ui/core/colors';
+import { pink, grey, common, indigo, lightBlue } from '@material-ui/core/colors';
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
@@ -199,6 +199,85 @@ const style = makeStyles((oTheme: Theme): any =>
         fontSize: oTheme.spacing(1.75),
       },
 
+    },
+    sort:{
+
+
+    },
+    sortOuter: {
+      color: common['white'],
+      textShadow: '1px 1px 0 ' +  grey[700] + ', -1px 1px 0 ' + grey[700] + ', -1px -1px 0 ' + grey[700] + ', 1px -1px 0 ' + grey[700],
+      fontWeight: 900,
+      fontSize: oTheme.spacing(2.0),
+      textAlign: 'center',
+      position: 'relative',
+      width: oTheme.spacing(3.8),
+      height: oTheme.spacing(3.8),
+      background: 'linear-gradient(327deg, #929292 0%, #8c8c8c 40%, #a1a1a1 45%, #ffffff 50%, #9d9d9d 55%, #9d9d9d 60%, #9d9d9d 100%)',
+      backgroundSize: '1400% 1400%',
+      animation: '$animationGradient 5s ease infinite alternate-reverse',
+    },
+    sortInner: {
+      opacity: 1,
+      position: 'absolute',
+      top: '50%',  
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: oTheme.spacing(3.3),
+      height: oTheme.spacing(3.3),
+      lineHeight: oTheme.spacing(3.3) + 'px',
+      background: lightBlue[500],
+    },
+
+    sort01: {
+      background: lightBlue[900],
+
+    },
+    sort11:{
+      background: lightBlue[800],
+    },
+    sort21:{
+      background: lightBlue[700],
+    },
+    sort31:{
+      background: lightBlue[600],
+    },
+    sort41:{
+      background: lightBlue[500],
+    },
+    sort51:{
+      background: lightBlue[400],
+    },
+    sort61:{
+      background: lightBlue[300],
+    },
+    sort71:{
+      background: lightBlue[200],
+    },
+    sort81:{
+      background: lightBlue[100],
+    },
+    sort91:{
+      background: lightBlue[50],
+    },
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0'
+      },
+      '100%': {
+        opacity: '1'
+      }
+    },
+    '@keyframes animationGradient': {
+      '0%': {
+        backgroundPosition: '0% 50%',
+      },
+      '50%': {
+        backgroundPosition: '100% 50%',
+      },
+      '100%': {
+        backgroundPosition: '0% 50%',
+      }
     }
   })
 );

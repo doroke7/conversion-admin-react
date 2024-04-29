@@ -5,7 +5,6 @@ const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     root: {
       flexGrow: 1,
-      backgroundColor: grey[50],
       height: '100vh',
       position: 'relative',
       overflow: 'hidden'

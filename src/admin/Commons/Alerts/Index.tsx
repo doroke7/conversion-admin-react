@@ -23,15 +23,14 @@ import style from './style';
 function Alerts(oProps: any): any {
   let oClasses: any = style(void 0);
 
-  let [oState, cSetState] = useState<any>({
-    open: false,
-    code: 0,
-    message: 'MESSAGE',
-    time: 2000
-  });
+  let [bStateOpen, cSetStateOpen] = useState<boolean>(false);
+  let [iStateCode, cSetStateCode] = useState<number>(0);
+  let [sStateMessage, cSetStateMessage] = useState<string>('MESSAGE');
+  let [iStateTime, cSetStateTime] = useState<number>(2000);
+
 
   let cHandleClick = () => {
-    cSetState({ ...oState, open: true });
+    cSetStateOpen(true);
   };
 
   let cHandleClose = (event: React.SyntheticEvent | React.MouseEvent, sReason?: string) => {
@@ -39,7 +38,8 @@ function Alerts(oProps: any): any {
       return;
     }
 
-    cSetState({ ...oState, open: false });
+    cSetStateOpen(false);
+
   };
 
   let dCodesToTitles = {
@@ -65,24 +65,21 @@ function Alerts(oProps: any): any {
   let sTitle = dCodesToTitles['-5'];
   let Icon = dCodesToIcons['-5'];
 
-  sTitle = dCodesToTitles[oState.code] ?? sTitle;
-  Icon = dCodesToIcons[oState.code] ?? Icon;
+  sTitle = dCodesToTitles[iStateCode] ?? sTitle;
+  Icon = dCodesToIcons[iStateCode] ?? Icon;
 
-  sTitle = oState.code > 1 ? dCodesToTitles['1'] : sTitle;
-  Icon = oState.code > 1 ? dCodesToIcons['1'] : Icon;
+  sTitle = iStateCode > 1 ? dCodesToTitles['1'] : sTitle;
+  Icon = iStateCode > 1 ? dCodesToIcons['1'] : Icon;
 
-  sTitle = oState.code < -4 ? dCodesToTitles['-5'] : sTitle;
-  Icon = oState.code < -4 ? dCodesToIcons['-5'] : Icon;
+  sTitle = iStateCode < -4 ? dCodesToTitles['-5'] : sTitle;
+  Icon = iStateCode < -4 ? dCodesToIcons['-5'] : Icon;
 
   useLayoutEffect(() => {
     let cAlert = (oMessage: any) => {
-      cSetState({
-        ...oState,
-        open: true,
-        code: oMessage?.code ?? 0,
-        message: oMessage?.message ?? '',
-        time: oMessage?.time ?? oState.time
-      });
+      cSetStateOpen(true);
+      cSetStateCode(oMessage?.code ?? 0);
+      cSetStateMessage(oMessage?.message ?? '');
+      cSetStateTime(oMessage?.time ?? iStateTime);
     };
     let oEventEmitter: any = events.addListener('Alerts-onAlert', cAlert);
     return () => {
@@ -90,33 +87,33 @@ function Alerts(oProps: any): any {
     };
   }, []);
 
-  return oState.message ? (
+  return sStateMessage ? (
     <Snackbar
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center'
       }}
-      open={oState.open}
-      autoHideDuration={oState.time}
+      open={bStateOpen}
+      autoHideDuration={iStateTime}
       onClose={cHandleClose}
       TransitionComponent={Slide}
       action={<></>}>
       <Alert
         className={clsx(oClasses.alert, {
-          [oClasses.debugAlert]: oState.code >= 1,
-          [oClasses.infoAlert]: oState.code == 0,
-          [oClasses.noticeAlert]: oState.code == -1,
-          [oClasses.warnAlert]: oState.code == -2,
-          [oClasses.errorAlert]: oState.code == -3,
-          [oClasses.fatalAlert]: oState.code == -4,
-          [oClasses.unkownAlert]: oState.code < -4 || oState.code > 2
+          [oClasses.debugAlert]: iStateCode >= 1,
+          [oClasses.infoAlert]: iStateCode == 0,
+          [oClasses.noticeAlert]: iStateCode == -1,
+          [oClasses.warnAlert]: iStateCode == -2,
+          [oClasses.errorAlert]: iStateCode == -3,
+          [oClasses.fatalAlert]: iStateCode == -4,
+          [oClasses.unkownAlert]: iStateCode < -4 || iStateCode > 2
         })}
         icon={<Icon />}
         onClose={cHandleClose}
         elevation={3}
         variant="filled">
         <AlertTitle className={oClasses.alertTitle}>{sTitle}</AlertTitle>
-        <span className={oClasses.message}>{oState.message}</span>
+        <span className={oClasses.message}>{sStateMessage}</span>
       </Alert>
     </Snackbar>
   ) : (
@@ -124,15 +121,4 @@ function Alerts(oProps: any): any {
   );
 }
 export default Alerts;
-/**
- * TransitionComponent={(oProps: any) => <Slide direction="down"></Slide>}>
- * TransitionComponent={Slide}>
- *
- * 新版的 React 已经不倾向上述的写法
- * 新版的 React 已经则倾向下述的写法
- * 新式写法比较直觉，不过这写法无法向下兼容
- *
- * TransitionComponent={<Slide direction="down"></Slide>}>
- * TransitionComponent={<Slide/>}>
- *
- */
+

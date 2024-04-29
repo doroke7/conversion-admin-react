@@ -148,7 +148,6 @@ function Index(oProps: any): any {
     {
       field: 'id',
       headerName: 'ID',
-      description: '流水号',
       width: 80,
       sortable: false,
       editable: false
@@ -159,15 +158,18 @@ function Index(oProps: any): any {
       description: '项目',
       sortable: false,
       width: 84,
-      align: 'left',
+      headerAlign: 'center',
+      align: 'center',
       renderCell: (oProps: any) => {
-        let sTitle = oProps?.row?.app?.title.substr(0, 1);
+        let sTitle = oProps?.row?.app?.title;
+        let sLetter = sTitle.substr(0, 1);
+
         let sUrl = oProps?.row?.app?.url;
 
         return (
           <Tooltip title={sTitle} placement="right">
             <Avatar className={clsx(oClasses.avatar, {})} variant="rounded" src={sUrl}>
-              {sTitle ? sTitle : <WidgetsIcon></WidgetsIcon>}
+              {sLetter ? sLetter : <WidgetsIcon></WidgetsIcon>}
             </Avatar>
           </Tooltip>
         );
@@ -176,7 +178,6 @@ function Index(oProps: any): any {
     {
       field: 'name',
       headerName: '名称',
-      description: '名称',
       sortable: false,
       flex: 2,
       width: 85,
@@ -186,15 +187,41 @@ function Index(oProps: any): any {
     {
       field: 'sort',
       headerName: '优先级',
-      description: '优先级',
       width: 120,
       sortable: false,
-      editable: false
+      editable: false,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (oProps: any) => {
+        let iSort = oProps?.row?.sort;
+
+        return (
+          <div className={clsx(oClasses.sortOuter, {})}>
+            <div className={clsx(oClasses.sortInner, {
+              [oClasses.sort01]: iSort >= 1 && iSort <= 10,
+              [oClasses.sort11]: iSort >= 11 && iSort <= 20,
+              [oClasses.sort21]: iSort >= 21 && iSort <= 30,
+              [oClasses.sort31]: iSort >= 31 && iSort <= 40,
+              [oClasses.sort41]: iSort >= 41 && iSort <= 50,
+              [oClasses.sort51]: iSort >= 51 && iSort <= 60,
+              [oClasses.sort61]: iSort >= 61 && iSort <= 70,
+              [oClasses.sort71]: iSort >= 71 && iSort <= 80,
+              [oClasses.sort81]: iSort >= 81 && iSort <= 90,
+              [oClasses.sort91]: iSort >= 91 && iSort <= 100,
+              
+            })}>
+            <span>
+            {iSort}
+            </span>
+            </div>
+
+          </div>
+        );
+      },
     },
     {
       field: 'addedTime',
       headerName: '创建时间',
-      description: '创建时间',
       sortable: false,
       flex: 1,
       width: 200,
@@ -203,7 +230,6 @@ function Index(oProps: any): any {
     {
       field: 'tool',
       headerName: '操作',
-      description: '操作',
       sortable: false,
       width: 200
     },
