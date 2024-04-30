@@ -41,6 +41,7 @@ import Rotate90DegreesCcwSharpIcon from '@material-ui/icons/Rotate90DegreesCcwSh
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+import Grow from '@material-ui/core/Grow';
 
 import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
@@ -74,7 +75,7 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
-  let [bStateOpen, cSetStateOpen] = useState<boolean>(false);
+  let [bStateDialogOpen, cSetStateDialogOpen] = useState<boolean>(false);
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -353,7 +354,7 @@ function Index(oProps: any): any {
   let cHandleDetailClick = (iId: number) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
 
-      cSetStateOpen(true);
+      cSetStateDialogOpen(true);
       let oParam = {};
       let oOption = {
         appId: iAppId
@@ -385,8 +386,8 @@ function Index(oProps: any): any {
   };
 
   let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
-
-    cSetStateOpen(false);
+    oDispatch(actions.appPipeline.set({}));
+    cSetStateDialogOpen(false);
   }
 
 
@@ -673,11 +674,11 @@ function Index(oProps: any): any {
   return (
     <div className="app-pipeline">
       <Dialog
-        TransitionComponent={Slide}
+        TransitionComponent={Grow}
 
         onClose={cHandleDialogClose}
         aria-labelledby="customized-dialog-title"
-        open={bStateOpen}
+        open={bStateDialogOpen}
         fullWidth={true}
         maxWidth={'md'}
       >
@@ -821,15 +822,16 @@ function Index(oProps: any): any {
             </Stepper>
           </Typography>
           {/* <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-            auctor fringilla.
-          </Typography> */}
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+          lacus vel augue laoreet rutrum faucibus dolor auctor.
+        </Typography>
+        <Typography gutterBottom>
+          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+          scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+          auctor fringilla.
+        </Typography> */}
         </DialogContent>
+
       </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
