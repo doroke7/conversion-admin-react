@@ -653,20 +653,22 @@ function Index(oProps: any): any {
   let sColor5: color = 'textSecondary';
   let sColor6: color = 'textSecondary';
 
-  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.staus >= 0) ? 'initial' : sColor1;
-  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.staus >= 0) ? 'initial' : sColor2;
-  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.staus >= 0) ? 'initial' : sColor3;
-  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.staus >= 0) ? 'initial' : sColor4;
-  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.staus >= 0) ? 'initial' : sColor5;
-  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.staus >= 0) ? 'initial' : sColor6;
+  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 0) ? 'initial' : sColor1;
+  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 0) ? 'initial' : sColor2;
+  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 0) ? 'initial' : sColor3;
+  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 0) ? 'initial' : sColor4;
+  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 0) ? 'initial' : sColor5;
+  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 0) ? 'initial' : sColor6;
 
-  sColor1 = (oAppPipeline?.state == 1 && oAppPipeline?.staus == -1) ? 'error' : sColor1;
-  sColor2 = (oAppPipeline?.state == 2 && oAppPipeline?.staus == -1) ? 'error' : sColor2;
-  sColor3 = (oAppPipeline?.state == 3 && oAppPipeline?.staus == -1) ? 'error' : sColor3;
-  sColor4 = (oAppPipeline?.state == 4 && oAppPipeline?.staus == -1) ? 'error' : sColor4;
-  sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.staus == -1) ? 'error' : sColor5;
-  sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.staus == -1) ? 'error' : sColor6;
+  sColor1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1) ? 'error' : sColor1;
+  sColor2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1) ? 'error' : sColor2;
+  sColor3 = (oAppPipeline?.state == 3 && oAppPipeline?.status == -1) ? 'error' : sColor3;
+  sColor4 = (oAppPipeline?.state == 4 && oAppPipeline?.status == -1) ? 'error' : sColor4;
+  sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1) ? 'error' : sColor5;
+  sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1) ? 'error' : sColor6;
 
+  console.log('oAppPipeline=', oAppPipeline);
+  console.log('sColor2=', sColor2);
 
   return (
     <div className="app-pipeline">
@@ -688,11 +690,19 @@ function Index(oProps: any): any {
             <Stepper
               activeStep={iAppPipelineState}
               alternativeLabel
-              connector={<StepConnector className={oClasses.stepConnector} />}
+              connector={
+                <StepConnector className={clsx(oClasses.stepConnector, {
+                  [oClasses.stepConnectorFail]: oAppPipeline?.status == -1,
+                  [oClasses.stepConnectorOngoing]: oAppPipeline?.status == 0
+
+                })} />
+              }
             >
               <Step>
                 <StepLabel
-                  className={oClasses.stepLabel}
+                  className={clsx(oClasses.stepLabel, {
+                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 1 && oAppPipeline?.status == 0
+                  })}
                   error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
@@ -710,7 +720,9 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel
-                  className={oClasses.stepLabel}
+                  className={clsx(oClasses.stepLabel, {
+                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 2 && oAppPipeline?.status == 0
+                  })}
                   error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
@@ -728,7 +740,9 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel
-                  className={oClasses.stepLabel}
+                  className={clsx(oClasses.stepLabel, {
+                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 3 && oAppPipeline?.status == 0
+                  })}
                   error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
@@ -746,7 +760,9 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel
-                  className={oClasses.stepLabel}
+                  className={clsx(oClasses.stepLabel, {
+                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 4 && oAppPipeline?.status == 0
+                  })}
                   error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
@@ -764,7 +780,9 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel
-                  className={oClasses.stepLabel}
+                  className={clsx(oClasses.stepLabel, {
+                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 5 && oAppPipeline?.status == 0
+                  })}
                   error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
@@ -782,7 +800,9 @@ function Index(oProps: any): any {
               </Step>
               <Step>
                 <StepLabel
-                  className={oClasses.stepLabel}
+                  className={clsx(oClasses.stepLabel, {
+                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 6 && oAppPipeline?.status == 0
+                  })}
                   error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
