@@ -644,12 +644,14 @@ function Index(oProps: any): any {
   iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
   iAppPipelineState = iAppPipelineState >= 6 ? 6 : iAppPipelineState;
 
-  let sColor1 = 'textSecondary';
-  let sColor2 = 'textSecondary';
-  let sColor3 = 'textSecondary';
-  let sColor4 = 'textSecondary';
-  let sColor5 = 'textSecondary';
-  let sColor6 = 'textSecondary';
+  type color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
+
+  let sColor1: color = 'textSecondary';
+  let sColor2: color = 'textSecondary';
+  let sColor3: color = 'textSecondary';
+  let sColor4: color = 'textSecondary';
+  let sColor5: color = 'textSecondary';
+  let sColor6: color = 'textSecondary';
 
   sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.staus >= 0) ? 'initial' : sColor1;
   sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.staus >= 0) ? 'initial' : sColor2;
