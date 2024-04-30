@@ -158,13 +158,38 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
 
+    dialogContent: {
+      minHeight: oTheme.spacing(18.75),
+      position: 'relative',
+    },
+
+    loadingIcon: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+
+    },
+
+    visibilityHidden: {
+      visibility: 'hidden',
+    },
     stepLabel: {
-      '& .MuiStepIcon-root.MuiStepIcon-completed' : {
-       // color: lightBlue[700]
+      '& .MuiStepIcon-root.MuiStepIcon-completed': {
 
       },
-      '& .MuiStepIcon-root.MuiStepIcon-active' : {
+      '& .MuiStepIcon-root.MuiStepIcon-active': {
+
+      }
+    },
+    stepLabelOngoing: {
+      '& .MuiStepIcon-root.MuiStepIcon-active': {
         color: lightBlue[500]
+
+      }
+    },
+    stepLabelFail: {
+      '& .MuiStepIcon-root.MuiStepIcon-active': {
 
       }
     },
@@ -178,16 +203,13 @@ const style = makeStyles((oTheme: Theme): any =>
       },
       '&.MuiStepConnector-active': {
         '& .MuiStepConnector-line': {
-          borderColor: lightBlue[500],
-          borderImage: 'linear-gradient(to right, ' + blue[700] + ' 10%, ' + grey[100] + ' 60%)',
-          borderImageSlice: 1,
         }
       },
       '&.Mui-disabled': {
         '& .MuiStepConnector-line': {
           borderTopStyle: 'dotted'
         },
-        '& .MuiTypography-root':{
+        '& .MuiTypography-root': {
           color: 'rgba(0, 0, 0, 0.54)',
         }
       },
@@ -198,6 +220,26 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiStepConnector-lineHorizontal': {
         borderTopWidth: oTheme.spacing(0.375) + 'px',
       }
+    },
+    stepConnectorOngoing: {
+      '&.MuiStepConnector-active': {
+        '& .MuiStepConnector-line': {
+          borderColor: lightBlue[500],
+          borderImage: 'linear-gradient(to right, ' + blue[700] + ' 10%, ' + grey[100] + ' 60%)',
+          borderImageSlice: 1,
+        }
+      },
+
+    },
+    stepConnectorFail: {
+      '&.MuiStepConnector-active': {
+        '& .MuiStepConnector-line': {
+          borderColor: red[500],
+          borderImage: 'linear-gradient(to right, ' + grey[50] + ' 10%, ' + red[600] + ' 90%)',
+          borderImageSlice: 1,
+        }
+      },
+
     },
 
     iconButtonAnimation000: {

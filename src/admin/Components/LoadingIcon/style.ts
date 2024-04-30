@@ -6,7 +6,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
     root: {
       margin: 'auto',
       display: 'block',
-      shapeRendering: 'auto'
+      shapeRendering: 'auto',
+      width: oTheme.spacing(10),
+      height: oTheme.spacing(10)
     },
     fill1: {
       fill: blue[300]
