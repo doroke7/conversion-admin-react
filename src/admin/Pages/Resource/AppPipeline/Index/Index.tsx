@@ -654,12 +654,10 @@ function Index(oProps: any): any {
   sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1) ? 'error' : sColor5;
   sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1) ? 'error' : sColor6;
 
-
   return (
     <div className="app-pipeline">
       <Dialog
         TransitionComponent={Grow}
-
         onClose={cHandleDialogClose}
         aria-labelledby="customized-dialog-title"
         open={bStateDialogOpen}
@@ -671,9 +669,8 @@ function Index(oProps: any): any {
             {(oAppPipeline?.name ?? '')}
           </DialogTitle> : ''}
 
-        <DialogContent dividers>
+        <DialogContent dividers className={oClasses.dialogContent}>
           {oAppPipeline?.id ? <Typography gutterBottom>
-
             <Stepper
               activeStep={iAppPipelineState}
               alternativeLabel
@@ -806,7 +803,7 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
             </Stepper>
-          </Typography> : <Components.LoadingIcon></Components.LoadingIcon>}
+          </Typography> : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
 
           {/* <Typography gutterBottom>
           Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis

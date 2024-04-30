@@ -158,13 +158,25 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
 
+
+    dialogContent: {
+      minHeight: oTheme.spacing(18.75),
+      position: 'relative',
+    },
+
+    loadingIcon: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+
+    },
+
     stepLabel: {
       '& .MuiStepIcon-root.MuiStepIcon-completed': {
-        // color: lightBlue[700]
 
       },
       '& .MuiStepIcon-root.MuiStepIcon-active': {
-        // color: lightBlue[500]
 
       }
     },
@@ -176,7 +188,6 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     stepLabelFail: {
       '& .MuiStepIcon-root.MuiStepIcon-active': {
-        // color: red[500]
 
       }
     },
