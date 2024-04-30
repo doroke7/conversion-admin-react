@@ -670,7 +670,10 @@ function Index(oProps: any): any {
           </DialogTitle> : ''}
 
         <DialogContent dividers className={oClasses.dialogContent}>
-          {oAppPipeline?.id ? <Typography gutterBottom>
+          <Typography gutterBottom className={clsx({}, {
+            [oClasses.visibilityHidden]: !oAppPipeline?.id,
+
+          })}>
             <Stepper
               activeStep={iAppPipelineState}
               alternativeLabel
@@ -803,7 +806,8 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
             </Stepper>
-          </Typography> : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
+          </Typography>
+          {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
 
           {/* <Typography gutterBottom>
           Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis

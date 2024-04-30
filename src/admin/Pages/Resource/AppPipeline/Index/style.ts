@@ -158,7 +158,6 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
 
-
     dialogContent: {
       minHeight: oTheme.spacing(18.75),
       position: 'relative',
@@ -172,6 +171,9 @@ const style = makeStyles((oTheme: Theme): any =>
 
     },
 
+    visibilityHidden: {
+      visibility: 'hidden',
+    },
     stepLabel: {
       '& .MuiStepIcon-root.MuiStepIcon-completed': {
 
