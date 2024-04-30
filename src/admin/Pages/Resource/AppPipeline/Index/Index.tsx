@@ -338,6 +338,7 @@ function Index(oProps: any): any {
 
   let cHandleDetailClick = (iId: number) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
+      oDispatch(actions.appPipeline.set({}));
 
       cSetStateDialogOpen(true);
       let oParam = {};
@@ -365,14 +366,11 @@ function Index(oProps: any): any {
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
       oDispatch(actions.appPipeline.set(oAppPipeline));
 
-      console.log('oAppPipeline=', oAppPipeline);
-
     };
   };
 
   let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
     cSetStateDialogOpen(false);
-    oDispatch(actions.appPipeline.set({}));
 
   }
 
@@ -577,6 +575,27 @@ function Index(oProps: any): any {
 
             </Tooltip>
 
+            <Tooltip title="回调" arrow placement="top">
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
+                  [oClasses.iconButtonAnimation000]: iSecondRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iSecondRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iSecondRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iSecondRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iSecondRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iSecondRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iSecondRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iSecondRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iSecondRandom == 8,
+                })}
+                size="medium"
+                disabled={bNotifierDisable}
+                onClick={cHandleNotifierClick(iId)}
+              >
+                <DirectionsIcon />
+              </IconButton>
+            </Tooltip>
+
             <Tooltip title="转码" arrow placement="top">
 
               <IconButton
@@ -597,26 +616,6 @@ function Index(oProps: any): any {
 
               >
                 <UpdateIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="回调" arrow placement="top">
-              <IconButton
-                className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
-                  [oClasses.iconButtonAnimation000]: iSecondRandom == 0,
-                  [oClasses.iconButtonAnimation005]: iSecondRandom == 1,
-                  [oClasses.iconButtonAnimation010]: iSecondRandom == 2,
-                  [oClasses.iconButtonAnimation015]: iSecondRandom == 3,
-                  [oClasses.iconButtonAnimation020]: iSecondRandom == 4,
-                  [oClasses.iconButtonAnimation025]: iSecondRandom == 5,
-                  [oClasses.iconButtonAnimation030]: iSecondRandom == 6,
-                  [oClasses.iconButtonAnimation035]: iSecondRandom == 7,
-                  [oClasses.iconButtonAnimation040]: iSecondRandom == 8,
-                })}
-                size="medium"
-                disabled={bNotifierDisable}
-                onClick={cHandleNotifierClick(iId)}
-              >
-                <DirectionsIcon />
               </IconButton>
             </Tooltip>
           </div>
