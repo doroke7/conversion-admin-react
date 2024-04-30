@@ -625,11 +625,11 @@ function Index(oProps: any): any {
     },
   ];
 
-  let iAppPipelineState = oAppPipeline?.state ?? 0;
-  let iAppPipelineStaus = oAppPipeline?.status ?? 0;
+  let iActiveStep = oAppPipeline?.state ?? 0;
 
-  iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
-  iAppPipelineState = iAppPipelineState >= 6 ? 6 : iAppPipelineState;
+  iActiveStep = oAppPipeline?.status >= 2 ? iActiveStep : iActiveStep - 1;
+  iActiveStep = iActiveStep >= 6 ? 6 : iActiveStep;
+  iActiveStep = iActiveStep < 0 ? 0 : iActiveStep;
 
   type color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
 
@@ -675,7 +675,7 @@ function Index(oProps: any): any {
 
           })}>
             <Stepper
-              activeStep={iAppPipelineState}
+              activeStep={iActiveStep}
               alternativeLabel
               connector={
                 <StepConnector className={clsx(oClasses.stepConnector, {
