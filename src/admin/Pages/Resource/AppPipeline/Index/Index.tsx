@@ -654,9 +654,6 @@ function Index(oProps: any): any {
   sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1) ? 'error' : sColor5;
   sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1) ? 'error' : sColor6;
 
-  console.log('oAppPipeline=', oAppPipeline);
-  console.log('sColor2=', sColor2);
-  console.log('!!oAppPipeline?.id=', !!oAppPipeline?.id);
 
   return (
     <div className="app-pipeline">
