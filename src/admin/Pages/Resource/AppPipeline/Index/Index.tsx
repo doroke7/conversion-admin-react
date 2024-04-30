@@ -11,39 +11,24 @@ import FormControl from '@material-ui/core/FormControl';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
-import Slide from '@material-ui/core/Slide';
-import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import InputLabel from '@material-ui/core/InputLabel';
-import FlipCameraAndroidTwoToneIcon from '@material-ui/icons/FlipCameraAndroidTwoTone';
-import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';
-import MovieFilterTwoToneIcon from '@material-ui/icons/MovieFilterTwoTone';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
+
 import DirectionsIcon from '@material-ui/icons/Directions';
-import FlipCameraIosIcon from '@material-ui/icons/FlipCameraIos';
-import RepeatOneIcon from '@material-ui/icons/RepeatOne';
-import Rotate90DegreesCcwIcon from '@material-ui/icons/Rotate90DegreesCcw';
-import Rotate90DegreesCcwOutlinedIcon from '@material-ui/icons/Rotate90DegreesCcwOutlined';
-import Rotate90DegreesCcwRoundedIcon from '@material-ui/icons/Rotate90DegreesCcwRounded';
-import Rotate90DegreesCcwTwoToneIcon from '@material-ui/icons/Rotate90DegreesCcwTwoTone';
-import Rotate90DegreesCcwSharpIcon from '@material-ui/icons/Rotate90DegreesCcwSharp';
+
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
-import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import Grow from '@material-ui/core/Grow';
 
-import Zoom from '@material-ui/core/Zoom';
 import Hocs from '@/admin/Hocs';
 import Sdks from '@/admin/Sdks/Index';
 import events from '@/admin/events/index';
@@ -386,8 +371,9 @@ function Index(oProps: any): any {
   };
 
   let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
-    oDispatch(actions.appPipeline.set({}));
     cSetStateDialogOpen(false);
+    oDispatch(actions.appPipeline.set({}));
+
   }
 
 
@@ -670,6 +656,7 @@ function Index(oProps: any): any {
 
   console.log('oAppPipeline=', oAppPipeline);
   console.log('sColor2=', sColor2);
+  console.log('!!oAppPipeline?.id=', !!oAppPipeline?.id);
 
   return (
     <div className="app-pipeline">
@@ -682,11 +669,13 @@ function Index(oProps: any): any {
         fullWidth={true}
         maxWidth={'md'}
       >
-        <DialogTitle id="customized-dialog-title">
-          {oAppPipeline?.name ?? ''}
-        </DialogTitle>
+        {oAppPipeline?.id ?
+          <DialogTitle id="customized-dialog-title">
+            {(oAppPipeline?.name ?? '')}
+          </DialogTitle> : ''}
+
         <DialogContent dividers>
-          <Typography gutterBottom>
+          {oAppPipeline?.id ? <Typography gutterBottom>
 
             <Stepper
               activeStep={iAppPipelineState}
@@ -820,7 +809,8 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
             </Stepper>
-          </Typography>
+          </Typography> : <Components.LoadingIcon></Components.LoadingIcon>}
+
           {/* <Typography gutterBottom>
           Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
           lacus vel augue laoreet rutrum faucibus dolor auctor.
