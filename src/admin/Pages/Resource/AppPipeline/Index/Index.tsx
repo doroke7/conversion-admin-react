@@ -644,6 +644,28 @@ function Index(oProps: any): any {
   iAppPipelineState = iAppPipelineStaus >= 2 ? iAppPipelineState : iAppPipelineState - 1;
   iAppPipelineState = iAppPipelineState >= 6 ? 6 : iAppPipelineState;
 
+  let sColor1 = 'textSecondary';
+  let sColor2 = 'textSecondary';
+  let sColor3 = 'textSecondary';
+  let sColor4 = 'textSecondary';
+  let sColor5 = 'textSecondary';
+  let sColor6 = 'textSecondary';
+
+  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.staus >= 0) ? 'initial' : sColor1;
+  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.staus >= 0) ? 'initial' : sColor2;
+  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.staus >= 0) ? 'initial' : sColor3;
+  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.staus >= 0) ? 'initial' : sColor4;
+  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.staus >= 0) ? 'initial' : sColor5;
+  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.staus >= 0) ? 'initial' : sColor6;
+
+  sColor1 = (oAppPipeline?.state == 1 && oAppPipeline?.staus == -1) ? 'error' : sColor1;
+  sColor2 = (oAppPipeline?.state == 2 && oAppPipeline?.staus == -1) ? 'error' : sColor2;
+  sColor3 = (oAppPipeline?.state == 3 && oAppPipeline?.staus == -1) ? 'error' : sColor3;
+  sColor4 = (oAppPipeline?.state == 4 && oAppPipeline?.staus == -1) ? 'error' : sColor4;
+  sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.staus == -1) ? 'error' : sColor5;
+  sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.staus == -1) ? 'error' : sColor6;
+
+
   return (
     <div className="app-pipeline">
       <Dialog
@@ -672,11 +694,11 @@ function Index(oProps: any): any {
                   error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
                   optional={
                     <Typography
-                     display={'block'} 
-                     align={'center'} 
-                     variant="caption" 
-                     color={oAppPipeline?.state >= 1 ? 'initial': 'textSecondary'}
-                     >
+                      display={'block'}
+                      align={'center'}
+                      variant="caption"
+                      color={sColor1}
+                    >
                       {utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -689,12 +711,12 @@ function Index(oProps: any): any {
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
                   optional={
-                    <Typography 
-                      display={'block'} 
-                      align={'center'} 
-                      variant="caption" 
-                      color={oAppPipeline?.state >= 2 ? 'initial': 'textSecondary'}
-                      >
+                    <Typography
+                      display={'block'}
+                      align={'center'}
+                      variant="caption"
+                      color={sColor2}
+                    >
                       {utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -707,12 +729,12 @@ function Index(oProps: any): any {
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
                   optional={
-                    <Typography 
-                      display={'block'} 
-                      align={'center'} 
-                      variant="caption" 
-                      color={oAppPipeline?.state >= 3 ? 'initial': 'textSecondary'}
-                      >
+                    <Typography
+                      display={'block'}
+                      align={'center'}
+                      variant="caption"
+                      color={sColor3}
+                    >
                       {utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -725,12 +747,12 @@ function Index(oProps: any): any {
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
                   optional={
-                    <Typography 
-                      display={'block'} 
-                      align={'center'} 
-                      variant="caption" 
-                      color={oAppPipeline?.state >= 4 ? 'initial': 'textSecondary'}
-                      >
+                    <Typography
+                      display={'block'}
+                      align={'center'}
+                      variant="caption"
+                      color={sColor4}
+                    >
                       {utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -743,12 +765,12 @@ function Index(oProps: any): any {
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
                   optional={
-                    <Typography 
-                      display={'block'} 
-                      align={'center'} 
-                      variant="caption" 
-                      color={oAppPipeline?.state >= 5 ? 'initial': 'textSecondary'}
-                      >
+                    <Typography
+                      display={'block'}
+                      align={'center'}
+                      variant="caption"
+                      color={sColor5}
+                    >
                       {utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}
                     </Typography>
                   }
@@ -761,11 +783,11 @@ function Index(oProps: any): any {
                   className={oClasses.stepLabel}
                   error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
                   optional={
-                    <Typography 
-                      display={'block'} 
-                      align={'center'} 
-                      variant="caption" 
-                      color={oAppPipeline?.state >= 6 ? 'initial': 'textSecondary'}
+                    <Typography
+                      display={'block'}
+                      align={'center'}
+                      variant="caption"
+                      color={sColor6}
                     >
                       {utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}
                     </Typography>
