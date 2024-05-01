@@ -366,6 +366,8 @@ function Index(oProps: any): any {
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
       oDispatch(actions.appPipeline.set(oAppPipeline));
 
+      console.log('oAppPipeline=', oAppPipeline);
+
     };
   };
 
@@ -552,7 +554,6 @@ function Index(oProps: any): any {
         return (
           <div>
             <Tooltip title="详情" arrow placement="top">
-
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
                   [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
@@ -568,13 +569,10 @@ function Index(oProps: any): any {
                 size="medium"
                 disabled={false}
                 onClick={cHandleDetailClick(iId)}
-
               >
                 <InfoIcon />
               </IconButton>
-
             </Tooltip>
-
             <Tooltip title="回调" arrow placement="top">
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonNotifier, {
@@ -595,9 +593,7 @@ function Index(oProps: any): any {
                 <DirectionsIcon />
               </IconButton>
             </Tooltip>
-
             <Tooltip title="转码" arrow placement="top">
-
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
                   [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
@@ -613,7 +609,6 @@ function Index(oProps: any): any {
                 size="medium"
                 onClick={cHandleTranscoderClick(iId)}
                 disabled={bTranscoderDisable}
-
               >
                 <UpdateIcon />
               </IconButton>
