@@ -60,7 +60,8 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
-  let [bStateDialogOpen, cSetStateDialogOpen] = useState<boolean>(false);
+  let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
+  let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -340,7 +341,7 @@ function Index(oProps: any): any {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
       oDispatch(actions.appPipeline.set({}));
 
-      cSetStateDialogOpen(true);
+      cSetStateDetailDialogOpen(true);
       let oParam = {};
       let oOption = {
         appId: iAppId
@@ -371,8 +372,8 @@ function Index(oProps: any): any {
     };
   };
 
-  let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
-    cSetStateDialogOpen(false);
+  let cHandleDetailDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+    cSetStateDetailDialogOpen(false);
 
   }
 
@@ -652,9 +653,9 @@ function Index(oProps: any): any {
     <div className="app-pipeline">
       <Dialog
         TransitionComponent={Grow}
-        onClose={cHandleDialogClose}
+        onClose={cHandleDetailDialogClose}
         aria-labelledby="customized-dialog-title"
-        open={bStateDialogOpen}
+        open={bStateDetailDialogOpen}
         fullWidth={true}
         maxWidth={'md'}
       >
