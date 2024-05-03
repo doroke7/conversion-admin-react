@@ -428,6 +428,45 @@ function Index(oProps: any): any {
     };
   };
 
+  let cHandleTranscoderDialogClick = async (oEvent: React.SyntheticEvent<unknown>) => {
+
+    let iId = iStateId;
+    let oParam = {};
+    let oOption = {
+      appId: iAppId
+    };
+    let oSearch = {
+      id: iId
+    };
+
+    let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+
+    if (!oResponse || oResponse?.data?.code <= -1) {
+      let iCode = oResponse?.data?.code;
+      let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+      let oMessage = {
+        code: iCode,
+        message: sMessage,
+        time: 2 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    };
+
+    if (oResponse && oResponse?.data?.code >= 0) {
+      let iCode = 0;
+      let sMessage = oResponse?.data?.message ?? '未知的成功信息';
+      let oMessage = {
+        code: iCode,
+        message: sMessage,
+        time: 2 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    };
+
+    cSetStateTranscoderDialogOpen(false);
+
+  };
+
   let cHandleNotifierClick = (iId: number) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
 
@@ -569,24 +608,25 @@ function Index(oProps: any): any {
 
         return (
           <div>
-            <Tooltip title="详情" arrow placement="top">
+
+            <Tooltip title="转码" arrow placement="top">
               <IconButton
-                className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
-                  [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
-                  [oClasses.iconButtonAnimation005]: iThirdRandom == 1,
-                  [oClasses.iconButtonAnimation010]: iThirdRandom == 2,
-                  [oClasses.iconButtonAnimation015]: iThirdRandom == 3,
-                  [oClasses.iconButtonAnimation020]: iThirdRandom == 4,
-                  [oClasses.iconButtonAnimation025]: iThirdRandom == 5,
-                  [oClasses.iconButtonAnimation030]: iThirdRandom == 6,
-                  [oClasses.iconButtonAnimation035]: iThirdRandom == 7,
-                  [oClasses.iconButtonAnimation040]: iThirdRandom == 8,
+                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
+                  [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iFirstRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iFirstRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iFirstRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iFirstRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iFirstRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iFirstRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iFirstRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
                 })}
                 size="medium"
-                disabled={false}
-                onClick={cHandleDetailClick(iId, sFilename)}
+                onClick={cHandleTranscoderClick(iId, sFilename)}
+                disabled={bTranscoderDisable}
               >
-                <InfoIcon />
+                <UpdateIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
@@ -609,24 +649,24 @@ function Index(oProps: any): any {
                 <DirectionsIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="转码" arrow placement="top">
+            <Tooltip title="详情" arrow placement="top">
               <IconButton
-                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
-                  [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
-                  [oClasses.iconButtonAnimation005]: iFirstRandom == 1,
-                  [oClasses.iconButtonAnimation010]: iFirstRandom == 2,
-                  [oClasses.iconButtonAnimation015]: iFirstRandom == 3,
-                  [oClasses.iconButtonAnimation020]: iFirstRandom == 4,
-                  [oClasses.iconButtonAnimation025]: iFirstRandom == 5,
-                  [oClasses.iconButtonAnimation030]: iFirstRandom == 6,
-                  [oClasses.iconButtonAnimation035]: iFirstRandom == 7,
-                  [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
+                className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
+                  [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iThirdRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iThirdRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iThirdRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iThirdRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iThirdRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iThirdRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iThirdRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iThirdRandom == 8,
                 })}
                 size="medium"
-                onClick={cHandleTranscoderClick(iId, sFilename)}
-                disabled={bTranscoderDisable}
+                disabled={false}
+                onClick={cHandleDetailClick(iId, sFilename)}
               >
-                <UpdateIcon />
+                <InfoIcon />
               </IconButton>
             </Tooltip>
           </div>
@@ -849,7 +889,7 @@ function Index(oProps: any): any {
           <Button onClick={cHandleTranscoderDialogClose} color="primary">
             取消
           </Button>
-          <Button onClick={cHandleTranscoderDialogClose} color="primary" autoFocus>
+          <Button onClick={cHandleTranscoderDialogClick} color="primary" autoFocus>
             確定
           </Button>
         </DialogActions>
