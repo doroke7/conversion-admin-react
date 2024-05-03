@@ -11,6 +11,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -52,7 +55,8 @@ function Index(oProps: any): any {
   let oDispatch = useDispatch();
 
   let [sStateName, cSetStateName] = useState<string>('');
-  let [iStateNumer, cSetStateNumer] = useState<number>(0);
+  let [sStateFilename, cSetStateFilename] = useState<string>('');
+  let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
@@ -159,7 +163,6 @@ function Index(oProps: any): any {
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
-      cSetStateNumer(iNumber);
       cSetStateCount(iCount);
       cSetStateLoading(false);
 
@@ -209,7 +212,6 @@ function Index(oProps: any): any {
 
     oDispatch(actions.appPipelines.set(aAppPipelines));
 
-    cSetStateNumer(iNumber);
     cSetStateCount(iCount);
     cSetStateLoading(false);
 
@@ -378,39 +380,49 @@ function Index(oProps: any): any {
   }
 
 
-  let cHandleTranscoderClick = (iId: number) => {
+  let cHandleTranscoderDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+    cSetStateTranscoderDialogOpen(false);
+
+  }
+
+
+  let cHandleTranscoderClick = (iId: number, sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
-      let oParam = {};
-      let oOption = {
-        appId: iAppId
-      };
-      let oSearch = {
-        id: iId
-      };
 
-      let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+      cSetStateTranscoderDialogOpen(true);
+      cSetStateId(iId);
+      cSetStateFilename(sFilename);
+      // let oParam = {};
+      // let oOption = {
+      //   appId: iAppId
+      // };
+      // let oSearch = {
+      //   id: iId
+      // };
 
-      if (!oResponse || oResponse?.data?.code <= -1) {
-        let iCode = oResponse?.data?.code;
-        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
-        let oMessage = {
-          code: iCode,
-          message: sMessage,
-          time: 2 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      };
+      // let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
 
-      if (oResponse && oResponse?.data?.code >= 0) {
-        let iCode = 0;
-        let sMessage = oResponse?.data?.message ?? '未知的成功信息';
-        let oMessage = {
-          code: iCode,
-          message: sMessage,
-          time: 2 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      };
+      // if (!oResponse || oResponse?.data?.code <= -1) {
+      //   let iCode = oResponse?.data?.code;
+      //   let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+      //   let oMessage = {
+      //     code: iCode,
+      //     message: sMessage,
+      //     time: 2 * 1000
+      //   };
+      //   events.emit('Alerts-onAlert', oMessage);
+      // };
+
+      // if (oResponse && oResponse?.data?.code >= 0) {
+      //   let iCode = 0;
+      //   let sMessage = oResponse?.data?.message ?? '未知的成功信息';
+      //   let oMessage = {
+      //     code: iCode,
+      //     message: sMessage,
+      //     time: 2 * 1000
+      //   };
+      //   events.emit('Alerts-onAlert', oMessage);
+      // };
     };
   };
 
@@ -534,6 +546,7 @@ function Index(oProps: any): any {
       width: 140,
       renderCell: (oProps: any) => {
         let iId = oProps?.row?.id;
+        let sFilename = oProps?.row?.name;
         let bTranscoderDisable = oProps?.row?.state == 0;
 
         let bNotifierDisable = oProps?.row?.state < 5;
@@ -608,7 +621,7 @@ function Index(oProps: any): any {
                   [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
                 })}
                 size="medium"
-                onClick={cHandleTranscoderClick(iId)}
+                onClick={cHandleTranscoderClick(iId, sFilename)}
                 disabled={bTranscoderDisable}
               >
                 <UpdateIcon />
@@ -815,6 +828,29 @@ function Index(oProps: any): any {
         </Typography> */}
         </DialogContent>
 
+      </Dialog>
+      <Dialog
+        open={bStateTranscoderDialogOpen}
+        onClose={cHandleTranscoderDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{sStateFilename}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            手動轉碼可能會造成任務阻塞
+            <br></br>
+            請問是否要執行？
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cHandleTranscoderDialogClose} color="primary">
+            取消
+          </Button>
+          <Button onClick={cHandleTranscoderDialogClose} color="primary" autoFocus>
+            確定
+          </Button>
+        </DialogActions>
       </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
