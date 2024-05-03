@@ -882,7 +882,7 @@ function Index(oProps: any): any {
           <DialogContentText id="alert-dialog-description">
             手動轉碼可能會造成任務阻塞
             <br></br>
-            請問是否要執行？
+            請問是否確定要執行？
           </DialogContentText>
         </DialogContent>
         <DialogActions>
