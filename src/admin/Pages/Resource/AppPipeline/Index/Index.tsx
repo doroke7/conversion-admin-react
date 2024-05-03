@@ -339,7 +339,7 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleDetailClick = (iId: number,  sFilename: string) => {
+  let cHandleDetailClick = (iId: number, sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
       cSetStateFilename(sFilename);
 
@@ -394,37 +394,7 @@ function Index(oProps: any): any {
       cSetStateTranscoderDialogOpen(true);
       cSetStateId(iId);
       cSetStateFilename(sFilename);
-      // let oParam = {};
-      // let oOption = {
-      //   appId: iAppId
-      // };
-      // let oSearch = {
-      //   id: iId
-      // };
 
-      // let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
-
-      // if (!oResponse || oResponse?.data?.code <= -1) {
-      //   let iCode = oResponse?.data?.code;
-      //   let sMessage = oResponse?.data?.message ?? '未知的失败信息';
-      //   let oMessage = {
-      //     code: iCode,
-      //     message: sMessage,
-      //     time: 2 * 1000
-      //   };
-      //   events.emit('Alerts-onAlert', oMessage);
-      // };
-
-      // if (oResponse && oResponse?.data?.code >= 0) {
-      //   let iCode = 0;
-      //   let sMessage = oResponse?.data?.message ?? '未知的成功信息';
-      //   let oMessage = {
-      //     code: iCode,
-      //     message: sMessage,
-      //     time: 2 * 1000
-      //   };
-      //   events.emit('Alerts-onAlert', oMessage);
-      // };
     };
   };
 
@@ -714,10 +684,10 @@ function Index(oProps: any): any {
         fullWidth={true}
         maxWidth={'md'}
       >
-        
-          <DialogTitle id="customized-dialog-title">
-            {sStateFilename ?? ''}
-          </DialogTitle>
+
+        <DialogTitle id="customized-dialog-title">
+          {sStateFilename ?? ''}
+        </DialogTitle>
 
         <DialogContent dividers className={oClasses.dialogContent}>
           <Typography gutterBottom className={clsx({}, {
@@ -752,7 +722,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源下载
+                  資源下载 (-)
                 </StepLabel>
               </Step>
               <Step>
@@ -772,7 +742,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源转码
+                  資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
               <Step>
@@ -792,7 +762,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源加密
+                  資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
               <Step>
@@ -812,7 +782,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源上云
+                  資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
               <Step>
@@ -832,7 +802,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源回调
+                  資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
               <Step>
@@ -852,7 +822,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源预热
+                  資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
             </Stepper>
