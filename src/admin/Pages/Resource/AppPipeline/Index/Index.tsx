@@ -11,6 +11,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -52,7 +55,8 @@ function Index(oProps: any): any {
   let oDispatch = useDispatch();
 
   let [sStateName, cSetStateName] = useState<string>('');
-  let [iStateNumer, cSetStateNumer] = useState<number>(0);
+  let [sStateFilename, cSetStateFilename] = useState<string>('');
+  let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
   let [aStateRows, cSetStateRows] = useState<any[]>([]);
@@ -60,7 +64,8 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
-  let [bStateDialogOpen, cSetStateDialogOpen] = useState<boolean>(false);
+  let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
+  let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -158,7 +163,6 @@ function Index(oProps: any): any {
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
-      cSetStateNumer(iNumber);
       cSetStateCount(iCount);
       cSetStateLoading(false);
 
@@ -208,7 +212,6 @@ function Index(oProps: any): any {
 
     oDispatch(actions.appPipelines.set(aAppPipelines));
 
-    cSetStateNumer(iNumber);
     cSetStateCount(iCount);
     cSetStateLoading(false);
 
@@ -336,11 +339,13 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleDetailClick = (iId: number) => {
+  let cHandleDetailClick = (iId: number,  sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
+      cSetStateFilename(sFilename);
+
       oDispatch(actions.appPipeline.set({}));
 
-      cSetStateDialogOpen(true);
+      cSetStateDetailDialogOpen(true);
       let oParam = {};
       let oOption = {
         appId: iAppId
@@ -371,46 +376,95 @@ function Index(oProps: any): any {
     };
   };
 
-  let cHandleDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
-    cSetStateDialogOpen(false);
+  let cHandleDetailDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+    cSetStateDetailDialogOpen(false);
 
   }
 
 
-  let cHandleTranscoderClick = (iId: number) => {
+  let cHandleTranscoderDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
+    cSetStateTranscoderDialogOpen(false);
+
+  }
+
+
+  let cHandleTranscoderClick = (iId: number, sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
-      let oParam = {};
-      let oOption = {
-        appId: iAppId
-      };
-      let oSearch = {
-        id: iId
-      };
 
-      let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+      cSetStateTranscoderDialogOpen(true);
+      cSetStateId(iId);
+      cSetStateFilename(sFilename);
+      // let oParam = {};
+      // let oOption = {
+      //   appId: iAppId
+      // };
+      // let oSearch = {
+      //   id: iId
+      // };
 
-      if (!oResponse || oResponse?.data?.code <= -1) {
-        let iCode = oResponse?.data?.code;
-        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
-        let oMessage = {
-          code: iCode,
-          message: sMessage,
-          time: 2 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      };
+      // let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
 
-      if (oResponse && oResponse?.data?.code >= 0) {
-        let iCode = 0;
-        let sMessage = oResponse?.data?.message ?? '未知的成功信息';
-        let oMessage = {
-          code: iCode,
-          message: sMessage,
-          time: 2 * 1000
-        };
-        events.emit('Alerts-onAlert', oMessage);
-      };
+      // if (!oResponse || oResponse?.data?.code <= -1) {
+      //   let iCode = oResponse?.data?.code;
+      //   let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+      //   let oMessage = {
+      //     code: iCode,
+      //     message: sMessage,
+      //     time: 2 * 1000
+      //   };
+      //   events.emit('Alerts-onAlert', oMessage);
+      // };
+
+      // if (oResponse && oResponse?.data?.code >= 0) {
+      //   let iCode = 0;
+      //   let sMessage = oResponse?.data?.message ?? '未知的成功信息';
+      //   let oMessage = {
+      //     code: iCode,
+      //     message: sMessage,
+      //     time: 2 * 1000
+      //   };
+      //   events.emit('Alerts-onAlert', oMessage);
+      // };
     };
+  };
+
+  let cHandleTranscoderDialogClick = async (oEvent: React.SyntheticEvent<unknown>) => {
+
+    let iId = iStateId;
+    let oParam = {};
+    let oOption = {
+      appId: iAppId
+    };
+    let oSearch = {
+      id: iId
+    };
+
+    let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+
+    if (!oResponse || oResponse?.data?.code <= -1) {
+      let iCode = oResponse?.data?.code;
+      let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+      let oMessage = {
+        code: iCode,
+        message: sMessage,
+        time: 2 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    };
+
+    if (oResponse && oResponse?.data?.code >= 0) {
+      let iCode = 0;
+      let sMessage = oResponse?.data?.message ?? '未知的成功信息';
+      let oMessage = {
+        code: iCode,
+        message: sMessage,
+        time: 2 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    };
+
+    cSetStateTranscoderDialogOpen(false);
+
   };
 
   let cHandleNotifierClick = (iId: number) => {
@@ -533,6 +587,7 @@ function Index(oProps: any): any {
       width: 140,
       renderCell: (oProps: any) => {
         let iId = oProps?.row?.id;
+        let sFilename = oProps?.row?.name;
         let bTranscoderDisable = oProps?.row?.state == 0;
 
         let bNotifierDisable = oProps?.row?.state < 5;
@@ -568,9 +623,29 @@ function Index(oProps: any): any {
                 })}
                 size="medium"
                 disabled={false}
-                onClick={cHandleDetailClick(iId)}
+                onClick={cHandleDetailClick(iId, sFilename)}
               >
                 <InfoIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="转码" arrow placement="top">
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
+                  [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iFirstRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iFirstRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iFirstRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iFirstRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iFirstRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iFirstRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iFirstRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
+                })}
+                size="medium"
+                onClick={cHandleTranscoderClick(iId, sFilename)}
+                disabled={bTranscoderDisable}
+              >
+                <UpdateIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title="回调" arrow placement="top">
@@ -593,26 +668,7 @@ function Index(oProps: any): any {
                 <DirectionsIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="转码" arrow placement="top">
-              <IconButton
-                className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
-                  [oClasses.iconButtonAnimation000]: iFirstRandom == 0,
-                  [oClasses.iconButtonAnimation005]: iFirstRandom == 1,
-                  [oClasses.iconButtonAnimation010]: iFirstRandom == 2,
-                  [oClasses.iconButtonAnimation015]: iFirstRandom == 3,
-                  [oClasses.iconButtonAnimation020]: iFirstRandom == 4,
-                  [oClasses.iconButtonAnimation025]: iFirstRandom == 5,
-                  [oClasses.iconButtonAnimation030]: iFirstRandom == 6,
-                  [oClasses.iconButtonAnimation035]: iFirstRandom == 7,
-                  [oClasses.iconButtonAnimation040]: iFirstRandom == 8,
-                })}
-                size="medium"
-                onClick={cHandleTranscoderClick(iId)}
-                disabled={bTranscoderDisable}
-              >
-                <UpdateIcon />
-              </IconButton>
-            </Tooltip>
+
           </div>
         );
       },
@@ -652,16 +708,16 @@ function Index(oProps: any): any {
     <div className="app-pipeline">
       <Dialog
         TransitionComponent={Grow}
-        onClose={cHandleDialogClose}
+        onClose={cHandleDetailDialogClose}
         aria-labelledby="customized-dialog-title"
-        open={bStateDialogOpen}
+        open={bStateDetailDialogOpen}
         fullWidth={true}
         maxWidth={'md'}
       >
-        {oAppPipeline?.id ?
+        
           <DialogTitle id="customized-dialog-title">
-            {(oAppPipeline?.name ?? '')}
-          </DialogTitle> : ''}
+            {sStateFilename ?? ''}
+          </DialogTitle>
 
         <DialogContent dividers className={oClasses.dialogContent}>
           <Typography gutterBottom className={clsx({}, {
@@ -814,6 +870,29 @@ function Index(oProps: any): any {
         </Typography> */}
         </DialogContent>
 
+      </Dialog>
+      <Dialog
+        open={bStateTranscoderDialogOpen}
+        onClose={cHandleTranscoderDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{sStateFilename ?? ''}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            手動轉碼可能會造成任務阻塞
+            <br></br>
+            確定要執行？
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cHandleTranscoderDialogClose} color="primary">
+            取消
+          </Button>
+          <Button onClick={cHandleTranscoderDialogClick} color="primary" autoFocus>
+            確定
+          </Button>
+        </DialogActions>
       </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
