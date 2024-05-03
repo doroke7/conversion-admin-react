@@ -608,7 +608,26 @@ function Index(oProps: any): any {
 
         return (
           <div>
-
+            <Tooltip title="详情" arrow placement="top">
+              <IconButton
+                className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
+                  [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
+                  [oClasses.iconButtonAnimation005]: iThirdRandom == 1,
+                  [oClasses.iconButtonAnimation010]: iThirdRandom == 2,
+                  [oClasses.iconButtonAnimation015]: iThirdRandom == 3,
+                  [oClasses.iconButtonAnimation020]: iThirdRandom == 4,
+                  [oClasses.iconButtonAnimation025]: iThirdRandom == 5,
+                  [oClasses.iconButtonAnimation030]: iThirdRandom == 6,
+                  [oClasses.iconButtonAnimation035]: iThirdRandom == 7,
+                  [oClasses.iconButtonAnimation040]: iThirdRandom == 8,
+                })}
+                size="medium"
+                disabled={false}
+                onClick={cHandleDetailClick(iId, sFilename)}
+              >
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="转码" arrow placement="top">
               <IconButton
                 className={clsx(oClasses.iconButton, oClasses.iconButtonTranscoder, {
@@ -649,26 +668,7 @@ function Index(oProps: any): any {
                 <DirectionsIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="详情" arrow placement="top">
-              <IconButton
-                className={clsx(oClasses.iconButton, oClasses.iconButtonDetail, {
-                  [oClasses.iconButtonAnimation000]: iThirdRandom == 0,
-                  [oClasses.iconButtonAnimation005]: iThirdRandom == 1,
-                  [oClasses.iconButtonAnimation010]: iThirdRandom == 2,
-                  [oClasses.iconButtonAnimation015]: iThirdRandom == 3,
-                  [oClasses.iconButtonAnimation020]: iThirdRandom == 4,
-                  [oClasses.iconButtonAnimation025]: iThirdRandom == 5,
-                  [oClasses.iconButtonAnimation030]: iThirdRandom == 6,
-                  [oClasses.iconButtonAnimation035]: iThirdRandom == 7,
-                  [oClasses.iconButtonAnimation040]: iThirdRandom == 8,
-                })}
-                size="medium"
-                disabled={false}
-                onClick={cHandleDetailClick(iId, sFilename)}
-              >
-                <InfoIcon />
-              </IconButton>
-            </Tooltip>
+
           </div>
         );
       },
@@ -882,7 +882,7 @@ function Index(oProps: any): any {
           <DialogContentText id="alert-dialog-description">
             手動轉碼可能會造成任務阻塞
             <br></br>
-            請問是否確定要執行？
+            確定要執行？
           </DialogContentText>
         </DialogContent>
         <DialogActions>
