@@ -339,8 +339,10 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleDetailClick = (iId: number) => {
+  let cHandleDetailClick = (iId: number,  sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
+      cSetStateFilename(sFilename);
+
       oDispatch(actions.appPipeline.set({}));
 
       cSetStateDetailDialogOpen(true);
@@ -582,7 +584,7 @@ function Index(oProps: any): any {
                 })}
                 size="medium"
                 disabled={false}
-                onClick={cHandleDetailClick(iId)}
+                onClick={cHandleDetailClick(iId, sFilename)}
               >
                 <InfoIcon />
               </IconButton>
@@ -672,10 +674,10 @@ function Index(oProps: any): any {
         fullWidth={true}
         maxWidth={'md'}
       >
-        {oAppPipeline?.id ?
+        
           <DialogTitle id="customized-dialog-title">
-            {(oAppPipeline?.name ?? '')}
-          </DialogTitle> : ''}
+            {sStateFilename ?? ''}
+          </DialogTitle>
 
         <DialogContent dividers className={oClasses.dialogContent}>
           <Typography gutterBottom className={clsx({}, {
@@ -835,7 +837,7 @@ function Index(oProps: any): any {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{sStateFilename}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{sStateFilename ?? ''}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             手動轉碼可能會造成任務阻塞
