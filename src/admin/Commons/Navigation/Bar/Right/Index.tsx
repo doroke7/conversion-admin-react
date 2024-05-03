@@ -21,7 +21,7 @@ import style from './style';
 function Right(oProps: any) {
 
   let oAuthorizations = oProps.authorizations ?? {};
-  let sAuthorizaion = useSelector((oStore:any) => (oStore?.authorizations?.['admin/resource'] ?? ''));
+  let sAuthorizaion = useSelector((oStore: any) => (oStore?.authorizations?.['admin/resource'] ?? ''));
 
   let [oStateOpen, cSetStateOpen] = useState<boolean>(false);
   let [oStateRotating, cSetStateRotating] = useState<boolean>(false);
@@ -33,12 +33,12 @@ function Right(oProps: any) {
 
   let iAuthorizaion = parseInt(sAuthorizaion, 2);
 
-  let sFlushallAuthorization = oAuthorizations?.['FLUSHALL'] ?? ''; 
+  let sFlushallAuthorization = oAuthorizations?.['FLUSHALL'] ?? '';
   let iFlushallAuthorization = parseInt(sFlushallAuthorization, 2);
 
-  let bFlushall = (iAuthorizaion & iFlushallAuthorization) == iFlushallAuthorization; 
+  let bFlushall = (iAuthorizaion & iFlushallAuthorization) == iFlushallAuthorization;
 
-  
+
   let cHandleClose = () => {
     cSetStateOpen(false);
   };
@@ -48,12 +48,31 @@ function Right(oProps: any) {
 
   };
 
-  let cHandleAlertOfRedisConfirm = () => {
+  let cHandleConfirm = async () => {
     cSetStateOpen(false);
     cSetStateRotating(true);
-    setTimeout(() => {
+
+    let oResponse = await Sdks.Admin.System.Redis.postFlushall();
+    let iCode = oResponse?.data?.code ?? -3;
+    let oMessage = {
+      code: iCode,
+      message: oResponse?.data?.message ?? '未知错误',
+      time: 2 * 1000
+    };
+    events.emit('Alerts-onAlert', oMessage);
+
+    if (iCode < 0) {
       cSetStateRotating(false);
-    }, 1200);
+
+    }
+
+    if (iCode >= 0) {
+      setTimeout(() => {
+        cSetStateRotating(false);
+      }, 1200);
+    }
+
+
   };
 
   let cHandleAvatarWrapperClick = (oEvent: any) => {
@@ -107,14 +126,14 @@ function Right(oProps: any) {
 
   return (
     <div className={oClasses.right}>
-       {bFlushall ? 
-       <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
-        <RefreshIcon
-          className={clsx(oClasses.icon, {
-            [oClasses.iconAnimation]: oStateRotating
-          })}></RefreshIcon>
-      </IconButton> : ''}
-      <AlertOfRedis open={oStateOpen} onClose={cHandleClose} onConfirm={cHandleAlertOfRedisConfirm}></AlertOfRedis>
+      {bFlushall ?
+        <IconButton className={clsx(oClasses.iconButton, oClasses.iconButtonRefresh)} onClick={cHandleOpen}>
+          <RefreshIcon
+            className={clsx(oClasses.icon, {
+              [oClasses.iconAnimation]: oStateRotating
+            })}></RefreshIcon>
+        </IconButton> : ''}
+      <AlertOfRedis open={oStateOpen} onClose={cHandleClose} onConfirm={cHandleConfirm}></AlertOfRedis>
       <div
         className={oClasses.avatarWrapper}
         onClick={cHandleAvatarWrapperClick}

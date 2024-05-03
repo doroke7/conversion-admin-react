@@ -856,10 +856,10 @@ function Index(oProps: any): any {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={cHandleTranscoderDialogClose} color="primary">
+          <Button onClick={cHandleTranscoderDialogClose} color="default" variant="outlined" autoFocus>
             取消
           </Button>
-          <Button onClick={cHandleTranscoderDialogClick} color="primary" autoFocus>
+          <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
             確定
           </Button>
         </DialogActions>
