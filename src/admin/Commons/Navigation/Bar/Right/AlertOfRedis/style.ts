@@ -13,7 +13,7 @@ let oStyle = makeStyles((oTheme: Theme) =>
       borderRadius: oTheme.spacing(0.75)
     },
     dialogActions: {
-      padding: oTheme.spacing(2.5)
+      // padding: oTheme.spacing(2.5)
     },
     confirmButton: {}
   })

@@ -24,7 +24,7 @@ function AlertOfRedis(oProps: any) {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description">
       <DialogTitle id="alert-dialog-title">
-        <Typography variant="h6">警告:</Typography>
+        <Typography variant="h6">清理全局服务器缓存</Typography>
         <IconButton aria-label="close" className={oClasses.iconButton} onClick={cHandleClose}>
           <CloseIcon />
         </IconButton>
@@ -33,17 +33,14 @@ function AlertOfRedis(oProps: any) {
         <DialogContentText id="alert-dialog-description">
           <span>清理缓存会造成数据库压力，我们不建议您如此操作！</span>
           <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
           <span>确定操作？</span>
         </DialogContentText>
       </DialogContent>
       <DialogActions className={oClasses.dialogActions}>
-        <Button variant="outlined" onClick={cHandleClose} color="primary" autoFocus>
+        <Button onClick={cHandleClose} color="default" variant="outlined" autoFocus>
           取消
         </Button>
-        <Button className={oClasses.confirmButton} variant="outlined" onClick={cHandleConfirm} color="default">
+        <Button className={oClasses.confirmButton} onClick={cHandleConfirm} color="primary" variant="outlined">
           确定
         </Button>
       </DialogActions>
