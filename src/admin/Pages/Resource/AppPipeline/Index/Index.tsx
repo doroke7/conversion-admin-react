@@ -559,6 +559,7 @@ function Index(oProps: any): any {
         let iId = oProps?.row?.id;
         let sFilename = oProps?.row?.name;
         let bTranscoderDisable = oProps?.row?.state == 0;
+        console.log('oProps?.row=', oProps?.row)
 
         let bNotifierDisable = oProps?.row?.state < 5;
 
@@ -650,6 +651,9 @@ function Index(oProps: any): any {
   iActiveStep = oAppPipeline?.status >= 2 ? iActiveStep : iActiveStep - 1;
   iActiveStep = iActiveStep >= 6 ? 6 : iActiveStep;
   iActiveStep = iActiveStep < 0 ? 0 : iActiveStep;
+
+  console.log(iActiveStep)
+  console.log(oAppPipeline)
 
   type color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
 
