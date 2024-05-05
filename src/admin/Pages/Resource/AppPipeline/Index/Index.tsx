@@ -127,7 +127,6 @@ function Index(oProps: any): any {
   }, [iAppUserId]);
 
   useEffect(() => {
-    console.log('aAppPipelines=', aAppPipelines);
 
     cSetStateRows(aAppPipelines);
   }, [aAppPipelines]);
@@ -341,7 +340,6 @@ function Index(oProps: any): any {
 
   let cHandleDetailClick = (iId: number, sFilename: string, oRow: any) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
-      console.log('oRo=', oRow);
       cSetStateFilename(sFilename);
 
       oDispatch(actions.appPipeline.set({}));
@@ -372,7 +370,6 @@ function Index(oProps: any): any {
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
       oDispatch(actions.appPipeline.set(oAppPipeline));
 
-      console.log('store oAppPipeline=', oAppPipeline);
 
     };
   };
@@ -648,7 +645,6 @@ function Index(oProps: any): any {
   ];
 
   let iActiveStep = oAppPipeline?.state ?? 0;
-  console.log('oAppPipeline=', oAppPipeline)
 
 
   iActiveStep = oAppPipeline?.status >= 2 ? iActiveStep : iActiveStep;
