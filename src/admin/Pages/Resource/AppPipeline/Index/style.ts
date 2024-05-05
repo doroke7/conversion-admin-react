@@ -174,25 +174,6 @@ const style = makeStyles((oTheme: Theme): any =>
     visibilityHidden: {
       visibility: 'hidden',
     },
-    stepLabel: {
-      '& .MuiStepIcon-root.MuiStepIcon-completed': {
-
-      },
-      '& .MuiStepIcon-root.MuiStepIcon-active': {
-
-      }
-    },
-    stepLabelOngoing: {
-      '& .MuiStepIcon-root.MuiStepIcon-active': {
-        color: lightBlue[500]
-
-      }
-    },
-    stepLabelFail: {
-      '& .MuiStepIcon-root.MuiStepIcon-active': {
-
-      }
-    },
     stepConnector: {
       '&.MuiStepConnector-completed': {
         '& .MuiStepConnector-line': {

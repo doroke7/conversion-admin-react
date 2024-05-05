@@ -339,8 +339,9 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleDetailClick = (iId: number, sFilename: string) => {
+  let cHandleDetailClick = (iId: number, sFilename: string, oRow: any) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
+      console.log('oRo=', oRow);
       cSetStateFilename(sFilename);
 
       oDispatch(actions.appPipeline.set({}));
@@ -371,7 +372,7 @@ function Index(oProps: any): any {
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
       oDispatch(actions.appPipeline.set(oAppPipeline));
 
-      console.log('oAppPipeline=', oAppPipeline);
+      console.log('store oAppPipeline=', oAppPipeline);
 
     };
   };
@@ -556,12 +557,12 @@ function Index(oProps: any): any {
       sortable: false,
       width: 140,
       renderCell: (oProps: any) => {
-        let iId = oProps?.row?.id;
-        let sFilename = oProps?.row?.name;
-        let bTranscoderDisable = oProps?.row?.state == 0;
-        console.log('oProps?.row=', oProps?.row)
+        let oRow = oProps?.row;
+        let iId = oRow?.id;
+        let sFilename = oRow?.name;
+        let bTranscoderDisable = oRow?.state == 0;
 
-        let bNotifierDisable = oProps?.row?.state < 5;
+        let bNotifierDisable = oRow?.state < 5;
 
         let iFirstRandom = useMemo(() => {
           let iResult = Math.floor(Math.random() * 9);
@@ -594,7 +595,7 @@ function Index(oProps: any): any {
                 })}
                 size="medium"
                 disabled={false}
-                onClick={cHandleDetailClick(iId, sFilename)}
+                onClick={cHandleDetailClick(iId, sFilename, oRow)}
               >
                 <InfoIcon />
               </IconButton>
@@ -647,13 +648,17 @@ function Index(oProps: any): any {
   ];
 
   let iActiveStep = oAppPipeline?.state ?? 0;
+  console.log('oAppPipeline=', oAppPipeline)
 
-  iActiveStep = oAppPipeline?.status >= 2 ? iActiveStep : iActiveStep - 1;
+
+  iActiveStep = oAppPipeline?.status >= 2 ? iActiveStep : iActiveStep;
+  iActiveStep = oAppPipeline?.status == 1 ? iActiveStep - 1 : iActiveStep;
+  iActiveStep = oAppPipeline?.status == 0 ? iActiveStep - 2 : iActiveStep;
+  iActiveStep = oAppPipeline?.status == -1 ? iActiveStep - 1 : iActiveStep;
+
   iActiveStep = iActiveStep >= 6 ? 6 : iActiveStep;
-  iActiveStep = iActiveStep < 0 ? 0 : iActiveStep;
+  iActiveStep = iActiveStep <= -1 ? -1 : iActiveStep;
 
-  console.log(iActiveStep)
-  console.log(oAppPipeline)
 
   type color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
 
@@ -664,12 +669,12 @@ function Index(oProps: any): any {
   let sColor5: color = 'textSecondary';
   let sColor6: color = 'textSecondary';
 
-  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 0) ? 'initial' : sColor1;
-  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 0) ? 'initial' : sColor2;
-  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 0) ? 'initial' : sColor3;
-  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 0) ? 'initial' : sColor4;
-  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 0) ? 'initial' : sColor5;
-  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 0) ? 'initial' : sColor6;
+  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 1) ? 'initial' : sColor1;
+  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 1) ? 'initial' : sColor2;
+  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 1) ? 'initial' : sColor3;
+  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 1) ? 'initial' : sColor4;
+  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 1) ? 'initial' : sColor5;
+  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 1) ? 'initial' : sColor6;
 
   sColor1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1) ? 'error' : sColor1;
   sColor2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1) ? 'error' : sColor2;
@@ -690,7 +695,7 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          {sStateFilename ?? ''}
+          {sStateFilename ?? ''}-{iActiveStep}
         </DialogTitle>
 
         <DialogContent dividers className={oClasses.dialogContent}>
@@ -704,15 +709,14 @@ function Index(oProps: any): any {
               connector={
                 <StepConnector className={clsx(oClasses.stepConnector, {
                   [oClasses.stepConnectorFail]: oAppPipeline?.status == -1,
-                  [oClasses.stepConnectorOngoing]: oAppPipeline?.status == 0
+                  [oClasses.stepConnectorOngoing]: oAppPipeline?.status == 1
 
                 })} />
               }
             >
-              <Step>
+              <Step active={oAppPipeline?.state == 1 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepLabel
                   className={clsx(oClasses.stepLabel, {
-                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 1 && oAppPipeline?.status == 0
                   })}
                   error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
                   optional={
@@ -729,10 +733,9 @@ function Index(oProps: any): any {
                   資源下载 (-)
                 </StepLabel>
               </Step>
-              <Step>
+              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepLabel
                   className={clsx(oClasses.stepLabel, {
-                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 2 && oAppPipeline?.status == 0
                   })}
                   error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
                   optional={
@@ -749,10 +752,9 @@ function Index(oProps: any): any {
                   資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
-              <Step>
+              <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepLabel
                   className={clsx(oClasses.stepLabel, {
-                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 3 && oAppPipeline?.status == 0
                   })}
                   error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
                   optional={
@@ -769,10 +771,9 @@ function Index(oProps: any): any {
                   資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
-              <Step>
+              <Step active={oAppPipeline?.state == 4 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepLabel
                   className={clsx(oClasses.stepLabel, {
-                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 4 && oAppPipeline?.status == 0
                   })}
                   error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
                   optional={
@@ -789,10 +790,9 @@ function Index(oProps: any): any {
                   資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
-              <Step>
+              <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepLabel
                   className={clsx(oClasses.stepLabel, {
-                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 5 && oAppPipeline?.status == 0
                   })}
                   error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
                   optional={
@@ -809,10 +809,9 @@ function Index(oProps: any): any {
                   資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})
                 </StepLabel>
               </Step>
-              <Step>
+              <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepLabel
                   className={clsx(oClasses.stepLabel, {
-                    [oClasses.stepLabelOngoing]: oAppPipeline?.state == 6 && oAppPipeline?.status == 0
                   })}
                   error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
                   optional={
