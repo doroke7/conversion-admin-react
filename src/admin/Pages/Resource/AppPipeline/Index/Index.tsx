@@ -691,7 +691,7 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          {sStateFilename ?? ''}-{iActiveStep}
+          {sStateFilename ?? ''}
         </DialogTitle>
 
         <DialogContent dividers className={oClasses.dialogContent}>
