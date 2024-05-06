@@ -59,11 +59,6 @@ function Navigation(oProps: any) {
     return iAppId;
   }, [aStateApps, iStateIndex]);
 
-  // let [aStateTabs, iStateTabsValue, cOnTab, cSetTabs, cGetStateTabs, cChangeStateTabs, cRemoveStateTab, cRemoveStateTabs, cRemoveOtherStateTabs] = hooks.useTabs(oMe.id, iAppId);
-
-
-  console.log('bStateOpen', bStateOpen);
-
 
   let cAdminSystemAdminMenuShowTree = useCallback(
     async (iAppId: number) => {
