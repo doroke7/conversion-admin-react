@@ -147,17 +147,36 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     iconButtonDetail: {
       color: lightBlue[700],
+      '&:hover': {
+        backgroundColor: lightBlue[700] + '44',
+      }
 
     },
     iconButtonTranscoder: {
       color: orange[700],
+      '&:hover': {
+        backgroundColor: orange[700] + '44',
 
+      }
     },
     iconButtonNotifier: {
       color: green[700],
+      '&:hover': {
+        backgroundColor: green[700] + '44',
 
+      }
     },
 
+    buttonTranscoderSubmit: {
+      position: 'relative'
+    },
+
+    buttonTranscoderSubmitCircularProgress: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate( -50%, -50%)'
+    },
     dialogContent: {
       minHeight: oTheme.spacing(18.75),
       position: 'relative',
