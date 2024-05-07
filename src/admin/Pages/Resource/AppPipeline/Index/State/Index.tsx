@@ -42,14 +42,7 @@ function Index(oProps: any): any {
 
 
   useEffect(() => {
-    (async () => {
-
-      await new Promise((cResolve, cReject) => { setTimeout(() => { cResolve(true); }, 50) });
-      cSetStateStep((iPreStateStep) => {
-        let iNextStateValue = iPreStateStep >= iState ? iState : iPreStateStep + 1;
-        return iNextStateValue;
-      });
-    })();
+    cSetStateStep(iState);
 
   }, [iStateStep, iState]);
 
@@ -57,7 +50,7 @@ function Index(oProps: any): any {
     <Tooltip title={sState + '-' + sStatus} placement="top" arrow={true}>
       <div className={oClasses.root}>
         <div className={oClasses.wrapperProcess}>
-          <div className={clsx(oClasses.process, {
+          <div className={clsx(oClasses.process, oClasses.processAnimation01, {
             [oClasses.processFail]: 1 == iStateStep && iFailStatus == iStatus,
             [oClasses.processNone]: 1 > iStateStep || (1 == iStateStep && iNoneStatus == iStatus),
             [oClasses.processOnging]: 1 == iStateStep && iOngoingStatus == iStatus,
@@ -68,7 +61,7 @@ function Index(oProps: any): any {
         </div>
 
         <div className={oClasses.wrapperProcess}>
-          <div className={clsx(oClasses.process, {
+          <div className={clsx(oClasses.process, oClasses.processAnimation02, {
             [oClasses.processFail]: 2 == iStateStep && iFailStatus == iStatus,
             [oClasses.processNone]: 2 > iStateStep || (2 == iStateStep && iNoneStatus == iStatus),
             [oClasses.processOnging]: 2 == iStateStep && iOngoingStatus == iStatus,
@@ -79,7 +72,7 @@ function Index(oProps: any): any {
         </div>
 
         <div className={oClasses.wrapperProcess}>
-          <div className={clsx(oClasses.process, {
+          <div className={clsx(oClasses.process, oClasses.processAnimation03, {
             [oClasses.processFail]: 3 == iStateStep && iFailStatus == iStatus,
             [oClasses.processNone]: 3 > iStateStep || (3 == iStateStep && iNoneStatus == iStatus),
             [oClasses.processOnging]: 3 == iStateStep && iOngoingStatus == iStatus,
@@ -90,7 +83,7 @@ function Index(oProps: any): any {
         </div>
 
         <div className={oClasses.wrapperProcess}>
-          <div className={clsx(oClasses.process, {
+          <div className={clsx(oClasses.process, oClasses.processAnimation04, {
             [oClasses.processFail]: 4 == iStateStep && iFailStatus == iStatus,
             [oClasses.processNone]: 4 > iStateStep || (4 == iStateStep && iNoneStatus == iStatus),
             [oClasses.processOnging]: 4 == iStateStep && iOngoingStatus == iStatus,
@@ -101,7 +94,7 @@ function Index(oProps: any): any {
         </div>
 
         <div className={oClasses.wrapperProcess}>
-          <div className={clsx(oClasses.process, {
+          <div className={clsx(oClasses.process, oClasses.processAnimation05, {
             [oClasses.processFail]: 5 == iStateStep && iFailStatus == iStatus,
             [oClasses.processNone]: 5 > iStateStep || (5 == iStateStep && iNoneStatus == iStatus),
             [oClasses.processOnging]: 5 == iStateStep && iOngoingStatus == iStatus,
@@ -111,7 +104,7 @@ function Index(oProps: any): any {
         </div>
 
         <div className={oClasses.wrapperProcess}>
-          <div className={clsx(oClasses.process, {
+          <div className={clsx(oClasses.process, oClasses.processAnimation06, {
             [oClasses.processFail]: 6 == iStateStep && iFailStatus == iStatus,
             [oClasses.processNone]: 6 > iStateStep || (6 == iStateStep && iNoneStatus == iStatus),
             [oClasses.processOnging]: 6 == iStateStep && iOngoingStatus == iStatus,

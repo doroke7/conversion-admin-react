@@ -9,39 +9,62 @@ const style = makeStyles((oTheme: Theme): any =>
       justifyContent: 'space-between'
     },
     wrapperProcess: {
+      position: 'relative',
       width: '7px',
       height: '20px',
       background: grey[200],
-      position: 'relative',
     },
     process: {
       width: '7px',
-      background: lightBlue[700],
       position: 'absolute',
       left: oTheme.spacing(0),
       bottom: oTheme.spacing(0),
+      background: grey[200],
+
     },
     processFail: {
       boxSizing: 'border-box',
-      height: '20px',
+      height: '100%',
       background: pink[50],
       border: '2px dotted ' + red[200],
-      animation: '$fadeIn 0.1s linear 0s 1 normal'
+      animation: '$fadeIn 0.3s linear 0s 1 normal'
 
     },
     processNone: {
       height: '0%',
-
+      background: 'transparent'
     },
     processOnging: {
-      height: '60%',
-      animation: '$scaleY60 0.1s ease-in 0s 1 normal'
+      boxSizing: 'border-box',
+      height: '100%',
+      background: lightBlue[50],
+      border: '2px dotted ' + lightBlue[500],
+      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
 
     },
     processSuccess: {
       height: '100%',
-      animation: '$scaleY100 0.1s ease-in 0s 1 normal'
+      background: lightBlue[700],
+      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
+    },
 
+    processAnimation01: {
+      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
+    },
+    processAnimation02: {
+      animation: '$scaleY100 0.3s ease-in 0.05s 1 normal',
+    },
+    processAnimation03: {
+      animation: '$scaleY100 0.3s ease-in 0.10s 1 normal',
+    },
+    processAnimation04: {
+      animation: '$scaleY100 0.3s ease-in 0.15s 1 normal',
+    },
+    processAnimation05: {
+      animation: '$scaleY100 0.3s ease-in 0.20s 1 normal',
+    },
+    processAnimation06: {
+      animation: '$scaleY100 0.3s ease-in 0.25s 1 normal',
     },
     '@keyframes scaleY60': {
       '0%': {
