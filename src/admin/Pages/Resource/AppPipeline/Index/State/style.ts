@@ -9,17 +9,18 @@ const style = makeStyles((oTheme: Theme): any =>
       justifyContent: 'space-between'
     },
     wrapperProcess: {
+      position: 'relative',
       width: '7px',
       height: '20px',
       background: grey[200],
-      position: 'relative',
     },
     process: {
       width: '7px',
-      background: lightBlue[700],
       position: 'absolute',
       left: oTheme.spacing(0),
       bottom: oTheme.spacing(0),
+      background: grey[200],
+
     },
     processFail: {
       boxSizing: 'border-box',
@@ -31,45 +32,39 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     processNone: {
       height: '0%',
-
+      background: 'transparent'
     },
     processOnging: {
       boxSizing: 'border-box',
       height: '100%',
       background: lightBlue[50],
       border: '2px dotted ' + lightBlue[500],
-      animation: '$scaleY60 0.3s ease-in 0s 1 normal'
+      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
 
     },
     processSuccess: {
       height: '100%',
-      '&:nth-child(1)': {
-        animation: '$scaleY100 0.3s ease-in 0.05s 1 normal',
+      background: lightBlue[700],
+      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
+    },
 
-      },
-      '&:nth-child(2)': {
-        animation: '$scaleY100 0.3s ease-in 0.10s 1 normal',
-
-      },
-      '&:nth-child(3)': {
-        animation: '$scaleY100 0.3s ease-in 0.15s 1 normal',
-
-      },
-      '&:nth-child(4)': {
-        animation: '$scaleY100 0.3s ease-in 0.20s 1 normal',
-
-      },
-      '&:nth-child(5)': {
-        animation: '$scaleY100 0.3s ease-in 0.25s 1 normal',
-
-      },
-      '&:nth-child(6)': {
-        animation: '$scaleY100 0.3s ease-in 0.30s 1 normal',
-
-      }
-
-
-
+    processAnimation01: {
+      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
+    },
+    processAnimation02: {
+      animation: '$scaleY100 0.3s ease-in 0.05s 1 normal',
+    },
+    processAnimation03: {
+      animation: '$scaleY100 0.3s ease-in 0.10s 1 normal',
+    },
+    processAnimation04: {
+      animation: '$scaleY100 0.3s ease-in 0.15s 1 normal',
+    },
+    processAnimation05: {
+      animation: '$scaleY100 0.3s ease-in 0.20s 1 normal',
+    },
+    processAnimation06: {
+      animation: '$scaleY100 0.3s ease-in 0.25s 1 normal',
     },
     '@keyframes scaleY60': {
       '0%': {

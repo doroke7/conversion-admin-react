@@ -368,6 +368,8 @@ function Index(oProps: any): any {
       };
 
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
+
+      console.log('oAppPipeline=', oAppPipeline);
       oDispatch(actions.appPipeline.set(oAppPipeline));
 
 
