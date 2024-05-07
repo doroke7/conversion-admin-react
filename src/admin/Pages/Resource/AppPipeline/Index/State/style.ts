@@ -46,22 +46,22 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     processAnimation01: {
-      animation: '$scaleY100 0.3s ease-in 0.00s 1 normal',
+      animation: '$scaleY100 0.3s ease-out 0.0s 1 normal, $scaleY000 0s linear 0.0s 1 normal',
     },
     processAnimation02: {
-      animation: '$scaleY100 0.3s ease-in 0.05s 1 normal',
+      animation: '$scaleY100 0.3s ease-out 0.05s 1 normal, $scaleY000 0.05s linear 0.0s 1 normal',
     },
     processAnimation03: {
-      animation: '$scaleY100 0.3s ease-in 0.10s 1 normal',
+      animation: '$scaleY100 0.3s ease-out 0.10s 1 normal, $scaleY000 0.10s linear 0.0s 1 normal',
     },
     processAnimation04: {
-      animation: '$scaleY100 0.3s ease-in 0.15s 1 normal',
+      animation: '$scaleY100 0.3s ease-out 0.15s 1 normal, $scaleY000 0.15s linear 0.0s 1 normal',
     },
     processAnimation05: {
-      animation: '$scaleY100 0.3s ease-in 0.20s 1 normal',
+      animation: '$scaleY100 0.3s ease-out 0.20s 1 normal, $scaleY000 0.20s linear 0.0s 1 normal',
     },
     processAnimation06: {
-      animation: '$scaleY100 0.3s ease-in 0.25s 1 normal',
+      animation: '$scaleY100 0.3s ease-out 0.25s 1 normal, $scaleY000 0.25s linear 0.0s 1 normal',
     },
     '@keyframes scaleY60': {
       '0%': {
@@ -80,18 +80,21 @@ const style = makeStyles((oTheme: Theme): any =>
         height: '60%',
       }
     },
+    '@keyframes scaleY000': {
+      '0%': {
+        height: '0%',
+      },
+      '100%': {
+        height: '0%',
+      }
+    },
     '@keyframes scaleY100': {
       '0%': {
         height: '0%',
       },
-      '50%': {
-        height: '120%',
-      },
-      '60%': {
-        height: '100%',
-      },
+
       '70%': {
-        height: '120%',
+        height: '140%',
       },
       '100%': {
         height: '100%',
