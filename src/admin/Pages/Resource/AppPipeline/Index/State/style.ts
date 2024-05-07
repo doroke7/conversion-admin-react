@@ -26,7 +26,7 @@ const style = makeStyles((oTheme: Theme): any =>
       height: '20px',
       background: pink[50],
       border: '2px dotted ' + red[200],
-      animation: '$fadeIn 0.3s linear 0s 1 normal'
+      animation: '$fadeIn 0.1s linear 0s 1 normal'
 
     },
     processNone: {
@@ -35,12 +35,12 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     processOnging: {
       height: '60%',
-      animation: '$scaleY60 0.3s ease-in 0s 1 normal'
+      animation: '$scaleY60 0.1s ease-in 0s 1 normal'
 
     },
     processSuccess: {
       height: '100%',
-      animation: '$scaleY100 0.3s ease-in 0s 1 normal'
+      animation: '$scaleY100 0.1s ease-in 0s 1 normal'
 
     },
     '@keyframes scaleY60': {

@@ -11,7 +11,6 @@ function Index(oProps: any): any {
   let oMatch = useRouteMatch();
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
 
-  console.log('oAuthorizations=', oAuthorizations);
 
 
   return (

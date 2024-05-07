@@ -29,10 +29,6 @@ let authorization = (Component: any): any => {
 
     let sPath = oRouteMatch.path.replace(/^\//, '').replace(/\/\*?$/, '');
 
-
-
-    console.log('oRouteMatch=', oRouteMatch);
-
     useEffect(() => {
       (async () => {
         let sJwt = Helpers.Authentication.authorization() ?? '';
