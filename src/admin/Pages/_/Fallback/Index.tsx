@@ -14,7 +14,8 @@ function Index(oProps: any) {
 
   return (
     <div className={oClasses.root}>
-      <Components.LoadingIcon className={oClasses.icon}></Components.LoadingIcon>
+      <Components.LoadingIcon className={oClasses.icon}>
+      </Components.LoadingIcon>
     </div>
   );
 }

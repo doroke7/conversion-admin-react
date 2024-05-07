@@ -26,6 +26,7 @@ function Right(oProps: any) {
   let [oStateOpen, cSetStateOpen] = useState<boolean>(false);
   let [oStateRotating, cSetStateRotating] = useState<boolean>(false);
   let [oStateAnchor, cSetStateAnchor] = useState<boolean>(null);
+  let oTimerRef = useRef<number>();
 
 
   let oHistory = useHistory();
@@ -48,6 +49,12 @@ function Right(oProps: any) {
 
   };
 
+  useEffect(() => {
+    return () => {
+      clearTimeout(oTimerRef.current);
+    };
+  }, []);
+
   let cHandleConfirm = async () => {
     cSetStateOpen(false);
     cSetStateRotating(true);
@@ -67,7 +74,7 @@ function Right(oProps: any) {
     }
 
     if (iCode >= 0) {
-      setTimeout(() => {
+      oTimerRef.current = window.setTimeout(() => {
         cSetStateRotating(false);
       }, 1200);
     }

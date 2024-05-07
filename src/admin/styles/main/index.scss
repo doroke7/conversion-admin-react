@@ -53,7 +53,7 @@ body {
 	}
 
 	.MuiDataGrid-overlay {
-		background: rgba(250, 250, 250, 0);
+		background-color: transparent;
 	}
 
 	.MuiDataGrid-cell {
@@ -89,10 +89,10 @@ input[type='checkbox']+.MuiSvgIcon-root {
 	font-size: 1rem;
 }
 
-.MuiTooltip-tooltip{
+.MuiTooltip-tooltip {
 	background-color: rgba(42, 42, 42, 0.85) !important;
 }
 
-.MuiTooltip-arrow{
+.MuiTooltip-arrow {
 	color: rgba(42, 42, 42, 0.85) !important;
 }
