@@ -42,14 +42,7 @@ function Index(oProps: any): any {
 
 
   useEffect(() => {
-    (async () => {
-
-      await new Promise((cResolve, cReject) => { setTimeout(() => { cResolve(true); }, 50) });
-      cSetStateStep((iPreStateStep) => {
-        let iNextStateValue = iPreStateStep >= iState ? iState : iPreStateStep + 1;
-        return iNextStateValue;
-      });
-    })();
+    cSetStateStep(iState);
 
   }, [iStateStep, iState]);
 
