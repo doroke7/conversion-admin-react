@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from 'react';
 import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import clsx from 'clsx';
 
@@ -25,6 +25,7 @@ import SmallAdminMenus from './SmallAdminMenus/Index';
 import Tabs from './Tabs/Index';
 import Sdks from '@/admin/Sdks/Index';
 import hooks from '@/admin/hooks/index';
+import actions from '@/admin/actions/';
 
 import style from './style';
 
@@ -40,6 +41,7 @@ function Navigation(oProps: any) {
   let oDomRef: any = useRef(null);
   let oRouteMatch = useRouteMatch();
   let oParams: any = useParams();
+  let oDispatch = useDispatch();
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
@@ -171,6 +173,11 @@ function Navigation(oProps: any) {
         }
 
         if (iIndex != iStateIndex) {
+          /**
+           * NOTE： 切换 APP 时候需要个别把 app 旗下数据归 [] 
+           */
+          oDispatch(actions.appPipelines.set([]));
+
           let aTabs1 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId);
           let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
 
@@ -369,7 +376,7 @@ function Navigation(oProps: any) {
     let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
 
     if (iAdminUserId) {
-          // TODO
+      // TODO
       // 如果点击系统菜单，此时已经有选择 app， 需要保留选的app
       let oApp = aStateApps?.[iStateIndex];
       let iAppId = oApp?.id ?? 0;
