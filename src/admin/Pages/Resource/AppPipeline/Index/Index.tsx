@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, Component, useMemo, forwardRef } from 'react';
+import React, { useRef, useState, useEffect, useLayoutEffect, Component, useMemo, forwardRef, useCallback } from 'react';
 import { useHistory, useRouteMatch, useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
@@ -66,6 +66,8 @@ function Index(oProps: any): any {
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
+  let oDataGridRef = useRef();
+
 
 
   let iLimit = Number(oParams.limit || 20);
@@ -78,6 +80,18 @@ function Index(oProps: any): any {
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
   let oAppPipeline = useSelector((oStore: any) => (oStore.appPipeline));
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
+
+  let cScrollToTop = useCallback(() => {
+    if (oDataGridRef.current) {
+      let oDataGridWindow = (oDataGridRef.current as any)?.querySelector('.MuiDataGrid-window');
+
+      oDataGridWindow.scroll({
+        top: 0,
+        behavior: 'smooth',
+      });
+
+    }
+  }, [oDataGridRef])
 
   let aSteps = [
     '傳輸資源',
@@ -169,6 +183,7 @@ function Index(oProps: any): any {
   }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId]);
 
   let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
+    cScrollToTop();
 
     let oSearch1 = {};
 
@@ -221,6 +236,9 @@ function Index(oProps: any): any {
 
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
 
+    cScrollToTop();
+
+
     let oSearch = {};
 
     iStateAppUserId && (oSearch = {
@@ -244,6 +262,10 @@ function Index(oProps: any): any {
   };
 
   let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+
+    cScrollToTop();
+
+
     let iLimit = Number(oEvent.target.value);
 
     let oSearch = {};
@@ -258,6 +280,9 @@ function Index(oProps: any): any {
       name: sStateName
     });
 
+
+
+
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, oSearch);
 
     oHistory.push(sUrl);
@@ -270,13 +295,19 @@ function Index(oProps: any): any {
   };
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    cScrollToTop();
+
+
     let iPage = Number(oEvent.target.value);
+
     cSetStatePage(iPage);
 
   };
 
   let cHandleKeyPressPageOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
+      cScrollToTop();
+
       let iPage = Number(oEvent.target.value);
 
       let oSearch = {};
@@ -299,6 +330,9 @@ function Index(oProps: any): any {
 
   let cHandleKeyPressNameOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
+
+      cScrollToTop();
+
       let sName = String(oEvent.target.value);
 
       let oSearch = {};
@@ -949,6 +983,7 @@ function Index(oProps: any): any {
 
       <div className={oClasses.dataGridWrapper}>
         <DataGrid
+          ref={oDataGridRef}
           className={clsx(oClasses.dataGrid, {})}
           columns={aColumns}
           headerHeight={36}
