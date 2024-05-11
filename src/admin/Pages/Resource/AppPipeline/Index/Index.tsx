@@ -55,7 +55,7 @@ function Index(oProps: any): any {
   let oDispatch = useDispatch();
 
   let [sStateName, cSetStateName] = useState<string>('');
-  let [sStateFilename, cSetStateFilename] = useState<string>('');
+  let [sStateTitle, cSetStateTitle] = useState<string>('');
   let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
@@ -374,7 +374,7 @@ function Index(oProps: any): any {
 
   let cHandleDetailClick = (iId: number, sFilename: string, oRow: any) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
-      cSetStateFilename(sFilename);
+      cSetStateTitle(sFilename);
 
       oDispatch(actions.appPipeline.set({}));
 
@@ -427,7 +427,7 @@ function Index(oProps: any): any {
 
       cSetStateTranscoderDialogOpen(true);
       cSetStateId(iId);
-      cSetStateFilename(sFilename);
+      cSetStateTitle(sFilename);
 
     };
   };
@@ -727,7 +727,7 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          {sStateFilename ?? ''}
+          {sStateTitle ?? ''}
         </DialogTitle>
 
         <DialogContent dividers className={oClasses.dialogContent}>
@@ -882,7 +882,7 @@ function Index(oProps: any): any {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{sStateFilename ?? ''}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{sStateTitle ?? ''}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             手動轉碼可能會造成任務阻塞
