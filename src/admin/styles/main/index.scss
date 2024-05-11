@@ -8,7 +8,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-	width: 2px;
+	width: 0px;
 	background-color: #FFFFFF;
 }
 
@@ -62,7 +62,9 @@ body {
 .MuiDataGrid-window {
 	background: linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%);
 	overflow-x: hidden !important;
-
+	&::-webkit-scrollbar {
+		width: 2px;
+	}
 }
 
 .MuiDataGrid-row {
