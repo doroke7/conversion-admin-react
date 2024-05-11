@@ -762,7 +762,7 @@ function Index(oProps: any): any {
                     </Typography>
                   }
                 >
-                  資源下载 (-)
+                  資源同步 (-)
                 </StepLabel>
               </Step>
               <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
