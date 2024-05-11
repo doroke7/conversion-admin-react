@@ -93,9 +93,9 @@ const style = makeStyles((oTheme: Theme): any =>
         height: '0%',
       },
 
-      '70%': {
-        height: '140%',
-      },
+      // '70%': {
+      //   height: '140%',
+      // },
       '100%': {
         height: '100%',
       }
