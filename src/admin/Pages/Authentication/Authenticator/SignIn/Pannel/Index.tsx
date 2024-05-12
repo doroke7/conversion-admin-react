@@ -107,6 +107,8 @@ function Pannel(oProps: any): any {
         }
 
         if (oResponse) {
+          oDispatch(actions.appPipelines.set([]));
+
           await new Promise((cResolve) => setTimeout(cResolve, 300));
           oHistory.push('/admin/resource');
           events.emit('Progress-onProgress', { value: 98, status: true });
