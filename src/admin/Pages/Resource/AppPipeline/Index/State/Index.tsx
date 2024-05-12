@@ -16,7 +16,7 @@ function Index(oProps: any): any {
 
   let oStates = {
     0: '任務启动',
-    1: '資源下载',
+    1: '資源同步',
     2: '資源转码',
     3: '資源加密',
     4: '資源上云',
