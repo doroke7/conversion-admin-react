@@ -22,6 +22,7 @@ import SmallApps from './SmallApps/Index';
 import LargeApps from './LargeApps/Index';
 import LargeAdminMenus from './LargeAdminMenus/Index';
 import SmallAdminMenus from './SmallAdminMenus/Index';
+import Backdrop from './Backdrop/Index';
 import Tabs from './Tabs/Index';
 import Sdks from '@/admin/Sdks/Index';
 import hooks from '@/admin/hooks/index';
@@ -652,6 +653,7 @@ function Navigation(oProps: any) {
                 {children}
               </Tabs>
             </main>
+            {/* <Backdrop open={!oMe?.id} error={oMe?.id === null}></Backdrop> */}
           </div>
         </Contexts.Tabs.Provider>
       </Contexts.TabsValue.Provider>

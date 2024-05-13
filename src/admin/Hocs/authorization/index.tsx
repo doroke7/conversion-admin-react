@@ -161,6 +161,8 @@ let authorization = (Component: any): any => {
 
           oDispatch(actions.authorizaions.set(oAutohorizations));
 
+          console.log('oResponse=', oResponse);
+
           if (
             oResponse?.data?.code >= 0 && oResponse?.data?.code !== undefined
           ) {
@@ -185,7 +187,9 @@ let authorization = (Component: any): any => {
             oResponse?.data?.code <= -2
           ) {
             // 服务器回传 -2 (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
-            oMe = {};
+            oMe = {
+              id: null
+            };
             oDispatch(actions.me.set(oMe));
 
           }
@@ -193,7 +197,9 @@ let authorization = (Component: any): any => {
           if (oResponse?.data?.code === undefined) {
             // 服务器回传 undefined (判定服务器暂时错误), => 保留 本地浏览器 [登入token]; 清空 本地浏览器 [用户数据]
 
-            oMe = {};
+            oMe = {
+              id: null
+            };
             oDispatch(actions.me.set(oMe));
           }
 

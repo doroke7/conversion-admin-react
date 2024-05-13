@@ -23,7 +23,7 @@ function None(oProps: any): any {
           <Icon></Icon>
           <div className={oClasses.buttonWrapperWrapper}>
             <div className={oClasses.buttonWrapper}>
-              <Button className={oClasses.button} variant="outlined" color="primary" onClick={oHandleClick}>
+              <Button className={oClasses.button} variant="outlined" color="default" onClick={oHandleClick}>
                 回到主页
               </Button>
             </div>

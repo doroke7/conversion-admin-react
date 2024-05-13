@@ -14,6 +14,7 @@ import AndroidIcon from './AndroidIcon/Index';
 import AppleIcon from './AppleIcon/Index';
 import NoRowsOverlay from './NoRowsOverlay/Index';
 import LoadingOverlay from './LoadingOverlay/Index';
+import ServerErrorIcon from './ServerErrorIcon/Index';
 
 export default {
   NoRowsOverlay: NoRowsOverlay,
@@ -31,5 +32,6 @@ export default {
   BoxIcon: BoxIcon,
   InIcon: InIcon,
   AndroidIcon: AndroidIcon,
-  AppleIcon: AppleIcon
+  AppleIcon: AppleIcon,
+  ServerErrorIcon: ServerErrorIcon
 };

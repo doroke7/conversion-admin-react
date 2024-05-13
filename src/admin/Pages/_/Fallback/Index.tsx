@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import store from '@/admin/store/index';
 import router from '@/admin/router/index';
@@ -14,8 +15,8 @@ function Index(oProps: any) {
 
   return (
     <div className={oClasses.root}>
-      <Components.LoadingIcon className={oClasses.icon}>
-      </Components.LoadingIcon>
+      <LinearProgress color="secondary" />
+
     </div>
   );
 }
