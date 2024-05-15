@@ -24,6 +24,10 @@ const style = makeStyles((oTheme: Theme): any =>
         transform: 'translate(14px, 7px) scale(0.9)'
       },
 
+      '& .MuiOutlinedInput-inputMarginDense': {
+        paddingTop: oTheme.spacing(0.4375),
+        paddingBottom: oTheme.spacing(0.4375),
+      },
       '& .MuiOutlinedInput-root': {
         height: oTheme.spacing(3.25),
       },
