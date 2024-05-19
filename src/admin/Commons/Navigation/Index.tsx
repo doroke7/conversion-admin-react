@@ -189,8 +189,10 @@ function Navigation(oProps: any) {
           cSetStateTabs(aTabs);
           cSetStateTabsValue(iValue);
 
+          let sUrl = aTabs.length >= 1 ? aTabs[0]?.url : '/admin/resource';
+
           if (iIndex >= 0) {
-            oHistory.push('/admin/resource');
+            oHistory.push(sUrl);
           }
         }
       }
