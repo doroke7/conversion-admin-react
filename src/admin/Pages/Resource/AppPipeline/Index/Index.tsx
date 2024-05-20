@@ -142,6 +142,7 @@ function Index(oProps: any): any {
 
   useEffect(() => {
 
+    console.log('aAppPipelines(任务列表)=', aAppPipelines);
     cSetStateRows(aAppPipelines);
   }, [aAppPipelines]);
 
