@@ -59,7 +59,7 @@ function Index(oProps: any): any {
   let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
-  let [aStateRows, cSetStateRows] = useState<any[]>([]);
+  let [aStateAppPipelines, cSetStateAppPipelines] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
@@ -143,7 +143,7 @@ function Index(oProps: any): any {
   useEffect(() => {
 
     console.log('aAppPipelines(任务列表)=', aAppPipelines);
-    cSetStateRows(aAppPipelines);
+    cSetStateAppPipelines(aAppPipelines);
   }, [aAppPipelines]);
 
   useEffect(() => {
@@ -988,8 +988,8 @@ function Index(oProps: any): any {
           className={clsx(oClasses.dataGrid, {})}
           columns={aColumns}
           headerHeight={36}
-          rowCount={aStateRows.length == 0 ? 0 : iStateCount}
-          rows={aStateRows}
+          rowCount={aStateAppPipelines.length == 0 ? 0 : iStateCount}
+          rows={aStateAppPipelines}
           page={0}
           pageSize={iStateLimit}
           loading={bStateLoading}
