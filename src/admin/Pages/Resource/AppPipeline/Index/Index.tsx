@@ -897,12 +897,12 @@ function Index(oProps: any): any {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{sStateTitle ?? ''}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">执行手动转码</DialogTitle>
+        <Divider></Divider>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            手動轉碼可能會造成任務阻塞
-            <br></br>
-            確定要執行？
+
+            手動轉碼，{' ' + (sStateTitle ?? '') + ' '}，可能會造成任務阻塞, 確定要執行？
           </DialogContentText>
         </DialogContent>
         <DialogActions>
