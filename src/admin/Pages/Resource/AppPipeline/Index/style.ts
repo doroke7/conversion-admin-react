@@ -37,6 +37,9 @@ const style = makeStyles((oTheme: Theme): any =>
       },
 
     },
+    fileName: {
+      textDecoration: 'underline',
+    },
     textFieldName: {
       width: oTheme.spacing(20),
       marginRight: oTheme.spacing(2),
@@ -95,6 +98,16 @@ const style = makeStyles((oTheme: Theme): any =>
       [oTheme.breakpoints.down('md')]: {
         width: oTheme.spacing(8),
       },
+    },
+    formControlServerUuid: {
+      textAlign: 'left',
+      width: oTheme.spacing(20),
+      [oTheme.breakpoints.down('md')]: {
+        width: oTheme.spacing(8),
+      },
+      '& .MuiInputLabel-outlined': {
+        transform: 'translate(14px, 8px) scale(0.8)',
+      }
     },
     formControlLimit: {
       textAlign: 'right',
