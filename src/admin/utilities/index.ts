@@ -27,6 +27,7 @@ import size from './size/';
 import dateTime from './dateTime/';
 import adminMenuKey from './adminMenuKey';
 import hhmmss from './hhmmss/';
+import percentage from './percentage/';
 
 export {
   selectType,
@@ -60,5 +61,6 @@ export default {
   deTree: deTree,
   randString: randString,
   adminMenuKey: adminMenuKey,
-  hhmmss: hhmmss
+  hhmmss: hhmmss,
+  percentage: percentage
 };

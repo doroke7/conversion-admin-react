@@ -13,6 +13,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
+import Divider from '@material-ui/core/Divider';
 
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
@@ -59,11 +60,13 @@ function Index(oProps: any): any {
   let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
-  let [aStateRows, cSetStateRows] = useState<any[]>([]);
+  let [aStateAppPipelines, cSetStateAppPipelines] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
+  let [aStateServers, cSetStateServers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [sStateServerUuid, cSetStateServerUuid] = useState<string>('');
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
   let oDataGridRef = useRef();
@@ -114,10 +117,18 @@ function Index(oProps: any): any {
       };
 
 
-      let oResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
+      let aResponses = await Promise.all([
+        Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch),
+        Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch)
+      ]);
+      let oServerResponse = aResponses[0];
+      let oAppUserResponse = aResponses[1];
 
-      let aAppUsers = oResponse?.data?.raw?.ones ?? [];
+      let aServers = oServerResponse?.data?.raw?.ones ?? [];
+      let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
 
+      console.log('aServers=', aServers);
+      cSetStateServers(aServers);
       cSetStateAppUsers(aAppUsers);
 
     })();
@@ -143,7 +154,7 @@ function Index(oProps: any): any {
   useEffect(() => {
 
     console.log('aAppPipelines(任务列表)=', aAppPipelines);
-    cSetStateRows(aAppPipelines);
+    cSetStateAppPipelines(aAppPipelines);
   }, [aAppPipelines]);
 
   useEffect(() => {
@@ -260,6 +271,12 @@ function Index(oProps: any): any {
     let iAppUserId = Number(oEvent.target.value);
 
     cSetStateAppUserId(iAppUserId);
+  };
+
+  let cHandleChangeServerUuidOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let sServerUuid = String(oEvent.target.value);
+
+    cSetStateServerUuid(sServerUuid);
   };
 
   let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
@@ -728,10 +745,11 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          {sStateTitle ?? ''}
+          转码步骤详情
         </DialogTitle>
 
-        <DialogContent dividers className={oClasses.dialogContent}>
+        <Divider></Divider>
+        <DialogContent className={oClasses.dialogContent}>
           <Typography gutterBottom className={clsx({}, {
             [oClasses.visibilityHidden]: !oAppPipeline?.id,
 
@@ -862,19 +880,15 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
             </Stepper>
+            <div className={oClasses.detail}>
+              <div>⎯資源同步内容⎯</div>
+              <div>{sStateTitle}</div>
+            </div>
           </Typography>
           {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
 
-          {/* <Typography gutterBottom>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-          lacus vel augue laoreet rutrum faucibus dolor auctor.
-        </Typography>
-        <Typography gutterBottom>
-          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-          scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-          auctor fringilla.
-        </Typography> */}
         </DialogContent>
+        <Divider></Divider>
 
       </Dialog>
       <Dialog
@@ -883,12 +897,12 @@ function Index(oProps: any): any {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{sStateTitle ?? ''}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">执行手动转码</DialogTitle>
+        <Divider></Divider>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            手動轉碼可能會造成任務阻塞
-            <br></br>
-            確定要執行？
+
+            手動轉碼，{' ' + (sStateTitle ?? '') + ' '}，可能會造成任務阻塞, 確定要執行？
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -988,8 +1002,8 @@ function Index(oProps: any): any {
           className={clsx(oClasses.dataGrid, {})}
           columns={aColumns}
           headerHeight={36}
-          rowCount={aStateRows.length == 0 ? 0 : iStateCount}
-          rows={aStateRows}
+          rowCount={aStateAppPipelines.length == 0 ? 0 : iStateCount}
+          rows={aStateAppPipelines}
           page={0}
           pageSize={iStateLimit}
           loading={bStateLoading}
