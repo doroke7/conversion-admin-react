@@ -63,7 +63,9 @@ function Index(oProps: any): any {
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
+  let [aStateServers, cSetStateServers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [sStateServerUuid, cSetStateServerUuid] = useState<string>('');
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
   let oDataGridRef = useRef();
@@ -114,10 +116,18 @@ function Index(oProps: any): any {
       };
 
 
-      let oResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
+      let aResponses = await Promise.all([
+        Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch),
+        Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch)
+      ]);
+      let oServerResponse = aResponses[0];
+      let oAppUserResponse = aResponses[1];
 
-      let aAppUsers = oResponse?.data?.raw?.ones ?? [];
+      let aServers = oServerResponse?.data?.raw?.ones ?? [];
+      let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
 
+      console.log('aServers=', aServers);
+      cSetStateServers(aServers);
       cSetStateAppUsers(aAppUsers);
 
     })();
@@ -260,6 +270,12 @@ function Index(oProps: any): any {
     let iAppUserId = Number(oEvent.target.value);
 
     cSetStateAppUserId(iAppUserId);
+  };
+
+  let cHandleChangeServerUuidOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let sServerUuid = String(oEvent.target.value);
+
+    cSetStateServerUuid(sServerUuid);
   };
 
   let cHandleChangeLimitOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
