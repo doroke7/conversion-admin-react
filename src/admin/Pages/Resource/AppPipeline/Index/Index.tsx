@@ -66,7 +66,7 @@ function Index(oProps: any): any {
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [aStateServers, cSetStateServers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
-  let [sStateServerUuid, cSetStateServerUuid] = useState<string>('');
+  let [sStateServerUuid, cSetStateServerUuid] = useState<string>('DEFAULT');
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
   let oDataGridRef = useRef();
@@ -454,7 +454,7 @@ function Index(oProps: any): any {
 
     let iId = iStateId;
     let oParam = {
-      serverUuid: sStateServerUuid ?? ''
+      serverUuid: sStateServerUuid != 'DEFAULT' ? sStateServerUuid : ''
     };
     let oOption = {
       appId: iAppId
@@ -906,11 +906,27 @@ function Index(oProps: any): any {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
 
-            手動轉碼，{' ' + (sStateTitle ?? '') + ' '}
-            <br></br>
+            手動轉碼&nbsp; <span className={clsx(oClasses.fileName)}>{sStateTitle ?? ''}</span>&nbsp;
             可能會造成任務阻塞, 確定要執行？
           </DialogContentText>
-
+          <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlServerUuid)}>
+            <InputLabel id="server-uuid">节点</InputLabel>
+            <Select
+              labelId="server-uuid"
+              id="server-uuid"
+              value={sStateServerUuid}
+              onChange={cHandleChangeServerUuidOfSelect}
+              label="节点"
+            >
+              <MenuItem className={oClasses.menuItem} value={'DEFAULT'} selected={true}>-</MenuItem>
+              {aStateServers.map((oStateServer, sKey) => (
+                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateServer?.uuid ?? ''}>
+                  <span>{oStateServer?.uuid ?? ''}, 负载</span>
+                  <span>{utilities.percentage(oStateServer.loadRate ?? 0)}</span>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
         </DialogContent>
         <DialogActions>
@@ -924,21 +940,7 @@ function Index(oProps: any): any {
       </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
-          <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>
-            <InputLabel id="server-uuid">节点</InputLabel>
-            <Select
-              labelId="server-uuid"
-              id="server-uuid"
-              value={sStateServerUuid}
-              onChange={cHandleChangeServerUuidOfSelect}
-              label="节点"
-            >
-              <MenuItem className={oClasses.menuItem} value={''} selected={true}>-</MenuItem>
-              {aStateServers.map((oStateServer, sKey) => (
-                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateServer?.uuid ?? ''}>{oStateServer?.uuid ?? ''}, 负载{utilities.percentage(oStateServer.loadRate ?? 0)}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>
             <InputLabel id="app-user-id">账号</InputLabel>
             <Select
