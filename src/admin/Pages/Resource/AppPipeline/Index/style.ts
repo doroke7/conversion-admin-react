@@ -193,7 +193,10 @@ const style = makeStyles((oTheme: Theme): any =>
       transform: 'translate(-50%, -50%)',
 
     },
-
+    detail: {
+      textAlign: 'center',
+      color: grey[500]
+    },
     visibilityHidden: {
       visibility: 'hidden',
     },

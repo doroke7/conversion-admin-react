@@ -13,6 +13,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
+import Divider from '@material-ui/core/Divider';
 
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
@@ -744,10 +745,11 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          {sStateTitle ?? ''}
+          转码步骤详情
         </DialogTitle>
 
-        <DialogContent dividers className={oClasses.dialogContent}>
+        <Divider></Divider>
+        <DialogContent className={oClasses.dialogContent}>
           <Typography gutterBottom className={clsx({}, {
             [oClasses.visibilityHidden]: !oAppPipeline?.id,
 
@@ -878,19 +880,15 @@ function Index(oProps: any): any {
                 </StepLabel>
               </Step>
             </Stepper>
+            <div className={oClasses.detail}>
+              <div>⎯資源同步内容⎯</div>
+              <div>{sStateTitle}</div>
+            </div>
           </Typography>
           {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
 
-          {/* <Typography gutterBottom>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-          lacus vel augue laoreet rutrum faucibus dolor auctor.
-        </Typography>
-        <Typography gutterBottom>
-          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-          scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-          auctor fringilla.
-        </Typography> */}
         </DialogContent>
+        <Divider></Divider>
 
       </Dialog>
       <Dialog
