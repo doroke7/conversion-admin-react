@@ -919,7 +919,8 @@ function Index(oProps: any): any {
               <MenuItem className={oClasses.menuItem} value={'DEFAULT'} selected={true}>-</MenuItem>
               {aStateServers.map((oStateServer, sKey) => (
                 <MenuItem key={sKey} className={oClasses.menuItem} value={oStateServer?.uuid ?? ''}>
-                  <span className={oClasses.serverUuid}>{oStateServer?.uuid ?? ''}, 负载</span>
+                  <span className={oClasses.serverUuid}>{oStateServer?.uuid ?? ''}</span>
+                  <span>, 负载</span>
                   <span className={oClasses.percentage}>{utilities.percentage(oStateServer.loadRate ?? 0)}</span>
                 </MenuItem>
               ))}

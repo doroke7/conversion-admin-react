@@ -112,7 +112,7 @@ const style = makeStyles((oTheme: Theme): any =>
     serverUuid: {
       textAlign: 'left',
       display: 'inline-block',
-      minWidth: oTheme.spacing(6),
+      minWidth: oTheme.spacing(2),
     },
     percentage: {
       textAlign: 'right',
