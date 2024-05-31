@@ -117,18 +117,10 @@ function Index(oProps: any): any {
       };
 
 
-      let aResponses = await Promise.all([
-        Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch),
-        Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch)
-      ]);
-      let oServerResponse = aResponses[0];
-      let oAppUserResponse = aResponses[1];
+      let oAppUserResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
 
-      let aServers = oServerResponse?.data?.raw?.ones ?? [];
       let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
 
-      console.log('aServers=', aServers);
-      cSetStateServers(aServers);
       cSetStateAppUsers(aAppUsers);
 
     })();
@@ -180,16 +172,22 @@ function Index(oProps: any): any {
         appUserId: iAppUserId
       });
 
-      let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
+      let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
-      let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
-      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
-      let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+      let iNumber = Number(oAppPipelineResponse?.data?.raw?.number ?? 0);
+      let iCount = Math.ceil((oAppPipelineResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
+      let aAppPipelines = oAppPipelineResponse?.data?.raw?.ones ?? [];
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
       cSetStateCount(iCount);
       cSetStateLoading(false);
+
+      let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+      let aServers = aServerResponses?.data?.raw?.ones ?? [];
+
+      cSetStateServers(aServers);
+
 
     })();
   }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId]);
@@ -922,7 +920,7 @@ function Index(oProps: any): any {
               {aStateServers.map((oStateServer, sKey) => (
                 <MenuItem key={sKey} className={oClasses.menuItem} value={oStateServer?.uuid ?? ''}>
                   <span>{oStateServer?.uuid ?? ''}, 负载</span>
-                  <span>{utilities.percentage(oStateServer.loadRate ?? 0)}</span>
+                  <span className={oClasses.percentage}>{utilities.percentage(oStateServer.loadRate ?? 0)}</span>
                 </MenuItem>
               ))}
             </Select>

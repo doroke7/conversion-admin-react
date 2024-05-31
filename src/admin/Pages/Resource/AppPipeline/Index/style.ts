@@ -109,6 +109,11 @@ const style = makeStyles((oTheme: Theme): any =>
         transform: 'translate(14px, 8px) scale(0.8)',
       }
     },
+    percentage: {
+      textAlign: 'right',
+      display: 'inline-block',
+      minWidth: oTheme.spacing(6),
+    },
     formControlLimit: {
       textAlign: 'right',
       width: oTheme.spacing(9),
