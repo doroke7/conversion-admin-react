@@ -461,8 +461,6 @@ function Index(oProps: any): any {
       id: iId
     };
 
-
-
     let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
 
     if (!oResponse || oResponse?.data?.code <= -1) {
@@ -486,6 +484,12 @@ function Index(oProps: any): any {
       };
       events.emit('Alerts-onAlert', oMessage);
     };
+
+
+    let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+    let aServers = aServerResponses?.data?.raw?.ones ?? [];
+
+    cSetStateServers(aServers);
 
     cSetStateTranscoderDialogOpen(false);
 
