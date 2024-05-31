@@ -435,6 +435,19 @@ function Index(oProps: any): any {
   let cHandleTranscoderDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
     cSetStateTranscoderDialogOpen(false);
 
+    let oParam = {
+    };
+    let oOption = {
+      appId: iAppId
+    };
+    let oSearch = {
+    };
+
+    let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+    let aServers = aServerResponses?.data?.raw?.ones ?? [];
+
+    cSetStateServers(aServers);
+
   }
 
 
@@ -451,17 +464,17 @@ function Index(oProps: any): any {
   let cHandleTranscoderDialogClick = async (oEvent: React.SyntheticEvent<unknown>) => {
 
     let iId = iStateId;
-    let oParam = {
+    let oParam1 = {
       serverUuid: sStateServerUuid != 'DEFAULT' ? sStateServerUuid : ''
     };
-    let oOption = {
+    let oOption1 = {
       appId: iAppId
     };
-    let oSearch = {
+    let oSearch1 = {
       id: iId
     };
 
-    let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+    let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam1, oOption1, oSearch1);
 
     if (!oResponse || oResponse?.data?.code <= -1) {
       let iCode = oResponse?.data?.code;
@@ -485,8 +498,17 @@ function Index(oProps: any): any {
       events.emit('Alerts-onAlert', oMessage);
     };
 
+    let oParam2 = {
+    };
+    let oOption2 = {
+      appId: iAppId
+    };
+    let oSearch2 = {
+    };
+    cSetStateServerUuid('');
 
-    let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+
+    let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
     let aServers = aServerResponses?.data?.raw?.ones ?? [];
 
     cSetStateServers(aServers);
