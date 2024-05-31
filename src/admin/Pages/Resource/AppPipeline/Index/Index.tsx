@@ -117,18 +117,10 @@ function Index(oProps: any): any {
       };
 
 
-      let aResponses = await Promise.all([
-        Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch),
-        Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch)
-      ]);
-      let oServerResponse = aResponses[0];
-      let oAppUserResponse = aResponses[1];
+      let oAppUserResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
 
-      let aServers = oServerResponse?.data?.raw?.ones ?? [];
       let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
 
-      console.log('aServers=', aServers);
-      cSetStateServers(aServers);
       cSetStateAppUsers(aAppUsers);
 
     })();
@@ -180,16 +172,22 @@ function Index(oProps: any): any {
         appUserId: iAppUserId
       });
 
-      let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
+      let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
-      let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
-      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
-      let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+      let iNumber = Number(oAppPipelineResponse?.data?.raw?.number ?? 0);
+      let iCount = Math.ceil((oAppPipelineResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
+      let aAppPipelines = oAppPipelineResponse?.data?.raw?.ones ?? [];
 
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
       cSetStateCount(iCount);
       cSetStateLoading(false);
+
+      let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+      let aServers = aServerResponses?.data?.raw?.ones ?? [];
+
+      cSetStateServers(aServers);
+
 
     })();
   }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId]);
@@ -437,6 +435,19 @@ function Index(oProps: any): any {
   let cHandleTranscoderDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
     cSetStateTranscoderDialogOpen(false);
 
+    let oParam = {
+    };
+    let oOption = {
+      appId: iAppId
+    };
+    let oSearch = {
+    };
+
+    let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+    let aServers = aServerResponses?.data?.raw?.ones ?? [];
+
+    cSetStateServers(aServers);
+
   }
 
 
@@ -453,19 +464,17 @@ function Index(oProps: any): any {
   let cHandleTranscoderDialogClick = async (oEvent: React.SyntheticEvent<unknown>) => {
 
     let iId = iStateId;
-    let oParam = {
+    let oParam1 = {
       serverUuid: sStateServerUuid != 'DEFAULT' ? sStateServerUuid : ''
     };
-    let oOption = {
+    let oOption1 = {
       appId: iAppId
     };
-    let oSearch = {
+    let oSearch1 = {
       id: iId
     };
 
-
-
-    let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam, oOption, oSearch);
+    let oResponse = await Sdks.Admin.System.AppPipeline.postTranscodeOne(oParam1, oOption1, oSearch1);
 
     if (!oResponse || oResponse?.data?.code <= -1) {
       let iCode = oResponse?.data?.code;
@@ -488,6 +497,21 @@ function Index(oProps: any): any {
       };
       events.emit('Alerts-onAlert', oMessage);
     };
+
+    let oParam2 = {
+    };
+    let oOption2 = {
+      appId: iAppId
+    };
+    let oSearch2 = {
+    };
+    cSetStateServerUuid('');
+
+
+    let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
+    let aServers = aServerResponses?.data?.raw?.ones ?? [];
+
+    cSetStateServers(aServers);
 
     cSetStateTranscoderDialogOpen(false);
 
@@ -921,8 +945,9 @@ function Index(oProps: any): any {
               <MenuItem className={oClasses.menuItem} value={'DEFAULT'} selected={true}>-</MenuItem>
               {aStateServers.map((oStateServer, sKey) => (
                 <MenuItem key={sKey} className={oClasses.menuItem} value={oStateServer?.uuid ?? ''}>
-                  <span>{oStateServer?.uuid ?? ''}, 负载</span>
-                  <span>{utilities.percentage(oStateServer.loadRate ?? 0)}</span>
+                  <span className={oClasses.serverUuid}>{oStateServer?.uuid ?? ''}</span>
+                  <span>, 负载</span>
+                  <span className={oClasses.percentage}>{utilities.percentage(oStateServer.loadRate ?? 0)}</span>
                 </MenuItem>
               ))}
             </Select>
