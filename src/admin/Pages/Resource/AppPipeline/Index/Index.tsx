@@ -18,6 +18,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
+import StepButton from '@material-ui/core/StepButton';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import Typography from '@material-ui/core/Typography';
@@ -747,19 +748,34 @@ function Index(oProps: any): any {
   let sColor5: color = 'textSecondary';
   let sColor6: color = 'textSecondary';
 
-  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 1) ? 'initial' : sColor1;
-  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 1) ? 'initial' : sColor2;
-  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 1) ? 'initial' : sColor3;
-  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 1) ? 'initial' : sColor4;
-  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 1) ? 'initial' : sColor5;
-  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 1) ? 'initial' : sColor6;
+  let bCompleted1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 1);
+  let bCompleted2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 1);
+  let bCompleted3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 1);
+  let bCompleted4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 1);
+  let bCompleted5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 1);
+  let bCompleted6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 1);
 
-  sColor1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1) ? 'error' : sColor1;
-  sColor2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1) ? 'error' : sColor2;
-  sColor3 = (oAppPipeline?.state == 3 && oAppPipeline?.status == -1) ? 'error' : sColor3;
-  sColor4 = (oAppPipeline?.state == 4 && oAppPipeline?.status == -1) ? 'error' : sColor4;
-  sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1) ? 'error' : sColor5;
-  sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1) ? 'error' : sColor6;
+  let bError1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1);
+  let bError2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1);
+  let bError3 = (oAppPipeline?.state == 3 && oAppPipeline?.status == -1);
+  let bError4 = (oAppPipeline?.state == 4 && oAppPipeline?.status == -1);
+  let bError5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1);
+  let bError6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1);
+
+
+  sColor1 = bCompleted1 ? 'initial' : sColor1;
+  sColor2 = bCompleted2 ? 'initial' : sColor2;
+  sColor3 = bCompleted3 ? 'initial' : sColor3;
+  sColor4 = bCompleted4 ? 'initial' : sColor4;
+  sColor5 = bCompleted5 ? 'initial' : sColor5;
+  sColor6 = bCompleted6 ? 'initial' : sColor6;
+
+  sColor1 = bError1 ? 'error' : sColor1;
+  sColor2 = bError2 ? 'error' : sColor2;
+  sColor3 = bError3 ? 'error' : sColor3;
+  sColor4 = bError4 ? 'error' : sColor4;
+  sColor5 = bError5 ? 'error' : sColor5;
+  sColor6 = bError6 ? 'error' : sColor6;
 
   return (
     <div className="app-pipeline">
@@ -793,119 +809,88 @@ function Index(oProps: any): any {
                 })} />
               }
             >
+
               <Step active={oAppPipeline?.state == 1 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor1}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}
-                    </Typography>
-                  }
-                >
+
+                <StepButton onClick={() => void 0} completed={bCompleted1}>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor1}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appDownloaderStage?.addedTime ?? '')}
+                  </Typography>
                   資源同步 (-)
-                </StepLabel>
+                </StepButton>
+
               </Step>
-              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor2}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}
-                    </Typography>
-                  }
-                >
+              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
+                <StepButton onClick={() => void 0} completed={bCompleted2}>  {/*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */}
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor2}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appTranscoderStage?.startedTime ?? '')}
+                  </Typography>
                   資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})
-                </StepLabel>
+                </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor3}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}
-                    </Typography>
-                  }
-                >
+                <StepButton onClick={() => void 0} completed={bCompleted3}>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor3}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appEncrypterStage?.startedTime ?? '')}
+                  </Typography>
                   資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})
-                </StepLabel>
+                </StepButton>
+
               </Step>
               <Step active={oAppPipeline?.state == 4 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor4}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}
-                    </Typography>
-                  }
-                >
+                <StepButton onClick={() => void 0} completed={bCompleted4}>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor4}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}
+                  </Typography>
                   資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})
-                </StepLabel>
+                </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor5}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}
-                    </Typography>
-                  }
-                >
+                <StepButton onClick={() => void 0} completed={bCompleted5}>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor5}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}
+                  </Typography>
                   資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})
-                </StepLabel>
+                </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor6}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}
-                    </Typography>
-                  }
-                >
+
+                <StepButton onClick={() => void 0} completed={bCompleted6}>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor6}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}
+                  </Typography>
                   資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})
-                </StepLabel>
+                </StepButton>
               </Step>
             </Stepper>
             <div className={oClasses.detail}>
