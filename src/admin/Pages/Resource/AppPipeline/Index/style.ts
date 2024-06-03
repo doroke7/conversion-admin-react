@@ -15,6 +15,9 @@ const style = makeStyles((oTheme: Theme): any =>
         height: oTheme.spacing(4)
       }
     },
+    stepButtonSpanError: {
+      color: red[500]
+    },
 
     textField: {
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
