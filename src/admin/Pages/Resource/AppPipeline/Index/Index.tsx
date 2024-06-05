@@ -18,6 +18,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
+import StepButton from '@material-ui/core/StepButton';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import Typography from '@material-ui/core/Typography';
@@ -28,7 +29,7 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 
 import DirectionsIcon from '@material-ui/icons/Directions';
-
+import ErrorIcon from '@material-ui/icons/Error';
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
 import Grow from '@material-ui/core/Grow';
@@ -66,6 +67,7 @@ function Index(oProps: any): any {
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [aStateServers, cSetStateServers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [iStateActiveStep, cSetStateActiveStep] = useState<number>(1);
   let [sStateServerUuid, cSetStateServerUuid] = useState<string>('DEFAULT');
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
@@ -96,17 +98,6 @@ function Index(oProps: any): any {
     }
   }, [oDataGridRef])
 
-  let aSteps = [
-    '傳輸資源',
-    '資源下载',
-    '資源转码',
-    '資源加密',
-    '資源上云',
-    '資源回调',
-    '資源预热',
-  ];
-
-
   useEffect(() => {
     (async () => {
 
@@ -116,16 +107,12 @@ function Index(oProps: any): any {
         appId: iAppId,
       };
 
-
       let oAppUserResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
-
       let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
-
       cSetStateAppUsers(aAppUsers);
 
     })();
   }, [iAppId]);
-
 
   useEffect(() => {
     cSetStateLimit(iLimit);
@@ -148,6 +135,13 @@ function Index(oProps: any): any {
     console.log('aAppPipelines(任务列表)=', aAppPipelines);
     cSetStateAppPipelines(aAppPipelines);
   }, [aAppPipelines]);
+
+  useEffect(() => {
+
+    console.log('oAppPipeline?.state=', oAppPipeline?.state);
+    cSetStateActiveStep(oAppPipeline?.state);
+  }, [oAppPipeline?.state]);
+  console.log('oAppPipeline?.state=', oAppPipeline?.state);
 
   useEffect(() => {
     (async () => {
@@ -296,9 +290,6 @@ function Index(oProps: any): any {
       name: sStateName
     });
 
-
-
-
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, oSearch);
 
     oHistory.push(sUrl);
@@ -429,7 +420,7 @@ function Index(oProps: any): any {
   let cHandleDetailDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
     cSetStateDetailDialogOpen(false);
 
-  }
+  };
 
 
   let cHandleTranscoderDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
@@ -554,6 +545,18 @@ function Index(oProps: any): any {
       };
     };
   };
+
+
+
+  let cHandleClickStep = (iStep: number) => {
+
+    return async (oEvent: React.SyntheticEvent<unknown>) => {
+      cSetStateActiveStep(iStep);
+
+    };
+  };
+
+
 
   let aColumns: any[] = [
     {
@@ -747,19 +750,34 @@ function Index(oProps: any): any {
   let sColor5: color = 'textSecondary';
   let sColor6: color = 'textSecondary';
 
-  sColor1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 1) ? 'initial' : sColor1;
-  sColor2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 1) ? 'initial' : sColor2;
-  sColor3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 1) ? 'initial' : sColor3;
-  sColor4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 1) ? 'initial' : sColor4;
-  sColor5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 1) ? 'initial' : sColor5;
-  sColor6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 1) ? 'initial' : sColor6;
+  let bCompleted1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 2);
+  let bCompleted2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 2);
+  let bCompleted3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 2);
+  let bCompleted4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 2);
+  let bCompleted5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 2);
+  let bCompleted6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 2);
 
-  sColor1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1) ? 'error' : sColor1;
-  sColor2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1) ? 'error' : sColor2;
-  sColor3 = (oAppPipeline?.state == 3 && oAppPipeline?.status == -1) ? 'error' : sColor3;
-  sColor4 = (oAppPipeline?.state == 4 && oAppPipeline?.status == -1) ? 'error' : sColor4;
-  sColor5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1) ? 'error' : sColor5;
-  sColor6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1) ? 'error' : sColor6;
+  let bError1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1);
+  let bError2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1);
+  let bError3 = (oAppPipeline?.state == 3 && oAppPipeline?.status == -1);
+  let bError4 = (oAppPipeline?.state == 4 && oAppPipeline?.status == -1);
+  let bError5 = (oAppPipeline?.state == 5 && oAppPipeline?.status == -1);
+  let bError6 = (oAppPipeline?.state == 6 && oAppPipeline?.status == -1);
+
+
+  sColor1 = bCompleted1 ? 'initial' : sColor1;
+  sColor2 = bCompleted2 ? 'initial' : sColor2;
+  sColor3 = bCompleted3 ? 'initial' : sColor3;
+  sColor4 = bCompleted4 ? 'initial' : sColor4;
+  sColor5 = bCompleted5 ? 'initial' : sColor5;
+  sColor6 = bCompleted6 ? 'initial' : sColor6;
+
+  sColor1 = bError1 ? 'error' : sColor1;
+  sColor2 = bError2 ? 'error' : sColor2;
+  sColor3 = bError3 ? 'error' : sColor3;
+  sColor4 = bError4 ? 'error' : sColor4;
+  sColor5 = bError5 ? 'error' : sColor5;
+  sColor6 = bError6 ? 'error' : sColor6;
 
   return (
     <div className="app-pipeline">
@@ -794,123 +812,179 @@ function Index(oProps: any): any {
               }
             >
               <Step active={oAppPipeline?.state == 1 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 1 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor1}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}
-                    </Typography>
-                  }
+                <StepButton
+                  onClick={cHandleClickStep(1)}
+                  completed={bCompleted1}
+                  {...(bError1 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
+
                 >
-                  資源同步 (-)
-                </StepLabel>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor1}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appDownloaderStage?.addedTime ?? '')}
+                  </Typography>
+                  <span className={clsx({
+                    [oClasses.stepButtonDetailError]: bError1,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted1
+                  })}>資源同步 (-)</span>
+                </StepButton>
+
               </Step>
-              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 2 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor2}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}
-                    </Typography>
-                  }
+              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
+                <StepButton
+                  onClick={cHandleClickStep(2)}
+                  completed={bCompleted2}  /*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */
+                  {...(bError2 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
                 >
-                  資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})
-                </StepLabel>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor2}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appTranscoderStage?.startedTime ?? '')}
+                  </Typography>
+                  <span className={clsx({
+                    [oClasses.stepButtonDetailError]: bError2,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted2
+                  })}>資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})</span>
+                </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 3 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor3}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}
-                    </Typography>
-                  }
+                <StepButton
+                  onClick={cHandleClickStep(3)}
+                  completed={bCompleted3}
+                  {...(bError3 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
+
                 >
-                  資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})
-                </StepLabel>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor3}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appEncrypterStage?.startedTime ?? '')}
+                  </Typography>
+                  <span className={clsx({
+                    [oClasses.stepButtonDetailError]: bError3,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted3
+                  })}>資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})</span>
+                </StepButton>
+
               </Step>
               <Step active={oAppPipeline?.state == 4 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 4 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor4}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}
-                    </Typography>
-                  }
+                <StepButton
+                  onClick={cHandleClickStep(4)}
+                  completed={bCompleted4}
+                  {...(bError4 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
+
                 >
-                  資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})
-                </StepLabel>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor4}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appUploaderStage?.startedTime ?? '')}
+                  </Typography>
+                  <span className={clsx({
+                    [oClasses.stepButtonDetailError]: bError4,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted4
+                  })}>資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})</span>
+                </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 5 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor5}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}
-                    </Typography>
-                  }
+                <StepButton
+                  onClick={cHandleClickStep(5)}
+                  completed={bCompleted5}
+                  {...(bError5 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
+
                 >
-                  資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})
-                </StepLabel>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor5}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appNotifierStage?.startedTime ?? '')}
+                  </Typography>
+                  <span className={clsx({
+                    [oClasses.stepButtonDetailError]: bError5,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted5
+                  })}>資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})</span>
+                </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepLabel
-                  className={clsx(oClasses.stepLabel, {
-                  })}
-                  error={oAppPipeline?.state == 6 && oAppPipeline?.status == -1}
-                  optional={
-                    <Typography
-                      display={'block'}
-                      align={'center'}
-                      variant="caption"
-                      color={sColor6}
-                    >
-                      {utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}
-                    </Typography>
-                  }
+
+                <StepButton
+                  onClick={cHandleClickStep(6)}
+                  completed={bCompleted6}
+                  {...(bError6 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
+
                 >
-                  資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})
-                </StepLabel>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor6}
+                  >
+                    {utilities.dateTime(oAppPipeline?.appWarmerStage?.startedTime ?? '')}
+                  </Typography>
+                  <span className={clsx({
+                    [oClasses.stepButtonDetailError]: bError6,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted6
+                  })}>資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})</span>
+                </StepButton>
               </Step>
             </Stepper>
-            <div className={oClasses.detail}>
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 1,
+              [oClasses.detailError]: bError1
+            })}>
               <div>⎯資源同步内容⎯</div>
-              <div>{sStateTitle}</div>
+              <div className={clsx(oClasses.fileName)}>{sStateTitle}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 2,
+              [oClasses.detailError]: bError2
+            })}>
+              <div>⎯資源转码内容⎯</div>
+              <div>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 3,
+              [oClasses.detailError]: bError3
+            })}>
+              <div>⎯資源加密内容⎯</div>
+              <div>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 4,
+              [oClasses.detailError]: bError4
+            })}>
+              <div>⎯資源传云内容⎯</div>
+              <div>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
+            </div>
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 5,
+              [oClasses.detailError]: bError5
+            })}>
+              <div>⎯資源回调内容⎯</div>
+              <div>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 6,
+              [oClasses.detailError]: bError6
+            })}>
+              <div>⎯資源预热内容⎯</div>
+              <div>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
             </div>
           </Typography>
           {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}

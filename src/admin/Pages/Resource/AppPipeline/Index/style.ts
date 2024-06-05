@@ -15,6 +15,19 @@ const style = makeStyles((oTheme: Theme): any =>
         height: oTheme.spacing(4)
       }
     },
+    stepButtonErrorIcon: {
+      color: red[500],
+      transform: 'scale(1.2)'
+    },
+
+    stepButtonDetailError: {
+      color: red[500],
+    },
+    stepButtonDetailUnCompleted: {
+      color: grey[500],
+    },
+
+
 
     textField: {
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
@@ -220,8 +233,17 @@ const style = makeStyles((oTheme: Theme): any =>
       textAlign: 'center',
       color: grey[500]
     },
+    detailError: {
+      color: red[500]
+    },
+    detailEditedTime: {
+      fontSize: oTheme.spacing(1.6)
+    },
     visibilityHidden: {
       visibility: 'hidden',
+    },
+    displayNone: {
+      display: 'none'
     },
     stepConnector: {
       '&.MuiStepConnector-completed': {
