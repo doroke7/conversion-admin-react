@@ -750,12 +750,12 @@ function Index(oProps: any): any {
   let sColor5: color = 'textSecondary';
   let sColor6: color = 'textSecondary';
 
-  let bCompleted1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 1);
-  let bCompleted2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 1);
-  let bCompleted3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 1);
-  let bCompleted4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 1);
-  let bCompleted5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 1);
-  let bCompleted6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 1);
+  let bCompleted1 = oAppPipeline?.state > 1 || (oAppPipeline?.state == 1 && oAppPipeline?.status >= 2);
+  let bCompleted2 = oAppPipeline?.state > 2 || (oAppPipeline?.state == 2 && oAppPipeline?.status >= 2);
+  let bCompleted3 = oAppPipeline?.state > 3 || (oAppPipeline?.state == 3 && oAppPipeline?.status >= 2);
+  let bCompleted4 = oAppPipeline?.state > 4 || (oAppPipeline?.state == 4 && oAppPipeline?.status >= 2);
+  let bCompleted5 = oAppPipeline?.state > 5 || (oAppPipeline?.state == 5 && oAppPipeline?.status >= 2);
+  let bCompleted6 = oAppPipeline?.state > 6 || (oAppPipeline?.state == 6 && oAppPipeline?.status >= 2);
 
   let bError1 = (oAppPipeline?.state == 1 && oAppPipeline?.status == -1);
   let bError2 = (oAppPipeline?.state == 2 && oAppPipeline?.status == -1);
