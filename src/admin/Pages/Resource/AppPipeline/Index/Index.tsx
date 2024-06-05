@@ -29,7 +29,7 @@ import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 
 import DirectionsIcon from '@material-ui/icons/Directions';
-
+import ErrorIcon from '@material-ui/icons/Error';
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
 import Grow from '@material-ui/core/Grow';
@@ -67,6 +67,7 @@ function Index(oProps: any): any {
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [aStateServers, cSetStateServers] = useState<any[]>([]);
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [iStateActiveStep, cSetStateActiveStep] = useState<number>(1);
   let [sStateServerUuid, cSetStateServerUuid] = useState<string>('DEFAULT');
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
@@ -97,17 +98,6 @@ function Index(oProps: any): any {
     }
   }, [oDataGridRef])
 
-  let aSteps = [
-    '傳輸資源',
-    '資源下载',
-    '資源转码',
-    '資源加密',
-    '資源上云',
-    '資源回调',
-    '資源预热',
-  ];
-
-
   useEffect(() => {
     (async () => {
 
@@ -117,16 +107,12 @@ function Index(oProps: any): any {
         appId: iAppId,
       };
 
-
       let oAppUserResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
-
       let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
-
       cSetStateAppUsers(aAppUsers);
 
     })();
   }, [iAppId]);
-
 
   useEffect(() => {
     cSetStateLimit(iLimit);
@@ -149,6 +135,13 @@ function Index(oProps: any): any {
     console.log('aAppPipelines(任务列表)=', aAppPipelines);
     cSetStateAppPipelines(aAppPipelines);
   }, [aAppPipelines]);
+
+  useEffect(() => {
+
+    console.log('oAppPipeline?.state=', oAppPipeline?.state);
+    cSetStateActiveStep(oAppPipeline?.state);
+  }, [oAppPipeline?.state]);
+  console.log('oAppPipeline?.state=', oAppPipeline?.state);
 
   useEffect(() => {
     (async () => {
@@ -297,9 +290,6 @@ function Index(oProps: any): any {
       name: sStateName
     });
 
-
-
-
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, oSearch);
 
     oHistory.push(sUrl);
@@ -430,7 +420,7 @@ function Index(oProps: any): any {
   let cHandleDetailDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
     cSetStateDetailDialogOpen(false);
 
-  }
+  };
 
 
   let cHandleTranscoderDialogClose = async (oEvent: React.SyntheticEvent<unknown>) => {
@@ -555,6 +545,18 @@ function Index(oProps: any): any {
       };
     };
   };
+
+
+
+  let cHandleClickStep = (iStep: number) => {
+
+    return async (oEvent: React.SyntheticEvent<unknown>) => {
+      cSetStateActiveStep(iStep);
+
+    };
+  };
+
+
 
   let aColumns: any[] = [
     {
@@ -809,10 +811,13 @@ function Index(oProps: any): any {
                 })} />
               }
             >
-
               <Step active={oAppPipeline?.state == 1 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
+                <StepButton
+                  onClick={cHandleClickStep(1)}
+                  completed={bCompleted1}
+                  {...(bError1 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
 
-                <StepButton onClick={() => void 0} completed={bCompleted1}>
+                >
                   <Typography
                     display={'block'}
                     align={'center'}
@@ -828,7 +833,11 @@ function Index(oProps: any): any {
 
               </Step>
               <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
-                <StepButton onClick={() => void 0} completed={bCompleted2}>  {/*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */}
+                <StepButton
+                  onClick={cHandleClickStep(2)}
+                  completed={bCompleted2}  /*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */
+                  {...(bError2 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                >
                   <Typography
                     display={'block'}
                     align={'center'}
@@ -843,7 +852,12 @@ function Index(oProps: any): any {
                 </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepButton onClick={() => void 0} completed={bCompleted3}>
+                <StepButton
+                  onClick={cHandleClickStep(3)}
+                  completed={bCompleted3}
+                  {...(bError3 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+
+                >
                   <Typography
                     display={'block'}
                     align={'center'}
@@ -859,14 +873,19 @@ function Index(oProps: any): any {
 
               </Step>
               <Step active={oAppPipeline?.state == 4 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepButton onClick={() => void 0} completed={bCompleted4}>
+                <StepButton
+                  onClick={cHandleClickStep(4)}
+                  completed={bCompleted4}
+                  {...(bError4 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+
+                >
                   <Typography
                     display={'block'}
                     align={'center'}
                     variant="caption"
                     color={sColor4}
                   >
-                    {utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}
+                    {utilities.dateTime(oAppPipeline?.appUploaderStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
                     [oClasses.stepButtonSpanError]: bError4
@@ -874,14 +893,19 @@ function Index(oProps: any): any {
                 </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
-                <StepButton onClick={() => void 0} completed={bCompleted5}>
+                <StepButton
+                  onClick={cHandleClickStep(5)}
+                  completed={bCompleted5}
+                  {...(bError5 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+
+                >
                   <Typography
                     display={'block'}
                     align={'center'}
                     variant="caption"
                     color={sColor5}
                   >
-                    {utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}
+                    {utilities.dateTime(oAppPipeline?.appNotifierStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
                     [oClasses.stepButtonSpanError]: bError5
@@ -890,14 +914,19 @@ function Index(oProps: any): any {
               </Step>
               <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
 
-                <StepButton onClick={() => void 0} completed={bCompleted6}>
+                <StepButton
+                  onClick={cHandleClickStep(6)}
+                  completed={bCompleted6}
+                  {...(bError6 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+
+                >
                   <Typography
                     display={'block'}
                     align={'center'}
                     variant="caption"
                     color={sColor6}
                   >
-                    {utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}
+                    {utilities.dateTime(oAppPipeline?.appWarmerStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
                     [oClasses.stepButtonSpanError]: bError6
@@ -905,9 +934,57 @@ function Index(oProps: any): any {
                 </StepButton>
               </Step>
             </Stepper>
-            <div className={oClasses.detail}>
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 1,
+              [oClasses.detailError]: bError1
+            })}>
               <div>⎯資源同步内容⎯</div>
+              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}</div>
               <div>{sStateTitle}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 2,
+              [oClasses.detailError]: bError2
+            })}>
+              <div>⎯資源转码内容⎯</div>
+              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}</div>
+              <div>{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 3,
+              [oClasses.detailError]: bError3
+            })}>
+              <div>⎯資源加密内容⎯</div>
+              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}</div>
+              <div>{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 4,
+              [oClasses.detailError]: bError4
+            })}>
+              <div>⎯資源传云内容⎯</div>
+              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}</div>
+              <div>{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
+            </div>
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 5,
+              [oClasses.detailError]: bError5
+            })}>
+              <div>⎯資源回调内容⎯</div>
+              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}</div>
+              <div>{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
+            </div>
+
+            <div className={clsx(oClasses.detail, {
+              [oClasses.displayNone]: iStateActiveStep != 6,
+              [oClasses.detailError]: bError6
+            })}>
+              <div>⎯資源预热内容⎯</div>
+              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}</div>
+              <div>{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
             </div>
           </Typography>
           {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
