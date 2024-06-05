@@ -137,11 +137,10 @@ function Index(oProps: any): any {
   }, [aAppPipelines]);
 
   useEffect(() => {
-
-    console.log('oAppPipeline?.state=', oAppPipeline?.state);
-    cSetStateActiveStep(oAppPipeline?.state);
+    let iActiveStep = oAppPipeline?.state ?? 0;
+    iActiveStep = iActiveStep > 6 ? 6 : iActiveStep;
+    cSetStateActiveStep(iActiveStep);
   }, [oAppPipeline?.state]);
-  console.log('oAppPipeline?.state=', oAppPipeline?.state);
 
   useEffect(() => {
     (async () => {
