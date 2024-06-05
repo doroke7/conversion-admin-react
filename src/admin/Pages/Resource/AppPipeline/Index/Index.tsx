@@ -495,15 +495,14 @@ function Index(oProps: any): any {
     };
     let oSearch2 = {
     };
-    cSetStateServerUuid('');
 
+    cSetStateTranscoderDialogOpen(false);
 
     let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
     let aServers = aServerResponses?.data?.raw?.ones ?? [];
 
     cSetStateServers(aServers);
-
-    cSetStateTranscoderDialogOpen(false);
+    cSetStateServerUuid('');
 
   };
 
