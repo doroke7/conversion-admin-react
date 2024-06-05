@@ -945,7 +945,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源同步内容⎯</div>
               <div>
-                <span>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}完成同步&nbsp;</span>
+                <span>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;完成同步&nbsp;</span>
                 <span className={clsx(oClasses.fileName)}>{sStateTitle}</span>
               </div>
             </div>
