@@ -21,7 +21,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     stepButtonDetailError: {
-      color: red[500],
+      color: red[500] + ' !important',
     },
     stepButtonDetailUnCompleted: {
       color: grey[500],
