@@ -15,10 +15,19 @@ const style = makeStyles((oTheme: Theme): any =>
         height: oTheme.spacing(4)
       }
     },
-    stepButtonSpanError: {
+    stepButtonErrorIcon: {
       color: red[500],
       transform: 'scale(1.2)'
     },
+
+    stepButtonDetailError: {
+      color: red[500],
+    },
+    stepButtonDetailUnCompleted: {
+      color: grey[500],
+    },
+
+
 
     textField: {
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {

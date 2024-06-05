@@ -815,7 +815,7 @@ function Index(oProps: any): any {
                 <StepButton
                   onClick={cHandleClickStep(1)}
                   completed={bCompleted1}
-                  {...(bError1 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                  {...(bError1 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
 
                 >
                   <Typography
@@ -827,7 +827,8 @@ function Index(oProps: any): any {
                     {utilities.dateTime(oAppPipeline?.appDownloaderStage?.addedTime ?? '')}
                   </Typography>
                   <span className={clsx({
-                    [oClasses.stepButtonSpanError]: bError1
+                    [oClasses.stepButtonDetailError]: bError1,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted1
                   })}>資源同步 (-)</span>
                 </StepButton>
 
@@ -836,7 +837,7 @@ function Index(oProps: any): any {
                 <StepButton
                   onClick={cHandleClickStep(2)}
                   completed={bCompleted2}  /*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */
-                  {...(bError2 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                  {...(bError2 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
                 >
                   <Typography
                     display={'block'}
@@ -847,7 +848,8 @@ function Index(oProps: any): any {
                     {utilities.dateTime(oAppPipeline?.appTranscoderStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
-                    [oClasses.stepButtonSpanError]: bError2
+                    [oClasses.stepButtonDetailError]: bError2,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted2
                   })}>資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})</span>
                 </StepButton>
               </Step>
@@ -855,7 +857,7 @@ function Index(oProps: any): any {
                 <StepButton
                   onClick={cHandleClickStep(3)}
                   completed={bCompleted3}
-                  {...(bError3 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                  {...(bError3 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
 
                 >
                   <Typography
@@ -867,7 +869,8 @@ function Index(oProps: any): any {
                     {utilities.dateTime(oAppPipeline?.appEncrypterStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
-                    [oClasses.stepButtonSpanError]: bError3
+                    [oClasses.stepButtonDetailError]: bError3,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted3
                   })}>資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})</span>
                 </StepButton>
 
@@ -876,7 +879,7 @@ function Index(oProps: any): any {
                 <StepButton
                   onClick={cHandleClickStep(4)}
                   completed={bCompleted4}
-                  {...(bError4 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                  {...(bError4 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
 
                 >
                   <Typography
@@ -888,7 +891,8 @@ function Index(oProps: any): any {
                     {utilities.dateTime(oAppPipeline?.appUploaderStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
-                    [oClasses.stepButtonSpanError]: bError4
+                    [oClasses.stepButtonDetailError]: bError4,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted4
                   })}>資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})</span>
                 </StepButton>
               </Step>
@@ -896,7 +900,7 @@ function Index(oProps: any): any {
                 <StepButton
                   onClick={cHandleClickStep(5)}
                   completed={bCompleted5}
-                  {...(bError5 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                  {...(bError5 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
 
                 >
                   <Typography
@@ -908,7 +912,8 @@ function Index(oProps: any): any {
                     {utilities.dateTime(oAppPipeline?.appNotifierStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
-                    [oClasses.stepButtonSpanError]: bError5
+                    [oClasses.stepButtonDetailError]: bError5,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted5
                   })}>資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})</span>
                 </StepButton>
               </Step>
@@ -917,7 +922,7 @@ function Index(oProps: any): any {
                 <StepButton
                   onClick={cHandleClickStep(6)}
                   completed={bCompleted6}
-                  {...(bError6 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonSpanError)}></ErrorIcon> })}
+                  {...(bError6 && { icon: <ErrorIcon className={clsx(oClasses.stepButtonErrorIcon)}></ErrorIcon> })}
 
                 >
                   <Typography
@@ -929,7 +934,8 @@ function Index(oProps: any): any {
                     {utilities.dateTime(oAppPipeline?.appWarmerStage?.startedTime ?? '')}
                   </Typography>
                   <span className={clsx({
-                    [oClasses.stepButtonSpanError]: bError6
+                    [oClasses.stepButtonDetailError]: bError6,
+                    [oClasses.stepButtonDetailUnCompleted]: !bCompleted6
                   })}>資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})</span>
                 </StepButton>
               </Step>
@@ -939,8 +945,7 @@ function Index(oProps: any): any {
               [oClasses.detailError]: bError1
             })}>
               <div>⎯資源同步内容⎯</div>
-              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}</div>
-              <div>{sStateTitle}</div>
+              <div className={clsx(oClasses.fileName)}>{sStateTitle}</div>
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -948,8 +953,7 @@ function Index(oProps: any): any {
               [oClasses.detailError]: bError2
             })}>
               <div>⎯資源转码内容⎯</div>
-              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}</div>
-              <div>{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
+              <div>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -957,8 +961,7 @@ function Index(oProps: any): any {
               [oClasses.detailError]: bError3
             })}>
               <div>⎯資源加密内容⎯</div>
-              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}</div>
-              <div>{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
+              <div>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -966,16 +969,14 @@ function Index(oProps: any): any {
               [oClasses.detailError]: bError4
             })}>
               <div>⎯資源传云内容⎯</div>
-              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}</div>
-              <div>{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
+              <div>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
             </div>
             <div className={clsx(oClasses.detail, {
               [oClasses.displayNone]: iStateActiveStep != 5,
               [oClasses.detailError]: bError5
             })}>
               <div>⎯資源回调内容⎯</div>
-              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}</div>
-              <div>{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
+              <div>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -983,8 +984,7 @@ function Index(oProps: any): any {
               [oClasses.detailError]: bError6
             })}>
               <div>⎯資源预热内容⎯</div>
-              <div className={clsx(oClasses.detailEditedTime)}>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}</div>
-              <div>{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
+              <div>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
             </div>
           </Typography>
           {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
