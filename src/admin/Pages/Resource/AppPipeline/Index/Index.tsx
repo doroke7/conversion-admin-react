@@ -955,6 +955,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源转码内容⎯</div>
               <div>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
+              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey}>{oAction?.path ?? ''}</div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -963,6 +964,8 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源加密内容⎯</div>
               <div>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
+              {oAppPipeline?.appEncrypterStage?.actions.map((oAction: any, skey: string) => (<div key={skey}>{oAction?.path ?? ''}</div>))}
+
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -971,6 +974,8 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源传云内容⎯</div>
               <div>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
+              {oAppPipeline?.appUploaderStage?.actions.map((oAction: any, skey: string) => (<div key={skey}>{oAction?.key ?? ''}</div>))}
+
             </div>
             <div className={clsx(oClasses.detail, {
               [oClasses.displayNone]: iStateActiveStep != 5,
@@ -978,6 +983,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源回调内容⎯</div>
               <div>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
+              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey}>{oAction?.note ?? ''}</div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -986,6 +992,8 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源预热内容⎯</div>
               <div>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
+              {oAppPipeline?.appWarmerStage?.actions.map((oAction: any, skey: string) => (<div key={skey}>{oAction?.key ?? ''}</div>))}
+
             </div>
           </Typography>
           {oAppPipeline?.id ? '' : <Components.LoadingIcon className={oClasses.loadingIcon}></Components.LoadingIcon>}
