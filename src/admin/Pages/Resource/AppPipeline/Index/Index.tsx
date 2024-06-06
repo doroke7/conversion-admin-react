@@ -137,11 +137,10 @@ function Index(oProps: any): any {
   }, [aAppPipelines]);
 
   useEffect(() => {
-
-    console.log('oAppPipeline?.state=', oAppPipeline?.state);
-    cSetStateActiveStep(oAppPipeline?.state);
+    let iActiveStep = oAppPipeline?.state ?? 0;
+    iActiveStep = iActiveStep > 6 ? 6 : iActiveStep;
+    cSetStateActiveStep(iActiveStep);
   }, [oAppPipeline?.state]);
-  console.log('oAppPipeline?.state=', oAppPipeline?.state);
 
   useEffect(() => {
     (async () => {
@@ -496,15 +495,14 @@ function Index(oProps: any): any {
     };
     let oSearch2 = {
     };
-    cSetStateServerUuid('');
 
+    cSetStateTranscoderDialogOpen(false);
 
     let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
     let aServers = aServerResponses?.data?.raw?.ones ?? [];
 
     cSetStateServers(aServers);
-
-    cSetStateTranscoderDialogOpen(false);
+    cSetStateServerUuid('');
 
   };
 
@@ -945,7 +943,10 @@ function Index(oProps: any): any {
               [oClasses.detailError]: bError1
             })}>
               <div>⎯資源同步内容⎯</div>
-              <div className={clsx(oClasses.fileName)}>{sStateTitle}</div>
+              <div>
+                <span>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;完成同步&nbsp;</span>
+                <span className={clsx(oClasses.fileName)}>{sStateTitle}</span>
+              </div>
             </div>
 
             <div className={clsx(oClasses.detail, {
