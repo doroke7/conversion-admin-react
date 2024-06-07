@@ -233,6 +233,12 @@ const style = makeStyles((oTheme: Theme): any =>
       textAlign: 'center',
       color: grey[500]
     },
+    detailStageNote: {
+      marginBottom: oTheme.spacing(1)
+    },
+    detailAction: {
+      fontSize: oTheme.spacing(1.8)
+    },
     detailError: {
       color: red[500]
     },
