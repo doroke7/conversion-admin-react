@@ -972,7 +972,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 4,
               [oClasses.detailError]: bError4
             })}>
-              <div>⎯資源传云内容⎯</div>
+              <div>⎯資源上云内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
 
               {oAppPipeline?.appUploaderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.key ?? ''}</div>))}
