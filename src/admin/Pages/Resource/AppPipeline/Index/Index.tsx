@@ -789,7 +789,7 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          转码步骤详情
+          {sStateTitle}
         </DialogTitle>
 
         <Divider></Divider>
@@ -1010,7 +1010,9 @@ function Index(oProps: any): any {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">执行手动转码</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {sStateTitle}
+        </DialogTitle>
         <Divider></Divider>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
