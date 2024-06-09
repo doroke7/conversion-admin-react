@@ -209,6 +209,42 @@ function Index(oProps: any): any {
       oHistory.push(sUrl);
     };
 
+    if (iAppUserId == iStateAppUserId && sName == sStateName && iPage == 1) {
+      cSetStateLoading(true);
+
+      cScrollToTop();
+
+      let oParam2 = {};
+      let oOption2 = {
+        appId: iAppId,
+        page: iPage,
+        limit: iLimit
+      };
+      let oSearch2 = {};
+
+      iStateAppUserId && (oSearch2 = {
+        ...oSearch2,
+        'appUserId': iStateAppUserId
+      });
+
+      sStateName && (oSearch2 = {
+        ...oSearch2,
+        name: sStateName
+      });
+
+      let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
+
+      let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
+      let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
+      let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+
+      oDispatch(actions.appPipelines.set(aAppPipelines));
+
+      cSetStateCount(iCount);
+      cSetStateLoading(false);
+    };
+
+
   };
 
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
