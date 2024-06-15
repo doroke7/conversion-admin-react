@@ -27,6 +27,7 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import DirectionsIcon from '@material-ui/icons/Directions';
 import ErrorIcon from '@material-ui/icons/Error';
@@ -61,6 +62,7 @@ function Index(oProps: any): any {
   let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
+  let [bStateButtonLoading, cSetStateButtonLoading] = useState<boolean>(false);
   let [aStateAppPipelines, cSetStateAppPipelines] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
@@ -463,6 +465,7 @@ function Index(oProps: any): any {
 
   let cHandleTranscoderDialogClick = async (oEvent: React.SyntheticEvent<unknown>) => {
 
+    cSetStateButtonLoading(true);
     let iId = iStateId;
     let oParam1 = {
       serverUuid: sStateServerUuid != 'DEFAULT' ? sStateServerUuid : ''
@@ -497,6 +500,9 @@ function Index(oProps: any): any {
       };
       events.emit('Alerts-onAlert', oMessage);
     };
+
+    cSetStateButtonLoading(false);
+
 
     let oParam2 = {
     };
@@ -1055,7 +1061,7 @@ function Index(oProps: any): any {
             取消
           </Button>
           <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
-            確定
+            {bStateButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '确定'}
           </Button>
         </DialogActions>
       </Dialog>
