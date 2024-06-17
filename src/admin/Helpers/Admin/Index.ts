@@ -154,31 +154,29 @@ class AdminHelper {
         return aResponses;
       }
 
-      aResponses = await Promise.all(
-        aRequests.map(async (oRequest) => {
-          let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
+      aResponses = await Promise.all(aRequests.map(async (oRequest) => {
+        let _sUrl: string = (oRequest.url || sHost) + oRequest.path;
 
-          let sKey = utilities.randString(16);
-          let sIv = utilities.randString(16);
+        let sKey = utilities.randString(16);
+        let sIv = utilities.randString(16);
 
-          oParams = AdminHelper.params(oRequest.params, sKey, sIv);
-          oOptions = AdminHelper.options(oRequest.options, sKey, sIv);
+        oParams = AdminHelper.params(oRequest.params, sKey, sIv);
+        oOptions = AdminHelper.options(oRequest.options, sKey, sIv);
 
-          oOptions['params'] = oParams;
-          oOptions['headers']['Signature'] = AdminHelper.sign(oParams, oData, oOptions);
+        oOptions['params'] = oParams;
+        oOptions['headers']['Signature'] = AdminHelper.sign(oParams, oData, oOptions);
 
-          let oAxiosResponse;
-          try {
-            oAxiosResponse = await axios.get(_sUrl, oOptions);
-          } catch (oExcepiton) {
-            oAxiosResponse = oExcepiton.response;
-          }
+        let oAxiosResponse;
+        try {
+          oAxiosResponse = await axios.get(_sUrl, oOptions);
+        } catch (oExcepiton) {
+          oAxiosResponse = oExcepiton.response;
+        }
 
-          let oResponse = AdminHelper.response(oAxiosResponse);
+        let oResponse = AdminHelper.response(oAxiosResponse);
 
-          return oResponse;
-        })
-      );
+        return oResponse;
+      }));
       return aResponses;
     }
 
@@ -295,13 +293,13 @@ class AdminHelper {
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} bConcurrent Use polling (recursive) to send the request
    */
-  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
+  public static async put(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
 
   /**
    * @param {string} url The URL of API laction
    * @param {object | Array<object>} params The params of HTTP body
    * @param {boolean} isPolling Use polling (recursive) to send the request
    */
-  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> {}
+  public static async delete(url: string, params: object | object[], bConcurrent: boolean = false): Promise<any> { }
 }
 export default AdminHelper;

@@ -110,6 +110,19 @@ function Index(oProps: any): any {
       };
 
       let oAppUserResponse = await Sdks.Admin.System.AppUser.getShowOnes(oParam, oOption, oSearch);
+
+      if (!oAppUserResponse || oAppUserResponse?.data?.code <= -1) {
+        let iCode = oAppUserResponse?.data?.code;
+        let sMessage = oAppUserResponse?.data?.message ?? '读取账户列表失败';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+
       let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
       cSetStateAppUsers(aAppUsers);
 
@@ -169,6 +182,17 @@ function Index(oProps: any): any {
 
       let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
+      if (!oAppPipelineResponse || oAppPipelineResponse?.data?.code <= -1) {
+        let iCode = oAppPipelineResponse?.data?.code;
+        let sMessage = oAppPipelineResponse?.data?.message ?? '读取任务列表失败';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
       let iNumber = Number(oAppPipelineResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oAppPipelineResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oAppPipelineResponse?.data?.raw?.ones ?? [];
@@ -178,8 +202,21 @@ function Index(oProps: any): any {
       cSetStateCount(iCount);
       cSetStateLoading(false);
 
-      let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
-      let aServers = aServerResponses?.data?.raw?.ones ?? [];
+      let oServerResponse = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+
+
+      if (!oServerResponse || oServerResponse?.data?.code <= -1) {
+        let iCode = oServerResponse?.data?.code;
+        let sMessage = oServerResponse?.data?.message ?? '读取节点列表失败';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
+
+      let aServers = oServerResponse?.data?.raw?.ones ?? [];
 
       cSetStateServers(aServers);
 
@@ -235,6 +272,18 @@ function Index(oProps: any): any {
       });
 
       let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
+
+
+      if (!oResponse || oResponse?.data?.code <= -1) {
+        let iCode = oResponse?.data?.code;
+        let sMessage = oResponse?.data?.message ?? '读取任务列表失败';
+        let oMessage = {
+          code: iCode,
+          message: sMessage,
+          time: 2 * 1000
+        };
+        events.emit('Alerts-onAlert', oMessage);
+      };
 
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
@@ -537,7 +586,7 @@ function Index(oProps: any): any {
 
       if (!oResponse || oResponse?.data?.code <= -1) {
         let iCode = oResponse?.data?.code;
-        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+        let sMessage = oResponse?.data?.message ?? '请求重新转码失败';
         let oMessage = {
           code: iCode,
           message: sMessage,
