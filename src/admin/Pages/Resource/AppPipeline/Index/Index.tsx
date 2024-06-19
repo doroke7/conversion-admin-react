@@ -889,10 +889,19 @@ function Index(oProps: any): any {
                   >
                     {utilities.dateTime(oAppPipeline?.appDownloaderStage?.addedTime ?? '')}
                   </Typography>
-                  <span className={clsx({
+                  <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError1,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted1
-                  })}>資源同步 (-)</span>
+                  })}>資源同步 (-)</div>
+
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor1}
+                  >
+                    {oAppPipeline?.appDownloaderStage?.times ?? 0}次
+                  </Typography>
                 </StepButton>
 
               </Step>
@@ -910,10 +919,19 @@ function Index(oProps: any): any {
                   >
                     {utilities.dateTime(oAppPipeline?.appTranscoderStage?.startedTime ?? '')}
                   </Typography>
-                  <span className={clsx({
+                  <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError2,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted2
-                  })}>資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})</span>
+                  })}>資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})</div>
+
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor2}
+                  >
+                    {oAppPipeline?.appTranscoderStage?.times ?? 0}次
+                  </Typography>
                 </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
@@ -931,10 +949,19 @@ function Index(oProps: any): any {
                   >
                     {utilities.dateTime(oAppPipeline?.appEncrypterStage?.startedTime ?? '')}
                   </Typography>
-                  <span className={clsx({
+                  <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError3,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted3
-                  })}>資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})</span>
+                  })}>資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})</div>
+
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor3}
+                  >
+                    {oAppPipeline?.appEncrypterStage?.times ?? 0}次
+                  </Typography>
                 </StepButton>
 
               </Step>
@@ -953,10 +980,19 @@ function Index(oProps: any): any {
                   >
                     {utilities.dateTime(oAppPipeline?.appUploaderStage?.startedTime ?? '')}
                   </Typography>
-                  <span className={clsx({
+                  <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError4,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted4
-                  })}>資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})</span>
+                  })}>資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})</div>
+
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor4}
+                  >
+                    {oAppPipeline?.appUploaderStage?.times ?? 0}次
+                  </Typography>
                 </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
@@ -974,10 +1010,19 @@ function Index(oProps: any): any {
                   >
                     {utilities.dateTime(oAppPipeline?.appNotifierStage?.startedTime ?? '')}
                   </Typography>
-                  <span className={clsx({
+                  <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError5,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted5
-                  })}>資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})</span>
+                  })}>資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})</div>
+
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor5}
+                  >
+                    {oAppPipeline?.appNotifierStage?.times ?? 0}次
+                  </Typography>
                 </StepButton>
               </Step>
               <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
@@ -996,10 +1041,18 @@ function Index(oProps: any): any {
                   >
                     {utilities.dateTime(oAppPipeline?.appWarmerStage?.startedTime ?? '')}
                   </Typography>
-                  <span className={clsx({
+                  <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError6,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted6
-                  })}>資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})</span>
+                  })}>資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})</div>
+                  <Typography
+                    display={'block'}
+                    align={'center'}
+                    variant="caption"
+                    color={sColor6}
+                  >
+                    {oAppPipeline?.appWarmerStage?.times ?? 0}次
+                  </Typography>
                 </StepButton>
               </Step>
             </Stepper>
