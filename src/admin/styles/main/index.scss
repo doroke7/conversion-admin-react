@@ -41,7 +41,7 @@ body {
 	}
 
 	.MuiDataGrid-overlay {
-		background-color: transparent;
+		background-color: transparent !important;
 	}
 
 	.MuiDataGrid-cell {
@@ -62,6 +62,7 @@ body {
 .MuiDataGrid-window {
 	background: linear-gradient(180deg, #f3f3f3 50%, #ffffff 65%, #ffffff 75%, #f3f3f3 90%);
 	overflow-x: hidden !important;
+
 	&::-webkit-scrollbar {
 		width: 2px;
 	}
