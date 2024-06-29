@@ -202,7 +202,15 @@ function Index(oProps: any): any {
       cSetStateCount(iCount);
       cSetStateLoading(false);
 
-      let oServerResponse = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
+      let oParam2 = {};
+      let oOption2 = {
+      };
+      let oSearch2 = {
+        appId: iAppId,
+
+      };
+
+      let oServerResponse = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
 
 
       if (!oServerResponse || oServerResponse?.data?.code <= -1) {
@@ -492,6 +500,7 @@ function Index(oProps: any): any {
       appId: iAppId
     };
     let oSearch = {
+      appId: iAppId
     };
 
     let aServerResponses = await Sdks.Admin.System.Server.getShowOnes(oParam, oOption, oSearch);
@@ -556,9 +565,9 @@ function Index(oProps: any): any {
     let oParam2 = {
     };
     let oOption2 = {
-      appId: iAppId
     };
     let oSearch2 = {
+      appId: iAppId
     };
 
     cSetStateTranscoderDialogOpen(false);
