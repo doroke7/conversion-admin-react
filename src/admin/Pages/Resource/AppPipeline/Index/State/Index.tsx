@@ -2,9 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, Component } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import clsx from 'clsx';
-
 import style from './style';
-import { setTimeout } from 'timers';
 
 function Index(oProps: any): any {
   let iState = oProps?.state ?? 0;
