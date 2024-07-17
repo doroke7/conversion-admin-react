@@ -284,7 +284,9 @@ function Index(oProps: any): any {
 
       if (!oResponse || oResponse?.data?.code <= -1) {
         let iCode = oResponse?.data?.code;
-        let sMessage = oResponse?.data?.message ?? '读取任务列表失败';
+        iCode = iCode < 0 ? iCode : -4;
+
+        let sMessage = oResponse?.data?.message ?? '读取任务列表的未知失败讯息';
         let oMessage = {
           code: iCode,
           message: sMessage,
@@ -467,7 +469,8 @@ function Index(oProps: any): any {
 
       if (!oResponse || oResponse?.data?.code <= -1) {
         let iCode = oResponse?.data?.code;
-        let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+        iCode = iCode < 0 ? iCode : -4;
+        let sMessage = oResponse?.data?.message ?? '读取列表的未知失败信息';
         let oMessage = {
           code: iCode,
           message: sMessage,
@@ -539,7 +542,8 @@ function Index(oProps: any): any {
 
     if (!oResponse || oResponse?.data?.code <= -1) {
       let iCode = oResponse?.data?.code;
-      let sMessage = oResponse?.data?.message ?? '未知的失败信息';
+      iCode = iCode < 0 ? iCode : -4;
+      let sMessage = oResponse?.data?.message ?? '请求重新切片的未知失败信息';
       let oMessage = {
         code: iCode,
         message: sMessage,
@@ -595,7 +599,8 @@ function Index(oProps: any): any {
 
       if (!oResponse || oResponse?.data?.code <= -1) {
         let iCode = oResponse?.data?.code;
-        let sMessage = oResponse?.data?.message ?? '请求重新转码失败';
+        iCode = iCode < 0 ? iCode : -4;
+        let sMessage = oResponse?.data?.message ?? '请求重新的未知回调失败讯息';
         let oMessage = {
           code: iCode,
           message: sMessage,
