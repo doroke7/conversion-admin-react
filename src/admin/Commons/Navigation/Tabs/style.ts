@@ -5,10 +5,10 @@ let oStyle = makeStyles((oTheme: Theme) =>
   createStyles({
     root: {
       position: 'relative',
+      top: oTheme.spacing(7),
       flexGrow: 1,
       width: '100%',
-      minHeight: 'calc( 100vh )',
-      maxHeight: 'calc( 100vh )',
+      height: 'calc( 100vh - ' + oTheme.spacing(7) + 'px )',
       backgroundColor: oTheme.palette.background.paper,
       '& .MuiTab-root': {
         [oTheme.breakpoints.up('sm')]: {
@@ -20,7 +20,6 @@ let oStyle = makeStyles((oTheme: Theme) =>
       display: 'none'
     },
     tabs: {
-      marginTop: oTheme.spacing(7),
       '& .MuiTabScrollButton-root': {
         opacity: 1,
         background: grey[200],
