@@ -183,7 +183,10 @@ function Index(oProps: any): any {
       let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
       if (!oAppPipelineResponse || oAppPipelineResponse?.data?.code <= -1) {
-        let iCode = oAppPipelineResponse?.data?.code;
+        let iCode = 0;
+        iCode = !oAppPipelineResponse ? -4 : iCode;
+        iCode = oAppPipelineResponse?.data?.code <= -1 ? oAppPipelineResponse?.data?.code : iCode;
+
         let sMessage = oAppPipelineResponse?.data?.message ?? '读取任务列表失败';
         let oMessage = {
           code: iCode,
