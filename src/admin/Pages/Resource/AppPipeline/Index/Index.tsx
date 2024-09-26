@@ -1272,9 +1272,13 @@ function Index(oProps: any): any {
               label="进度"
             >
               <MenuItem className={oClasses.menuItem} value={0}>-</MenuItem>
-              {aStateAppUsers.map((oStateAppUser, sKey) => (
-                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateAppUser?.id ?? 0}>{oStateAppUser?.name ?? ''}</MenuItem>
-              ))}
+              <MenuItem className={oClasses.menuItem} value={1}>同步</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={2}>转码</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={3}>加密</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={4}>回调</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={5}>上云</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={6}>预热</MenuItem>
+
             </Select>
           </FormControl>
           <Button
