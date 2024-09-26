@@ -114,7 +114,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     formControlState: {
       textAlign: 'left',
-      width: oTheme.spacing(20),
+      width: oTheme.spacing(10),
       [oTheme.breakpoints.down('md')]: {
         width: oTheme.spacing(8),
       },

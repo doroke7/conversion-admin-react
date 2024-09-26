@@ -1275,8 +1275,8 @@ function Index(oProps: any): any {
               <MenuItem className={oClasses.menuItem} value={1}>同步</MenuItem>
               <MenuItem className={oClasses.menuItem} value={2}>转码</MenuItem>
               <MenuItem className={oClasses.menuItem} value={3}>加密</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={4}>回调</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={5}>上云</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={4}>上云</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={5}>回调</MenuItem>
               <MenuItem className={oClasses.menuItem} value={6}>预热</MenuItem>
 
             </Select>
