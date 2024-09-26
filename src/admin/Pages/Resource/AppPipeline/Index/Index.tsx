@@ -58,6 +58,9 @@ function Index(oProps: any): any {
   let oDispatch = useDispatch();
 
   let [sStateName, cSetStateName] = useState<string>('');
+  let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
+  let [iStateState, cSetStateState] = useState<number>(0);
+
   let [sStateTitle, cSetStateTitle] = useState<string>('');
   let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
@@ -68,7 +71,6 @@ function Index(oProps: any): any {
   let [iStatePage, cSetStatePage] = useState<number>(1);
   let [aStateAppUsers, cSetStateAppUsers] = useState<any[]>([]);
   let [aStateServers, cSetStateServers] = useState<any[]>([]);
-  let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
   let [iStateActiveStep, cSetStateActiveStep] = useState<number>(1);
   let [sStateServerUuid, cSetStateServerUuid] = useState<string>('DEFAULT');
   let [bStateDetailDialogOpen, cSetStateDetailDialogOpen] = useState<boolean>(false);
@@ -82,6 +84,7 @@ function Index(oProps: any): any {
   let iAppId = Number(oParams.appId || 0);
   let sName = String(oUrlSearchParams.get('name') || '');
   let iAppUserId = Number(oUrlSearchParams.get('app-user-id') || 0);
+  let iState = Number(oUrlSearchParams.get('state') || 0);
 
   let oMe = useSelector((oStore: any) => (oStore.me));
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
@@ -180,6 +183,11 @@ function Index(oProps: any): any {
         appUserId: iAppUserId
       });
 
+      iState && (oSearch = {
+        ...oSearch,
+        state: iState
+      });
+
       let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
       if (!oAppPipelineResponse || oAppPipelineResponse?.data?.code <= -1) {
@@ -237,7 +245,7 @@ function Index(oProps: any): any {
 
   let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
-    if (iAppUserId != iStateAppUserId || sName != sStateName || iPage != 1) {
+    if (iAppUserId != iStateAppUserId || sName != sStateName || iState != iStateState || iPage != 1) {
       cSetStateLoading(true);
 
       cScrollToTop();
@@ -254,12 +262,17 @@ function Index(oProps: any): any {
         name: sStateName
       });
 
+      iState && (oSearch1 = {
+        ...oSearch1,
+        state: iState
+      });
+
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 1, oParams.limit, oSearch1);
 
       oHistory.push(sUrl);
     };
 
-    if (iAppUserId == iStateAppUserId && sName == sStateName && iPage == 1) {
+    if (iAppUserId == iStateAppUserId && sName == sStateName && iState == iStateState && iPage == 1) {
       cSetStateLoading(true);
 
       cScrollToTop();
@@ -281,6 +294,12 @@ function Index(oProps: any): any {
         ...oSearch2,
         name: sStateName
       });
+
+      iStateState && (oSearch2 = {
+        ...oSearch2,
+        state: iStateState
+      });
+
 
       let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
 
@@ -328,6 +347,12 @@ function Index(oProps: any): any {
       name: sStateName
     });
 
+    iStateState && (oSearch = {
+      ...oSearch,
+      state: iStateState
+    });
+
+
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
     oHistory.push(sUrl);
   };
@@ -336,6 +361,12 @@ function Index(oProps: any): any {
     let iAppUserId = Number(oEvent.target.value);
 
     cSetStateAppUserId(iAppUserId);
+  };
+
+  let cHandleChangeStateOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
+    let iState = Number(oEvent.target.value);
+
+    cSetStateState(iState);
   };
 
   let cHandleChangeServerUuidOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
@@ -361,6 +392,11 @@ function Index(oProps: any): any {
     sStateName && (oSearch = {
       ...oSearch,
       name: sStateName
+    });
+
+    iStateState && (oSearch = {
+      ...oSearch,
+      state: iStateState
     });
 
     let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, oParams.page, iLimit, oSearch);
@@ -402,6 +438,11 @@ function Index(oProps: any): any {
         name: sStateName
       });
 
+      iStateState && (oSearch = {
+        ...oSearch,
+        state: iStateState
+      });
+
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
       oHistory.push(sUrl);
@@ -426,6 +467,11 @@ function Index(oProps: any): any {
         name: sName
       });
 
+      iStateState && (oSearch = {
+        ...oSearch,
+        state: iStateState
+      });
+
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
       oHistory.push(sUrl);
@@ -446,8 +492,12 @@ function Index(oProps: any): any {
       name: sStateName
     });
 
-    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
+    iStateState && (oSearch = {
+      ...oSearch,
+      state: iStateState
+    });
 
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
 
     oHistory.push(sUrl);
   };
@@ -1212,6 +1262,21 @@ function Index(oProps: any): any {
             onChange={cHandleChangeNameOfTextField}
             onKeyPress={cHandleKeyPressNameOfTextField}
           />
+          <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlState)}>
+            <InputLabel id="state">进度</InputLabel>
+            <Select
+              labelId="state"
+              id="state"
+              value={iStateState}
+              onChange={cHandleChangeStateOfSelect}
+              label="进度"
+            >
+              <MenuItem className={oClasses.menuItem} value={0}>-</MenuItem>
+              {aStateAppUsers.map((oStateAppUser, sKey) => (
+                <MenuItem key={sKey} className={oClasses.menuItem} value={oStateAppUser?.id ?? 0}>{oStateAppUser?.name ?? ''}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <Button
             className={oClasses.button}
             color="primary"
