@@ -262,9 +262,9 @@ function Index(oProps: any): any {
         name: sStateName
       });
 
-      iState && (oSearch1 = {
+      iStateState && (oSearch1 = {
         ...oSearch1,
-        state: iState
+        state: iStateState
       });
 
       let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, 1, oParams.limit, oSearch1);
