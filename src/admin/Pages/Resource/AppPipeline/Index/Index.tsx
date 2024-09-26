@@ -241,7 +241,7 @@ function Index(oProps: any): any {
 
 
     })();
-  }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId]);
+  }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId, iState]);
 
   let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
@@ -287,7 +287,7 @@ function Index(oProps: any): any {
 
       iStateAppUserId && (oSearch2 = {
         ...oSearch2,
-        'appUserId': iStateAppUserId
+        'app-user-id': iStateAppUserId
       });
 
       sStateName && (oSearch2 = {
