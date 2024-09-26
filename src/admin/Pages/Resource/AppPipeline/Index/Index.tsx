@@ -145,6 +145,11 @@ function Index(oProps: any): any {
   }, [sName]);
 
   useEffect(() => {
+    cSetStateState(iState);
+  }, [iState]);
+
+
+  useEffect(() => {
     cSetStateAppUserId(iAppUserId);
   }, [iAppUserId]);
 
