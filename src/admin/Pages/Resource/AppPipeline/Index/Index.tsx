@@ -125,7 +125,6 @@ function Index(oProps: any): any {
         events.emit('Alerts-onAlert', oMessage);
       };
 
-
       let aAppUsers = oAppUserResponse?.data?.raw?.ones ?? [];
       cSetStateAppUsers(aAppUsers);
 
@@ -1277,12 +1276,13 @@ function Index(oProps: any): any {
               label="进度"
             >
               <MenuItem className={oClasses.menuItem} value={0}>-</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={1}>同步</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={2}>转码</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={3}>加密</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={4}>上云</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={5}>回调</MenuItem>
-              <MenuItem className={oClasses.menuItem} value={6}>预热</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={1}>同步中</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={2}>转码中</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={3}>加密中</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={4}>上云中</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={5}>回调中</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={6}>预热中</MenuItem>
+              <MenuItem className={oClasses.menuItem} value={254}>完成了</MenuItem>
 
             </Select>
           </FormControl>
