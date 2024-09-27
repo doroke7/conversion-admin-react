@@ -5,7 +5,7 @@ const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     top: {
       display: 'grid',
-      gridTemplateColumns: '2fr 3fr'
+      gridTemplateColumns: '3fr 3fr'
     },
     button: {
       minWidth: oTheme.spacing(8),
