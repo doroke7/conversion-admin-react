@@ -874,8 +874,6 @@ function Index(oProps: any): any {
   iActiveStep = iActiveStep >= 6 ? 6 : iActiveStep;
   iActiveStep = iActiveStep <= -1 ? -1 : iActiveStep;
 
-  iActiveStep = 6;
-
   type color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
 
   let sColor1: color = 'textSecondary';
