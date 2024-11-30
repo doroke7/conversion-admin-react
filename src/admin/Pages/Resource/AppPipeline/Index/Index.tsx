@@ -945,7 +945,7 @@ function Index(oProps: any): any {
                 })} />
               }
             >
-              <Step active={oAppPipeline?.state == 1 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
+              <Step active={oAppPipeline?.appDownloaderStage?.addedTime}>
                 <StepButton
                   onClick={cHandleClickStep(1)}
                   completed={bCompleted1}
@@ -976,7 +976,7 @@ function Index(oProps: any): any {
                 </StepButton>
 
               </Step>
-              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
+              <Step active={oAppPipeline?.appTranscoderStage?.addedTime}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
                 <StepButton
                   onClick={cHandleClickStep(2)}
                   completed={bCompleted2}  /*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */
@@ -1005,7 +1005,7 @@ function Index(oProps: any): any {
                   </Typography>
                 </StepButton>
               </Step>
-              <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
+              <Step active={oAppPipeline?.appEncrypterStage?.addedTime}>
                 <StepButton
                   onClick={cHandleClickStep(3)}
                   completed={bCompleted3}
@@ -1036,7 +1036,7 @@ function Index(oProps: any): any {
                 </StepButton>
 
               </Step>
-              <Step active={oAppPipeline?.state == 4 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
+              <Step active={oAppPipeline?.appUploaderStage?.addedTime}>
                 <StepButton
                   onClick={cHandleClickStep(4)}
                   completed={bCompleted4}
@@ -1066,7 +1066,7 @@ function Index(oProps: any): any {
                   </Typography>
                 </StepButton>
               </Step>
-              <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
+              <Step active={oAppPipeline?.appNotifierStage?.addedTime}>
                 <StepButton
                   onClick={cHandleClickStep(5)}
                   completed={bCompleted5}
@@ -1096,7 +1096,7 @@ function Index(oProps: any): any {
                   </Typography>
                 </StepButton>
               </Step>
-              <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
+              <Step active={oAppPipeline?.appWarmerStage?.addedTime}>
 
                 <StepButton
                   onClick={cHandleClickStep(6)}
