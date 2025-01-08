@@ -1172,7 +1172,7 @@ function Index(oProps: any): any {
               <div>⎯資源回调内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
 
-              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.url ?? ''}&nbsp;&nbsp;{oAction?.note ?? ''}</div>))}
+              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.url ?? ''}&nbsp;&rarr;&nbsp;{oAction?.note ?? ''}</div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
