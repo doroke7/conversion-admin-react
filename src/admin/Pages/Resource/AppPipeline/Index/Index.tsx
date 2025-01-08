@@ -874,7 +874,6 @@ function Index(oProps: any): any {
   iActiveStep = iActiveStep >= 6 ? 6 : iActiveStep;
   iActiveStep = iActiveStep <= -1 ? -1 : iActiveStep;
 
-
   type color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
 
   let sColor1: color = 'textSecondary';
@@ -945,7 +944,7 @@ function Index(oProps: any): any {
                 })} />
               }
             >
-              <Step active={oAppPipeline?.appDownloaderStage?.addedTime}>
+              <Step active={oAppPipeline?.state == 1 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepButton
                   onClick={cHandleClickStep(1)}
                   completed={bCompleted1}
@@ -976,7 +975,7 @@ function Index(oProps: any): any {
                 </StepButton>
 
               </Step>
-              <Step active={oAppPipeline?.appTranscoderStage?.addedTime}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
+              <Step active={oAppPipeline?.state == 2 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>  {/*  active=false 线未连动 | active=true 线已经联动 */}
                 <StepButton
                   onClick={cHandleClickStep(2)}
                   completed={bCompleted2}  /*  completed=false 未完成进行中显示号码 | completed=true 已经完成打勾 */
@@ -1005,7 +1004,7 @@ function Index(oProps: any): any {
                   </Typography>
                 </StepButton>
               </Step>
-              <Step active={oAppPipeline?.appEncrypterStage?.addedTime}>
+              <Step active={oAppPipeline?.state == 3 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepButton
                   onClick={cHandleClickStep(3)}
                   completed={bCompleted3}
@@ -1036,7 +1035,7 @@ function Index(oProps: any): any {
                 </StepButton>
 
               </Step>
-              <Step active={oAppPipeline?.appUploaderStage?.addedTime}>
+              <Step active={oAppPipeline?.state == 4 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepButton
                   onClick={cHandleClickStep(4)}
                   completed={bCompleted4}
@@ -1066,7 +1065,7 @@ function Index(oProps: any): any {
                   </Typography>
                 </StepButton>
               </Step>
-              <Step active={oAppPipeline?.appNotifierStage?.addedTime}>
+              <Step active={oAppPipeline?.state == 5 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
                 <StepButton
                   onClick={cHandleClickStep(5)}
                   completed={bCompleted5}
@@ -1096,7 +1095,7 @@ function Index(oProps: any): any {
                   </Typography>
                 </StepButton>
               </Step>
-              <Step active={oAppPipeline?.appWarmerStage?.addedTime}>
+              <Step active={oAppPipeline?.state == 6 && (oAppPipeline?.status == 1 || oAppPipeline?.status == -1)}>
 
                 <StepButton
                   onClick={cHandleClickStep(6)}
@@ -1173,7 +1172,7 @@ function Index(oProps: any): any {
               <div>⎯資源回调内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
 
-              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.note ?? ''}</div>))}
+              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.url ?? ''}&nbsp;&nbsp;{oAction?.note ?? ''}</div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
