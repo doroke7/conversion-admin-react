@@ -57,7 +57,7 @@ function Index(oProps: any): any {
   let oUrlSearchParams = hooks.useURLSearchParams();
   let oDispatch = useDispatch();
 
-  let [sStateName, cSetStateName] = useState<string>('');
+  let [sStateKeyword, cSetStateKeyword] = useState<string>('');
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
   let [iStateState, cSetStateState] = useState<number>(0);
 
@@ -82,7 +82,7 @@ function Index(oProps: any): any {
   let iLimit = Number(oParams.limit || 20);
   let iPage = Number(oParams.page || 1);
   let iAppId = Number(oParams.appId || 0);
-  let sName = String(oUrlSearchParams.get('name') || '');
+  let sKeyword = String(oUrlSearchParams.get('name') || '');
   let iAppUserId = Number(oUrlSearchParams.get('app-user-id') || 0);
   let iState = Number(oUrlSearchParams.get('state') || 0);
 
@@ -140,8 +140,8 @@ function Index(oProps: any): any {
   }, [oParams.page]);
 
   useEffect(() => {
-    cSetStateName(sName);
-  }, [sName]);
+    cSetStateKeyword(sKeyword);
+  }, [sKeyword]);
 
   useEffect(() => {
     cSetStateState(iState);
@@ -154,7 +154,6 @@ function Index(oProps: any): any {
 
   useEffect(() => {
 
-    console.log('aAppPipelines(任务列表)=', aAppPipelines);
     cSetStateAppPipelines(aAppPipelines);
   }, [aAppPipelines]);
 
@@ -177,9 +176,9 @@ function Index(oProps: any): any {
       };
       let oSearch = {};
 
-      sStateName && (oSearch = {
+      sStateKeyword && (oSearch = {
         ...oSearch,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iAppUserId && (oSearch = {
@@ -245,11 +244,11 @@ function Index(oProps: any): any {
 
 
     })();
-  }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId, iState]);
+  }, [iAppId, oParams.page, oParams.limit, sKeyword, iAppUserId, iState]);
 
   let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
-    if (iAppUserId != iStateAppUserId || sName != sStateName || iState != iStateState || iPage != 1) {
+    if (iAppUserId != iStateAppUserId || sKeyword != sStateKeyword || iState != iStateState || iPage != 1) {
       cSetStateLoading(true);
 
       cScrollToTop();
@@ -261,9 +260,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sStateName && (oSearch1 = {
+      sStateKeyword && (oSearch1 = {
         ...oSearch1,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iStateState && (oSearch1 = {
@@ -276,7 +275,7 @@ function Index(oProps: any): any {
       oHistory.push(sUrl);
     };
 
-    if (iAppUserId == iStateAppUserId && sName == sStateName && iState == iStateState && iPage == 1) {
+    if (iAppUserId == iStateAppUserId && sKeyword == sStateKeyword && iState == iStateState && iPage == 1) {
       cSetStateLoading(true);
 
       cScrollToTop();
@@ -294,9 +293,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sStateName && (oSearch2 = {
+      sStateKeyword && (oSearch2 = {
         ...oSearch2,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iStateState && (oSearch2 = {
@@ -346,9 +345,9 @@ function Index(oProps: any): any {
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
+    sStateKeyword && (oSearch = {
       ...oSearch,
-      name: sStateName
+      keyword: sStateKeyword
     });
 
     iStateState && (oSearch = {
@@ -393,9 +392,9 @@ function Index(oProps: any): any {
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
+    sStateKeyword && (oSearch = {
       ...oSearch,
-      name: sStateName
+      keyword: sStateKeyword
     });
 
     iStateState && (oSearch = {
@@ -408,10 +407,10 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleChangeNameOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-    let sName = String(oEvent.target.value);
+  let cHandleChangeKeywordOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    let sKeyword = String(oEvent.target.value);
 
-    cSetStateName(sName);
+    cSetStateKeyword(sKeyword);
   };
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -437,9 +436,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sStateName && (oSearch = {
+      sStateKeyword && (oSearch = {
         ...oSearch,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iStateState && (oSearch = {
@@ -453,12 +452,12 @@ function Index(oProps: any): any {
     }
   };
 
-  let cHandleKeyPressNameOfTextField = (oEvent: any) => {
+  let cHandleKeyPressKeywordOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
 
       cScrollToTop();
 
-      let sName = String(oEvent.target.value);
+      let sKeyword = String(oEvent.target.value);
 
       let oSearch = {};
       iStateAppUserId && (oSearch = {
@@ -466,9 +465,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sName && (oSearch = {
+      sKeyword && (oSearch = {
         ...oSearch,
-        name: sName
+        keyword: sKeyword
       });
 
       iStateState && (oSearch = {
@@ -491,9 +490,9 @@ function Index(oProps: any): any {
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
+    sStateKeyword && (oSearch = {
       ...oSearch,
-      name: sStateName
+      keyword: sStateKeyword
     });
 
     iStateState && (oSearch = {
@@ -513,6 +512,7 @@ function Index(oProps: any): any {
       oDispatch(actions.appPipeline.set({}));
 
       cSetStateDetailDialogOpen(true);
+      
       let oParam = {};
       let oOption = {
         appId: iAppId
@@ -1257,13 +1257,13 @@ function Index(oProps: any): any {
           </FormControl>
           <TextField
             className={clsx(oClasses.textField, oClasses.textFieldName)}
-            id="name"
-            label="档名"
+            id="keyword"
+            label="关键字"
             size="small"
             variant="outlined"
-            value={sStateName}
-            onChange={cHandleChangeNameOfTextField}
-            onKeyPress={cHandleKeyPressNameOfTextField}
+            value={sStateKeyword}
+            onChange={cHandleChangeKeywordOfTextField}
+            onKeyPress={cHandleKeyPressKeywordOfTextField}
           />
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlState)}>
             <InputLabel id="state">进度</InputLabel>
