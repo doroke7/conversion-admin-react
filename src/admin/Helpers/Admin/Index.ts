@@ -140,7 +140,7 @@ class AdminHelper {
           oOptions['params'] = oParams;
           oOptions['headers']['Signature'] = AdminHelper.sign(oParams, oData, oOptions);
 
-          let oAxiosResponse;
+          let oAxiosResponse = null;
           try {
             oAxiosResponse = await axios.get(_sUrl, oOptions);
           } catch (oExcepiton) {

@@ -33,6 +33,7 @@ import DirectionsIcon from '@material-ui/icons/Directions';
 import ErrorIcon from '@material-ui/icons/Error';
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
+import CachedIcon from '@material-ui/icons/Cached';
 import Grow from '@material-ui/core/Grow';
 
 import Hocs from '@/admin/Hocs';
@@ -57,7 +58,7 @@ function Index(oProps: any): any {
   let oUrlSearchParams = hooks.useURLSearchParams();
   let oDispatch = useDispatch();
 
-  let [sStateName, cSetStateName] = useState<string>('');
+  let [sStateKeyword, cSetStateKeyword] = useState<string>('');
   let [iStateAppUserId, cSetStateAppUserId] = useState<number>(0);
   let [iStateState, cSetStateState] = useState<number>(0);
 
@@ -82,7 +83,7 @@ function Index(oProps: any): any {
   let iLimit = Number(oParams.limit || 20);
   let iPage = Number(oParams.page || 1);
   let iAppId = Number(oParams.appId || 0);
-  let sName = String(oUrlSearchParams.get('name') || '');
+  let sKeyword = String(oUrlSearchParams.get('keyword') || '');
   let iAppUserId = Number(oUrlSearchParams.get('app-user-id') || 0);
   let iState = Number(oUrlSearchParams.get('state') || 0);
 
@@ -90,6 +91,8 @@ function Index(oProps: any): any {
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
   let oAppPipeline = useSelector((oStore: any) => (oStore.appPipeline));
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
+
+  console.log('sKeyword=', sKeyword);
 
   let cScrollToTop = useCallback(() => {
     if (oDataGridRef.current) {
@@ -140,8 +143,8 @@ function Index(oProps: any): any {
   }, [oParams.page]);
 
   useEffect(() => {
-    cSetStateName(sName);
-  }, [sName]);
+    cSetStateKeyword(sKeyword);
+  }, [sKeyword]);
 
   useEffect(() => {
     cSetStateState(iState);
@@ -154,7 +157,6 @@ function Index(oProps: any): any {
 
   useEffect(() => {
 
-    console.log('aAppPipelines(任务列表)=', aAppPipelines);
     cSetStateAppPipelines(aAppPipelines);
   }, [aAppPipelines]);
 
@@ -177,9 +179,9 @@ function Index(oProps: any): any {
       };
       let oSearch = {};
 
-      sStateName && (oSearch = {
+      sKeyword && (oSearch = {
         ...oSearch,
-        name: sStateName
+        keyword: sKeyword
       });
 
       iAppUserId && (oSearch = {
@@ -191,6 +193,8 @@ function Index(oProps: any): any {
         ...oSearch,
         state: iState
       });
+
+      console.log('oSearch=', oSearch);
 
       let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
@@ -245,25 +249,26 @@ function Index(oProps: any): any {
 
 
     })();
-  }, [iAppId, oParams.page, oParams.limit, sName, iAppUserId, iState]);
+  }, [iAppId, oParams.page, oParams.limit, sKeyword, iAppUserId, iState]);
 
-  let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
+  let cHandleClickOfSearchButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
-    if (iAppUserId != iStateAppUserId || sName != sStateName || iState != iStateState || iPage != 1) {
+    if (iAppUserId != iStateAppUserId || sKeyword != sStateKeyword || iState != iStateState || iPage != 1) {
       cSetStateLoading(true);
 
       cScrollToTop();
 
       let oSearch1 = {};
+      // 查询的请求 的 params 数据应该 从 state 取出
 
       iStateAppUserId && (oSearch1 = {
         ...oSearch1,
         'app-user-id': iStateAppUserId
       });
 
-      sStateName && (oSearch1 = {
+      sStateKeyword && (oSearch1 = {
         ...oSearch1,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iStateState && (oSearch1 = {
@@ -276,7 +281,7 @@ function Index(oProps: any): any {
       oHistory.push(sUrl);
     };
 
-    if (iAppUserId == iStateAppUserId && sName == sStateName && iState == iStateState && iPage == 1) {
+    if (iAppUserId == iStateAppUserId && sKeyword == sStateKeyword && iState == iStateState && iPage == 1) {
       cSetStateLoading(true);
 
       cScrollToTop();
@@ -291,12 +296,12 @@ function Index(oProps: any): any {
 
       iStateAppUserId && (oSearch2 = {
         ...oSearch2,
-        'app-user-id': iStateAppUserId
+        'appUserId': iStateAppUserId
       });
 
-      sStateName && (oSearch2 = {
+      sStateKeyword && (oSearch2 = {
         ...oSearch2,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iStateState && (oSearch2 = {
@@ -334,6 +339,80 @@ function Index(oProps: any): any {
 
   };
 
+  let cHandleClickOfRefreshButton = async (oEvent: React.SyntheticEvent<unknown>) => {
+
+    cSetStateLoading(true);
+
+    cScrollToTop();
+
+    let oParam2 = {};
+    let oOption2 = {
+      appId: iAppId,
+      page: iPage,
+      limit: iLimit
+    };
+    let oSearch2 = {};
+
+    // 刷新的请求 的 params 数据应该 从 url 取出
+
+    if(iAppUserId) {
+      oSearch2 = {
+        ...oSearch2,
+        'appUserId': iAppUserId
+      };
+
+      cSetStateAppUserId(iAppUserId);
+    };
+
+    if(sKeyword) {
+      oSearch2 = {
+        ...oSearch2,
+        keyword: sKeyword
+      };
+      cSetStateKeyword(sKeyword);
+
+    };
+
+    if(iState) {
+      oSearch2 = {
+        ...oSearch2,
+        state: iState
+      };
+      cSetStateState(iState);
+
+    };
+
+
+    console.log('oSearch2=', oSearch2);
+
+
+    let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
+
+
+    if (!oResponse || oResponse?.data?.code <= -1) {
+      let iCode = oResponse?.data?.code;
+      iCode = iCode < 0 ? iCode : -4;
+
+      let sMessage = oResponse?.data?.message ?? '读取任务列表的未知失败讯息';
+      let oMessage = {
+        code: iCode,
+        message: sMessage,
+        time: 2 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    };
+
+    let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
+    let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
+    let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+
+    oDispatch(actions.appPipelines.set(aAppPipelines));
+
+    cSetStateCount(iCount);
+    cSetStateLoading(false);
+
+  };
+
   let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
 
     cScrollToTop();
@@ -346,9 +425,9 @@ function Index(oProps: any): any {
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
+    sStateKeyword && (oSearch = {
       ...oSearch,
-      name: sStateName
+      keyword: sStateKeyword
     });
 
     iStateState && (oSearch = {
@@ -393,9 +472,9 @@ function Index(oProps: any): any {
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
+    sStateKeyword && (oSearch = {
       ...oSearch,
-      name: sStateName
+      keyword: sStateKeyword
     });
 
     iStateState && (oSearch = {
@@ -408,10 +487,10 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleChangeNameOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
-    let sName = String(oEvent.target.value);
+  let cHandleChangeKeywordOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
+    let sKeyword = String(oEvent.target.value);
 
-    cSetStateName(sName);
+    cSetStateKeyword(sKeyword);
   };
 
   let cHandleChangePageOfTextField = (oEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -437,9 +516,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sStateName && (oSearch = {
+      sStateKeyword && (oSearch = {
         ...oSearch,
-        name: sStateName
+        keyword: sStateKeyword
       });
 
       iStateState && (oSearch = {
@@ -453,12 +532,12 @@ function Index(oProps: any): any {
     }
   };
 
-  let cHandleKeyPressNameOfTextField = (oEvent: any) => {
+  let cHandleKeyPressKeywordOfTextField = (oEvent: any) => {
     if (oEvent.charCode == 13) {
 
       cScrollToTop();
 
-      let sName = String(oEvent.target.value);
+      let sKeyword = String(oEvent.target.value);
 
       let oSearch = {};
       iStateAppUserId && (oSearch = {
@@ -466,9 +545,9 @@ function Index(oProps: any): any {
         'app-user-id': iStateAppUserId
       });
 
-      sName && (oSearch = {
+      sKeyword && (oSearch = {
         ...oSearch,
-        name: sName
+        keyword: sKeyword
       });
 
       iStateState && (oSearch = {
@@ -491,9 +570,9 @@ function Index(oProps: any): any {
       'app-user-id': iStateAppUserId
     });
 
-    sStateName && (oSearch = {
+    sStateKeyword && (oSearch = {
       ...oSearch,
-      name: sStateName
+      keyword: sStateKeyword
     });
 
     iStateState && (oSearch = {
@@ -513,6 +592,7 @@ function Index(oProps: any): any {
       oDispatch(actions.appPipeline.set({}));
 
       cSetStateDetailDialogOpen(true);
+
       let oParam = {};
       let oOption = {
         appId: iAppId
@@ -702,6 +782,12 @@ function Index(oProps: any): any {
       editable: false
     },
     {
+      field: 'name',
+      headerName: '档名',
+      sortable: false,
+      flex: 1,
+    },
+    {
       field: 'appUserName',
       headerName: '账号',
       sortable: false,
@@ -709,12 +795,7 @@ function Index(oProps: any): any {
       align: 'left',
       valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
     },
-    {
-      field: 'name',
-      headerName: '档名',
-      sortable: false,
-      flex: 1,
-    },
+
     {
       field: 'width',
       headerName: '宽度',
@@ -1239,7 +1320,16 @@ function Index(oProps: any): any {
       </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
-
+        <TextField
+            className={clsx(oClasses.textField, oClasses.textFieldName)}
+            id="keyword"
+            label="关键字"
+            size="small"
+            variant="outlined"
+            value={sStateKeyword}
+            onChange={cHandleChangeKeywordOfTextField}
+            onKeyPress={cHandleKeyPressKeywordOfTextField}
+          />
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>
             <InputLabel id="app-user-id">账号</InputLabel>
             <Select
@@ -1255,16 +1345,7 @@ function Index(oProps: any): any {
               ))}
             </Select>
           </FormControl>
-          <TextField
-            className={clsx(oClasses.textField, oClasses.textFieldName)}
-            id="name"
-            label="档名"
-            size="small"
-            variant="outlined"
-            value={sStateName}
-            onChange={cHandleChangeNameOfTextField}
-            onKeyPress={cHandleKeyPressNameOfTextField}
-          />
+
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlState)}>
             <InputLabel id="state">进度</InputLabel>
             <Select
@@ -1290,9 +1371,20 @@ function Index(oProps: any): any {
             color="primary"
             variant="outlined"
             endIcon={<SearchIcon></SearchIcon>}
-            onClick={cHandleClickOfButton}
+            onClick={cHandleClickOfSearchButton}
           >
-            检索
+            搜索
+          </Button>
+
+          <Button
+            className={oClasses.button}
+            color="default"
+            variant="outlined"
+            endIcon={<CachedIcon></CachedIcon>}
+            onClick={cHandleClickOfRefreshButton}
+            
+          >
+            刷新
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>

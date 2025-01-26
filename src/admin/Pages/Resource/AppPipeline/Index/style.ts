@@ -10,6 +10,7 @@ const style = makeStyles((oTheme: Theme): any =>
     button: {
       minWidth: oTheme.spacing(8),
       height: oTheme.spacing(3.25),
+      marginLeft: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
         width: '100%',
         height: oTheme.spacing(4)
