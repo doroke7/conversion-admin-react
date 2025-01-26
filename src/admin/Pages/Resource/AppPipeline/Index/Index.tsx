@@ -373,7 +373,7 @@ function Index(oProps: any): any {
 
     };
 
-    if(iState) {
+    if(iState >= 0) {
       oSearch2 = {
         ...oSearch2,
         state: iState
