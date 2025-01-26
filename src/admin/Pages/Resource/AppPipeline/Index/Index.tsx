@@ -33,6 +33,7 @@ import DirectionsIcon from '@material-ui/icons/Directions';
 import ErrorIcon from '@material-ui/icons/Error';
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
+import CachedIcon from '@material-ui/icons/Cached';
 import Grow from '@material-ui/core/Grow';
 
 import Hocs from '@/admin/Hocs';
@@ -702,6 +703,12 @@ function Index(oProps: any): any {
       editable: false
     },
     {
+      field: 'name',
+      headerName: '档名',
+      sortable: false,
+      flex: 1,
+    },
+    {
       field: 'appUserName',
       headerName: '账号',
       sortable: false,
@@ -709,12 +716,7 @@ function Index(oProps: any): any {
       align: 'left',
       valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
     },
-    {
-      field: 'name',
-      headerName: '档名',
-      sortable: false,
-      flex: 1,
-    },
+
     {
       field: 'width',
       headerName: '宽度',
@@ -1297,9 +1299,9 @@ function Index(oProps: any): any {
 
           <Button
             className={oClasses.button}
-            color="secondary"
+            color="default"
             variant="outlined"
-            endIcon={<SearchIcon></SearchIcon>}
+            endIcon={<CachedIcon></CachedIcon>}
            // onClick={''}
           >
             刷新
