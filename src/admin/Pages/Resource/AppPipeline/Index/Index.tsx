@@ -192,6 +192,8 @@ function Index(oProps: any): any {
         state: iState
       });
 
+      console.log('oSearch=', oSearch);
+
       let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
       if (!oAppPipelineResponse || oAppPipelineResponse?.data?.code <= -1) {
