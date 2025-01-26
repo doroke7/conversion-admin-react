@@ -82,7 +82,7 @@ function Index(oProps: any): any {
   let iLimit = Number(oParams.limit || 20);
   let iPage = Number(oParams.page || 1);
   let iAppId = Number(oParams.appId || 0);
-  let sKeyword = String(oUrlSearchParams.get('name') || '');
+  let sKeyword = String(oUrlSearchParams.get('keyword') || '');
   let iAppUserId = Number(oUrlSearchParams.get('app-user-id') || 0);
   let iState = Number(oUrlSearchParams.get('state') || 0);
 
@@ -512,7 +512,7 @@ function Index(oProps: any): any {
       oDispatch(actions.appPipeline.set({}));
 
       cSetStateDetailDialogOpen(true);
-      
+
       let oParam = {};
       let oOption = {
         appId: iAppId
