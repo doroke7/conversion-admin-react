@@ -179,9 +179,9 @@ function Index(oProps: any): any {
       };
       let oSearch = {};
 
-      sStateKeyword && (oSearch = {
+      sKeyword && (oSearch = {
         ...oSearch,
-        keyword: sStateKeyword
+        keyword: sKeyword
       });
 
       iAppUserId && (oSearch = {
