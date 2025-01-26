@@ -296,7 +296,7 @@ function Index(oProps: any): any {
 
       iStateAppUserId && (oSearch2 = {
         ...oSearch2,
-        'app-user-id': iStateAppUserId
+        'appUserId': iStateAppUserId
       });
 
       sStateKeyword && (oSearch2 = {
@@ -358,7 +358,7 @@ function Index(oProps: any): any {
     if(iAppUserId) {
       oSearch2 = {
         ...oSearch2,
-        'app-user-id': iAppUserId
+        'appUserId': iAppUserId
       };
 
       cSetStateAppUserId(iAppUserId);
