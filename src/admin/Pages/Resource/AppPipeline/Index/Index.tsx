@@ -354,20 +354,34 @@ function Index(oProps: any): any {
     let oSearch2 = {};
 
     // 刷新的请求 的 params 数据应该 从 url 取出
-    iAppUserId && (oSearch2 = {
-      ...oSearch2,
-      'app-user-id': iAppUserId
-    });
 
-    sKeyword && (oSearch2 = {
-      ...oSearch2,
-      keyword: sKeyword
-    });
+    if(iAppUserId) {
+      oSearch2 = {
+        ...oSearch2,
+        'app-user-id': iAppUserId
+      };
 
-    iState && (oSearch2 = {
-      ...oSearch2,
-      state: iState
-    });
+      cSetStateAppUserId(iAppUserId);
+    };
+
+    if(sKeyword) {
+      oSearch2 = {
+        ...oSearch2,
+        keyword: sKeyword
+      };
+      cSetStateKeyword(sKeyword);
+
+    };
+
+    if(iState) {
+      oSearch2 = {
+        ...oSearch2,
+        state: iState
+      };
+      cSetStateState(iState);
+
+    };
+
 
     console.log('oSearch2=', oSearch2);
 
