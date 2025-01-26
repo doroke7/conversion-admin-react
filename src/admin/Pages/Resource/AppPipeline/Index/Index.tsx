@@ -92,6 +92,8 @@ function Index(oProps: any): any {
   let oAppPipeline = useSelector((oStore: any) => (oStore.appPipeline));
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
 
+  console.log('sKeyword=', sKeyword);
+
   let cScrollToTop = useCallback(() => {
     if (oDataGridRef.current) {
       let oDataGridWindow = (oDataGridRef.current as any)?.querySelector('.MuiDataGrid-window');
@@ -1305,9 +1307,7 @@ function Index(oProps: any): any {
             variant="outlined"
             endIcon={<CachedIcon></CachedIcon>}
            // onClick={''}
-          >
-            
-          </Button>
+          ></Button>
         </div>
         <div className={oClasses.paginationWrapper}>
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlLimit)}>
