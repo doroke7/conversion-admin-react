@@ -367,6 +367,8 @@ function Index(oProps: any): any {
       state: iStateState
     });
 
+    console.log('oSearch2=', oSearch2);
+
 
     let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
 
