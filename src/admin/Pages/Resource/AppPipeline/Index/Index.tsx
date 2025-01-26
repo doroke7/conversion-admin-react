@@ -251,7 +251,7 @@ function Index(oProps: any): any {
     })();
   }, [iAppId, oParams.page, oParams.limit, sKeyword, iAppUserId, iState]);
 
-  let cHandleClickOfButton = async (oEvent: React.SyntheticEvent<unknown>) => {
+  let cHandleClickOfSearchButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
     if (iAppUserId != iStateAppUserId || sKeyword != sStateKeyword || iState != iStateState || iPage != 1) {
       cSetStateLoading(true);
@@ -335,6 +335,63 @@ function Index(oProps: any): any {
       cSetStateLoading(false);
     };
 
+
+  };
+
+  let cHandleClickOfRefreshButton = async (oEvent: React.SyntheticEvent<unknown>) => {
+
+    cSetStateLoading(true);
+
+    cScrollToTop();
+
+    let oParam2 = {};
+    let oOption2 = {
+      appId: iAppId,
+      page: iPage,
+      limit: iLimit
+    };
+    let oSearch2 = {};
+
+    iStateAppUserId && (oSearch2 = {
+      ...oSearch2,
+      'app-user-id': iStateAppUserId
+    });
+
+    sStateKeyword && (oSearch2 = {
+      ...oSearch2,
+      keyword: sStateKeyword
+    });
+
+    iStateState && (oSearch2 = {
+      ...oSearch2,
+      state: iStateState
+    });
+
+
+    let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
+
+
+    if (!oResponse || oResponse?.data?.code <= -1) {
+      let iCode = oResponse?.data?.code;
+      iCode = iCode < 0 ? iCode : -4;
+
+      let sMessage = oResponse?.data?.message ?? '读取任务列表的未知失败讯息';
+      let oMessage = {
+        code: iCode,
+        message: sMessage,
+        time: 2 * 1000
+      };
+      events.emit('Alerts-onAlert', oMessage);
+    };
+
+    let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
+    let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
+    let aAppPipelines = oResponse?.data?.raw?.ones ?? [];
+
+    oDispatch(actions.appPipelines.set(aAppPipelines));
+
+    cSetStateCount(iCount);
+    cSetStateLoading(false);
 
   };
 
@@ -1296,9 +1353,9 @@ function Index(oProps: any): any {
             color="primary"
             variant="outlined"
             endIcon={<SearchIcon></SearchIcon>}
-            onClick={cHandleClickOfButton}
+            onClick={cHandleClickOfSearchButton}
           >
-            检索
+            搜索
           </Button>
 
           <Button
@@ -1306,8 +1363,11 @@ function Index(oProps: any): any {
             color="default"
             variant="outlined"
             endIcon={<CachedIcon></CachedIcon>}
-           // onClick={''}
-          ></Button>
+            onClick={cHandleClickOfRefreshButton}
+            
+          >
+            刷新
+          </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlLimit)}>
