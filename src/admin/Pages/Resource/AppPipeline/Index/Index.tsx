@@ -1306,7 +1306,7 @@ function Index(oProps: any): any {
             endIcon={<CachedIcon></CachedIcon>}
            // onClick={''}
           >
-            刷新
+            
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
