@@ -1239,7 +1239,16 @@ function Index(oProps: any): any {
       </Dialog>
       <div className={oClasses.top}>
         <div className={oClasses.searchWrapper}>
-
+        <TextField
+            className={clsx(oClasses.textField, oClasses.textFieldName)}
+            id="keyword"
+            label="关键字"
+            size="small"
+            variant="outlined"
+            value={sStateKeyword}
+            onChange={cHandleChangeKeywordOfTextField}
+            onKeyPress={cHandleKeyPressKeywordOfTextField}
+          />
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlAppUserId)}>
             <InputLabel id="app-user-id">账号</InputLabel>
             <Select
@@ -1255,16 +1264,7 @@ function Index(oProps: any): any {
               ))}
             </Select>
           </FormControl>
-          <TextField
-            className={clsx(oClasses.textField, oClasses.textFieldName)}
-            id="keyword"
-            label="关键字"
-            size="small"
-            variant="outlined"
-            value={sStateKeyword}
-            onChange={cHandleChangeKeywordOfTextField}
-            onKeyPress={cHandleKeyPressKeywordOfTextField}
-          />
+
           <FormControl variant="outlined" className={clsx(oClasses.formControl, oClasses.formControlState)}>
             <InputLabel id="state">进度</InputLabel>
             <Select
@@ -1293,6 +1293,16 @@ function Index(oProps: any): any {
             onClick={cHandleClickOfButton}
           >
             检索
+          </Button>
+
+          <Button
+            className={oClasses.button}
+            color="secondary"
+            variant="outlined"
+            endIcon={<SearchIcon></SearchIcon>}
+           // onClick={''}
+          >
+            刷新
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
