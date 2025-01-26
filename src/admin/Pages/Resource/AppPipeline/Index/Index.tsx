@@ -259,6 +259,7 @@ function Index(oProps: any): any {
       cScrollToTop();
 
       let oSearch1 = {};
+      // 查询的请求 的 params 数据应该 从 state 取出
 
       iStateAppUserId && (oSearch1 = {
         ...oSearch1,
@@ -352,19 +353,20 @@ function Index(oProps: any): any {
     };
     let oSearch2 = {};
 
-    iStateAppUserId && (oSearch2 = {
+    // 刷新的请求 的 params 数据应该 从 url 取出
+    iAppUserId && (oSearch2 = {
       ...oSearch2,
-      'app-user-id': iStateAppUserId
+      'app-user-id': iAppUserId
     });
 
-    sStateKeyword && (oSearch2 = {
+    sKeyword && (oSearch2 = {
       ...oSearch2,
-      keyword: sStateKeyword
+      keyword: sKeyword
     });
 
-    iStateState && (oSearch2 = {
+    iState && (oSearch2 = {
       ...oSearch2,
-      state: iStateState
+      state: iState
     });
 
     console.log('oSearch2=', oSearch2);
