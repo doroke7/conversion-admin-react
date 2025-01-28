@@ -28,6 +28,9 @@ const style = makeStyles((oTheme: Theme): any =>
       color: grey[500],
     },
 
+    cellName: {
+      whiteSpace: 'pre',
+    },
 
 
     textField: {
