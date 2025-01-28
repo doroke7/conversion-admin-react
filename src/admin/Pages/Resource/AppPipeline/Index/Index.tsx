@@ -786,6 +786,15 @@ function Index(oProps: any): any {
       headerName: '档名',
       sortable: false,
       flex: 1,
+      renderCell: (oProps: any) => {
+        let sName = oProps?.row?.name;
+
+        return (
+          <div className={oClasses.cellName}>
+            {sName}
+          </div>
+        );
+      },
     },
     {
       field: 'appUserName',

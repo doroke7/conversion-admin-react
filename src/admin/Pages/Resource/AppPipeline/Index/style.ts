@@ -5,7 +5,7 @@ const style = makeStyles((oTheme: Theme): any =>
   createStyles({
     top: {
       display: 'grid',
-      gridTemplateColumns: '3fr 3fr'
+      gridTemplateColumns: '4fr 3fr'
     },
     button: {
       minWidth: oTheme.spacing(8),
@@ -28,6 +28,10 @@ const style = makeStyles((oTheme: Theme): any =>
       color: grey[500],
     },
 
+    cellName: {
+      whiteSpace: 'pre',
+      textDecoration: 'underline'
+    },
 
 
     textField: {
