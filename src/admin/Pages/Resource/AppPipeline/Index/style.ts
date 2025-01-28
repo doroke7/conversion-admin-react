@@ -30,6 +30,7 @@ const style = makeStyles((oTheme: Theme): any =>
 
     cellName: {
       whiteSpace: 'pre',
+      textDecoration: 'underline'
     },
 
 
