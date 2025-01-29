@@ -585,7 +585,7 @@ function Index(oProps: any): any {
     oHistory.push(sUrl);
   };
 
-  let cHandleDetailClick = (iId: number, sFilename: string, oRow: any) => {
+  let cHandleDetailClick = (iId: number, sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
       cSetStateTitle(sFilename);
 
@@ -788,9 +788,13 @@ function Index(oProps: any): any {
       flex: 1,
       renderCell: (oProps: any) => {
         let sName = oProps?.row?.name;
+        let iId = oProps?.row?.id;
 
         return (
-          <div className={oClasses.cellName}>
+          <div 
+            className={oClasses.cellName}
+            onClick={cHandleDetailClick(iId, sName)}
+          >
             {sName}
           </div>
         );
@@ -901,7 +905,7 @@ function Index(oProps: any): any {
                 })}
                 size="medium"
                 disabled={false}
-                onClick={cHandleDetailClick(iId, sFilename, oRow)}
+                onClick={cHandleDetailClick(iId, sFilename)}
               >
                 <InfoIcon />
               </IconButton>

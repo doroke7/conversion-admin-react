@@ -31,7 +31,8 @@ const style = makeStyles((oTheme: Theme): any =>
     cellName: {
       whiteSpace: 'pre',
       textDecoration: 'underline',
-      textDecorationColor: grey[500]
+      textDecorationColor: grey[500],
+      cursor: 'pointer'
     },
 
 
