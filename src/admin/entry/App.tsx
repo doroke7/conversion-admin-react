@@ -47,6 +47,8 @@ function App(oProps: any) {
   return (
     <Provider store={store}>
       <div className={oClasses.root} onContextMenu={cHandleContextmenu}>
+        <link rel="preconnect" href={CONFIGS.API.PROTOCOL + '://' + CONFIGS.API.HOST}></link>
+        <link rel="dns-prefetch" href={CONFIGS.API.PROTOCOL + '://' + CONFIGS.API.HOST}></link>
         <Commons.Progress></Commons.Progress>
         <Commons.Alerts></Commons.Alerts>
         <Pages._></Pages._>
