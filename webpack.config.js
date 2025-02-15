@@ -171,6 +171,9 @@ module.exports = (env, argvs) => {
           removeComments: true, //移除HTML中的注释
           collapseWhitespace: true, //删除空白符与换行符
         },
+        templateParameters: {
+          API_PROTOCOL_API_HOST: process.env.API_PROTOCOL + '://' + process.env.API_HOST
+        }
       }),
       new HtmlWebpackPlugin({
         chunks: ['manifest', 'vendor', 'test'],
