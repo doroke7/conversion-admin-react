@@ -343,8 +343,6 @@ function Index(oProps: any): any {
 
     cSetStateLoading(true);
 
-    cScrollToTop();
-
     let oParam2 = {};
     let oOption2 = {
       appId: iAppId,
