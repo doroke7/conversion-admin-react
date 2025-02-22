@@ -78,8 +78,6 @@ function Index(oProps: any): any {
   let [bStateTranscoderDialogOpen, cSetStateTranscoderDialogOpen] = useState<boolean>(false);
   let oDataGridRef = useRef();
 
-
-
   let iLimit = Number(oParams.limit || 20);
   let iPage = Number(oParams.page || 1);
   let iAppId = Number(oParams.appId || 0);
@@ -91,8 +89,6 @@ function Index(oProps: any): any {
   let aAppPipelines = useSelector((oStore: any) => (oStore.appPipelines));
   let oAppPipeline = useSelector((oStore: any) => (oStore.appPipeline));
   let oAuthorizations = useSelector((oStore: any) => (oStore.authorizations));
-
-  console.log('sKeyword=', sKeyword);
 
   let cScrollToTop = useCallback(() => {
     if (oDataGridRef.current) {
@@ -380,10 +376,6 @@ function Index(oProps: any): any {
 
     };
 
-
-    console.log('oSearch2=', oSearch2);
-
-
     let oResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam2, oOption2, oSearch2);
 
 
@@ -449,6 +441,32 @@ function Index(oProps: any): any {
 
   };
 
+  let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+
+    cScrollToTop();
+
+
+    let oSearch = {};
+
+    iStateAppUserId && (oSearch = {
+      ...oSearch,
+      'app-user-id': iStateAppUserId
+    });
+
+    sStateKeyword && (oSearch = {
+      ...oSearch,
+      keyword: sStateKeyword
+    });
+
+    iStateState && (oSearch = {
+      ...oSearch,
+      state: iStateState
+    });
+
+
+    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
+    oHistory.push(sUrl);
+  };
 
   let cHandleChangeAppUserIdOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iAppUserId = Number(oEvent.target.value);
@@ -1438,7 +1456,7 @@ function Index(oProps: any): any {
             //   showFirstButton
             // showLastButton
             page={iStatePage}
-            onChange={cHandleChangePageOfPaginationWrapper()}
+            onChange={cHandleChangePageOfPagination}
           />
 
           <TextField
