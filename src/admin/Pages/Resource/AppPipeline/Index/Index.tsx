@@ -411,32 +411,44 @@ function Index(oProps: any): any {
 
   };
 
-  let cHandleChangePageOfPagination = (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+  let cHandleChangePageOfPaginationWrapper = () => {
 
-    cScrollToTop();
+    let oTimeout = null;
 
+    // Debounce 技巧，避免连点 造成性能多请求的浪费
+    return (oEvent: React.ChangeEvent<unknown>, iPage: number) => {
+      clearTimeout(oTimeout);
 
-    let oSearch = {};
+      oTimeout = setTimeout(() => {
+        cScrollToTop();
+  
+  
+        let oSearch = {};
+    
+        iStateAppUserId && (oSearch = {
+          ...oSearch,
+          'app-user-id': iStateAppUserId
+        });
+    
+        sStateKeyword && (oSearch = {
+          ...oSearch,
+          keyword: sStateKeyword
+        });
+    
+        iStateState && (oSearch = {
+          ...oSearch,
+          state: iStateState
+        });
+    
+    
+        let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
+        oHistory.push(sUrl);
+      }, 200);
+  
+    };
 
-    iStateAppUserId && (oSearch = {
-      ...oSearch,
-      'app-user-id': iStateAppUserId
-    });
-
-    sStateKeyword && (oSearch = {
-      ...oSearch,
-      keyword: sStateKeyword
-    });
-
-    iStateState && (oSearch = {
-      ...oSearch,
-      state: iStateState
-    });
-
-
-    let sUrl = utilities.url('', oRouteMatch.path, oParams.appId, iPage, oParams.limit, oSearch);
-    oHistory.push(sUrl);
   };
+
 
   let cHandleChangeAppUserIdOfSelect = (oEvent: React.ChangeEvent<{ value: unknown }>) => {
     let iAppUserId = Number(oEvent.target.value);
@@ -1426,7 +1438,7 @@ function Index(oProps: any): any {
             //   showFirstButton
             // showLastButton
             page={iStatePage}
-            onChange={cHandleChangePageOfPagination}
+            onChange={cHandleChangePageOfPaginationWrapper()}
           />
 
           <TextField
