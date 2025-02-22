@@ -163,10 +163,10 @@ function Index(oProps: any): any {
   }, [oAppPipeline?.state]);
 
   useEffect(() => {
-    (async () => {
 
+    let oTimeout = setTimeout(async() => {
       cSetStateLoading(true);
-
+  
       let oParam = {};
       let oOption = {
         appId: iAppId,
@@ -189,8 +189,6 @@ function Index(oProps: any): any {
         ...oSearch,
         state: iState
       });
-
-      console.log('oSearch=', oSearch);
 
       let oAppPipelineResponse = await Sdks.Admin.Resource.AppPipeline.getShowOnes(oParam, oOption, oSearch);
 
@@ -242,9 +240,13 @@ function Index(oProps: any): any {
       let aServers = oServerResponse?.data?.raw?.ones ?? [];
 
       cSetStateServers(aServers);
+  
+    }, 200);  
 
 
-    })();
+    return () => {
+      clearTimeout(oTimeout);
+    };
   }, [iAppId, oParams.page, oParams.limit, sKeyword, iAppUserId, iState]);
 
   let cHandleClickOfSearchButton = async (oEvent: React.SyntheticEvent<unknown>) => {
