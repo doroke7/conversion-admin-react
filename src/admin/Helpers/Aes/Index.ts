@@ -1,4 +1,5 @@
 import CryptoJS from 'crypto-js';
+import Exception from '@/admin/Exception/Index';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 
@@ -73,7 +74,7 @@ class AesHelper {
 
     } catch (oError: any) {
 
-
+      throw new Exception('解密失败', -3);
     };
 
 
