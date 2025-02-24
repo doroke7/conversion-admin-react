@@ -161,8 +161,6 @@ let authorization = (Component: any): any => {
 
           oDispatch(actions.authorizaions.set(oAutohorizations));
 
-          console.log('oResponse=', oResponse);
-
           if (
             oResponse?.data?.code >= 0 && oResponse?.data?.code !== undefined
           ) {

@@ -210,6 +210,8 @@ function Index(oProps: any): any {
       let iCount = Math.ceil((oAppPipelineResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppPipelines = oAppPipelineResponse?.data?.raw?.ones ?? [];
 
+      console.log('aAppPipelines=', aAppPipelines);
+
       oDispatch(actions.appPipelines.set(aAppPipelines));
 
       cSetStateCount(iCount);
