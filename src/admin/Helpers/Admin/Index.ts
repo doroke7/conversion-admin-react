@@ -105,12 +105,14 @@ class AdminHelper {
       let sResult = oResponse?.data?.result ?? '';
 
       if (sResult && sKey && sIv) {
-        let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv);
+        let oOptions: any = { 'format': 'base64', 'mode': 'cbc' }
+
+        let sRaw = Helpers.Aes.decrypt(sResult, sKey, sIv, oOptions);
         oRaw = JSON.parse(sRaw);
         oResponse.data.raw = oRaw;
       }
     } catch (oExcepiton) {
-      let sMessage = '响应解密失败' + ': ' + oExcepiton.message ?? '';
+      let sMessage = '响应解密失败' + ': ' + (oExcepiton.message ?? '');
       throw new Exception(sMessage, -2);
     }
 
