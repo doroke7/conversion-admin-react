@@ -72,7 +72,7 @@ class AesHelper {
       let mResult = oEncrypted.toString(CryptoJS.enc.Utf8);
       sResult = mResult.toString();
 
-    } catch (oError: any) {
+    } catch (oError) {
 
       throw new Exception('解密失败', -3);
     };
