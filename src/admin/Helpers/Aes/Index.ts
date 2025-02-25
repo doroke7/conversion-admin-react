@@ -18,14 +18,38 @@ class AesHelper {
     return sResult;
   }
 
-  public static encrypt(sString: string, sKey: string, sIv: string): string {
-    let _sKey = CryptoJS.enc.Utf8.parse(sKey);
-    let _sIv = CryptoJS.enc.Utf8.parse(sIv);
+  public static encrypt(sString: string, sKey: string, sIv: string, oOptions: any = { 'format': 'hex', 'mode': 'cbc' }): string {
+    
+    let sFormat = (oOptions?.['format'] ?? 'hex').toLowerCase();
+    let sMode = (oOptions?.['mode'] ?? 'cbc').toLowerCase();
 
-    let _sString = CryptoJS.enc.Utf8.parse(sString);
-    let oOption = { iv: _sIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 };
-    let oEncrypted = CryptoJS.AES.encrypt(_sString, _sKey, oOption);
-    let sResult = oEncrypted.ciphertext.toString();
+    let aKeyparts = CryptoJS.enc.Utf8.parse(sKey);
+    let aIvparts = CryptoJS.enc.Utf8.parse(sIv);
+
+    let aStringParts = CryptoJS.enc.Utf8.parse(sString);
+
+    let iMode = CryptoJS.mode.CBC;
+    iMode = sMode == 'cbc' ? CryptoJS.mode.CBC : iMode;
+    iMode = sMode == 'ecb' ? CryptoJS.mode.ECB : iMode;
+
+    let oOption = {
+      mode: iMode,
+      padding: CryptoJS.pad.Pkcs7
+    } as any;
+
+    if (sMode == 'cbc') {
+      oOption = {
+        ...oOption,
+        iv: aIvparts
+      };
+    };
+
+    let oEncrypted = CryptoJS.AES.encrypt(aStringParts, aKeyparts, oOption);
+    let oCiphertext = oEncrypted.ciphertext;
+
+    let sResult = '';
+    sResult = sFormat == 'base64' ? oCiphertext.toString(CryptoJS.enc.Base64) : sResult;
+    sResult = sFormat == 'hex' ? oCiphertext.toString() : sResult;
 
     return sResult;
   }
