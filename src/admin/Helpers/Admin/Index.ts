@@ -18,6 +18,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
  */
 class AdminHelper {
   public static params(oParams: any, sKey: string, sIv: string): any {
+    let oOptions: any = { 'format': 'base64', 'mode': 'cbc' }
+
     oParams = oParams || {};
     oParams.search = oParams.search || {};
     oParams.option = oParams.option || {};
@@ -25,18 +27,29 @@ class AdminHelper {
     let sSearch = JSON.stringify(oParams.search);
     let sOption = JSON.stringify(oParams.option);
 
-    oParams.search = Helpers.Aes.encrypt(sSearch, sKey, sIv);
-    oParams.option = Helpers.Aes.encrypt(sOption, sKey, sIv);
+    sSearch = Helpers.Aes.encrypt(sSearch, sKey, sIv, oOptions);
+    sOption = Helpers.Aes.encrypt(sOption, sKey, sIv, oOptions);
+
+    sSearch = encodeURIComponent(sSearch);
+    sOption = encodeURIComponent(sOption);
+
+    oParams.search = sSearch;
+    oParams.option = sOption;
 
     return oParams;
   }
 
   public static data(oData: any, sKey: string, sIv: string): any {
+    let oOptions: any = { 'format': 'base64', 'mode': 'cbc' }
+
     oData = oData ?? {};
     oData.param = oData.param ?? {};
 
     let sParam = JSON.stringify(oData.param);
-    oData.param = Helpers.Aes.encrypt(sParam, sKey, sIv);
+    sParam = Helpers.Aes.encrypt(sParam, sKey, sIv, oOptions);
+    sParam = encodeURIComponent(sParam);
+
+    oData.param = sParam;
 
     return oData;
   }
