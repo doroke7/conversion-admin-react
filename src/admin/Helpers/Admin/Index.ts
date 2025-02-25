@@ -25,8 +25,11 @@ class AdminHelper {
     let sSearch = JSON.stringify(oParams.search);
     let sOption = JSON.stringify(oParams.option);
 
-    oParams.search = Helpers.Aes.encrypt(sSearch, sKey, sIv);
-    oParams.option = Helpers.Aes.encrypt(sOption, sKey, sIv);
+    sSearch = Helpers.Aes.encrypt(sSearch, sKey, sIv);
+    sOption = Helpers.Aes.encrypt(sOption, sKey, sIv);
+
+    oParams.search = sSearch;
+    oParams.option = sOption;
 
     return oParams;
   }
@@ -36,7 +39,9 @@ class AdminHelper {
     oData.param = oData.param ?? {};
 
     let sParam = JSON.stringify(oData.param);
-    oData.param = Helpers.Aes.encrypt(sParam, sKey, sIv);
+    sParam = Helpers.Aes.encrypt(sParam, sKey, sIv);
+
+    oData.param = sParam;
 
     return oData;
   }
