@@ -26,14 +26,13 @@ let cDateTime = (mTime: number | string) => {
 
     let iTime = oDate.getTime();
 
-    let sYear = '0000';
-    let sMonth = '00';
-    let sDate = '00';
-    let sHours = '00';
-    let sMinutes = '00';
-    let sSeconds = '00';
-
-    if (!isNaN(iTime)) {
+    if (!isNaN(iTime) || iTime > 1000) {
+      let sYear = '0000';
+      let sMonth = '00';
+      let sDate = '00';
+      let sHours = '00';
+      let sMinutes = '00';
+      let sSeconds = '00';
       sYear = String(oDate.getFullYear());
       sMonth = ('0' + (oDate.getMonth() + 1)).slice(-2);
       sDate = ('0' + oDate.getDate()).slice(-2);
@@ -43,9 +42,6 @@ let cDateTime = (mTime: number | string) => {
       sDateTime = sYear + '/' + sMonth + '/' + sDate + ' ' + sHours + ':' + sMinutes + ':' + sSeconds;
 
     }
-
-
-
 
   };
 
