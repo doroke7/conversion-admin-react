@@ -650,8 +650,22 @@ function Index(oProps: any): any {
 
       let oAppPipeline = oResponse?.data?.raw?.one ?? {};
 
+
+
       console.log('oAppPipeline=', oAppPipeline);
       oDispatch(actions.appPipeline.set(oAppPipeline));
+      let oParam2 = {};
+      let oOption2 = {
+      };
+      let oSearch2 = {
+        appId: iAppId,
+
+      };
+
+      let oServerResponse = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
+      let aServers = oServerResponse?.data?.raw?.ones ?? [];
+
+      cSetStateServers(aServers);
 
 
     };
