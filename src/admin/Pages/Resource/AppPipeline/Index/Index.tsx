@@ -688,6 +688,9 @@ function Index(oProps: any): any {
 
   let cHandleTranscoderClick = (iId: number, sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
+      cSetStateTranscoderDialogOpen(true);
+      cSetStateId(iId);
+      cSetStateTitle(sFilename);
 
       let oParam2 = {};
       let oOption2 = {
@@ -702,9 +705,7 @@ function Index(oProps: any): any {
 
       cSetStateServers(aServers);
 
-      cSetStateTranscoderDialogOpen(true);
-      cSetStateId(iId);
-      cSetStateTitle(sFilename);
+   
 
     };
   };
