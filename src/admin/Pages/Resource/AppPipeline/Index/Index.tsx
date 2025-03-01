@@ -654,18 +654,7 @@ function Index(oProps: any): any {
 
       console.log('oAppPipeline=', oAppPipeline);
       oDispatch(actions.appPipeline.set(oAppPipeline));
-      let oParam2 = {};
-      let oOption2 = {
-      };
-      let oSearch2 = {
-        appId: iAppId,
 
-      };
-
-      let oServerResponse = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
-      let aServers = oServerResponse?.data?.raw?.ones ?? [];
-
-      cSetStateServers(aServers);
 
 
     };
@@ -699,6 +688,19 @@ function Index(oProps: any): any {
 
   let cHandleTranscoderClick = (iId: number, sFilename: string) => {
     return async (oEvent: React.SyntheticEvent<unknown>) => {
+
+      let oParam2 = {};
+      let oOption2 = {
+      };
+      let oSearch2 = {
+        appId: iAppId,
+
+      };
+
+      let oServerResponse = await Sdks.Admin.System.Server.getShowOnes(oParam2, oOption2, oSearch2);
+      let aServers = oServerResponse?.data?.raw?.ones ?? [];
+
+      cSetStateServers(aServers);
 
       cSetStateTranscoderDialogOpen(true);
       cSetStateId(iId);
