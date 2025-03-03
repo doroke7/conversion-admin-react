@@ -26,7 +26,7 @@ let cDateTime = (mTime: number | string) => {
 
     let iTime = oDate.getTime();
 
-    if (!isNaN(iTime) || iTime > 1000) {
+    if (!isNaN(iTime) && iTime > 1000) {
       let sYear = '0000';
       let sMonth = '00';
       let sDate = '00';
