@@ -1379,10 +1379,20 @@ function Index(oProps: any): any {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={cHandleTranscoderDialogClose} color="default" variant="outlined" autoFocus>
+          <Button 
+            onClick={cHandleTranscoderDialogClose} 
+            color="default" 
+            variant="outlined" 
+            autoFocus
+          >
             取消
           </Button>
-          <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
+          <Button 
+            onClick={cHandleTranscoderDialogClick} 
+            color="primary" 
+            variant="outlined"
+            disabled={bStateTranscodingButtonLoading}
+            >
             {bStateTranscodingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '确定'}
           </Button>
         </DialogActions>
@@ -1439,6 +1449,7 @@ function Index(oProps: any): any {
             className={oClasses.button}
             color="primary"
             variant="outlined"
+            disabled={bStateSearchingButtonLoading}
             endIcon={bStateSearchingButtonLoading ? '' : <SearchIcon></SearchIcon>}
             onClick={cHandleClickOfSearchButton}
           >
@@ -1448,6 +1459,7 @@ function Index(oProps: any): any {
             className={oClasses.button}
             color="default"
             variant="outlined"
+            disabled={bStateRefreshingButtonLoading}
             endIcon={bStateRefreshingButtonLoading ? '' : <CachedIcon></CachedIcon>}
             onClick={cHandleClickOfRefreshButton}
             
