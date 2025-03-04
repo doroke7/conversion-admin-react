@@ -1447,8 +1447,6 @@ function Index(oProps: any): any {
 
             
           </Button>
-          <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
-          </Button>
           <Button
             className={oClasses.button}
             color="default"
