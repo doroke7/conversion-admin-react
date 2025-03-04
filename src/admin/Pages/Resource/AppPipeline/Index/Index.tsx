@@ -1453,7 +1453,7 @@ function Index(oProps: any): any {
             endIcon={bStateSearchingButtonLoading ? '' : <SearchIcon></SearchIcon>}
             onClick={cHandleClickOfSearchButton}
           >
-            {bStateSearchingButtonLoading ? <CircularProgress size={20} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}            
+            {bStateSearchingButtonLoading ? <CircularProgress size={18} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}            
           </Button>
           <Button
             className={oClasses.button}
@@ -1464,7 +1464,7 @@ function Index(oProps: any): any {
             onClick={cHandleClickOfRefreshButton}
             
           >
-            {bStateRefreshingButtonLoading ? <CircularProgress size={20} variant="indeterminate" thickness={5} className={oClasses.refreshingCircularProgress}></CircularProgress> : '刷新'}
+            {bStateRefreshingButtonLoading ? <CircularProgress size={18} variant="indeterminate" thickness={5} className={oClasses.refreshingCircularProgress}></CircularProgress> : '刷新'}
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
