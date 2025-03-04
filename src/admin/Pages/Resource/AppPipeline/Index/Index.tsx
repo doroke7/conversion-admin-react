@@ -1439,19 +1439,16 @@ function Index(oProps: any): any {
             className={oClasses.button}
             color="primary"
             variant="outlined"
-            endIcon={<SearchIcon></SearchIcon>}
+            endIcon={bStateSearchingButtonLoading ? '' : <SearchIcon></SearchIcon>}
             onClick={cHandleClickOfSearchButton}
           >
-
-            {bStateSearchingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}
-
-            
+            {bStateSearchingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}            
           </Button>
           <Button
             className={oClasses.button}
             color="default"
             variant="outlined"
-            endIcon={<CachedIcon></CachedIcon>}
+            endIcon={bStateRefreshingButtonLoading ? '' : <CachedIcon></CachedIcon>}
             onClick={cHandleClickOfRefreshButton}
             
           >
