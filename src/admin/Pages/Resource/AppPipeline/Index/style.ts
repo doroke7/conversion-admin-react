@@ -36,7 +36,7 @@ const style = makeStyles((oTheme: Theme): any =>
     },
 
     refreshingCircularProgress: {
-      color: grey[500]
+      color: grey[700]
     },
     textField: {
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
