@@ -1379,10 +1379,20 @@ function Index(oProps: any): any {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={cHandleTranscoderDialogClose} color="default" variant="outlined" autoFocus>
+          <Button 
+            onClick={cHandleTranscoderDialogClose} 
+            color="default" 
+            variant="outlined" 
+            autoFocus
+          >
             取消
           </Button>
-          <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
+          <Button 
+            onClick={cHandleTranscoderDialogClick} 
+            color="primary" 
+            variant="outlined"
+            disabled={bStateTranscodingButtonLoading}
+            >
             {bStateTranscodingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '确定'}
           </Button>
         </DialogActions>
@@ -1439,23 +1449,22 @@ function Index(oProps: any): any {
             className={oClasses.button}
             color="primary"
             variant="outlined"
-            endIcon={<SearchIcon></SearchIcon>}
+            disabled={bStateSearchingButtonLoading}
+            endIcon={bStateSearchingButtonLoading ? '' : <SearchIcon></SearchIcon>}
             onClick={cHandleClickOfSearchButton}
           >
-
-            {bStateSearchingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}
-
-            
+            {bStateSearchingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}            
           </Button>
           <Button
             className={oClasses.button}
             color="default"
             variant="outlined"
-            endIcon={<CachedIcon></CachedIcon>}
+            disabled={bStateRefreshingButtonLoading}
+            endIcon={bStateRefreshingButtonLoading ? '' : <CachedIcon></CachedIcon>}
             onClick={cHandleClickOfRefreshButton}
             
           >
-            {bStateRefreshingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '刷新'}
+            {bStateRefreshingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5} className={oClasses.refreshingCircularProgress}></CircularProgress> : '刷新'}
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>

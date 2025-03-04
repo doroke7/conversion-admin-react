@@ -35,7 +35,9 @@ const style = makeStyles((oTheme: Theme): any =>
       cursor: 'pointer'
     },
 
-
+    refreshingCircularProgress: {
+      color: grey[500]
+    },
     textField: {
       '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
         transform: 'translate(14px, -5px) scale(0.65) !important'
