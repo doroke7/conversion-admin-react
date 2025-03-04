@@ -1464,7 +1464,7 @@ function Index(oProps: any): any {
             onClick={cHandleClickOfRefreshButton}
             
           >
-            {bStateRefreshingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '刷新'}
+            {bStateRefreshingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5} className={oClasses.refreshingCircularProgress}></CircularProgress> : '刷新'}
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
