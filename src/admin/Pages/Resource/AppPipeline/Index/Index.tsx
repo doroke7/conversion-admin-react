@@ -910,8 +910,8 @@ function Index(oProps: any): any {
     },
     {
       field: 'addedTime',
-      headerName: '启动时间',
-      description: '启动时间',
+      headerName: '上传时间',
+      description: '上传时间',
       sortable: false,
       width: 170,
       valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
