@@ -910,8 +910,8 @@ function Index(oProps: any): any {
     },
     {
       field: 'addedTime',
-      headerName: '启动时间',
-      description: '启动时间',
+      headerName: '上传时间',
+      description: '上传时间',
       sortable: false,
       width: 170,
       valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
@@ -1453,7 +1453,7 @@ function Index(oProps: any): any {
             endIcon={bStateSearchingButtonLoading ? '' : <SearchIcon></SearchIcon>}
             onClick={cHandleClickOfSearchButton}
           >
-            {bStateSearchingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}            
+            {bStateSearchingButtonLoading ? <CircularProgress size={18} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}            
           </Button>
           <Button
             className={oClasses.button}
@@ -1464,7 +1464,7 @@ function Index(oProps: any): any {
             onClick={cHandleClickOfRefreshButton}
             
           >
-            {bStateRefreshingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5} className={oClasses.refreshingCircularProgress}></CircularProgress> : '刷新'}
+            {bStateRefreshingButtonLoading ? <CircularProgress size={18} variant="indeterminate" thickness={5} className={oClasses.refreshingCircularProgress}></CircularProgress> : '刷新'}
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
