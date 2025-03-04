@@ -8,7 +8,7 @@ const style = makeStyles((oTheme: Theme): any =>
       gridTemplateColumns: '4fr 3fr'
     },
     button: {
-      minWidth: oTheme.spacing(10),
+      minWidth: oTheme.spacing(11),
       height: oTheme.spacing(3.25),
       marginLeft: oTheme.spacing(1),
       [oTheme.breakpoints.down('sm')]: {
