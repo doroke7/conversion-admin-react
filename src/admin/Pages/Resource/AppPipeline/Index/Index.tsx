@@ -66,7 +66,10 @@ function Index(oProps: any): any {
   let [iStateId, cSetStateId] = useState<number>(0);
   let [iStateCount, cSetStateCount] = useState<number>(0);
   let [bStateLoading, cSetStateLoading] = useState<boolean>(false);
-  let [bStateButtonLoading, cSetStateButtonLoading] = useState<boolean>(false);
+  let [bStateTranscodingButtonLoading, cSetStateTranscodingButtonLoading] = useState<boolean>(false);
+  let [bStateSearchingButtonLoading, cSetStateSearchingButtonLoading] = useState<boolean>(false);
+  let [bStateRefreshingButtonLoading, cSetStateRefreshingButtonLoading] = useState<boolean>(false);
+
   let [aStateAppPipelines, cSetStateAppPipelines] = useState<any[]>([]);
   let [iStateLimit, cSetStateLimit] = useState<number>(20);
   let [iStatePage, cSetStatePage] = useState<number>(1);
@@ -255,7 +258,7 @@ function Index(oProps: any): any {
 
     if (iAppUserId != iStateAppUserId || sKeyword != sStateKeyword || iState != iStateState || iPage != 1) {
       cSetStateLoading(true);
-
+      cSetStateSearchingButtonLoading(true);
       cScrollToTop();
 
       let oSearch1 = {};
@@ -283,6 +286,7 @@ function Index(oProps: any): any {
 
     if (iAppUserId == iStateAppUserId && sKeyword == sStateKeyword && iState == iStateState && iPage == 1) {
       cSetStateLoading(true);
+      cSetStateSearchingButtonLoading(true);
 
       cScrollToTop();
 
@@ -334,6 +338,7 @@ function Index(oProps: any): any {
 
       cSetStateCount(iCount);
       cSetStateLoading(false);
+      cSetStateSearchingButtonLoading(false);
     };
 
 
@@ -341,6 +346,7 @@ function Index(oProps: any): any {
 
   let cHandleClickOfRefreshButton = async (oEvent: React.SyntheticEvent<unknown>) => {
 
+    cSetStateRefreshingButtonLoading(true);
     cSetStateLoading(true);
 
     let oParam2 = {};
@@ -404,6 +410,7 @@ function Index(oProps: any): any {
 
     cSetStateCount(iCount);
     cSetStateLoading(false);
+    cSetStateRefreshingButtonLoading(false);
 
   };
 
@@ -712,7 +719,7 @@ function Index(oProps: any): any {
 
   let cHandleTranscoderDialogClick = async (oEvent: React.SyntheticEvent<unknown>) => {
 
-    cSetStateButtonLoading(true);
+    cSetStateTranscodingButtonLoading(true);
     let iId = iStateId;
     let oParam1 = {
       serverUuid: sStateServerUuid != 'DEFAULT' ? sStateServerUuid : ''
@@ -749,7 +756,7 @@ function Index(oProps: any): any {
       events.emit('Alerts-onAlert', oMessage);
     };
 
-    cSetStateButtonLoading(false);
+    cSetStateTranscodingButtonLoading(false);
 
 
     let oParam2 = {
@@ -1376,7 +1383,7 @@ function Index(oProps: any): any {
             取消
           </Button>
           <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
-            {bStateButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '确定'}
+            {bStateTranscodingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '确定'}
           </Button>
         </DialogActions>
       </Dialog>
@@ -1435,9 +1442,13 @@ function Index(oProps: any): any {
             endIcon={<SearchIcon></SearchIcon>}
             onClick={cHandleClickOfSearchButton}
           >
-            搜索
-          </Button>
 
+            {bStateSearchingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '搜索'}
+
+            
+          </Button>
+          <Button onClick={cHandleTranscoderDialogClick} color="primary" variant="outlined">
+          </Button>
           <Button
             className={oClasses.button}
             color="default"
@@ -1446,7 +1457,7 @@ function Index(oProps: any): any {
             onClick={cHandleClickOfRefreshButton}
             
           >
-            刷新
+            {bStateRefreshingButtonLoading ? <CircularProgress size={24} variant="indeterminate" thickness={5}></CircularProgress> : '刷新'}
           </Button>
         </div>
         <div className={oClasses.paginationWrapper}>
