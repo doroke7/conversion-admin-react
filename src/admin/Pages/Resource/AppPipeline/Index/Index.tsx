@@ -166,7 +166,9 @@ function Index(oProps: any): any {
   }, [oAppPipeline?.state]);
 
   useEffect(() => {
-
+    cSetStateRefreshingButtonLoading(false);
+    cSetStateSearchingButtonLoading(false);
+    
     let oTimeout = setTimeout(async() => {
       cSetStateLoading(true);
   
@@ -1353,7 +1355,6 @@ function Index(oProps: any): any {
         <Divider></Divider>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-
             手動轉碼&nbsp; <span className={clsx(oClasses.fileName)}>{sStateTitle ?? ''}</span>&nbsp;
             可能會造成任務阻塞, 確定要執行？
           </DialogContentText>
