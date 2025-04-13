@@ -66,6 +66,8 @@ const style = makeStyles((oTheme: Theme) =>
     },
     toolbar: {
       ...oTheme.mixins.toolbar,
+      width: oTheme.spacing(25),
+      boxSizing: 'border-box',
       display: 'flex',
       position: 'fixed',
       top: oTheme.spacing(0),
