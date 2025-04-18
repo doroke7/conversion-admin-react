@@ -397,7 +397,7 @@ function Navigation(oProps: any) {
       let aTabs1 = iCurrentAppId > 0 ? Helpers.Tab.getOnesByMeIdAppId(iAdminUserId, iCurrentAppId) : [];
       let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(iAdminUserId, 0);
 
-      let aTabs = [...aTabs1, ...aTabs0] ?? [];
+      let aTabs = [...aTabs1, ...aTabs0];
 
       let oTab = {
         id: oRoute.id,
