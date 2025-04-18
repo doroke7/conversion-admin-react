@@ -247,7 +247,11 @@ const style = makeStyles((oTheme: Theme): any =>
     },
     detail: {
       textAlign: 'center',
-      color: grey[500]
+      color: grey[500],
+      wordWrap: 'break-word',
+      wordBreak: 'break-word',
+      whiteSpace: 'normal',
+
     },
     detailStageNote: {
       marginBottom: oTheme.spacing(1)
