@@ -1072,7 +1072,7 @@ function Index(oProps: any): any {
         aria-labelledby="customized-dialog-title"
         open={bStateDetailDialogOpen}
         fullWidth={true}
-        maxWidth={'md'}
+        maxWidth={'lg'}
       >
 
         <DialogTitle id="customized-dialog-title">
