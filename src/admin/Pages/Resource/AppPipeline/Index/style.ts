@@ -259,7 +259,7 @@ const style = makeStyles((oTheme: Theme): any =>
     detailAction: {
       display: 'flex',
       fontSize: oTheme.spacing(1.8),
-      justifyContent: 'space-around',
+      justifyContent: 'space-evenly',
     },
     detailError: {
       color: red[500]
