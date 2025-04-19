@@ -1076,7 +1076,7 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          {sStateTitle}
+          <Tooltip title={utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="right"><span>{sStateTitle}</span></Tooltip>
         </DialogTitle>
 
         <Divider></Divider>
