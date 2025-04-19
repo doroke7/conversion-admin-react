@@ -1284,7 +1284,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源同步内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appDownloaderStage?.note ?? ''}&nbsp;</div>
-              <div className={clsx(oClasses.detailAction)}><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span><span>{utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)}</span></div>
+              <div className={clsx(oClasses.detailAction)}><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)}</span></div>
 
             </div>
 
@@ -1294,7 +1294,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源转码内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
-              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}><span>{oAction?.path ?? ''}</span><span>{utilities.size(oAction?.size ?? 0)}</span></div>))}
+              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}><span>{oAction?.path ?? ''}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{utilities.size(oAction?.size ?? 0)}</span></div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
