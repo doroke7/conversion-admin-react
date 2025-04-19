@@ -257,7 +257,9 @@ const style = makeStyles((oTheme: Theme): any =>
       marginBottom: oTheme.spacing(1)
     },
     detailAction: {
-      fontSize: oTheme.spacing(1.8)
+      display: 'flex',
+      fontSize: oTheme.spacing(1.8),
+      justifyContent: 'space-around',
     },
     detailError: {
       color: red[500]
