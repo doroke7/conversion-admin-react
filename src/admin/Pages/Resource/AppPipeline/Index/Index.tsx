@@ -1284,7 +1284,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源同步内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appDownloaderStage?.note ?? ''}&nbsp;</div>
-              <div className={clsx(oClasses.detailAction)}>{oAppPipeline?.appDownloaderStage?.path ?? ''}</div>
+              <div className={clsx(oClasses.detailAction)}><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span><span>{utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)}</span></div>
 
             </div>
 
