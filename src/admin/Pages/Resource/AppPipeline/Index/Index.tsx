@@ -1294,7 +1294,7 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源转码内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
-              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.path ?? ''}</div>))}
+              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}><span>{oAction?.path ?? ''}</span><span>{utilities.size(oAction?.size ?? 0)}</span></div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
