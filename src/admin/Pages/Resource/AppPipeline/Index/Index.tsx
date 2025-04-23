@@ -1297,7 +1297,11 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源转码内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
-              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}><Tooltip title={'' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime) + ' (' + utilities.size(oAction?.size ?? 0) + ')'} arrow placement="top"><span>{oAction?.path ?? ''}</span></Tooltip></div>))}
+              {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
+                <Tooltip title={'' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime) + ' (' + utilities.size(oAction?.size ?? 0) + ')'} arrow placement="top">
+                  <span>{oAction?.path ?? ''}</span>
+                </Tooltip>
+              </div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -1306,7 +1310,11 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源加密内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
-              {oAppPipeline?.appEncrypterStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.path ?? ''}</div>))}
+              {oAppPipeline?.appEncrypterStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
+                <Tooltip title={'' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
+                  <span>{oAction?.path ?? ''}</span>
+                </Tooltip>
+              </div>))}
 
             </div>
 
@@ -1317,7 +1325,11 @@ function Index(oProps: any): any {
               <div>⎯資源上云内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
 
-              {oAppPipeline?.appUploaderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.key ?? ''}</div>))}
+              {oAppPipeline?.appUploaderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
+                <Tooltip title={'' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
+                  <span>{oAction?.key ?? ''}</span>
+                </Tooltip>
+              </div>))}
 
             </div>
             <div className={clsx(oClasses.detail, {
@@ -1327,7 +1339,9 @@ function Index(oProps: any): any {
               <div>⎯資源回调内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
 
-              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.url ?? ''}&nbsp;&rarr;&nbsp;{oAction?.note ?? ''}</div>))}
+              {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
+                <span>{oAction?.url ?? ''}</span>&nbsp;&rarr;&nbsp;<span>{oAction?.note ?? ''}</span>
+              </div>))}
             </div>
 
             <div className={clsx(oClasses.detail, {
@@ -1336,7 +1350,11 @@ function Index(oProps: any): any {
             })}>
               <div>⎯資源预热内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
-              {oAppPipeline?.appWarmerStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>{oAction?.key ?? ''}</div>))}
+              {oAppPipeline?.appWarmerStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
+                <Tooltip title={'' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
+                  <span>{oAction?.key ?? ''}</span>
+                </Tooltip>
+              </div>))}
 
             </div>
           </Typography>
