@@ -1285,7 +1285,7 @@ function Index(oProps: any): any {
               <div>⎯資源同步内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appDownloaderStage?.note ?? ''}&nbsp;</div>
               <div className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'大小： ' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="top"><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span>
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'📂' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="top"><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span>
                 </Tooltip>
               </div>
               
@@ -1298,7 +1298,7 @@ function Index(oProps: any): any {
               <div>⎯資源转码内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
               {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'时间:' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime) + ' | 大小： ' + utilities.size(oAction?.size ?? 0) + ''} arrow placement="top">
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱' + utilities.dateTime(oAction.startedTime) + ' ⇢ ' + utilities.dateTime(oAction.endedTime) + ' | 📂' + utilities.size(oAction?.size ?? 0) + ''} arrow placement="top">
                   <span>{oAction?.path ?? ''}</span>
                 </Tooltip>
               </div>))}
@@ -1311,7 +1311,7 @@ function Index(oProps: any): any {
               <div>⎯資源加密内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
               {oAppPipeline?.appEncrypterStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'时间:' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱' + utilities.dateTime(oAction.startedTime) + ' ⇢ ' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
                   <span>{oAction?.path ?? ''}</span>
                 </Tooltip>
               </div>))}
@@ -1326,7 +1326,7 @@ function Index(oProps: any): any {
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
 
               {oAppPipeline?.appUploaderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'时间:' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱' + utilities.dateTime(oAction.startedTime) + ' ⇢ ' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
                   <span>{oAction?.key ?? ''}</span>
                 </Tooltip>
               </div>))}
@@ -1351,7 +1351,7 @@ function Index(oProps: any): any {
               <div>⎯資源预热内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
               {oAppPipeline?.appWarmerStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'时间:' + utilities.dateTime(oAction.startedTime) + '~' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱' + utilities.dateTime(oAction.startedTime) + ' ⇢ ' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
                   <span>{oAction?.key ?? ''}</span>
                 </Tooltip>
               </div>))}
