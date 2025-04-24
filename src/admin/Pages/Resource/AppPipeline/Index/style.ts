@@ -3,6 +3,9 @@ import { pink, red, grey, teal, blue, indigo, lightBlue, common, yellow, green, 
 
 const style = makeStyles((oTheme: Theme): any =>
   createStyles({
+    tooltip: {
+      maxWidth: 'none',
+    },
     top: {
       display: 'grid',
       gridTemplateColumns: '4fr 3fr'
