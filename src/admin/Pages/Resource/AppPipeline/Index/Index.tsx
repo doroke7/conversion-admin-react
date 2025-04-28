@@ -1121,7 +1121,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError1,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted1
-                  })}>資源同步 (-)</div>
+                  })}>资源同步 (-)</div>
 
                   <Typography
                     display={'block'}
@@ -1151,7 +1151,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError2,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted2
-                  })}>資源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})</div>
+                  })}>资源转码 ({oAppPipeline?.appTranscoderStage?.serverUuid ?? '-'})</div>
 
                   <Typography
                     display={'block'}
@@ -1181,7 +1181,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError3,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted3
-                  })}>資源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})</div>
+                  })}>资源加密 ({oAppPipeline?.appEncrypterStage?.serverUuid ?? '-'})</div>
 
                   <Typography
                     display={'block'}
@@ -1212,7 +1212,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError4,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted4
-                  })}>資源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})</div>
+                  })}>资源上云 ({oAppPipeline?.appUploaderStage?.serverUuid ?? '-'})</div>
 
                   <Typography
                     display={'block'}
@@ -1242,7 +1242,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError5,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted5
-                  })}>資源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})</div>
+                  })}>资源回调 ({oAppPipeline?.appNotifierStage?.serverUuid ?? '-'})</div>
 
                   <Typography
                     display={'block'}
@@ -1273,7 +1273,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError6,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted6
-                  })}>資源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})</div>
+                  })}>资源预热 ({oAppPipeline?.appWarmerStage?.serverUuid ?? '-'})</div>
                   <Typography
                     display={'block'}
                     align={'center'}
@@ -1289,7 +1289,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 1,
               [oClasses.detailError]: bError1
             })}>
-              <div>⎯資源同步内容⎯</div>
+              <div>⎯资源同步内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appDownloaderStage?.note ?? ''}&nbsp;</div>
               <div className={clsx(oClasses.detailAction)}>
                 <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'📂' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="top"><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span>
@@ -1302,7 +1302,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 2,
               [oClasses.detailError]: bError2
             })}>
-              <div>⎯資源转码内容⎯</div>
+              <div>⎯资源转码内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
               {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
                 <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAction.startedTime) + '→' + utilities.dateTime(oAction.endedTime) +  'ㅤㅤㅤㅤ' +'📂' + utilities.size(oAction?.size ?? 0) + ''} arrow placement="top">
@@ -1315,7 +1315,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 3,
               [oClasses.detailError]: bError3
             })}>
-              <div>⎯資源加密内容⎯</div>
+              <div>⎯资源加密内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appEncrypterStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appEncrypterStage?.note ?? ''}</div>
               {oAppPipeline?.appEncrypterStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
                 <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAction.startedTime) + '→' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
@@ -1329,7 +1329,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 4,
               [oClasses.detailError]: bError4
             })}>
-              <div>⎯資源上云内容⎯</div>
+              <div>⎯资源上云内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appUploaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appUploaderStage?.note ?? ''}</div>
 
               {oAppPipeline?.appUploaderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
@@ -1343,7 +1343,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 5,
               [oClasses.detailError]: bError5
             })}>
-              <div>⎯資源回调内容⎯</div>
+              <div>⎯资源回调内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appNotifierStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appNotifierStage?.note ?? ''}</div>
 
               {oAppPipeline?.appNotifierStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
@@ -1355,7 +1355,7 @@ function Index(oProps: any): any {
               [oClasses.displayNone]: iStateActiveStep != 6,
               [oClasses.detailError]: bError6
             })}>
-              <div>⎯資源预热内容⎯</div>
+              <div>⎯资源预热内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appWarmerStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appWarmerStage?.note ?? ''}</div>
               {oAppPipeline?.appWarmerStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
                 <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAction.startedTime) + '→' + utilities.dateTime(oAction.endedTime)} arrow placement="top">
