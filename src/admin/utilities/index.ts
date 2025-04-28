@@ -28,6 +28,7 @@ import dateTime from './dateTime/';
 import adminMenuKey from './adminMenuKey';
 import hhmmss from './hhmmss/';
 import percentage from './percentage/';
+import fps from './fps/';
 
 export {
   selectType,
@@ -50,7 +51,7 @@ export {
   cLinkToPath as linkToPath,
   cLinkToQuery as linkToQuery,
   cIsUpOrDown as isUpOrDown,
-  cParNumber as parNumber
+  cParNumber as parNumber,
 };
 
 export default {
@@ -62,5 +63,6 @@ export default {
   randString: randString,
   adminMenuKey: adminMenuKey,
   hhmmss: hhmmss,
-  percentage: percentage
+  percentage: percentage,
+  fps: fps
 };
