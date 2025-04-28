@@ -9,7 +9,14 @@ let cFps = (sInput: string) => {
   };
 
   if(!bIncluded) {
-    sResult = parseFloat(sInput).toFixed(2);
+    let iNumber = parseFloat(sInput);
+    if(Number.isNaN(iNumber)) {
+      sResult = '-';
+    }
+
+    if(!Number.isNaN(iNumber)) {
+      sResult = iNumber.toFixed(2);
+    }
   };
   
   return sResult;

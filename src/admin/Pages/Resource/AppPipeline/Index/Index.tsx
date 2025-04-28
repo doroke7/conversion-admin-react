@@ -884,7 +884,7 @@ function Index(oProps: any): any {
       headerName: '帧率',
       sortable: false,
       minWidth: 15,
-      valueGetter: (oProps: any) => (utilities.fps(oProps.row?.fps ?? ''))
+      valueGetter: (oProps: any) => (utilities.fps(oProps.row?.fps || '-'))
     },
     {
       field: 'duration',
