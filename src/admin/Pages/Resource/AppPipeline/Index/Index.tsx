@@ -862,7 +862,7 @@ function Index(oProps: any): any {
       field: 'appUserName',
       headerName: '账号',
       sortable: false,
-      width: 160,
+      width: 150,
       align: 'left',
       valueGetter: (oProps: any) => (oProps?.row?.appUser?.name)
     },
@@ -871,13 +871,20 @@ function Index(oProps: any): any {
       field: 'width',
       headerName: '宽度',
       sortable: false,
-      minWidth: 20,
+      minWidth: 15,
     },
     {
       field: 'height',
       headerName: '高度',
       sortable: false,
-      minWidth: 20,
+      minWidth: 15,
+    },
+    {
+      field: 'fps',
+      headerName: '帧率',
+      sortable: false,
+      minWidth: 15,
+      valueGetter: (oProps: any) => (utilities.fps(oProps.row?.fps ?? ''))
     },
     {
       field: 'duration',
