@@ -3,8 +3,14 @@ let cFps = (sInput: string) => {
   let sResult = sInput;
   let bIncluded = sInput.includes('/');
   if (bIncluded) {
-      let [iNimber, iDecimal] = sInput.split('/');
-      let iResult = parseFloat(iNimber) / parseFloat(iDecimal);
+      let [sNimber, sDecimal] = sInput.split('/');
+      let iNimber = parseFloat(sNimber);
+      let iDecimal = parseFloat(sDecimal);
+      let iResult = 0;
+      if (iNimber != 0 && iDecimal != 0) {
+        iResult = parseFloat(sNimber) / parseFloat(sDecimal);
+
+      };
       sResult = iResult.toFixed(2);
   };
 
