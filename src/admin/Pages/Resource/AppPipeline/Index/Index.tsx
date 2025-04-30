@@ -1377,12 +1377,12 @@ function Index(oProps: any): any {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" className={clsx(oClasses.dialogTitle)}>
           {sStateTitle}
         </DialogTitle>
         <Divider></Divider>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" className={clsx(oClasses.dialogContentText)}>
             手動轉碼&nbsp; <span className={clsx(oClasses.fileName)}>{sStateTitle ?? ''}</span>&nbsp;
             可能會造成任務阻塞, 確定要執行？
           </DialogContentText>

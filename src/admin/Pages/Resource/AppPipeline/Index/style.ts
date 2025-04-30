@@ -240,7 +240,16 @@ const style = makeStyles((oTheme: Theme): any =>
       minHeight: oTheme.spacing(18.75),
       position: 'relative',
     },
-
+    dialogTitle: {
+      wordWrap: 'break-word',
+      overflowWrap: 'break-word',
+      whiteSpace: 'normal',
+    },
+    dialogContentText: {
+      wordWrap: 'break-word',
+      overflowWrap: 'break-word',
+      whiteSpace: 'normal',
+    },
     loadingIcon: {
       position: 'absolute',
       top: '50%',
