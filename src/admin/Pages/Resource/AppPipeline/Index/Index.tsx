@@ -1121,7 +1121,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError1,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted1
-                  })}>资源同步 (-)</div>
+                  })}>资源起传 (-)</div>
 
                   <Typography
                     display={'block'}
