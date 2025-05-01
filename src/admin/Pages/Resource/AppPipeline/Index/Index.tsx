@@ -1292,7 +1292,7 @@ function Index(oProps: any): any {
               <div>⎯资源同步内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appDownloaderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appDownloaderStage?.note ?? ''}&nbsp;</div>
               <div className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAppPipeline?.appDownloaderStage.editedTime) + 'ㅤㅤㅤㅤ'+ '📂' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="top"><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span>
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAppPipeline?.appDownloaderStage?.addedTime) + '→' + utilities.dateTime(oAppPipeline?.appDownloaderStage.appDownloaderStage?.endedTime) +  'ㅤㅤㅤㅤ'+ '📂' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="top"><span>{oAppPipeline?.appDownloaderStage?.path ?? ''}</span>
                 </Tooltip>
               </div>
               
