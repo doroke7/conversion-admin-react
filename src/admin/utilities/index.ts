@@ -24,6 +24,7 @@ import deTree from './deTree/';
 import randString from './randString/';
 import url from './url/';
 import size from './size/';
+import bitrate from './bitrate/';
 import dateTime from './dateTime/';
 import adminMenuKey from './adminMenuKey';
 import hhmmss from './hhmmss/';
@@ -64,5 +65,7 @@ export default {
   adminMenuKey: adminMenuKey,
   hhmmss: hhmmss,
   percentage: percentage,
-  fps: fps
+  fps: fps,
+  bitrate: bitrate
+
 };

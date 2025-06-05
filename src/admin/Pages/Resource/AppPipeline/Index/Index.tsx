@@ -1083,7 +1083,7 @@ function Index(oProps: any): any {
       >
 
         <DialogTitle id="customized-dialog-title">
-          <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'📂' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="right"><span>{sStateTitle}</span></Tooltip>
+          <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'📶' + utilities.size(oAppPipeline?.videoBitRate ?? 0) + 'ㅤㅤㅤㅤ' + '📂' + utilities.size(oAppPipeline?.appDownloaderStage?.size ?? 0)} arrow placement="right"><span>{sStateTitle}</span></Tooltip>
         </DialogTitle>
 
         <Divider></Divider>
