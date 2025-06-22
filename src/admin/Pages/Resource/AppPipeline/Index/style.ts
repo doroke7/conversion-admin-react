@@ -59,6 +59,7 @@ const style = makeStyles((oTheme: Theme): any =>
       '& .MuiInputBase-input': {
         textAlign: 'left',
         fontSize: oTheme.spacing(1.75),
+        padding: oTheme.spacing(0),
       },
 
     },
