@@ -1531,6 +1531,7 @@ function Index(oProps: any): any {
             className={clsx(oClasses.textField, oClasses.textFieldPage)}
             id="page"
             label="页"
+            type="number"
             size="small"
             variant="outlined"
             value={iStatePage}
