@@ -10,6 +10,7 @@ let oStore = createStore(
     authorization: reducers.authorization,
     authorizations: reducers.authorizations,
     me: reducers.me,
+    app: reducers.app,
     adminUser: reducers.adminUser,
     adminUsers: reducers.adminUsers,
     appUsers: reducers.appUsers,
