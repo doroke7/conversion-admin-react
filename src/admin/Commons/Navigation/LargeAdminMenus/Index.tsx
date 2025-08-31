@@ -19,6 +19,7 @@ import cStyle from './style';
 function LargeAdminMenus(oProps: any) {
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
+  let iAppId = oProps.appId || 0;
 
   let oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;
@@ -67,7 +68,7 @@ function LargeAdminMenus(oProps: any) {
           {oAdminMenu?.adminMenus && Array.isArray(oAdminMenu?.adminMenus) && oAdminMenu?.adminMenus.length >= 1 ? (
             <SecondAdminMenus
               in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
-              adminMenus={oAdminMenu.adminMenus}></SecondAdminMenus>
+              adminMenus={oAdminMenu.adminMenus} appId={iAppId}></SecondAdminMenus>
           ) : (
             ''
           )}

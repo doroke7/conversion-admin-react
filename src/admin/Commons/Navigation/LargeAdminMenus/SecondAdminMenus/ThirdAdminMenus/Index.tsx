@@ -20,6 +20,7 @@ import cStyle from './style';
 function ThirdAdminMenus(oProps: any) {
   let aAdminMenus = oProps.adminMenus ?? [];
   let bOpen = oProps.open ?? false;
+  let iAppId = oProps.appId || 0;
   let oAnchor = oProps.anchor ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
 

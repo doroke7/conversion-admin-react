@@ -19,6 +19,7 @@ import cStyle from './style';
 function ThirdAdminMenus(oProps: any) {
   let bIn = oProps.in ?? false;
   let aAdminMenus = oProps.adminMenus ?? [];
+  let iAppId = oProps.appId || 0;
 
   let oClasses = cStyle();
   let oHistory = useHistory();

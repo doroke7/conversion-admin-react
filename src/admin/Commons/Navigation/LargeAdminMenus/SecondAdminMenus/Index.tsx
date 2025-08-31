@@ -20,6 +20,7 @@ import style from './style';
 
 function SecondAdminMenus(oProps: any) {
   let bIn = oProps.in ?? false;
+  let iAppId = oProps.appId || 0;
   let aAdminMenus = oProps.adminMenus ?? [];
 
   let oClasses = style();
@@ -81,7 +82,7 @@ function SecondAdminMenus(oProps: any) {
                 adminMenus={oAdminMenu?.adminMenus}
                 index={iSecondIndex}
                 anchor={oStateAnchors?.[utilities.adminMenuKey(oAdminMenu)]}
-                onClickAway={cHandleClose}></ThirdAdminMenus>
+                onClickAway={cHandleClose} appId={iAppId}></ThirdAdminMenus>
             ) : (
               ''
             )}

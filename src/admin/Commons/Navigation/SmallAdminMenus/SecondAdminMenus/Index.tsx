@@ -26,6 +26,8 @@ function SecondAdminMenus(oProps: any) {
   let aAdminMenus = oProps.adminMenus ?? [];
   let bOpen = oProps.open;
   let oAnchor = oProps.anchor;
+  let iAppId = oProps.appId || 0;
+
   let cOnClickAway = oProps.onClickAway;
 
   let oClasses = cStyle();
@@ -84,7 +86,7 @@ function SecondAdminMenus(oProps: any) {
                   oAdminMenu?.adminMenus?.length >= 1 ? (
                     <ThirdAdminMenus
                       in={oStateAdminMenus?.[utilities.adminMenuKey(oAdminMenu)]}
-                      adminMenus={oAdminMenu.adminMenus}></ThirdAdminMenus>
+                      adminMenus={oAdminMenu.adminMenus} appId={iAppId}></ThirdAdminMenus>
                   ) : (
                     ''
                   )}

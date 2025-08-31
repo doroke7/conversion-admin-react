@@ -20,6 +20,7 @@ import cStyle from './style';
 function SmallAdminMenus(oProps) {
   let bStatus = oProps.status;
   let aAdminMenus = oProps.adminMenus || [];
+  let iAppId = oProps.appId || 0;
 
   let oClasses = cStyle();
   let iIndex = useContext(Contexts.AppsIndex) ?? -1;

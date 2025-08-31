@@ -114,6 +114,8 @@ function Navigation(oProps: any) {
 
       let aAdminMenus = oAdminMenuResponse?.data?.raw?.tree ?? [];
 
+      console.log('aAdminMenus=', aAdminMenus);
+
       cSetStateAdminMenus(aAdminMenus);
     })();
   }, [iAppId]);
@@ -355,7 +357,6 @@ function Navigation(oProps: any) {
       cSetStateTabsValue(iValue);
 
       let oTab = aStateTabs[iValue] ?? null;
-      console.log('oTab=', oTab);
       if (oTab) {
         let iAppId = oTab?.params?.appId ?? 0;
         let iPage = oTab?.params?.page ?? 1;
@@ -373,7 +374,6 @@ function Navigation(oProps: any) {
   }, [iStateTabsValue, bStateOpen, iStateIndex, aStateTabs]);
 
   let cOnTab = useCallback((oRoute: any) => {
-    console.log('OnTab 行为发生 oRoute=', oRoute);
     let iAdminUserId = oRoute.adminUserId;
     let iCurrentAppId = 0;
     let iParamsAppId = Number(oRoute?.params?.appId ?? 0);
@@ -644,8 +644,8 @@ function Navigation(oProps: any) {
                 index={iStateIndex}
                 backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} />
-              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} />
+              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
+              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>

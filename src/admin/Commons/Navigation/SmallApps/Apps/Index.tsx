@@ -34,8 +34,8 @@ function Apps(oProps: any) {
   let oAnchor = oProps.anchor ?? null;
   let cOnClickAway = oProps.onClickAway ?? (() => void 0);
 
-  let cHandleClick = (iIndexOfApp) => {
-    return (oEvent) => {
+  let cHandleClick = (iIndexOfApp: any) => {
+    return (oEvent: any) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
       events.emit('Navigation-onClickApp', iIndexOfApp);
