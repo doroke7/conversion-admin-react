@@ -127,8 +127,6 @@ function Navigation(oProps: any) {
 
       let aAdminMenus = oAdminMenuResponse?.data?.raw?.tree ?? [];
 
-      console.log('aAdminMenus=', aAdminMenus);
-
       cSetStateAdminMenus(aAdminMenus);
     })();
   }, []);
