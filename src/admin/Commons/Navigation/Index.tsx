@@ -131,7 +131,7 @@ function Navigation(oProps: any) {
 
       cSetStateAdminMenus(aAdminMenus);
     })();
-  }, [iAppId]);
+  }, []);
 
 
   useEffect(() => {
