@@ -53,6 +53,7 @@ function Navigation(oProps: any) {
   let oDispatch = useDispatch();
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
+  let [bDialogOpen, cSetDialogOpen] = useState<any>(false);
   let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
@@ -83,6 +84,10 @@ function Navigation(oProps: any) {
     let oResponse = await Sdks.Admin.System.App.getShowOnes();
     return oResponse;
   }, [oMe.id]);
+
+  let cComfirmDialog = () => {
+    cSetDialogOpen(false);
+  };
 
   useEffect(() => {
     (async () => {
@@ -148,6 +153,14 @@ function Navigation(oProps: any) {
         return;
       }
 
+
+      if(oAdminMenu.path.includes('/app-id/:appId')) {
+        if(iStateAppId == 0){
+          cSetDialogOpen(true);
+          return;
+        }
+      }
+
       let oThisAdminMenu = {
         id: oAdminMenu.id,
         uri: oAdminMenu.uri,
@@ -162,7 +175,7 @@ function Navigation(oProps: any) {
       if (oThisAdminMenu) {
         oTextRef.current = oAdminMenu.text ?? '';
 
-        let sUrl = utilities.url('/', oThisAdminMenu.uri, 0, 0, 0, {});
+        let sUrl = utilities.url('/', oThisAdminMenu.path, iStateAppId, 1, 100, {});
         oHistory.push(sUrl);
       }
     };
@@ -171,7 +184,7 @@ function Navigation(oProps: any) {
     return () => {
       events.removeListener('Navigation-onClickAdminMenu', cClickAdminMenu);
     };
-  }, [aStateTabs, bStateOpen, iStateIndex]);
+  }, [aStateTabs, bStateOpen, iStateIndex, iStateAppId]);
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
@@ -611,7 +624,29 @@ function Navigation(oProps: any) {
             className={oClasses.root}
             ref={oDomRef}
           >
-            
+            <Dialog
+              open={bDialogOpen}
+              onClose={cComfirmDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description">
+              <DialogTitle id="alert-dialog-title">
+                <Typography variant="h6">请先选择 应用(App)</Typography>
+                <IconButton aria-label="close" className={oClasses.closeIcon} onClick={cComfirmDialog}>
+                  <CloseIcon />
+                </IconButton>
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <span>请先选择 应用(App) 再选择此菜单</span>
+                  <br></br>
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions className={oClasses.dialogActions}>
+                <Button className={oClasses.confirmButton} onClick={cComfirmDialog} color="primary" variant="outlined">
+                  确定
+                </Button>
+              </DialogActions>
+            </Dialog>
             <Bar
               handleDrawerOpen={cHandleDrawerOpen}
               open={bStateOpen}

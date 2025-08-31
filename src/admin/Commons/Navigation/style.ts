@@ -23,7 +23,15 @@ const style = makeStyles((oTheme: Theme) =>
     root: {
       display: 'flex'
     },
-
+    closeIcon: {
+      position: 'absolute',
+      right: oTheme.spacing(1.5),
+      top: oTheme.spacing(1.5),
+      height: oTheme.spacing(4.5),
+      width: oTheme.spacing(4.5),
+      color: grey[500],
+      borderRadius: oTheme.spacing(0.75)
+    },
     none: {
       display: 'none'
     },
