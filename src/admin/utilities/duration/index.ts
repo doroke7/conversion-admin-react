@@ -1,8 +1,10 @@
-let cDuration = (iSecond: number, bSecond = false) => {
+let cDuration = (sSecond: string, bSecond = false) => {
+
+  let iSecond = Number(sSecond);
 
   if (isNaN(iSecond)) return '00:00:00.00';
 
-  let sSecond = iSecond.toFixed(2);
+  sSecond = iSecond.toFixed(2);
   let iHours = Math.floor(iSecond / 3600);
   let iMinutes = Math.floor((iSecond % 3600) / 60);
   let iSeconds = Math.floor(iSecond % 60);
