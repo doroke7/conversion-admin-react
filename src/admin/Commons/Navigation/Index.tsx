@@ -88,7 +88,9 @@ function Navigation(oProps: any) {
 
   let cComfirmDialog = () => {
     cSetDialogOpen(false);
-    cSetDialogContent('菜单');
+    setTimeout(() => {
+      cSetDialogContent('菜单');
+    }, 200);
   };
 
   useEffect(() => {
