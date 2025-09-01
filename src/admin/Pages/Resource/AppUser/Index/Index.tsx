@@ -78,11 +78,13 @@ function Index(oProps: any): any {
         limit: oParams.limit
       };
       let oSearch = {};
+      console.log('o-------------------------------------------=');
 
       console.log('oOption=', oOption);
       console.log('oParams=', oParams);
 
       let oResponse = await Sdks.Admin.Resource.AppUser.getShowOnes(oParam, oOption, oSearch);
+      console.log('oResponse=', oResponse);
 
       let iNumber = Number(oResponse?.data?.raw?.number ?? 0);
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
