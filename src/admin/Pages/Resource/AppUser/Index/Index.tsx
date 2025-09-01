@@ -166,7 +166,7 @@ function Index(oProps: any): any {
       renderCell: (oProps: any) => {
 
         console.log('165 oProps=', oProps);
-        let sTitle = oProps?.row?.app?.title;
+        let sTitle = oProps?.row?.app?.title ?? '';
         let sLetter = sTitle.substr(0, 1);
 
         let sUrl = oProps?.row?.app?.url;
