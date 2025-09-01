@@ -54,6 +54,7 @@ function Navigation(oProps: any) {
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [bDialogOpen, cSetDialogOpen] = useState<any>(false);
+  let [sDialogContent, cSetDialogContent] = useState<any>('菜单');
   let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
   let [iStateIndex, cSetStateIndex] = useState<any>(-1);
@@ -87,6 +88,7 @@ function Navigation(oProps: any) {
 
   let cComfirmDialog = () => {
     cSetDialogOpen(false);
+    cSetDialogContent('菜单');
   };
 
   useEffect(() => {
@@ -155,6 +157,7 @@ function Navigation(oProps: any) {
       if(oAdminMenu.path.includes('/app-id/:appId')) {
         if(iStateAppId == 0){
           cSetDialogOpen(true);
+          cSetDialogContent(oAdminMenu.text);
           return;
         }
       }
@@ -245,7 +248,6 @@ function Navigation(oProps: any) {
 
           aTabs1 = [...aTempLeftTabs1, ...aTempRightTabs1];
 
-          console.log('219 准备写入 Tab 数据，aTabs1=', aTabs1, ', oMe?.id=', oMe?.id, ', oApp?.id=', oApp?.id);
           Helpers.Tab.setOnesByMeIdAppId(aTabs1, oMe?.id, oApp?.id);
 
         };
@@ -257,7 +259,6 @@ function Navigation(oProps: any) {
           let aTempRightTabs0 = aTabs0.slice(iIndex - aTabs1.length + 1, aTabs0.length);
 
           aTabs0 = [...aTempLeftTabs0, ...aTempRightTabs0];
-          console.log('230 准备写入 Tab aTabs0=', aTabs0, ', oMe?.id=', oMe?.id, ', 0=', 0);
           Helpers.Tab.setOnesByMeIdAppId(aTabs0, oMe?.id, 0);
 
         };
@@ -267,8 +268,6 @@ function Navigation(oProps: any) {
         iValue = iIndex > iStateTabsValue ? iStateTabsValue : iStateTabsValue - 1;
         iValue = iValue <= 0 ? 0 : iValue;
 
-        console.log('iValue=', iValue, aTabs1, aTabs0);
-
         cSetStateTabsValue(iValue);
         cSetStateTabs(aTabs);
 
@@ -276,12 +275,6 @@ function Navigation(oProps: any) {
         if (aTabs?.length >= 1) {
 
           let oTab = aTabs[iValue];
-          console.log('aTabs=', aTabs);
-
-          console.log('iValue=', iValue);
-
-          console.log('oTab=', oTab);
-
           oHistory.push(oTab?.url);
         }
         if (aTabs?.length == 0) {
@@ -319,11 +312,9 @@ function Navigation(oProps: any) {
         };
 
         if (iAppId > 0) {
-          console.log('287 准备写入 Tab aTabs1=', aTabs1, ', oMe?.id=', oMe?.id, ', iAppId=', iAppId)
           Helpers.Tab.setOnesByMeIdAppId(aTabs1, oMe?.id, iAppId);
         }
 
-        console.log('291 准备写入 Tab aTabs0=', aTabs0, ', oMe?.id=', oMe?.id, ', 0=', 0);
         Helpers.Tab.setOnesByMeIdAppId(aTabs0, oMe?.id, 0);
 
         let iValue = 0;
@@ -353,10 +344,8 @@ function Navigation(oProps: any) {
         let iAppId = oApp?.id ?? 0;
 
         if (iAppId > 0) {
-          console.log('321 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', iAppId=', iAppId);
           Helpers.Tab.setOnesByMeIdAppId([], oMe?.id, iAppId);
         }
-        console.log('325 准备写入 Tab []=', [], ', oMe?.id=', oMe?.id, ', 0=', 0);
         Helpers.Tab.setOnesByMeIdAppId([], oMe?.id, 0);
 
         cSetStateTabsValue(iValue);
@@ -483,8 +472,6 @@ function Navigation(oProps: any) {
         aTabs = [...aTabs1, ...aTabs0];
         iValue = iParamsAppId >= 1 ? aTabs1.length - 1 : aTabs1.length + aTabs0.length - 1;
       }
-      console.log('456 准备写入 Tab 数据，aTabs1=', aTabs1, ', iAdminUserId=', iAdminUserId, ', iCurrentAppId=', iCurrentAppId);
-      console.log('457 准备写入 Tab aTabs0=', aTabs0, ', iAdminUserId=', iAdminUserId, ', 0=', 0);
 
       Helpers.Tab.setOnesByMeIdAppId(aTabs1, iAdminUserId, iCurrentAppId);
       Helpers.Tab.setOnesByMeIdAppId(aTabs0, iAdminUserId, 0);
@@ -635,7 +622,7 @@ function Navigation(oProps: any) {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  <span>请先选择 应用(App) 再选择此菜单</span>
+                  <span>请先选择 应用(App) 再选择此 {sDialogContent}</span>
                   <br></br>
                 </DialogContentText>
               </DialogContent>
