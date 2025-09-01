@@ -153,6 +153,7 @@ function Navigation(oProps: any) {
         return;
       }
 
+      console.log('oAdminMenu', oAdminMenu);
 
       if(oAdminMenu.path.includes('/app-id/:appId')) {
         if(iStateAppId == 0){
