@@ -292,7 +292,7 @@ function Index(oProps: any): any {
           columns={aColumns}
           headerHeight={36}
           rowCount={aStateRows.length == 0 ? 0 : iStateCount}
-          rows={aStateRows}
+          rows={[]}
           page={0}
           pageSize={iStateLimit}
           loading={bStateLoading}
