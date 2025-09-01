@@ -156,7 +156,7 @@ function Navigation(oProps: any) {
       if(oAdminMenu.path.includes('/app-id/:appId')) {
         if(iStateAppId == 0){
           cSetDialogOpen(true);
-          cSetDialogContent(oAdminMenu?.name ?? '菜单');
+          cSetDialogContent('"' + (oAdminMenu?.name ?? '菜单') + '"');
           return;
         }
       }
