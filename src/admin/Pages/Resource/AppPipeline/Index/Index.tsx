@@ -1305,7 +1305,7 @@ function Index(oProps: any): any {
               <div>⎯资源转码内容⎯</div>
               <div className={clsx(oClasses.detailStageNote)}>{utilities.dateTime(oAppPipeline?.appTranscoderStage?.editedTime ?? '')}&nbsp;{oAppPipeline?.appTranscoderStage?.note ?? ''}</div>
               {oAppPipeline?.appTranscoderStage?.actions.map((oAction: any, skey: string) => (<div key={skey} className={clsx(oClasses.detailAction)}>
-                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAction.startedTime) + '→' + utilities.dateTime(oAction.endedTime) +  'ㅤㅤㅤㅤ' +'📂' + utilities.size(oAction?.size ?? 0) + ''} arrow placement="top">
+                <Tooltip classes={{ tooltip: oClasses.tooltip }} title={'⏱️' + utilities.dateTime(oAction.startedTime) + '→' + utilities.dateTime(oAction.endedTime) +  'ㅤㅤㅤㅤ' +'📂' + utilities.size(oAction?.size ?? 0) + '  ⏱️' + utilities.duration(oAction?.duration ?? 0) } arrow placement="top">
                   <span>{oAction?.path ?? ''}</span>
                 </Tooltip>
               </div>))}

@@ -30,6 +30,7 @@ import adminMenuKey from './adminMenuKey';
 import hhmmss from './hhmmss/';
 import percentage from './percentage/';
 import fps from './fps/';
+import duration from './duration/';
 
 export {
   selectType,
@@ -48,6 +49,7 @@ export {
   cSubstr as substr,
   cSum as sum,
   cLast as last,
+  duration as duration,
   cJSONparse as JSONparse,
   cLinkToPath as linkToPath,
   cLinkToQuery as linkToQuery,
@@ -66,6 +68,7 @@ export default {
   hhmmss: hhmmss,
   percentage: percentage,
   fps: fps,
+  duration: duration,
   bitrate: bitrate
 
 };
