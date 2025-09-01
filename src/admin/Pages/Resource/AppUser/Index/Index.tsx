@@ -164,6 +164,8 @@ function Index(oProps: any): any {
       headerAlign: 'center',
       align: 'center',
       renderCell: (oProps: any) => {
+
+        console.log('165 oProps=', oProps);
         let sTitle = oProps?.row?.app?.title;
         let sLetter = sTitle.substr(0, 1);
 
