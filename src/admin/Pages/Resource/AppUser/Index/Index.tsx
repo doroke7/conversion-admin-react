@@ -90,6 +90,7 @@ function Index(oProps: any): any {
       let iCount = Math.ceil((oResponse?.data?.raw?.number ?? 0) / (iLimit ?? 10));
       let aAppUsers = oResponse?.data?.raw?.ones ?? [];
       oDispatch(actions.appUsers.set(aAppUsers));
+      console.log('aAppUsers=', aAppUsers);
 
       cSetStateCount(iCount);
       cSetStateLoading(false);
@@ -292,7 +293,7 @@ function Index(oProps: any): any {
           columns={aColumns}
           headerHeight={36}
           rowCount={aStateRows.length == 0 ? 0 : iStateCount}
-          rows={[]}
+          rows={aStateRows}
           page={0}
           pageSize={iStateLimit}
           loading={bStateLoading}
