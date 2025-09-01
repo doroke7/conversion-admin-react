@@ -153,12 +153,10 @@ function Navigation(oProps: any) {
         return;
       }
 
-      console.log('oAdminMenu', oAdminMenu);
-
       if(oAdminMenu.path.includes('/app-id/:appId')) {
         if(iStateAppId == 0){
           cSetDialogOpen(true);
-          cSetDialogContent(oAdminMenu.text);
+          cSetDialogContent(oAdminMenu?.name ?? '菜单');
           return;
         }
       }
@@ -168,7 +166,7 @@ function Navigation(oProps: any) {
         uri: oAdminMenu.uri,
         path: oAdminMenu.path,
         options: {},
-        text: oAdminMenu.text,
+        name: oAdminMenu.name,
         icon: oAdminMenu.icon,
         content: oAdminMenu.description
       };
