@@ -25,7 +25,10 @@ function Apps(oProps: any) {
 
   let [bDisableClick, cSetDisableClick] = useState(true);
 
-  let cHandleClick = (iIndexOfApp) => {
+  let cHandleClick:any = (iIndexOfApp) => {
+    if(bDisableClick) {
+      return false;
+    }
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
@@ -45,7 +48,6 @@ function Apps(oProps: any) {
             button
             key={oApp.id}
             className={clsx(oClasses.listItem, {
-              bDisableClick: oClasses.pointerEventsNone
             })}
             aria-controls="simple-menu"
             aria-haspopup="true"
