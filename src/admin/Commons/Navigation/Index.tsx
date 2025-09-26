@@ -198,6 +198,8 @@ function Navigation(oProps: any) {
           // 点击的 App 跟当前 app 相同
         }
 
+
+        cSetStateOpen(false);
         if (iIndex != iStateIndex) {
           /**
            * NOTE： 切换 APP 时候需要个别把 app 旗下数据归 [] 
