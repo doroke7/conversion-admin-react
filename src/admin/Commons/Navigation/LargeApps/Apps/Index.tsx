@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import clsx from 'clsx';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -23,6 +23,8 @@ function Apps(oProps: any) {
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
+  let [bDisableClick, cSetDisableClick] = useState(true);
+
   let cHandleClick = (iIndexOfApp) => {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
@@ -32,13 +34,19 @@ function Apps(oProps: any) {
   };
 
   return (
-    <Collapse in={bIn} timeout="auto" unmountOnExit>
+    <Collapse in={bIn} timeout="auto" unmountOnExit
+        onEntering={() => cSetDisableClick(true)}
+        onEntered={() => cSetDisableClick(false)}
+        onExit={() => cSetDisableClick(true)}
+    >
       <List component="div" disablePadding className={oClasses.root}>
         {aApps.map((oApp: any, iIndexOfApp: any) => (
           <ListItem
             button
             key={oApp.id}
-            className={oClasses.listItem}
+            className={clsx(oClasses.listItem, {
+              bDisableClick: oClasses.pointerEventsNone
+            })}
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={cHandleClick(iIndexOfApp)}>
