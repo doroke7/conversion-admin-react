@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useLayoutEffect } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -52,6 +52,19 @@ function SmallApps(oProps) {
     cSetStateAnchor(oAnchor);
 
   };
+
+  useLayoutEffect(() => {
+    let cClickApp = (iIndex: any) => {
+      let oAnchor = null;
+
+      cSetStateAnchor(oAnchor);
+    };
+      let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
+      // 组件销毁前移除事件监听
+      return () => {
+        events.removeListener('Navigation-onClickApp', cClickApp);
+    };
+    }, []);
 
   return (
     <List

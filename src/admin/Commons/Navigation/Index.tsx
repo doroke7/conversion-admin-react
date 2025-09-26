@@ -54,6 +54,7 @@ function Navigation(oProps: any) {
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [bDialogOpen, cSetDialogOpen] = useState<any>(false);
+  let [bSetStateAppOpen, cSetStateAppOpen] = useState<any>(false);
   let [sDialogContent, cSetDialogContent] = useState<any>('菜单');
   let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
@@ -675,8 +676,8 @@ function Navigation(oProps: any) {
                 index={iStateIndex}
                 backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
-              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
+              <LargeAdminMenus status={bStateOpen} open={bSetStateAppOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
+              <SmallAdminMenus status={!bStateOpen} open={bSetStateAppOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>

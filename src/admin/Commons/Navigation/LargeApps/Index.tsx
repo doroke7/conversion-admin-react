@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState, useMemo, useLayoutEffect } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,6 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
 import Contexts from '@/admin/Contexts/Index';
+import events from '@/admin/events/index';
 
 import CONFIGS from '@/CONFIGS/INDEX';
 
@@ -18,6 +19,7 @@ import cStyle from './style';
 
 function LargeApps(oProps: any) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
+  let bOpen = oProps.open ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
@@ -30,6 +32,19 @@ function LargeApps(oProps: any) {
   let cHandleToggle = (oEvent: React.SyntheticEvent) => {
     cSetStateOpen(!oStateOpen);
   };
+
+  useLayoutEffect(() => {
+    let cClickApp = (iIndex: any) => {
+      cSetStateOpen(false);
+    };
+    let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
+    // 组件销毁前移除事件监听
+    return () => {
+      events.removeListener('Navigation-onClickApp', cClickApp);
+    };
+  }, []);
+
+  
 
   return (
     <List
