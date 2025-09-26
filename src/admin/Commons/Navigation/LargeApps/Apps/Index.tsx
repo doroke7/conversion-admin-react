@@ -38,7 +38,7 @@ function Apps(oProps: any) {
   };
 
   return (
-    <Collapse in={bIn} timeout={200} unmountOnExit
+    <Collapse in={bIn} timeout={300} unmountOnExit
         onEntering={() => cSetDisableClick(true)}
         onEntered={() => cSetDisableClick(false)}
         onExit={() => cSetDisableClick(true)}
