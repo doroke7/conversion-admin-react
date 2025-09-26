@@ -26,8 +26,6 @@ function Apps(oProps: any) {
   let [bDisableClick, cSetDisableClick] = useState(true);
 
   let cHandleClick:any = (iIndexOfApp, bDisableClick) => {
-
-    console.log('bDisableClick=', bDisableClick);
  
     return (oEvent) => {
       if(bDisableClick) {
@@ -40,7 +38,7 @@ function Apps(oProps: any) {
   };
 
   return (
-    <Collapse in={bIn} timeout={5000} unmountOnExit
+    <Collapse in={bIn} timeout={200} unmountOnExit
         onEntering={() => cSetDisableClick(true)}
         onEntered={() => cSetDisableClick(false)}
         onExit={() => cSetDisableClick(true)}
