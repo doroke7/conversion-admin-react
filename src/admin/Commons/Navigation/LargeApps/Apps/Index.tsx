@@ -26,6 +26,8 @@ function Apps(oProps: any) {
   let [bDisableClick, cSetDisableClick] = useState(true);
 
   let cHandleClick:any = (iIndexOfApp) => {
+
+    console.log('bDisableClick=', bDisableClick);
     if(bDisableClick) {
       return false;
     }
