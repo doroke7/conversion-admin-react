@@ -25,13 +25,14 @@ function Apps(oProps: any) {
 
   let [bDisableClick, cSetDisableClick] = useState(true);
 
-  let cHandleClick:any = (iIndexOfApp) => {
+  let cHandleClick:any = (iIndexOfApp, bDisableClick) => {
 
     console.log('bDisableClick=', bDisableClick);
-    if(bDisableClick) {
-      return false;
-    }
+ 
     return (oEvent) => {
+      if(bDisableClick) {
+        return false;
+      }
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
       events.emit('Navigation-onClickApp', iIndexOfApp);
@@ -53,7 +54,7 @@ function Apps(oProps: any) {
             })}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleClick(iIndexOfApp)}>
+            onClick={cHandleClick(iIndexOfApp, bDisableClick)}>
             <Icon
               className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0], {})}
               title={oApp?.title ?? ''}
