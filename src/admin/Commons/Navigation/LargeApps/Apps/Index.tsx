@@ -27,8 +27,7 @@ function Apps(oProps: any) {
   let cHandleClick:any = (iIndexOfApp) => {
  
     return (oEvent) => {
-      oEvent.stopPropagation(); // 取消 link
-      oEvent.preventDefault(); // 取消 a 取消 href
+ 
       events.emit('Navigation-onClickApp', iIndexOfApp);
     };
   };
