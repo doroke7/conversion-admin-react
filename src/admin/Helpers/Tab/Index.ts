@@ -38,6 +38,8 @@ class TabHelper {
 
     return true;
   }
+
+  
 }
 
 export default TabHelper;

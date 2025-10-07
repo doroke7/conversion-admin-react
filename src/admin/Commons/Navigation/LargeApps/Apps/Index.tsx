@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import clsx from 'clsx';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -23,22 +23,28 @@ function Apps(oProps: any) {
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
-  let cHandleClick = (iIndexOfApp) => {
+
+  let cHandleClick:any = (iIndexOfApp) => {
+ 
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
+
+      console.log('Apps 33 点击一个 App, iIndexOfApp=', iIndexOfApp);
       events.emit('Navigation-onClickApp', iIndexOfApp);
     };
   };
 
   return (
-    <Collapse in={bIn} timeout="auto" unmountOnExit>
+    <Collapse in={bIn} timeout={400} unmountOnExit
+    >
       <List component="div" disablePadding className={oClasses.root}>
         {aApps.map((oApp: any, iIndexOfApp: any) => (
           <ListItem
             button
             key={oApp.id}
-            className={oClasses.listItem}
+            className={clsx(oClasses.listItem, {
+            })}
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={cHandleClick(iIndexOfApp)}>

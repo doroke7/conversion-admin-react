@@ -11,6 +11,9 @@ let oStyle = makeStyles((oTheme: Theme) =>
       boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
       borderColor: 'rgba(0, 0, 0, 0.23)'
     },
+    pointerEventsNone: {
+      pointerEvents: 'none'
+    },
     listItem: {
       paddingLeft: oTheme.spacing(2)
     },

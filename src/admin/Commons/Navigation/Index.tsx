@@ -54,6 +54,7 @@ function Navigation(oProps: any) {
 
   let [bStateOpen, cSetStateOpen] = useState<any>(true);
   let [bDialogOpen, cSetDialogOpen] = useState<any>(false);
+  let [bSetStateAppOpen, cSetStateAppOpen] = useState<any>(false);
   let [sDialogContent, cSetDialogContent] = useState<any>('菜单');
   let [iStateTabsValue, cSetStateTabsValue] = useState<any>(0);
   let [aStateTabs, cSetStateTabs] = useState<any>([]);
@@ -190,6 +191,7 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
+      console.log('Navigation 194  Navigation-onClickApp, iIndex=', iIndex);
       if (oMe?.id) {
         let iAppId = aStateApps?.[iIndex]?.id;
 
@@ -197,6 +199,9 @@ function Navigation(oProps: any) {
           // DO NOTHING
           // 点击的 App 跟当前 app 相同
         }
+
+          console.log('Navigation 203  Navigation-onClickApp, aStateApps=', aStateApps);
+          console.log('Navigation 203  Navigation-onClickApp, iAppId=', iAppId);
 
         if (iIndex != iStateIndex) {
           /**
@@ -207,6 +212,9 @@ function Navigation(oProps: any) {
           let aTabs1 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId);
           let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
 
+          console.log('Navigation 215  Navigation-onClickApp, aTabs1=', aTabs1);
+                    console.log('Navigation 215  Navigation-onClickApp, aTabs0=', aTabs0);
+
           let aTabs = [...aTabs1, ...aTabs0];
           let iValue = aTabs.length >= 1 ? 0 : -1;
           cSetStateAppId(iAppId);
@@ -215,12 +223,17 @@ function Navigation(oProps: any) {
           cSetStateTabsValue(iValue);
 
           let sUrl = aTabs.length >= 1 ? aTabs[0]?.url : '/admin/resource';
+          console.log('Navigation 221  Navigation-onClickApp, iIndex=', iIndex);
 
           if (iIndex >= 0) {
+            console.log('Navigation 224  Navigation-onClickApp, sUrl=', sUrl);
+            cSetStateAppOpen(false);
             oHistory.push(sUrl);
           }
         }
       }
+      console.log('Navigation 230  Navigation-onClickApp ======================================');
+
 
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
@@ -231,6 +244,18 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oMe.id]);
 
 
+
+  let cHandleToggleAppOpen = useCallback(() => {
+    cSetStateAppOpen(!bSetStateAppOpen);
+  }, [bSetStateAppOpen]);
+
+    let cHandleCloseAppOpen = useCallback(() => {
+    cSetStateAppOpen(false);
+  }, []);
+
+      let cHandleOpenAppOpen = useCallback(() => {
+    cSetStateAppOpen(true);
+  }, []);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -667,15 +692,22 @@ function Navigation(oProps: any) {
               <SmallApps
                 status={!bStateOpen}
                 apps={aStateApps}
-                backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
+                open={bSetStateAppOpen}
+                onOpen={cHandleOpenAppOpen}
+                onClose={cHandleCloseAppOpen}
+                backgroundClasses={aMemoAppBackgroundClasses}
+              ></SmallApps>
               <LargeApps
                 status={bStateOpen}
                 apps={aStateApps}
                 index={iStateIndex}
-                backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
+                open={bSetStateAppOpen} 
+                onToggle={cHandleToggleAppOpen}
+                backgroundClasses={aMemoAppBackgroundClasses}
+              ></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
-              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
+              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} appId={iStateAppId}/>
+              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus}appId={iStateAppId}/>
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>
