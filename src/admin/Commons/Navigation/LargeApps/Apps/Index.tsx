@@ -29,6 +29,8 @@ function Apps(oProps: any) {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
+
+      console.log('Apps 33 点击一个 App, iIndexOfApp=', iIndexOfApp);
       events.emit('Navigation-onClickApp', iIndexOfApp);
     };
   };

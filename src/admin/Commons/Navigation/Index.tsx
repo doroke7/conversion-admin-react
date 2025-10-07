@@ -191,6 +191,7 @@ function Navigation(oProps: any) {
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
+      console.log('Navigation 194  Navigation-onClickApp, iIndex=', iIndex);
       if (oMe?.id) {
         let iAppId = aStateApps?.[iIndex]?.id;
 
@@ -217,8 +218,10 @@ function Navigation(oProps: any) {
           cSetStateTabsValue(iValue);
 
           let sUrl = aTabs.length >= 1 ? aTabs[0]?.url : '/admin/resource';
+          console.log('Navigation 221  Navigation-onClickApp, iIndex=', iIndex);
 
           if (iIndex >= 0) {
+            console.log('Navigation 224  Navigation-onClickApp, sUrl=', sUrl);
             cSetStateAppOpen(false);
             oHistory.push(sUrl);
           }
