@@ -200,6 +200,8 @@ function Navigation(oProps: any) {
           // 点击的 App 跟当前 app 相同
         }
 
+          console.log('Navigation 203  Navigation-onClickApp, aStateApps=', aStateApps);
+          console.log('Navigation 203  Navigation-onClickApp, iAppId=', iAppId);
 
         if (iIndex != iStateIndex) {
           /**
