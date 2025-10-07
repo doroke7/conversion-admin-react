@@ -23,14 +23,10 @@ function Apps(oProps: any) {
   let aApps = oProps.apps ?? [];
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
-  let [bDisableClick, cSetDisableClick] = useState(true);
 
-  let cHandleClick:any = (iIndexOfApp, bDisableClick) => {
+  let cHandleClick:any = (iIndexOfApp) => {
  
     return (oEvent) => {
-      if(bDisableClick) {
-        return false;
-      }
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
       events.emit('Navigation-onClickApp', iIndexOfApp);
@@ -39,9 +35,6 @@ function Apps(oProps: any) {
 
   return (
     <Collapse in={bIn} timeout={300} unmountOnExit
-        onEntering={() => cSetDisableClick(true)}
-        onEntered={() => cSetDisableClick(false)}
-        onExit={() => cSetDisableClick(true)}
     >
       <List component="div" disablePadding className={oClasses.root}>
         {aApps.map((oApp: any, iIndexOfApp: any) => (
@@ -52,7 +45,7 @@ function Apps(oProps: any) {
             })}
             aria-controls="simple-menu"
             aria-haspopup="true"
-            onClick={cHandleClick(iIndexOfApp, bDisableClick)}>
+            onClick={cHandleClick(iIndexOfApp)}>
             <Icon
               className={clsx(aBackgroundClasses[iIndexOfApp] ?? aBackgroundClasses[0], {})}
               title={oApp?.title ?? ''}
