@@ -212,6 +212,9 @@ function Navigation(oProps: any) {
           let aTabs1 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, iAppId);
           let aTabs0 = Helpers.Tab.getOnesByMeIdAppId(oMe?.id, 0);
 
+          console.log('Navigation 215  Navigation-onClickApp, aTabs1=', aTabs1);
+                    console.log('Navigation 215  Navigation-onClickApp, aTabs0=', aTabs0);
+
           let aTabs = [...aTabs1, ...aTabs0];
           let iValue = aTabs.length >= 1 ? 0 : -1;
           cSetStateAppId(iAppId);
