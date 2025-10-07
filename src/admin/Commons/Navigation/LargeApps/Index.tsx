@@ -21,30 +21,15 @@ function LargeApps(oProps: any) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let bOpen = oProps.open ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
+  let cToggle = oProps?.onToggle ?? (() => ( void 0));
+
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
-  const iIndex = (useContext(Contexts.AppsIndex) ?? -1) as number;
-  const oClasses = cStyle();
-
-  let [oStateOpen, cSetStateOpen] = useState<any>(false);
+  let iIndex = (useContext(Contexts.AppsIndex) ?? -1) as number;
+  let oClasses = cStyle();
 
   let oApp = aApps?.[iIndex] ?? {};
-  let cHandleToggle = (oEvent: React.SyntheticEvent) => {
-    cSetStateOpen(!oStateOpen);
-  };
 
-  useLayoutEffect(() => {
-    let cClickApp = (iIndex: any) => {
-      cSetStateOpen(false);
-    };
-    let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
-    // 组件销毁前移除事件监听
-    return () => {
-      events.removeListener('Navigation-onClickApp', cClickApp);
-    };
-  }, []);
-
-  
 
   return (
     <List
@@ -54,16 +39,16 @@ function LargeApps(oProps: any) {
         [oClasses.hidden]: !bStatus
       })}>
       <>
-        <ListItem className={oClasses.listItem} button onClick={cHandleToggle}>
+        <ListItem className={oClasses.listItem} button onClick={cToggle}>
           <Icon
             className={clsx(aBackgroundClasses?.[iIndex] ?? aBackgroundClasses?.[14])}
             title={oApp?.title ?? ''}
             status={iIndex >= 0}
             url={oApp?.url ?? ''}></Icon>
           <ListItemText primary={'项目应用'} />
-          {oStateOpen ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
+          {bOpen ? <ExpandLess className={oClasses.icon} /> : <ExpandMore className={oClasses.icon} />}
         </ListItem>
-        <Apps in={oStateOpen} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
+        <Apps in={bOpen} apps={aApps} index={iIndex} backgroundClasses={aBackgroundClasses}></Apps>
       </>
     </List>
   );

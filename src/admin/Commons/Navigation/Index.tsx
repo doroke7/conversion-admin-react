@@ -219,6 +219,7 @@ function Navigation(oProps: any) {
           let sUrl = aTabs.length >= 1 ? aTabs[0]?.url : '/admin/resource';
 
           if (iIndex >= 0) {
+            cSetStateAppOpen(false);
             oHistory.push(sUrl);
           }
         }
@@ -233,6 +234,18 @@ function Navigation(oProps: any) {
   }, [aStateTabs, bStateOpen, iStateIndex, aStateApps, oMe.id]);
 
 
+
+  let cHandleToggleAppOpen = useCallback(() => {
+    cSetStateAppOpen(!bSetStateAppOpen);
+  }, [bSetStateAppOpen]);
+
+    let cHandleCloseAppOpen = useCallback(() => {
+    cSetStateAppOpen(false);
+  }, []);
+
+      let cHandleOpenAppOpen = useCallback(() => {
+    cSetStateAppOpen(true);
+  }, []);
 
   useEffect(() => {
     let cRemoveTab = (iIndex: number) => {
@@ -669,15 +682,22 @@ function Navigation(oProps: any) {
               <SmallApps
                 status={!bStateOpen}
                 apps={aStateApps}
-                backgroundClasses={aMemoAppBackgroundClasses}></SmallApps>
+                open={bSetStateAppOpen}
+                onOpen={cHandleOpenAppOpen}
+                onClose={cHandleCloseAppOpen}
+                backgroundClasses={aMemoAppBackgroundClasses}
+              ></SmallApps>
               <LargeApps
                 status={bStateOpen}
                 apps={aStateApps}
                 index={iStateIndex}
-                backgroundClasses={aMemoAppBackgroundClasses}></LargeApps>
+                open={bSetStateAppOpen} 
+                onToggle={cHandleToggleAppOpen}
+                backgroundClasses={aMemoAppBackgroundClasses}
+              ></LargeApps>
               <Divider className={oClasses.secondDivider} />
-              <LargeAdminMenus status={bStateOpen} open={bSetStateAppOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
-              <SmallAdminMenus status={!bStateOpen} open={bSetStateAppOpen} adminMenus={aStateAdminMenus} apps={aStateApps} appId={iStateAppId}/>
+              <LargeAdminMenus status={bStateOpen} adminMenus={aStateAdminMenus} appId={iStateAppId}/>
+              <SmallAdminMenus status={!bStateOpen} adminMenus={aStateAdminMenus}appId={iStateAppId}/>
               <Divider className={oClasses.thirdDivider} />
               <List></List>
             </Drawer>

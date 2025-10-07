@@ -21,10 +21,14 @@ import cStyle from './style';
 function SmallApps(oProps) {
   let bStatus = oProps.status ?? false; // 简单菜单 or 非简单菜单
   let aApps = oProps.apps ?? [];
+  let bOpen = oProps.open ?? false;
+  let cClose = oProps.onClose ?? (() => (void 0));
+  let cOpen = oProps.onOpen ?? (() => (void 0));
+
   let aBackgroundClasses = oProps.backgroundClasses ?? [];
 
-  const oClasses = cStyle();
-  const iIndex = useContext(Contexts.AppsIndex) ?? -1;
+  let oClasses = cStyle();
+  let iIndex = useContext(Contexts.AppsIndex) ?? -1;
 
   let [oStateAnchor, cSetStateAnchor] = useState<any>(null);
 
@@ -32,13 +36,13 @@ function SmallApps(oProps) {
 
   let cHandleMouseEnter = (oEvent:any) => {
     let oAnchor = oEvent.currentTarget;
-
+    cOpen();
     cSetStateAnchor(oAnchor);
   };
 
   let cHandleMouseLeave = (oEvent:any) => {
     let oAnchor = null;
-
+    cClose();
     cSetStateAnchor(oAnchor);
 
   };
@@ -48,7 +52,7 @@ function SmallApps(oProps) {
       return;
     }
     let oAnchor = null;
-
+    cClose();
     cSetStateAnchor(oAnchor);
 
   };
@@ -56,15 +60,16 @@ function SmallApps(oProps) {
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
       let oAnchor = null;
-
+      cClose();
       cSetStateAnchor(oAnchor);
     };
-      let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
+    
+    let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
       // 组件销毁前移除事件监听
-      return () => {
+    return () => {
         events.removeListener('Navigation-onClickApp', cClickApp);
     };
-    }, []);
+  }, []);
 
   return (
     <List
@@ -86,7 +91,7 @@ function SmallApps(oProps) {
             url={oApp?.url ?? ''}></Icon>
           <ListItemText primary={''} />
           <Apps
-            open={Boolean(oStateAnchor ?? false)}
+            open={Boolean(bOpen ?? false)}
             apps={aApps}
             anchor={oStateAnchor}
             backgroundClasses={aBackgroundClasses}
