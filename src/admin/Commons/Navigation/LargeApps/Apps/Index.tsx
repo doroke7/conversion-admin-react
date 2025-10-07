@@ -36,7 +36,7 @@ function Apps(oProps: any) {
   };
 
   return (
-    <Collapse in={bIn} timeout={300} unmountOnExit
+    <Collapse in={bIn} timeout={400} unmountOnExit
     >
       <List component="div" disablePadding className={oClasses.root}>
         {aApps.map((oApp: any, iIndexOfApp: any) => (
