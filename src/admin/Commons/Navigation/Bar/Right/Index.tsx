@@ -114,6 +114,7 @@ function Right(oProps: any) {
         message: oResponse?.data?.message ?? '',
         time: 2 * 1000
       };
+      window.localStorage.clear(); // 清理 本地 tab 资料
       events.emit('Alerts-onAlert', oMessage);
     }
 
