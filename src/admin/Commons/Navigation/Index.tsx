@@ -227,6 +227,8 @@ function Navigation(oProps: any) {
           }
         }
       }
+      console.log('Navigation 230  Navigation-onClickApp ======================================');
+
 
     };
     let oEventEmitter: any = events.addListener('Navigation-onClickApp', cClickApp);
