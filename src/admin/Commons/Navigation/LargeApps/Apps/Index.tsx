@@ -29,14 +29,12 @@ function Apps(oProps: any) {
     return (oEvent) => {
       oEvent.stopPropagation(); // 取消 link
       oEvent.preventDefault(); // 取消 a 取消 href
-
-      console.log('Apps 33 点击一个 App, iIndexOfApp=', iIndexOfApp);
       events.emit('Navigation-onClickApp', iIndexOfApp);
     };
   };
 
   return (
-    <Collapse in={bIn} timeout={400} unmountOnExit
+    <Collapse in={bIn} timeout={300} unmountOnExit
     >
       <List component="div" disablePadding className={oClasses.root}>
         {aApps.map((oApp: any, iIndexOfApp: any) => (

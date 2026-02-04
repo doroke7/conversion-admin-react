@@ -34,20 +34,20 @@ function SmallApps(oProps) {
 
   let oApp = aApps[iIndex] ?? {};
 
-  let cHandleMouseEnter = (oEvent:any) => {
+  let cHandleMouseEnter = useCallback((oEvent:any) => {
     let oAnchor = oEvent.currentTarget;
     cOpen();
     cSetStateAnchor(oAnchor);
-  };
+  }, []);
 
-  let cHandleMouseLeave = (oEvent:any) => {
+  let cHandleMouseLeave = useCallback((oEvent:any) => {
     let oAnchor = null;
     cClose();
     cSetStateAnchor(oAnchor);
 
-  };
+  }, []);
 
-  let cHandleClose = (oEvent: any) => {
+  let cHandleClose = useCallback((oEvent: any) => {
     if (oStateAnchor && oStateAnchor.contains(oEvent.target as HTMLElement)) {
       return;
     }
@@ -55,7 +55,7 @@ function SmallApps(oProps) {
     cClose();
     cSetStateAnchor(oAnchor);
 
-  };
+  }, []);
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
