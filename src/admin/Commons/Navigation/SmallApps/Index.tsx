@@ -90,6 +90,7 @@ function SmallApps(oProps) {
             status={iIndex >= 0}
             url={oApp?.url ?? ''}></Icon>
           <ListItemText primary={''} />
+          {bStatus ?  // 這邊有坑， 祖元素 List 顯示 display none 也不能保證 App 不暫時 =》 所以多做了一個顯示判斷
           <Apps
             open={Boolean(bOpen ?? false)}
             apps={aApps}
@@ -97,10 +98,10 @@ function SmallApps(oProps) {
             backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
             onMouseLeave={cHandleMouseLeave}>  
-          </Apps>
+          </Apps> : <></>}
           <div className={oClasses.listItemOverlay}>
 
-          ß</div>
+          </div>
         </ListItem>
       </div>
     </List>
