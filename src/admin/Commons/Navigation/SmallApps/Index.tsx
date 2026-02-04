@@ -96,10 +96,11 @@ function SmallApps(oProps) {
             anchor={oStateAnchor}
             backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
-            onMouseLeave={cHandleMouseLeave}></Apps>
-            <div className={oClasses.listItemOverlay}>
+            onMouseLeave={cHandleMouseLeave}>  
+          </Apps>
+          <div className={oClasses.listItemOverlay}>
 
-            </div>
+          ß</div>
         </ListItem>
       </div>
     </List>
