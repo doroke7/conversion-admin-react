@@ -76,7 +76,7 @@ function SmallApps(oProps) {
       component="div"
       aria-labelledby="nested-list-subheader"
       className={clsx(oClasses.root, {
-        [oClasses.hidden]: !bStatus
+        [oClasses.hidden]: !bStatus // 這邊有坑， 祖元素 List 顯示 display none 也不能保證 App 不暫時 =》 所以多做了一個顯示判斷
       })}>
       <div className={oClasses.listItemWrapper}>
         <ListItem
