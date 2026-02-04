@@ -1,4 +1,4 @@
-import React, { useContext, useState, useLayoutEffect } from 'react';
+import React, { useContext, useState, useCallback, useLayoutEffect } from 'react';
 import clsx from 'clsx';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -34,20 +34,20 @@ function SmallApps(oProps) {
 
   let oApp = aApps[iIndex] ?? {};
 
-  let cHandleMouseEnter = (oEvent:any) => {
+  let cHandleMouseEnter = useCallback((oEvent:any) => {
     let oAnchor = oEvent.currentTarget;
     cOpen();
     cSetStateAnchor(oAnchor);
-  };
+  }, []);
 
-  let cHandleMouseLeave = (oEvent:any) => {
+  let cHandleMouseLeave = useCallback((oEvent:any) => {
     let oAnchor = null;
     cClose();
     cSetStateAnchor(oAnchor);
 
-  };
+  }, []);
 
-  let cHandleClose = (oEvent: any) => {
+  let cHandleClose = useCallback((oEvent: any) => {
     if (oStateAnchor && oStateAnchor.contains(oEvent.target as HTMLElement)) {
       return;
     }
@@ -55,7 +55,7 @@ function SmallApps(oProps) {
     cClose();
     cSetStateAnchor(oAnchor);
 
-  };
+  }, []);
 
   useLayoutEffect(() => {
     let cClickApp = (iIndex: any) => {
@@ -76,7 +76,7 @@ function SmallApps(oProps) {
       component="div"
       aria-labelledby="nested-list-subheader"
       className={clsx(oClasses.root, {
-        [oClasses.hidden]: !bStatus
+        [oClasses.hidden]: !bStatus // 這邊有坑， 祖元素 List 顯示 display none 也不能保證 App 不暫時 =》 所以多做了一個顯示判斷
       })}>
       <div className={oClasses.listItemWrapper}>
         <ListItem
@@ -90,16 +90,18 @@ function SmallApps(oProps) {
             status={iIndex >= 0}
             url={oApp?.url ?? ''}></Icon>
           <ListItemText primary={''} />
+          {bStatus ?  // 這邊有坑， 祖元素 List 顯示 display none 也不能保證 App 不暫時 =》 所以多做了一個顯示判斷
           <Apps
             open={Boolean(bOpen ?? false)}
             apps={aApps}
             anchor={oStateAnchor}
             backgroundClasses={aBackgroundClasses}
             onClickAway={cHandleClose}
-            onMouseLeave={cHandleMouseLeave}></Apps>
-            <div className={oClasses.listItemOverlay}>
+            onMouseLeave={cHandleMouseLeave}>  
+          </Apps> : <></>}
+          <div className={oClasses.listItemOverlay}>
 
-            </div>
+          </div>
         </ListItem>
       </div>
     </List>
