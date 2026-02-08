@@ -919,8 +919,8 @@ function Index(oProps: any): any {
     },
     {
       field: 'addedTime',
-      headerName: '上传时间',
-      description: '上传时间',
+      headerName: '啟传时间',
+      description: '啟传时间',
       sortable: false,
       width: 170,
       valueGetter: (oProps: any) => (utilities.dateTime(oProps.row?.addedTime))
@@ -1121,7 +1121,7 @@ function Index(oProps: any): any {
                   <div className={clsx({
                     [oClasses.stepButtonDetailError]: bError1,
                     [oClasses.stepButtonDetailUnCompleted]: !bCompleted1
-                  })}>资源起传 (-)</div>
+                  })}>资源同步 (-)</div>
 
                   <Typography
                     display={'block'}
