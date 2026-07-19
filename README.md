@@ -179,3 +179,9 @@ yarn run build;
 
 ## REACT 使用内建 children 属性 表示 子元素，这是 react 内建，不需要另外引入
   const { children, classes, onClose, ...other } = props;
+
+
+## 這個項目用了很多嵌套頁面小組件
+1. 不好 全部是 index.ts 不好找
+2. 數據關係太複雜。
+3. 建議 pages 頁面組件平行的放即可
